@@ -284,8 +284,8 @@ pascal OSErr __FSMakeFSSpec( short vRefNum, long dirID, ConstStr255Param fileNam
 	return(PBMakeFSSpecSync(&pb));
 }
 
-// This one isn’t in the interfaces anywhere, but is in the dispatcher.
-// We dreamed it up for use by FSpExchangeFiles, but it’s a bit late 
+// This one isn't in the interfaces anywhere, but is in the dispatcher.
+// We dreamed it up for use by FSpExchangeFiles, but it's a bit late 
 // to make it into Inside Mac.  Feel free to add this call later.
 pascal OSErr __FSpGetCatInfo(const FSSpec* spec, CInfoPBPtr cinfo)
 {

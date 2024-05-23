@@ -171,7 +171,7 @@
 ;				  3/5/87	med		Disable cache request when resetting sys or app fonts with -2 in
 ;									CurFMInput
 ;				  3/4/87	med		Fix force flag bug when resetting system fonts
-;				 1/28/87	MED		Don’t stomp on sysFontFam if it is in the right range.
+;				 1/28/87	MED		Don't stomp on sysFontFam if it is in the right range.
 ;				 1/19/87	jdt		Replaced resource type constants with literals.
 ;				12/31/86	jdt		Removed check on smgrEnabled in DrawMenuBar patch.
 ;				12/23/86	jdt		Removed several checks on ResErr. Only reset application font if

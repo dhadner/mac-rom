@@ -107,7 +107,7 @@
 ;		<P9>	  3/3/92	chp		(SWC,H12) Added SoundStereoMixing to ExtValid so the system disk (Cube-E)
 ;									can determine if that feature is available on new machines that it doesn't
 ;									know about.
-;		<P8>	 2/28/92	chp		Changed “DMAExists” to more specific “PSCExists.”
+;		<P8>	 2/28/92	chp		Changed 'DMAExists' to more specific 'PSCExists.'
 ;		<P7>	02/19/92	jmp		(HJR,H11) Added NiagraExistsBit to ProductInfo's external
 ;									features, since Niagra is just a minor variant of Jaws.  (Note:
 ;									Because of this change, moved the Egret Firmware bits to 22, 23,
@@ -189,7 +189,7 @@
 ;									work only on Regatta.
 ;		<16>	 3/28/91	SAM		Added entries in DecoderInfo for SCSIC96 & DAFB (used three
 ;									previously unused entries.)
-;		<15>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<15>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<14>	10/22/90	JJ		Rex V8: Change VISAChipBit to V8ChipBit.
 ;		<13>	 8/14/90	BG		Added a definition for -SonicExists- for the on-board Ethernet
@@ -637,7 +637,7 @@ has68kEmulator	equ		32					; ROM supports 68k emulation
 
 SerialDMA		equ		33					; serial hardware requires SerialDMA driver and HAL
 
-SHALMask		equ		%111 << (34//32)	; mask for product’s HAL resource ID
+SHALMask		equ		%111 << (34//32)	; mask for product's HAL resource ID
 SHALReserved	equ		%000 << (34//32)	; (0) reserved
 SHALPSC			equ		%001 << (34//32)	; (1) PSC HAL
 SHALAMIC		equ		%010 << (34//32)	; (2) AMIC HAL

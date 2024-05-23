@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <1>	10/14/91	JSM		first checked in
-;	   <1.4>	11/17/89	CCH		Took space out of “LM Equates.a”.
+;	   <1.4>	11/17/89	CCH		Took space out of 'LM Equates.a'.
 ;	   <1.3>	11/16/89	WTO		Added support for VM deferrals.
 ;	   <1.2>	  9/8/89	jhl		Phase 2 AppleTalk with final mods and VM rolled in.
 ;	   <1.1>	 7/24/89	SGS		Get IOP Atlk out of ROM for F19
@@ -18,8 +18,8 @@
 ;
 ;
 
-;EASE$$$ READ ONLY COPY of file “LapMgrEqu.a”
-; 1.4	CCH 11/17/1989 Took space out of “LM Equates.a”.
+;EASE$$$ READ ONLY COPY of file 'LapMgrEqu.a'
+; 1.4	CCH 11/17/1989 Took space out of 'LM Equates.a'.
 ; 1.3	WTO 11/16/1989 Added support for VM deferrals.
 ; 1.2	jhl 09/08/1989 Phase 2 AppleTalk with final mods and VM rolled in.
 ; 1.1	SGS 07/24/1989 Get IOP Atlk out of ROM for F19

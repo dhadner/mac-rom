@@ -148,10 +148,10 @@
 ;
 ;	7.0 Change History:
 ;
-;		<38>	 9/30/91	JSM		Don’t use is32BitClean conditional in getAddrMode, all future
+;		<38>	 9/30/91	JSM		Don't use is32BitClean conditional in getAddrMode, all future
 ;									ROMs will be.
 ;		<37>	 9/10/91	JSM		Cleanup header.
-;		<36>	 8/30/91	DTY		Change the QuickDraw selector code so that it doesn’t depend on
+;		<36>	 8/30/91	DTY		Change the QuickDraw selector code so that it doesn't depend on
 ;									the hasCQD conditional. Remove isUniversal check in parity
 ;									selector since we make only universal ROMs now.
 ;		<35>	 7/10/91	dba		end of the forPost70 conditional; we are past 7.0 for good
@@ -197,7 +197,7 @@
 ;		 <8>	 1/17/90	CCH		NEEDED FOR 6.0.5:  moved restoration of cache register in parity
 ;									check routine.
 ;		 <7>	 1/16/90	CCH		turn off cache when checking RPU for parity.
-;		 <6>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <6>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <5>	 1/10/90	CCH		Don't check for parity on XO.
 ;		 <4>	  1/8/90	CCH		Added gestaltMisc selector.
 ;		 <3>	  1/5/90	CCH		Changes: (NEEDED FOR 6.0.5) - Added slot selectors back in
@@ -839,7 +839,7 @@ qdVersion
 		ENDIF									;											<2.9>
 
 ;
-; We don’t make ROMs without Color QuickDraw any more, so we don’t need the					<36>
+; We don't make ROMs without Color QuickDraw any more, so we don't need the					<36>
 ; second part of this conditional.  (And this code is always here for the					<36>
 ; RAM version of the selector.)																<36>
 ;
@@ -938,9 +938,9 @@ cleanROMloop	cmp.w	(a0)+,d1				; is this a clean ROM?					<3.1>
 				tst.w	(a0)					; any more to check?					<3.1>
 				bne.s	cleanROMloop			; if so, go check						<3.1>
 				cmp.w	#$0178, D1				; Mac-II class machine?					<41>
-				bne		stdResult				; if not, Scruffy can’t be here			<41>
+				bne		stdResult				; if not, Scruffy can't be here			<41>
 				cmp.l	#$00002000, SysZone		; is Scruffy running?					<41>
-				beq.s	cleanROM				; if so, we’re now 32-bit clean			<41>
+				beq.s	cleanROM				; if so, we're now 32-bit clean			<41>
 				bra		stdResult				; what a dirty old ROM					<3.1>
 		ENDIF									;										<3.1>
 
@@ -1143,17 +1143,17 @@ getHardwareAttr
 				movea.l	ExpandMem,a0					; get ptr to expandmem rec <SM2> <PN>
 				movea.l	emGestalt(a0),a0				; get gestalt global ptr <SM2> <PN>
 
-				cmpi.w	#gestaltMacSE30,machType(a0)	; if this is an SE/30, we don’t have soft power-off <SM2> <PN>
+				cmpi.w	#gestaltMacSE30,machType(a0)	; if this is an SE/30, we don't have soft power-off <SM2> <PN>
 				beq.s	@noSoftPowerOff
-				cmpi.w	#gestaltMacLC,machType(a0)		; if this is an LC, we don’t have soft power-off <SM2> <PN>
+				cmpi.w	#gestaltMacLC,machType(a0)		; if this is an LC, we don't have soft power-off <SM2> <PN>
 				beq.s	@noSoftPowerOff
-				cmpi.w	#gestaltMacLCII,machType(a0)	; if this is an LC II, we don’t have soft power-off <SM26> rb
+				cmpi.w	#gestaltMacLCII,machType(a0)	; if this is an LC II, we don't have soft power-off <SM26> rb
 				beq.s	@noSoftPowerOff
-				cmpi.w	#boxClassicII,machType(a0)		; if this is an Apollo, we don’t have soft power-off <5><22> <SM2> <PN>
+				cmpi.w	#boxClassicII,machType(a0)		; if this is an Apollo, we don't have soft power-off <5><22> <SM2> <PN>
 				beq.s	@noSoftPowerOff					; <SM2> <PN>
-				cmpi.w	#gestaltTempest25,machType(a0)	; if this is a Tempest, we don’t have soft power-off <SM20> fau
+				cmpi.w	#gestaltTempest25,machType(a0)	; if this is a Tempest, we don't have soft power-off <SM20> fau
 				beq.s	@noSoftPowerOff					; <SM20> fau
-				cmpi.w	#gestaltTempest33,machType(a0)	; if this is a Tempest, we don’t have soft power-off <SM23> fau
+				cmpi.w	#gestaltTempest33,machType(a0)	; if this is a Tempest, we don't have soft power-off <SM23> fau
 				beq.s	@noSoftPowerOff					; <SM23> fau
 			ENDIF										;															<SM39>
 				move.l	#gestaltHasSoftPowerOff,d1		;  Get the Gestalt bit for SoftpowerOff
@@ -1175,7 +1175,7 @@ getHardwareAttr
 
 @EnhLtalk		TestFor	hasEnhancedLTalk				; Do we have CURIO LocalTalk enhancements?
 				beq.b	@checkMACE						; 	no, check next feature
-				bset	#gestaltHasEnhancedLtalk,d0		; That’s a big 10-4.
+				bset	#gestaltHasEnhancedLtalk,d0		; That's a big 10-4.
 
 @checkMACE		TestFor	MACEExists						; do we have MACE Ethernet Controller?
 				beq.s	@hardwareExit					; no, exit

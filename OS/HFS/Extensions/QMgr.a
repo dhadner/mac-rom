@@ -326,7 +326,7 @@ QMCmdDone:		proc
 		bne.s	@Done					; if it was already busy, we can return asynchronously	<9>
 		move.w	(sp)+,sr				; restore interrupt state								<9>
 
-		lea.l	QMDispatchRequest,a0		; our dispatcher’s entry point						<9>
+		lea.l	QMDispatchRequest,a0		; our dispatcher's entry point						<9>
 		jmp		CallWithRegistersPreserved	; call it 											<9>
 
 @Done:

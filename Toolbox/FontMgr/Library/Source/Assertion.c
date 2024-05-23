@@ -11,8 +11,8 @@
 	Change History (most recent first):
 
 		 <5>	 3/31/92	YK		Simplify <4>.
-		 <4>	 3/31/92	YK		#1024868: The jlf defines ‘The Empty Handle is a valid Handle.’
-		 <3>	 3/27/92	DTY		#1024868: Skip calls to Assert since it doesn’t do anything any
+		 <4>	 3/31/92	YK		#1024868: The jlf defines ‘The Empty Handle is a valid Handle.'
+		 <3>	 3/27/92	DTY		#1024868: Skip calls to Assert since it doesn't do anything any
 									more.
 		 <2>	 9/30/91	JSM		Kill a warning.
 		 <1>	 9/25/91	jlf		checking in file for first time.

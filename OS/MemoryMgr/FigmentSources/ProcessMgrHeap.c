@@ -58,7 +58,7 @@
 		<13>	 5/24/93	JC		Fix MP block problem in the ProcessMgr Heap.
 		<12>	 5/19/93	JC		Began changes as requested by the code review. Removed options
 									parameter from AllocateMoreMasters.
-		<11>	 5/18/93	JC		Fixed the “zero k available” bug. Yippee! This fix requires a
+		<11>	 5/18/93	JC		Fixed the 'zero k available' bug. Yippee! This fix requires a
 									new ProcessMgr to work completely.
 		<10>	 5/14/93	JC		Cleaned up implementation of GZRootPtr, GZRootHnd and GZMoveHnd.
 		 <9>	  5/2/93	JC		Use zone compatibility flags.

@@ -19,7 +19,7 @@
 ;		<13>	 6/14/91	JL		Checked in official MPW 3.2Ä version. Added and deleted blank
 ;									lines to match shipped Interface File.
 ;		<12>	 3/14/91	ngk		bs: fix typo in CustomGetFile name (it was CustomPGetFile)
-;		<11>	 1/30/91	gbm		sab, #38: Change the Ôalready including this fileÕ variable to
+;		<11>	 1/30/91	gbm		sab, #38: Change the Ôalready including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<10>	 8/21/90	ngk		add lock warning refcon constant
 ;		 <9>	 8/11/90	ngk		Capitalize GoTo

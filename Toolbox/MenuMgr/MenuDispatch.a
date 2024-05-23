@@ -11,7 +11,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		<14>	 5/10/92	KSM		Patches don’t belong in this file.
+;		<14>	 5/10/92	KSM		Patches don't belong in this file.
 ;		<13>	 3/27/92	DC		KSM - added InsertIntlResMenu
 ;		<12>	 1/20/92	PN		Adding condition for ROM build
 ;		<11>	 8/22/91	KSM		DCC,#Bruges: Added utility routine InsertFontResMenu for Finder.

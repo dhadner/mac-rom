@@ -84,7 +84,7 @@
 ;		 <5>	 6/22/90	CCH		Put code in to set SCSI IRQ line to VIA2 CB2 for Eclipse.
 ;		 <4>	 5/16/90	MSH		Added hasPowerControls to hcmac conditional.
 ;		 <3>	 1/18/90	JWK		Needed for Zone5 - Initialize variable watchdog timer timeout.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.7>	12/10/89	jwk		NEEDED FOR F19 - Installs DMA routines for blind transfers.
 ;	   <1.6>	 11/2/89	MSH		SlpQInstall now available, setupsleeptask modified to use it.
 ;	   <1.5>	 9/11/89	jwk		NEEDED FOR F19 - Streamlined code, added Bus Device Reset

@@ -87,8 +87,8 @@ Created: Tuesday, January 15, 1991 at 8:56 AM
 									some comments but they will return)
 		<34>	 1/28/91	PKE		bbm: Add constants for use with CharType and Transliterate on
 									Chinese and Korean systems.
-		<33>	 1/10/91	PKE		(csd) Change names for “ring” and “breve” constants (too
-									ambiguous) to “ringMark” and “breveMark”.
+		<33>	 1/10/91	PKE		(csd) Change names for 'ring' and 'breve' constants (too
+									ambiguous) to 'ringMark' and 'breveMark'.
 		<32>	  1/2/91	PKE		(bbm) Updated comments and rearranged a few constants to match
 									latest Inside Mac summary. Added tokenCaret as correct spelling
 									for tokenCarat.
@@ -97,7 +97,7 @@ Created: Tuesday, January 15, 1991 at 8:56 AM
 		<29>	12/14/90	SMB		Removing KeyScript verb, smKeyModalDialog, from public
 									interfaces.
 		<28>	 10/3/90	JAL		Added Quickdraw Include.
-		<27>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1’ field to ‘format’, since that
+		<27>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1' field to ‘format', since that
 									is how we now use it.
 		<26>	 9/10/90	PKE		Add smCurrentScript constant. Add more FIS constants from Joel
 									Cannon.
@@ -168,8 +168,8 @@ Created: Tuesday, January 15, 1991 at 8:56 AM
 									Corrected smFISClassXXX constants. Removed 7.0
 									conditionalization in itlcRecord, and renamed the now-shortened
 									reserved area from itlcReserved2 to itlcReserved3. Gave new name
-									‘NItl4Rec’ to the extended version of Itl4Rec, and
-									unconditionalized the old versions so they don’t change. Added
+									‘NItl4Rec' to the extended version of Itl4Rec, and
+									unconditionalized the old versions so they don't change. Added
 									corresponding NItl4Ptr and NItl4Handle. Removed all conditionals
 									on bigBangEquates except implementation change for UprText; need
 									to fix this by renaming the new one (also change trap opword).

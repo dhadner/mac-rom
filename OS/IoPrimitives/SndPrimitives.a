@@ -76,7 +76,7 @@
 ;									(NJV,H10)Changed SonoraDFACInit to reverse the order of bits
 ;									it's sending, so that equate can be in DFAC order <P9> 03/23/92
 ;									jmp (jmp,H9) Moved the SonoraDFACInit and SonoraInputSelect
-;									routines so that the Horror ROM map lines up with Zydeco’s. <P8>
+;									routines so that the Horror ROM map lines up with Zydeco's. <P8>
 ;									03/22/92 jmp Put back <P6>. <P7> 3/19/92 FU Rolled back changes
 ;									in <P6>. <P6> 3/18/92 FU (NJV,H8) Added SonoraDFACInit,
 ;									SonoraInputSelect, and updated table for Sonora-based machines.
@@ -85,7 +85,7 @@
 ;									EclipseInputSelect to call ReGenSoundInt after the final
 ;									VIA2[vBufB] reference is made. Added ReGenSoundInt. Also, moved
 ;									the Sonora table to the end of the file to make the
-;									TERROR/Zydeco ROM map line up with HORROR’s. <P3> 1/15/92 RP
+;									TERROR/Zydeco ROM map line up with HORROR's. <P3> 1/15/92 RP
 ;									Added Cyclone sound stub (that will never work). <P2> 01/13/92
 ;									jmp (SWC,H6) Found it's better if A0 points to a parameter block
 ;									before calling _PMgrOp in DBLiteDFACSend.
@@ -96,13 +96,13 @@
 ;	   <H10>	 3/25/92	NJV		Changed SonoraDFACInit to reverse the order of bits it's
 ;									sending, so that equate can be in DFAC order
 ;		<H9>	03/23/92	jmp		Moved the SonoraDFACInit and SonoraInputSelect routines so that
-;									the Horror ROM map lines up with Zydeco’s.
+;									the Horror ROM map lines up with Zydeco's.
 ;		<H8>	 3/12/92	NJV		Added SonoraDFACInit, SonoraInputSelect, and updated table for
 ;									Sonora-based machines.
 ;		<H7>	01/27/92	jmp		(BG,Z16) Changed EclipseInputSelect to call ReGenSoundInt after
 ;									the final VIA2[vBufB] reference is made. Added ReGenSoundInt.
 ;									Also, moved the Sonora table to the end of the file to make the
-;									TERROR/Zydeco ROM map line up with HORROR’s.
+;									TERROR/Zydeco ROM map line up with HORROR's.
 ;		<H6>	  1/6/92	SWC		Found it's better if A0 points to a parameter block before
 ;									calling _PMgrOp in DBLiteDFACSend.
 ;		<H5>	12/16/91	HJR		Add primitives for Dartanian.
@@ -499,7 +499,7 @@ SndCntlLCIIIEnd
 			dc.w	0										; flags
 			dc.w	(SndCntlCycloneEnd-SndCntlCyclone)/4	; number of entries
 SndCntlCyclone
-			dc.l	CycloneSndStubNoRam-SndCntlCyclone		; Fake ’em for now.
+			dc.l	CycloneSndStubNoRam-SndCntlCyclone		; Fake 'em for now.
 			dc.l	CycloneSndStub1-SndCntlCyclone
 			dc.l	CycloneSndStub1-SndCntlCyclone
 			dc.l	CycloneSndStub1-SndCntlCyclone
@@ -1944,7 +1944,7 @@ DJMEMCInitSoundHW
 
 			MOVEQ	#1,D0
 			MOVE.L	D0,$F9800100					; shut off sync to built-in video BEFORE beeping
-			CMPI.L	#WmStConst,WarmStart			; If we’re just powering on,
+			CMPI.L	#WmStConst,WarmStart			; If we're just powering on,
 			BNE		FinishBatmanInit				;	then just go on
 			MOVE.B	#0,$50F14f2f					; otherwise, reset the Sound Block Configuration register
 

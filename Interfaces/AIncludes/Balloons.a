@@ -23,9 +23,9 @@
 ;		<15>	 8/18/91	MH		added: kHMGetBalloonWindow EQU $0215 to support the reference in
 ;									_HMGetBalloonWindow trap macro.  Corrected comment for
 ;									kHMGetHelpMenuHandle.
-;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
-;		<13>	 1/24/91	stb		RC: change pic’s to pict’s
+;		<13>	 1/24/91	stb		RC: change pic's to pict's
 ;		<12>	 9/24/90	RLC		Fix the interface to HMGetIndHelpMsg to pass         $1306 as
 ;									the selector (not $1106) as there         are 19 words of
 ;									parameters (not 17 as originally         counted [I better go

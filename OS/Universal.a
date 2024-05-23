@@ -94,8 +94,8 @@
 ;									effect if you Build -p -WombatEVT1.
 ;		<H24>	 5/28/92	NJV		Added SoundPlayAndRecord bit to ProductInfo Tables of machines
 ;									that can play and record simultaneously.
-;		<H22>	05-18-92	jmp		Changed the “sRsrcZydecoDir” name to the more generic
-;									“sRsrcBFBasedDir” (BF=BoxFlag) name.
+;		<H22>	05-18-92	jmp		Changed the 'sRsrcZydecoDir' name to the more generic
+;									'sRsrcBFBasedDir' (BF=BoxFlag) name.
 ;		<H18>	  5/3/92	BG		Removed references to hasOrwell2, since it is now superfluous to
 ;									hasOrwell.
 ;		<H17>	 4/24/92	HJR		Added CheckForNiagra so that we may distinguish from
@@ -125,7 +125,7 @@
 ;	  <SM17>	 8/17/92	CCH		Extended Universal support to 96-bits, added GetExtHardwareInfo
 ;									routine to provide dynamic checking for feature existence.
 ;	  <SM16>	08-11-92	jmp		Fixed a problem in the GetCPUIDReg routine where the CACR was
-;									being trashed; this caused ’030 machines to die before BootBeep.
+;									being trashed; this caused '030 machines to die before BootBeep.
 ;	  <SM15>	  8/9/92	CCH		Removed uneeded conditionals and  temporarily return a CPU ID
 ;									for RISC cards.
 ;	  <SM14>	 7/28/92	fau		Corrected the Cyclone MMC_DRAMspeed0/1 to point to a 25MHz CPU
@@ -208,8 +208,8 @@
 ;									and PowerBooks.
 ;		<57>	12/21/91	RB		Need to change boxTim and boxEclipse to the release names.
 ;		<56>	10/17/91	JSM		Get rid of all the stupid conditionals.
-;		<55>	 10/1/91	JSM		Don’t use onMvMac conditional, Modern Victorian never existed.
-;		<54>	 10/1/91	JSM		Don’t use eclipseDebug.
+;		<55>	 10/1/91	JSM		Don't use onMvMac conditional, Modern Victorian never existed.
+;		<54>	 10/1/91	JSM		Don't use eclipseDebug.
 ;		<53>	 9/10/91	JSM		Cleanup header.
 ;		<52>	 1/18/91	KIP		<JDR> Add Sound8BitMono bit to the Universal ROM flags for TIM,
 ;									since it has built-in sound input.
@@ -297,7 +297,7 @@
 ;									conditionals (like iopADB).
 ;		 <5>	 1/15/90	GMR		Added ADB and Clock/Pram bits to External Features longword, to
 ;									help support Erickson/Elsie which use the Egret chip.
-;		 <4>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <4>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <3>	  1/8/90	CV		Adding table information to allow recognition of Erickson as a
 ;									new CPU. Changing the via1 id value for AuroraSE25 to 0. The
 ;									value it was set to ($16) conflicts with Erickson's cpu id.

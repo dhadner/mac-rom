@@ -14,7 +14,7 @@ Created: Sunday, January 6, 1991 at 9:38 PM
 		<35>	 6/26/92	DCL		Get Rid of constant ppcStoreAndForward. Miner Formatting
 									Changes. Digging deep for things to do. Getting the file ready
 									for ETO 8.
-		<34>	 4/17/92	JSM		Don’t define gestaltPPCSupportsStoreAndForward or
+		<34>	 4/17/92	JSM		Don't define gestaltPPCSupportsStoreAndForward or
 									gestaltPPCVersionAttr.
 		<33>	 4/15/92	JSM		Get rid of all the theFuture and CubeE conditionals, the future
 									is the same as CubeE for now.

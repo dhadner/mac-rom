@@ -13,7 +13,7 @@
 ;	   <SM3>	 11/5/92	SWC		Changed INCLUDEs to a LOAD of StandardEqu.d.
 ;		 <2>	 6/22/92	JH		#1033107 <AMW>: Changed GetEncodingTable to return the real
 ;									script ID rather than 0 when the script isn't a CJK script.
-;		 <1>	 1/20/90	JF		Created file, relocated Joe's routines from “DrawText.a”,
+;		 <1>	 1/20/90	JF		Created file, relocated Joe's routines from 'DrawText.a',
 ;									and slapped on standard routine headers.
 ;
 

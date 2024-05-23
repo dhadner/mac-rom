@@ -31,7 +31,7 @@
 		 <7>	 9/13/90	RLC		Add a permanent windowRecord to the globals so we don't always
 									allocate on the heap and change the global handle to a ptr.
 		 <6>	 8/31/90	RLC		Add a BalloonBulk & OSEventAvail reentrant flags and Closeview
-									“we need to remove the balloon flag”
+									'we need to remove the balloon flag'
 		<4+>	 8/20/90	RLC		Remove some unused Booleans from the global record.
 		<3+>	 7/17/90	RLC		Remove references to hmgProcessFileName, as we don't really need
 									it.

@@ -15,7 +15,7 @@
 ;									EditionContainerSpec"
 ;		 <4>	 8/15/91	MH		moved conditional include of FSEqu.a inside the conditional
 ;									assembly directive for  Editions.a itself
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 10/3/90	ngk		Change file types for edition files. edtP -> edtp, edtT -> edtt
 ;		 <1>	 8/26/90	ngk		first checked in

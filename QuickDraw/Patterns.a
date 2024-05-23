@@ -61,7 +61,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “patterns.a”
+;EASE$$$ READ ONLY COPY of file 'patterns.a'
 ; 1.8	BAL 11/01/1989 Fix a bug in getCIcon which would size the data handle pixelSize times too big.
 ;•1.7	BAL 07/14/1989 For Aurora: Final CQD
 ; 1.6	BAL 07/14/1989  For Aurora:  Incorporated devloop in plotCIcon; Added direct pixpat support.
@@ -497,7 +497,7 @@ COPYPIXPAT	PROC	EXPORT
 ;
 ;  COPY THE SRC PIXPAT'S DATA TO THE DST PIXPAT'S HANDLES
 ;
-; if you’re looking for the QDciPatchROM.a patch to COPYPIXPAT,					<sm 6/9/92>stb
+; if you're looking for the QDciPatchROM.a patch to COPYPIXPAT,					<sm 6/9/92>stb
 ; try looking in Pictures.a at PutPicPixPat.  It was a come-from patch.			<sm 6/9/92>stb
 
 PARAMSIZE	EQU		8
@@ -1260,7 +1260,7 @@ DirectPixPat
 			move.w	WidCnt(a6),(a0)				;
 			addq.w	#1,(a0)+					; right = width			<24JUL90 KON>
 ; the following line is better than clr.w dstPix+pmVersion(a6),			<sm 6/9/92>stb
-; in case you’re wondering where the line went							<sm 6/9/92>stb
+; in case you're wondering where the line went							<sm 6/9/92>stb
 			clr.w	(a0)						; clear pmVersion 		<24JUL90 KON>
 
 			MOVE.L	(A4),A1						; point to the pixPat

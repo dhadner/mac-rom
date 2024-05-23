@@ -113,7 +113,7 @@
 									parameter from AllocateMoreMasters. Fixed bug in FindSpaceLow
 									where endBlock was not correct when passed to SlideBlocksDown
 									after JumpRelocateRange had failed.
-	   <114>	 5/18/93	JC		Fixed the “zero k available” bug. Yippee! This fix requires a
+	   <114>	 5/18/93	JC		Fixed the 'zero k available' bug. Yippee! This fix requires a
 									new ProcessMgr to work completely. Also fixed Jim Gochees
 									problem one more time in MakeSpaceLow.
 	   <113>	 5/15/93	JC		Fixed PurgeAndMakeSpace to check for Ptr blocks first incase
@@ -495,7 +495,7 @@ static freeBlock*	SlideBlocksDown(freeBlock* curFree, stdBlock* endSlide, stdHea
 	SetFreeChain(curFree, prevFree, nextFree);
 
 	DbgGarbageFill(curHeap, curFree->data, cumFreeSize - kFreeBlockHeaderSize);
-	IfIntDebugMsg(curHeap->favoredFree == nil, "didn’t expect nil favored free", curHeap);
+	IfIntDebugMsg(curHeap->favoredFree == nil, "didn't expect nil favored free", curHeap);
 	
 	/* set favoredFree if we have to */
 	if (setFavoredFree || cumFreeSize > curHeap->favoredFree->size)
@@ -3559,7 +3559,7 @@ static freeBlock* PurgeAndSlideBlocksDown(freeBlock* destBlock, stdBlock* endSli
 		#endif
 		SetFreeChain(destBlock, prevFree, nextFree);
 	
-		IfIntDebugMsg(curHeap->favoredFree == nil, "didn’t expect nil favored free", curHeap);
+		IfIntDebugMsg(curHeap->favoredFree == nil, "didn't expect nil favored free", curHeap);
 		
 		/* set favoredFree if we have to */
 		if (setFavoredFree || destBlockSize > curHeap->favoredFree->size)

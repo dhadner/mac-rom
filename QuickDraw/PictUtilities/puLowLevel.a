@@ -27,14 +27,14 @@
 ;									maximumCustomColors equate to be 5400. This ensures that the
 ;									offset generated for this color will be less than $8000 (that
 ;									is, it will be always be positive). This ensures that a
-;									limitation in the “enterCustom” routine is not exceded. Fixed a
-;									bug in the “ReadPictGuts” that was passing a long for the buffer
-;									length to the user’s spooling routine - it now passes a word.
+;									limitation in the 'enterCustom' routine is not exceded. Fixed a
+;									bug in the 'ReadPictGuts' that was passing a long for the buffer
+;									length to the user's spooling routine - it now passes a word.
 ;		<10>	 9/21/90	DDG		Made changes from code review.
 ;		 <9>	 8/16/90	DDG		Added FillMemoryBytes from the puLowLevel.c file.
-;		 <8>	  8/5/90	DDG		Fixed the code that returned an error when it couldn’t load a
+;		 <8>	  8/5/90	DDG		Fixed the code that returned an error when it couldn't load a
 ;									custom pick proc. Changed RecordColors to take an extra
-;									parameter. Made the 32-bit routine in RecordPixels “spread” the
+;									parameter. Made the 32-bit routine in RecordPixels 'spread' the
 ;									color bits out evenly over the word. Fixed the way I check for a
 ;									custom color bank. Added code to GetPictByte to check for the
 ;									current picture offset being outside the picture handle and made
@@ -227,7 +227,7 @@ AddPadBytes		PROC  EXPORT
 ;••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 ;••
 ;••	This function takes a packed array of RGB in the form: RRRR...GGGG...BBBB... and it outputs
-;•• pixels in the form _RGB_RGB_RGB_RGB... where the “_” character represents the alpha channel,
+;•• pixels in the form _RGB_RGB_RGB_RGB... where the '_' character represents the alpha channel,
 ;•• which this routine clears to zero.
 ;••
 ;••
@@ -358,13 +358,13 @@ temp			EQU  D0
 
 				tst.w	ext.version(theInfoPtr)			;check the version of the record to make sure that
 				bne.s	@error							;..it is valid.
-				cmp.l	thePictInfoID(theInfoPtr),theInfoHand	;check the “internal tag” of the record to
+				cmp.l	thePictInfoID(theInfoPtr),theInfoHand	;check the 'internal tag' of the record to
 				bne.s	@error									;..make sure that it is valid.
 
-				_HGetState								;get the state for “theInfoHand”
-				move.l	8(SP),theInfoPtr				;re-use “theInfoPtr” as a pointer to where to store
-				move.b	D0,(theInfoPtr)					;..the info handle’s state.
-				_MoveHHi								;move “theInfoHand” high
+				_HGetState								;get the state for 'theInfoHand'
+				move.l	8(SP),theInfoPtr				;re-use 'theInfoPtr' as a pointer to where to store
+				move.b	D0,(theInfoPtr)					;..the info handle's state.
+				_MoveHHi								;move 'theInfoHand' high
 				_HLock									;..and lock it down.
 
 				move.l	(theInfoHand),D0				;return the dereferenced info handle.
@@ -597,7 +597,7 @@ noSpooling		move.l	spoolPictHandle(A1),A0		;dereference the picture handle into 
 				add.l	D1,A0						;..to the current spot.
 				add.l	D0,D1						;then, add the number of bytes we are reading to the current
 				cmp.l	spoolPictLength(A1),D1		;..offset, and check to see if we have overflowed...
-				bls.s	copyFromHandle				;if we haven’t, then copy the data out of the picture handle
+				bls.s	copyFromHandle				;if we haven't, then copy the data out of the picture handle
 
 error			move.w	#pictureDataErr,spoolPictError(A1)
 				clr.l	D0
@@ -647,7 +647,7 @@ RecordPixels	PROC  EXPORT
 ;----------------------------------------------------------------------------------------------------
 
 ;----------------------------------------------------------------------------------------------------
-;	••• WARNING: Don’t casually reorder these registers !! There are several dependancies on some of
+;	••• WARNING: Don't casually reorder these registers !! There are several dependancies on some of
 ;	these variables corresponding to particular registers in the rest of this code. Look thru all the
 ;	comments in the entire RecordPixels routine before changing these ! •••
 
@@ -703,8 +703,8 @@ regSize			EQU  40
 				beq		enter2Bit
 ;----------------------------------------------------------------------------------------------------
 ;	This section is the pixel loop for 1-Bit pixels. It looks at the pixels one byte at a time,
-;	shifting the highest bit into “index” and then calling “RecordIndex” to record the pixel. Note
-;	that “index” is a word. Also note that “RecordIndex” will trash “index” and “bankIndex”.
+;	shifting the highest bit into 'index' and then calling 'RecordIndex' to record the pixel. Note
+;	that 'index' is a word. Also note that 'RecordIndex' will trash 'index' and 'bankIndex'.
 ;
 
 loop1Bit		move.l	lineStart,pixelPtr				;make pixelPtr a pointer to the current pixel
@@ -730,8 +730,8 @@ enter1Bit		dbra	height,loop1Bit					;..all the rows in the pixMap
 
 				bra.s	exit
 ;----------------------------------------------------------------------------------------------------
-;	This section is the pixel loop for 8-Bit pixels. Note that since “index” is a word, and calling
-;	“RecordIndex” trashes “index” and “bankIndex”, we must clear the high byte of index every time
+;	This section is the pixel loop for 8-Bit pixels. Note that since 'index' is a word, and calling
+;	'RecordIndex' trashes 'index' and 'bankIndex', we must clear the high byte of index every time
 ;	thru the loop
 ;
 
@@ -750,9 +750,9 @@ enter8Bit		dbra	height,loop8Bit					;..all the rows in the pixMap
 				bra.s	exit
 ;----------------------------------------------------------------------------------------------------
 ;	This section is the pixel loop for 4-Bit pixels. We copy the byte that contains the current pixel
-;	into “pixelValue” and then put the nibbles into “index” to record each one. We look thru the nibbles
-;	in ascending pixel order, since we don’t know whether “width” pixels will end in the middle of a
-;	byte or not. ••• WARNING: Don’t move this code without fixing the end that falls thru into exit •••
+;	into 'pixelValue' and then put the nibbles into 'index' to record each one. We look thru the nibbles
+;	in ascending pixel order, since we don't know whether 'width' pixels will end in the middle of a
+;	byte or not. ••• WARNING: Don't move this code without fixing the end that falls thru into exit •••
 ;
 
 loop4Bit		move.l	lineStart,pixelPtr				;make pixelPtr a pointer to the byte that contains
@@ -784,20 +784,20 @@ exit			movem.l	(SP)+,registersUsed				;restore our work registers
 
 
 ;----------------------------------------------------------------------------------------------------
-;	This subroutine takes the true pixel value in “index”, treated as a word. It records color info
-;	for the color associated with the passed “index”. This routine trashes bankIndex, but it saves
+;	This subroutine takes the true pixel value in 'index', treated as a word. It records color info
+;	for the color associated with the passed 'index'. This routine trashes bankIndex, but it saves
 ;	and restores any other registers that it uses.
 ;	Note that there are two other entry points for this function:
 ;
-;	1 - “RecordIndex2”	this takes the “index” pre-shifted into an index into a table of long offsets.
+;	1 - 'RecordIndex2'	this takes the 'index' pre-shifted into an index into a table of long offsets.
 ;
-;	2 - “Record16Bit”	this ignores “index” completely and takes “bankIndex” (a long) as a parameter.
-;						NOTE: bankIndex must NOT be negative when calling “Record16Bit”, or else the
-;						special code will be called and this code will try to use “index”.
+;	2 - 'Record16Bit'	this ignores 'index' completely and takes 'bankIndex' (a long) as a parameter.
+;						NOTE: bankIndex must NOT be negative when calling 'Record16Bit', or else the
+;						special code will be called and this code will try to use 'index'.
 ;
 ;	This subroutine assumes that it can look up an index into the color bank, where it can record
 ;	the color, but in some cases that index will actually be a flag (indicated by a negative number)
-;	that tells “RecordIndex” to do something special with color. In these cases “SpecialEntry” is
+;	that tells 'RecordIndex' to do something special with color. In these cases 'SpecialEntry' is
 ;	called (see below).
 ;
 
@@ -816,12 +816,12 @@ Record16Bit		tst.w	(colorBankStart,bankIndex.l)	;if the color bank count is zero
 @saturated		move.w	#$7FFF,(colorBankStart,bankIndex.l) ;restore the saturated value and exit
 				rts
 ;----------------------------------------------------------------------------------------------------
-;	This code fragment is actually a part of the “RecordIndex” subroutine and in some cases it actually
-;	jumps back to the second entry for “RecordIndex”, (“RecordIndex2”). We are going to be calling
+;	This code fragment is actually a part of the 'RecordIndex' subroutine and in some cases it actually
+;	jumps back to the second entry for 'RecordIndex', ('RecordIndex2'). We are going to be calling
 ;	C-Subroutines from this routine, so we have to save C scratch registers (D0-D2/A0-A1) AND we MUST
 ;	make sure that none of our local register variables that we are using in this section are stored
 ;	in any of these scratch registers. Currently these scratch registers correspond to the following
-;	variables: width, height, pixelCount, lineStart, and rowBytes. Since we don’t use any of these
+;	variables: width, height, pixelCount, lineStart, and rowBytes. Since we don't use any of these
 ;	variables in this subroutine, we can temporarily trash them; of course, we do restore them when
 ;	we exit.
 ;
@@ -867,9 +867,9 @@ SpecialEntry	movem.l	D0-D2/A0-A1,-(SP)				;save the registers that the C routine
 				addq.l	#1,ext.uniqueColors(theInfoPtr)	;increment the number of unique colors, then restore
 				bra.s	@exit							;..the registers and exit
 
-@convertExact	move.l	theInfoPtr,-(SP)				;use this parameter for both routines (C doesn’t remove
+@convertExact	move.l	theInfoPtr,-(SP)				;use this parameter for both routines (C doesn't remove
 				jsr		ConvertBankTo555				;..the parameters from the stack and these routines
-				jsr		MakeIndexCache					;..don’t modify them.
+				jsr		MakeIndexCache					;..don't modify them.
 				addq.l	#4,SP							;clean up the stack for both
 
 				movem.l	(SP)+,D0-D2/A0-A1				;restore the registers that we saved and jump back to
@@ -880,8 +880,8 @@ SpecialEntry	movem.l	D0-D2/A0-A1,-(SP)				;save the registers that the C routine
 
 ;----------------------------------------------------------------------------------------------------
 ;	This section is the pixel loop for 2-Bit pixels. It looks at the pixels one byte at a time,
-;	shifting the highest two bits into “index” and then calling “RecordIndex” to record the pixel.
-;	Note that “index” is a word. Also note that “RecordIndex” will trash “index” and “bankIndex”.
+;	shifting the highest two bits into 'index' and then calling 'RecordIndex' to record the pixel.
+;	Note that 'index' is a word. Also note that 'RecordIndex' will trash 'index' and 'bankIndex'.
 ;
 
 loop2Bit		move.l	lineStart,pixelPtr				;make pixelPtr a pointer to the current pixel
@@ -909,24 +909,24 @@ enter2Bit		dbra	height,loop2Bit					;..all the rows in the pixMap
 
 				bra		exit
 ;----------------------------------------------------------------------------------------------------
-;	This section is the pixel loop for 16-Bit direct pixels. Since these pixels are direct, we don’t
+;	This section is the pixel loop for 16-Bit direct pixels. Since these pixels are direct, we don't
 ;	have an index cache (index look up table). This means that we need to worry about both suppressing
 ;	black and white directly in this loop and checking to see whether we are recording into a custom
-;	color bank. We use a local variable (“suppressFlag”) to indicate whether or not we are suppressing
-;	black and white. ••• WARNING: this local (“suppressFlag”) is the same register as “depth”!! We can
-;	do this since we don’t use depth for anything after we have dispatched to the proper bit loop. •••
+;	color bank. We use a local variable ('suppressFlag') to indicate whether or not we are suppressing
+;	black and white. ••• WARNING: this local ('suppressFlag') is the same register as 'depth'!! We can
+;	do this since we don't use depth for anything after we have dispatched to the proper bit loop. •••
 ;
 ;	The code flow is as follows: We grab each pixel and check to see if we are suppressing. If so, then
 ;	we check to see if the pixel is black or white and if it is, we skip it. We then shift the pixel
 ;	left one place (to make it an index into our histogram). After the shift, we check to see if we are
-;	recording into a custom color bank and if we aren’t, then we copy the “index” into “bankIndex” and
-;	call “Record16Bit”. This routine will use “bankIndex” as an index into the histogram and increment
+;	recording into a custom color bank and if we aren't, then we copy the 'index' into 'bankIndex' and
+;	call 'Record16Bit'. This routine will use 'bankIndex' as an index into the histogram and increment
 ;	the color count that it finds there. It will also check for saturation and update the unique color
 ;	count.
 ;
 ;	If we are recording into a custom bank, then we grab the correct five bits for each component (in
 ;	red, green, blue order) and call a subroutine to smear each of them out into a word and store this
-;	color component word in the color bank cache. Before doing this, we call “enterCustom”, which will
+;	color component word in the color bank cache. Before doing this, we call 'enterCustom', which will
 ;	check to see if the color bank cache is full, flush it out if it is, and then setup A1 as a pointer
 ;	to the next available spot in the color bank cache.
 ;
@@ -990,12 +990,12 @@ enter16Bit		move.w	verb(theInfoPtr),suppressFlag	;set the flag to indicate wheth
 ;----------------------------------------------------------------------------------------------------
 ;	To record colors into a custom color bank, we cache them as 48-Bit colors in our own internal color
 ;	bank until our bank is almost full. At this point, we call the custom pick proc to record all the
-;	cached colors and then we set the “colorBankIndex” back to zero (flushing the cache).
+;	cached colors and then we set the 'colorBankIndex' back to zero (flushing the cache).
 ;
 ;	This subroutine handles all the checking to see if our cache is full as well as maintaining the cache
-;	index (“colorBankIndex”) and calculating a pointer to the next available spot in the custom color
+;	index ('colorBankIndex') and calculating a pointer to the next available spot in the custom color
 ;	bank cache. This routine should be called every time a color needs to be recorded into a custom color
-;	bank. It takes no real parameters, though it does use “theInfoPtr” and “colorBankStart” and it returns
+;	bank. It takes no real parameters, though it does use 'theInfoPtr' and 'colorBankStart' and it returns
 ;	the pointer to the next available spot in A1.
 ;
 ;	ASSEMBLY-STYLE ROUTINE
@@ -1003,7 +1003,7 @@ enter16Bit		move.w	verb(theInfoPtr),suppressFlag	;set the flag to indicate wheth
 ;	IN:		Rx	(long)	theInfoPtr		;pointer to the PictInfo record (in a register)
 ;			Rx	(long)	colorBankStart	;pointer to the start of the color bank cache
 ;
-;	OUT:	“bankIndex” and D0 are trashed.
+;	OUT:	'bankIndex' and D0 are trashed.
 ;			A1	(long)	cachePtr		;pointer to the next available spot in the color bank cache.
 ;
 
@@ -1023,7 +1023,7 @@ enterCustom		clr.l	bankIndex						;clear the high word of bank index
 				rts
 
 @recordColors	subq.l	#2,SP							;space for the OSErr result
-				move.l	pickProcData(theInfoPtr),-(SP)	;pass the user proc’s data handle
+				move.l	pickProcData(theInfoPtr),-(SP)	;pass the user proc's data handle
 				move.l	colorBankStart,-(SP)			;pass a pointer to the start of the saved colors
 				move.l	bankIndex,-(SP)					;pass the number of colors to record (high word is zero)
 				pea		ext.uniqueColors(theInfoPtr)	;pass a pointer to the number of unique colors
@@ -1037,20 +1037,20 @@ enterCustom		clr.l	bankIndex						;clear the high word of bank index
 
 
 ;----------------------------------------------------------------------------------------------------
-;	This section is the pixel loop for 32-Bit direct pixels. Since these pixels are direct, we don’t
+;	This section is the pixel loop for 32-Bit direct pixels. Since these pixels are direct, we don't
 ;	have an index cache (index look up table). This means that we need to worry about both suppressing
 ;	black and white directly in this loop and checking to see whether we are recording into a custom
-;	color bank. We use a local variable (“suppressFlag”) to indicate whether or not we are suppressing
-;	black and white. ••• WARNING: this local (“suppressFlag”) is the same register as “depth”!! We can
-;	do this since we don’t use depth for anything after we have dispatched to the proper bit loop. •••
+;	color bank. We use a local variable ('suppressFlag') to indicate whether or not we are suppressing
+;	black and white. ••• WARNING: this local ('suppressFlag') is the same register as 'depth'!! We can
+;	do this since we don't use depth for anything after we have dispatched to the proper bit loop. •••
 ;
 ;	The code flow is as follows: We grab each pixel and check to see if we are suppressing. If so, then
 ;	we check to see if the pixel is black or white and if it is, we skip it. We then check to see if we
-;	are recording into a custom color bank. If we aren’t, then do some tricky stuff to convert the
+;	are recording into a custom color bank. If we aren't, then do some tricky stuff to convert the
 ;	32-bit direct color into a 16-bit direct color, shift the index left one bit to get an index into
-;	the histogram, and finally record the index by calling “Record16Bit”.
+;	the histogram, and finally record the index by calling 'Record16Bit'.
 ;
-;	If we are recording into a custom bank, we call “enterCustom”, which will check to see if the color
+;	If we are recording into a custom bank, we call 'enterCustom', which will check to see if the color
 ;	bank cache is full, flush it out if it is, and then setup A1 as a pointer to the next available spot
 ;	in the color bank cache. We then copy the pixel value into the color bank, smearing out the
 ;	components as we go and then we move on to the next pixel.
@@ -1187,10 +1187,10 @@ regSize			EQU  8
 useColor		move.l	colorBankBuffer.ptr(theInfoPtr),colorBankPtr ;setup a pointer to our color bank
 				tst.w	colorBankType(theInfoPtr)		;find out what type of color bank we are recording into
 				beq.s	doExact							;if zero, then the color bank is exact
-				bpl.s	doHistogram						;if positive, then it’s a histogram
+				bpl.s	doHistogram						;if positive, then it's a histogram
 ;----------------------------------------------------------------------------------------------------
 doCustom		subq.l	#2,SP							;space for the OSErr result
-				move.l	pickProcData(theInfoPtr),-(SP)	;pass the user proc’s data handle
+				move.l	pickProcData(theInfoPtr),-(SP)	;pass the user proc's data handle
 				move.l	theColorPtr,-(SP)				;pass a pointer to the start of the saved colors
 				move.l	#1,-(SP)						;we are recording one color
 				pea		ext.uniqueColors(theInfoPtr)	;pass a pointer to the number of unique colors
@@ -1218,9 +1218,9 @@ doExact			move.l	ext.uniqueColors(theInfoPtr),counter ;setup our loop counter (w
 				bra.s	exit							;..the registers and exit
 
 @convertExact	movem.l	D0-D2/A0-A1,-(SP)				;save registers that C is going to trash.
-				move.l	theInfoPtr,-(SP)				;use this parameter for both routines (C doesn’t remove
+				move.l	theInfoPtr,-(SP)				;use this parameter for both routines (C doesn't remove
 				jsr		ConvertBankTo555				;..the parameters from the stack and these routines
-				jsr		MakeIndexCache					;..don’t modify them.
+				jsr		MakeIndexCache					;..don't modify them.
 				addq.l	#4,SP							;clean up the stack for both.
 				movem.l	(SP)+,D0-D2/A0-A1				;restore the registers that we saved and jump back to
 				bra.s	useColor						;..the main color dispatch to actually record this color.
@@ -1256,7 +1256,7 @@ exit			movem.l	(SP)+,registersUsed				;restore our work registers
 ;••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 ;••
 ;••	These functions dispatch to the specified pick method proc. Theoretically, these could be
-;•• replaced by DispatchHelper, but that would require documentation changes, so we won’t do this
+;•• replaced by DispatchHelper, but that would require documentation changes, so we won't do this
 ;•• yet.
 ;••
 ;•• The main routine here is LoadPickMethod, the routine that actually dispatches to the custom proc.
@@ -1276,14 +1276,14 @@ exit			movem.l	(SP)+,registersUsed				;restore our work registers
 ;••			..	...		...
 ;••			 x	word	result			;space for the return OSErr
 ;••		 x + 2	long	procHandle		;handle to the user pick proc
-;••		 x + 6	word	procHandState	;the “state” of the user proc handle (from HGetState)
+;••		 x + 6	word	procHandState	;the 'state' of the user proc handle (from HGetState)
 ;••		 x + 8	long	mainRTS			;the main return address
 ;••
 ;•• On return from the user proc, the stack looks like:
 ;••
 ;•• EXIT:  SP->	word	result			;space for the return OSErr
 ;••			 2	long	procHandle		;handle to the user pick proc
-;••			 6	word	procHandleState	;the “state” of the user proc handle (from HGetState)
+;••			 6	word	procHandleState	;the 'state' of the user proc handle (from HGetState)
 ;••			 8	long	mainRTS			;the main return address
 ;••
 ;••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -1390,7 +1390,7 @@ LoaderReturn	move.w	(SP)+,D1						;get the OSErr into D1
 				move.l	(SP)+,A1						;get the user return address into A1
 				move.w	D1,-(SP)						;put the OSErr back onto the stack
 				move.l	A1,-(SP)						;put the user return address back on the stack
-				_HSetState								;restore the proc’s state
+				_HSetState								;restore the proc's state
 				rts										;..and exit thru the user routine
 ;----------------------------------------------------------------------------------------------------
 

@@ -22,7 +22,7 @@
 	Change History (most recent first):
 
 		 <3>	 3/27/92	DTY		#1024868: Delete inclusion of Assertion.h, since this file
-									doesn’t use these routines.
+									doesn't use these routines.
 		 <2>	 1/29/92	JSM		Fix bug #1020958.  In InsertDiskCache(), if we were inserting a
 									new cache just before one we were about to delete because
 									FindFirstFreeCache() didn't find a free cache, fNextOffsetIndex

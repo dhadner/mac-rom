@@ -21,7 +21,7 @@
 ;		 <5>	 6/24/91	BH		change equate of TMPSetXCleanup to TMSetupXCleanup; also fixed
 ;									declaration of TMSelection record
 ;		 <4>	 6/18/91	BH		remove TMPChoose
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	11/12/90	JL		Changed org SelRect to org selRect to stay consistent.
 ;		 <1>	 3/14/90	BBH		first checked in

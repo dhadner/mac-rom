@@ -405,7 +405,7 @@ CacheStart
 ; Function: 	Flushes cache buffers for specified file or volume.
 ;
 ; Input:		D0.W  -  file or volume refnum
-;				D1.B  -  option flags (default = don’t trash buffers after flush)
+;				D1.B  -  option flags (default = don't trash buffers after flush)
 ;							fCTrash   - trash buffers after flush
 ;							fCfreeBit - trash buffers but save in the free queue hash
 ;				A2.L  -  VCB ptr if D0=volume refnum
@@ -489,7 +489,7 @@ fcExitTrash ;; buffers flushed, trash them if requested so						<28Sep89>
 			BTST	#FCtrash,D5 		; trash option requested?				<28Sep89>
 			BEQ.S	fcExit				; no, keep it around -> 				<28Sep89>
 @freeit
-			MOVE	D1,D0				; D0=refnum,volume won’t branch to here <28Sep89>
+			MOVE	D1,D0				; D0=refnum,volume won't branch to here <28Sep89>
 			MOVEQ	#0,D1				; D1=from block 0						<28Sep89>
 			MOVEQ	#-1,D2				; D2=to the end 						<28Sep89>
 
@@ -546,7 +546,7 @@ fcExit
 ;				A2.L  -  VCB ptr if D0=volume refnum
 ;				D1.B  -  option flags (default = read from disk if not found):
 ;							 GBRead   - read from disk (forced read)
-;							 GBnoRead - don’t read from disk if not found
+;							 GBnoRead - don't read from disk if not found
 ;							 GBexist  - get existing cache block
 ;							 GBrelease - release block immediately
 ;				D2.L  -  file block number or logical block number
@@ -573,7 +573,7 @@ GetBlock
 			MOVEM.L D1-D7/A1-A5,-(A6)	; save regs
 			MOVE.B	D1,D7				; D7 = option flags
 			MOVEA.L FileQHdr,A3 		; A3 = ptr(FQH)
-			MOVE.L	#$CAC11ED1,BufTgFNum  ; if we don’t read it, mark tag 'CAChED'    <06Dec85>
+			MOVE.L	#$CAC11ED1,BufTgFNum  ; if we don't read it, mark tag 'CAChED'    <06Dec85>
 
 			MOVE.L	CacheVars,A1		; first									<01Aug90>
 			CLR.W	LcGBinCache(A1)		; clear the incache flag WORD			<01Aug90>
@@ -618,7 +618,7 @@ GetBlock
 			BCC.S	@2					; br if not
 			BSET	#mruSrchBit,FHFlags(A4) ; search for these in MRU order (we tend to
 										;  cluster catalog requests for the same set of blocks)
-			BSET	#noFlushBit,FHFlags(A4) ;<11Dec86> don’t flush until flush time
+			BSET	#noFlushBit,FHFlags(A4) ;<11Dec86> don't flush until flush time
 
 @2			CMP.L	FQHFlink(A3),A4 	; already first?
 			BEQ.S	gbSearchQ			; br if so
@@ -674,7 +674,7 @@ gbSearchQ
 
 gbFOLoop	MOVE.L	DCBFlink(A4),A4 	; get next buffer in file order
 			CMP.L	A4,A5				; reached start?
-			BEQ.S	@1					; br if so (we’ll have to map it)
+			BEQ.S	@1					; br if so (we'll have to map it)
 			CMP.L	DCBFlBlk(A4),D2 	; after this block?
 			BHI.S	gbFOLoop			; loop if so
 
@@ -743,7 +743,7 @@ gbGetLPBuf
 
 			LEA 	-MCBDQFlink(A5),A0	; get pointer to MRU queue				<01Jan86>
 			CMP.L	A3,A0				; file header?							<01Jan86>
-			BEQ.S	@3					; br if so (we’re still ok)             <01Jan86>
+			BEQ.S	@3					; br if so (we're still ok)             <01Jan86>
 
 			CMP.L	DCBFQPtr(A5),A3 	; A5 buffer still in this cache queue?	<01Jan86>
 			BNE.S	@1					; br if not (was recycled in Lg2Phys	<01Jan86>
@@ -784,7 +784,7 @@ gbReadBlk	CLR.L	BufTgDate			; always clear tag date
 			BSR 	TFSVCBTst			; TFS volume?
 			BNE.S	gbReQueue			; skip write-count scavenge if not
 			MOVE.L	BufTgDate,D0		; get tag write-count
-			CMP.L	VCBWrCnt(A2),D0 	; make sure it’s <= VCB write count
+			CMP.L	VCBWrCnt(A2),D0 	; make sure it's <= VCB write count
 			BLS.S	gbReQueue			; br if so
 			MOVE.L	D0,VCBWrCnt(A2) 	; update VCB write count if not  . . .
 			BRA.S	gbReQueue			; go re-queue the buffer ->
@@ -996,7 +996,7 @@ rbExit1 	MOVE.L	(A6)+,A4			; restore registers
 ;				A1.L  -  ignored
 ; Output:		none
 ;
-; Called By:	UnMountVol (when VCB goes away), MountVol (errors), Eject/OffLine (it’s
+; Called By:	UnMountVol (when VCB goes away), MountVol (errors), Eject/OffLine (it's
 ;				 best not to keep the buggers around . . .).
 ; Modification history:
 ;	06Jun90	KST	We now need to invalidate the free queue hash.
@@ -1160,7 +1160,7 @@ tbErr
 ; Routine:		CacheWrIP, CacheRdIP
 ;
 ; Function: 	Read/write a consecutive number of blocks from/to the disk.  The I/O
-;				is done directly to/from the user’s buffer.  This routine is in the
+;				is done directly to/from the user's buffer.  This routine is in the
 ;				cache to allow future caching schemes to buffer entire files if the
 ;				room exists.
 ;
@@ -1179,7 +1179,7 @@ tbErr
 ;
 ;				By having these routines call Lg2Phys, it would be possible in the
 ;				future to skip the call and deal with file block numbers in the cache
-;				(like GetBlock does), as well as do more than a consecutive block’s
+;				(like GetBlock does), as well as do more than a consecutive block's
 ;				worth of I/O with one call (maybe even figure all blocks in advance
 ;				and then do the I/O in disk order).
 ;
@@ -1237,7 +1237,7 @@ rdIPloop
 			BNE		rdIPExit			; punt on errors; only D3 on A6 stack
 			CMP.L	D4,D6				; D6 > user size?
 			BLE.S	@0					; no, can't read them all
-			MOVE.L	D4,D6				; D6>D4, we’ll do only this many bytes
+			MOVE.L	D4,D6				; D6>D4, we'll do only this many bytes
 @0			MOVEM.L D1-D7/A0-A5,-(A6)	; Save away almost all registers on TFS stack
 										; note here original D4 preserved on stack
 			MOVE.L	D6,D4				; only these many bytes are contiguous
@@ -1323,7 +1323,7 @@ rdIPExit	MOVE.L	(A6)+,D3			; restore D3
 			RTS 						;
 
 rwIPSetUp
-			MOVE.L	D4,D6				; we’ll do this many bytes
+			MOVE.L	D4,D6				; we'll do this many bytes
 			MOVEM.L D1-D7/A0-A5,-(A6)	; Save away almost all registers on TFS stack
 			MOVE.L	IOBuffer(A0),A5 	; user buffer address
 			ADD.L	IOActCount(A0),A5	; buffer start + count so far = target
@@ -1348,7 +1348,7 @@ CacheWrIP:
 			BSR.S	rwIPSetUp			; save regs, set up A5=buf addr, D7=refnum, D3=buf size,
 										;  D4=block count, D5=start file block
 wrIPloop	MOVE.L	D5,D2				; file block
-			MOVEQ	#(kGBrelease+kGBnoread),D1 ; release immediately, don’t read it if not found
+			MOVEQ	#(kGBrelease+kGBnoread),D1 ; release immediately, don't read it if not found
 			MOVE.W	D7,D0				; refnum
 			BSR 	GetBlock			; get it
 			BNE.S	@3					; exit on errors
@@ -1413,7 +1413,7 @@ Lg2Phys:
 ; Routine:		RdBlocks, WrBlocks
 ;
 ; Function: 	Read/write a consecutive number of blocks from/to the disk.  The I/O
-;				is done directly to/from the user’s buffer.  This routine is in the
+;				is done directly to/from the user's buffer.  This routine is in the
 ;				cache to allow future caching schemes to buffer entire files if the
 ;				room exists.
 ;
@@ -1929,7 +1929,7 @@ GLPBufLoop	MOVEA.L MCBBlink(A4),A4 	; position to next buffer, LRU order
 			BSR 	FlushFCache 		; flush this queue (it had a dirty old block)
 			BTST	#noFlushBit,FHFlags(A4) ; were we avoiding intermediate flushes on this one?
 			BEQ.S	@2					; br if not
-			ST		CacheFlag			; it’s flushing time till we exit this FS call
+			ST		CacheFlag			; it's flushing time till we exit this FS call
 
 @2			MOVEM.L (A6)+,A3-A4 		; retrieve the current file queue head, file queue header
 			MOVE.L	FHBlink(A4),A4		; go to next previous file queue
@@ -2064,7 +2064,7 @@ AddQToQ 								; add A1 queue buffers to A0 queue
 			MOVE.L	A4,Blink(A0)		; {SQE} <-> {DQH
 			MOVE.L	A0,Flink(A4)		;
 
-; Init src queue header to point to itself (since it’s empty)
+; Init src queue header to point to itself (since it's empty)
 
 			MOVE.L	A1,Flink(A1)		; {SQH} <-> {SQH
 			MOVE.L	A1,Blink(A1)		;
@@ -2930,7 +2930,7 @@ Intercept	;; called in CmdDone to install RamCache	-- KST
 ; Function: 	This routine is used flush out all cache buffers.  It is called
 ;				before adding or deleting buffers, or installing or removing
 ;				the RAM cache.	It must be called with the file system suspended
-;				since it uses the file system’s A6 stack.
+;				since it uses the file system's A6 stack.
 ;
 ; Arguments:	None.
 ;
@@ -2961,7 +2961,7 @@ FlushAll								;<02Dec86>
 			RTS
 
 FlushOne
-			MOVEQ	#0,D1				; Clear options byte (we’ll trash later)
+			MOVEQ	#0,D1				; Clear options byte (we'll trash later)
 			ST		CacheFlag			; Yes, REALLY flush . . .
 
 			MOVE.L	SysBMCPtr,A1		; System-wide bitmap cache pointer

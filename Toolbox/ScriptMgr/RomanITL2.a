@@ -24,8 +24,8 @@
 ;		<13>	 4/14/92	JSM		Get rid of all SysVers conditionals.
 ;		<12>	  3/3/92	PKE		#1021909, CubeE: Fix error in word select tables for non-break
 ;									space handling.
-;		<11>	 1/10/91	PKE		(csd) Adapt to change in ScriptEqu.a: change “ring” to
-;									“ringMark”.
+;		<11>	 1/10/91	PKE		(csd) Adapt to change in ScriptEqu.a: change 'ring' to
+;									'ringMark'.
 ;		<10>	12/10/90	PKE		(VL) Change word break tables to fix old bug in which a
 ;									non-breaking space glues whitespace to anything else. Now it
 ;									only glues it to other whitespace.
@@ -250,7 +250,7 @@ itl2Rsvd2Hook
 		SetClass	$20,0,0,0,(0,255)			; default: punct,symbol
 		SetClass	$30,0,0,0,$00,$09,$0D,$20	; spaces: punct,blank
 		SetClass	$00,0,0,0, '!', '"', '''', '(' ,')', ',', '-', '.', '/', ':', ';', '?', \
-					'[', ']', '{', '}', '«', '»', '…', '—', '“', '”', '‘', '’' \
+					'[', ']', '{', '}', '«', '»', '…', '—', ''', ''', '‘', ''' \
 					; punct,normal
 		SetClass	$10,0,0,0,('0','9')			; punct,number
 		SetClass	$81,'a','a','A',('A','Z')	; upper letter
@@ -301,8 +301,8 @@ itl2Rsvd2Hook
 		SetClass	$87,'o','ó','O',acuteUprO		; Ó 
 		SetClass	$87,'o','ô','O',circumflexUprO	; Ô 
 		SetClass	$87,'o','ò','O',graveUprO		; Ò 
-		SetClass	$87,'u','ú','U',acuteUprU		; Ú 
-		SetClass	$87,'u','û','U',circumflexUprU	; Û 
+		SetClass	$87,'u','ú','U',acuteUprU		; ' 
+		SetClass	$87,'u','û','U',circumflexUprU	; ' 
 		SetClass	$87,'u','ù','U',graveUprU		; Ù 
 
 ;<7/12/88ldc>	more extensions	
@@ -433,7 +433,7 @@ wdClassTable
 		setByte	wdClassTable,letter,(circumflex, ringMark)			; <7/18/88ldc><11>
 		setByte	wdClassTable,letter,(cedilla, hachek)				; <7/18/88ldc>
 		setByte	wdClassTable,midLetter,'-'
-		setByte	wdClassTable,midLetNum,$27,'’'
+		setByte	wdClassTable,midLetNum,$27,'''
 		setByte	wdClassTable,number,('0','9')
 		setByte	wdClassTable,preNum,'$','£','¥',intlCurrency		; <7/18/88ldc>	<14>
 		setByte	wdClassTable,postNum,'%','¢', perThousand			; <7/18/88ldc>	<14>

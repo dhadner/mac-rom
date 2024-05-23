@@ -16,10 +16,10 @@
 									since the size is given by a parameter now.
 		 <4>	 3/24/92	YK		#1025323: Sorry, Dean. We need 150K, which came from
 									outer space.
-		 <3>	 3/16/92	YK		Conditionalize some lines by ‘rez’ variable since DoubleTalk.r
+		 <3>	 3/16/92	YK		Conditionalize some lines by ‘rez' variable since DoubleTalk.r
 									now needs to include this file. System build will not be
 									affected by this change.
-		 <2>	 3/13/92	DTY		I’m not convinced that a 150K heap is necessary. Reduce the heap
+		 <2>	 3/13/92	DTY		I'm not convinced that a 150K heap is necessary. Reduce the heap
 									down to about 32K.
 
 */

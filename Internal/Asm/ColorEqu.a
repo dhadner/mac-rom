@@ -18,7 +18,7 @@
 ;									checked by KON. BRC numbers 82651 and 79185. Worksheet number
 ;									KON-022. Also added an ALIGN statement to the UNLINK macro to
 ;									squash the assembler warnings about code alignment.
-;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<17>	12/13/90	KON		Add color table signature for recording pixmaps without a color
 ;									table into pictures. [smc]
@@ -105,7 +105,7 @@ cTabSignature	EQU		$4B4F			;signature that PixMap has NIL color table
 SaveFondFlags 	EQU 		$986  					;important byte from current FOND flags
 FondState 		EQU 		$903  					;saved FOND purge state
 
-; additional private low memory globals for nuMac’s and later <C346>
+; additional private low memory globals for nuMac's and later <C346>
 
 SynListHandle 	EQU 		$0D32 					;a handle to a list of synthesized fonts
 LastFore  		EQU 		$0D36 					;8 bytes: last foreground and background colors (FM)

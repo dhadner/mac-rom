@@ -39,9 +39,9 @@ Created: Wednesday, July 16, 1991 at 2:05 PM
 		(*
 		FUNCTION unmangle(dst: UNIV Ptr; src: UNIV Ptr; limit: LongInt): LongInt; C;
 			{This function unmangles C++ mangled symbols (i.e. a symbol with a type signature).
-			 The mangled C string is passed in “src” and the unmangled C string is returned in
-			 “dst”.  Up to “limit” characters (not including terminating null) may be retured
-			 in “dst”.
+			 The mangled C string is passed in 'src' and the unmangled C string is returned in
+			 'dst'.  Up to 'limit' characters (not including terminating null) may be retured
+			 in 'dst'.
 		 
 			 The function returns,
 		 
@@ -53,8 +53,8 @@ Created: Wednesday, July 16, 1991 at 2:05 PM
 		
 		FUNCTION Unmangle(dst: UNIV StringPtr; src: UNIV StringPtr; limit: LongInt): LongInt;
 			{This function unmangles C++ mangled symbols (i.e. a symbol with a type signature).
-			 The mangled Pascal string is passed in “src” and the unmangled Pascal string is
-			 returned in “dst”.  Up to “limit” characters may be retured in “dst”.
+			 The mangled Pascal string is passed in 'src' and the unmangled Pascal string is
+			 returned in 'dst'.  Up to 'limit' characters may be retured in 'dst'.
 			
 			 The function returns,
 			 

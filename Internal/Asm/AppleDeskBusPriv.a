@@ -22,7 +22,7 @@
 ;									are also defined in EgretEqu.a, which seems to be included
 ;									everywhere.
 ;		 <5>	 8/21/91	JSM		Clean up header.
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 2/28/90	GMR		Added data structures for use with the new Egret based ADB
 ;									implementation

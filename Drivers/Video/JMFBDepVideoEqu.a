@@ -19,11 +19,11 @@
 ;
 ;		 <4>	  4/4/91	jmp		Cleaned up conditional assembly stuff (i.e., started using
 ;									ForRom instead of PadForOverPatch).
-;		 <3>	 2/25/91	jmp		Rolled in Casey’s latest version, and extracted out the
-;									TERROR-ROM only stuff (to be INCLUDE’d from ComVideoEqu.a).
+;		 <3>	 2/25/91	jmp		Rolled in Casey's latest version, and extracted out the
+;									TERROR-ROM only stuff (to be INCLUDE'd from ComVideoEqu.a).
 ;		 <2>	  1/7/91	jmp		Prior to my last full build and checking this file in, I somehow
-;									deleted the word “Version” from “RAMVersion” in this file
-;									causing the TERROR build to break. Oops. I guess I’ll do builds
+;									deleted the word 'Version' from 'RAMVersion' in this file
+;									causing the TERROR build to break. Oops. I guess I'll do builds
 ;									AFTER I check things back in next time. Sorry BG.
 ;		 <1>	  1/6/91	jmp		Checked into TERROR ROM for first time.
 ;		 <0>	11/19/90	jmp		Formatted for use with TERROR ROM (as opposed to a

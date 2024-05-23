@@ -42,7 +42,7 @@
 ;									small point size on Cube-E. 1. If sfnt is the only installed
 ;									font resource (no NFNT), always use it even if the requested
 ;									size is smaller than the LowestPPEM. 2. When trying to find the
-;									closest size of NFNT reosurce, don’t take sfnt as Zero-point
+;									closest size of NFNT reosurce, don't take sfnt as Zero-point
 ;									NFNT. 3. Call the Script Manger, instead of masking a font id,
 ;									to get the system script font. (71 DTY) Fix
 ;									GetFONDForSizeAndStyle to use correct style when styles are
@@ -65,7 +65,7 @@
 ;									1. If sfnt is the only installed font resource (no NFNT), always
 ;									use it even if the requested size is smaller than the
 ;									LowestPPEM.
-;									2. When trying to find the closest size of NFNT reosurce, don’t
+;									2. When trying to find the closest size of NFNT reosurce, don't
 ;									take sfnt as Zero-point NFNT.
 ;									3. Call the Script Manger, instead of masking a font id, to get
 ;									the system script font.
@@ -77,9 +77,9 @@
 ;	   <SM17>	10/22/92	CSS		Change some short branches to word branches.
 ;		<70>	  9/2/92	DTY		Use records for the synthetic font labels.
 ;		<69>	  9/1/92	DTY		Use a record for stack frame offsets.
-;		<68>	 8/17/92	DTY		#1039825 <csd>: I’ll get it right one of these days… If we’re
-;									remembering an alternate font and we determine that we’ve
-;									already picked up an alternate, don’t bail immediately. Instead,
+;		<68>	 8/17/92	DTY		#1039825 <csd>: I'll get it right one of these days… If we're
+;									remembering an alternate font and we determine that we've
+;									already picked up an alternate, don't bail immediately. Instead,
 ;									branch to a point in the code which decides whether we need to
 ;									keep looking for an exact match, or if we actually can leave.
 ;		<67>	 8/13/92	DTY		#1039692 <BBM>: #1039692 <BBM>: The last two changes made the
@@ -100,7 +100,7 @@
 ;									would return the saved 'FOND' from the wrong register, and wind
 ;									up nilling out the resource chain.
 ;		<64>	 7/31/92	DTY		#1037497 <gbm>: The last change had a bug which caused an
-;									infinite loop if QuickDraw wants a size that doesn’t exist, and
+;									infinite loop if QuickDraw wants a size that doesn't exist, and
 ;									there is no other style to fall back on.  Add some code which
 ;									knows how to get out of this case.
 ;		<63>	 7/24/92	DTY		#1037497 <gbm>: Added code to GetBestFONDForSizeAndStyle to
@@ -114,10 +114,10 @@
 ;		<61>	 7/20/92	DTY		#1035869: Be a little more lenient about bonehead 'FOND'
 ;									resources. Bail early in GetCandidateFONDs if the entry count in
 ;									the font association table is negative.
-;		<60>	 7/17/92	DTY		#1036422 <pvh>: Locking the candidate list while I’m walking
+;		<60>	 7/17/92	DTY		#1036422 <pvh>: Locking the candidate list while I'm walking
 ;									through it in RealFont would be nice…
 ;		<59>	 7/11/92	DTY		#1035746 <gbm>: In GetBestFONDForSizeAndStyle, mark the
-;									candidate 'FOND' non-purgeable so it doesn’t get purged when a
+;									candidate 'FOND' non-purgeable so it doesn't get purged when a
 ;									large TrueType font is loaded.
 ;		<58>	  7/8/92	DTY		#1035322 <csd>: In GetBestFONDForSizeAndStyle, check to see if
 ;									an alternate font has already been remembered before remembering
@@ -135,7 +135,7 @@
 ;		<54>	 6/23/92	DTY		#1031203: Suitcase has a patch on GetResource that makes it
 ;									start searching from the top of the resource chain, if Suitcase
 ;									is the current resource map. This breaks GetCandidateFONDs,
-;									which doesn’t expect to get a resource from higher up in the
+;									which doesn't expect to get a resource from higher up in the
 ;									chain than the current resource map.  Added a check that
 ;									collects FOND resources to bail if the end of the resource chain
 ;									is reached before the map containing the FOND resource is found.
@@ -153,7 +153,7 @@
 ;									means that synthetic fonts created with an arithmetic mode are
 ;									now black and white, rather than black and white but marked as
 ;									color. Also changed to create synthetic fonts for not modes.
-;		<50>	  6/5/92	DTY		#1031450: In RealFont, if we’ve got a TrueType font, don’t
+;		<50>	  6/5/92	DTY		#1031450: In RealFont, if we've got a TrueType font, don't
 ;									automatically return true. Instead, call fs_LowestPPEM first to
 ;									make sure this is a font size that TrueType will be used for.
 ;		<49>	  6/3/92	DTY		#1031058: Normally, the font association table in a 'FOND'
@@ -163,11 +163,11 @@
 ;									information about the fonts in the font family, keeping a record
 ;									of the plain font, and a record for all the styles.  It assumes
 ;									that the font assocation table followed the normal ordering.  Of
-;									course, we’re talking about Macintosh developers here, who are a
-;									breed apart and there’s always ONE person that doesn’t follow
+;									course, we're talking about Macintosh developers here, who are a
+;									breed apart and there's always ONE person that doesn't follow
 ;									the standard.  Add a check so that if one of these screwy
 ;									'FOND's is encountered, the record for the styles is split
-;									across the record for the plain entry.  What I’m saying is that
+;									across the record for the plain entry.  What I'm saying is that
 ;									the cache entries used to look like: [Info for plain][Info for
 ;									styles].  For a screwy 'FOND', it will look like: [Info for
 ;									styles][Info for plain][Info for more styles].
@@ -178,21 +178,21 @@
 ;									table.
 ;		<47>	  5/4/92	DTY		#1029119: In GetFONDForSizeAndStyle, ignore the high byte of the
 ;									style word when matching for a style, since this byte contains
-;									color information, and we don’t care about that at this point.
-;		<46>	 4/24/92	DTY		Case Obj sucks. Don’t use Case Obj for ROM builds.
+;									color information, and we don't care about that at this point.
+;		<46>	 4/24/92	DTY		Case Obj sucks. Don't use Case Obj for ROM builds.
 ;		<45>	 4/24/92	DTY		TrueType™ lives! Remove all the hasSplineFonts and Gaudi
 ;									conditionals.
 ;		<44>	 3/31/92	DTY		#1024665,<FM>: Change all the one deep Resource Manager calls
-;									back to the n deep ones since we’re gauranteeing unique IDs for
+;									back to the n deep ones since we're gauranteeing unique IDs for
 ;									all font resources.
 ;		<43>	 3/27/92	DTY		#1025750: In GoLoadStrike, if the code path reaches @loadFailed,
 ;									restore d6 and d7 before branching to FindSize.
-;		<42>	 3/20/92	DTY		#1025041: Re-write GetFONDForSizeAndStyle so it’s much easier to
+;		<42>	 3/20/92	DTY		#1025041: Re-write GetFONDForSizeAndStyle so it's much easier to
 ;									read and understand.#1025041,<pvh>: Improve
-;									GetFONDForSizeAndStyle so it’s easier to follow and understand.
+;									GetFONDForSizeAndStyle so it's easier to follow and understand.
 ;		<41>	 3/17/92	DTY		GetCandidateFONDs puts a long into CurMap, smashing ResReadOnly.
 ;		<40>	 1/22/92	DTY		Take out all the changes to the synthetic font code from <29>.
-;									We’re gauranteeing that font resources will always have unique
+;									We're gauranteeing that font resources will always have unique
 ;									IDs.
 ;		<39>	 1/15/92	DTY		FONDMap is a long, not a word, hosehead!  Get the reference
 ;									number by dereferencing FONDMap.
@@ -206,7 +206,7 @@
 ;									'FOND' is skipped.
 ;		<37>	12/20/91	DTY		In GetCandidateFONDs, start building the candidate list from
 ;									TopMapHndl instead of CurMap.
-;		<36>	12/18/91	DTY		#1018428: Don’t assume that FindSize found the font resource.
+;		<36>	12/18/91	DTY		#1018428: Don't assume that FindSize found the font resource.
 ;									Check the condition codes when it returns to see if scaling will
 ;									be necessary.
 ;		<35>	12/13/91	DTY		This is what I get for mixing old code with new code.
@@ -230,7 +230,7 @@
 ;									restore trash, hmmm. Fix was to call MakeMapOneDeep, which sets
 ;									d7 correctly, before branching to splineOKay. If I was Pete I'd
 ;									say thanks Dean, but I'm not so I won't.
-;		<32>	 12/2/91	DTY		Let’s derefence the TrueType global handle before we use it…
+;		<32>	 12/2/91	DTY		Let's derefence the TrueType global handle before we use it…
 ;		<31>	11/22/91	JH		Rolling in Kon's changes from Sakura project. Added code to
 ;									FindSize utility routine to check if the font is an asian font.
 ;									If it is we check splinepreferred if that is true use the old
@@ -239,9 +239,9 @@
 ;									than we use the bitmap. Change begins at @gotSpline label and
 ;									ends at ST WidthIsSpline(A1).
 ;		<30>	11/19/91	DTY		Another check is needed in GetFONDForSizeAndStyle to return the
-;									plain spline before the styled spline.  Also, don’t call
+;									plain spline before the styled spline.  Also, don't call
 ;									MakeMapOneDeep in LoadSplineResource, since LoadSplineResource
-;									is called from other places in the code that don’t set things up
+;									is called from other places in the code that don't set things up
 ;									properly.  Instead, just set up CurMap from lastFontMap and hope
 ;									for the best.
 ;		<29>	11/15/91	DTY		Save the resource map attribute bits upon entry into GetStrike,
@@ -259,28 +259,28 @@
 ;		<26>	10/25/91	DTY		Erk. I left a _Debugger in the source.
 ;		<25>	10/25/91	DTY		Ooops again.  Need to bump past the FOND ID in the candidate
 ;									list when trying to scale a font.
-;		<24>	10/25/91	DTY		Ooops. GetFONDForSizeAndStyle doesn’t restore D4 and D5 if a
-;									font wasn’t found. Sorry Kon.
+;		<24>	10/25/91	DTY		Ooops. GetFONDForSizeAndStyle doesn't restore D4 and D5 if a
+;									font wasn't found. Sorry Kon.
 ;		<23>	10/25/91	DTY		GetCandidateFONDs is still looking in TopMapHndl instead of the
 ;									current map. (Everything else was changed in the last revision,
 ;									but I missed this case.)  Also, some additional checking to
 ;									determine whether to use the plain or styled font is needed in
 ;									GetFONDForSizeAndStyle if a TrueType font is to be used.
 ;		<22>	10/24/91	JSM		Include ResourceMgrPriv.a for ROM builds so they keep working,
-;									although this isn’t a real good solution.
-;		<21>	10/23/91	DTY		Brian lied. The Resource Manager doesn’t stop at SysMapHndl.
-;									Stop slamming TopMapHndl to get around what doesn’t happen.
+;									although this isn't a real good solution.
+;		<21>	10/23/91	DTY		Brian lied. The Resource Manager doesn't stop at SysMapHndl.
+;									Stop slamming TopMapHndl to get around what doesn't happen.
 ;									LoadStrike now calls _GetMap to get the current resource map
 ;									instead of peeking at TopMapHndl.
 ;		<20>	10/22/91	DTY		Make sure to use TrueType fonts if splinePreferred is set, even
 ;									if a bitmap was found first.  (But keep the bitmap around in
-;									case a TrueType font isn’t found.)
+;									case a TrueType font isn't found.)
 ;		<19>	10/21/91	DTY		One deep resource calls should be one deep resource calls.
 ;									Clear the twoDeepBit in the resource map before trying to load a
-;									font. (Don’t you just love how the Resource Manager and the Font
+;									font. (Don't you just love how the Resource Manager and the Font
 ;									Manager have their hands all over each other?)
 ;		<18>	10/14/91	DTY		Make GetCandidateFONDs use the application font if the requested
-;									font family couldn’t be found.  Make _RealFont use
+;									font family couldn't be found.  Make _RealFont use
 ;									GetCandidateFONDs to determine if a size is available instead of
 ;									patching it.  (The _RealFont patch in FontFolderPatches.a is
 ;									gone.)  Also load the resource in FindSize if the font was
@@ -289,13 +289,13 @@
 ;									in SplineKey.  Also added check for styled TrueType font in
 ;									GetFONDForSizeAndStyle.
 ;		<16>	10/10/91	DTY		Change GetCandidateFONDs to include styles in the list it
-;									builds, and have GetFONDForSize consider the style that’s needed
+;									builds, and have GetFONDForSize consider the style that's needed
 ;									during its search as well.
 ;		<15>	 10/4/91	DTY		Font resources can have duplicate IDs in the font chain. They
 ;									may lead to the wrong font being loaded if the font type is not
 ;									found in the current map, but is found in a lower map. Use one
 ;									deep resource calls in LoadStrike and LoadSplineFont to avoid
-;									this.  Fixed bug in GetCandidateFONDs which didn’t know when to
+;									this.  Fixed bug in GetCandidateFONDs which didn't know when to
 ;									stop walking the resource chain, and wound up going through 0.
 ;									Also fixed bug in LoadSplineFont which caused it to bail even if
 ;									a spline was actually loaded.
@@ -388,9 +388,9 @@
 ;		<13>	 7/20/90	BG		Added EclipseNOPs for flakey 040s.
 ;		<12>	 7/20/90	DTY		Bass: The Linked Patch. Added condition Black and White
 ;									procedure names, added Gaudi variable to checks for SplineFonts,
-;									and moved in GetDevPix from BassComm_Tail. (You mean that’s
+;									and moved in GetDevPix from BassComm_Tail. (You mean that's
 ;									it?!?)
-;		<11>	 7/16/90	CL		FMExist does not exist on the MacPlus so it can’t be checked in
+;		<11>	 7/16/90	CL		FMExist does not exist on the MacPlus so it can't be checked in
 ;									initfonts for this cpu.
 ;		<10>	 6/29/90	CL		Took out swap cache flag to make sure the sb_searchforcache
 ;									always gets called to insure the correct font cache is loaded.
@@ -454,8 +454,8 @@
 ;				 2/20/87	CRC		Skip GetHandleSize check after a GetResource from GetFName, so
 ;									that zero size fonts are allowed
 ;				 1/31/87	CRC		make FONDs nonpurgable in cache case; let condense, extend go
-;									multi-bit; use 1 bit font in “not” srcBic modes, look for second
-;									best multibit font, don’t color srcXor, allow font sizes > 127
+;									multi-bit; use 1 bit font in 'not' srcBic modes, look for second
+;									best multibit font, don't color srcXor, allow font sizes > 127
 ;				  1/3/87	CRC		if less than 3K stack, or if dest. is 1 bit, skip color cache
 ;				12/21/86	CRC		use normal foreground/background color with arithmetic modes
 ;				 12/4/86	CRC		if fond can not be had, try old way first before substituting
@@ -467,7 +467,7 @@
 ;									save/restore in DifStyle
 ;				11/11/86	CRC		large font from Professional Composer pointed out bug (missing
 ;									.L) in synthetic font build
-;				11/10/86	CRC		OK, let’s try forcing the synthetic strike list handle in the
+;				11/10/86	CRC		OK, let's try forcing the synthetic strike list handle in the
 ;									sysZone instead.
 ;				11/10/86	CRC		clear FOutFontHandle in InitFonts only in fmExist false case;
 ;									skip widths if only colors, modes, depth changed; get the depth
@@ -965,7 +965,7 @@ FamSizeInD0
 			MOVEQ	#12,D1						; if low memory is no help, hard code to 12
 @sizeNonZero
 			CMP		#1,D0						; is the font the application font?
-			BNE.S	@sysSizeOK					; if not, don’t change it
+			BNE.S	@sysSizeOK					; if not, don't change it
 			MOVE	ApFontID,D0					; change family to application family
 @sysSizeOK		
 			SWAP	D0							; save the family
@@ -1004,7 +1004,7 @@ SwapFontStackFrame	Record	0,Decr
 copyInput		ds.b	16				; A copy of CurFMInput
 styleID			ds.l	1				; Saved style and ID from current FOND.  (Set up in GoLoadStrike)
 paramBlk		ds.b	ioQElSize		; Parameter block used to give the current device a chance to mess with the output record
-saveMap			ds.w	1				; The application’s resource map in case we need to switch resource maps
+saveMap			ds.w	1				; The application's resource map in case we need to switch resource maps
 fwidStyle		ds.w	1				; Style of the best width tabel found in the FOND
 	if HAS_COLOR then
 fPixMap			ds.b	pmRec			; Passed to MakeScaleTbl to return color map
@@ -1066,14 +1066,14 @@ BWFMSwapFont
 			ADDQ.B	#1,FontFlag				; if not a re-entrant call, this sets to zero
 			BEQ.S	@notReentrant
 			_Debug
-			BSR		InvalWidthTab			; don’t use the current cache; may be incomplete
+			BSR		InvalWidthTab			; don't use the current cache; may be incomplete
 			
 ; Here we know that the call to LoadResource failed, the disk switch hook is trying to go up, or a real
 ; SysError occured.
 
 			CMP.B	#9,FontFlag				; are all substitutions exhausted ?
 			BEQ		GoTryChicago			; if so, go straight for the ROM font
-			BGT		FMSwapDone				; if that didn’t work, this just return the last record 
+			BGT		FMSwapDone				; if that didn't work, this just return the last record 
 			MOVE.B	#8,FontFlag				; set to next re-entrant range.
 @notReentrant			
 			
@@ -1126,7 +1126,7 @@ BWFMSwapFont
 			BMI.S	StraightLineCP
 			MOVE.L	grafGlobals(A5),A0		; get grafGlobals
 			MOVE.L	thePort(A0),D0			; get thePort
-			BEQ.S	StraightLineCP			; if no port, don’t check space extra
+			BEQ.S	StraightLineCP			; if no port, don't check space extra
 			MOVE.L	D0,A0
 		
 	IF	(HAS_COLOR)	THEN		; <2.7-4april89-CEL>
@@ -1307,7 +1307,7 @@ PurgeOnTheFly
 			CMP		#-1,FONDID
 			BEQ.S	@nothingToDo
 			MOVE.L	FOutFontHandle,D0		; does it exist at all?
-			BEQ.S	@nothingToDo			; won’t exist at InitFonts time
+			BEQ.S	@nothingToDo			; won't exist at InitFonts time
 			MOVE.L	D0,A0					; pointer to font
 			MOVE.L	(A0),D0					; did it purge?
 			BEQ.S	@nothingToDo
@@ -1415,8 +1415,8 @@ TryAgain
 ;			if no purged entry, and the last entry = 0, allocate a new entry at the end of the list.
 ;		if memory is full or the list is full:
 ;			reuse the last nonpurged entry in the list.
-;		if there isn’t a nonpurged entry then we’re out of luck; don’t use cache.
-;		if a memory allocation call fails, then the system heap is in bad shape; don’t use cache.
+;		if there isn't a nonpurged entry then we're out of luck; don't use cache.
+;		if a memory allocation call fails, then the system heap is in bad shape; don't use cache.
 ;
 ;	The actual size and font are stored in the width table instead of 0 or applFont.
 ;
@@ -1492,7 +1492,7 @@ DoMapFont
 			
 ; We already have the font handle (from the old width table), so skip most of MapFont.
 			
-			ST		D6					; don’t call MapFont
+			ST		D6					; don't call MapFont
 			MOVE	(A1),D0				; get new font family ID
 			CMP		FONDID,D0			; different from old one?
 			BEQ.S	@sameFOND			; if not, fond globals are already set up
@@ -1569,7 +1569,7 @@ DoMapFont
 			TST		D5					; was an invalid table found?
 			BPL.S	@reuseIt			; if so, skip purge check.
 			MOVE.L	#WidTabSize,D1		; get size of a table, in case we must allocate it.
-			_MaxBlock ,SYS				; better than FreeMem; unfortunately, didn’t know for Aladdin ROM
+			_MaxBlock ,SYS				; better than FreeMem; unfortunately, didn't know for Aladdin ROM
 			CMP.L	D1,D0				; is there enough room?
 			BLE.S	@useNonpurged		; if not, use the last nonpurged entry in the list.
 			MOVE.L	D1,D0				; set up size to allocate.
@@ -1638,7 +1638,7 @@ DoMapFont
 ; check to see if font is already figured out and installed
 			
 			TST.B	D6					; call MapFont?
-			BNE.S	GotFontHandle		; don’t bother if the widths were found
+			BNE.S	GotFontHandle		; don't bother if the widths were found
 			
 ; call MapFont to do all the hard work, installing a font in the output record
 
@@ -1777,7 +1777,7 @@ DoStyle
 	IF	(HAS_COLOR)	THEN		; <2.7-4april89-CEL>
 		
 ; If the destination depth is 1, or if QuickDraw must algorithmically add a style, or if there is less than 3K of stack left,
-; or if the international bit is set in the font, don’t look for a color font.
+; or if the international bit is set in the font, don't look for a color font.
 
 			BSR.S	GetPixelDepth			; the depth of the destination bitmap
 			MOVE.L	D0,D6					; the device pixel size
@@ -1834,7 +1834,7 @@ LookForColor
 			BEQ.S	toNoColors				; if so, return 1 bit font
 			BCLR	#5,D0					; arithmetic mode?
 			BNE.S	@arithMode				; if not, use black and white
-			BCLR	#2,D0					; a “not” mode?	(we ignore these now and create synth font)	<5JUNE92 SAH>
+			BCLR	#2,D0					; a 'not' mode?	(we ignore these now and create synth font)	<5JUNE92 SAH>
 			SUBQ	#srcBic,D0				; srcBic?
 			BEQ.S	toNoColors				; if so, return 1 bit font
 			BRA.S	@useDefault				; multibit font, but black/white
@@ -1902,12 +1902,12 @@ LookForColor
 @FTSLoop
 			CMP.W	(A0)+,D2 				; search for matching size
 			BLT.S	@secondBest				; sizes must be in ascending order
-			BNE.S	@skipStyle				; if the style is too small, don’t check the style
+			BNE.S	@skipStyle				; if the style is too small, don't check the style
 			CMP.W	(A0),D0					; is the style high-byte (bit depth) equal to the request?
 			BEQ.S	@foundEntry
 			
 ; also look for a smaller bit depth than the one requested if an exact match is not found.  Keep it around just in case
-; don’t worry about 1 bit; it has already been found.  And it can’t be 8 bit (depth = 3), since that would already be an
+; don't worry about 1 bit; it has already been found.  And it can't be 8 bit (depth = 3), since that would already be an
 ; exact match.
 
 ; FONDs containing more than 1 font in different depths should order the entries in bitdepth ascending order so that the
@@ -1969,7 +1969,7 @@ LookForColor
 
 			BCLR	#5,curTxMode+1(A6)		; start out with the bit clear
 			CMP		#srcXor,curTxMode(A6)	; is it srcXor?
-			BEQ.S	@skipColor				; if so, don’t color it
+			BEQ.S	@skipColor				; if so, don't color it
 			PEA		foreBack(A6)
 			_GetForeColor
 			PEA		foreBack+6(A6)			; for srcCopy use normal forground, background
@@ -2010,7 +2010,7 @@ LookForColor
 			DBNE	D4,@checkNext
 			BNE.S	@skipToNext
 			
-; if it is a  synthetic font, don’t let it purge, since it can not be reloaded with LoadResource
+; if it is a  synthetic font, don't let it purge, since it can not be reloaded with LoadResource
 
 			MOVE.L	(A2),A0
 			BTST	#0,(A0)					; synthetic?
@@ -2134,7 +2134,7 @@ LookForColor
 ; There are two methods of finding the location table, either by looking just past the strike or just before the
 ; offset/width table.  So, it is not enough to just scale owTLoc; the locTable length may not be an even multiple
 ; of the scale factor.  To find the offset/width table, the high word of owTLoc is stored in nDescent, a field
-; left over from Xerox days that doesn’t appear to be in use.  Assuming that fNDescent always has a negative
+; left over from Xerox days that doesn't appear to be in use.  Assuming that fNDescent always has a negative
 ; value from its old use, there is no confusing it with the actual fNDescent.
 
 			MOVE	fNDescent(A1),D0		; if the original font is bigger than 128K, get the high word
@@ -2157,7 +2157,7 @@ LookForColor
 			ADD.L	D4,A0					; size of original strike
 			ADD.L	D0,A0					; plus header to point to post-strike table
 			ADD.L	D5,A1					; offset to end of new strike
-			ADD.L	D0,A1					; don’t forget header size
+			ADD.L	D0,A1					; don't forget header size
 			SUB.L	D0,D2					; take out header from size of post-strike tables
 			MOVE.L	D2,D0
 			_BlockMove						; move tables after the strike
@@ -2213,7 +2213,7 @@ LookForColor
 			MOVE.L	A3,SP					; restore stack
 			
 ; Almost made it.  Now, install this brand new font in the synthetic strike cache and in low memory:
-; if can’t grow cache, just reuse old element
+; if can't grow cache, just reuse old element
 
 AddToSynList	
 			MOVE.L	SynListHandle,A0
@@ -2242,7 +2242,7 @@ AddToSynList
 			MOVE	D0,D3					; save old size
 			ADD		#SyntheticStrikeTable.synEntry,D0	;(never could grow over 64K?)
 			_SetHandleSize
-			BNE.S	@entryPurged			; couldn’t grow, so reuse one (practically never happen)
+			BNE.S	@entryPurged			; couldn't grow, so reuse one (practically never happen)
 			MOVE.L	(A0),A1
 			ADD		D3,A1					; figure where new entry is
 			BRA.S	@neverUsed				; fill in new entry
@@ -2258,7 +2258,7 @@ AddToSynList
 			_BlockMove						; move foreground, background
 			
 ; new font should only be made purgable at next DifFont time
-; this means FontMgr needs to know that it was a “synthetic” font via font flag
+; this means FontMgr needs to know that it was a 'synthetic' font via font flag
 
 ;——————————————————————————————————————————————————————————————
 ; putting the new strike in FOutFontHandle is enough to set it up
@@ -2338,12 +2338,12 @@ CheckWTable
 ; fractional style extra in the FOND.
 
 			MOVE.L	LastFond,D0	 			; check if there is a last FOND.
-			BEQ		MakeITab				; if not, style extra can’t be fractional.
+			BEQ		MakeITab				; if not, style extra can't be fractional.
 
 			TST.B	FDevDisable 			; set if the device would prefer the FOND style extra.
 			BNE.S	@skipDevice
 
-			TST.B	fmInDevice(A3)			; if the device is not the screen, it can supply it’s
+			TST.B	fmInDevice(A3)			; if the device is not the screen, it can supply it's
 			BNE		MakeITab				; own style widths, so skip looking at the FOND widths.
 @skipDevice
 			BTST	#5,saveFondFlags		; set if fractional style extra is never from FOND.
@@ -2353,7 +2353,7 @@ CheckWTable
 			BNE.S	@computeFractExtra		;												<06Nov85>
 
 			TST.B	FractEnable 			; set if application allows fractional spacing
-			BEQ.S	MakeITab				; if not, don’t figure fractional style extra from FOND.		<06Nov85>
+			BEQ.S	MakeITab				; if not, don't figure fractional style extra from FOND.		<06Nov85>
 
 @computeFractExtra							;
 
@@ -2406,7 +2406,7 @@ CheckWTable
 			CMP		#$8FFF,D2				; is it -7.001 or smaller?
 			BGT.S	@doNormalAdd
 			BCLR	#15,D2					; throw away sign bit
-			NEG		D2						; make into a normal two’s complement number
+			NEG		D2						; make into a normal two's complement number
 @doNormalAdd
 			EXT.L	D2
 			ADD.L	D2,D6					; add it in
@@ -2429,7 +2429,7 @@ CheckWTable
 
 ;————————————————————————————————————————————————————————————————————
 			TST.B	FractEnable 			; fractional widths? 				<06Nov85>
-			BNE.S	MakeWTab				; yes, then don’t use the rounded result.
+			BNE.S	MakeWTab				; yes, then don't use the rounded result.
 
 			MOVE.B	D0,FOutExtra			; and save the byte-sized result		<BAL/NMB 07Sep88>
 
@@ -3338,7 +3338,7 @@ LoadSplineFontResource
 			
 			move.w	ResLoad,-(sp)				; <15> Save current ResLoad
 			move.w	#0,-(sp)
-			_SetResLoad							; <15> Don’t load the spline
+			_SetResLoad							; <15> Don't load the spline
 
 			move.w	#MapFALSE,ROMMapInsert		; don't load sfnt into memory
 			subq	#4,sp						; reserve space for function result
@@ -3371,15 +3371,15 @@ LoadSplineFontResource
 			_LoadResource						; load the resource into memory
 			bra.s	@Exit						; return
 
-; The spline font is bigger than 128K, so don’t load it into memory, but create an empty
-; handle for it in it’s resource reference entry.  We can probably get rid of the call to
-; ReleaseResource and the zone mucking, since it’s pretty unlikely for a font to be loaded
+; The spline font is bigger than 128K, so don't load it into memory, but create an empty
+; handle for it in it's resource reference entry.  We can probably get rid of the call to
+; ReleaseResource and the zone mucking, since it's pretty unlikely for a font to be loaded
 ; in the application heap these days.  For example, fonts from the system and the Fonts
 ; folder automatically load in the system heap.  Fonts will go in the application heap
 ; if the application is carrying the font around.  But at this point in the code, the
-; 'sfnt' is larger than 128K, and it’s unlikely that applications will be carrying around
-; fonts of this size.  But I’m too chicken to get rid of these lines at this point in
-; 7.1’s schedule.
+; 'sfnt' is larger than 128K, and it's unlikely that applications will be carrying around
+; fonts of this size.  But I'm too chicken to get rid of these lines at this point in
+; 7.1's schedule.
 
 @LoadEmptySplineIntoSystemHeap
 			move.l	resourceHandle(a6),-(sp)	; push resource handle
@@ -3452,7 +3452,7 @@ LoadNoROM
 			MOVEM.L (SP)+, A0-A1/D0-D2		; Restore all registers on return
 			beq.s	@splineOkay
 
-; The TrueType font couldn’t be loaded for some reason.  Mark width table so that the
+; The TrueType font couldn't be loaded for some reason.  Mark width table so that the
 ; spline will not be loaded next time, then go find a bitmap size to use.
 
 @loadFailed	
@@ -3502,7 +3502,7 @@ fontOnlyLoad
 			BSR		DerefWidthTab			; get pointer to width table in A0
 			MOVE.L	D0,widthNFNT(A0)		; remember that we tried to find a FONT
 
-; Load the font, but don’t look in ROM for the resource.
+; Load the font, but don't look in ROM for the resource.
 
 fontOnlyNoLoad
 			MOVE	(SP)+,D0 				; recover ID
@@ -3513,7 +3513,7 @@ fontOnlyNoLoad
 			MOVE.L	(SP)+,D0				; sets Z flag
 			bz.s	@weDidntGetIt			; if missing, skip checking size
 
-; But wait!  What if we didn’t get a font at all? 
+; But wait!  What if we didn't get a font at all? 
 
 @gotFONT
 			MOVE.L	D0,-(SP)				; protect handle from resource manager call
@@ -3563,7 +3563,7 @@ setZBit
 ;	CLOBBERS:  …
 ;——————————————————————————————————————————————————————————————————
 FindSize
-			tst.l	(a2)					; See if it’s been purged first
+			tst.l	(a2)					; See if it's been purged first
 			bne.s	@noReload
 			move.l	a2,-(sp)
 			_LoadResource					; The FOND has been purged.  Reload it.
@@ -3697,8 +3697,8 @@ kFONDListSize	equ		12					; Candidate cache entry size
 ;	and the high word contains the desired style on entry.
 ;
 ;	GetFONDForSizeAndStyle returns a TrueType font if one is available if the requested
-;	size (and style) isn’t available.  It returns the plain style of the requested size
-;	if the desired style isn’t available.
+;	size (and style) isn't available.  It returns the plain style of the requested size
+;	if the desired style isn't available.
 ;
 ;	Register Input:
 ;		A3 -> Handle to candidate list
@@ -3725,7 +3725,7 @@ GetFONDForSizeAndStyle
 			move.l	(a3),a4 				; Get pointer to candidate list
 			addq	#2,a4					; Bump past FOND ID
 			move.w	(a4)+,d1				; get the # of entries in candidate list
-			bmi		@sizeAndStyleNotFound	; <61> Don’t do anything if this is an empty candidate list.
+			bmi		@sizeAndStyleNotFound	; <61> Don't do anything if this is an empty candidate list.
 			moveq	#0,d2					; Initialize size
 			moveq	#0,d4					; Assume no styled spline font
 			moveq	#0,d5					; Assume no styled bitmap
@@ -3733,7 +3733,7 @@ GetFONDForSizeAndStyle
 			moveq	#0,d7					; Assume no plain spline.
 
 ; For each entry in the FOND candidate list, make sure that the resource map that each
-; FOND comes from is presently in the resource chain.  If it’s not, skip the entry, and
+; FOND comes from is presently in the resource chain.  If it's not, skip the entry, and
 ; try another one.
 
 @fSizeLoop
@@ -3746,7 +3746,7 @@ GetFONDForSizeAndStyle
 			tst.l	(sp)+					; If nil is returned, the map is not in the chain
 			bnz.s	@FONDMapInChain
 			move.l	(sp)+,d1				; Restore D1
-			add.w	#kFONDListSize,a4		; The map isn’t in the chain.  Try the next candidate
+			add.w	#kFONDListSize,a4		; The map isn't in the chain.  Try the next candidate
 			dbra	d1,@fSizeLoop
 			bra		@CheckAlternates		; No more candidates.  See if we can use something else instead.
 			
@@ -3759,7 +3759,7 @@ GetFONDForSizeAndStyle
 			move.w	(a4)+,d2				; Get a size
 			bnz.s	@notSpline				; This entry is not a TrueType font.
 			
-; We got a TrueType entry.  Rememeber it in case a bitmap for the desired size can’t be
+; We got a TrueType entry.  Rememeber it in case a bitmap for the desired size can't be
 ; located.
 
 			swap	d3
@@ -3767,14 +3767,14 @@ GetFONDForSizeAndStyle
 			swap	d3
 			move.w	(a4)+,d0				; Get the styles this 'FOND' describes
 			andi.w	#$0F,d0					; Mask off color bits
-			bnz.s	@styledSplineEntry		; It’s not plain
-			tst.l	d7						; <58> See if we’ve already remembered a plain TrueType font
-			bnz.s	@gotPlainSpline			; <58> We’ve already got one, so don’t remember this new one
-			move.l	a4,d7					; It’s plain.  Remember this cache entry in case the right bitmap size isn’t found.
+			bnz.s	@styledSplineEntry		; It's not plain
+			tst.l	d7						; <58> See if we've already remembered a plain TrueType font
+			bnz.s	@gotPlainSpline			; <58> We've already got one, so don't remember this new one
+			move.l	a4,d7					; It's plain.  Remember this cache entry in case the right bitmap size isn't found.
 @gotPlainSpline
 			tst.w	d2						; Did we want plain?
 			bne.s	@keepLooking			; Nope.  Keep looking
-			bra.s	@checkSplinePreferred	; Yes.  See if it’s ok to return a TrueType font.
+			bra.s	@checkSplinePreferred	; Yes.  See if it's ok to return a TrueType font.
 			
 @styledSplineEntry
 			cmp.w	d2,d0					; <71> See if style is exactly the same
@@ -3784,13 +3784,13 @@ GetFONDForSizeAndStyle
 @testForStyle
 			and.w	d2,d0					; See if this 'FOND' describes the desired style
 			bnz.s	@savePotentialStyleMatch	; It does indeed.  Prepare to load it in.
-			move.l	d3,d0					; <63> This 'FOND' doesn’t have the desired style.
-			swap	d0						; <63> Check the desired style to see if we’re trying to get plain
-			tst.w	d0						; <63> If we’re not looking for plain, try the next candidate.  Otherwise,
+			move.l	d3,d0					; <63> This 'FOND' doesn't have the desired style.
+			swap	d0						; <63> Check the desired style to see if we're trying to get plain
+			tst.w	d0						; <63> If we're not looking for plain, try the next candidate.  Otherwise,
 			bnz.s	@keepLooking			; <63> QuickDraw wants to use this style as plain, so remember it.
 @savePotentialStyleMatch
 			tst.l	d4						; <58> See if we already have an alternate style
-			bnz.s	@gotStyledSpline		; <58> <68> We’ve got an alternate style already
+			bnz.s	@gotStyledSpline		; <58> <68> We've got an alternate style already
 			move.l	a4,d4					; This 'FOND' has the style we want.  See if we can return the TrueType font.
 @gotStyledSpline
 			tst.w	d0						; <67> This code is used for getting a styled font.  If QuickDraw really
@@ -3800,7 +3800,7 @@ GetFONDForSizeAndStyle
 
 @checkSplinePreferred
 			btst	#splinePreferred,HiliteMode	; If this bit is set, it means use a TrueType font whenever possible.
-			bz.s	@keepLooking			; It’s not set.  Keep looking for a bitmap of the right size.
+			bz.s	@keepLooking			; It's not set.  Keep looking for a bitmap of the right size.
 			
 ; We want to use the TrueType font.  Determine whether to return the plain or the style
 			
@@ -3823,26 +3823,26 @@ GetFONDForSizeAndStyle
 			swap	d3
 			move.w	(a4)+,d0				; The size is right.  Check the style.
 			bnz.s	@styledBitMapEntry
-			tst.l	d6						; <58> See if we’ve got an alternate plain bitmap
-			bnz.s	@gotPlainBitmap			; <58> If we do, don’t save this new one.
-			move.l	a4,d6					; Remember this cache entry as the plain base in case the desired style isn’t found.
+			tst.l	d6						; <58> See if we've got an alternate plain bitmap
+			bnz.s	@gotPlainBitmap			; <58> If we do, don't save this new one.
+			move.l	a4,d6					; Remember this cache entry as the plain base in case the desired style isn't found.
 @gotPlainBitmap
 			tst.w	d2						; Did we want plain?
 			bne.s	@keepLooking			; Nope.  Keep looking
 			bra.s	@checkIfBitMapIsGoodEnough
 			
-; This entry has a style.  See if it’s the style we want.
+; This entry has a style.  See if it's the style we want.
 
 @styledBitMapEntry
 			and.w	d2,d0					; See if this FOND can deal with the style we want
 			bnz.s	@gotDesiredStyledBitMap	; It does indeed.  Prepare to load it in.
-			move.l	d3,d0					; <63> This 'FOND' doesn’t have the desired style.
-			swap	d0						; <63> Check the desired style to see if we’re trying to get plain
-			tst.w	d0						; <63> If we’re not looking for plain, try the next candidate.  Otherwise,
+			move.l	d3,d0					; <63> This 'FOND' doesn't have the desired style.
+			swap	d0						; <63> Check the desired style to see if we're trying to get plain
+			tst.w	d0						; <63> If we're not looking for plain, try the next candidate.  Otherwise,
 			bnz.s	@keepLooking			; <63> QuickDraw wants to use this style as plain, so remember it.
 @gotDesiredStyledBitMap
 			tst.l	d5						; <58> See if we already have a styled bitmap
-			bnz.s	@gotStyledBitMap		; <58> <68> If we do, don’t remember the new one.
+			bnz.s	@gotStyledBitMap		; <58> <68> If we do, don't remember the new one.
 			move.l	a4,d5					; It has the right style.  Remember this cache entry
 @gotStyledBitMap
 			tst.w	d0						; <67> This code is used for getting a styled font.  If QuickDraw really
@@ -3866,7 +3866,7 @@ GetFONDForSizeAndStyle
 			move.l	d5,a1					; Pass pointer to styled cache entry
 			bra.s	@setupForLoad
 			
-; At this point, either the size, style, or font type doesn’t match with what we want.
+; At this point, either the size, style, or font type doesn't match with what we want.
 ; Try the next entry.
 
 @sizeDoesntMatch
@@ -3895,10 +3895,10 @@ GetFONDForSizeAndStyle
 @tryForStyledAlternate
 			tst.l	d5						; <67> There was no plain, see if we have a style alternate
 			bz.s	@tryForSpline			; <67> No styled bit map either.  See if we have a spline.
-			move.l	d5,a1					; <67> We’ve got a style alternate.  Return that.
+			move.l	d5,a1					; <67> We've got a style alternate.  Return that.
 			bra.s	@setupForLoad			; <67> Return the styled bitmap.
 			
-; The plain bitmap wasn’t found (either).  See if a TrueType font was picked up along
+; The plain bitmap wasn't found (either).  See if a TrueType font was picked up along
 ; the way.
 			
 @tryForSpline
@@ -3908,35 +3908,35 @@ GetFONDForSizeAndStyle
 			bz.s	@tryForPlainSpline		; A plain font was desired
 @tryForStyledSpline
 			tst.l	d4						; See if a styled spline was picked up.
-			bz.s	@tryForPlainSpline		; <71> It wasn’t.  Try plain.
+			bz.s	@tryForPlainSpline		; <71> It wasn't.  Try plain.
 			move.l	d4,a1					; <71> Use styled spline
 			bra.s	@setupForLoad			; <71>
 @tryForPlainSpline
 			tst.l	d7						; See if a plain TrueType font was picked up.
-			bnz.s	@passBackPlainSpline	; We’ve got a TrueType version.  Go use it.
+			bnz.s	@passBackPlainSpline	; We've got a TrueType version.  Go use it.
 			
-; A plain spline couldn’t be found.  Before we go back to try subsituting, go back and
+; A plain spline couldn't be found.  Before we go back to try subsituting, go back and
 ; look for a styled spline if QuickDraw was asking for a plain font, in case the font
 ; is styled.
 
 			move.l	d3,d0					; <63>
 			swap	d0						; <63>
 			tst.w	d0						; <63> Check the style that QuickDraw wanted
-			bnz.s	@sizeAndStyleNotFound	; <64> If QuickDraw wanted a style, we didn’t find it, so go subsitute
+			bnz.s	@sizeAndStyleNotFound	; <64> If QuickDraw wanted a style, we didn't find it, so go subsitute
 			
 ; QuickDraw was asking for a plain font.  Before we go look at the a styled alternate, change
-; the requested style to be non-plain so we don’t infinite loop if there is no styled alternate
+; the requested style to be non-plain so we don't infinite loop if there is no styled alternate
 ; either.
 
 			swap	d3						; <64>
-			move.w	#1,d3					; <64> Pretend we’re looking for a style so we don’t inifinite loop
+			move.w	#1,d3					; <64> Pretend we're looking for a style so we don't inifinite loop
 			swap	d3						; <64>
 			bra.s	@tryForStyledSpline		; <64> Go see if a styled spline was picked up along the way
 
 @passBackPlainSpline
 			move.l	d7,a1					; Point to the plain cache entry
 
-; We’ve got a pointer to the cache entry for the best match we could find in A1.
+; We've got a pointer to the cache entry for the best match we could find in A1.
 ; Set up the resource chain for the load from this 'FOND'.
 
 @setupForLoad
@@ -3949,11 +3949,11 @@ GetFONDForSizeAndStyle
 			move.l	a0,LastFOND				; <27> Keep the two handles synchronized.
 			_HGetState						; <59> Get the current state of the 'FOND' handle
 			move.b	d0,FONDState			; <59> Save the state of the handle
-			_HNoPurge						; <59> Don’t let it get purged while we’re using it.
+			_HNoPurge						; <59> Don't let it get purged while we're using it.
 			
 			move.l	(a1),a1					; Get handle to resource map that contains this FOND
 			move.l	(a1),a1
-			move.w	20(a1),d0				; Remember this resource map’s refNum.
+			move.w	20(a1),d0				; Remember this resource map's refNum.
 
 			move.l	ExpandMem,a1
 			move.l	ExpandMemRec.emSplineKey(a1),a1
@@ -3964,7 +3964,7 @@ GetFONDForSizeAndStyle
 			rts
 
 ;
-; If we got here, we couldn’t find a good enough match for the desired size and style.
+; If we got here, we couldn't find a good enough match for the desired size and style.
 ; Set the condition codes to go back and try scaling another size.
 ;
 
@@ -4014,7 +4014,7 @@ TryForListFromCache
 			lea		splineKeyRec.fondCache(a0),a0	; Get address of cached FOND list
 			moveq	#1,d1
 @checkCache
-			move.l	(a0)+,d0				; See if there’s a FOND list
+			move.l	(a0)+,d0				; See if there's a FOND list
 			beq.s	@checkNextCacheEntry	; If not, try the other one
 			move.l	d0,a2
 			move.l	(a2),a2
@@ -4076,7 +4076,7 @@ localSize	equ		*
 			_GetResource					; Try to get it.
 			move.l	(sp)+,d0
 			bne.s	@fontFamilyAvailable	; Go on if this font family exists.
-			tst.w	useApplFont(a6)			; Use application font if fontNum doesn’t exist?
+			tst.w	useApplFont(a6)			; Use application font if fontNum doesn't exist?
 			bne.s	@useApplicationFont		; Yep.  Assume that application font is always available.
 			moveq	#0,a2					; Return nothing
 			bra		@exitFindFONDs
@@ -4124,8 +4124,8 @@ localSize	equ		*
 			move.l	(a0),a0
 			move.l	16(a0),a3				; Save next map
 			cmp.w	20(a0),d0				; Is it the the right map?
-			beq.s	@parseFOND				; <54> We’ve found the right map.  Now check out the font assocation table entries.
-			move.l	a3,d1					; <54> See if we’ve hit the bottom of the chain without finding the map the font came from
+			beq.s	@parseFOND				; <54> We've found the right map.  Now check out the font assocation table entries.
+			move.l	a3,d1					; <54> See if we've hit the bottom of the chain without finding the map the font came from
 			bz.s	@exitFindFONDs			; <54> If this is the case, just exit.
 			bra.s	@findMapLoop			; <55> Loop back to find the right map.
 			
@@ -4144,7 +4144,7 @@ localSize	equ		*
 			move.l	d0,d1					; Save a copy of the size
 			add.w	#kFONDListSize,d0
 			_SetHandleSize					; Increase list size by another entry
-			bne.s	@exitFindFONDS			; Bail out if the list couldn’t be expanded
+			bne.s	@exitFindFONDS			; Bail out if the list couldn't be expanded
 
 			move.l	(a0),a0
 			add.w	#1,2(a0)				; Increment the count of entries in list
@@ -4160,11 +4160,11 @@ localSize	equ		*
 ; for a given point size, the entry for the plain font comes before the entries for any
 ; stylistic variations.  The following code saves information about the fonts in the
 ; font family, keeping a record of the plain font, and a record for all the styles.  It
-; assumes that the font assocation table followed the normal ordering.  Of course, we’re
-; talking about Macintosh developers here, who are a breed apart and there’s always ONE
-; person that doesn’t follow the standard.  Add a check so that if one of these screwy
+; assumes that the font assocation table followed the normal ordering.  Of course, we're
+; talking about Macintosh developers here, who are a breed apart and there's always ONE
+; person that doesn't follow the standard.  Add a check so that if one of these screwy
 ; 'FOND's is encountered, the record for the styles is split across the record for the
-; plain entry.  What I’m saying is that the cache entries used to look like:
+; plain entry.  What I'm saying is that the cache entries used to look like:
 ; [Info for plain][Info for styles].  For a screwy 'FOND', it will look like:
 ; [Info for styles][Info for plain][Info for more styles].
 ;
@@ -4176,8 +4176,8 @@ localSize	equ		*
 			bra.s	@putStyleInfoInList
 @getStylesLoop
 			cmp.w	(a1),d0					; Is the the right size?
-			blt.s	@gotAllStyles			; If the size in the association table is larger than what we want, we’re done
-			tst.b	3(a1)					; <49> Check in case we have a FOND that doesn’t have the plain style first
+			blt.s	@gotAllStyles			; If the size in the association table is larger than what we want, we're done
+			tst.b	3(a1)					; <49> Check in case we have a FOND that doesn't have the plain style first
 			bz.s	@gotAllStyles			; <49> If this entry is plain, save off the styles we have so far, and start a new entry for the plain style
 			or.b	3(a1),d1				; Merge in the styles in this entry
 @tryNextEntry
@@ -4198,7 +4198,7 @@ localSize	equ		*
 ;
 
 @gotSizeForLastFont
-			move.l	a3,d0					; Check to see if we’re at bottom
+			move.l	a3,d0					; Check to see if we're at bottom
 			beq.s	@exitFindFONDs			; If so, get out of here.
 			move.l	a3,a0
 			move.l	(a0),a0
@@ -4248,7 +4248,7 @@ NewFontLookUp
 			bz.s	@tryScaling
 			move.l	a0,a2					; Then call the old FindSize to load it
 			bsr		FindSize
-			bvs		NewFailedRestore		; <36> Couldn’t find one.  Restore the resource chain and leave.
+			bvs		NewFailedRestore		; <36> Couldn't find one.  Restore the resource chain and leave.
 			beq.s	@tryScaling				; <36>
 			bra.s	FoundTheSize			; Now deal with styles
 			
@@ -4265,7 +4265,7 @@ NewFontLookUp
 			beq.s	@tryHalfSize
 			move.l	a0,a2
 			bsr		FindSize				; And load it if the right size was found
-			bvs		NewFailedRestore		; <36> Couldn’t find one.  Restore the resource chain and leave.
+			bvs		NewFailedRestore		; <36> Couldn't find one.  Restore the resource chain and leave.
 			bz.s	@tryHalfSize			; <36>
 			bra.s	FoundTheSize
 
@@ -4279,7 +4279,7 @@ NewFontLookUp
 			bz.s	FindClosest				; or try scaling with the closest size
 			move.l	a0,a2
 			bsr		FindSize				; If a FOND was found, load it up
-			bvs.s	NewFailedRestore		; <36> If one couldn’t be found, panic
+			bvs.s	NewFailedRestore		; <36> If one couldn't be found, panic
 			beq.s	FindClosest				; <36> or try scaling with the closest size
 			bra.s	FoundTheSize			; now worry about points for style
 
@@ -4293,7 +4293,7 @@ FindClosest
 			MOVEQ	#0,D1					; no font yet
 			MOVE	#$7FFF,D2 				; closest delta so far
 			
-			tst.w	(A0)					; <73> don’t take sfnt as the closest NFNT
+			tst.w	(A0)					; <73> don't take sfnt as the closest NFNT
 			beq.s	NxtSizeLoop				; <73> assuming sfnt is the first entry 
 
 Scan4SizeLoop
@@ -4322,8 +4322,8 @@ sizeFound
 			beq.s	NewFailedRestore
 			move.l	a0,a2
 			bsr		FindSize				; If a FOND was found, load it up
-			BVS.S	NewFailedRestore		; <36> If we STILL can’t find a font, then
-			beq.s	NewFailedRestore		; <36> we’re REALLY hosed!
+			BVS.S	NewFailedRestore		; <36> If we STILL can't find a font, then
+			beq.s	NewFailedRestore		; <36> we're REALLY hosed!
 
 ;—————————————————————————————————————————————————————————————————————————
 ; OK, we found the size so now worry about the style.  The Font handle is
@@ -4351,7 +4351,7 @@ FTSLoop
 NewFailedRestore							; we can't find any in the family FOND record so try the old way
 			move.l	(sp)+,a3				; Restore A3
 NewFailed
-			move.w	(sp)+,CurMap			; <28> Pop CurMap in NewFailed in case we’re coming from FoundTheSize
+			move.w	(sp)+,CurMap			; <28> Pop CurMap in NewFailed in case we're coming from FoundTheSize
 			MOVE	D5,-(SP)				; put size on stack
 			MOVE	(A3),D3					; get the requested family
 			BRA		OldFontLookUp
@@ -4509,7 +4509,7 @@ GotEntry
 			MOVE.L	(A2),A1 				; point to famDef
 
 			MOVE.W	FontFamilyRecord.FONDLast(A1),D1 ; get lastChar
-			BEQ.S	@noFamWidths			; if zero, must be a “null” FOND set up by Font/DA Mover
+			BEQ.S	@noFamWidths			; if zero, must be a 'null' FOND set up by Font/DA Mover
 			
 			SUB.W	FontFamilyRecord.FONDFirst(A1),D1	; compute # of chars-1
 			ADDQ	#4,D1					; compute word size of wTab (include style wd.)
@@ -4532,7 +4532,7 @@ GotEntry
 ; >> is found?
 ; >> Certainly, if a style width has styles outside of the requested style, it can not be used.
 ;
-; >> Although this code is very similar to the screen font code above, I can’t see any trivial way of
+; >> Although this code is very similar to the screen font code above, I can't see any trivial way of
 ; >> rolling them together.  For one, all registers are used.
 ;————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -4556,10 +4556,10 @@ GotEntry
 			MOVE	(SP),D0					; get the style word
 
 			CMP		(A1),D0					; exact match?
-			BEQ.S	@figureWidthPos			; don’t worry no more
+			BEQ.S	@figureWidthPos			; don't worry no more
 			NOT		D0						; set all cleared bits
 			AND		(A1),D0					; nonzero if style in width is not in request
-			BNE.S	@wrongFamWidths			; don’t consider widths with too much info.
+			BNE.S	@wrongFamWidths			; don't consider widths with too much info.
 			MOVEQ	#0,D5					; accumulated weight
 
 			MOVE	(SP),D0					; bits in requested style
@@ -4757,10 +4757,10 @@ BWRealFont
 @notSizeZero
 			MOVE.W	(SP)+,D1				; get the font family
 			clr.w	(sp)					; Assume not real
-			move.l	a1,-(sp)				; Save A1 since GetCandidateFONDs doesn’t.
+			move.l	a1,-(sp)				; Save A1 since GetCandidateFONDs doesn't.
 			subq	#4,sp
 			move.w	d1,-(sp)
-			clr.w	-(sp)					; Don’t use the application font if font family isn’t found
+			clr.w	-(sp)					; Don't use the application font if font family isn't found
 			bsr		GetCandidateFONDs		; Use candidate list
 			move.l	(sp)+,d0
 			move.l	(sp)+,a1				; Restore A1
@@ -4778,7 +4778,7 @@ BWRealFont
 			BMI		@notReal 				; if none, skip											<14-jlf>
 
 @nrfLoop	
-			tst.w	(a0)					; Size 0 means it’s a spline font.
+			tst.w	(a0)					; Size 0 means it's a spline font.
 			bz.s	@checkPPEM				; <50> Check the lowest size TrueType is used for.
 			cmp.w	(a0),d2 				; got it?
 			beq		@itsReal 				; if so, its real
@@ -4787,10 +4787,10 @@ BWRealFont
 			DBRA	D0,@nrfLoop				; check em all out
 			BRA.S	@notReal 				; it must not be real...
 
-; <50> We’ve got an entry for a TrueType font.  Instead of automatically
+; <50> We've got an entry for a TrueType font.  Instead of automatically
 ; returning true, call fs_LowestPPEM to see if the TrueType font will be
 ; used to draw this point size.  If it is, go ahead and return true.  If
-; it won’t, go back into the loop and look for a bitmapped size.
+; it won't, go back into the loop and look for a bitmapped size.
 
 @checkPPEM
 			movem.l	d0/a0-a2,-(sp)			; <50>
@@ -4802,7 +4802,7 @@ BWRealFont
 			tst.l	(a2)					; <50>
 			bnz.s	@fondIsLoaded			; <50>
 			move.l	a2,-(sp)				; <50>
-			_LoadResource					; <50> Make sure it’s loaded
+			_LoadResource					; <50> Make sure it's loaded
 @fondIsLoaded
 			move.l	(a2),a2					; <50>
 			lea		FontFamilyRecord.FONDAssoc+2(a2),a2	; <50> Point to font association table (after entry count)
@@ -4827,7 +4827,7 @@ BWRealFont
 @gotSplineEntry
 			move.w	4(a2),d0				; <50> Pass the ID of the 'sfnt' resource
 			bsr		LoadSplineFontResource	; <50> Go get it.
-			move.w	d2,-(sp)				; <53> Save the size we’re looking for.
+			move.w	d2,-(sp)				; <53> Save the size we're looking for.
 			subq	#2,sp					; <50>
 			move.l	d0,-(sp)				; <50> Pass TrueType font handle to fsLowestPPEM
 			_fsLowestPPEM					; <50> Find out the lowest size TrueType will be used for
@@ -5174,8 +5174,8 @@ ScaleFVal
 ; A0 = fontHandle (input)	A1 = strike pointer	A2 = fontPtr, locTable	A3 = fontHandle
 ; A4 = character height	A5 = mask table
 
-RightMask		EQU		$0				; position of right masks in QuickDraw’s table.
-LeftMask		EQU		$20				; position of left masks in QuickDraw’s table.
+RightMask		EQU		$0				; position of right masks in QuickDraw's table.
+LeftMask		EQU		$20				; position of left masks in QuickDraw's table.
 
 		IF	(HAS_COLOR)	THEN			; <2.7-4april89-CEL>
 hBitDepth		EQU		-4

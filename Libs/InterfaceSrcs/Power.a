@@ -78,8 +78,8 @@ DisableWUTime PROC	EXPORT
 ;	Macintoshes.  The time returned is the number of seconds since Jan 1, 1904.
 ;
 ;	on entry:	12(SP)	-	space for function result
-;				 8(SP)	-	pointer to ‘WUTime’
-;				 4(SP)	-	pointer to ‘WUFlag’
+;				 8(SP)	-	pointer to ‘WUTime'
+;				 4(SP)	-	pointer to ‘WUFlag'
 ;				 0(SP)	-	return address
 ;_______________________________________________________________________________________
 
@@ -97,9 +97,9 @@ GetWUTime	PROC	EXPORT
 			LEA		pmRBuffer+4(SP),SP		; toss the parameter block
 			MOVE.L	(SP)+,D1				; get the timer setting
 			MOVE.B	(SP)+,D2				;  and the flags
-			MOVEA.L	(SP)+,A0				; get the pointer to ‘WUFlag’
+			MOVEA.L	(SP)+,A0				; get the pointer to ‘WUFlag'
 			MOVE.B	D2,(A0)					;  and update it
-			MOVEA.L	(SP)+,A0				; get the pointer to ‘WUTime’
+			MOVEA.L	(SP)+,A0				; get the pointer to ‘WUTime'
 			MOVE.L	D1,(A0)					;  and update it
 			MOVE.W	D0,(SP)					; save the result
 			JMP		(A1)
@@ -142,8 +142,8 @@ SetWUTime	PROC	EXPORT
 ;	This function will return the current status of the battery on portable Macintoshes.
 ;
 ;	on entry:	12(SP)	-	space for function result
-;				 8(SP)	-	pointer to ‘status’
-;				 4(SP)	-	pointer to ‘power’
+;				 8(SP)	-	pointer to ‘status'
+;				 4(SP)	-	pointer to ‘power'
 ;				 0(SP)	-	return address
 ;_______________________________________________________________________________________
 
@@ -163,9 +163,9 @@ BatteryStatus PROC	EXPORT
 			MOVE.B	(A0)+,D1				; get the flags
 			MOVE.B	(A0)+,D2				;  and battery power
 			ADDQ.W	#4,SP					; toss the buffer
-			MOVEA.L	(SP)+,A0				; get the pointer to ‘power’
+			MOVEA.L	(SP)+,A0				; get the pointer to ‘power'
 			MOVE.B	D2,(A0)					;  and update it
-			MOVEA.L	(SP)+,A0				; get the pointer to ‘status’
+			MOVEA.L	(SP)+,A0				; get the pointer to ‘status'
 			MOVE.B	D1,(A0)					;  and update it
 			MOVE.W	D0,(SP)					; save the result
 			JMP		(A1)
@@ -180,7 +180,7 @@ BatteryStatus PROC	EXPORT
 ;	This function will return the current setting of the modem on portable Macintoshes.
 ;
 ;	on entry:	8(SP)	-	space for function result
-;				4(SP)	-	pointer to ‘status’ (receive buffer)
+;				4(SP)	-	pointer to ‘status' (receive buffer)
 ;				0(SP)	-	return address
 ;_______________________________________________________________________________________
 

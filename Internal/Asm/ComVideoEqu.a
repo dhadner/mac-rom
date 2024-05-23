@@ -1,12 +1,12 @@
 ;
 ;	File:		ComVideoEqu.a
 ;
-;	Contains:	The “extra” equates needed to complete the regular “XXXDepVideoEqu.a” files.  The
+;	Contains:	The 'extra' equates needed to complete the regular 'XXXDepVideoEqu.a' files.  The
 ;				reason these equates are put here is two fold.  First, the way in which a declaration
 ;				ROM is built is generally as one assembly.  As a result, it is very easy for the
 ;				writers of declaration ROMs to spread needed equates across various files.  So, this
 ;				file keeps the original files in tact, and adds the equates that come from the other
-;				files that we don’t need here (in the CPU ROM or System Disk).
+;				files that we don't need here (in the CPU ROM or System Disk).
 ;
 ;	Written by:	Mike Puckett
 ;
@@ -21,7 +21,7 @@
 ; ============================== Terror History ============================
 ;
 ;		 <4>	 6/17/91	jmp		Eliminated support for PAL displays & encoder boxes since the
-;									version of the 4•8 & 8•24 cards that we’re patching out don’t
+;									version of the 4•8 & 8•24 cards that we're patching out don't
 ;									have the sRsrcs for them.
 ;		 <3>	  4/4/91	jmp		Started using a subversion number scheme for JMFB due to some
 ;									impending changes in the shipping version of the card.

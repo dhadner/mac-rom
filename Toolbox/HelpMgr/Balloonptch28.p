@@ -39,20 +39,20 @@
 		<37>	 8/31/90	RLC		Update file to use newest naming conventions in equates and put
 									in support for patch to OSEventAvail to call HMBalloonBulk for
 									sleeping applications in foreground.
-		<36>	 8/20/90	RLC		Fix bug that ‘Bonehead Ed’ said was the correct way to test
+		<36>	 8/20/90	RLC		Fix bug that ‘Bonehead Ed' said was the correct way to test
 									ColorQD is present.  This makes balloons hang off of the edge.
 		<35>	 8/16/90	RLC		Change private interfaces to always return OsErr.
 		<35>	  8/6/90	RLC		Shorten the about box code.
 		<34>	 7/30/90	RLC		Update to support changes to about dialog.
-		<33>	 7/24/90	RLC		Conditionally remove the “Feedback” balloon and update calls to
+		<33>	 7/24/90	RLC		Conditionally remove the 'Feedback' balloon and update calls to
 									HMShowBalloon to match real interface.
 		<32>	 7/13/90	RLC		Shorten some global initialization, don't call SysEnvirons
 									anymore, assume presence of LayerMgr.
-		<31>	  7/3/90	RLC		Fix “Balloons On” Balloon.
+		<31>	  7/3/90	RLC		Fix 'Balloons On' Balloon.
 		<30>	  7/2/90	RLC		Conditionally remove help icon tracking code.
 		<29>	 6/22/90	RLC		Remove some false/NIL/ or 0 assignments that is done from
 									NewHandleClear now.
-		<28>	 6/14/90	RLC		Add routines to support “Balloons On” balloon and include
+		<28>	 6/14/90	RLC		Add routines to support 'Balloons On' balloon and include
 									BalloonDefs.p
 		<27>	  6/8/90	KSM		Update for new IsFrontWindowModal.
 		<26>	  6/7/90	VL		Remove InstallPatch code. Move installation code for  Gestalt

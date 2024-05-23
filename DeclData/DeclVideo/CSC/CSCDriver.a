@@ -13,7 +13,7 @@
 ;	   <SM2>	12/13/93	PN		Roll in KAOs and Horror changes to support Malcom and AJ
 ;									machines
 ;		 <1>	01-12-93	jmp		first checked in
-;		<H2>	01-05-93	jmp		Conditionally removed the “real” interrupt handling code with
+;		<H2>	01-05-93	jmp		Conditionally removed the 'real' interrupt handling code with
 ;									Time Manager based code for bring-up purposes.
 ;		 <1>	12-23-92	jmp		first checked in
 
@@ -40,7 +40,7 @@
 				STRING		ASIS
 				MACHINE		MC68020
 				
-UsingTimeMgr		Equ			1				; Set if we’re using a Time Manager Task for VBLs.
+UsingTimeMgr		Equ			1				; Set if we're using a Time Manager Task for VBLs.
 DefaultGamma		Equ	128
 
 	If UsingTimeMgr Then
@@ -100,15 +100,15 @@ CSCVidTitle
 
 ;
 ; According to CARDS & DRIVERS, video drivers are supposed to shut off
-;	video at close time “to avoid the persistence of the desktop
-;	during reboots.”  Since we can’t really turn Escher’s video off,
+;	video at close time 'to avoid the persistence of the desktop
+;	during reboots.'  Since we can't really turn Escher's video off,
 ;	we must simulate it by turning off the backlighting and writing
-;	white (because it’s an LCD screen) to the frame buffer.  Also,
+;	white (because it's an LCD screen) to the frame buffer.  Also,
 ;	because the video driver might be closed and then re-opened
 ;	prior to a reboot (AUX?), we must always re-open the backlight
-;	driver in the video driver’s open routine.  And, for this reason,
-;	when we close the backlight driver, we do NOT remove it’s DCE,
-;	and do we don’t dispose of the driver.  NOTE:  On the first
+;	driver in the video driver's open routine.  And, for this reason,
+;	when we close the backlight driver, we do NOT remove it's DCE,
+;	and do we don't dispose of the driver.  NOTE:  On the first
 ;	time thru (i.e., after startup or restart), the Backlight driver
 ;	will not have been installed yet, so our attempting to open it
 ;	in our open routine will fail, which is okay.  This may change
@@ -123,7 +123,7 @@ CSCBackLite	Dc.b	'.Backlight'						; Name of Backlight Driver for Escher.
 ; CSCCLUTTbl contains information required to write to the CLUT in the different screen depths.
 ;	Each depth's information has three values.  The first is the number of entries-1 in this depth
 ;	for range checking.  The second is the address of the first active CLUT position for that 
-;	screen depth.  The last number is the “skip” factor.  This is required because, in 1-4bpp, the
+;	screen depth.  The last number is the 'skip' factor.  This is required because, in 1-4bpp, the
 ;	entries are distributed throughout the CLUT address space.  As a result, we use sequential CLUT mode
 ;	ONLY in 8 bpp mode.  The skip factor is the address difference between adjacent active positions
 ;	in each mode.  
@@ -174,7 +174,7 @@ CSCRegs			Dcb.w	CSCNumRegs+1,0					; The registers + GTweak.
 ;	for the requested mode, SwitchMode must still fail.
 ;
 ; The STNTable is used to tell the Display Manager (in the GetConnection call) whether
-;	we have a TFT or an STN LCD panel.  Things like Kevin Hester’s mouse tracks use
+;	we have a TFT or an STN LCD panel.  Things like Kevin Hester's mouse tracks use
 ;	this information.
 ;
 CSCSwitchTable
@@ -243,7 +243,7 @@ CSC_VidOpen
 				
 				MOVE.L	UnivInfoPtr,A0						; get a pointer to universal data
 				ADDA.L	DecoderInfoPtr(A0),A0				; point to the base address table
-				MOVE.L	VDACAddr(A0),saveVDACBase(A3)		; save VDAC’s base address
+				MOVE.L	VDACAddr(A0),saveVDACBase(A3)		; save VDAC's base address
 				
 				MOVE.L	UnivInfoPtr,A0				 
 				ADDA.L	VideoInfoPtr(A0),A0					; point to the VideoInfo record		
@@ -361,7 +361,7 @@ CSC_VidOpen
 ;
 ; At PrimaryInit time, we used the sense lines to determine the type of attached panel.  For extended
 ;	sense panels, we just mapped them to the end of indexed-sense panels.  Since the gamma-correction
-;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the “real”
+;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the 'real'
 ;	panel ID.  At PrimaryInit time, we store the real panel ID in slot pRAM.  So, we extract that
 ;	information out here.
 ;
@@ -376,7 +376,7 @@ CSC_VidOpen
 				Bne		@OpError5							; If failed quit.
 				
 				Moveq	#0,D2								; Clear D2.w.
-				Move.b	SP_MonID(Sp),D2						; Get the monID (it’s byte sized).
+				Move.b	SP_MonID(Sp),D2						; Get the monID (it's byte sized).
 				Move.b	SP_Flags(Sp),D1						; Get the flags.
 				
 				Adda	#sizeSPRamRec+spBlockSize,Sp		; Clean up the stack.
@@ -390,7 +390,7 @@ CSC_VidOpen
 				Bfextu	D1{spVRamBits:numSPVRamBits},D1		; Extract the vRAM size from the flags byte…
 				Move.b	D1,saveSizeVRAM(A3)					; 	…and save it for later.
 
-				Bclr	#IsSleeping,GFlags(A3)				; Say that we’re not sleeping now.
+				Bclr	#IsSleeping,GFlags(A3)				; Say that we're not sleeping now.
 
 ;
 ; Set GFlags to reflect monochrome-only displays.
@@ -416,7 +416,7 @@ CSC_VidOpen
 				Cmpi.b	#sRsrc_Vid_CSC_G_S_TFT_480,dCtlSlotId(A1)	; If this is the BB-Hosiden panel,
 				Beq.s	@EndMonoCheck								; 	then just go on.
 				
-				St		hasFixedCLUT(A3)							; Otherwise, say we’re acting like the GSC.
+				St		hasFixedCLUT(A3)							; Otherwise, say we're acting like the GSC.
 @EndMonoCheck
 
 ; Attempt to re-open the Backlight driver because it might have been closed	
@@ -475,7 +475,7 @@ CSC_VidOpen
 *   Entry: 	A0 		= param block pointer
 *			A1 		= AuxDCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= ptr to our privates/scrarch (doesn’t need to be preserved)
+*			A3 		= ptr to our privates/scrarch (doesn't need to be preserved)
 *			A4		= scratch (must be preserved)
 *			D0-D3 	= scratch (don't need to be preserved)
 *
@@ -514,7 +514,7 @@ CSCCtlJumpTbl
 				DC.W	CSC_GrayPage-CSCCtlJumpTbl			; $05 => GrayPage
 				DC.W	CSC_SetGray-CSCCtlJumpTbl			; $06 => SetGray
 				DC.W	CSC_SetInterrupt-CSCCtlJumpTbl		; $07 => SetInterrupt
-				DC.W	CSCCtlBad-CSCCtlJumpTbl				; $08 => DirectSetEntries (CSC can’t do it)
+				DC.W	CSCCtlBad-CSCCtlJumpTbl				; $08 => DirectSetEntries (CSC can't do it)
 				DC.W	CSC_SetDefaultMode-CSCCtlJumpTbl 	; $09 => SetDefaultMode
 				Dc.w	CSC_SwitchMode-CSCCtlJumpTbl		; $0A => SwitchMode
 
@@ -545,7 +545,7 @@ CSC_VidReset
 
 				With	CSCVidPrivates
 			
-				Tst.b	hasFixedCLUT(A3)					; If we’re not acting like a GSC,
+				Tst.b	hasFixedCLUT(A3)					; If we're not acting like a GSC,
 				Beq.s	@NotFixed							;	then skip the GSC-like code.
 
 				Move.w	#ThirdVidMode,csMode(A2)			; Return the default mode.
@@ -607,9 +607,9 @@ CSCSetVidModeGuts
 				MOVE.W	D3,saveMode(A3)						; remember requested mode
 
 ; Set the entire color table to gray before switching to avoid screen anomalies.  Note that both
-; mono-only panels and color panels set to 16bpp don’t actually have a CLUT.
+; mono-only panels and color panels set to 16bpp don't actually have a CLUT.
 
-				Tst.b	hasFixedCLUT(A3)					; If we’re acting like the GSC, then
+				Tst.b	hasFixedCLUT(A3)					; If we're acting like the GSC, then
 				Bne.s	@BlankIt							;	we need to blank the screen.
 
 				Cmpi.w	#FifthVidMode,D3					; If this is not 16bpp mode,
@@ -625,8 +625,8 @@ CSCSetVidModeGuts
 				Move.l	A4,A5								; Point to green data (assuming gChanCnt = 1).
 				Move.l	A4,A6								; Point to red data (assuming gChanCnt = 1).
 							
-				Cmpi.w	#1,gChanCnt(A0)						; If there’s only one table,
-				Beq.s	@OnlyOneTable						;	then we’re set.
+				Cmpi.w	#1,gChanCnt(A0)						; If there's only one table,
+				Beq.s	@OnlyOneTable						;	then we're set.
 				
 				Move.w	gDataWidth(A0),D2					; Get width of each entry (in bits).
 				Move.w	gDataCnt(A0),D0						; Get # of entries in table.
@@ -669,14 +669,14 @@ CSCSetVidModeGuts
 				MOVE	(SP)+,SR							; restore the status reg
 @SetDepth		BSR		CSC_SetDepth						; set the depth from D1
 
-				Tst.b	hasFixedCLUT(A3)					; If we’re not acting like a GSC,
+				Tst.b	hasFixedCLUT(A3)					; If we're not acting like a GSC,
 				Beq.s	@ModeOK								;	then just go on.
-				Move.l	saveFixedCLUT(A3),D0				; If we’ve haven’t loaded the fixed-entry CLUT,
+				Move.l	saveFixedCLUT(A3),D0				; If we've haven't loaded the fixed-entry CLUT,
 				Beq.s	@ModeOK								;	just go on.
 				
 				Move.l	D0,A0								; Otherwise, set up to throw it away.
 				_DisposPtr									; Throw it away…
-				Clr.l	saveFixedCLUT(A3)					; …and remember that it’s gone.
+				Clr.l	saveFixedCLUT(A3)					; …and remember that it's gone.
 
 ; Finish up the bookkeeping.
 	
@@ -718,8 +718,8 @@ CSC_SetEntries
 	
 				WITH 	CSCVidPrivates,CSCCLUTRec
 			
-				Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC, 
-				Bne		CSCCtlBad							;	then we can’t SetEntries.
+				Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC, 
+				Bne		CSCCtlBad							;	then we can't SetEntries.
 				
 				BTST	#IsDirect,GFlags(A3)				; are we in a direct mode?
 				BNE		CSCCtlBad							; error if so
@@ -735,8 +735,8 @@ CSCSEGuts
 				CMP.W	#indexEntries,csStart(A2)			; was it indexed mode?
 				BEQ.S	@SkipSeq							; if so, then leave bit off (it's never turned on in GFlags)
 				Bset	#PsuedoIndex,D5						; turn on the bit that denotes a seq write that was xlated to indexed
-				Cmp.w	#FourthVidMode,saveMode(A3)			; If it’s not 8bpp, then
-				Blt.s	@SkipSeq							;	need to use “indexed”.
+				Cmp.w	#FourthVidMode,saveMode(A3)			; If it's not 8bpp, then
+				Blt.s	@SkipSeq							;	need to use 'indexed'.
 				BSET	#UseSeq,D5							; otherwise, turn on sequential mode bit
 @SkipSeq
 				MOVE.L	saveGammaPtr(A3),A0					; get pointer to gamma data structure
@@ -778,10 +778,10 @@ CSCSEGuts
 ;
 	
 				Move.w	csCount(A2),D3						; Get the number of entries to change,
-				Bmi		CSCSEBadExit						; 	and hike if it’s out of range.
+				Bmi		CSCSEBadExit						; 	and hike if it's out of range.
 				Cmp.w	D4,D3								; If D3-D4 > 0 (count - range > 0),
 				Bhi		CSCSEBadExit						;	then hike.
-				Tst.w	csStart(A2)							; If we’re doing indexed entries (-1),
+				Tst.w	csStart(A2)							; If we're doing indexed entries (-1),
 				Bmi.s	@skipStartChk						;	then just go on.
 				Add.w	csStart(A2),D3						; Adjust count for starting position.
 				Cmp.w	D4,D3								; If D3-D4 > 0 (count - range > 0),
@@ -792,7 +792,7 @@ CSCSEGuts
 								
 				Move.w	D3,D4								; Make a copy of the table size (zero-based).
 				Addq	#1,D4								; Make it a counting number.
-				Btst	#UseSeq,D5							; If we’re not in sequential mode,
+				Btst	#UseSeq,D5							; If we're not in sequential mode,
 				Beq.s	@IsIndex							;	then do the indexed stuff.
 				Mulu	#3,D4								; Make room for just R,G,B in sequential mode.
 				Bra.s	@AllocIt							; And continue.
@@ -804,7 +804,7 @@ CSCSEGuts
 ;	components is only eight bits (rather than 16).
 ;
 				
-				Move.l	A3,D6								; We’re about to torch A3, so save it for later.
+				Move.l	A3,D6								; We're about to torch A3, so save it for later.
 				Move.l	A0,A3								; Save the CLUT table entry pointer.
 
 				MOVE.L	SP,A0								; copy the stack buffer pointer
@@ -828,7 +828,7 @@ CSCSEGuts
 				BTST	#UseSeq,D5							; is it sequence mode?
 				BNE.S	@SLSeq								; yup, so go there
 				
-				Btst	#PsuedoIndex,D5						; If we are doing an “indexed” mode,
+				Btst	#PsuedoIndex,D5						; If we are doing an 'indexed' mode,
 				Beq.s	@IndexPresent						;	then go there now.
 				
 ; This case is a sequential request in a screen depth that does not allow sequential CLUT writes 
@@ -971,11 +971,11 @@ CSC_SetGamma
 			
 				WITH	CSCVidPrivates
 		
-				Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC,
-				Bne		CSCCtlBad							;	then there’s no gamma table.
+				Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC,
+				Bne		CSCCtlBad							;	then there's no gamma table.
 				
-				Btst	#IsDirect,GFlags(A3)				; If we’re in 16bpp mode,
-				Bne		CSCCtlBad							;	then we can’t do gamma either.
+				Btst	#IsDirect,GFlags(A3)				; If we're in 16bpp mode,
+				Bne		CSCCtlBad							;	then we can't do gamma either.
 
 ; Get new gamma table and check that we know how to handle it.
 			
@@ -983,7 +983,7 @@ CSC_SetGamma
 				BEQ		@LinearTab							; if so, then set up a linear gamma table
 				MOVE.L	D0,A2								; get pointer to new gamma table
 			
-				Moveq	#0,D2								; Assume we won’t be using formula data.
+				Moveq	#0,D2								; Assume we won't be using formula data.
 			
 				TST.W	gVersion(A2)						; version = 0?
 				BNE		CSCCtlBad							; => no, return error
@@ -1053,7 +1053,7 @@ CSC_SetGamma
 
 ;
 ; Set up a linear gamma table.  To prevent memory thrash, build this new one
-;	the same size as the existing one (one or three channel).  (Don’t change
+;	the same size as the existing one (one or three channel).  (Don't change
 ;	the useFormalaData state here so that we can swap between corrected
 ;	and uncorrected formulae.)
 ;
@@ -1178,12 +1178,12 @@ CSC_SetInterrupt
 				WITH	VDPageInfo,SlotIntQElement,CSCVidPrivates
 			
 			If UsingTimeMgr Then
-				Tst.b	csMode(A2)							; Check to see which way we’re going. 
+				Tst.b	csMode(A2)							; Check to see which way we're going. 
 			Else
 				MOVEQ	#1,D1								; set up for BFEXTU to point to IntDisFlag
 				BSR.S 	CSCSetIntCom						; call common code
 			Endif
-				BNE.S	@DisableThem						; If non-zero, then we’re disabling.
+				BNE.S	@DisableThem						; If non-zero, then we're disabling.
 
 ; This code enables interrupts and installs the interrupt handler.
 ;
@@ -1203,7 +1203,7 @@ CSC_SetInterrupt
 CSC_DisableVGuts
 				
 			If UsingTimeMgr Then
-				Move.w	#1,IntDisableFlag(A3)				; Remember that we’re disabling things.
+				Move.w	#1,IntDisableFlag(A3)				; Remember that we're disabling things.
 				Rts
 			Else
 				MOVE.W	SR,-(SP)							; preserve the status register
@@ -1222,7 +1222,7 @@ CSC_DisableVGuts
 CSC_EnableVGuts
 
 			If UsingTimeMgr Then
-				Clr.w	IntDisableFlag(A3)					; Remember that we’re enabling things.
+				Clr.w	IntDisableFlag(A3)					; Remember that we're enabling things.
 				
 				MOVE.L	A1,-(SP)							; jPrimeTime trashes A1
 				LEA		TTask(A3),A0						; get time task block in A0
@@ -1292,28 +1292,28 @@ CSC_SetDefaultMode
 ;
 ; Since PrimaryInit relies on the default mode being set correctly, we check to see that
 ;	the mode to be set is actually valid.  Monitors can only see valid sRsrcIDs, so
-;	it probably won’t cause a problem.  But we should check it anyway for unsavory
+;	it probably won't cause a problem.  But we should check it anyway for unsavory
 ;	applications.
 ;
 				
 				Move.b	csMode(A2),spID(A0)					; Look for the passed in spID.
 				Clr.l	spParamData(A0)						; Clear the fNext flag; we want THIS sRsrc.
-				Ori.b	#(1<<fall)|\						; Search for both enabled/disabled sRsrc’s
+				Ori.b	#(1<<fall)|\						; Search for both enabled/disabled sRsrc's
 						(1<<foneslot),spParamData+3(A0)		; Only search in our slot.
 				_GetsRsrc									; Do it.
 				Bne.s	@BadExit							; If failed, quit.
 				
 				Move.w	spCategory(A0),D0					; Get the category.
-				Cmp.w	#catDisplay,D0						; If it’s not catDisplay,
+				Cmp.w	#catDisplay,D0						; If it's not catDisplay,
 				Bne.s	@BadExit							;	then quit.
 				Move.w	spCType(A0),D0						; Get the type.
-				Cmp.w	#typVideo,D0						; If it’s not typVideo,
+				Cmp.w	#typVideo,D0						; If it's not typVideo,
 				Bne.s	@BadExit							;	then quit.
 				Move.w	spDrvrSw(A0),D0						; Get the software kind.
-				Cmp.w	#drSwApple,D0						; If it’s not drSwApple,
+				Cmp.w	#drSwApple,D0						; If it's not drSwApple,
 				Bne.s	@BadExit							;	then quit.
 				Move.w	spDrvrHw(A0),D0						; Get the hardware ID.
-				Cmp.w	#drHwCSC,D0							; If it’s not drHwCSC,
+				Cmp.w	#drHwCSC,D0							; If it's not drHwCSC,
 				Bne.s	@BadExit							;	then quit.
 
 ;
@@ -1325,15 +1325,15 @@ CSC_SetDefaultMode
 ;	sRsrcIDs are all even numbers, and the 480-line sRsrcIDs are all odd numbers.  We
 ;	use this information to determine whether we should force the depth to 16bpp or
 ;	8bpp.  This is because the only reason anyone would probably want to switch from the
-;	480-line mode is so that they get 16bpp, and there’s no reason to make people take to
+;	480-line mode is so that they get 16bpp, and there's no reason to make people take to
 ;	trips to the Monitors control panel.
 ;
-; Update:  If the Display Manager is around, then we don’t want to go messing around
+; Update:  If the Display Manager is around, then we don't want to go messing around
 ;	with the depth settings.
 ;
 				
 				Move.b	csMode(A2),D1						; Copy the desired family mode.
-				Cmp.b	SP_LastConfig(Sp),D1				; If we’re already going to this mode,
+				Cmp.b	SP_LastConfig(Sp),D1				; If we're already going to this mode,
 				Beq.s	@GoodExit							;	then just go on.
 				
 				Movea.l	A0,A1								; Save the SpBlockPtr.
@@ -1344,8 +1344,8 @@ CSC_SetDefaultMode
 				Btst	#gestaltDisplayMgrPresent,D0		; If the Display Manager is around,
 				Bne.s	@WriteIt							;	then skip the non-dynamic stuff.
 
-@NoDM			Bset	#spFamilyChanged,SP_Flags(Sp)		; Say that we’re changing the mode.
-				Btst	#0,D1								; If the sRsrcID we’re going to is not even,
+@NoDM			Bset	#spFamilyChanged,SP_Flags(Sp)		; Say that we're changing the mode.
+				Btst	#0,D1								; If the sRsrcID we're going to is not even,
 				Bne.s	@Set8bpp							;	then set up for 8bpp next reboot.
 				Move.b	#FifthVidMode,SP_Depth(Sp)			; Otherwise, default to 16bpp next reboot.
 				Bra.s	@WriteIt							; (Skip.)
@@ -1383,13 +1383,13 @@ CSC_SwitchMode
 ; Check to see if we can do what was requested…
 ;
 				Tst.w		csPage(A2)						; If requested page is not zero,
-				Bne.s		CSCCtlBad						;	then we can’t help ’em.
+				Bne.s		CSCCtlBad						;	then we can't help 'em.
 				
 				Move.l		csData(A2),D2					; Get the requested SpID.
 				Moveq		#0,D0							; Clear hi-half of mode/depth register.
 				Lea			CSCSwitchTable,A0				; Point to the SwitchMode table.
-@ChkLoop		Move.b		(A0)+,D1						; If we’re at the end of the table,
-				Beq			CSCCtlBad						; 	then something’s wrong.
+@ChkLoop		Move.b		(A0)+,D1						; If we're at the end of the table,
+				Beq			CSCCtlBad						; 	then something's wrong.
 				
 				Move.b		(A0)+,D0						; Get the max mode for this config.
 				
@@ -1407,7 +1407,7 @@ CSC_SwitchMode
 
 ; Switch to the new resolution…
 ;
-				Cmp.b		dCtlSlotID(A1),D2				; If we’re already in the requested resolution,
+				Cmp.b		dCtlSlotID(A1),D2				; If we're already in the requested resolution,
 				Beq			CSCSetVidModeGuts				;	then go try the depth switch.
 				
 				Move.b		D2,D1							; Set up to do the resolution switch.
@@ -1437,17 +1437,17 @@ CSC_SetSleepWake
 ; Check to see if we even need to be here or not…
 ;
 				Tst.b	csMode(A2)							; If the request was to sleep, then
-				Beq.s	@ChkSleep							;	make sure it’s okay.
+				Beq.s	@ChkSleep							;	make sure it's okay.
 				
-				Btst	#IsSleeping,GFlags(A3)				; Otherwise, if we’re already awake, then
-				Beq		CSCCtlBad							;	something’s wrong.
+				Btst	#IsSleeping,GFlags(A3)				; Otherwise, if we're already awake, then
+				Beq		CSCCtlBad							;	something's wrong.
 				
 				Bsr		CSC_RestoreState					; Go restore the state of the world.
 				Bsr		CSC_EnableVGuts						; Turn cursor interrupts back on.
 				Bra		CSCCtlGood							; And return happy.
 				
-@ChkSleep		Btst	#IsSleeping,GFlags(A3)				; If we’re already sleeping, then
-				Bne		CSCCtlBad							;	something’s wrong.
+@ChkSleep		Btst	#IsSleeping,GFlags(A3)				; If we're already sleeping, then
+				Bne		CSCCtlBad							;	something's wrong.
 				
 				Bsr		CSC_DisableVGuts					; Turn off cursor interrupts for good measure.
 				Bsr		CSC_SaveState						; Save the state of the world.
@@ -1487,7 +1487,7 @@ CSC_VidClose
 				Move.l	A0,ioFileName(Sp)					; Load it into param block.
 				Movea.l	Sp,A0								; Get param block pointer into A0.
 				_Open										; Open driver to get the refNum.
-				Bne.s	@SkipClose							; If open fails, don’t try to close it.
+				Bne.s	@SkipClose							; If open fails, don't try to close it.
 				_Close										; Otherwise, close it.
 @SkipClose			
 				Adda.w	#ioQElSize,Sp						; Restore the stack.
@@ -1501,7 +1501,7 @@ CSC_VidClose
 ; Finish up.
 ;
 			If UsingTimeMgr Then
-				MOVE.W	#1,IntDisableFlag(A3)				; set this word to “disable” interrupts
+				MOVE.W	#1,IntDisableFlag(A3)				; set this word to 'disable' interrupts
 				LEA		TTask(A3),A0						; get the time manager task block
 				_RmvTime									; remove this element from the queue
 			Else
@@ -1516,7 +1516,7 @@ CSC_VidClose
 				Movea.l	saveVidPtr(A3),A0					; Get pointer to video parameters block,
 				_DisposPtr									;	and dispose of it.
 				
-				Move.l	saveFixedCLUT(A3),D0				; If we haven’t loaded our fixed-entry CLUT,
+				Move.l	saveFixedCLUT(A3),D0				; If we haven't loaded our fixed-entry CLUT,
 				Beq.s	@NoCLUT								;	then just go on.
 				Movea.l	D0,A0								; Otherwise, dispose of it.
 				_DisposPtr
@@ -1656,10 +1656,10 @@ CSC_GetEntries
 
 				With	CSCCLUTRec
 				
-				Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC,
+				Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC,
 				Bne		GSC_GetEntries						;	then go there now.
 				
-				Btst	#IsDirect,GFlags(A3)				; If we’re doing 16bpp,
+				Btst	#IsDirect,GFlags(A3)				; If we're doing 16bpp,
 				Bne		GSC_GetEntries						;	then use GSC fixed-type response.
 				
 				Movem.l	D4-D6,-(Sp)							; Save work registers.
@@ -1679,10 +1679,10 @@ CSC_GetEntries
 				Move.b	scRange(A0),D3						; Get the CLUT range.
 						
 				Move.w	csCount(A2),D4						; Get the number of entries to change,
-				Bmi		@GEErr								; 	and hike if it’s out of range.
+				Bmi		@GEErr								; 	and hike if it's out of range.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
 				Bhi		@GEErr								;	then hike.
-				Tst.w	csStart(A2)							; If we’re doing indexed entries (-1),
+				Tst.w	csStart(A2)							; If we're doing indexed entries (-1),
 				Bmi.s	@skipStartChk						;	then just go on.
 				Add.w	csStart(A2),D4						; Adjust count for starting position.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
@@ -1698,8 +1698,8 @@ CSC_GetEntries
 				Beq.s	@GECom								; 	then go on.
 			
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing here, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing here, so we'll continue the trend for now.
 
 				Move.l	(Sp),A0								; Get ptr to csTable.
 				Move.w	D6,D1								; Get count.
@@ -1758,16 +1758,16 @@ GSC_GetEntries
 ;			     A2 = pointer to csParams
 ;				 A3 = pointer to privates
 ;
-;	For GSC the color table is fixed.  So, we’ll always return good values
+;	For GSC the color table is fixed.  So, we'll always return good values
 ;	as long as there is a reasonable looking color table around.
 ;
-;	Idea:	If we’re in indexed mode, we’ll cycle thru the input
-;			table.  While doing this, we’ll ignore all entries
+;	Idea:	If we're in indexed mode, we'll cycle thru the input
+;			table.  While doing this, we'll ignore all entries
 ;			whose value fields are out of range.  For entries
-;			whose value field are in range, we’ll return the
+;			whose value field are in range, we'll return the
 ;			appropriate rgb fields.
 ;
-;			If we’re in sequential mode, we just need to write out
+;			If we're in sequential mode, we just need to write out
 ;			the number of entries we know about.
 ;
 ;---------------------------------------------------------------------
@@ -1778,10 +1778,10 @@ GSC_GetEntries
 				_StripAddress								; Otherwise, make table pointer 32-bit clean
 				MOVE.L	D0,D3								;  and save it for later
 	
-				Btst	#IsDirect,GFlags(A3)				; If we’re doing 16bpp,
+				Btst	#IsDirect,GFlags(A3)				; If we're doing 16bpp,
 				Bne.s	@GEStart							;	then skip the non-direct stuff.
 				
-				Tst.l	saveFixedClut(A3)					; If we’ve already loaded the CLUT for this depth,
+				Tst.l	saveFixedClut(A3)					; If we've already loaded the CLUT for this depth,
 				Bne.s	@GEStart							;	then just go on.
 	
 				With	SpBlock
@@ -1789,7 +1789,7 @@ GSC_GetEntries
 				LEA		-spBlockSize(SP),SP					; Make an SpBlock on the stack and
 				Move.l	Sp,A0								;	get a pointer to it into A0.
 				
-				Clr.b	spSlot(A0)							; We’re always in slot 0.
+				Clr.b	spSlot(A0)							; We're always in slot 0.
 				Move.b	dCtlSlotID(A1),spID(A0)				; Get the spID of the video sRsrc.
 				Clr.b	spExtDev(A0)						; 
 				_sRsrcInfo									; Try to get the spsPointer.
@@ -1800,11 +1800,11 @@ GSC_GetEntries
 				Move.b	#FirstVidMode,D0					; Otherwise, assume 1bpp.
 				
 @ModeOK			Move.b	D0,spID(A0)							; Look for our mode entry.
-				_sFindStruct								; If it’s not there,
+				_sFindStruct								; If it's not there,
 				Bne.s	@GESlotErr							;	then quit.
 				
 				Move.b	#mTable,spID(A0)					; Get our fixed-entry CLUT.
-				_sGetBlock									; If it’s not there,
+				_sGetBlock									; If it's not there,
 				Bne.s	@GESlotErr							; 	then quit.
 				
 				Move.l	spResult(A0),A0						; Get a pointer to our fixed-entry CLUT.
@@ -1822,16 +1822,16 @@ GSC_GetEntries
 ;
 @GEStart		Movea.l	D3,A0								; get pointer to input table.
 	
-				Moveq	#31,D3								; Assume we’re doing 16bpp (0..31 entries).
+				Moveq	#31,D3								; Assume we're doing 16bpp (0..31 entries).
 				Btst	#IsDirect,GFlags(A3)				; If we are, then
 				Bne.s	@SkipFixedCount						;	just go on.
 				Move.w	saveNumFixedEntries(A3),D3			; Otherwise, get number of entries to check against.
 @SkipFixedCount				
 				Move.w	csCount(A2),D4						; Get the number of entries to change,
-				Bmi		@GEErr								; 	and hike if it’s out of range.
+				Bmi		@GEErr								; 	and hike if it's out of range.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
 				Bhi		@GEErr								;	then hike.
-				Tst.w	csStart(A2)							; If we’re doing indexed entries (-1),
+				Tst.w	csStart(A2)							; If we're doing indexed entries (-1),
 				Bmi.s	@skipStartChk						;	then just go on.
 				Add.w	csStart(A2),D4						; Adjust count for starting position.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
@@ -1843,8 +1843,8 @@ GSC_GetEntries
 				Beq.s	@GECom								; 	then go on.
 
 ;	The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing, so we'll continue the trend for now.
 
 				Move.w	D2,D1								; Get count.
 
@@ -1857,7 +1857,7 @@ GSC_GetEntries
 				Cmp.w	D3,D1								; If this position is out of range,
 				Bhi.s	@Until								;	then go on.
 				
-				Btst	#IsDirect,GFlags(A3)				; If we’re not doing 16bpp,
+				Btst	#IsDirect,GFlags(A3)				; If we're not doing 16bpp,
 				Beq.s	@FixedCLUT							;	then used FixedCLUT stuff.
 				
 				Bsr		CSC_Trans5to8						; Translate 5-bit index to 8 value.
@@ -1891,7 +1891,7 @@ CSC_GetPage
 ;	GetPage  -  return page count
 ;
 ;	Return the number of pages in the specified mode.  Every mode has
-;		only one page because that’s all we support.
+;		only one page because that's all we support.
 ;
 ;	Input:	A1 = ptr to AuxDCE
 ;			A2 = ptr to csParams
@@ -2017,10 +2017,10 @@ CSC_GetGamma
 
 				WITH	CSCVidPrivates
 		
-				Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC,
-				Bne		CSCStatBad							;	then there’s no gamma table.
+				Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC,
+				Bne		CSCStatBad							;	then there's no gamma table.
 				
-				Btst	#IsDirect,GFlags(A3)				; If we’re in 16bpp mode, then
+				Btst	#IsDirect,GFlags(A3)				; If we're in 16bpp mode, then
 				Bne		CSCStatBad							;	the gamma table is not being used.
 		
 				MOVE.L	saveGammaPtr(A3),csGTable(A2)		; return the pointer to the structure
@@ -2097,8 +2097,8 @@ CSC_GetCurMode
 				Move.b	dCtlSlotID(A1),D0					; Get the current SpID.
 				
 				Lea		CSCSwitchTable,A0					; Point to the SwitchMode table.
-@ChkLoop		Move.b	(A0)+,D1							; If we’re at the end of the table,
-				Beq		CSCStatBad							; 	then this mode can’t switch.
+@ChkLoop		Move.b	(A0)+,D1							; If we're at the end of the table,
+				Beq		CSCStatBad							; 	then this mode can't switch.
 				Cmp.b	D0,D1								; If this is not the current mode,
 				Bne.s	@ChkLoop							;	then keep looping.
 			
@@ -2131,20 +2131,20 @@ CSC_GetConnection
 				With	VDDisplayConnectInfo
 				
 				Lea		CSCSTNTable,A0						; Point to the table of FSTN displays.
-@STNLoop		Move.b	(A0)+,D0							; If we’re at the end of the table,
+@STNLoop		Move.b	(A0)+,D0							; If we're at the end of the table,
 				Beq.s	@NotSTN								; 	then just leave.
 				Cmp.b	dCtlSlotId(A1),D0					; If we found a match,
 				Beq.s	@FoundOne							;	then we have an FSTN display.
 				Bra.s	@STNLoop							; Otherwise, keep looping.
-@FoundOne		Move.w	#kPanelFSTNConnect,csDisplayType(A2); Say that we’re an STN flat panel display.
+@FoundOne		Move.w	#kPanelFSTNConnect,csDisplayType(A2); Say that we're an STN flat panel display.
 				Bra.s	@GetFlags							;
-@NotSTN			Move.w	#kPanelTFTConnect,csDisplayType(A2)	; Say that we’re a TFT flat panel display.
+@NotSTN			Move.w	#kPanelTFTConnect,csDisplayType(A2)	; Say that we're a TFT flat panel display.
 				
 @GetFlags		Move.l	#0|(1<<kAllModesValid)|\,			; Say that all our modes are valid…
 						 (1<<kAllModesSafe),D0				; …and safe to switch to.
-				Btst	#IsMono,GFlags(A3)					; If we’re not a monochrome display
+				Btst	#IsMono,GFlags(A3)					; If we're not a monochrome display
 				Beq.s	@SetFlags							;	then just go on.
-				Ori.l	#(1<<kIsMonoDev),D0					; Otherwise, say we’re monochrome.
+				Ori.l	#(1<<kIsMonoDev),D0					; Otherwise, say we're monochrome.
 				
 @SetFlags		Move.l	D0,csConnectFlags(A2)				;
 				
@@ -2191,17 +2191,17 @@ CSC_GetSleepWake
 
 				With	CSCVidPrivates
 
-CSCCtlExit		Tst.b	hasFixedCLUT(A3)					; If we’re acting like the GSC, then
+CSCCtlExit		Tst.b	hasFixedCLUT(A3)					; If we're acting like the GSC, then
 				Bne.s	@UnblankIt							;	we need to un-blank the screen.
 
 				Btst	#IsDirect,GFlags(A3)				; If this is not 16bpp mode,
 				Beq.s	CSCChkQBit							;	then just go on.
 
 @UnblankIt		Move.w	csCode(A0),D1						; Get the routine selector.
-				Cmpi.w	#cscSetMode,D1						; If it’s the SetMode routine,
-				Beq.s	CSCChkQBit							;	then don’t unblank the display.
-				Cmpi.w	#cscSleepWake,D1					; If it’s the Sleep/Wake routine,
-				Beq.s	CSCChkQBit							;	then don’t unblank the display.
+				Cmpi.w	#cscSetMode,D1						; If it's the SetMode routine,
+				Beq.s	CSCChkQBit							;	then don't unblank the display.
+				Cmpi.w	#cscSleepWake,D1					; If it's the Sleep/Wake routine,
+				Beq.s	CSCChkQBit							;	then don't unblank the display.
 				Bclr	#InBlanking,GFlags(A3)				; Say that we want the screen unblanked now.
 				Bsr		CSC_BlankCtl						; And do it.
 
@@ -2306,7 +2306,7 @@ CSC_WaitVSync
 
 			Adda.w	#CSCDisplayStatus,A0					; Point to the interrupt flag register.
 @SyncLoop	Move.b	(A0),D0									; Read the VBL state.
-			Btst	#CSCDSIFR,D0							; If it’s none pending (1=pending),
+			Btst	#CSCDSIFR,D0							; If it's none pending (1=pending),
 			Beq.s	@SyncLoop								;	then keep looping.
 															
 @Done		MOVE.L	(SP)+,D0								; Restore work registers.
@@ -2338,13 +2338,13 @@ CSC_SetFRC
 ;
 			Movea.l	saveVDACBase(A3),A0						; Get the CSC base address.
 			
-			Btst	#IsDirect,GFlags(A3)					; If we’re in direct mode,
-			Bne.s	@UseDefaultData							;	then don’t try to use the gamma table.
+			Btst	#IsDirect,GFlags(A3)					; If we're in direct mode,
+			Bne.s	@UseDefaultData							;	then don't try to use the gamma table.
 			
-			Tst.b	hasFixedCLUT(A3)						; If we’re acting like the GSC,
-			Bne.s	@UseDefaultData							;	then don’t try to use the gamma table.
+			Tst.b	hasFixedCLUT(A3)						; If we're acting like the GSC,
+			Bne.s	@UseDefaultData							;	then don't try to use the gamma table.
 			
-			Tst.b	useFormulaData(A3)						; If we’re supposed to use the gamma table,
+			Tst.b	useFormulaData(A3)						; If we're supposed to use the gamma table,
 			Bne.s	@UseFormulaData							;	then do so.
 			
 @UseDefaultData
@@ -2356,7 +2356,7 @@ CSC_SetFRC
 			Movea.l	saveGammaPtr(A3),A1						; Get a pointer to the gamma table.
 			Lea		gFormulaData(A1),A1						; Point to the formula data.
 
-; Check to see whether we’re luminence mapping or not, and then set the FRC
+; Check to see whether we're luminence mapping or not, and then set the FRC
 ;	levels apporpriately.
 ;
 @SetFRC			
@@ -2364,7 +2364,7 @@ CSC_SetFRC
 			Mulu	D1,D0									; Multiply by the right entry.
 			Adda.w	D0,A1									; Skip to the entry we want.
 			
-			Btst	#GrayFlag,GFlags(A3)					; If we’re not doing gray, then
+			Btst	#GrayFlag,GFlags(A3)					; If we're not doing gray, then
 			Beq.s	@DoColor								;	apply the color settings.
 			Move.b	cscbpGFRCControl(A1),CSCFRCControl(A0)	; Otherwise, tweak for gray.
 			Move.b	cscbpGPolyMAdj(A1),CSCPolyMAdj(A0)		;
@@ -2404,17 +2404,17 @@ CSC_SetDepth
 			Move.w	Sr,-(Sp)								; Save the current interrupt level.
 			Bsr.s	CSC_WaitVSync							; Wait for the next VBL.
 
-; Switch the framebuffer’s depth.
+; Switch the framebuffer's depth.
 ;
 			Move.l	saveVDACBase(A3),A0						; Get the CSC base address.
 			Move.b	D1,CSCDisplayDataForm(A0)				; Set the depth.
 			
 			Bsr.s	CSC_SetFRC								; Set the FRC levels.
 
-			Tst.b	hasFixedCLUT(A3)						; If we’re acting like a GSC, then
+			Tst.b	hasFixedCLUT(A3)						; If we're acting like a GSC, then
 			Bne.s	@EndPalette								;	just go on.
 
-			Cmpi.w	#FifthVidMode-FirstVidMode,D1			; If we’re not doing 16bpp, then
+			Cmpi.w	#FifthVidMode-FirstVidMode,D1			; If we're not doing 16bpp, then
 			Bne.s	@PaletteOn								;	enable palette power.
 			Bset	#CSCPaletteBypass,CSCPanelType(A0)		; Otherwise, disable palette power.
 			Bra.s	@EndPalette								; (Skip the on-switch.)
@@ -2456,8 +2456,8 @@ CSCSetResolution
 ;
 			Suba.w	#spBlockSize,Sp							; Allocate a slot parameter block on the stack.
 			Move.l	Sp,A0									; Point to it with A0.
-			Clr.b	spSlot(A0)								; Say that we’re Slot $0.
-			Clr.b	spExtDev(A0)							; Don’t ask why, just clear this guy.
+			Clr.b	spSlot(A0)								; Say that we're Slot $0.
+			Clr.b	spExtDev(A0)							; Don't ask why, just clear this guy.
 
 			Move.b	D0,spID(A0)								; Write out the spID of the sRsrc.
 			_sRsrcInfo										; (Update our SpBlock for below.)
@@ -2469,7 +2469,7 @@ CSCSetResolution
 			_SetSRsrcState									; Do it.
 			_sUpdateSRT										; Tell the Slot Manager to update itself.
 			
-; Load the “new” video hardware setup block…
+; Load the 'new' video hardware setup block…
 ;
 			Clr.w	spID(A0)								; Start looking at spID 0, no external devices.
 			Clr.b	spTBMask(A0)							; Only look for the board sRsrc.
@@ -2568,10 +2568,10 @@ CSC_GrayScreen
 			Not.l	D2									; Invert the pattern for the next row.
 			Dbra	D4,@NxtRow							; Repeat for each row.
 			
-			Cmpi.w	#(defmBounds_BLCD-1)-1,D6			; If we’re not doing the 16bpp “400-line” panel,
+			Cmpi.w	#(defmBounds_BLCD-1)-1,D6			; If we're not doing the 16bpp '400-line' panel,
 			Bne.s	@SwapBack							;	then just go on.
 			
-			Moveq	#IndexedBlack,D2					; Assume we’re in an indexed mode.
+			Moveq	#IndexedBlack,D2					; Assume we're in an indexed mode.
 			Cmpi.w	#FifthVidMode-FirstVidMode,D1		; If this is an indexed mode,
 			Blt.s	@StartBlack							;	then just go on.
 			Moveq	#DirectBlack,D2						; Otherwise, set up for direct mode.
@@ -2604,7 +2604,7 @@ CSC_GrayScreen
 
 CSC_SaveState
 			
-			Bset	#IsSleeping,GFlags(A3)				; Remember that we’ve been asked to sleep.
+			Bset	#IsSleeping,GFlags(A3)				; Remember that we've been asked to sleep.
 			
 			Movem.l	D0/A0/A4-A5,-(Sp)					; Save some work registers.
 			Move.w	Sr,-(Sp)							; Save the current interrupt level.
@@ -2626,9 +2626,9 @@ CSC_SaveState
 
 ; First, check to see if we need to save the state of the palette.
 ;
-			Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC,
+			Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC,
 			Bne.s	@SaveRegs							;	then just save the regs.
-			Btst	#IsDirect,GFlags(A3)				; If we’re in 16bpp mode, then
+			Btst	#IsDirect,GFlags(A3)				; If we're in 16bpp mode, then
 			Bne.s	@SaveRegs							;	then just save the regs.
 
 ; Save the state of the Palette…
@@ -2689,9 +2689,9 @@ CSC_RestoreState
 
 ; First, check to see if we need to restore the state of the palette.
 ;
-			Tst.b	hasFixedCLUT(A3)					; If we’re acting like a GSC,
+			Tst.b	hasFixedCLUT(A3)					; If we're acting like a GSC,
 			Bne.s	@SaveRegs							;	then just save the regs.
-			Btst	#IsDirect,GFlags(A3)				; If we’re in 16bpp mode, then
+			Btst	#IsDirect,GFlags(A3)				; If we're in 16bpp mode, then
 			Bne.s	@SaveRegs							;	then just save the regs.
 
 ; Save the state of the Palette…
@@ -2743,7 +2743,7 @@ CSC_RestoreState
 			LEA		pmCommandRec.pmRBuffer+4+2(Sp),Sp	; Toss the param block.
 			
 			Movem.l	(Sp)+,D0-D1/A0/A4-A5				; Restore the work registers.
-			Bclr	#IsSleeping,GFlags(A3)				; Remember that we’re no longer asleep.
+			Bclr	#IsSleeping,GFlags(A3)				; Remember that we're no longer asleep.
 			Rts
 			
 			Endwith
@@ -2755,13 +2755,13 @@ CSC_BlankCtl
 ;		BEFORE calling SetMode when it is switching depths.  Because
 ;		we want to simulate the effect of a CLUT (by having a solid
 ;		gray during depth switches), we use the blankshade register.
-;		Normally, we’d couple this with a call to GrayScreen, but
-;		we can’t because of the order in which MacsBug calls SetMode
+;		Normally, we'd couple this with a call to GrayScreen, but
+;		we can't because of the order in which MacsBug calls SetMode
 ;		and redraws the screen.  To get around this problem, we
 ;		temporarily say we have a CLUT, which forces MacsBug
-;		to call us back (with SetEntries), and that’s where we
+;		to call us back (with SetEntries), and that's where we
 ;		unblank the screen and re-assert ourselves as a fixed
-;		gDevice.  For direct devices, we don’t have to worry
+;		gDevice.  For direct devices, we don't have to worry
 ;		about doing the CLUT swap.
 ;
 ; 		A1 = AuxDCE POINTER
@@ -2774,32 +2774,32 @@ CSC_BlankCtl
 				Movem.l	D0-D1/A0,-(Sp)					; Save some working registers.
 				
 				Move.l	Devicelist,D0					; If the DeviceList Handle is nil, then
-				Beq.s	@Done							;	we can’t do anything useful here.
+				Beq.s	@Done							;	we can't do anything useful here.
 				
 				Movea.l	saveVDACBase(A3),A0				; Point to the CSC base address.
-				Btst	#InBlanking,GFlags(A3)			; If we’re supposed to be blanking the LCD,
+				Btst	#InBlanking,GFlags(A3)			; If we're supposed to be blanking the LCD,
 				Bne.s	@BlankIt						;	then do it.
 				Bset	#CSCDSRBlankCtl,CSCDisplayStatus(A0) ; Otherwise, unblank it.
 				Bra.s	@EndBlank						; Move along.
 @BlankIt		Bclr	#CSCDSRBlankCtl,CSCDisplayStatus(A0) ; Blank the screen.
 @EndBlank
-				Tst.b	hasFixedCLUT(A3)				; If we’re not acting like a GSC,
-				Beq.s	@Done							;	then we’re done.
+				Tst.b	hasFixedCLUT(A3)				; If we're not acting like a GSC,
+				Beq.s	@Done							;	then we're done.
 				
-				Move.w	dCtlRefNum(A1),D1				; Get the driver’s refNum.
+				Move.w	dCtlRefNum(A1),D1				; Get the driver's refNum.
 @DevLoop		Movea.l	D0,A0							; Get Handle to gDevice.
 				Movea.l	(A0),A0							; Make it a pointer.
-				Cmp.w	gdRefNum(A0),D1					; If this isn’t our gDevice,
+				Cmp.w	gdRefNum(A0),D1					; If this isn't our gDevice,
 				Bne.s	@NextGD							;	then just go on.
 				
-				Btst	#InBlanking,GFlags(A3)			; If we’ve blanked the screen, then
-				Bne.s	@ClutIt							;	temporarily act like we’ve got a CLUT.
+				Btst	#InBlanking,GFlags(A3)			; If we've blanked the screen, then
+				Bne.s	@ClutIt							;	temporarily act like we've got a CLUT.
 				Move.w	#fixedType,gdType(A0)			; Otherwise, put things back.
 				Bra.s	@Done							; Vamoose.
 @ClutIt			Move.w	#clutType,gdType(A0)			; MacsBug is happier this way.
 				Bra.s	@Done							; Vamoose.
 				
-@NextGD			Move.l	gdNextGD(A0),D0					; If the next gDevice’s Handle isn’t nil,
+@NextGD			Move.l	gdNextGD(A0),D0					; If the next gDevice's Handle isn't nil,
 				Bne.s	@DevLoop						; 	then loop until done
 
 @Done			Movem.l	(Sp)+,D0-D1/A0					; Restore working registers.
@@ -2821,9 +2821,9 @@ CSC_TimeMgrIH
 			JSR		(A0)								; with slot # in D0
 			MOVEA.L	(SP)+,A1							; restore A1 (ptr to TTask block)
 			
-			TST.W	tmXQSize(A1)						; test the flag word to see if “interrupts” are on
+			TST.W	tmXQSize(A1)						; test the flag word to see if 'interrupts' are on
 														;	WARNING! - this field must be immediately after the TTask elem
-			BNE.S	@Done								; if ≠ 0, then “interrupts” are disabled, so don't reprime
+			BNE.S	@Done								; if ≠ 0, then 'interrupts' are disabled, so don't reprime
 			
 			MOVEA.L	A1,A0								; get time task block addr in A0
 			MOVE.L	#kCSCVBLTime,D0						; delay for about 1/60th of a second
@@ -2839,7 +2839,7 @@ CSC_TimeMgrIH
 CSC_BeginIH		
 
 			Move.l	saveVDACBase(A1),A0					; Get the CSC base address.
-			Btst	#CSCDSIFR,CSCDisplayStatus(A0)		; If this wasn’t our interrupt,
+			Btst	#CSCDSIFR,CSCDisplayStatus(A0)		; If this wasn't our interrupt,
 			Beq.s	@NotUs								;	then say so.
 			Bset	#CSCDSIFR,CSCDisplayStatus(A0)		; Otherwise, clear it.
 						
@@ -2849,7 +2849,7 @@ CSC_BeginIH
 			MOVEQ	#1,D0								; signal that int was serviced				
 			RTS											; and return to caller
 			
-@NotUs		Moveq	#0,D0								; Say that we didn’t do anything.												
+@NotUs		Moveq	#0,D0								; Say that we didn't do anything.												
 			Rts											; And leave.
 
 			Endwith

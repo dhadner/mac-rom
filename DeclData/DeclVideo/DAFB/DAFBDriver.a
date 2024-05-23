@@ -24,7 +24,7 @@
 ;	   <SM2>	10-13-92	jmp		(jmp,H24) Fixed a problem in SetDepth where I was clearing the
 ;									ClkSel bit in the DAFBClkCfg register.  For the NSC-8534 this
 ;									bit must be a one, and for the NSC-8531 it must be a zero.
-;									Also, added a line of code that got “lost” from the Zydeco
+;									Also, added a line of code that got 'lost' from the Zydeco
 ;									sources.
 ;	   <SM1>	 10/6/92	GDW		New location for ROMLink tool.
 ; ———————————————————————————————————————————————————————————————————————————————————————
@@ -32,9 +32,9 @@
 ; ———————————————————————————————————————————————————————————————————————————————————————
 ;	   <SM9>	09-29-92	jmp		(jmp,H23) Added about a 1-µSec delay between SetEntries R-G-B
 ;									writes to the Antelope CLUT/DAC (i.e., unlike the Brooktree and
-;									AMD CLUT/DACs, the  Antelope parts don’t use dual-ported RAM
+;									AMD CLUT/DACs, the  Antelope parts don't use dual-ported RAM
 ;									internally).
-;									(jmp,H22) The TimingAdj register wasn’t being set up properly in
+;									(jmp,H22) The TimingAdj register wasn't being set up properly in
 ;									PAL 16bpp FF/ST with Antelope parts.  Fixed this.
 ;									(jmp,H21) Added more support for the Antelope (AT&T/Sierra)
 ;									CLUT/DAC used on Wombat/WLCD.
@@ -53,20 +53,20 @@
 ;									DAFB.
 ;	   <SM6>	 6/18/92	KW		(jmp,H13) Eliminated yet even more of the old DAFBVidParams
 ;									fields, so I adjusted the code accordingly.
-;	   <SM5>	  6/4/92	KW		(jmp,H12) Fixed a problem where I wasn’t setting up the timing
+;	   <SM5>	  6/4/92	KW		(jmp,H12) Fixed a problem where I wasn't setting up the timing
 ;									adjust register in the Brooktree DAC case. Oops! (jmp,H11) Made
-;									the code that deals with the DAFB vidParams “smarter” due my
+;									the code that deals with the DAFB vidParams 'smarter' due my
 ;									compacting vidParams tables. This kind of work will continue
 ;									throughout Wombat development. (jmp,H10) Cleaned up the
 ;									interrupt handler a little, cleaned up WaitVSync a little, fixed
-;									the “little table of counts” problem from Zydeco, etc….
+;									the 'little table of counts' problem from Zydeco, etc….
 ;	   <SM4>	 5/16/92	kc		Roll in Horror Changes. Comments follow:
-;		<H9>	02/20/92	jmp		(jmp,Z51) Fixed a problem in the SetDepth where I wasn’t always
+;		<H9>	02/20/92	jmp		(jmp,Z51) Fixed a problem in the SetDepth where I wasn't always
 ;									selecting the correct clock.  This problem surfaced due to a
 ;									change in the AC824A (aka AC823).
-;		<H8>	01/22/92	jmp		(jmp,Z50) Updated the original “No Connect” code to take full
+;		<H8>	01/22/92	jmp		(jmp,Z50) Updated the original 'No Connect' code to take full
 ;									advantage of the newly-defined extended sense codes.  Changed
-;									the name from “NoConnect” to “AltSense.”
+;									the name from 'NoConnect' to 'AltSense.'
 ;		<H7>	01/11/92	jmp		Added rudimentary support for the newly-defined extended sense
 ;									codes.
 ;		<H6>	12/17/91	jmp		Eliminated some code in GrayScreen that handled base addresses
@@ -74,37 +74,37 @@
 ;		<H5>	11/25/91	jmp		The vidParams moved from the functional to the board sRsrc to
 ;									save space -- updated the driver accordingly.
 ;		<H4>	11/12/91	jmp		Quit forcing the bitdepth back to 1bpp in SetDefaultMode.
-;		<H3>	11/05/91	jmp		Added support for 19” Displays.
+;		<H3>	11/05/91	jmp		Added support for 19' Displays.
 ;		 <3>	 3/31/92	JSM		Rolled this file into Reality.
 ;		 <2>	 2/14/92	kc		Fix "Label defined on next word boundary" assembler warning.
-;		<50>	01/20/92	jmp		Updated the original “No Connect” code to take full advantage of
+;		<50>	01/20/92	jmp		Updated the original 'No Connect' code to take full advantage of
 ;									the newly-defined extended sense codes.  Changed the name from
-;									“NoConnect” to “AltSense.”
+;									'NoConnect' to 'AltSense.'
 ;		<49>	01/09/92	jmp		Added rudimentary support for the newly-defined extended sense
 ;									codes.
 ;		<48>	12/17/91	jmp		Eliminated some code in GrayScreen that handled base addresses
 ;									that moved across depths, as it is no longer needed.
 ;		<47>	11/08/91	jmp		Quit forcing the bitdepth back to 1bpp in SetDefaultMode.
-;		<46>	11/05/91	jmp		Added preliminary support for 19” Displays.
+;		<46>	11/05/91	jmp		Added preliminary support for 19' Displays.
 ;		<45>	10/16/91	jmp		Added a check in the video open routine that determines whether
-;									video (i.e., sync) is currently on or not.  If it’s off, then we
+;									video (i.e., sync) is currently on or not.  If it's off, then we
 ;									now turn it back on.  This was added to support turning video
 ;									back on immediately in the event that the video driver is closed
-;									and needs to be opened again during “normal” operation of the
+;									and needs to be opened again during 'normal' operation of the
 ;									CPU.
 ;		<44>	09/17/91	jmp		Needed to ensure that the 100 Mhz clock was being shut off when
-;									“grounding out” the ECL clock signals.
-;		<43>	09/17/91	jmp		Added support for “grounding out” the ECL clock signals in
+;									'grounding out' the ECL clock signals.
+;		<43>	09/17/91	jmp		Added support for 'grounding out' the ECL clock signals in
 ;									software using the AMD-ACDC for Zydeco/Spike33 CPUs.
 ;		<42>	09/13/91	jmp		Added support for 16pp on Rubik displays when only 512K of vRAM
 ;									is around in preparation for Spike33s.
 ;		<41>	  8/9/91	jmp		Just cleaned up some comments and line-spacings.
-;		<40>	  8/9/91	jmp		When I removed the NeedsGoodBye control call, I didn’t remove
+;		<40>	  8/9/91	jmp		When I removed the NeedsGoodBye control call, I didn't remove
 ;									the extra check.  So, I removed that now.
 ;		<39>	  8/9/91	jmp		Fixed a VERY minor bug in VidOpen where I was using D0 instead
 ;									of D2 to get the monID.
 ;		<38>	  8/9/91	jmp		Added support to fix a problem with NTSC & PAL family modes
-;									where changing the amount of vRAM didn’t cause PrimaryInit to
+;									where changing the amount of vRAM didn't cause PrimaryInit to
 ;									re-validate the SP_LastConfig pRAM byte.  Also, enabled/disabled
 ;									PageMode in VidOpen depending on the state of pageMode pRAM bit.
 ;		<37>	  8/7/91	jmp		Added 16bpp support for all displays.
@@ -135,9 +135,9 @@
 ;		<26>	 6/25/91	jmp		Fixed a problem in 16bpp DirectSetEntries and fixed the problem
 ;									with 16bpp not sticking.
 ;		<25>	 6/24/91	jmp		Added support for 16bpp Vesuvio & RGB Portrait displays.
-;		<24>	 6/17/91	jmp		Fixed a type in the “memory leak” fix in SetGamma that I “fixed”
+;		<24>	 6/17/91	jmp		Fixed a type in the 'memory leak' fix in SetGamma that I 'fixed'
 ;									last time.
-;		<23>	 6/10/91	jmp		Fixed a “memory leak” bug in SetGamma when changing the size of
+;		<23>	 6/10/91	jmp		Fixed a 'memory leak' bug in SetGamma when changing the size of
 ;									the current gamma table (i.e., from size 3 to 1, or vice-versa).
 ;									This caused programs like MacroMind Director 2.0 to get
 ;									out-of-memory errors after playing movies that cycled gamma
@@ -153,17 +153,17 @@
 ;									that the gamma tables can be shared among the various built-in
 ;									videos.  This is okay, for now, since all the built-in videos
 ;									have similar DACs.
-;		<18>	 5/15/91	jmp		Wasn’t cleaning up the stack on exit from GetEntries input
-;									errors.  VidReset wan’t passing the right value to DAFBSetDepth
-;									(i.e., indexed mode value vs. bpp value).  And GetPage wasn’t
+;		<18>	 5/15/91	jmp		Wasn't cleaning up the stack on exit from GetEntries input
+;									errors.  VidReset wan't passing the right value to DAFBSetDepth
+;									(i.e., indexed mode value vs. bpp value).  And GetPage wasn't
 ;									range-checking the input mode properly.
 ;		<17>	 5/10/91	jmp		Due to the fact that interrupt status registers are NOT inverted
 ;									as originally assumed, the WaitVSync code could have hung
 ;									forever in some cases; fixed that problem.  In Get/SetEntries
 ;									fixed the fact that some apps are NOT 32-bit clean; i.e., they
-;									pass in a 24-bit CTabHandle’s MasterPointer as a Pointer.
+;									pass in a 24-bit CTabHandle's MasterPointer as a Pointer.
 ;									Optimizations:  Tightened up the WaitVSync code; changed several
-;									Move.b’s and Move.w’s to Moveq’s where applicable.  Used scaling
+;									Move.b's and Move.w's to Moveq's where applicable.  Used scaling
 ;									in the VidStatus jumptable (i.e., like the VidCtl jumptable).
 ;									Added SuperVGA support.  Now check for 25 vs. 33 MHz CPU
 ;									operation the new, better way.  Code reveiw changes:  Cleaned up
@@ -175,7 +175,7 @@
 ;									jumping thru jSwapMMU and started using _SwapMMUMode, except in
 ;									the interrupt handler.  Started using monIDs instead of spIDs
 ;									where possible for config testing -- less compares.  Fixed a bug
-;									in ChkMode where I was using Cmp.w’s instead of Cmp.b’s.
+;									in ChkMode where I was using Cmp.w's instead of Cmp.b's.
 ;		<15>	 4/19/91	jmp		The gamma correction code was doing very bad things.  First, it
 ;									was always allowing TFB-style tables (i.e., non-hardware
 ;									specific tables) to pass through.  Second, it was building
@@ -184,10 +184,10 @@
 ;									GoldFish.  I also fixed a bug in SetGamm where we were not
 ;									setting the new gamma table when in direct mode.  Finally, I now
 ;									synthesize a linear gamma table on the fly in VidOpen if a gamma
-;									directory doesn’t exist (i.e., for NTSC, PAL, and VGA).
+;									directory doesn't exist (i.e., for NTSC, PAL, and VGA).
 ;		<14>	  4/3/91	jmp		Moved the Bsr to WaitVSync to just before the DAFBReset sequence
 ;									in DAFBSetDepth.  This reduces the problem with the display
-;									“jumping” when switching bit-depths.  The most notable offender
+;									'jumping' when switching bit-depths.  The most notable offender
 ;									is MacsBug when stepping.
 ;		<13>	  4/1/91	jmp		Removed support for DAFB 1.
 ;		<12>	 3/25/91	jmp		I was not saving the monitor ID at open time for
@@ -195,10 +195,10 @@
 ;									correct guns on mono-only displays (i.e., I was clearing red,
 ;									setting green, and not touching blue; should have been clearing
 ;									red & green, and setting blue).  Fixed a bug in three-channel
-;									direct CLUTs (wasn’t actually pointing to blue).  Fixed a bug in
+;									direct CLUTs (wasn't actually pointing to blue).  Fixed a bug in
 ;									indexed SetEntries where I was jumping into the RBV video driver
 ;									due to a common label.
-;		<11>	 3/18/91	jmp		Fixed “false” tops and bottoms in the convolved screen-clearing
+;		<11>	 3/18/91	jmp		Fixed 'false' tops and bottoms in the convolved screen-clearing
 ;									code.  Fixed a problem in SetEntries where A0 was potentially
 ;									being trashed.
 ;		<10>	  3/4/91	jmp		Fixed 1bpp Rubik Display problem (i.e., first line of vRam not
@@ -206,7 +206,7 @@
 ;		 <9>	 2/25/91	jmp		Changed the interrupt handling code to use CrsrLine instead of
 ;									VBL because CrsrLine is programmable.  Added a Bsr to
 ;									DAFBWaitVSync in DAFBDirectClutSet.  SetEntries was not 32-bit
-;									clear as we were not StripAddress’ing the csTable pointer.
+;									clear as we were not StripAddress'ing the csTable pointer.
 ;		 <8>	 2/15/91	jmp		Fixed bug in SetEntries where an input error would have
 ;									corrupted the stack (i.e., not popping saved register off
 ;									stack).  Fixed screen graying code to work properly with the
@@ -312,7 +312,7 @@ DAFBXClutTbl	Dc.b	$01,$03,$0F,$FF,$1F,$FF
 
 ;
 ; These are the bit patterns for grays in each depth, except the last one which is the black
-;	“half-pattern” in 32-bit/pixel mode.  The DAFBXPats are for supporting 16bpp-capable
+;	'half-pattern' in 32-bit/pixel mode.  The DAFBXPats are for supporting 16bpp-capable
 ;	sResources.
 
 DAFBPats		Dc.l	OneBitGray,TwoBitGray,FourBitGray,EightBitGray,ThirtyTwoBitGray
@@ -337,7 +337,7 @@ MonIDSEnd
 
 ;
 ; Because Wombat uses a different clock chip, the TimingAdj value for Spike/Eclipse/Zydeco
-;	doesn’t work on Wombat.  However, the TimingAdj adjustment value is simple to compute
+;	doesn't work on Wombat.  However, the TimingAdj adjustment value is simple to compute
 ;	based on the pixel depth and the clock divider.  So, the table represents the value to
 ;	to add to TimingAdj per pixel depth per clock divider.  The zeros in the table are
 ;	unused place holders.
@@ -420,7 +420,7 @@ DAFBVidOpen
 				
 				Moveq	#true32b,D0							; Say we want to be in 32-bit mode.
 				_SwapMMUMode								; Do swap.
-				Move.l	saveDAFBBase(A3),A2					; Get DAFB’s base address into A2.
+				Move.l	saveDAFBBase(A3),A2					; Get DAFB's base address into A2.
 				DAFBUnIdle									; Make sure DAFB is not idle.
 				_SwapMMUMode								; Swap back.
 	
@@ -517,11 +517,11 @@ DAFBVidOpen
 				Move.b	D0,-(Sp)							; Save previous addressing mode.
 				
 				Move.l	DAFBFlags(A4),D0					; Get the DAFBFlags into D0.
-				Btst	#RadiusTPDBit,D0					; If we don’t have a RadiusTPD,
+				Btst	#RadiusTPDBit,D0					; If we don't have a RadiusTPD,
 				Beq.s	@GetParams							;	then just go on.
 				Btst	#RadiusDevType,D0					; If we have a Radius MonoTPD,
 				Beq.s	@SetMonoTPD							;	then say so.
-				Move.b	#pSRsrc_Vid_DAFB_2PRdRGB,D1			; Otherwise, say we’ve got…
+				Move.b	#pSRsrc_Vid_DAFB_2PRdRGB,D1			; Otherwise, say we've got…
 				Bra.s	@GetParams							;	…a ColorTPD.
 @SetMonoTPD		Move.b	#pSRsrc_Vid_DAFB_2PRdMono,D1		;
 
@@ -550,7 +550,7 @@ DAFBVidOpen
 ;
 ; At PrimaryInit time, we used the sense lines to determine the type of attached display.  For extended
 ;	sense displays, we just mapped them to the end of indexed-sense displays.  Since the gamma-correction
-;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the “real”
+;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the 'real'
 ;	monitor ID.  At PrimaryInit time, we store the real monitor ID in slot pRAM.  So, we extract that
 ;	information out here.  Also, it should be noted that it would actually be inappropriate for us
 ;	to re-read the sense-lines now, in that someone could potentially change/unplug the attached
@@ -568,8 +568,8 @@ DAFBVidOpen
 				
 				Moveq	#0,D3								; Clear D3.w.
 				Moveq	#0,D2								; Clear D2.w.
-				Move.b	SP_Depth(Sp),D3						; Get the mode (it’s byte sized).		
-				Move.b	SP_MonID(Sp),D2						; Get the monID (it’s byte sized).
+				Move.b	SP_Depth(Sp),D3						; Get the mode (it's byte sized).		
+				Move.b	SP_MonID(Sp),D2						; Get the monID (it's byte sized).
 				Move.b	SP_Flags(Sp),D1						; Get the flags.
 				
 				Adda	#sizeSPRamRec+spBlockSize,Sp		; Clean up the stack.
@@ -583,15 +583,15 @@ DAFBVidOpen
 				Move.w	D2,saveMonID(A3)					; Save the monID for later.
 				Move.b	dCtlSlotId(A1),saveSlotId(A3)		; Also save the spID.
 				
-				Btst	#spSyncOnGreen,D1					; If we’re not supposed to put sync on green,
+				Btst	#spSyncOnGreen,D1					; If we're not supposed to put sync on green,
 				Beq.s	@CheckAC842A						;	then just go on.
 				Bset	#syncOnGreen,GFlags(A3)				; Otherwise, set the flag.
 				
-@CheckAC842A	Btst	#spHas16bppACDC,D1					; If we don’t have an AC842A,
+@CheckAC842A	Btst	#spHas16bppACDC,D1					; If we don't have an AC842A,
 				Beq.s	@CheckPageMode						;	then go on.
 				Move.b	#1,has16bppACDC(A3)					; Otherwise, say we do.
 				
-				Btst	#spHas16bppSRsrc,D1					; If we don’t have a 16bpp-capable sRsrc,
+				Btst	#spHas16bppSRsrc,D1					; If we don't have a 16bpp-capable sRsrc,
 				Beq.s	@CheckPageMode						;	then just go on.
 				Bset	#has16bppSRsrc,GFlags(A3)			; Otherwise, set the flag.
 				
@@ -610,7 +610,7 @@ DAFBVidOpen
 				Move.l	DAFB_Config(A4),D0					; Read the DAFBConfig register.
 				Bfextu	D0{dafbWrdIntBit:1},D0				; If word-interleave is on
 				Bne.s	@DisablePageMode					;	then ALWAYS disable page mode.
-				Tst.b	pageModeSet(A3)						; If we’re not supposed to enable page mode,
+				Tst.b	pageModeSet(A3)						; If we're not supposed to enable page mode,
 				Beq.s	@DisablePageMode					;	then disable it.
 				Moveq	#1,D0								; Otherwise, set up to enable page mode,
 				Bra.s	@HitPageMode						;	and do it.
@@ -619,13 +619,13 @@ DAFBVidOpen
 @HitPageMode	Move.l	D0,DAFB_PgMdEn(A4)					;	and do it.
 
 				Move.l	DAFBFlags(A4),D0					; Get the DAFBFlags.
-				Btst	#isWombat,D0						; If we’re not on a Wombat,
+				Btst	#isWombat,D0						; If we're not on a Wombat,
 				Beq.s	@ChkCLUTType						;	then just go on.
-				Move.b	#1,wombatFlag(A3)					; Otherwise, say we’re on a Wombat.
+				Move.b	#1,wombatFlag(A3)					; Otherwise, say we're on a Wombat.
 				
-@ChkCLUTType	Btst	#wLin16Bpp,D0						; If we don’t have an Antelope,
+@ChkCLUTType	Btst	#wLin16Bpp,D0						; If we don't have an Antelope,
 				Beq.s	@ChkVidEnb							;	then just go on.
-				Move.b	#1,hasLin16BppCLUT(A3)				; Otherwise, say we’ve got one.
+				Move.b	#1,hasLin16BppCLUT(A3)				; Otherwise, say we've got one.
 
 @ChkVidEnb		Move.w	D0,D1								; Copy the DAFBFlags.
 				Move.b	(Sp)+,D0							; Set up to switch back into previous mode,
@@ -642,7 +642,7 @@ DAFBVidOpen
 				Bra.s	@SkipIt								; Go on.
 	
 @CalcScrnBase	
-				Move.w	#firstVidMode,saveMode(A3)			; From PrimaryInit, we’re still at 1bpp.
+				Move.w	#firstVidMode,saveMode(A3)			; From PrimaryInit, we're still at 1bpp.
 				Bsr		DAFBCalcScreenBaseAddr				; Save the ST-corrected screen baseAddr.
 				
 @SkipIt
@@ -667,7 +667,7 @@ DAFBVidOpen
 ;	to be lost, so we want only want to do this once.
 ;
 
-				Tst.b		wombatFlag(A3)					; If we’re on a Wombat, then
+				Tst.b		wombatFlag(A3)					; If we're on a Wombat, then
 				Bne.s		@WombatSpeed					;	skip the Spike/Eclipse/Zydeco stuff.
 				
 				Move.l		VIA2,A0							; Point to VIA2.
@@ -677,7 +677,7 @@ DAFBVidOpen
 @WombatSpeed	Move.l		VIA,A0							; Point to VIA1.
 				Btst		#vCpuId2,vBufA(A0)				; Test CPUID reg 2 (20/25 vs. 33/40 MHz).
 
-@EndSpeedChk	Bne.s		@AllDone						; Leave flag clear if we’re not going slow.
+@EndSpeedChk	Bne.s		@AllDone						; Leave flag clear if we're not going slow.
 				Bset		#IsSlow,GFlags(A3)				; Otherwise, set it.
 
 ;
@@ -725,7 +725,7 @@ DAFBVidOpen
 *   Entry: 	A0 		= param block pointer
 *			A1 		= AuxDCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= ptr to our privates/scrarch (doesn’t need to be preserved)
+*			A3 		= ptr to our privates/scrarch (doesn't need to be preserved)
 *			A4		= scratch (must be preserved)
 *			D0-D3 	= scratch (don't need to be preserved)
 *
@@ -847,8 +847,8 @@ DAFBSetVidMode
 				Move.l	A4,A5								; Point to green data (assuming gChanCnt = 1).
 				Move.l	A4,A6								; Point to red data (assuming gChanCnt = 1).
 							
-				Cmp.w	#1,gChanCnt(A0)						; If there’s only one table,
-				Beq.s	@OnlyOneTable						;	then we’re set.
+				Cmp.w	#1,gChanCnt(A0)						; If there's only one table,
+				Beq.s	@OnlyOneTable						;	then we're set.
 				
 				Move.w	gDataWidth(A0),D2					; Get width of each entry (in bits).
 				Move.w	gDataCnt(A0),D0						; Get # of entries in table.
@@ -1043,24 +1043,24 @@ DAFBSEGuts
 				BHI		DAFBSEBadExit						; if out of range, then exit w/bad result
 				
 				Move.w	csStart(A2),D0						; Get the start number to range check.
-				Addq.w	#1,D0								; If csStart < -1, then it’s out of
+				Addq.w	#1,D0								; If csStart < -1, then it's out of
 				Bmi		DAFBSEBadExit						;	range.
 	
 ;
-; In order to support Vesuvio & the RGB Portrait’s 16bpp modes, we ALWAYS use indexed mode
+; In order to support Vesuvio & the RGB Portrait's 16bpp modes, we ALWAYS use indexed mode
 ;	for SetEntries, since the real entries must be translated from a 5-bit value into an
 ;	8-bit index.  Note:  The UseTrans & UseSeq are actually the same bit so that the
 ;	indexed write routine works correctly.
 ;
 	
 				MOVE.L	csTable(A2),D0						; Some (bad) people pass in an offset
-				_StripAddress								;	CTabHandle’s MasterPointer here,
+				_StripAddress								;	CTabHandle's MasterPointer here,
 				Move.l	D0,A1								;	so we clean them up.  Ugh!
 				
 				Move.w	D4,D1								; Make a copy of the number of entries, and
 				Addq	#1,D4								; 	make it counting for now.
 				
-				Moveq	#0,D6								; Assume that we aren’t doing 16bpp translations.
+				Moveq	#0,D6								; Assume that we aren't doing 16bpp translations.
 															;	(i.e., #UseTrans in D6 is clear).
 
 				Btst	#has16bppSRsrc,D5					; If we have a 16bpp-capable sRsrc,
@@ -1068,21 +1068,21 @@ DAFBSEGuts
 				Bra.s	@IndexTest							; Otherwise, just do the normal stuff.
 				
 @Chk16bpp		Move.w	saveMode(A3),D0						; Get the current mode.
-				Cmp.w	#FifthVidMode,D0					; If we’re not doing 16bpp,
+				Cmp.w	#FifthVidMode,D0					; If we're not doing 16bpp,
 				Bne.s	@IndexTest							;	then just go on.
 				Tst.b	hasLin16bppCLUT(A3)					; If 16bpp is linear (i.e., we have an Antelope),
 				Bne.s	@IndexTest							;	then just on.
-				Bset	#UseTrans,D6						; Otherwise, remember that we’re translating.
+				Bset	#UseTrans,D6						; Otherwise, remember that we're translating.
 
-				Bclr	#UseSeq,D5							; If we’re already indexed,
+				Bclr	#UseSeq,D5							; If we're already indexed,
 				Beq.s	@isIndex							;	then just go on.
 				
 				Move.w	D1,D2								; Otherwise, sequence thru table from
 				Add.w	csStart(A2),D2						; 	csStart thru csCount entries.
 			
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing here, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing here, so we'll continue the trend for now.
 
 @TableLoop		Move.w	D2,value(A1,D1*colorSpecSize)		; Write the index into the table.
 				Subq	#1,D2								; Decrement index.
@@ -1135,7 +1135,7 @@ DAFBSEGuts
 				BTST	#UseSeq,D5							; is it sequence mode?
 				BNE.S	@SLSeq								; yup, so go there
 				
-				Btst	#UseTrans,D6						; If we’re not supposed to do the 5-to-8 translations,
+				Btst	#UseTrans,D6						; If we're not supposed to do the 5-to-8 translations,
 				Beq.s	@WriteIndex							;	then just write out the index to the stack.
 				Bsr		DAFBTrans5to8						; Otherwise, do the translation.
 				
@@ -1176,7 +1176,7 @@ DAFBSEGuts
 				Beq.s	@NotRadius							;	then just go on.
 				
 				Clr.b	(A0)+								; Write black for red.
-				Move.b	(A4,D0),(A0)+						; Write gamma corrected “green”.
+				Move.b	(A4,D0),(A0)+						; Write gamma corrected 'green'.
 				Clr.b	(A0)+								; Write black for blue.
 				
 				Dbra	D3,@SetupLoop						; Loop until done.
@@ -1231,7 +1231,7 @@ DAFBIndexWrite
 				MOVE.B	(A0)+,3(A4)							; write red			
 				MOVE.B	(A0)+,3(A4)							; write green
 				MOVE.B	(A0)+,3(A4)							; write blue
-				Tst.b	hasLin16BppCLUT(A3)					; If we don’t have an Antelope part,
+				Tst.b	hasLin16BppCLUT(A3)					; If we don't have an Antelope part,
 				Beq.s	@Next								;	then just go on.
 				Tst.b	([VIA])								; Otherwise, wait a µSec.
 @Next			DBRA	D3,DAFBIndexWrite					; and loop
@@ -1253,7 +1253,7 @@ DAFBSeqWrite
 				MOVE.B	(A0)+,3(A4)							; write red			
 				MOVE.B	(A0)+,3(A4)							; write green
 				MOVE.B	(A0)+,3(A4)							; write blue
-				Tst.b	hasLin16BppCLUT(A3)					; If we don’t have an Antelope part,
+				Tst.b	hasLin16BppCLUT(A3)					; If we don't have an Antelope part,
 				Beq.s	@Next								;	then just go on.
 				Tst.b	([VIA])								; Otherwise, wait a µSec.
 @Next			DBRA	D3,@SeqLoop							; and loop
@@ -1368,7 +1368,7 @@ DAFBSetGamma
 				MOVE.B	D0,(A0)+							; move a byte
 				DBRA	D2,@NxtByte							; => repeat for all bytes
 
-				Bra.s	@GammaDone							; Check to see if it’s a direct device.
+				Bra.s	@GammaDone							; Check to see if it's a direct device.
 
 ;
 ; Set up a linear gamma table.  To prevent memory thrash, build this new one
@@ -1545,7 +1545,7 @@ DAFBEnableVGuts												;
 			
 				MOVE.L	saveDAFBBase(A3),A0					; point to the DAFB base
 			
-; DAFB’s vertical timing generator is driven from a clock which is only half the frequency of the horizontal
+; DAFB's vertical timing generator is driven from a clock which is only half the frequency of the horizontal
 ;	timing generator clock.  Therefore, all the vertical timing registers are double-sized.  However, the
 ;	CrsrLine register is specified in whole lines.  So, in order to get VBL happening at just the right
 ;	time, we must divide VFP by 2.
@@ -1625,28 +1625,28 @@ DAFBSetDefaultMode
 ;
 ; Since PrimaryInit relies on the default mode being set correctly, we check to see that
 ;	the mode to be set is actually valid.  Monitors can only see valid sRsrcIDs, so
-;	it probably won’t cause a problem.  But we should check it anyway for unsavory
+;	it probably won't cause a problem.  But we should check it anyway for unsavory
 ;	applications.
 ;
 				
 				Move.b		csMode(A2),spID(A0)				; Look for the passed in spID.
 				Clr.l		spParamData(A0)					; Clear the fNext flag; we want THIS sRsrc.
-				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc’s
+				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc's
 							(1<<foneslot),spParamData+3(A0)	; Only search in our slot.
 				_GetsRsrc									; Do it.
 				Bne.s		@BadExit						; If failed, quit.
 				
 				Move.w		spCategory(A0),D0				; Get the category.
-				Cmp.w		#catDisplay,D0					; If it’s not catDisplay,
+				Cmp.w		#catDisplay,D0					; If it's not catDisplay,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spCType(A0),D0					; Get the type.
-				Cmp.w		#typVideo,D0					; If it’s not typVideo,
+				Cmp.w		#typVideo,D0					; If it's not typVideo,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spDrvrSw(A0),D0					; Get the software kind.
-				Cmp.w		#drSwApple,D0					; If it’s not drSwApple,
+				Cmp.w		#drSwApple,D0					; If it's not drSwApple,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spDrvrHw(A0),D0					; Get the hardware ID.
-				Cmp.w		#drHwDAFB,D0					; If it’s not drHwDAFB,
+				Cmp.w		#drHwDAFB,D0					; If it's not drHwDAFB,
 				Bne.s		@BadExit						;	then quit.
 
 ;
@@ -1655,11 +1655,11 @@ DAFBSetDefaultMode
 ;	the proper screen depth in the new world.
 ;
 				
-				Btst		#IsDirect,GFlags(A3)			; If we’re not in a direct mode,
+				Btst		#IsDirect,GFlags(A3)			; If we're not in a direct mode,
 				Beq.s		@WriteIt						;	just go on.
 				
-				Move.b		csMode(A2),D0					; Get the mode we’re going to.
-				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvSTx,D0	; If we’re not going to a convolved mode,
+				Move.b		csMode(A2),D0					; Get the mode we're going to.
+				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvSTx,D0	; If we're not going to a convolved mode,
 				Blt.s		@WriteIt						;	just go on.
 				Cmp.b		#sRsrc_Vid_DAFB_PALconvFF,D0	;
 				Bgt.s		@WriteIt						;
@@ -1714,16 +1714,16 @@ DAFBSetSyncOnGreen
 				Tst.b	csMode(A2)							; If csMode = 0, then we are
 				Beq.s	@EnableSyncOnGreen					;	enabling sync on green.
 
-				Btst	#syncOnGreen,GFlags(A3)				; If we’re already NOT putting sync on green,
-				Beq.s	@Done								;	then there’s nothing left to do.
+				Btst	#syncOnGreen,GFlags(A3)				; If we're already NOT putting sync on green,
+				Beq.s	@Done								;	then there's nothing left to do.
 				Bclr	#syncOnGreen,GFlags(A3)				; Otherwise, set up the GFlags field,
 				Bclr	#spSyncOnGreen,SP_Flags(Sp)			;	the pRam record, and
 				Moveq	#0,D1								; 	the toggle bit.
 				Bra.s	@SyncCommon							;	
 				
 @EnableSyncOnGreen
-				Btst	#syncOnGreen,GFlags(A3)				; If we’re already putting sync on green,
-				Bne.s	@Done								;	then there’s nothing left to do.
+				Btst	#syncOnGreen,GFlags(A3)				; If we're already putting sync on green,
+				Bne.s	@Done								;	then there's nothing left to do.
 				Bset	#syncOnGreen,GFlags(A3)				; Otherwise, set up the GFlags field
 				Bset	#spSyncOnGreen,SP_Flags(Sp)			;	the pRam record, and
 				Moveq	#1,D1								;	the toggle bit.
@@ -1740,7 +1740,7 @@ DAFBSetSyncOnGreen
 				Bsr		DAFBWaitVSync						; Wait for VBL at level 2.
 				Move.w	(Sp)+,Sr							; Restore interrupt level.
 				
-				Tst.b	wombatFlag(A3)						; If we’re not on a Wombat,
+				Tst.b	wombatFlag(A3)						; If we're not on a Wombat,
 				Beq.s	@VIASOG								;	then use the VIA SOG.
 				
 				Move.l	saveDAFBBase(A3),A0					; Get DAFBBase into A0.
@@ -1750,7 +1750,7 @@ DAFBSetSyncOnGreen
 				Bra.s	@EndSOG								;
 
 @VIASOG			Move.l	VIA2,A0								; Point to VIA2.
-				Btst	#0,D1								; If we’re supposed to put sync on green,
+				Btst	#0,D1								; If we're supposed to put sync on green,
 				Bne.s	@SyncOnGreen						;	then hop to it.
 				Bclr	#v2SyncOnGreen,vBufA(A0)			; Otherwise, disable sync on green.
 				Bra.s	@EndSOG
@@ -1773,7 +1773,7 @@ DAFBSet16bpp
 ;
 ;	Notes:  To determine if 16bpp is possible, one should call
 ;			Get16bpp.  If it returns noErr, then 16bpp is
-;			possible, otherwise it isn’t.
+;			possible, otherwise it isn't.
 ;
 ;			To determine if 16bpp is ALWAYS non-blocked, one should
 ;		    attempt to disable 16bpp mode.  If noErr is returned,
@@ -1806,7 +1806,7 @@ DAFBSet16bpp
 				Move.l	Sp,spResult(A0)						; Point to it.
 				_sReadPRamRec								; Get pRAM.
 				
-				Btst	#spHas16bppACDC,SP_Flags(Sp)		; If we don’t have an AC842A,
+				Btst	#spHas16bppACDC,SP_Flags(Sp)		; If we don't have an AC842A,
 				Beq.s	@BadExit							;	then just blow this off.
 				
 				Moveq	#true32b,D0							; Set up to switch into 32-bit mode,
@@ -1820,7 +1820,7 @@ DAFBSet16bpp
 				Andi.w	#$0FFF,D0							; Strip off the junk.
 				Moveq	#9,D2								; Get the amount to shift.
 				Lsr.w	D2,D0								; Shift in the version number.
-				Cmp.b	#DAFB3Vers,D0						; If we don’t have a DAFB 3,
+				Cmp.b	#DAFB3Vers,D0						; If we don't have a DAFB 3,
 				Blt.s	@DoSet								;	then do things as normal.
 				Bra.s	@GoodExit							; Otherwise, 16bpp is always set.
 				
@@ -1910,7 +1910,7 @@ DAFBSetPageMode
 				Move.l	DAFB_Config(A1),D0					; Read the DAFBConfig register.
 				Bfextu	D0{dafbWrdIntBit:1},D0				; If word-interleave is on
 				Bne.s	@DisablePageMode					;	then ALWAYS disable page mode.
-				Tst.b	pageModeSet(A3)						; If we’re not supposed to enable page mode,
+				Tst.b	pageModeSet(A3)						; If we're not supposed to enable page mode,
 				Beq.s	@DisablePageMode					;	then disable it.
 				Moveq	#1,D0								; Otherwise, set up to enable page mode,
 				Bra.s	@HitPageMode						;	and do it.
@@ -1928,7 +1928,7 @@ DAFBSetAltSense
 ;---------------------------------------------------------------------
 ;
 ;	SetAltSense sets up the alternate senseID pRam byte to contain
-;		a valid “index” code if a valid sense code is passed
+;		a valid 'index' code if a valid sense code is passed
 ;		in csMode (byte 0 is the sense code, byte 1 is the type).
 ;
 ;		A1 = Ptr to AuxDCE/Ptr to DAFBMonIDs table (not restored)
@@ -1972,21 +1972,21 @@ DAFBSetAltSense
 
 @2PExtended
 				Move.b	csMode(A2),D1						; Get the sense code into D0.
-				Cmp.b	#extended2PRdRGB,D1					; If it’s the Radius ColorTPD,
+				Cmp.b	#extended2PRdRGB,D1					; If it's the Radius ColorTPD,
 				Beq		@WriteIt							;	then write it out.
-				Cmp.b	#extended2PRdMono,D1				; If it’s the Radius MonoTPD,
+				Cmp.b	#extended2PRdMono,D1				; If it's the Radius MonoTPD,
 				Beq.s	@WriteIt							;	then write it out.
 				Bra		@MonIDNotValid						; Otherwise, return an error.
 
 @HRExtended
-				Cmp.b	#extendedHR,csMode(A2)				; If it’s not the MultiSync code,
+				Cmp.b	#extendedHR,csMode(A2)				; If it's not the MultiSync code,
 				Bne		@MonIDNotValid						;	return an error.
 				Move.b	#indexedSenseHR,D1					; Otherwise, default to HR.
 				Bra.s	@WriteIt
 
 @NoConnect
 				Move.b	csMode(A2),D1						; Get the monID.
-				Cmp.b	#indexedNoConnect,D1				; If it’s one of the no-connect codes, 
+				Cmp.b	#indexedNoConnect,D1				; If it's one of the no-connect codes, 
 				Beq.s	@ClearIt							;	then zero-out the no-connect pRam byte.
 				Cmp.b	#extendedNoConnect,D1				; 	
 				Beq.s	@ClearIt							;
@@ -2024,15 +2024,15 @@ DAFBSetAltSense
 				Bra.s	@WriteIt
 				
 @TryLP			Cmp.b	#extendedSenseLP,D1					; Is it the GoldFish?
-				Bne.s	@Try19								; Nope, try 19”.
+				Bne.s	@Try19								; Nope, try 19'.
 				Move.b	#indexedSenseLP,D1					;
 				Bra.s	@WriteIt
 				
-@Try19			Cmp.b	#extendedSense19,D1					; Is it a 19”?
+@Try19			Cmp.b	#extendedSense19,D1					; Is it a 19'?
 				Bne.s	@WriteIt							; Nope, must be indexed.
 				Move.b	#indexedSense19,D1
 
-@WriteIt		Move.b	D1,SP_AltSense(Sp)					; Write out “index” to pRam record.
+@WriteIt		Move.b	D1,SP_AltSense(Sp)					; Write out 'index' to pRam record.
 				Ori.b	#spAltSenseValidMask,SP_AltSense(Sp) ; Validate it.
 				Bra.s	@WritePRam
 
@@ -2238,7 +2238,7 @@ DAFBGetEntries
 				Move.b	(A0,D1.w),D3						; Get clut count.
 						
 				Move.w	csCount(A2),D4						; Get the number of entries to fill,
-				Bmi.s	@GEErr								; 	and hike if it’s out of range.
+				Bmi.s	@GEErr								; 	and hike if it's out of range.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count > entries),
 				Bhi.s	@GEErr								;	then hike.
 				Move.w	D4,D2								; Otherwise, copy the count.
@@ -2250,8 +2250,8 @@ DAFBGetEntries
 				Add.w	csStart(A2),D2						; 	csStart thru csCount entries.
 			
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing here, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing here, so we'll continue the trend for now.
 
 				Move.l	(Sp),A0								; Get ptr to csTable.
 
@@ -2274,7 +2274,7 @@ DAFBGetEntries
 				Cmp.w	D3,D1								; If this position is out of range,
 				Bhi.s	@Until								; 	then go on.
 			
-				Btst	#UseTrans,D5						; If we’re not supposed to translate this index,
+				Btst	#UseTrans,D5						; If we're not supposed to translate this index,
 				Beq.s	@Index								;	then just go on.
 				Bsr		DAFBTrans5to8						; Otherwise, do translation.
 				
@@ -2437,7 +2437,7 @@ DAFBGetSyncOnGreen
 
 				With	DAFBVidPrivates
 				
-				Btst	#syncOnGreen,GFlags(A3)				; If we’re putting sync on green,
+				Btst	#syncOnGreen,GFlags(A3)				; If we're putting sync on green,
 				Bne.s	@IsOn								;	then return enabled state.
 				Move.b	#1,csMode(A2)						; Otherwise, return disabled.
 				Bra		DAFBStatGood
@@ -2475,7 +2475,7 @@ DAFBGet16bpp
 				Move.l	Sp,spResult(A0)						; Point to it.
 				_sReadPRamRec								; Get pRAM.
 				
-				Btst	#spHas16bppACDC,SP_Flags(Sp)		; If we don’t have an AC842A,
+				Btst	#spHas16bppACDC,SP_Flags(Sp)		; If we don't have an AC842A,
 				Beq.s	@BadExit							;	then just blow this off.
 				
 				Btst	#spAllow16bpp,SP_Flags(Sp)			; If we allowing 16bpp,
@@ -2523,7 +2523,7 @@ DAFBGetPageMode
 DAFBGetAltSense
 ;---------------------------------------------------------------------
 ;
-;	Returns the alternate senseID code that’s in use.  It
+;	Returns the alternate senseID code that's in use.  It
 ;		should be noted that we cannot disguish between PAL &
 ;		NTSC monitors & encoder boxes once DAFBSetAltSense has
 ;		been called (because both the monitor & box codes are
@@ -2573,11 +2573,11 @@ DAFBGetAltSense
 				Bra.s	@WriteExtended
 								
 @TryLP			Cmp.b	#indexedSenseLP,D0					; Is it the GoldFish code?
-				Bne.s	@Try19								; Nope, try 19”.
+				Bne.s	@Try19								; Nope, try 19'.
 				Move.b	#extendedSenseLP,D0
 				Bra.s	@WriteExtended
 				
-@Try19			Cmp.b	#indexedSense19,D0					; Is it the 19” code?
+@Try19			Cmp.b	#indexedSense19,D0					; Is it the 19' code?
 				Bne.s	@TryRdRGB							; No, try the Radius ColorTPD.
 				Move.b	#extendedSense19,D0
 				Bra.s	@WriteExtended
@@ -2654,12 +2654,12 @@ DAFBCalcScreenBaseAddr
 			Bset	#foneslot,spParamData+3(A0)				; Limit search to slot 0.
 			_GetTypeSRsrc									; Get the spsPointer.
 
-			Move.w	saveMode(A3),D0							; Get the ID of the mode we’re looking for.
-			Move.b	D0,spID(A0)								; Look for this mode’s parameters.
+			Move.w	saveMode(A3),D0							; Get the ID of the mode we're looking for.
+			Move.b	D0,spID(A0)								; Look for this mode's parameters.
 			_sFindStruct									; Get the spsPointer.
 			
 			Move.b	#mVidParams,spID(A0)					; Look for the mVidParams.
-			_sGetBlock										; Grap ’em
+			_sGetBlock										; Grap 'em
 			Move.l	spResult(A0),A0							; Save a pointer the mVidParams.
 			
 			Move.l	saveBaseAddr(A3),A1						; Get the active vRam base address.
@@ -2725,44 +2725,44 @@ DAFBChkMode
 			Blt.s	@ModeBad								; If the passed-in mode is < 0,
 															;	then punt.
 															
-			Btst	#IsMono,GFlags(A3)						; If we don’t have a mono-only display,
+			Btst	#IsMono,GFlags(A3)						; If we don't have a mono-only display,
 			Beq.s	@EndMonoChk								;	then just go on.
 			
-			Cmp.w	#FifthVidMode-FirstVidMode,D1			; If we’re not trying for a direct mode,
+			Cmp.w	#FifthVidMode-FirstVidMode,D1			; If we're not trying for a direct mode,
 			Blt.s	@EndMonoChk								;	then just go on.
 			Bra.s	@ModeBad								; Otherwise, punt.
 
 @EndMonoChk
 					
-; For DAFB, all the ‘a’ modes are even and all the ‘b’ modes are odd, except
-; for the convolved modes.  So, if we’re not a convolved mode, we just check
+; For DAFB, all the ‘a' modes are even and all the ‘b' modes are odd, except
+; for the convolved modes.  So, if we're not a convolved mode, we just check
 ; the oddness or evenness of the spID to determine whether the passed in
-; mode is OK.  If it’s a convolved mode, we will always be in the ‘b’ configuration,
+; mode is OK.  If it's a convolved mode, we will always be in the ‘b' configuration,
 ; but we just endcode that information into the vidParams table.
 ;
 			Move.l	saveVidPtr(A3),A0						; Get pointer to video params.
 			Adda.w	#DVPMaxModeBase,A0						; Point to MiscParams.
 			
 			Move.b	saveSlotID(A3),D0						; Get functional sRsrcID of display.					
-			Btst	#0,D0									; If the display is in ‘a’ mode,
+			Btst	#0,D0									; If the display is in ‘a' mode,
 			Beq.s	@MakeA									;	then say so.
-			Bra.s	@MakeB									; Otherwise, make it a ‘b’ mode.
+			Bra.s	@MakeB									; Otherwise, make it a ‘b' mode.
 			
-@MakeA		Moveq	#0,D0									; Say it’s an ‘a’ mode.
+@MakeA		Moveq	#0,D0									; Say it's an ‘a' mode.
 			Bra.s	@MaxMode
-@MakeB		Moveq	#1,D0									; Say it’s a  ‘b’ mode.
+@MakeB		Moveq	#1,D0									; Say it's a  ‘b' mode.
 				
 @MaxMode	Move.b	D0,D2									; Remember which mode we have.									
 			Move.b	(A0,D0),D0								; Get maximum mode for the current display.
-			Cmp.b	#FirstVidMode,D0						; If it’s already indexed,
+			Cmp.b	#FirstVidMode,D0						; If it's already indexed,
 			Blt.s	@ChkMode								;	then just check it now.
 			Sub.b	#FirstVidMode,D0						; Otherwise, make max mode indexed.
 			
-			Tst.b	wombatFlag(A3)							; If we aren’t on a Wombat,
+			Tst.b	wombatFlag(A3)							; If we aren't on a Wombat,
 			Beq.s	@16BppChk								;	then just go on.
-			Cmp.w	#indexedSenseRubik,saveMonID(A3)		; If we don’t have a Rubik,
+			Cmp.w	#indexedSenseRubik,saveMonID(A3)		; If we don't have a Rubik,
 			Bne.s	@16BppChk								;	then just go on.
-			Tst.b	hasLin16BppCLUT(A3)						; If we don’t have an Antelope,
+			Tst.b	hasLin16BppCLUT(A3)						; If we don't have an Antelope,
 			Beq.s	@16bppChk								;	then just go on.
 			Subq	#1,D0									; Otherwise, adjust max-mode value
 			Bra.s	@ChkMode								; 
@@ -2771,9 +2771,9 @@ DAFBChkMode
 			Bne.s	@ChkMode								;	then just go on.
 			Subq	#1,D0									; Otherwise, adjust max-mode value.			
 
-			Tst.b	D2										; If we’ve got a ‘b’ mode,
+			Tst.b	D2										; If we've got a ‘b' mode,
 			Bne.s	@ChkMode								;	then just go on.
-			Cmp.w	#indexedSenseRubik,saveMonID(A3)		; If we don’t have a Rubik, 
+			Cmp.w	#indexedSenseRubik,saveMonID(A3)		; If we don't have a Rubik, 
 			Bne.s	@ChkMode								;	then just go on.
 			Subq	#1,D0									; Otherwise, adjust max-mode value.
 			
@@ -2818,7 +2818,7 @@ DAFBWaitVSync
 			MOVE.L	saveDAFBBase(A3),A0						; Point to DAFB.
 			CLR.L	Swatch_ClrCrsrInt(A0) 					; Otherwise, clear the interrupt, just in case,
 															;   since the interrupt handler
-															;	can’t get called here.
+															;	can't get called here.
 			
 @WaitForVBL	MOVE.L	Swatch_IntStat(A0),D0					; Get the VBL status.
 			BTST	#dafbIntStatusBit,D0					; If VBL has NOT occurred,
@@ -2855,7 +2855,7 @@ DAFBSetDepth
 			Btst		#Has16bppSRsrc,GFlags(A3)			; If we have a 16bpp-capable sRsrc list
 			Bne.s		@IndexOK							;	then just go on.
 			
-			Cmp.w		#FifthVidMode-FirstVidMode,D2		; If we’re not trying to do 32bpp,
+			Cmp.w		#FifthVidMode-FirstVidMode,D2		; If we're not trying to do 32bpp,
 			Bne.s		@IndexOK							;	then just go on.
 			Addq		#1,D2								; Otherwise, skip the 16bpp params.
 			
@@ -2868,11 +2868,11 @@ DAFBSetDepth
 		
 ; Setup DAFB…				
 ;
-			Tst.b		wombatFlag(A3)						; If we’re on a Wombat,
+			Tst.b		wombatFlag(A3)						; If we're on a Wombat,
 			Bne.s		@SetupDAFB							;	then just go on.
-			Cmp.w		#indexedSenseRubik,saveMonID(A3)	; If don’t have a Rubik,
+			Cmp.w		#indexedSenseRubik,saveMonID(A3)	; If don't have a Rubik,
 			Bne.s		@SetupDAFB							;	then just go on.
-			Cmp.w		#FirstVidMode-FirstVidMode,D1		; If we’re doing 1bpp,
+			Cmp.w		#FirstVidMode-FirstVidMode,D1		; If we're doing 1bpp,
 			Beq.s		@Rubik1bpp							;	set the weird base address.
 			
 			Move.l		#8,DAFB_VidBaseHi(A2)				; 2,4,8,16,32bpp-Rubik are std.
@@ -2910,30 +2910,30 @@ DAFBSetDepth
 ;
 			Clr.l		ACDC_AddrReg(A2)					; Tell ACDC to use PCBR0.
 			DAFBWWrite	dbpACDCPCBR,ACDC_ConfigReg			; Set up ADCD config register.
-			Nop												; (DAFB’s address space is non-serial.)
+			Nop												; (DAFB's address space is non-serial.)
 			Tst.l		ACDC_AddrReg(A2)					; Read the addr reg to make it stick (AC842A).
 			
-			Btst		#has16bppSRsrc,GFlags(A3)			; If we don’t have a 16bpp-capable sRsrc,
+			Btst		#has16bppSRsrc,GFlags(A3)			; If we don't have a 16bpp-capable sRsrc,
 			Beq.s		@EndDAFB16bpp						;	then skip the 16bpp setup.
-			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we aren’t doing 16bpp, then
+			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we aren't doing 16bpp, then
 			Bne.s		@EndDAFB16bpp						;	just go on.
 			Move.l		#1,ACDC_AddrReg(A2)					; Tell ACDC to use PCBR1.
 			Move.l		#$C0,ACDC_ConfigReg(A2)				; Switch to 16bpp.
-			Nop												; (DAFB’s address space is non-serial.)
+			Nop												; (DAFB's address space is non-serial.)
 			Tst.l		ACDC_AddrReg(A2)					; Read the addr reg to make it stick (AC842A).
 			Clr.l		ACDC_AddrReg(A2)					; Tell ACDC to use PCBR0 again.
 
 @EndDAFB16bpp		
 			
-; AC842A adjustments.  There are a bunch of NOPs in the code below, and there’s a good reason for
-;	them.  It turns out that DAFB’s address space on the Quadras is non-serial, which means
+; AC842A adjustments.  There are a bunch of NOPs in the code below, and there's a good reason for
+;	them.  It turns out that DAFB's address space on the Quadras is non-serial, which means
 ;	the order of reads and writes is somewhat non-deterministic.  Unfortunately, in order
 ;	to program the AC842A, certain writes MUST precede certain reads, and vice-versa.  So,
-;	to get around this problem, I have strategically placed various NOPs below.  On ’040’s,
+;	to get around this problem, I have strategically placed various NOPs below.  On '040's,
 ;	the NOP actually has a function, which is to force pending writes to occur before
 ;	reads.  Cool, huh!
 ;
-			Tst.b		has16bppACDC(A3)					; If we don’t have an AC842A,
+			Tst.b		has16bppACDC(A3)					; If we don't have an AC842A,
 			Beq			@DoReset							;	then just go on.
 	
 			Move.l		DAFB_ClkCfg(A2),D0					; Get the current clock configuration.
@@ -2941,15 +2941,15 @@ DAFBSetDepth
 			Not.l		D2									; Invert it.
 			
 			Clr.l		ACDC_AddrReg(A2)					; Tell ACDC to use PCBR0.
-			Nop												; (DAFB’s address space is non-serial.)
+			Nop												; (DAFB's address space is non-serial.)
 			Move.l		ACDC_ConfigReg(A2),-(Sp)			; Save PCBR0 for later.
 			Move.l		#6,ACDC_ConfigReg(A2)				; Put ACDC into indirect mode.
 			Move.l		#1,ACDC_AddrReg(A2)					; Tell ACDC to use PCBR1.
-			Nop												; (DAFB’s address space is non-serial.)
+			Nop												; (DAFB's address space is non-serial.)
 			Move.l		ACDC_ConfigReg(A2),D0				; Save the current configuration.
 			Bfins		D2,D0{acdcPCS:1}					; Set up to select the right clock.
 			Move.l		D0,ACDC_ConfigReg(A2)				; Write PCBR1 back out with correct clock set.
-			Nop												; (DAFB’s address space is non-serial.)
+			Nop												; (DAFB's address space is non-serial.)
 			Tst.l		ACDC_AddrReg(A2)					; Read the addr reg to make it stick (AC842A).
 			Clr.l		ACDC_AddrReg(A2)					; Tell ACDC to use PCBR0 again.
 			Move.l		(Sp)+,ACDC_ConfigReg(A2)			; Restore PCBR0.
@@ -2964,10 +2964,10 @@ DAFBSetDepth
 			Move.l		D0,DAFB_ClkCfg(A2)					; 	…the programmable clock is used.
 
 @DoSwatchAdj
-			Tst.b		wombatFlag(A3)						; If we’re on a Wombat,
+			Tst.b		wombatFlag(A3)						; If we're on a Wombat,
 			Bne.s		@StrtAdj1							;	then just go on.
 			Move.l		saveVidPtr(A3),A0					; Pick up the vidParams pointer.
-			Cmp.b		dvpBadDepth(A0),D1					; If we’re not switching to a “bad” depth,
+			Cmp.b		dvpBadDepth(A0),D1					; If we're not switching to a 'bad' depth,
 			Bne.s		@StrtAdj1							;	then just go on.
 			DAFBWWrite	dbpTimingAdjAMD,Swatch_TimeAdj		; Adjust TimingAdj.
 			Move.l		Swatch_TimeAdj(A2),D0				; Get the adjusted value.
@@ -2979,7 +2979,7 @@ DAFBSetDepth
 @StrtAdj2	DAFBWWrite	dbpHALAMD,Swatch_HAL				;		 HAL,
 			DAFBWWrite	dbpHFPAMD,Swatch_HFP				; 		 HFP
 			
-			Tst.b		wombatFlag(A3)						; If we’re not on a Wombat,
+			Tst.b		wombatFlag(A3)						; If we're not on a Wombat,
 			Beq.s		@DoReset							;	then just go on
 			 
 			Moveq		#0,D0								; Clear this reg.
@@ -2993,7 +2993,7 @@ DAFBSetDepth
 			Move.w		(A0,D1*2),D0						; Pick up the appropriate value.
 			Add.l 		D0,Swatch_TimeAdj(A2)				; Add it in.
 			
-			Tst.b		hasLin16BppCLUT(A3)					; If we don’t have an Antelope,
+			Tst.b		hasLin16BppCLUT(A3)					; If we don't have an Antelope,
 			Beq.s		@EndSwatchAdj						;	then just go on.
 			
 			Lea			DAFBAntelopeTbl,A0					; Point to the table of Antelope adjustment values.
@@ -3003,9 +3003,9 @@ DAFBSetDepth
 			Add.l		D0,Swatch_HAL(A2)					;		 HAL,
 			Add.l		D0,Swatch_HFP(A2)					;		 HFP.
 			
-			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we aren’t doing 16bpp, then
+			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we aren't doing 16bpp, then
 			Bne.s		@EndSwatchAdj						;	just go on.
-			Cmp.w		#indexedSensePAL,saveMonID(A3)		; If we aren’t doing PAL FF/ST, then
+			Cmp.w		#indexedSensePAL,saveMonID(A3)		; If we aren't doing PAL FF/ST, then
 			Bne.s		@EndSwatchAdj						;	just go on.
 			Addi.l		#1,Swatch_TimeAdj(A2)				; Otherwise, adjust TimingAdj again.
 			
@@ -3014,7 +3014,7 @@ DAFBSetDepth
 ; Sync On Green… (Wombat only)
 ;
 			Move.l		DAFB_ClkCfg(A2),D0					; Get the current Clock config value.
-			Btst		#syncOnGreen,GFlags(A3)				; If we’re supposed to put sync on green,
+			Btst		#syncOnGreen,GFlags(A3)				; If we're supposed to put sync on green,
 			Bne.s		@EnableSyncOnGreen					;	then hop to it.
 			Moveq		#0,D1								; Otherwise, set up for disabling.
 			Bra.s		@SyncOnGreenCommon
@@ -3084,11 +3084,11 @@ DAFBGrayScreen
 @Skip32bpp	Moveq		#DirectBlack,D6						; Set black as direct.
 			
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCSTax,D3			; If this is an NTSC ST (non-convolved) display,
-			Beq.s		@StartGray							;	then don’t alter the baseAddr.
+			Beq.s		@StartGray							;	then don't alter the baseAddr.
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCSTbx,D3			; 
 			Beq.s		@StartGray							;
 			Cmp.b		#sRsrc_Vid_DAFB_PALSTax,D3			; If this is a PAL ST (non-convolved) display,
-			Beq.s		@StartGray							;	then don’t alter the baseAddr.
+			Beq.s		@StartGray							;	then don't alter the baseAddr.
 			Cmp.b		#sRsrc_Vid_DAFB_PALSTbx,D3			; 
 			Beq.s		@StartGray							;
 
@@ -3113,7 +3113,7 @@ DAFBGrayScreen
 			Btst		#has16bppSRsrc,GFlags(A3)			; If we have a 16bpp-capable sRsrc list
 			Bne.s		@IndexOK							;	then just go on.
 			
-			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we’re not trying to do 32bpp,
+			Cmp.w		#FifthVidMode-FirstVidMode,D1		; If we're not trying to do 32bpp,
 			Bne.s		@IndexOK							;	then just go on.
 			Addq		#1,D1								; Otherwise, skip the 16bpp params.
 			
@@ -3127,13 +3127,13 @@ DAFBGrayScreen
 ; Do top of screen…
 ;
 ;	Note that SC_BorderHeight is adjusted to work correctly for both bordered and non-bordered screens.
-;	Specifically, this constant is not “-1”-adjusted for Dbra, so we jump into the tail end of the Dbra
-;	loop and therefore have the “right” thing happen.  My head hurts now, and I hope yours does.
+;	Specifically, this constant is not '-1'-adjusted for Dbra, so we jump into the tail end of the Dbra
+;	loop and therefore have the 'right' thing happen.  My head hurts now, and I hope yours does.
 ;
-			Cmp.w		#indexedSenseRubik,saveMonID(A3)	; If we’re on a Rubik display, then
+			Cmp.w		#indexedSenseRubik,saveMonID(A3)	; If we're on a Rubik display, then
 			Beq.s		@FixRubik1bpp						;	see if wee need to do fix.
 			
-			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D3		; If we’re on an NTSC convolved display,
+			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D3		; If we're on an NTSC convolved display,
 			Beq.s		@FixNTSCPALTop						;	then apply fix.
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFF,D3
 			Beq.s		@FixNTSCPALTop
@@ -3142,7 +3142,7 @@ DAFBGrayScreen
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFFx,D3
 			Beq.s		@FixNTSCPALTop
 				
-			Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D3		; If we’re on a PAL convolved display,
+			Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D3		; If we're on a PAL convolved display,
 			Beq.s		@FixNTSCPALTop						;	then apply fix.
 			Cmp.b		#sRsrc_Vid_DAFB_PALconvFF,D3
 			Beq.s		@FixNTSCPALTop
@@ -3154,10 +3154,10 @@ DAFBGrayScreen
 				
 @FixRubik1bpp	
 			Move.w		#DAFB_512_RB,D0						; Fix first-line problem on Rubik displays.
-			Bra.s		@FixRow								; (Only really need to this in 1bpp mode, but doesn’t hurt others.)
+			Bra.s		@FixRow								; (Only really need to this in 1bpp mode, but doesn't hurt others.)
 	
 @FixNTSCPALTop	
-			Move.w		#DAFB_1024_RB,D0					; Create “false” first line on NTSC/PAL convolved displays.			
+			Move.w		#DAFB_1024_RB,D0					; Create 'false' first line on NTSC/PAL convolved displays.			
 
 @FixRow		Suba		D0,A2								; Point back one full line.								
 			Lsr.w		#2,D0								; Make loop counter long-word based.
@@ -3182,8 +3182,8 @@ DAFBGrayScreen
 				
 ; Do middle of screen…
 ;
-;	Unlike the top part, there is always a “middle.”  However, there might be a left and right side (when the
-;	border is appropriate), so the not “-1”-adjusted for Dbra comments that are listed above apply horizontally
+;	Unlike the top part, there is always a 'middle.'  However, there might be a left and right side (when the
+;	border is appropriate), so the not '-1'-adjusted for Dbra comments that are listed above apply horizontally
 ;	here.
 ;
 			Move.w		dvpNumRows(A0),D1					; get number of rows (-1) in middle of screen
@@ -3210,10 +3210,10 @@ DAFBGrayScreen
 			Bra.s		@DoDouble							;
 @ChkMode	Btst		#has16bppSRsrc,GFlags(A3)			; If we have a 16bpp-capable sRsrc,
 			Bne.s		@16bppSRsrc							;	then go there.
-			Cmp.w		#FifthVidMode-FirstVidMode,D7		; If we’re not doing 32bpp,
+			Cmp.w		#FifthVidMode-FirstVidMode,D7		; If we're not doing 32bpp,
 			Bne.s		@SkipDouble							; 	then really skip.
 			Bra.s		@DoDouble							; Otherwise, do second half.
-@16bppSRsrc	Cmp.w		#SixthVidMode-FirstVidMode,D7		; If we’re not doing 32bpp,
+@16bppSRsrc	Cmp.w		#SixthVidMode-FirstVidMode,D7		; If we're not doing 32bpp,
 			Bne.s		@SkipDouble							;	then really skip.
 @DoDouble	Move.l		D5,(A2)+							; Otherwise, do second half where applicable.
 @SkipDouble	Dbra		D0,@MidActFill_H		
@@ -3235,7 +3235,7 @@ DAFBGrayScreen
 ;
 			Move.w		SC_BorderHeight(A1),D1				; Get number of rows (not -1) to blast back on bottom.
 				
-			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D3		; If we’re on an NTSC convolved display,
+			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D3		; If we're on an NTSC convolved display,
 			Beq.s		@FixNTSCPALBot						;	then apply fix.
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFF,D3
 			Beq.s		@FixNTSCPALBot
@@ -3244,7 +3244,7 @@ DAFBGrayScreen
 			Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFFx,D3
 			Beq.s		@FixNTSCPALBot
 				
-			Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D3		; If we’re on a PAL convolved display,
+			Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D3		; If we're on a PAL convolved display,
 			Beq.s		@FixNTSCPALBot						;	then apply fix.
 			Cmp.b		#sRsrc_Vid_DAFB_PALconvFF,D3
 			Beq.s		@FixNTSCPALBot						;	then apply fix.
@@ -3256,7 +3256,7 @@ DAFBGrayScreen
 				
 @FixNTSCPALBot
 			Addq		#1,D1								; For convolved interlace displays, we need to
-															;	blacken the “false” bottom.
+															;	blacken the 'false' bottom.
 @BotStart		
 			Bra.s		@BotSecPrime						; 
 @BotSecFill_V
@@ -3329,7 +3329,7 @@ DAFBDirectCLUTSet
 			Bra.s		@Normbpp							; Otherwise, just do the normal stuff.
 
 @Chk16bpp	Move.w		saveMode(A3),D1						; Get the current mode.
-			Cmp.b		#FifthVidMode,D1					; If we’re not doing 16bpp,
+			Cmp.b		#FifthVidMode,D1					; If we're not doing 16bpp,
 			Bne.s		@Normbpp							;	then go on.
 
 			Bset		#UseTrans,D5						; Remember to do 5-to-8 bit translation stuff.
@@ -3344,10 +3344,10 @@ DAFBDirectCLUTSet
 			Moveq		#0,D1								; Init trans index (will be used as a long).
 			
 @Repeat		Move.w		D3,D1								; Get the current ramp/index value.
-			Btst		#UseTrans,D5						; If we don’t need to translate this value,
+			Btst		#UseTrans,D5						; If we don't need to translate this value,
 			Beq.s		@Index								; 	then just go on.
 			Bsr			DAFBTrans5to8						; Otherwise, translate from 5-bits to 8.
-			Tst.b		hasLin16BppCLUT(A3)					; If the CLUT/DAC itself doesn’t need translating,
+			Tst.b		hasLin16BppCLUT(A3)					; If the CLUT/DAC itself doesn't need translating,
 			Bne.s		@Index								;	then just go on.
 			Move.l		D1,ACDC_AddrReg-ACDC_DataReg(A0)	; Otherwise, use the 5-to-8 index for the Clut address.
 
@@ -3380,7 +3380,7 @@ DAFBBeginIH
 			Move.l	saveDAFBBase(A1),A0						; Point to the DAFB baseAddr.
 @WaitForClr	Clr.l	Swatch_ClrCrsrInt(A0) 					; Clear this interrupt.
 			Move.l	Swatch_IntStat(A0),D0					; Get its status.
-			Btst	#dafbIntStatusBit,D0					; If it’s not cleared yet,
+			Btst	#dafbIntStatusBit,D0					; If it's not cleared yet,
 			Bne.s	@WaitForClr								; 	then just spin.
 
 			Move.b	(Sp)+,D0								; Set up to swap back into previous addressing mode.

@@ -14,7 +14,7 @@
 ;		 <6>	 6/14/91	JL		Checked in official MPW 3.2Ä version. Temporarily lost
 ;									double-inclusion conditional; will be restored.
 ;		 <5>	 3/13/91	JL		Checking in MPW version. Removed precision code masks
-;		 <4>	 1/30/91	gbm		sab, #38: Change the Ôalready including this fileÕ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the Ôalready including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

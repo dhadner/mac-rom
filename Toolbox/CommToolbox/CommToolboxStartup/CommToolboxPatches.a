@@ -35,7 +35,7 @@
 ;		 <6>	 6/23/90	kaz		Added stubs for all our Gestalt selectors.
 ;		 <5>	 4/20/90	dba		change SetupPorts so it calls RegisterBuiltInPorts directly
 ;									instead of with a JSR; get rid of Gestalt dispatcher (useless on
-;									7.0) and use Gestalt’s native features
+;									7.0) and use Gestalt's native features
 ;		 <4>	 4/17/90	dba		make COMMTOOLBOXDISPATCHER into a patch directly instead of
 ;									using a JMP
 ;		 <3>	 4/11/90	BBH		• Added code to initialize CommToolbox global and call InitCRM

@@ -16,7 +16,7 @@
 ;	   <SM3>	 11/2/92	kc		Don't include SonicEqu.a.
 ;		<SM7>	10/22/92	CSS		Fix short branch to regular branch.
 ;		 <1>	 10/6/92	GDW		New location for ROMLink tool.
-;	   <SM5>	09-03-92	jmp		Clean-up some mistakes in <SM4>’s check-in comments.
+;	   <SM5>	09-03-92	jmp		Clean-up some mistakes in <SM4>'s check-in comments.
 ;	   <SM4>	09-03-92	jmp		(SWC,H18) DBLite once again uses a Time Manager task instead of
 ;									the GSC interrupt because we were seeing cursor breakup at the
 ;									top of the screen.
@@ -62,9 +62,9 @@
 ;		<H2>	11/26/91	jmp		Added VERY preliminary support for the GSC.
 ;		 <2>	 3/31/92	JSM		Rolled this file into Reality.
 ;		 <2>	 5/22/91	jmp		Code Review changes:  For consistency, did a StripAddress on
-;									VidOpen’s copy of the privates; eliminated the redundant clears
+;									VidOpen's copy of the privates; eliminated the redundant clears
 ;									and checks for the the driver copy of the fixed-entry clut; and
-;									replaced #0’s with #noErr’s where appropriate.
+;									replaced #0's with #noErr's where appropriate.
 ;		 <1>	 5/15/91	jmp		first checked in
 ;
 
@@ -103,7 +103,7 @@ kDBLiteVBLTime		EQU			-16626		; 60.14742 Hz using the microsecond timer.
 
 DBLiteVidPrivates	RECORD		0
 saveBaseAddr 		DS.L		1			; the screen base address
-saveGSCAddr			DS.L		1			; the ‘VDAC’ (GSC) base address
+saveGSCAddr			DS.L		1			; the ‘VDAC' (GSC) base address
 saveFixedCLUT		DS.L		1			; pointer to fixed-entry CLUT
 saveNumFixedEntries	DS.W		1			; number of entries in fixed CLUT (zero based)
 GFlags				DS.W		1			; flags word (hi-order byte, actually)
@@ -140,15 +140,15 @@ DBLiteVidTitle	DC.B	'.Display_Video_Apple_GSC'
 			
 ;
 ; According to CARDS & DRIVERS, video drivers are supposed to shut off
-;	video at close time “to avoid the persistence of the desktop
-;	during reboots.”  Since we can’t really turn DBlite’s video off,
+;	video at close time 'to avoid the persistence of the desktop
+;	during reboots.'  Since we can't really turn DBlite's video off,
 ;	we must simulate it by turning off the backlighting and writing
-;	white (because it’s an LCD screen) to the frame buffer.  Also,
+;	white (because it's an LCD screen) to the frame buffer.  Also,
 ;	because the video driver might be closed and then re-opened
 ;	prior to a reboot (AUX?), we must always re-open the backlight
-;	driver in the video driver’s open routine.  And, for this reason,
-;	when we close the backlight driver, we do NOT remove it’s DCE,
-;	and do we don’t dispose of the driver.  NOTE:  On the first
+;	driver in the video driver's open routine.  And, for this reason,
+;	when we close the backlight driver, we do NOT remove it's DCE,
+;	and do we don't dispose of the driver.  NOTE:  On the first
 ;	time thru (i.e., after startup or restart), the Backlight driver
 ;	will not have been installed yet, so our attempting to open it
 ;	in our open routine will fail, which is okay.  This may change
@@ -161,7 +161,7 @@ DBLiteBackLite	Dc.b	'.Backlight'			; Name of Backlight Driver for DBLite.
 			Align	2
 ;
 ; The following table is used by the GrayScreen routine for drawing the 50% gray pattern
-;	at the appropriate bit depth.  The “number of rows” entry is for future expansion --
+;	at the appropriate bit depth.  The 'number of rows' entry is for future expansion --
 ;	that is, if we ever need to distinguish between 640x400 vs. 640x480 panels.
 ;
 
@@ -225,14 +225,14 @@ DBLiteVidOpen
 			MOVEA.L	D0,A3
 			
 ;
-; Remember the VDAC (GSC) and framebuffer base addresses since they’re fairly painful to look up.
+; Remember the VDAC (GSC) and framebuffer base addresses since they're fairly painful to look up.
 ;
 			With	ProductInfo,DecoderInfo,VideoInfo
 			
 			Move.l	UnivInfoPtr,A0				; Get a pointer to the universal data.
 			Move.l	A0,-(Sp)					; Save it temporarily on the stack.
 			Adda.l	DecoderInfoPtr(A0),A0		; Point to the base address table.
-			Move.l	VDACAddr(A0),saveGSCAddr(A3) ; Save pointer to GSC (“VDAC”).
+			Move.l	VDACAddr(A0),saveGSCAddr(A3) ; Save pointer to GSC ('VDAC').
 			
 			Move.l	(Sp)+,A0					; Point back at the universal data.
 			Adda.l	VideoInfoPtr(A0),A0			; Point to the VideoInfo record.							<H3>
@@ -310,7 +310,7 @@ DBLiteVidClose
 			Move.l	A0,ioFileName(Sp)				; Load it into param block.
 			Movea.l	Sp,A0							; Get param block pointer into A0.
 			_Open									; Open driver to get the refNum.
-			Bne.s	@SkipClose						; If open fails, don’t try to close it.
+			Bne.s	@SkipClose						; If open fails, don't try to close it.
 			_Close									; Otherwise, close it.
 @SkipClose			
 			Adda.w	#ioQElSize,Sp					; Restore the stack.
@@ -322,13 +322,13 @@ DBLiteVidClose
 			
 ; Disable cursor interrupts.
 ;
-			MOVE.W	#-1,IntDisableFlag(A3)			; set this word to “disable” interrupts
+			MOVE.W	#-1,IntDisableFlag(A3)			; set this word to 'disable' interrupts
 			LEA		TTask(A3),A0					; get the time manager task block
 			_RmvTime								; remove this element from the queue
 			
 ; Disable fixed-clut table if necessary.
 ;
-			Move.l	saveFixedCLUT(A3),D0			; If we haven’t loaded our fixed-entry CLUT,
+			Move.l	saveFixedCLUT(A3),D0			; If we haven't loaded our fixed-entry CLUT,
 			Beq.s	@EndFixed						;	then just go on.
 			Move.l	D0,A0							; Otherwise, dispose of it.
 			_DisposPtr
@@ -463,10 +463,10 @@ DBLiteCSCommon
 			MOVEM.L	(SP)+,A0-A3						; restore exit registers.
 
 			Move.w	csCode(A0),D1					; Get the routine selector.
-			Cmpi.w	#cscSetMode,D1					; If it’s the SetMode routine,
-			Beq.s	@EndBlnkChk						;	then don’t unblank the display.
-			Cmpi.w	#cscSleepWake,D1				; If it’s the Sleep/Wake routine,
-			Beq.s	@EndBlnkChk						;	then don’t unblank the display.
+			Cmpi.w	#cscSetMode,D1					; If it's the SetMode routine,
+			Beq.s	@EndBlnkChk						;	then don't unblank the display.
+			Cmpi.w	#cscSleepWake,D1				; If it's the Sleep/Wake routine,
+			Beq.s	@EndBlnkChk						;	then don't unblank the display.
 			Bclr	#InBlanking,GFlags(A3)			; Say that we want the screen unblanked now.
 			Bsr		DBLiteBlankCtl					; And do it.
 @EndBlnkChk
@@ -535,12 +535,12 @@ DBLiteSetVidMode
 			Move.w	D2,saveMode(A3)					; remember requested mode
 			Bsr		DBLiteSetDepth					; switch depths
 			
-			Move.l	saveFixedCLUT(A3),D0			; If we’ve haven’t loaded the fixed-entry CLUT,
+			Move.l	saveFixedCLUT(A3),D0			; If we've haven't loaded the fixed-entry CLUT,
 			Beq.s	@ModeOK							;	just go on.
 			
 			Move.l	D0,A0							; Otherwise, set up to throw it away.
 			_DisposPtr								; Throw it away…
-			Clr.l	saveFixedCLUT(A3)				; …and remember that it’s gone.
+			Clr.l	saveFixedCLUT(A3)				; …and remember that it's gone.
 			
 @ModeOK		Move.l	saveBaseAddr(A3),csBaseAddr(A2)	; return the base address
 			MOVEQ	#NoErr,D0
@@ -550,13 +550,13 @@ DBLiteSetVidMode
 DBLiteSetEntries
 ;---------------------------------------------------------------------
 ;
-;	Since DBLite has no color table, there’s nothing to do here.  We
-;	don’t do this in the dispatcher above so that the BlankShading
+;	Since DBLite has no color table, there's nothing to do here.  We
+;	don't do this in the dispatcher above so that the BlankShading
 ;	works with MacsBug around.
 ;
 ;---------------------------------------------------------------------
 			
-			Moveq	#controlErr,D0					; Say that we don’t do entries.
+			Moveq	#controlErr,D0					; Say that we don't do entries.
 			Rts										; And vamoose.
 
 DBLiteSetGamma
@@ -623,25 +623,25 @@ DBLiteSetInterrupt
 ;---------------------------------------------------------------------
 			
 			
-			Tst.b	csMode(A2)						; Check to see which way we’re going.
+			Tst.b	csMode(A2)						; Check to see which way we're going.
 			Bne.s	DBLiteDisableVGuts				; If non-zero, disabling.
 			Bra.s	DBLiteEnableVGuts				; Otherwise, enabling.
 
 DBLiteDisableVGuts
-			Move.w	#-1,IntDisableFlag(A3)			; Remember that we’re disabling things.
+			Move.w	#-1,IntDisableFlag(A3)			; Remember that we're disabling things.
 			MOVEQ	#NoErr,D0
 			RTS
 
 	
 DBLiteEnableVGuts	
-			Clr.w	IntDisableFlag(A3)				; Remember that we’re enabling things.
+			Clr.w	IntDisableFlag(A3)				; Remember that we're enabling things.
 			MOVE.L	A1,-(SP)						; jPrimeTime trashes A1
 			LEA		TTask(A3),A0					; get time task block in A0
 			MOVE.L	#kDBLiteVBLTime,D0				; delay for about 1/60th of a second
 			MOVE.L	jPrimeTime,A1					; point straight at the Time Manager dispatch vector
 			JSR		(A1)							; start the delay going
 			MOVEA.L	(SP)+,A1						;
-			Moveq	#NoErr,D0						; say we’re okay
+			Moveq	#NoErr,D0						; say we're okay
 			RTS										; return home					
 
 
@@ -672,23 +672,23 @@ DBLiteSetSleepWake
 
 ; Check to see if we even need to be here or not…
 ;
-			Moveq	#controlErr,D0					; Assume we’ll fail for now.
+			Moveq	#controlErr,D0					; Assume we'll fail for now.
 			
 			Tst.b	csMode(A2)						; If the request was to sleep, then
-			Beq.s	@ChkSleep						;	make sure it’s okay.
+			Beq.s	@ChkSleep						;	make sure it's okay.
 			
-			Btst	#IsSleeping,GFlags(A3)			; Otherwise, if we’re not already awake, then
+			Btst	#IsSleeping,GFlags(A3)			; Otherwise, if we're not already awake, then
 			Bne.s	@DoWakeup						;	go do the wakeup code.
-			Rts										; Otherwise, something’s wrong.
+			Rts										; Otherwise, something's wrong.
 			
 @DoWakeup	Bsr		DBLiteRestoreState				; Go restore the state of the world.
 			Bsr		DBLiteEnableVGuts				; Turn cursor interrupts back on.
 			Moveq	#noErr,D0						; And return…
 			Rts										; …happy.
 			
-@ChkSleep	Btst	#IsSleeping,GFlags(A3)			; If we’re not already sleeping, then
+@ChkSleep	Btst	#IsSleeping,GFlags(A3)			; If we're not already sleeping, then
 			Beq.s	@DoSleep						; 	go do the sleep code.
-			Rts										; Otherwise, something’s wrong.
+			Rts										; Otherwise, something's wrong.
 			
 @DoSleep	Bsr		DBLiteDisableVGuts				; Turn off cursor interrupts for good measure.
 			Bsr		DBLiteSaveState					; Save the state of the world.
@@ -735,16 +735,16 @@ DBLiteGetEntries
 ;			     A2 = pointer to csParams
 ;				 A3 = pointer to privates
 ;
-;	For DBLite the color table is fixed.  So, we’ll always return good values
+;	For DBLite the color table is fixed.  So, we'll always return good values
 ;	as long as there is a reasonable looking color table around.
 ;
-;	Idea:	If we’re in indexed mode, we’ll cycle thru the input
-;			table.  While doing this, we’ll ignore all entries
+;	Idea:	If we're in indexed mode, we'll cycle thru the input
+;			table.  While doing this, we'll ignore all entries
 ;			whose value fields are out of range.  For entries
-;			whose value field are in range, we’ll return the
+;			whose value field are in range, we'll return the
 ;			appropriate rgb fields.
 ;
-;			If we’re in sequential mode, we just need to write out
+;			If we're in sequential mode, we just need to write out
 ;			the number of entries we know about.
 ;
 ;---------------------------------------------------------------------
@@ -755,7 +755,7 @@ DBLiteGetEntries
 			_StripAddress							; Otherwise, make table pointer 32-bit clean
 			MOVE.L	D0,D3							;  and save it for later
 
-			Tst.l	saveFixedClut(A3)				; If we’ve already loaded the CLUT for this depth,
+			Tst.l	saveFixedClut(A3)				; If we've already loaded the CLUT for this depth,
 			Bne.s	@GEStart						;	then just go on.
 
 			With	SpBlock
@@ -763,7 +763,7 @@ DBLiteGetEntries
 			LEA		-spBlockSize(SP),SP				; Make an SpBlock on the stack and
 			Move.l	Sp,A0							;	get a pointer to it into A0.
 			
-			Clr.b	spSlot(A0)						; We’re always in slot 0.
+			Clr.b	spSlot(A0)						; We're always in slot 0.
 			Move.b	dCtlSlotID(A1),spID(A0)			; Get the spID of the video sRsrc.
 			Clr.b	spExtDev(A0)					; 
 			_sRsrcInfo								; Try to get the spsPointer.
@@ -774,11 +774,11 @@ DBLiteGetEntries
 			Move.b	#FirstVidMode,D0				; Otherwise, assume 1bpp (non-GSC case).
 			
 @ModeOK		Move.b	D0,spID(A0)						; Look for our mode entry.
-			_sFindStruct							; If it’s not there,
+			_sFindStruct							; If it's not there,
 			Bne.s	@GESlotErr						;	then quit.
 			
 			Move.b	#mTable,spID(A0)				; Get our fixed-entry CLUT.
-			_sGetBlock								; If it’s not there,
+			_sGetBlock								; If it's not there,
 			Bne.s	@GESlotErr						; 	then quit.
 			
 			Move.l	spResult(A0),A0					; Get a pointer to our fixed-entry CLUT.
@@ -800,10 +800,10 @@ DBLiteGetEntries
 			Move.w	saveNumFixedEntries(A3),D3		; Get number of entries to check against.
 			
 			Move.w	csCount(A2),D4					; Get the number of entries to change,
-			Bmi		@GEDone							; 	and hike if it’s out of range.
+			Bmi		@GEDone							; 	and hike if it's out of range.
 			Cmp.w	D3,D4							; If D4-D3 > 0 (count - range > 0),
 			Bhi		@GEDone							;	then hike.
-			Tst.w	csStart(A2)						; If we’re doing indexed entries (-1),
+			Tst.w	csStart(A2)						; If we're doing indexed entries (-1),
 			Bmi.s	@skipStartChk					;	then just go on.
 			Add.w	csStart(A2),D4					; Adjust count for starting position.
 			Cmp.w	D3,D4							; If D4-D3 > 0 (count - range > 0),
@@ -817,8 +817,8 @@ DBLiteGetEntries
 			Beq.s	@GECom							; 	then go on.
 
 ;	The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing, so we'll continue the trend for now.
 
 			Move.w	D2,D1							; Get count.
 
@@ -1028,12 +1028,12 @@ DBLiteSetDepth
 			MOVEQ			#7,D2					; mask off the display ID,								<H10>
 			AND.B			GSCPanelID(A0),D2		;														<H10>
 			
-			Cmpi.b			#5,D2					; If this isn’t the Dart FSTN panel,
+			Cmpi.b			#5,D2					; If this isn't the Dart FSTN panel,
 			Bne.s			@NotDartFSTN			;	then just go on.
 			Move.b			@polyAdj(D1),GSCPolyAdj(A0) ; Otherwise, set the m and n values.
 			Bra.s			@NotTFT					; Skip TFT code.
 @NotDartFSTN
-			Cmpi.b			#1,D2					; If this isn’t the TFT display,
+			Cmpi.b			#1,D2					; If this isn't the TFT display,
 			Bne.s			@NotTFT					;	then just go on.
 			Move.b			#$0B,GSCDiag2(A0)		; Invert VRAM data.
 			Clr.b			GSCPanelAdj(A0)			; Invert LCD.
@@ -1131,7 +1131,7 @@ DBLiteSaveState
 ;
 
 				
-				Bset	#IsSleeping,GFlags(A3)			; Remember that we’ve been asked to sleep.
+				Bset	#IsSleeping,GFlags(A3)			; Remember that we've been asked to sleep.
 				
 				Movem.l	D0-D1/A0/A4,-(Sp)				; Save some working registers.
 				
@@ -1189,7 +1189,7 @@ DBLiteRestoreState
 				Movea.l	saveGSCAddr(A3),A0				; Repoint to the GSC base address.
 				MOVEQ	#7,D1							; Panel IDs are only 3-bits wide.
 				And.b	GSCPanelID(A0),D1				; Get the PanelID.
-				Cmpi.b	#1,D1							; If this isn’t the TFT display,
+				Cmpi.b	#1,D1							; If this isn't the TFT display,
 				Bne.s	@NotTFT							;	then just go on.
 				Move.b	#$0B,GSCDiag2(A0)				; Otherwise, invert VRAM data.
 				Bra.s	@EndRegs						;
@@ -1204,7 +1204,7 @@ DBLiteRestoreState
 				Bsr		DBLiteGrayScreen				; Gray the screen.
 				
 				Movem.l	(Sp)+,D0-D1/A0/A4				; Restore the working registers.
-				Bclr	#IsSleeping,GFlags(A3)			; Remember that we’re no longer asleep.
+				Bclr	#IsSleeping,GFlags(A3)			; Remember that we're no longer asleep.
 				Rts
 
 DBLiteBlankCtl			
@@ -1214,11 +1214,11 @@ DBLiteBlankCtl
 ;		BEFORE calling SetMode when it is switching depths.  Because
 ;		we want to simulate the effect of a CLUT (by having a solid
 ;		gray during depth switches), we use the blankshade register.
-;		Normally, we’d couple this with a call to GrayScreen, but
-;		we can’t because of the order in which MacsBug calls SetMode
+;		Normally, we'd couple this with a call to GrayScreen, but
+;		we can't because of the order in which MacsBug calls SetMode
 ;		and redraws the screen.  To get around this problem, we
 ;		temporarily say we have a CLUT, which forces MacsBug
-;		to call us back (with SetEntries), and that’s where we
+;		to call us back (with SetEntries), and that's where we
 ;		unblank the screen and re-assert ourselves as a Fixed
 ;		gDevice.  Ugh!
 ;
@@ -1231,29 +1231,29 @@ DBLiteBlankCtl
 				Movem.l	D0-D1/A0,-(Sp)					; Save some working registers.
 				
 				Move.l	Devicelist,D0					; If the DeviceList Handle is nil, then
-				Beq.s	@Done							;	we can’t do anything useful here.
+				Beq.s	@Done							;	we can't do anything useful here.
 				
 				Movea.l	saveGSCAddr(A3),A0				; Point to the GSC base address.
-				Btst	#InBlanking,GFlags(A3)			; If we’re supposed to be blanking the LCD,
+				Btst	#InBlanking,GFlags(A3)			; If we're supposed to be blanking the LCD,
 				Bne.s	@BlankIt						;	then do it.
 				Bset	#GSCBlankCtl,GSCGrayScale(A0)	; Otherwise, unblank it.
 				Bra.s	@EndBlank						; Move along.
 @BlankIt		Bclr	#GSCBlankCtl,GSCGrayScale(A0)	; Blank the screen.
 @EndBlank
-				Move.w	dCtlRefNum(A1),D1				; Get the driver’s refNum.
+				Move.w	dCtlRefNum(A1),D1				; Get the driver's refNum.
 @DevLoop		Movea.l	D0,A0							; Get Handle to gDevice.
 				Movea.l	(A0),A0							; Make it a pointer.
-				Cmp.w	gdRefNum(A0),D1					; If this isn’t our gDevice,
+				Cmp.w	gdRefNum(A0),D1					; If this isn't our gDevice,
 				Bne.s	@NextGD							;	then just go on.
 				
-				Btst	#InBlanking,GFlags(A3)			; If we’ve blanked the screen, then
-				Bne.s	@ClutIt							;	temporarily act like we’ve got a CLUT.
+				Btst	#InBlanking,GFlags(A3)			; If we've blanked the screen, then
+				Bne.s	@ClutIt							;	temporarily act like we've got a CLUT.
 				Move.w	#fixedType,gdType(A0)			; Otherwise, put things back.
 				Bra.s	@Done							; Vamoose.
 @ClutIt			Move.w	#clutType,gdType(A0)			; MacsBug is happier this way.
 				Bra.s	@Done							; Vamoose.
 				
-@NextGD			Move.l	gdNextGD(A0),D0					; If the next gDevice’s Handle isn’t nil,
+@NextGD			Move.l	gdNextGD(A0),D0					; If the next gDevice's Handle isn't nil,
 				Bne.s	@DevLoop						; 	then loop until done
 
 @Done			Movem.l	(Sp)+,D0-D1/A0					; Restore working registers.
@@ -1275,9 +1275,9 @@ TimeManagerIH										;																	<H6> Thru next <H6>
 				JSR		(A0)						; with slot # in D0
 				MOVEA.L	(SP)+,A1					; restore A1 (ptr to TTask block)									<3> djw
 				
-				TST.W	tmXQSize(A1)				; test the flag word to see if “interrupts” are on
+				TST.W	tmXQSize(A1)				; test the flag word to see if 'interrupts' are on
 													;	WARNING! - this field must be immediately after the TTask elem
-				BNE.S	@Done						; if ≠ 0, then “interrupts” are disabled, so don't reprime
+				BNE.S	@Done						; if ≠ 0, then 'interrupts' are disabled, so don't reprime
 				
 				MOVEA.L	A1,A0						; get time task block addr in A0									<3> djw
 				MOVE.L	#kDBLiteVBLTime,D0			; delay for about 1/60th of a second

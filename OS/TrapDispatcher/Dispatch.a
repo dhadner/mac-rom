@@ -73,7 +73,7 @@
 ;									numTrapMask to strip the leading bits $A800, we later use BCLRs
 ;									to get rid of the $0600 bits in the OS trap words--just a little
 ;									nit. Change SetTrapAddress to flush the cache, based on David
-;									Goldsmith’s suggestion that many apps (and formerly MacApp)
+;									Goldsmith's suggestion that many apps (and formerly MacApp)
 ;									would indiscreetly blast some code into the system heap
 ;									(possibly an absolute jump elsewhere) and _SetTrapAddress. To
 ;									accommodate non-020 systems we leave the cache-clearing code in

@@ -57,7 +57,7 @@
 ;									conditionalized definitions of SysVers and Scripts604. Started
 ;									organizing for ROMification of 7.0 extensions. Included
 ;									VisibleLength in main proc and exported label; included
-;									FindScriptRun if it’s here. Renamed Roman versions of GetScript
+;									FindScriptRun if it's here. Renamed Roman versions of GetScript
 ;									and SetScript to rGetScript, rSetScript.
 ;		 <9>	 3/27/90	PKE		Missed a couple of places where I should use romanKeepSelector
 ;									conditional.

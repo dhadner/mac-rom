@@ -36,7 +36,7 @@
 ;									more precise and descriptive.
 ;		<43>	 6/14/92	KST		Changed utaRemoveDocumentID to return the number of TSM
 ;									documents remained open by the application.
-;		<42>	 6/10/92	YK		Oops, don’t do last minutes change.
+;		<42>	 6/10/92	YK		Oops, don't do last minutes change.
 ;		<41>	 6/10/92	YK		#1031298 <JH>: Add OldJapaneseInputMethodExists.  It returns
 ;									True if the specified old-input method exists.
 ;		<40>	 6/10/92	KST		#1031142,1030881 <JH>: Since we removed the docID param from

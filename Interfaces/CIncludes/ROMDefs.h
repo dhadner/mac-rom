@@ -67,7 +67,7 @@ enum {
  sRsrcFlags = 7,						/*sResource Flags*/
  sRsrcHWDevId = 8,						/*Hardware Device Id*/
  minorBaseOS = 10,						/*Offset to base of sResource in minor space.*/
- minorLength = 11,						/*Length of sResource’s address space in standard slot space.*/
+ minorLength = 11,						/*Length of sResource's address space in standard slot space.*/
  majorBaseOS = 12,						/*Offset to base of sResource in Major space.*/
  majorLength = 13,						/*Length of sResource in super slot space.*/
  sRsrccicn = 15,						/*Color icon*/

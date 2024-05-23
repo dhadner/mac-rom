@@ -16,14 +16,14 @@
 ;	   <SM4>	 6/20/92	PN		Roll in patchIIciROM.a. Fix the NewSCSIBlind call
 ;	   <SM3>	 5/17/92	kc		Include PowerPrivEqu.a. The powerCntl equ was moved inside the
 ;									pmCommandRec record.
-;		 <6>	  5/1/92	JSM		Get rid of conditionals: don’t use not forROM, this file is only
-;									used in ROM builds, don’t use onMacXX style conditionals. This
+;		 <6>	  5/1/92	JSM		Get rid of conditionals: don't use not forROM, this file is only
+;									used in ROM builds, don't use onMacXX style conditionals. This
 ;									file now has no conditionals.
 ;		 <5>	12/27/91	RB		Rolled in Terror changes.  Cleaned up a bit.
 ;		 <4>	 5/16/90	MSH		Added hasPowerControls to hcmac conditional.
 ;		 <3>	 1/18/90	JWK		Needed for Zone5 - Fix SCSIStat to avoid accessing the SCSIDMA
 ;									chip while DMAing.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.3>	 9/11/89	jwk		NEEDED FOR F19 - Added support for Mac SE and Mac Plus
 ;	   <1.2>	 7/15/89	jwk		NEEDED FOR AURORA - Added code review changes, routines for F19
 ;	   <1.1>	 6/29/89	jwk		NEEDED FOR AURORA - Fixed Tape Drive and SlowWrite timing bugs
@@ -167,7 +167,10 @@
 ;	All Rights Reserved.
 ;
 ;-----------------------------------------------------------
-
+.struct myrecord
+	.field one,1
+	.field two,1
+.endstruct
 			BLANKS		ON
 			STRING		ASIS
 			PRINT		OFF
@@ -180,6 +183,7 @@
 			INCLUDE 	'SCSIPriv.a'
 
 			PRINT		ON
+
 
 SCSIOld		PROC		EXPORT	
 

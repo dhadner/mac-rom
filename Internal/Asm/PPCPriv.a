@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <7>	 8/22/91	JSM		Clean up header.
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <5>	10/24/90	EMT		Add some more internal calls
 ;		 <4>	10/15/90	JSM		<stb> Add ppcIdleCmd.

@@ -1,7 +1,7 @@
 /*
 	File:		VideoDrivers.r
 
-	Contains:	The includes to build a giant “.rsrc” file.
+	Contains:	The includes to build a giant '.rsrc' file.
 
 	Copyright:	© 1989-1993 by Apple Computer, Inc., all rights reserved.
 

@@ -36,17 +36,17 @@
 ;									BivBox jump table.
 ;	   <SM9>	12/23/92	RC		Fixed Branch Bug
 ;	   <SM8>	12/23/92	RC		Added support for Smurf on Wombat
-;	   <SM7>	10-29-92	jmp		(jmp,H72) Permanently enabled the “smart” PageMode for the
+;	   <SM7>	10-29-92	jmp		(jmp,H72) Permanently enabled the 'smart' PageMode for the
 ;									DAFB-based CPUs.
 ;									(jmp,H71) Added support for 33 MHz WLCD.
 ;	   <SM6>	10/28/92	SWC		Changed VideoEqu.a->Video.a and ShutdownEqu.a->Shutdown.a.
 ;	   <SM5>	10-26-92	jmp		Fixed the problems causing the assembler warnings showing up
-;									from HY’s <SM4> check-in.
+;									from HY's <SM4> check-in.
 ;	   <SM4>	10-25-92	HY		Add support for BoxMacLCII boxflag.
 ;	   <SM3>	10-13-92	jmp		Fixed a typo for the last check-in.
 ;	   <SM2>	10-13-92	jmp		(jmp,H70) Optimized the no-connect cases in the DAFB monitor
 ;									sensing & 'RNIN' code to NOT do table walks when we really
-;									“know” that nothing is connected.
+;									'know' that nothing is connected.
 ;	   <SM1>	10/06/92	GDW		New location for ROMLink tool.
 ; ———————————————————————————————————————————————————————————————————————————————————————
 ;	  Pre-ROMLink comments begin here.
@@ -64,9 +64,9 @@
 ;									bits/pixel instead of 2 for DBLite's FSTN display.
 ;									(jmp,H65) Added initial support for the AT&T CLUT/DAC (Antelope)
 ;									to be used in Wombat/WLCD systems.
-;									(jmp,H64) Conditionalized (with “forWombat”) the brain-dead
+;									(jmp,H64) Conditionalized (with 'forWombat') the brain-dead
 ;									parts of the NSC-8534 (the dot clock in Wombat/WLCD)
-;									initialization code, as it shouldn’t be needed once the final
+;									initialization code, as it shouldn't be needed once the final
 ;									parts are in place.
 ;									(SWC,H63) Tweaked one register in the GSC initialization, and
 ;									disabled GSC VBL interrupts (we'll use a Time Manager task
@@ -91,9 +91,9 @@
 ;									then Prune All resources and escape.
 ;									(jmp,H54) Changed the Wombat/WLCD dot-clock initialization code
 ;									to be more Cub-card friendly.
-;									(jmp,H53) Added a temporary “forRISC” conditional to mal-align
+;									(jmp,H53) Added a temporary 'forRISC' conditional to mal-align
 ;									the stack frame, which, for some reason, works correctly on the
-;									Cub card, but an aligned stack doesn’t.
+;									Cub card, but an aligned stack doesn't.
 ;									(jmp,H52) Added in support to make the DAFB-related part of
 ;									PrimaryInit
 ;									work correctly among Spike, Eclipse, Zydeco, and all Wombat/WLCD
@@ -109,7 +109,7 @@
 ;									restructuring/optimizations; also, added a sync-on-green switch
 ;									that maintains the sync-on-green state when switching among the
 ;									AltSense sense codes.
-;									(jmp,H47) WombatDAFBs are not tied to the ’040 reset
+;									(jmp,H47) WombatDAFBs are not tied to the '040 reset
 ;									instruction, so we
 ;									need to reset the WombatDAFB registers every time we boot (for
 ;									the other DAFB-based CPUs, this is not necessary).
@@ -160,12 +160,12 @@
 ;	   <H26>	02/19/92	jmp		Changed the remaining Condor references to Wombat.
 ;	   <H25>	 2/17/92	SAM		Changed boxCondor to boxWombat.
 ;	   <H24>	01/27/92	jmp		(jmp,Z31) The no-connect path now no longer supports the
-;									alternate sense byte.  Now, only type-6’s trigger it.
+;									alternate sense byte.  Now, only type-6's trigger it.
 ;	   <H23>	01/27/92	jmp		(jmp,Z30) Fixed a problem I introduced in <Z29> where I would
 ;									cause Zydeco to hang if nothing was plugged into built-in video.
-;	   <H22>	01/22/92	jmp		(jmp,Z29) Updated the original “No Connect” code to take full
+;	   <H22>	01/22/92	jmp		(jmp,Z29) Updated the original 'No Connect' code to take full
 ;									advantage of the newly-defined extended sense codes.  Changed
-;									the name from “NoConnect” to “AltSense.”
+;									the name from 'NoConnect' to 'AltSense.'
 ;	   <H21>	 1/16/92	SWC		Removed a bit too much extraneous code from DBLiteInit in <H19>.
 ;	   <H20>	 1/14/92	SWC		Updated boxFlag labels to use shipping product names.
 ;	   <H19>	 1/13/92	SWC		Removed code to test for GSC in DB-Lite's primary init since all
@@ -184,7 +184,7 @@
 ;	   <H13>	12/10/91	HJR		Changed adda.w to adda.l since value was sign extended into a
 ;									negative number.  Fixed some indirection in Universal tables and
 ;									PanelAdjust in DBLite for proper Black on White.
-;	   <H12>	11/26/91	jmp		Added VERY preliminary support for DB-Lite’s GSC.
+;	   <H12>	11/26/91	jmp		Added VERY preliminary support for DB-Lite's GSC.
 ;	   <H11>	11/25/91	jmp		Updated the DAFB PrimaryInit to look in the board sRsrc for the
 ;									vidParams instead of the functional sRsrc.
 ;	   <H10>	11/12/91	jmp		Added a table of DAFB default modes.  These are used to
@@ -192,7 +192,7 @@
 ;		<H9>	11/06/91	jmp		Instead of using the extended-sense monIDs for DAFB, I now just
 ;									use the indexedSense monIDs so that every ID is unique.  This
 ;									works out better for the no-connect code.
-;		<H8>	11/05/91	jmp		Added support for 19” Displays for DAFB-based CPUs.
+;		<H8>	11/05/91	jmp		Added support for 19' Displays for DAFB-based CPUs.
 ;		<H7>	11/01/91	jmp		Added minimal support for doing both grayscale and
 ;									black/white-only LCD displays on DBLite.  For now, only the
 ;									black/white entry is applicable.
@@ -205,14 +205,14 @@
 ;									ClockPRAMPtr entry.
 ;		<H3>	10/24/91	jmp		Updating to Zydeco-TERROR version.
 ;		<H2>	10/22/91	SWC		Changed MSCExists to MSCChipBit since MSC is an RBV variant.
-;	   <SM5>	  4/7/92	JSM		Don’t define boxMacIIci and boxMacIIfx here anymore. This
+;	   <SM5>	  4/7/92	JSM		Don't define boxMacIIci and boxMacIIfx here anymore. This
 ;									reflects the version checked into Reality.
 ;	   <SM4>	 3/31/92	JSM		Rolled this file into Reality.
 ;	   <SM3>	 2/14/92	kc		Remove "If isUniversal Then".
 ;	   <SM2>	 2/11/92	RB		Got rid of damn warnings. Changed boxFlags used.
-;		<29>	01/20/92	jmp		Updated the original “No Connect” code to take full advantage of
+;		<29>	01/20/92	jmp		Updated the original 'No Connect' code to take full advantage of
 ;									the newly-defined extended sense codes.  Changed the name from
-;									“NoConnect” to “AltSense.”
+;									'NoConnect' to 'AltSense.'
 ;		<28>	01/09/92	jmp		Did some code clean-up, and added rudimentary support for the
 ;									newly-defined extended sense codes.
 ;		<27>	12/17/91	jmp		Update the UnivAdjust code in the DAFB section to reflect the
@@ -223,7 +223,7 @@
 ;		<25>	11/06/91	jmp		Instead of using the extended-sense monIDs for DAFB, I now just
 ;									use the indexedSense monIDs so that every ID is unique.  This
 ;									works out better for the no-connect code.
-;		<24>	11/05/91	jmp		Added 19” Display support for DAFB-based CPUs.
+;		<24>	11/05/91	jmp		Added 19' Display support for DAFB-based CPUs.
 ;		<23>	10/31/91	jmp		Marketing (Ross Ely) finally admitted that defaulting to the
 ;									6500°K gamma table for Vesuvio & GoldFish was a bad idea, so I
 ;									am now defaulting to the 9300°K gamma table on those displays.
@@ -240,13 +240,13 @@
 ;		<19>	 8/26/91	jmp		Added support for a Spike33-type box.
 ;		<18>	 8/21/91	jmp		Changed all the Eclipse33 references to Zydeco.
 ;		<17>	  8/9/91	jmp		Fixed a problem with NTSC & PAL family modes where changing the
-;									amount of vRAM didn’t cause DAFB’s part of PrimaryInit to
+;									amount of vRAM didn't cause DAFB's part of PrimaryInit to
 ;									re-validate the SP_LastConfig pRAM byte.  Also, fixed a problem
 ;									where the has16bppSRsrc pRAM bit (for DAFB) was not being set
 ;									properly.
 ;		<16>	  8/7/91	jmp		Added 16bpp support for all applicable DAFB displays.
-;		<15>	 7/29/91	jmp		Wasn’t correctly determining the installed amount of vRam for
-;									DAFB 16bpp modes.  Also, wasn’t correctly setting up the CLUT
+;		<15>	 7/29/91	jmp		Wasn't correctly determining the installed amount of vRam for
+;									DAFB 16bpp modes.  Also, wasn't correctly setting up the CLUT
 ;									for mono-only displays; should have only been writing to the
 ;									blue channel.  Finally added the Eclipse33 (Zydeco) & TIM-LC
 ;									sRsrc-prunning identifiers to the appropriate tables.
@@ -269,7 +269,7 @@
 ;									see bank 3 of vRam (on a Spike or Eclipse), that bank 2 must be
 ;									installed.  This was wrong.
 ;		 <8>	 6/24/91	jmp		Added support for 16bpp Vesuvio & RGB Portrait displays.
-;		 <7>	 6/17/91	jmp		Updated DAFB’s VideoInfo handler for NTSC, PAL, SuperVGA,
+;		 <7>	 6/17/91	jmp		Updated DAFB's VideoInfo handler for NTSC, PAL, SuperVGA,
 ;									GoldFish, Kong, and Vesuvio.  I had to do this because Mitsubish
 ;									VRams perform a little differently from the Toshiba VRams.
 ;									Also, it turns out that defaulting to sync-on-green disabled for
@@ -295,12 +295,12 @@
 ;									the fact that this file is used by all built-in videos, not
 ;									just RBV.
 ;		<24>	 5/15/91	jmp		Added DB-Lite support.  For now, though, the entry part of code
-;									is conditionalized out (i.e., “If 0 Then”).
+;									is conditionalized out (i.e., 'If 0 Then').
 ;		<23>	 5/10/91	jmp		Optimized the grayscreen code for the NTSC & PAL safetitle modes
 ;									by loading IndexedBlack into a register.  Added SuperVGA
 ;									support.  Now check for 25 vs. 33 MHz CPU operation the new,
-;									better way.  Made the generalized grayscreen code (“Blast”) more
-;									universal by switching into 32-bit mode (e.g., DB-Lite’s
+;									better way.  Made the generalized grayscreen code ('Blast') more
+;									universal by switching into 32-bit mode (e.g., DB-Lite's
 ;									framebuffer is in a 32-bit address space).  Code review changes:
 ;									Removed all the UnivInfoPtr stuff to get BoxFlag; now just get
 ;									it from lo-mem; tightened up the CPU-sRsrc prunning code.
@@ -308,11 +308,11 @@
 ;									baseAddr offset.
 ;		<21>	 4/25/91	jmp		We can actually do NTSC & PAL convolved in 1MB vRam, so I
 ;									updated the family mode stuff accordingly.  Thus, only 512K
-;									Spikes will not see families -- i.e., they’ll have
+;									Spikes will not see families -- i.e., they'll have
 ;									interlaced-only versions of NTSC & PAL available.
 ;		<20>	 4/23/91	jmp		For NTSC & PAL, started defaulting to the convolved modes when
 ;									enough VRam is available.  It should be noted that this update
-;									will hose DAFB 1 machines, but ultimately it’s the right thing
+;									will hose DAFB 1 machines, but ultimately it's the right thing
 ;									to do.  Also, had to update the UnivInfoPtr because of the new
 ;									SndControlPtr field.  Finally, I was actually doing the
 ;									UnivInfoPtr adjust too soon; i.e., needed to wait until we know
@@ -326,23 +326,23 @@
 ;									simulation for Vesuvio & GoldFish.
 ;		<18>	  4/5/91	jmp		Eliminated a deadly call to _DisposPtr.  Also, updated the DAFB
 ;									PrelimInit params to be less harsh (i.e., the first screen clear
-;									doesn’t bounce as much).
+;									doesn't bounce as much).
 ;		<17>	  4/1/91	jmp		Removed support for DAFB 1.
 ;		<16>	 3/25/91	jmp		After reading the sense lines, I now save the true monID in the
 ;									vendorUse4 field of Slto pRam.  I need to do this for the driver
 ;									for gamma-correction purposes.  Also, I was not invalidating the
 ;									'scrn' resoruce when the current display configuration did not
-;									match pRam.  This caused the “Welcome to Mac” screen to act
+;									match pRam.  This caused the 'Welcome to Mac' screen to act
 ;									weird on restart from switches between family configurations.
 ;		<15>	 3/18/91	jmp		Fixed non-contiguous vRam problem.  Set factory burn-in display
-;									to be an HR instead of the Rubik per DAF.  Fixed “false” tops
+;									to be an HR instead of the Rubik per DAF.  Fixed 'false' tops
 ;									and bottoms on convolved screen-clearing code.
 ;		<14>	  3/4/91	jmp		Fixed 1bpp Rubik Display problem (i.e., first line of vRam not
 ;									being cleared).  Added factory burn-in support (same as for LC).
 ;		<13>	 2/25/91	jmp		Just cleaned up some comments.
 ;		<12>	 2/15/91	jmp		Added code to disable interrupts in ApolloInit.  Added
 ;									sRsrc_BdApollo to spIDTable.  Restructured to look more
-;									universal (i.e., things don’t jump into and out of the RBV part
+;									universal (i.e., things don't jump into and out of the RBV part
 ;									of the code anymore).  Fixed screen graying code (including CLUT
 ;									intialization) to work properly with the convolved modes
 ;									starting at 4bpp.  Conditionalized this so that if/when new
@@ -353,7 +353,7 @@
 ;									PrelimInit table to contain spacer (blanks) for Misc params.
 ;									Added NTSC and PAL encoder box codes to the extended sence code
 ;									mapping.  Updated the mapping for GoldFish.
-;		<10>	  2/3/91	jmp		Adjusted pref/family mode table so that Rubik’s can do 32bpp in
+;		<10>	  2/3/91	jmp		Adjusted pref/family mode table so that Rubik's can do 32bpp in
 ;									1 Megs of vRam.  Adjusted pref/family mode table so that NTSC
 ;									and PAL have family modes.  Updated the grayscreen code for ST
 ;									modes (including blacking around the sides).  Put extended
@@ -364,7 +364,7 @@
 ;									entries for VGA, PAL, and Goldfish in the DAFB pref/family mode
 ;									table.  Replaced inline reset code with macro from
 ;									RBVDepVideoEqu.a.  Temporarily disabled family modes for NTSC
-;									and PAL because we don’t have the data yet.  Updated the
+;									and PAL because we don't have the data yet.  Updated the
 ;									pref/family mode table for Rubik due to having to lengthen
 ;									rowbytes in 1-8bpp mode (to fix the jittering 1bpp mode).
 ;		 <7>	 1/24/91	jmp		Added support for extended-sense-line displays.  Next check-in
@@ -502,7 +502,7 @@ monID			Ds.b	1								; saved monID								<16>
 has16bppACDC	Ds.b	1								; For DAFB, true when ACDC == AC842A.
 hasLin16bppCLUT	Ds.b	1								; For DAFB, true when ACDC == Antelope.
 wombatDAFB		Ds.b	1								; For DAFB, true when on a WombatDAFB.
-clkSetup		Ds.b	1								; For DAFB, true when we don’t need to reset various clock bits.
+clkSetup		Ds.b	1								; For DAFB, true when we don't need to reset various clock bits.
 sogSwitch		Ds.b	1								; For DAFB, true when we should leave sync-on-green alone.
 altSenseEnb		Ds.b	1								; For DAFB, true if we were AltSenseing LAST reboot.
 disableLCD		Ds.b	1								; For DBLite, true if we're in a docking station	<H27>
@@ -540,7 +540,7 @@ Begin
 ;
 ; The _sReadDrvrName slot manager routine (lamely) returns the board name of the device, rather than
 ;	anything directly related to the functional sRsrc list.  Since the universal ROM would only normally
-;	have one board sRsrc list, all CPU variants using this ROM would have to have the same “driver name.”
+;	have one board sRsrc list, all CPU variants using this ROM would have to have the same 'driver name.'
 ;	This isn't a big deal since each machine can be identified by ID codes, but Monitors displays
 ;	the board name in the Options dialog, as well as using this name to load extension files.
 ;	We correct this (in standard hack-looking slot wrangler style) by including multiple board sRsrcs,
@@ -590,9 +590,9 @@ Begin
 @BFLoopEnd		DBRA		D2,@BFLoop					; for each element
 
 ;
-; Set up the right CPU sResource.  We only recognize ’030 and ’040 CPUs.  All other CPUs are just
-; thrown out.  Exception:  The MacII and MacLC are lumped in with the ’030 CPUs for “historical”
-; reasons even though they are really ’020 CPUs.
+; Set up the right CPU sResource.  We only recognize '030 and '040 CPUs.  All other CPUs are just
+; thrown out.  Exception:  The MacII and MacLC are lumped in with the '030 CPUs for 'historical'
+; reasons even though they are really '020 CPUs.
 ;
 				Move.b		BoxFlag,D1					; Get the BoxFlag for compares.
 				
@@ -694,18 +694,18 @@ Begin
 @DoVideo
 
 				Moveq		#0,D0								; Clear this register for word-sized compares.
-				Move.b		BoxFlag,D0							; Get this machine’s boxFlag.
+				Move.b		BoxFlag,D0							; Get this machine's boxFlag.
 				
 				Lea			BivBoxTbl,A0						; Point to the table of boxFlags and offsets.
 @BoxLoop		Cmp.w		bivBox(A0),D0						; If we found a match (or end of list), then
 				Beq.s		@DoInit								;	hop to it.
 				Tst.l		(A0)+								; Otherwise, point to the next entry.
-				Bne.s		@BoxLoop							; Loop if we aren’t done.
+				Bne.s		@BoxLoop							; Loop if we aren't done.
 				Bra			PruneEm								; Otherwise, just get out of here.
 				
 @DoInit			
 				Move.w		bivOffset(A0),D0					; Get the offset.
-				Beq			PruneEm								; If it’s nil, just get out of here.
+				Beq			PruneEm								; If it's nil, just get out of here.
 				Jsr			BivBoxTbl(D0)						; Otherwise, jump to the code.
 				Bra			AllDone								; And leave.							<SM4>
 				
@@ -1367,7 +1367,7 @@ IsSame
 				MOVE.B		D0,VsExp(A3)				; set it
 
 ; normally, we would just be able to clear the monitor parameters register to set one bit mode, but
-;	there's a V8 bug with A// mode that requires it to be set to “two” bit mode to display correctly.
+;	there's a V8 bug with A// mode that requires it to be set to 'two' bit mode to display correctly.
 
 				CMP.B		#$12,D2						; we built D2 above (this could be better)
 				BNE.S		@notA2						;
@@ -1693,7 +1693,7 @@ JawsInit
 
 ;••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 ;
-; Here’s the code that initializes video for Apollo systems.  It looks a heckuvalot like the JawsInit
+; Here's the code that initializes video for Apollo systems.  It looks a heckuvalot like the JawsInit
 ; code.
 ;
 
@@ -1711,7 +1711,7 @@ ApolloInit
 				Move.w		(A1)+,D1					; Get zero-based counter in D1
 @Repeat			Move.b		(A1)+,D2					; Get modeID
 				Cmp.b		#sRsrc_Vid_Apollo,D2		; Is it an Apollo?
-				Beq.s		@Until						; If it is, then don’t delete it.
+				Beq.s		@Until						; If it is, then don't delete it.
 				Move.b		D2,spID(A0)					; Otherwise, delete it.
 				_sDeleteSRTRec							;
 				
@@ -1729,7 +1729,7 @@ ApolloInit
 
 ;••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 ;
-;	Here’s the code that initializes video for systems that use the Chips & Technologies 65210 GSC LCD controller.
+;	Here's the code that initializes video for systems that use the Chips & Technologies 65210 GSC LCD controller.
 ;
 
 Unimplemented	EQU			$A89F						; _Unimplemented trap							<H29>
@@ -1801,7 +1801,7 @@ DBLiteInit		MOVE.W		#Unimplemented,D0			; does the _DockingDispatch trap exist?
 				
 				Move.l		UnivInfoPtr,A0				; Point to the ProductInfo record.
 				Adda.l		ProductInfo.DecoderInfoPtr(A0),A0	; Point to the baseAddr table.			<H13>
-				Move.l		DecoderInfo.VDACAddr(A0),A0	; Get the baseAddr of the GSC (“VDAC” for DB-Lite)
+				Move.l		DecoderInfo.VDACAddr(A0),A0	; Get the baseAddr of the GSC ('VDAC' for DB-Lite)
 				Moveq		#7,D0						; mask off the display ID						<H31>
 				And.b		GSCPanelID(A0),D0			; get display id								<H58>
 				Move.l		(SP)+,BusErrVct(A2)			; restore BusErrHandler							<H55><H56>
@@ -1852,10 +1852,10 @@ DBLiteWritePRAM
 				MOVE.L		A2,spResult(A0)				;
 				_sReadPRAMRec							;
 				
-				Cmp.b		SP_DfltConfig(A2),D3		; If we’ve been here before,
+				Cmp.b		SP_DfltConfig(A2),D3		; If we've been here before,
 				Beq.s		@EndPRAMSetup				;	then just go on.
 				
-				Move.b		D3,SP_DfltConfig(A2)		; Otherwise, remember we’ve been here.
+				Move.b		D3,SP_DfltConfig(A2)		; Otherwise, remember we've been here.
 				Lea			GSCDefDepthTbl,A1			; get default depth depending on display type	<H59>
 				Move.b		(A1,D2.W),SP_Depth(A2)		; set pram buffer								<H59>
 				
@@ -1912,7 +1912,7 @@ DBLitePrune
 @unblankGSC
 				Move.l		UnivInfoPtr,A0				; Point to the ProductInfo record.
 				Adda.l		ProductInfo.DecoderInfoPtr(A0),A0	; Point to the baseAddr table.			<H57>
-				Move.l		DecoderInfo.VDACAddr(A0),A0	; Get the baseAddr of the GSC (“VDAC” for DB-Lite)<H57>
+				Move.l		DecoderInfo.VDACAddr(A0),A0	; Get the baseAddr of the GSC ('VDAC' for DB-Lite)<H57>
 				bset.b		#GSCBlankCtl,GSCGrayScale(A0) ; gsc enable									<H57>
 
 ; And exit.
@@ -1998,11 +1998,11 @@ GSCBusErrHnd
 ;
 
 WDAFBInit
-				Move.b		#1,wombatDAFB(A6)						; For now, just say we’re on a Wombat.
+				Move.b		#1,wombatDAFB(A6)						; For now, just say we're on a Wombat.
 				Bra.s		StartDAFB								;
 
 DAFBInit
-				Move.b		#0,wombatDAFB(A6)						; Say we don’t want to do the Wombat-specific code.
+				Move.b		#0,wombatDAFB(A6)						; Say we don't want to do the Wombat-specific code.
 
 ; Do this entire thing in 32-bit mode.
 ;
@@ -2012,7 +2012,7 @@ StartDAFB
 				MOVE.B		D0,saveMMUMode(A6)						; Save the old mode.
 				
 ; Determine the clock speed and save it.  The act of reading VIAs can cause pending interrupts
-;	to be lost, so we want only want to do this once while it doesn’t matter (i.e., the Slot
+;	to be lost, so we want only want to do this once while it doesn't matter (i.e., the Slot
 ;	Manager calls PrimaryInit with interrupts disabled).
 ;
 				Tst.b		wombatDAFB(A6)							; If we have a Wombat,
@@ -2027,8 +2027,8 @@ StartDAFB
 
 @EndDAFBSpeed	Seq			IsSlowClock(A6)							; Set the speed flag appropriately.
 
-; Get some useful values up front.  Note:  On Wombat, the DAFB hardware is NOT tied to the ’040
-;	reset instruction.  So, we need to manually reset Wombat’s DAFB to always put the video
+; Get some useful values up front.  Note:  On Wombat, the DAFB hardware is NOT tied to the '040
+;	reset instruction.  So, we need to manually reset Wombat's DAFB to always put the video
 ;	controller into a known state.  To do this, we just need to reset the DAFB and DAFB-Swatch
 ;	registers.  The clock chip and the CLUT/DAC are ALWAYS fully reset by the initialization
 ;	code.  We go ahead and do this DAFB/DAFB-Swatch reset even in the case of Spike/Eclipse/
@@ -2063,9 +2063,9 @@ StartDAFB
 ; For Wombat, 40MHz CPUs are possible, and we need to know about them in order to set up the wait-state
 ;	bits in the DAFBConfig register correctly.   
 ;
-				Tst.b		WombatDAFB(A6)							; If we’re not on a Wombat,
+				Tst.b		WombatDAFB(A6)							; If we're not on a Wombat,
 				Beq.s		@EndDAFBSpeed2							;	then just go on.
-				Tst.b		IsSlowClock(A6)							; If we’re not running “fast,”
+				Tst.b		IsSlowClock(A6)							; If we're not running 'fast,'
 				Bne.s		@EndDAFBSpeed2							;	then just go on.
 				Btst		#vCpuId1,vBufA(A0)						; Otherwise, test CPUID reg 1 (33 vs. 40 MHz).
 				Beq.s		@EndDAFBSpeed2							; If not 40MHz, just go on.
@@ -2074,9 +2074,9 @@ StartDAFB
 @EndDAFBSpeed2
 				
 ; Determine if we have the 16bpp-capable ACDC (AC842A) by exploiting some of the new
-;	features that don’t exist in the earlier version of ACDC (AC842).  The Nops are
-;	used because DAFB’s address space is non-serial, and we need for the writes to
-;	happen BEFORE the reads here (see the ’040 Programmer’s Reference for more
+;	features that don't exist in the earlier version of ACDC (AC842).  The Nops are
+;	used because DAFB's address space is non-serial, and we need for the writes to
+;	happen BEFORE the reads here (see the '040 Programmer's Reference for more
 ;	information on this).
 ;
 				Clr.l		ACDC_AddrReg(A3)						; Tell ACDC to use PCBR0.
@@ -2095,13 +2095,13 @@ StartDAFB
 				Cmpi.b		#$06,D0									; If ACDC is still in direct mode,							
 				Seq			has16bppACDC(A6)						;	then an AC842A is present.
 				
-				Bne.s		@EndCLUTChk								; If an AC842A-like DAC isn’t present, just go on.
+				Bne.s		@EndCLUTChk								; If an AC842A-like DAC isn't present, just go on.
 				Move.l		#1,ACDC_AddrReg(A3)						; Otherwise, tell ACDC to use PCBR1.
 				Nop													; (Do-Dah)
 				Move.l		ACDC_ConfigReg(A3),D0					; Read PCBR1.
 				Andi.l		#$0F,D0									; Strip off the junk.
-				Beq.s		@NoAntelope								; If mfg. and rev. #s are not 0, we’ve got an Antelope.
-				Move.b		#1,hasLin16bppCLUT(A6)					; Otherwise, we’ve got one.
+				Beq.s		@NoAntelope								; If mfg. and rev. #s are not 0, we've got an Antelope.
+				Move.b		#1,hasLin16bppCLUT(A6)					; Otherwise, we've got one.
 				Bra.s		@EndCLUTChk								;
 
 @NoAntelope		Move.b		#0,hasLin16bppCLUT(A6)					; No Antelopes here.
@@ -2124,7 +2124,7 @@ StartDAFB
 
 				MOVEQ		#0,D0									; Clear upper part of D0.
 				MOVE.L		A3,A2									; Copy DAFB base address (for DAFB macros).
-				Move.l		A1,vidParamsPtr(A6)						; Remember which params we’re using.
+				Move.l		A1,vidParamsPtr(A6)						; Remember which params we're using.
 
 ; Setup Clock chip.
 ;
@@ -2143,7 +2143,7 @@ StartDAFB
 ; Setup Swatch.
 ;
 				DAFBWWrite	dvpTimingAdj,Swatch_TimeAdj				; Set up timing adjustments.
-				Move.l		#dafbEnableSwatch,Swatch_Mode(A3)		; (We want to reset DAFB “on”, then idle it.)		
+				Move.l		#dafbEnableSwatch,Swatch_Mode(A3)		; (We want to reset DAFB 'on', then idle it.)		
 				
 				DAFBWWrite	dvpHSerr,Swatch_HSerr					; Set up horizontal timing…
 				DAFBWWrite	dvpHlfLn,Swatch_HlfLn					;
@@ -2184,7 +2184,7 @@ StartDAFB
 ;	bank 1 (i.e., the 1 Meg case).  For Wombat, only 2 banks of vRAM are possible,
 ;	but we check everything just in case.
 ;
-; Note:  The Nops are used after each of the writes because DAFB’s address space
+; Note:  The Nops are used after each of the writes because DAFB's address space
 ;		 is non-serial.
 ;
 				MOVE.L		A4,A0									; Get ptr to ProductInfo.
@@ -2196,7 +2196,7 @@ StartDAFB
 @MassageVRAM	Tst.l		(k2MvRAM-4,A0)							;	going, we go out and read VRAM
 				Tst.l		(k1536KvRAM-4,A0)						;	a few times.  We really only
 				Tst.l		(k1MvRAM-4,A0)							;	need to do this for Wombat,
-				Tst.l		(k512KvRAM-4,A0)						;	but it doesn’t hurt Spike/Eclipse/
+				Tst.l		(k512KvRAM-4,A0)						;	but it doesn't hurt Spike/Eclipse/
 				Dbra		D0,@MassageVRAM							;	Zydeco.
 				
 				MOVE.L		#'2MEG',(k2MvRAM-4,A0)					; Write a test value into alleged vRAM.
@@ -2209,23 +2209,23 @@ StartDAFB
 				Nop
 
 				Moveq		#2,D2									; Assume there is only 512K of vRam.
-				Cmp.l		#'1meg',(k1MvRAM-4,A0)					; If the 1 MB flag didn’t stick
+				Cmp.l		#'1meg',(k1MvRAM-4,A0)					; If the 1 MB flag didn't stick
 				Bne.s		@EndSize								; 	then only 512K is possible.
-				Subq		#1,D2									; Otherwise, there’s at least 1MB.
-				Cmp.l		#'1.5M',(k1536KvRAM-4,A0)				; If the 1.5 MB flag didn’t stick
+				Subq		#1,D2									; Otherwise, there's at least 1MB.
+				Cmp.l		#'1.5M',(k1536KvRAM-4,A0)				; If the 1.5 MB flag didn't stick
 				Bne.s		@EndSize								;	then only 1 Meg is possible.
-				Cmp.l		#'2MEG',(k2MvRAM-4,A0)					; If the 2 MB flag didn’t stick.
+				Cmp.l		#'2MEG',(k2MvRAM-4,A0)					; If the 2 MB flag didn't stick.
 				Bne.s		@EndSize								;	then only 1 MB is possible.
 				Subq		#1,D2									; Otherwise, 2 MBs exist.
 
 @EndSize		Move.l		DAFBFlags(A3),D0						; Get the DAFBFlags.
 				Bfins		D2,D0{vRamBits:numVRamBits}				; Set the amount of vRam.
-				Tst.b		wombatDAFB(A6)							; If we’re not a Wombat,
+				Tst.b		wombatDAFB(A6)							; If we're not a Wombat,
 				Beq.s		@ChkCLUTType							;	then just go on.
-				Bset		#isWombat,D0							; Otherwise, say we’re a Wombat.
-@ChkCLUTType	Tst.b		hasLin16bppCLUT(A6)						; If we don’t have an Antelope,
+				Bset		#isWombat,D0							; Otherwise, say we're a Wombat.
+@ChkCLUTType	Tst.b		hasLin16bppCLUT(A6)						; If we don't have an Antelope,
 				Beq.s		@SetDAFBFlags							;	then just go on.
-				Bset		#wLin16Bpp,D0							; Otherwise, say we’ve got an Antelope.
+				Bset		#wLin16Bpp,D0							; Otherwise, say we've got an Antelope.
 @SetDAFBFlags	Move.l		D0,DAFBFlags(A3)						; Write it back out.
 
 				DAFBIdle											; Idle DAFB (i.e., turn off vRAM refreshes).
@@ -2234,15 +2234,15 @@ StartDAFB
 ;
 				Clr.b		sogSwitch(A6)							; Initialize the sync-on-green (safety) switch.
 				
-				Clr.b		altSenseEnb(A6)							; Assume that we we’re AltSensing last time.
+				Clr.b		altSenseEnb(A6)							; Assume that we we're AltSensing last time.
 				LEA			sPRAMBlk(A6),A0							; Point to the pRAM block on the stack.
-				Bclr		#spAltSenseEnb,SP_Params.SP_Flags(A0)	; Assume that we aren’t AltSensing this time.
-				Beq.s		@EndAltSenseChk							; We weren’t
+				Bclr		#spAltSenseEnb,SP_Params.SP_Flags(A0)	; Assume that we aren't AltSensing this time.
+				Beq.s		@EndAltSenseChk							; We weren't
 				Move.b		#1,altSenseEnb(A6)						; We were.
 @EndAltSenseChk
 				
 				Moveq		#0,D4									; Initialize senseline register.
-				DAFBReadSenseLines D4								; Read ’em!
+				DAFBReadSenseLines D4								; Read 'em!
 				
 				Cmp.b		#indexedSense2P,D4						; If we got a type-3, then do the
 				Beq.s		@Extended2P								;	extended Two-Page stuff.
@@ -2264,23 +2264,23 @@ StartDAFB
 				Cmp.b		#extended2PRdRGB,D4						; If this is not a Radius Color TPD,
 				Bne.s		@TryRDMono								;	then try the Mono TPD.
 @SetRDRGB		Move.l		DAFBFlags(A3),D0						; Otherwise, get the DAFBFlags.
-				Bset		#RadiusTPDBit,D0						; Say there’s a Radius TPD.
-				Bset		#RadiusDevType,D0						; Say it’s color.
+				Bset		#RadiusTPDBit,D0						; Say there's a Radius TPD.
+				Bset		#RadiusDevType,D0						; Say it's color.
 				Move.l		D0,DAFBFlags(A3)						; Write out the flags.
-				Move.b		#indexedSenseRGB2P,D4					; Say that it’s a Vesuvio for now.
+				Move.b		#indexedSenseRGB2P,D4					; Say that it's a Vesuvio for now.
 				Bra			@EndSense								; And go on.
 				
 @TryRDMono		Cmp.b		#extended2PRdMono,D4					; If this is not a Radius Mono TPD
-				Bne.s		@End2P									; 	then just say it’s a Two-Page.
+				Bne.s		@End2P									; 	then just say it's a Two-Page.
 @SetRDMono		Move.l		DAFBFlags(A3),D0						; Otherwise, get the DAFBFlags.
-				Bset		#RadiusTPDBit,D0						; Say there’s a Radius TPD.
-				Bclr		#RadiusDevType,D0						; Say it’s monochrome.
+				Bset		#RadiusTPDBit,D0						; Say there's a Radius TPD.
+				Bclr		#RadiusDevType,D0						; Say it's monochrome.
 				Move.l		D0,DAFBFlags(A3)						; Write out the flags.
-@End2P			Move.b		#indexedSense2P,D4						; Say that it’s a Kong for now.
+@End2P			Move.b		#indexedSense2P,D4						; Say that it's a Kong for now.
 				Bra			@EndSense								; And go on.
 
 @ExtendedRGBFP
-				Bra			@EndSense								; Do nothing, as these extended codes aren’t
+				Bra			@EndSense								; Do nothing, as these extended codes aren't
 																	;	supported yet.
 @ExtendedHR	
 				Move.b		#extendedHR,D4							; For now, use any of the type 6 sense codes
@@ -2294,11 +2294,11 @@ StartDAFB
 
 				Lea			@XNCTable,A1							; Point to the table of extended no-connect codes.
 @XNCLoop		Move.b		(A1)+,D0								; Pick up the next supported extended no-connnect code.
-				Bmi.s		@EndNoConnect							; If we’re at the end of the list, then just leave.
+				Bmi.s		@EndNoConnect							; If we're at the end of the list, then just leave.
 				
 				Move.b		(A1)+,D1								; Pick up the indexed version of the extended code.
 
-				Cmp.b		D0,D4									; If we didn’t find a match, then
+				Cmp.b		D0,D4									; If we didn't find a match, then
 				Bne.s		@XNCLoop								;	just keep looping
 				
 				Move.b		D1,D4									; Translate the extended code into its indexed version.
@@ -2312,11 +2312,11 @@ StartDAFB
 				Dc.b		extendedSense19,indexedSense19
 				Dc.b		-1,-1
 
-@EndNoConnect	Move.b		#indexedNoConnect,D4					; We don’t recognize the code, so say nothing’s connected.
+@EndNoConnect	Move.b		#indexedNoConnect,D4					; We don't recognize the code, so say nothing's connected.
 				
-; When no monitor is connected, we first want to check to see if we’re at the factory
+; When no monitor is connected, we first want to check to see if we're at the factory
 ;	If we are, then the last 4-bytes of pRAM will contain a special signature.  If
-;	we aren’t at the factory and we don’t recognize the no-connect code, then we
+;	we aren't at the factory and we don't recognize the no-connect code, then we
 ;	set up to delete all the video data structures and to turn built-in video off.
 ;
 				
@@ -2330,15 +2330,15 @@ StartDAFB
 				Move.w		#burnInLoc,D0							;
 				_ReadXPram											; 
 				Move.l		(Sp)+,D0								; 
-				Beq			@EndSense								; Just leave if there’s no signature.
+				Beq			@EndSense								; Just leave if there's no signature.
 				
 				Lea			@NCTable,A1								; Point to the table of no-connect signatures.
 @NCLoop			Move.l		(A1)+,D1								; Pick up the next supported code.
-				Beq			@EndSense								; If we’re at the end of the list, then just leave.
+				Beq			@EndSense								; If we're at the end of the list, then just leave.
 				
 				Move.l		(A1)+,D3								; Pick up the indexed version of the no-connect signature.
 				
-				Cmp.l		D0,D1									; If we didn’t find a match, then
+				Cmp.l		D0,D1									; If we didn't find a match, then
 				Bne.s		@NCLoop									;	just keep looping.
 
 				Move.b		D3,D4									; Translate the no-connect signature into an index.
@@ -2369,8 +2369,8 @@ StartDAFB
 @DoMonID		Move.b		SP_AltSense(A2),D4						; Get the no-connect pRam byte.
 				Andi.b		#spAltSenseMask,D4						; Strip the validation code.
 				
-				Bset		#spAltSenseEnb,SP_Flags(A2)				; Say that we’re AltSensing this time.
-				Tst.b		altSenseEnb(A6)							; If we weren’t AltSensing last time,
+				Bset		#spAltSenseEnb,SP_Flags(A2)				; Say that we're AltSensing this time.
+				Tst.b		altSenseEnb(A6)							; If we weren't AltSensing last time,
 				Beq.s		@ChkRdTPD								; 	then just go on.
 				Move.b		#1,sogSwitch(A6)						; Otherwise, remember to leave sync-on-green alone.
 				
@@ -2414,12 +2414,12 @@ StartDAFB
 				
 				Bset		#spPageMode,SP_Flags(A2)				; Setup to turn pagemode on when optimal. 
 ;
-; If we have the new ACDC (i.e., AC842A), then we can do 16bpp if we aren’t blocking it. We block the use
-;	of 16bpp when 1)  The machine doesn’t have the 16bpp ACDC, 2) we aren’t running at 33 Mhz, 3) DAFB is
+; If we have the new ACDC (i.e., AC842A), then we can do 16bpp if we aren't blocking it. We block the use
+;	of 16bpp when 1)  The machine doesn't have the 16bpp ACDC, 2) we aren't running at 33 Mhz, 3) DAFB is
 ;	not the right revision number or better, and/or 4) there is not enough VRam to support 16bpp in the
 ;	current configuration.
 ;	
-				Tst.b		has16bppACDC(A6)						; If we don’t have the AC842A,
+				Tst.b		has16bppACDC(A6)						; If we don't have the AC842A,
 				Beq.s		@CheckConfig							;	then just continue with the config check.
 				
 				Bset		#spHas16bppACDC,SP_Flags(A2)			; Set up to write out that the AC842A is around.
@@ -2430,7 +2430,7 @@ StartDAFB
 				Beq.s		@CheckConfig							;	so just continue on.
 				
 @Do16bpp
-				Tst.b		wombatDAFB(A6)							; If we’re on a Wombat, then
+				Tst.b		wombatDAFB(A6)							; If we're on a Wombat, then
 				Bne.s		@Set16bpp								;	16bpp is always possible.
 				
 				Tst.b		IsSlowClock(A6)							; If the CPU is running at 25MHz,
@@ -2439,7 +2439,7 @@ StartDAFB
 				Andi.w		#$0FFF,D0								; Strip off the junk.
 				Moveq		#9,D1									; Get the amount to shift.
 				Lsr.w		D1,D0									; Shift in the version number.
-				Cmp.b		#DAFB3Vers,D0							; If we don’t have a DAFB 3,
+				Cmp.b		#DAFB3Vers,D0							; If we don't have a DAFB 3,
 				Blt.s		@16bppGate								;	then just look at pRAM.
 @Set16bpp		Bset		#spAllow16bpp,SP_Flags(A2)				; Otherwise, unblock 16bpp…
 				Bra.s		@SkipGate								;	…and skip the gate.
@@ -2456,17 +2456,17 @@ StartDAFB
 				MOVE.B		DT_Mode(A0,D2),D5						; Get the 16bpp default spID.
 				
 				Cmp.b		#MinDAFB16bppSRsrc,D5					; If D5 < MinDAFB16bppSRsrc,
-				Blt.s		@CheckConfig							;	then we didn’t get a 16bpp-capable sRsrc.
-				Bset		#spHas16bppSRsrc,SP_Flags(A2)			; Otherwise, remember that we’ve got a 16bpp-capable sRsrc.
+				Blt.s		@CheckConfig							;	then we didn't get a 16bpp-capable sRsrc.
+				Bset		#spHas16bppSRsrc,SP_Flags(A2)			; Otherwise, remember that we've got a 16bpp-capable sRsrc.
 				
-				Tst.b		hasLin16BppCLUT(A6)						; If we’re not using an Antelope,
+				Tst.b		hasLin16BppCLUT(A6)						; If we're not using an Antelope,
 				Beq.s		@CheckConfig							;	then just go on.
-				Cmp.b		#sRsrc_Vid_DAFB_GSx,D5					; If we’re not trying to do 1-32bpp on Rubik
+				Cmp.b		#sRsrc_Vid_DAFB_GSx,D5					; If we're not trying to do 1-32bpp on Rubik
 				Bne.s		@CheckConfig							;	then just go on.
 				Move.b		#sRsrc_Vid_DAFB_GSz,D5					; Otherwise, say we can only do 1-16bpp.
 				
 ; If the last configuration matches, then D5 will be OK.  The actual mode (depth) may be different, if
-;	(and only if) the last configuration matches.  Note:  We do this so that the “Welcome to Mac” screen
+;	(and only if) the last configuration matches.  Note:  We do this so that the 'Welcome to Mac' screen
 ;	looks right when switching from different configuration within the same family.
 ;
 @CheckConfig
@@ -2479,7 +2479,7 @@ StartDAFB
 				Move.b		altSenseEnb(A6),D1						; Get the local copy.
 				Cmp.b		D0,D1									; If they are not the same, then
 				Bne.s		@SetSOG									;	the sense-code changed (so set SOG).
-				Bra.s		@WritePRam								; Otherwise, we’re okay.
+				Bra.s		@WritePRam								; Otherwise, we're okay.
 
 ; Configuration has changed, so set up pRAM for next time.  Note:  We ALWAYS write out pRam because
 ;	the monID might have changed even though spID might not have.  A good example of this
@@ -2493,7 +2493,7 @@ StartDAFB
 				Lea			(A0,D6*MT_Size),A0						; Get offset to right entry per display.
 				Move.b		(A0,D2),SP_Depth(A2)					; Write out the default mode per vRam.
 				
-				Tst.b		sogSwitch(A6)							; If we’re not supposed to alter the SOG state,
+				Tst.b		sogSwitch(A6)							; If we're not supposed to alter the SOG state,
 				Bne.s		@WritePRAM								;	then just go on.
 @SetSOG			Cmpi.b		#indexedSenseVGA,D6						; If this is a VGA-sensed display,
 				Beq.s		@SOGOff									;	then always disable sync-on-green.
@@ -2540,7 +2540,7 @@ DAFBPruneVidSRsrcs
 			
 @512KVRamAdjust	AND.L		#$0000FEFE,D7							; 512K: Turn off convolved, convert 'b' to 'a'.
 
-@SkipRAMAdjust	Tst.b		wombatDAFB(A6)							; If we don’t have a Wombat,
+@SkipRAMAdjust	Tst.b		wombatDAFB(A6)							; If we don't have a Wombat,
 				Beq.s		@StartPrune								;	then just go on.
 				Andi.l		#$0000FFFF,D7							; Otherwise, make sure convolved is off.
 
@@ -2606,11 +2606,11 @@ DAFBSetup
 
 				Move.b		D5,D1									; Get the appropriate sRsrcID into D1.
 				Move.l		DAFBFlags(A3),D0						; Get the DAFBFlags into D0.
-				Btst		#RadiusTPDBit,D0						; If we don’t have a RadiusTPD,
+				Btst		#RadiusTPDBit,D0						; If we don't have a RadiusTPD,
 				Beq.s		@GetParams								;	then just go on.
 				Btst		#RadiusDevType,D0						; If we have a Radius MonoTPD,
 				Beq.s		@SetMonoTPD								;	then say so.
-				Move.b		#pSRsrc_Vid_DAFB_2PRdRGB,D1				; Otherwise, say we’ve got…
+				Move.b		#pSRsrc_Vid_DAFB_2PRdRGB,D1				; Otherwise, say we've got…
 				Bra.s		@GetParams								;	…a Radius ColorTPD.
 @SetMonoTPD		Move.b		#pSRsrc_Vid_DAFB_2PRdMono,D1			;
 
@@ -2643,10 +2643,10 @@ DAFBSetup
 
 ; Setup DAFB…
 ;
-				Tst.b		wombatDAFB(A6)							; If we’re on a Wombat,
+				Tst.b		wombatDAFB(A6)							; If we're on a Wombat,
 				Bne.s		@SetupDAFB								;	then just go on.
 				
-				Cmp.b		#indexedSenseRubik,D6					; If don’t have a Rubik,
+				Cmp.b		#indexedSenseRubik,D6					; If don't have a Rubik,
 				Bne.s		@SetupDAFB								;	then just go on.
 				
 				Move.l		#7,DAFB_VidBaseHi(A2)					; 1bpp-Rubik is weird.
@@ -2685,33 +2685,33 @@ DAFBSetup
 				DAFBWWrite	dvpVFP,Swatch_VFP						;
 				DAFBWWrite	dvpVFPEq,Swatch_VFPEq					;
 
-; ACDC configuration setup:  1bpp and both entries “black” to prevent visual artifacts until
-;	we’re ready.
+; ACDC configuration setup:  1bpp and both entries 'black' to prevent visual artifacts until
+;	we're ready.
 ;
 				Clr.l		ACDC_AddrReg(A3)						; Tell ACDC to use PCBR0.
 				DAFBWWrite	dvpACDCPCBR,ACDC_ConfigReg				; Set up ADCD config register.
-				Nop													; (DAFB’s address space is non-serial.)
+				Nop													; (DAFB's address space is non-serial.)
 				Tst.l		ACDC_AddrReg(A3)						; Read the addr reg to make it stick (AC842A).
 				
 				Moveq		#0,D0									; Clear write value.
-				Moveq		#6-1,D1									; Set up to clear (“black out”) both R-G-B entries.
+				Moveq		#6-1,D1									; Set up to clear ('black out') both R-G-B entries.
 				
 @ClrCLUT		Move.b		D0,ACDC_DataReg+3(A3)					; Write out each entry.
 				Tst.b		hasLin16BppCLUT(A6)						; 	(But wait at least 5
 				Beq.s		@Next									;	 PixClk cycles if
-				Tst.b		([VIA])									; 	 we’ve got an Antelope.)
+				Tst.b		([VIA])									; 	 we've got an Antelope.)
 @Next			Dbra		D1,@ClrCLUT								; Loop until done.
 
 ; Adjust for AC842A, if necessary.
 ;
-				Tst.b		has16bppACDC(A6)						; If we have don’t have an AC842A,
+				Tst.b		has16bppACDC(A6)						; If we have don't have an AC842A,
 				Beq.s		@EndAC842A								;	then just go on.
 
 				DAFBWWrite	dvpTimingAdjAMD,Swatch_TimeAdj			; Adjust TimingAdj,
 				DAFBWWrite	dvpHALAMD,Swatch_HAL					;		 HAL,
 				DAFBWWrite	dvpHFPAMD,Swatch_HFP					; 		 HFP.
 				
-				Tst.b		wombatDAFB(A6)							; If we don’t have a WombatDAFB,
+				Tst.b		wombatDAFB(A6)							; If we don't have a WombatDAFB,
 				Beq.s		@EndAC842A								;	then just go on.
 				
 				Moveq		#32,D1									; Init Wombat TimingAdj adjustment value.												
@@ -2720,12 +2720,12 @@ DAFBSetup
 				Bclr		#7,D0									; Strip off the IRE-value.
 				Lsr.w		#5,D0									; Keep just the VidClk bits.
 				Move.w		D0,D3									; And save them for later.
-				Beq.s		@AddAdj									; If zero, then we’re done.		
+				Beq.s		@AddAdj									; If zero, then we're done.		
 				Lsl.w		#1,D0									; Use VidClk bits to determine adjument.
-				Divu		D0,D1									; Determine adjustment (VidClk is always 0, 1, or 2; it’s NEVER 4).
+				Divu		D0,D1									; Determine adjustment (VidClk is always 0, 1, or 2; it's NEVER 4).
 @AddAdj			Add.l		D1,Swatch_TimeAdj(A2)					; Add it in.
 
-				Tst.b		hasLin16BppCLUT(A6)						; If we don’t have an Antelope,
+				Tst.b		hasLin16BppCLUT(A6)						; If we don't have an Antelope,
 				Beq.s		@EndAC842A								;	then just go on.
 				
 				Lea			@AntAdjTbl,A0							; Point to the table of Antelope adjustment values.
@@ -2749,11 +2749,11 @@ DAFBSetup
 
 ; Sync On Green…
 ;
-				Tst.b		wombatDAFB(A6)							; If we’re not on a Wombat,
+				Tst.b		wombatDAFB(A6)							; If we're not on a Wombat,
 				Beq.s		@VIASOG									;	then use the VIA SOG.
 				
 				Move.l		DAFB_ClkCfg(A3),D0						; Get the current Clock config value.
-				Btst		#spSyncOnGreen,SP_Flags(A2)				; If we’re supposed to put sync on green,
+				Btst		#spSyncOnGreen,SP_Flags(A2)				; If we're supposed to put sync on green,
 				Bne.s		@EnableSyncOnGreen						;	then hop to it.
 				Moveq		#0,D1									; Otherwise, set up for disabling.
 				Bra.s		@SyncOnGreenCommon
@@ -2766,7 +2766,7 @@ DAFBSetup
 				Move.l		D0,DAFB_ClkCfg(A3)						;	apply it.
 				Bra.s		@DoPageMode
 				
-@VIASOG			Btst		#spSyncOnGreen,SP_Flags(A2)				; If we’re supposed to put sync on green, then just
+@VIASOG			Btst		#spSyncOnGreen,SP_Flags(A2)				; If we're supposed to put sync on green, then just
 				Bne.s		@DoPageMode								;	go on because we default to sync on green.
 				Move.l		VIA2,A0									; Otherwise, point to VIA2, and
 				Bclr		#v2SyncOnGreen,vBufA(A0)				;	disable sync on green.
@@ -2777,7 +2777,7 @@ DAFBSetup
 				Move.l		DAFB_Config(A3),D0						; Read the DAFBConfig register.
 				Bfextu		D0{dafbWrdIntBit:1},D0					; If word-interleave is on,
 				Bne.s		@DisableIt								;	then ALWAYS disable page mode.
-				Btst		#spPageMode,SP_Flags(A2)				; If we’re not supposed to enable page mode,
+				Btst		#spPageMode,SP_Flags(A2)				; If we're not supposed to enable page mode,
 				Beq.s		@DoReset								;	then just go on since the hardware comes that way.
 				Moveq		#1,D0									; Otherwise, set up to enable page mode,
 				Bra.s		@HitPageMode							;	and do it.
@@ -2801,15 +2801,15 @@ DAFBSetup
 ; Do top of screen…
 ;
 ;	Note that SC_BorderHeight is adjusted to work correctly for both bordered and non-bordered screens.
-;	Specifically, this constant is not “-1”-adjusted for Dbra, so we jump into the tail end of the Dbra
-;	loop and therefore have the “right” thing happen.  My head hurts now, and yours should, too!
+;	Specifically, this constant is not '-1'-adjusted for Dbra, so we jump into the tail end of the Dbra
+;	loop and therefore have the 'right' thing happen.  My head hurts now, and yours should, too!
 ;
 ;	Note:  This routine only works for screens whose boundaries are even multiples of 64 (due to our
-;		   use of “doublelongs).  Real PALST mode is 614x460, but we use 640x480 for for now.  This
-;		   keeps things fast.  If we have to add “runs” to fix this problem, we will.
+;		   use of 'doublelongs).  Real PALST mode is 614x460, but we use 640x480 for for now.  This
+;		   keeps things fast.  If we have to add 'runs' to fix this problem, we will.
 ;
-;	This code is used in the driver’s GrayScreen (DAFBGrayScreen), as well.  Fixes should be applied
-;	to both places.  Wouldn’t it be neat if there was some sort of video “toolbox” for code that
+;	This code is used in the driver's GrayScreen (DAFBGrayScreen), as well.  Fixes should be applied
+;	to both places.  Wouldn't it be neat if there was some sort of video 'toolbox' for code that
 ;	is shared among the drivers and primary inits?  Sure is easy to miss things when the
 ;	same code is spread across multiple files.
 ;
@@ -2818,10 +2818,10 @@ DAFBSetup
 				
 				Moveq		#IndexedBlack,D3						; Get black into a convenient register.
 							
-				Cmp.b		#indexedSenseRubik,D6					; If we’re on a Rubik display, then
+				Cmp.b		#indexedSenseRubik,D6					; If we're on a Rubik display, then
 				Beq.s		@FixRubik1bpp							;	apply fix.
 				
-				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D5			; If we’re on an NTSC convolved display,
+				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D5			; If we're on an NTSC convolved display,
 				Beq.s		@FixNTSCPALTop							;	then apply fix.
 				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFF,D5
 				Beq.s		@FixNTSCPALTop
@@ -2830,7 +2830,7 @@ DAFBSetup
 				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFFx,D5
 				Beq.s		@FixNTSCPALTop
 				
-				Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D5			; If we’re on a PAL convolved display,
+				Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D5			; If we're on a PAL convolved display,
 				Beq.s		@FixNTSCPALTop							;	then apply fix.
 				Cmp.b		#sRsrc_Vid_DAFB_PALconvFF,D5
 				Beq.s		@FixNTSCPALTop
@@ -2843,7 +2843,7 @@ DAFBSetup
 @FixRubik1bpp	Move.w		#DAFB_512_RB,D0							; Fix first-line problem on Rubik displays.
 				Bra.s		@FixRow
 	
-@FixNTSCPALTop	Move.w		#DAFB_1024_RB,D0						; Create “false” first line on NTSC/PAL convolved
+@FixNTSCPALTop	Move.w		#DAFB_1024_RB,D0						; Create 'false' first line on NTSC/PAL convolved
 																	;	displays.			
 
 @FixRow			Suba		D0,A2									; Point back one full line.								
@@ -2865,8 +2865,8 @@ DAFBSetup
 
 ; Do middle of screen…
 ;
-;	Unlike the top part, there is always a “middle.”  However, there might be a left and right side (when the
-;	border is appropriate), so the not “-1”-adjusted for Dbra comments that are listed above apply horizontally
+;	Unlike the top part, there is always a 'middle.'  However, there might be a left and right side (when the
+;	border is appropriate), so the not '-1'-adjusted for Dbra comments that are listed above apply horizontally
 ;	here.
 ;
 				Move.l		#OneBitGray,D4							; Get the gray pattern (for the active middle).
@@ -2904,7 +2904,7 @@ DAFBSetup
 ;
 				Move.w		SC_BorderHeight(A1),D1					; Get number of rows (not -1) to blast back on bottom.
 				
-				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D5			; If we’re on an NTSC convolved display,
+				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvST,D5			; If we're on an NTSC convolved display,
 				Beq.s		@FixNTSCPALBot							;	then apply fix.
 				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFF,D5
 				Beq.s		@FixNTSCPALBot
@@ -2913,7 +2913,7 @@ DAFBSetup
 				Cmp.b		#sRsrc_Vid_DAFB_NTSCconvFFx,D5
 				Beq.s		@FixNTSCPALBot
 				
-				Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D5			; If we’re on a PAL convolved display,
+				Cmp.b		#sRsrc_Vid_DAFB_PALconvST,D5			; If we're on a PAL convolved display,
 				Beq.s		@FixNTSCPALBot							;	then apply fix.
 				Cmp.b		#sRsrc_Vid_DAFB_PALconvFF,D5
 				Beq.s		@FixNTSCPALBot
@@ -2924,7 +2924,7 @@ DAFBSetup
 				Bra.s		@BotStart
 				
 @FixNTSCPALBot	Addq		#1,D1									; For convolved interlace displays, we need to
-																	;	blacken the “false” bottom.
+																	;	blacken the 'false' bottom.
 @BotStart		Bra.s		@BotSecPrime							; 
 @BotSecFill_V	Move.w		SC_BorderWidth(A1),D0					; Get number of longs (-1) to blast black in row.
 @BotSecFill_H	Move.l		D3,(A2)+								; Blast black to screen.
@@ -2941,11 +2941,11 @@ DAFBSetup
 
 				Move.w		D6,D1									; Get the appropriate index (.w) into D1.
 				Move.l		DAFBFlags(A3),D0						; Get the DAFBFlags into D0.
-				Btst		#RadiusTPDBit,D0						; If we don’t have a RadiusTPD,
+				Btst		#RadiusTPDBit,D0						; If we don't have a RadiusTPD,
 				Beq.s		@GetGamma								;	then just go on.
-				Btst		#RadiusDevType,D0						; If we don’t have a MonoTPD,
+				Btst		#RadiusDevType,D0						; If we don't have a MonoTPD,
 				Bne.s		@GetGamma								;	then just go on.
-				Move.w		#pIndexRdMono,D1						; Otherwise, use Radius’ MonoTPD gamma.
+				Move.w		#pIndexRdMono,D1						; Otherwise, use Radius' MonoTPD gamma.
 
 @GetGamma		Lea			MiniGammaTable,A0						; Point to start of the mini gamma table.
 				Lea			(A0,D1*GT_Size),A0						; Get offset to right entry.
@@ -2953,7 +2953,7 @@ DAFBSetup
 				Clr.l		ACDC_AddrReg(A3)						; Start at position zero in the CLUT.
 				Adda		#(ACDC_DataReg+3),A3					; Point to CLUT data register directly.
 				
-				Tst.b		hasLin16BppCLUT(A6)						; If we don’t have an Antelope,
+				Tst.b		hasLin16BppCLUT(A6)						; If we don't have an Antelope,
 				Beq.s		@EndWait								;	then just go on.
 				Tst.b		([VIA])									; Otherwise, wait a µSec.
 @EndWait
@@ -2964,7 +2964,7 @@ DAFBSetup
 				Move.b		whiteGreen(A0),(A3)
 				Move.b		whiteBlue(A0),(A3)
 				
-				Tst.b		hasLin16BppCLUT(A6)						; If we don’t have an Antelope,
+				Tst.b		hasLin16BppCLUT(A6)						; If we don't have an Antelope,
 				Beq.s		@EndWhite								;	then just go on.
 				Tst.b		([VIA])									; Otherwise, wait a µSec.
 @EndWhite
@@ -3033,17 +3033,17 @@ BlastAddr
 				EndWith
 				
 ; This subroutine reads the DAFB sense lines.  On entry, A2 should point to the DAFB base address, D4
-;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we’re doing, and
+;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we're doing, and
 ;	the CPU should have been put into 32-bit addressing mode.  On exit, D4 contains the appropriate
 ;	extended sense code.
 ;
 ; Note:	The idea behind the extended-sense-line ($07) algorithm is as follows:  First, drive sense line
-;		“a” and read the values of “b” and “c.”  Next, drive sense line “b” and read the values of “a”
-;		and “c.”  Finally, drive sense line “c” and read the values of “a” and “b.”  In this way, a
+;		'a' and read the values of 'b' and 'c.'  Next, drive sense line 'b' and read the values of 'a'
+;		and 'c.'  Finally, drive sense line 'c' and read the values of 'a' and 'b.'  In this way, a
 ;		six-bit number of the form bc/ac/ab is generated.  The other extended-sense algorithms are
-;		identical to that of $07, except one of the three lines doesn’t need to be driven.  For example,
-;		with $03, “a” doesn’t need to be driven.  With $05, “b” doesn’t need to be driven, and
-;		with $06, “c” doesn’t need to be driven.
+;		identical to that of $07, except one of the three lines doesn't need to be driven.  For example,
+;		with $03, 'a' doesn't need to be driven.  With $05, 'b' doesn't need to be driven, and
+;		with $06, 'c' doesn't need to be driven.
 ;
 
 DoDAFBExtendedSense
@@ -3114,7 +3114,7 @@ SetupDAFBClk
 				DAFBSpeedPI	A2										; Configure DAFB for the right CPU speed.
 				
 				Tst.b		clkSetup(A6)							; If the clock is already set up,
-				Bne.s		@KeepClkSel								;	then don’t reset the ClkSel bit.
+				Bne.s		@KeepClkSel								;	then don't reset the ClkSel bit.
 
 				DAFBWWrite	dvpClkCfg,DAFB_ClkCfg					; Set up the clocking.
 				Bra.s		@SetupClk								;
@@ -3151,7 +3151,7 @@ SetupDAFBClk
 
 @Loop8534		Adda		#Clk_ParmSize1,A1						; Point past the 8531 clock params.
 				Eori.w		#$0008,(A1)								; Toggle the 8534 reset-bit.
-				Cmp.w		#21-20,D1								; If we’re not on the last iteration,
+				Cmp.w		#21-20,D1								; If we're not on the last iteration,
 				Bne.s		@SwapIt									;	then just keep going.
 				Eori.w		#$0008,(A1)								; Toggle the 8534 reset-bit.
 				Ori.w		#$0100,(A1)								; Set the CPO bit.
@@ -3159,7 +3159,7 @@ SetupDAFBClk
 @SwapIt			Swap		D1										; Save the iteration count in the hi-order word.
 				Move.w		#3-1,D1									; We have to write out a 47-bit number, 3 serialized words at a time.
 
-@WordLoop		Moveq		#16-1,D3								; Number of bits (1-word’s worth) to shift in per param.
+@WordLoop		Moveq		#16-1,D3								; Number of bits (1-word's worth) to shift in per param.
 @AtLast			Moveq		#0,D0									; Clear both halves of our param register.
 				Move.w		(A1)+,D0								; Get the next param.
 				Swap		D0										; Get it into the hi-order word.
@@ -3169,7 +3169,7 @@ SetupDAFBClk
 				Nop													; (DAFB space is non-serial.)
 				Dbra		D3,@WriteABit							; Loop until done.		
 
-				Cmp.w		#3-2,D1									; If we’re not on the last iteration,
+				Cmp.w		#3-2,D1									; If we're not on the last iteration,
 				Bne.s		@LoopIt									;	then just keep going.
 				Moveq		#14-1,D3								; Otherwise, we have to special-case the last (the 47th) bit.
 				Dbra		D1,@AtLast								; 
@@ -3244,7 +3244,7 @@ spIDTblEnd
 ;
 boxTable030		Dc.w		boxTable030End-boxTable030Start-1							; table size
 boxTable030Start
-				Dc.b		boxMacII,boxMacLC											; goofy (these are ’020 CPUs)
+				Dc.b		boxMacII,boxMacLC											; goofy (these are '020 CPUs)
 				Dc.b		boxMacIIx,boxMacIIcx,boxSE30
 				Dc.b		boxMacIIfx
 				Dc.b		boxPowerBook170

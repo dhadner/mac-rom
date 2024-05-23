@@ -164,7 +164,7 @@
 									to NOT use system heap if it is not growable.
 		<24>	 8/22/90	MR		Change calls to FillWidthTable to pass sfnt handle and rsrc ID
 		<23>	 8/21/90	MR		More consistant checking of fsWorkHand for purginess.  Still not
-									completely confident I’ve caught every case.
+									completely confident I've caught every case.
 		<22>	 8/20/90	MR		Restructure memory allocation across heaps.  New routines:
 									NewCacheHandle, NewWorkHandle, sb_DisposeZoneHandle.  Conditional
 									code for system_7 and init.
@@ -198,7 +198,7 @@
 									stack corruption. Added range checking so we can handle these
 									values.
 		 <3>	 3/20/90	CL		Adding Disk Cache…  Support for the tag format
-		 <2>	 2/27/90	CL		Added lots of support for DrText’s optimizations.   Added a
+		 <2>	 2/27/90	CL		Added lots of support for DrText's optimizations.   Added a
 									routine to shrink bitmaps after the Font Scaler call and save a
 									possible 2x in memory usage.  Re-wrote renderglyph.
 	   <2.0>	11/16/89	CEL		Fix in sb_fillprinterwidths. Bad assign from ReallocHandle.
@@ -217,11 +217,11 @@
 									if flag is set by hacker.
 	   <1.3>	 8/14/89	CEL		Added in new encryption checks. Looks in more places for bitmap
 									temp memory.
-	   <1.2>	  8/1/89	CEL		Fixed EASE’s “C” comment brackets. On check in they were wrong!
+	   <1.2>	  8/1/89	CEL		Fixed EASE's 'C' comment brackets. On check in they were wrong!
 	   <1.1>	  8/1/89	CEL		Fixed the include file buffer.h to be Bass_Cache.h
 	   <1.0>	  8/1/89	CEL		Adding into Bass build for the first time…
 	   <1.9>	  8/1/89	CEL		Fixed over-run array bug. Re-worked data structures.
-	   <1.8>	 6/13/89	CEL		Integrated Sampo’s changes to the GlyphInputType…
+	   <1.8>	 6/13/89	CEL		Integrated Sampo's changes to the GlyphInputType…
 	   <1.7>	 6/10/89	CEL		Moved Private.a QuickDraw Equates into proper QuickDraw private
 									file (colorequ.a), got rid of QuickDraw nFiles dependencies and
 									fixed up necessary files…
@@ -255,7 +255,7 @@
 #include	<ScriptPriv.h>
 
 /*********************/
-/** BASS’s Includes **/
+/** BASS's Includes **/
 /*********************/
 #include	"FSCdefs.h"
 #include	"FontScaler.h"
@@ -2346,7 +2346,7 @@ SQUASH:
 #endif
 
 	ascent						= (cachePtr->ascent >> 16);
-	descent						= -(cachePtr->descent >> 16);			/* turn back into it’s true sign */
+	descent						= -(cachePtr->descent >> 16);			/* turn back into it's true sign */
 
 	infoPtr						= (fs_GlyphInfoType	*)splineKeyPtr->outPtr;
 	bitMapPtr					= &(infoPtr->bitMapInfo);

@@ -104,7 +104,7 @@
 ;		<48>	 8/22/91	JSM		Clean up header.
 ;		<47>	  2/1/91	PKE		JSM,#81409: Changes in JustDatRec to support bug fix and
 ;									cleanups in RomanNewJust.a.
-;		<46>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<46>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<45>	 1/14/91	PKE		(stb) Made changes to JustDataRec needed for fixes to NDrawJust
 ;									etc. Added ClientLLRecord and ThPrWidthTable. Use formerly
@@ -795,9 +795,9 @@ sisHighCall			EQU	smNPortionText			; highest Roman script routine 		<4>
 
 ; Moved these KeyScript verbs here since adding smKeyEnableAboutKybds after the 7.0 interfaces have
 ; frozen. (and we also don't believe a developer will ever want them!)									<41>
-smKeyDisableAboutKybds		EQU		-13			; Disable ‘About…’ menu item since another dialog is up	<41>
+smKeyDisableAboutKybds		EQU		-13			; Disable ‘About…' menu item since another dialog is up	<41>
 												;	was named smKeyModalDialog in ScriptEqu.a.
-smKeyEnableAboutKybds		EQU		-14			; Enable ‘About…’ menu item								<41>
+smKeyEnableAboutKybds		EQU		-14			; Enable ‘About…' menu item								<41>
 smKeySynchKbdMenuState		EQU		-18			; synchronize kbd menu state to current process' flag	<65>
 
 ; private one byte SetScript/GetScript verbs - used by TextEdit in Cube-E					<59>

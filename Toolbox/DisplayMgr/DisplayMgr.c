@@ -170,8 +170,8 @@
 #define LomemMouse	0x0830								// [GLOBAL VAR]  processed mouse coordinate [long]*/ 
 #define kQDGlobalsSize 	0xCE							// sizeof(struct qd) + thePort
 
-#define screenRadiusDrw	22,22								// Horst Beepmanh’s “patented” method, you know.
-#define screenRadiusBld	16,16								// D’oh! Drawing and building are different.
+#define screenRadiusDrw	22,22								// Horst Beepmanh's 'patented' method, you know.
+#define screenRadiusBld	16,16								// D'oh! Drawing and building are different.
 #define penRadius		 3, 3								// Part of the plan. [22 = 16 + 3 + 3]
 #define penOutset		-3,-3								// It never ends.
 
@@ -661,8 +661,8 @@ static pascal void DM_RedrawAll(RgnHandle clobberedRgn)
 		RedrawAll();
 	
 		/*
-		// If the GrayRgn is non-nil, then let’s draw the rounded corners.  For “hasDisplayMgrWindows”
-		// builds, we’ll do things the new-and-improved way.  For everyone else, we just keep doing it
+		// If the GrayRgn is non-nil, then let's draw the rounded corners.  For 'hasDisplayMgrWindows'
+		// builds, we'll do things the new-and-improved way.  For everyone else, we just keep doing it
 		// the tried-and-true way, including the un-squaring bug on LCD screens when the desktop changes.
 		*/
 		if ( theGrayRgn )
@@ -1577,8 +1577,8 @@ static void RebuildDeskRegions(RgnHandle savedGraySectDevicesRgn, Boolean drawMB
 			GetMenuRgn(theWMgrPort->clipRgn);
 
 		/*
-		// Reinitialize the GrayRgn.  (Note that for “hasDisplayMgrWindows” builds, we use the new-and-improved
-		// method of creating the rounded vs. square desktop.  For the non-“hasDisplayMgrWindows” builds,
+		// Reinitialize the GrayRgn.  (Note that for 'hasDisplayMgrWindows' builds, we use the new-and-improved
+		// method of creating the rounded vs. square desktop.  For the non-'hasDisplayMgrWindows' builds,
 		// we use the old HORROR/current-SuperMario method.  I suppose that eventually the former method
 		// will actually be rolled into SuperMario.  Hopefully, when that happens, this code will have
 		// been rolled in as well!)
@@ -1763,7 +1763,7 @@ void FixLowMem(GDHandle oldMainDevice,GDHandle newMainDevice,short deviceOffsetX
 	// DANGER - should get this from vpRowBytes in slot manager
 	*(short *)ScreenRow	= (((newMainRect.right-newMainRect.left)+15)/16)*2;		// Assumes 1-bit for compatibility
 	
-	// Make sure the “squareness” of the MenuBar is preserved, but default to “rounded” if we can’t
+	// Make sure the 'squareness' of the MenuBar is preserved, but default to 'rounded' if we can't
 	// do anything else.
 	//
 	// Exception:  If mirroring is on, we ALWAYS want the menubar to be square because this helps
@@ -2213,7 +2213,7 @@ static GDHandle DM_NewGDevice(short refNum, short mode)
 	Point gdOffset;
 	Rect tempRect;
 	
-	// Unfortunately, lot’s o’ folks cache various parts of GDevices. So, we
+	// Unfortunately, lot's o' folks cache various parts of GDevices. So, we
 	// maintain a linked list of removed GDevices in the privates.  If
 	// we ever need to create a new device, we first look in the removed
 	// GDevices list, and recycle from there.
@@ -2228,7 +2228,7 @@ static GDHandle DM_NewGDevice(short refNum, short mode)
 	else
 		newDevice = NewGDevice(refNum,mode);
 		
-	// Initialize this GDevice’s rectangles to be as rightmost as possible.
+	// Initialize this GDevice's rectangles to be as rightmost as possible.
 	//
 	gdOffset.h = gdOffset.v = 0;
 	
@@ -2263,7 +2263,7 @@ static void DM_DisposeGDevice(GDHandle disposeDevice)
 	DisplayManagerGlobalsPtr dmGlobals = GetDMGlobalsPtr();
 	
 	// If sure would be nice if we could call DisposGDevice, but too many folks
-	// cache various things from inside GDevices.  So, we’ve got to recycle.
+	// cache various things from inside GDevices.  So, we've got to recycle.
 	//
 	(*disposeDevice)->gdNextGD = (Handle)dmGlobals->fRemovedDevices;
 	dmGlobals->fRemovedDevices = disposeDevice;
@@ -2315,7 +2315,7 @@ pascal OSErr DM_RemoveDisplay(GDHandle removeDevice,DisplaysStateHdl displayStat
 	
 	if( noErr == removeErr )
 	{			
-		Boolean cursorState = DM_HideCursor();											// Don’t want cursors blitting on other devices during the remove process.
+		Boolean cursorState = DM_HideCursor();											// Don't want cursors blitting on other devices during the remove process.
 		
 		DMGetDisplayIDByGDevice(removeDevice, &removeDisplayID, false);
 			
@@ -2372,9 +2372,9 @@ pascal OSErr DM_DisposeDisplay(GDHandle removeDevice,DisplaysStateHdl displaySta
 	idError = DMGetDisplayIDByGDevice(removeDevice, &displayID, false);			// Get the display ID (if any).
 	disposeError = DMRemoveDisplay(removeDevice,(Handle )displayState);			// Remove the display from the device list.
 
-	// If we had a displayID, then we’ll delete the DisplayInfo by ID.  Also,
+	// If we had a displayID, then we'll delete the DisplayInfo by ID.  Also,
 	// if the removeDevice happened to be the MainDevice, it moved.  So,
-	// we need to get back the “real” removeDevice by ID.
+	// we need to get back the 'real' removeDevice by ID.
 	//
 	if ( noErr == idError )
 	{
@@ -2384,7 +2384,7 @@ pascal OSErr DM_DisposeDisplay(GDHandle removeDevice,DisplaysStateHdl displaySta
 		DM_DeleteDisplayInfoByDisplayID(displayID);
 	}
 
-	// If everything went okay in the removal process, we’ll go ahead and
+	// If everything went okay in the removal process, we'll go ahead and
 	// dipose the GDevice.
 	//
 	if ( (noErr == disposeError) && (nil != removeDevice) )
@@ -2411,7 +2411,7 @@ pascal OSErr DM_DisableDisplay(GDHandle removeDevice,DisplaysStateHdl displaySta
 		{	/*
 			// At the moment, mirroring can be enabled if and only if there are two gDevices around.  When
 			// mirroring is enabled, any disabled device is automatically enabled.  So, if mirroring
-			// has been enabled and we’re now trying to disable one of the devices, we’ll just automatically
+			// has been enabled and we're now trying to disable one of the devices, we'll just automatically
 			// disable mirroring as well.  NOTE:  This will probably change in the future, especially when
 			// we start mirroring among more than two gDevices.
 			*/
@@ -2511,8 +2511,8 @@ static OSErr LocalMoveDisplay(GDHandle moveDevice,short x,short y, DisplaysState
 	{
 		newDeviceRect = (*moveDevice)->gdRect;
 		
-		/* If we’re trying to turn mirroring on or off, then don’t apply the offsets
-		// because we’ve already pre-calculated all the rectangles (thank you very much).
+		/* If we're trying to turn mirroring on or off, then don't apply the offsets
+		// because we've already pre-calculated all the rectangles (thank you very much).
 		//
 		// See note in DM_MoveDisplay() regarding (x=0,y=0).
 		*/
@@ -2545,7 +2545,7 @@ pascal OSErr DM_MoveDisplay(GDHandle moveDevice,short x,short y,DisplaysStateHdl
 	//
 	// Exception:  We are reserving moves of (x=0,y=0) to imply that mirroring
 	//			   is either being turned on or off, and, in this case,
-	//			   “moving” the mainScreen device is okay.  This holds
+	//			   'moving' the mainScreen device is okay.  This holds
 	//			   for the routine LocalMoveDisplay(), too.
 	//
 	

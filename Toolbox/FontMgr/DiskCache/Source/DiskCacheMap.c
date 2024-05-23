@@ -11,10 +11,10 @@
 
 		 <4>	 4/14/92	DTY		#1027094,<BBM>: Do some stripping of pointers before doing any
 									pointer arithmetic in FontNameToFontNameIndex.  Because this
-									routine doesn’t move memory, it’s OK to dereference the handle
+									routine doesn't move memory, it's OK to dereference the handle
 									and strip it once and use this value without having to
 									constantly dereference the handle.
-		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn’t do anything
+		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn't do anything
 									any more.
 		 <2>	  1/3/92	JSM		Roll-in changes from Sakura: Use squashed and fSquashed in
 									search routines.
@@ -270,7 +270,7 @@ OSErr FontNameToFontNameIndex( Integer *fontNameIndexPointer, StringPtr fontName
 		DiskCacheOffset							stringListOffset;
 		StringListEntryStructure				*stringEntryPointer;
 		StringListStructure						*stringListPointer;
-		DiskCacheMapStructurePointer			strippedDiskCachePointer = StripAddress((Ptr) *diskCacheMapHandle);		// We can dereference this once and use it because this routine doesn’t move memory.
+		DiskCacheMapStructurePointer			strippedDiskCachePointer = StripAddress((Ptr) *diskCacheMapHandle);		// We can dereference this once and use it because this routine doesn't move memory.
 
 	error = noErr;
 	*fontNameIndexPointer = kFontNameNotFound;

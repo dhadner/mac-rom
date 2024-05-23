@@ -19,7 +19,7 @@
 		<13>	10/22/92	DRF		Added inline 68K trap glue for NewRoutineDescriptor and
 									DisposeRoutineDescriptor
 		<12>	10/19/92	DRF		Changed declaration of NewRoutineDescriptor and
-									DisposeRoutineDescriptor to match Sean’s clearer syntax.
+									DisposeRoutineDescriptor to match Sean's clearer syntax.
 		<11>	10/13/92	SP		Changing all m68k's to m68K
 		<10>	10/08/92	SP		Adding phase and offset enum for the parameters.
 		 <9>	 10/4/92	BKJ		Current version is 1

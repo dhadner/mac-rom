@@ -18,7 +18,7 @@
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
 ;	  <•1.1>	 9/23/88	CCH		Got rid of inc.sum.d and empty nFiles
 ;	   <1.0>	 2/11/88	BBM		Adding file for the first time into EASE…
-;	  <C636>	 1/14/87	JTC		Unrolled the Pack 4&5 code to expedite, so 881 wouldn’t be
+;	  <C636>	 1/14/87	JTC		Unrolled the Pack 4&5 code to expedite, so 881 wouldn't be
 ;									slowed any more than necessary.
 ;	  <C215>	10/14/86	RDC		Removed check for FPU on NuMac - it is assumed to always be
 ;									there and FPU packs replace packs 4 and 5
@@ -42,7 +42,7 @@
 ;
 ;
 
-;EASE$$$ READ ONLY COPY of file “PackageMgr.a”
+;EASE$$$ READ ONLY COPY of file 'PackageMgr.a'
 ; 1.2	SES 08/22/1989  Removed references to nFiles.
 ; 1.1	CCH 11/10/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.
@@ -113,7 +113,7 @@
 ; <C206/09oct86> bbm Modified to mpw aincludes.
 ; <C215/14Oct86> RDC Removed check for FPU on NuMac - it is assumed to
 ;					 always be there and FPU packs replace packs 4 and 5
-; <C636/14Jan87> JTC Unrolled the Pack 4&5 code to expedite, so 881 wouldn’t
+; <C636/14Jan87> JTC Unrolled the Pack 4&5 code to expedite, so 881 wouldn't
 ;					be slowed any more than necessary.
 ;---------------------------------------------------------------------
 

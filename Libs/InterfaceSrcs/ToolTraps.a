@@ -225,7 +225,7 @@ TEFromScrap  PROC EXPORT
 ;---------------------------------------------------------------
 ; TEScrpLength is a long word (somebody was planning ahead). The
 ; Text Edit routines in the ROM do only a MOVE.W to & from it, so
-; here we also treat it as only a word (Can’t count on what that
+; here we also treat it as only a word (Can't count on what that
 ; upper portion might be). This works OK for the present Text Edit
 ; world in which Inside Mac maintains you cannot have a lenght of a
 ; text edit record over 32K. This glue however, was accessed by the

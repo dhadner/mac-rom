@@ -19,7 +19,7 @@
 ;		<17>	12/16/91	IH		Fix 1018177 in theFuture. Search for symbol "PURGEALIAS".  Do
 ;									not release the print driver alias and make it non-purgable
 ;									before calling ResolveAlias.
-;		<16>	11/27/91	DTY		Don’t save LastSPExtra around _HOpenResFile any more now that
+;		<16>	11/27/91	DTY		Don't save LastSPExtra around _HOpenResFile any more now that
 ;									_HOpenResFile checks to see if the font caches should be
 ;									flushed.
 ;		<15>	 10/4/91	gbm		#1013134,#1013156: Work around a case where the font caches
@@ -44,10 +44,10 @@
 ;									cancel request from the user (iUsrAbort) to be replaced with
 ;									noErr. Now it preserves the error if the error is already set.
 ;		<10>	  8/9/90	CCH		Added System 6 print glue back in, conditionalized for ROM only.
-;		 <8>	  8/1/90	gbm		fix Darin “BoneHead” Adler’s “optimization”
+;		 <8>	  8/1/90	gbm		fix Darin 'BoneHead' Adler's 'optimization'
 ;		 <7>	 7/23/90	dba		change this into a linked patch
 ;		 <6>	 7/20/90	gbm		get rid of the warning
-;		 <5>	 5/18/90	PP		Pass address of “fromFile” correctly to ResolveAlias call.
+;		 <5>	 5/18/90	PP		Pass address of 'fromFile' correctly to ResolveAlias call.
 ;		 <4>	 4/17/90	NB		Removed GetResource error messages when the alias is not present.
 ;									Fixed a bad cleanup condition (called ReleaseResource on a nil
 ;									handle on an error (no harm, though)).

@@ -1,4 +1,4 @@
-;EASE$$$ READ ONLY COPY of file “dpCompileOptions.inc.a”
+;EASE$$$ READ ONLY COPY of file 'dpCompileOptions.inc.a'
 ; 1.2	ngk 08/08/1989  Completed definitions to match Pascal definitions
 ;						Added qCatchFailures
 ; 1.1	ngk 06/11/1989  Added STRING ASIS to DebugerSymbol macro definition

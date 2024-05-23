@@ -205,7 +205,7 @@ MoveHLow	Proc Export
 ;			blocks we change by putting the master pointers in a buffer on the stack.
 ;			Warning!  This routine leaves a buffer on the stack, which will be
 ;			removed by calling RestorePurgeableBlocks.  That means this routine
-;			can’t save anything on the stack except master pointers.
+;			can't save anything on the stack except master pointers.
 ;
 ; todo:
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
@@ -223,7 +223,7 @@ MakeBlocksNonPurgeable
 		
 	;initialize regs for @loop
 	;clear free space counters
-	;clear flags to see if we should check free space and if we’ve passed our block
+	;clear flags to see if we should check free space and if we've passed our block
 	;set up our block address for free space counter
 	;A1 points at end of stack buffer
 	;A3 points at first block in heap
@@ -235,7 +235,7 @@ MakeBlocksNonPurgeable
 		move.l	sp,a1							;pointer to stack buffer
 		sub.l	d0,a1							;point to the end of the stack buffer
 		move.l	(a4),d0							;get address of our block
-		_StripAddress							;shave off nasty bits, ’cause we’re gonna compare against it
+		_StripAddress							;shave off nasty bits, 'cause we're gonna compare against it
 		move.l	d0,d3							;keep block address in d3
 		move.l	theZone,a3						;get pointer to start of this zone
 		move.l	bkLim(a3),d7					;save end of heap
@@ -247,9 +247,9 @@ MakeBlocksNonPurgeable
 		ble		@ErrorExit						;no more room in buffer, signal error
 		cmp.l	a3,d7							;check if end of heap
 		blt		@NormalExit						;successfull, exit loop
-		cmp.l	a3,d3							;check if we’re to our block
-		bgt.s	@pastCheckForOurBlock			;if we’re not there, then move on
-		move.w	#-1, passedOurBlock(a6)			;otherwise, set the flag that says we’re past our block
+		cmp.l	a3,d3							;check if we're to our block
+		bgt.s	@pastCheckForOurBlock			;if we're not there, then move on
+		move.w	#-1, passedOurBlock(a6)			;otherwise, set the flag that says we're past our block
 	;now treat block passed in as a special case terminator for free space checks
 		cmp.l	a3,d3
 		beq.s	@resetFreeSpaceAccumulator
@@ -278,7 +278,7 @@ MakeBlocksNonPurgeable
 		tst.w	MemErr							;(RecoverHandle result in MemErr only!)			<LW2>
 		bmi.s	@pastFreeSpaceChecks			;
 
-	;if already locked, we don’t need to change its state
+	;if already locked, we don't need to change its state
 		_HGetState								;
 		btst	#lock,d0						;check if handle is locked
 		bne.s	@resetFreeSpaceAccumulator		;is locked, go to nextBlock 
@@ -297,24 +297,24 @@ MakeBlocksNonPurgeable
 		move.l	blkSize(a3),d0					;get size of this block
 		and.l	d6,d0							;strip off tags 24 bit world (32 is ok)
 		tst.w	keepCheckingFreeSpace(a6)		;should we bother (have we passed our block)
-		bmi.s	@endOfLoop						;don’t bother if we’ve passed our block
+		bmi.s	@endOfLoop						;don't bother if we've passed our block
 		add.l	d0, freeSpaceAccumulator(a6)	;and add the size to the free space for this island
 		bra.s	@endOfLoop
 		
-	;we ran across an immovable block, so reset our counter and update the largest free area we’ve found
+	;we ran across an immovable block, so reset our counter and update the largest free area we've found
 @resetFreeSpaceAccumulator
 		tst.w	keepCheckingFreeSpace(a6)		;should we bother with this? (past our block?)
 		bmi.s	@pastFreeSpaceChecks			;if the flag is set, skip the free space stuff
 		tst.w	passedOurBlock(a6)				;have we (just now) passed our block in the heap
 		beq.s	@pastPreflightCheck				;if the flag is not set, keep checking free spaces
-	;now comes the good part... should we bail out early because there isn’t sufficient free space
+	;now comes the good part... should we bail out early because there isn't sufficient free space
 	;lower that our block in the heap?
-		move.l	a3, -(sp)						;save block pointer, ’cause we need an address register
+		move.l	a3, -(sp)						;save block pointer, 'cause we need an address register
 		move.l	d3,a3							;put block passed in here
 		move.l	blkSize(a3),d0					;get size of our block
 		and.l	d6,d0							;strip off tags 24 bit world (32 is ok)
 		cmp.l	largestFreeSpace(a6),d0			;do we have room for our block lower in the heap?
-		move.l	(sp)+, a3						;put old block pointer back, don’t affect cc
+		move.l	(sp)+, a3						;put old block pointer back, don't affect cc
 		bgt.s	@ErrorExit						;no room in heap, bail out!
 		move.w	#-1,keepCheckingFreeSpace(a6)	;now that we have good news, stop checking free space
 		bra.s	@pastFreeSpaceChecks

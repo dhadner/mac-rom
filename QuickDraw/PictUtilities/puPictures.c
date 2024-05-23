@@ -26,13 +26,13 @@
 		<13>	 10/3/90	DDG		Fixed bug with regard to running on black and white machines. We
 									now check for the presence of color quickdraw before we call
 									GetCTSeed.
-		<12>	 9/25/90	DDG		Fixed a bug in “DoCopyBits”, where the source and dest pointers
+		<12>	 9/25/90	DDG		Fixed a bug in 'DoCopyBits', where the source and dest pointers
 									for unpacking pack type two were reversed.
 		<11>	 9/21/90	DDG		Made changes from code review. Fixed a bug, where font sizes
 									greater than 127 would trash memory. They now set bit zero of
 									the font size array. Numerous small changes to save bytes and
 									cleanup the code.
-		<10>	 8/16/90	DDG		Fixed a bug in GetPixMapInfo, where it wasn’t clearing the
+		<10>	 8/16/90	DDG		Fixed a bug in GetPixMapInfo, where it wasn't clearing the
 									return record, when an error occurred.
 		 <9>	 8/16/90	DDG		Fixed a bug in adding fonts to the font cache. Fixed a bug where
 									recording a font with an emtpy name cache, would record garbage.
@@ -230,7 +230,7 @@ short			version	)
 
 /*
 |	Check the version number to make sure that it is valid. Also check the verb to make sure that it makes
-|	sense. Bits beyond the 5th one must all be zero and you can’t set suppress B/W when you aren’t returning
+|	sense. Bits beyond the 5th one must all be zero and you can't set suppress B/W when you aren't returning
 |	color information.
 */
 
@@ -267,7 +267,7 @@ short			version	)
 	theInfoPtr->thePictInfoID	= (long)theInfoHand;
 
 /*
-|	If we are capable of returning color information, then call the color pick method’s initialization routine.
+|	If we are capable of returning color information, then call the color pick method's initialization routine.
 |	Note that we check to make sure that colorsRequested is valid before continuing.
 */
 
@@ -313,7 +313,7 @@ short			version	)
 	}
 
 /*
-|	If we are returning color information, then allocate space for our “true” color table and then for our color
+|	If we are returning color information, then allocate space for our 'true' color table and then for our color
 |	bank. Note that we MUST clear the color bank, before using it.
 */
 
@@ -533,7 +533,7 @@ unlockTable: HUnlock( (Handle)theCTHandle );
 		}
 
 	/*
-	|	If we need to return a palette, then use the color table to create one and If we don’t
+	|	If we need to return a palette, then use the color table to create one and If we don't
 	|	get any errors, then store it in the info structure. Note that we clip the number of
 	|	requested colors to the true number of colors in the pixMap.
 	*/
@@ -703,7 +703,7 @@ PicHandle	thePictHandle )
 		SkipPictData( theInfoPtr, sizeof(short) + sizeof(Rect) );
 
 /*
-|	Scan through the picture, parsing each opCode, until we reach the “end-of-picture” opCode.
+|	Scan through the picture, parsing each opCode, until we reach the 'end-of-picture' opCode.
 */
 
 	while( !endOfPict )
@@ -897,7 +897,7 @@ doRGBColor:				theColor.red	= GetPictWord(theInfoPtr);
 						SkipPictLong( theInfoPtr );
 						goto lineCount;
 					case  2:
-						SkipPictLong( theInfoPtr );			/* fall thru into “3” to skip another word */
+						SkipPictLong( theInfoPtr );			/* fall thru into '3' to skip another word */
 					case  3:
 						SkipPictWord( theInfoPtr );
 lineCount:				theInfoPtr->ext.lineCount++;
@@ -1063,7 +1063,7 @@ skipLongLength:	longLength = GetPictLong( theInfoPtr );
 
 /*
 |	Offset the sourceRect to have a topLeft corner of (0,0), then dispose of our buffers, restore the info
-|	handle’s state and return the error.
+|	handle's state and return the error.
 */
 
 returnError:
@@ -1123,7 +1123,7 @@ register unsigned short	commentType )
 	theCommentPtr	= *theCommentHand;
 
 /*
-|	See if we already a comment of this type. If we do, then increment it’s counter and return.
+|	See if we already a comment of this type. If we do, then increment it's counter and return.
 */
 
 	for(index = commentCount; index > 0; index--)
@@ -1139,7 +1139,7 @@ register unsigned short	commentType )
 
 /*
 |	If we got here, then we have a new comment. First check to see if we already have space
-|	for this comment. If we don’t then allocate another 256 comment specs and continue. Then,
+|	for this comment. If we don't then allocate another 256 comment specs and continue. Then,
 |	point to the next free entry in the comment spec handle and fill it with (1, commentType).
 |	Finally, update the count of unique comments.
 */
@@ -1215,7 +1215,7 @@ Handle					fontNameCache )
 	}
 
 /*
-|	If we got here, then we haven’t seen this font before, so we must add it to the list. First,
+|	If we got here, then we haven't seen this font before, so we must add it to the list. First,
 |	check to see if there are no more empty entries in the handle. If that is so, then we need
 |	more memory, so allocate enough for 8 more font specs and return an error if there is one.
 */
@@ -1256,7 +1256,7 @@ Handle					fontNameCache )
 /*
 |	Add the font name to the name handle. Otherwise, get an offset to the end of the old name list and set the
 |	nameOffset field in the font spec record to be this ending offset. Then we check to see if there is still
-|	space left in the names handle for our new name. If there isn’t then, we allocate 256 more bytes for the
+|	space left in the names handle for our new name. If there isn't then, we allocate 256 more bytes for the
 |	name handle. Finally, we block move the new name into the name handle at the correct spot.
 */
 
@@ -1367,7 +1367,7 @@ volatile Boolean				ppatFlag )
 
 /*
 |	Allocate space for our pixMap structure. Note that we must do this, even if the data
-|	is actually a bitMap. We allocate the handle as “clear”, so that we don’t have to fill
+|	is actually a bitMap. We allocate the handle as 'clear', so that we don't have to fill
 |	in all the fields that default to zero.
 */
 
@@ -1411,7 +1411,7 @@ volatile Boolean				ppatFlag )
 		SkipPictData(theInfoPtr, 8);
 
 	/*
-	|	If the pixMap is not “direct” (16 or 32 bit), then a color table will follow the pixMap. Get the color
+	|	If the pixMap is not 'direct' (16 or 32 bit), then a color table will follow the pixMap. Get the color
 	|	table here. Note that we have to get the first three fields separate from the rest, so that we can use
 	|	theCTSize to allocate the handle and know how much data to read.
 	*/
@@ -1477,7 +1477,7 @@ volatile Boolean				ppatFlag )
 |	packed in the format used by _PackBits and we indicate this with a packType of zero!
 |	The other cases (direct pixMaps with a rowBytes greater than eight), use the packType
 |	of the bitMap to determine the packing scheme. Finally, if this is the case, then I
-|	use a gross hack to make sure that my “fake” packType of zero, is never falsely set.
+|	use a gross hack to make sure that my 'fake' packType of zero, is never falsely set.
 |	It turns out that quickdraw treats a packType of zero exactly the same as a packType
 |	of two, so I take advantage of this.
 */
@@ -1495,7 +1495,7 @@ volatile Boolean				ppatFlag )
 	HUnlock( (Handle)thePixMapHandle );
 
 /*
-|	If the “pixMap” is really a pixPat, then there are no srcRect, dstRect, and mode fields. In
+|	If the 'pixMap' is really a pixPat, then there are no srcRect, dstRect, and mode fields. In
 |	all other cases (bitMap or pixMap), we must skip over these fields.
 */
 
@@ -1514,7 +1514,7 @@ volatile Boolean				ppatFlag )
 	}
 
 /*
-|	Check to see if our buffers are already allocated. If they aren’t then allocate them.
+|	Check to see if our buffers are already allocated. If they aren't then allocate them.
 |	Note that we allocate the line buffer only if we need to. Also note that we must allocate
 |	some extra slop in the line buffer, in case the compressed data is actually bigger than
 |	the uncompressed data.
@@ -1547,7 +1547,7 @@ volatile Boolean				ppatFlag )
 	for( ; scanLines > 0; scanLines -= linesPerBand )
 	{
 	/*
-	|	If we are on the last band, make sure that we don’t go beyond the end of the picture.
+	|	If we are on the last band, make sure that we don't go beyond the end of the picture.
 	*/
 
 		if( linesPerBand > scanLines )
@@ -1599,7 +1599,7 @@ volatile Boolean				ppatFlag )
 			|	This packType indicates that the data was packed by removing the alpha
 			|	channel from each pixel. Unpack this by reading the data for an entire
 			|	band into the end of the banding buffer and then unpacking it in place.
-			|	The AddPadBytes routine does the actual “unpacking”.
+			|	The AddPadBytes routine does the actual 'unpacking'.
 			*/
 				{
 					register unsigned char	*srcPtr, *dstPtr;
@@ -1621,7 +1621,7 @@ volatile Boolean				ppatFlag )
 			case 3:
 			/*
 			|	This packType indicates that the data was packed by run-length encoding
-			|	words of data. This is just like type 0, but the “atom” of data is a word
+			|	words of data. This is just like type 0, but the 'atom' of data is a word
 			|	instead of a byte. This packing scheme requires us to use the scan line
 			|	buffer.
 			*/
@@ -1682,8 +1682,8 @@ volatile Boolean				ppatFlag )
 
 			default:
 			/*
-			|	If we don’t recognize the packing type then skip over all the data, a scan
-			|	line at a time and then “continue” the main loop, thus skipping the pixMap
+			|	If we don't recognize the packing type then skip over all the data, a scan
+			|	line at a time and then 'continue' the main loop, thus skipping the pixMap
 			|	record.
 			*/
 				for(index=0; index < linesPerBand; index++)
@@ -1706,7 +1706,7 @@ volatile Boolean				ppatFlag )
 /*
 |	Dispose of our temporary memory here (the pixMap handle and the color table handle).
 |	Note that we do NOT dispose of our buffers, since we might do another pixMap and we
-|	don’t want to waste time allocating memory twice.
+|	don't want to waste time allocating memory twice.
 */
 
 returnError:

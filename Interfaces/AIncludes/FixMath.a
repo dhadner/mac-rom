@@ -12,7 +12,7 @@
 ;		 <8>	 2/11/92	MH		Move conditional assembly directive to immediately following
 ;									copyright notice. This matches the public interface, and reduces
 ;									assembler overhead in case the file is included more than once.
-;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:
@@ -51,7 +51,7 @@ __INCLUDINGFIXMATH__	SET	1
 ; graphics package resides on top of these routines. Although FixMul is in the
 ; file ToolTraps, it is shown below to show how it handles different types.
 ; Additional fixed point routines are described in the Inside Macintosh chapter,
-; “Toolbox Utilities.”
+; 'Toolbox Utilities.'
 
 ; FUNCTION FixMul(x, y: Fixed): Fixed;
 ; FixMul returns x * y. Note that FixMul effects "type * Fixed --> type":

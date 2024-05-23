@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 
-		 <2>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn’t do anything
+		 <2>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn't do anything
 									any more. Also added checks to make sure the zone parameter is
 									not nil, since the partial font zone is not created for Roman
 									systems.

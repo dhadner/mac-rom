@@ -50,8 +50,8 @@
 ;									exit) in stretch. This fixes a bug where someone turns off the
 ;									stack sniffer and then calls stretch which turns it back on.
 ;									Abort picture playback when QDError = AbortPicPlayBackErr.
-;		<56>	 9/13/91	DTY		Conditionalise previous change so it doesn’t get built for
-;									CubeE. (It’ll get built for PsychoticFarmerAndLater.)  Move in
+;		<56>	 9/13/91	DTY		Conditionalise previous change so it doesn't get built for
+;									CubeE. (It'll get built for PsychoticFarmerAndLater.)  Move in
 ;									code that was taken out between <54> and <55>, and build it for
 ;									CubeE only.
 ;		<55>	 7/23/91	KON		Speed up indexed to 32-bit srcCopy mode.  Speed up colorized
@@ -2433,7 +2433,7 @@ NOSCALE	MOVE.L	DSTRECT(A6),A0				;POINT TO DSTRECT
 		LSR.l	#5,D1						;GET NUMBER OF LONGS IN SCANBUF - 1	<C954>
 		addq.l	#1,d1						;***make it one based for stretch!!	<C954>
 		BTST	#5,locMode+1(A6)			;arithmetic?
-		BNE.S	@skipDotToLong				;if so, don’t update bufSize
+		BNE.S	@skipDotToLong				;if so, don't update bufSize
 
 		MOVE	D1,BUFSIZE(A6)				;BUFSIZE = # LONGS -1				<C954>
 
@@ -4875,7 +4875,7 @@ stTransparent
 @skipLong
 		ADDQ	#4,A3				;bump the source by a long
 		ADD		#32,D3				;bump mask and destination
-		SUB		D5,D2				;a long’s worth of pixels
+		SUB		D5,D2				;a long's worth of pixels
 		BGE.S	@loopTop1
 		MOVE.L	bColor(A6),D4		;set up colorMap backcolor for skipping coloring source
 		BRA		NEXTDST
@@ -7039,7 +7039,7 @@ Eight
 ;  SCALE UP BY EIGHT USING TABLE LOOKUP, then colorize
 ;
 
-; from QDciPatchROM.a but doesn’t use A3 here								<sm 6/9/92>stb
+; from QDciPatchROM.a but doesn't use A3 here								<sm 6/9/92>stb
 
 EightLoop
 		MOVE.B	(A0)+,D0					;GET A BYTE OF SRC

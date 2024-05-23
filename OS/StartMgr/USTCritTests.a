@@ -11,7 +11,7 @@
 ;
 ;	   <SM5>	01/07/93	HY		In AddrLineTest save return address in A4 instead 
 ;									of A3 before calling SizeMemory.
-;	   <SM4>	 8/20/92	CCH		Removed unneeded “forRisc” conditional.
+;	   <SM4>	 8/20/92	CCH		Removed unneeded 'forRisc' conditional.
 ;	   <SM3>	 7/13/92	CCH		Don't check checksum when running on Cub Card.
 ;	   <SM2>	  5/2/92	kc		Roll in Horror. Comments follow:
 ;		<H2>	01/27/92	jmp		(BG,Z6) Added padding in Mod3Test and RevMod3Test because of our

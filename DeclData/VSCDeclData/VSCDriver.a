@@ -48,7 +48,7 @@
 				STRING		ASIS
 				MACHINE		MC68020
 
-usingTimeMgr		Equ			0				; If true, we’re using the TimeMgr to simulate VBLs.
+usingTimeMgr		Equ			0				; If true, we're using the TimeMgr to simulate VBLs.
 
 ; This is device storage which is stored in the dCtlStorage field of the AuxDCE.
 
@@ -108,7 +108,7 @@ VSCVidTitle
 ; VSCCLUTTbl contains information required to write to the CLUT in the different screen depths.
 ;	Each depth's information has three values.  The first is the number of entries-1 in this depth
 ;	for range checking.  The second is the address of the first active CLUT position for that 
-;	screen depth.  The last number is the “skip” factor.  This is required because, in 1-4bpp, the
+;	screen depth.  The last number is the 'skip' factor.  This is required because, in 1-4bpp, the
 ;	entries are distributed throughout the CLUT address space.  As a result, we use sequential CLUT mode
 ;	ONLY in 8/16bpp modes.  The skip factor is the address difference between adjacent active positions
 ;	in each mode.  
@@ -287,9 +287,9 @@ VSCVidOpen
 ;	look up. (Unless, of course, you just hard-code them like what has been done
 ;	here :-)
 ;
-				move.l	#VDACBase,saveVDACBase(A3)			; save VDAC’s base address
-				move.l	#AIV3Base,saveAIV3Base(A3)			; save VSC’s VIA base address
-				move.l	#VSCVideoBase,saveVideoBase(A3)		; save VSC’s Video Registers base address
+				move.l	#VDACBase,saveVDACBase(A3)			; save VDAC's base address
+				move.l	#AIV3Base,saveAIV3Base(A3)			; save VSC's VIA base address
+				move.l	#VSCVideoBase,saveVideoBase(A3)		; save VSC's Video Registers base address
 				move.l	#VRAMBase,saveScreenBase(A3)		; save VRAM base address too
 		
 ;
@@ -394,7 +394,7 @@ VSCVidOpen
 ;
 ; At PrimaryInit time, we used the sense lines to determine the type of attached display.  For extended
 ;	sense displays, we just mapped them to the end of indexed-sense displays.  Since the gamma-correction
-;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the “real”
+;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the 'real'
 ;	monitor ID.  At PrimaryInit time, we store the real monitor ID in slot pRAM.  So, we extract that
 ;	information out here.  Also, it should be noted that it would actually be inappropriate for us
 ;	to re-read the sense-lines now, in that someone could potentially change/unplug the attached
@@ -411,7 +411,7 @@ VSCVidOpen
 				Bne		@OpError5							; If failed quit.
 				
 				Moveq	#0,D2								; Clear D2.w.
-				Move.b	SP_MonID(Sp),D2						; Get the monID (it’s byte sized).
+				Move.b	SP_MonID(Sp),D2						; Get the monID (it's byte sized).
 				Move.b	SP_Flags(Sp),D1						; Get the vRAM size.
 				
 				Adda	#sizeSPRamRec+spBlockSize,Sp		; Clean up the stack.
@@ -485,7 +485,7 @@ VSCVidOpen
 *   Entry: 	A0 		= param block pointer
 *			A1 		= AuxDCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= ptr to our privates/scrarch (doesn’t need to be preserved)
+*			A3 		= ptr to our privates/scrarch (doesn't need to be preserved)
 *			A4		= scratch (must be preserved)
 *			D0-D3 	= scratch (don't need to be preserved)
 *
@@ -615,8 +615,8 @@ VSCSetVidModeGuts
 				Move.l	A4,A5								; Point to green data (assuming gChanCnt = 1).
 				Move.l	A4,A6								; Point to red data (assuming gChanCnt = 1).
 							
-				Cmp.w	#1,gChanCnt(A0)						; If there’s only one table,
-				Beq.s	@OnlyOneTable						;	then we’re set.
+				Cmp.w	#1,gChanCnt(A0)						; If there's only one table,
+				Beq.s	@OnlyOneTable						;	then we're set.
 				
 				Move.w	gDataWidth(A0),D2					; Get width of each entry (in bits).
 				Move.w	gDataCnt(A0),D0						; Get # of entries in table.
@@ -736,8 +736,8 @@ VSCSEGuts
 				CMP.W	#indexEntries,csStart(A2)			; was it indexed mode?
 				BEQ.S	@SkipSeq							; if so, then leave bit off (it's never turned on in GFlags)
 				Bset	#PsuedoIndex,D5						; turn on the bit that denotes a seq write that was xlated to indexed
-				Cmp.w	#FourthVidMode,saveMode(A3)			; If it’s not 8bbp or 16bpp
-				Blt.s	@SkipSeq							;	need to use “indexed”.
+				Cmp.w	#FourthVidMode,saveMode(A3)			; If it's not 8bbp or 16bpp
+				Blt.s	@SkipSeq							;	need to use 'indexed'.
 				BSET	#UseSeq,D5							; otherwise, turn on sequential mode bit
 @SkipSeq
 				MOVE.L	saveGammaPtr(A3),A0					; get pointer to gamma data structure
@@ -779,10 +779,10 @@ VSCSEGuts
 ;
 	
 				Move.w	csCount(A2),D3						; Get the number of entries to change,
-				Bmi		VSCSEBadExit						; 	and hike if it’s out of range.
+				Bmi		VSCSEBadExit						; 	and hike if it's out of range.
 				Cmp.w	D4,D3								; If D3-D4 > 0 (count - range > 0),
 				Bhi		VSCSEBadExit						;	then hike.
-				Tst.w	csStart(A2)							; If we’re doing indexed entries (-1),
+				Tst.w	csStart(A2)							; If we're doing indexed entries (-1),
 				Bmi.s	@skipStartChk						;	then just go on.
 				Add.w	csStart(A2),D3						; Adjust count for starting position.
 				Cmp.w	D4,D3								; If D3-D4 > 0 (count - range > 0),
@@ -793,7 +793,7 @@ VSCSEGuts
 								
 				Move.l	D3,D4								; Make a copy of the table size (zero-based).
 				Addq	#1,D4								; Make it a counting number.
-				Btst	#UseSeq,D5							; If we’re not in sequential mode,
+				Btst	#UseSeq,D5							; If we're not in sequential mode,
 				Beq.s	@IsIndex							;	then do the indexed stuff.
 				Mulu	#3,D4								; Make room for just R,G,B in sequential mode.
 				Bra.s	@AllocIt							; And continue.
@@ -805,7 +805,7 @@ VSCSEGuts
 ;	components is only eight bits (rather than 16).
 ;
 				
-				Move.l	A3,D6								; We’re about to torch A3, so save it for later.
+				Move.l	A3,D6								; We're about to torch A3, so save it for later.
 				Move.l	A0,A3								; Save the CLUT table entry pointer.
 
 				MOVE.L	SP,A0								; copy the stack buffer pointer
@@ -829,7 +829,7 @@ VSCSEGuts
 				BTST	#UseSeq,D5							; is it sequence mode?
 				BNE.S	@SLSeq								; yup, so go there
 				
-				Btst	#PsuedoIndex,D5						; If we are doing an “indexed” mode,
+				Btst	#PsuedoIndex,D5						; If we are doing an 'indexed' mode,
 				Beq.s	@IndexPresent						;	then go there now.
 				
 ; This case is a sequential request in a screen depth that does not allow sequential CLUT writes 
@@ -1050,7 +1050,7 @@ VSCSetGamma
 				MOVE.B	D0,(A0)+							; move a byte
 				DBRA	D2,@NxtByte							; => repeat for all bytes
 
-				Bra.s	@GammaDone							; Check to see if it’s a direct device.
+				Bra.s	@GammaDone							; Check to see if it's a direct device.
 
 ;
 ; Set up a linear gamma table.  To prevent memory thrash, build this new one
@@ -1172,12 +1172,12 @@ VSCSetInterrupt
 				WITH	VDPageInfo,SlotIntQElement,VSCVidPrivates
 			
 			If usingTimeMgr Then
-				Tst.b	csMode(A2)							; Check to see which way we’re going. 
+				Tst.b	csMode(A2)							; Check to see which way we're going. 
 			Else
 				MOVEQ	#1,D1								; set up for BFEXTU to point to IntDisFlag
 				BSR.S 	VSCSetIntCom						; call common code
 			Endif
-				BNE.S	@DisableThem						; If non-zero, then we’re disabling.
+				BNE.S	@DisableThem						; If non-zero, then we're disabling.
 
 ; This code enables interrupts and installs the interrupt handler.
 ;
@@ -1197,7 +1197,7 @@ VSCSetInterrupt
 VSCDisableVGuts
 				
 			If usingTimeMgr Then
-				Move.w	#-1,IntDisableFlag(A3)				; Remember that we’re disabling things.
+				Move.w	#-1,IntDisableFlag(A3)				; Remember that we're disabling things.
 				Rts
 			Else
 				MOVE.W	SR,-(SP)							; preserve the status register
@@ -1217,7 +1217,7 @@ VSCDisableVGuts
 VSCEnableVGuts
 
 			If usingTimeMgr Then
-				Clr.w	IntDisableFlag(A3)					; Remember that we’re enabling things.
+				Clr.w	IntDisableFlag(A3)					; Remember that we're enabling things.
 				
 				MOVE.L	A1,-(SP)							; jPrimeTime trashes A1
 				LEA		TTask(A3),A0						; get time task block in A0
@@ -1308,28 +1308,28 @@ VSCSetDefaultMode
 ;
 ; Since PrimaryInit relies on the default mode being set correctly, we check to see that
 ;	the mode to be set is actually valid.  Monitors can only see valid sRsrcIDs, so
-;	it probably won’t cause a problem.  But we should check it anyway for unsavory
+;	it probably won't cause a problem.  But we should check it anyway for unsavory
 ;	applications.
 ;
 				
 				Move.b		csMode(A2),spID(A0)				; Look for the passed in spID.
 				Clr.l		spParamData(A0)					; Clear the fNext flag; we want THIS sRsrc.
-				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc’s
+				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc's
 							(1<<foneslot),spParamData+3(A0)	; Only search in our slot.
 				_GetsRsrc									; Do it.
 				Bne			@BadExit						; If failed, quit.
 				
 				Move.w		spCategory(A0),D0				; Get the category.
-				Cmp.w		#catDisplay,D0					; If it’s not catDisplay,
+				Cmp.w		#catDisplay,D0					; If it's not catDisplay,
 				Bne			@BadExit						;	then quit.
 				Move.w		spCType(A0),D0					; Get the type.
-				Cmp.w		#typVideo,D0					; If it’s not typVideo,
+				Cmp.w		#typVideo,D0					; If it's not typVideo,
 				Bne			@BadExit						;	then quit.
 				Move.w		spDrvrSw(A0),D0					; Get the software kind.
-				Cmp.w		#drSwApple,D0					; If it’s not drSwApple,
+				Cmp.w		#drSwApple,D0					; If it's not drSwApple,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spDrvrHw(A0),D0					; Get the hardware ID.
-				Cmp.w		#drHwVSC,D0						; If it’s not drHwVSC,
+				Cmp.w		#drHwVSC,D0						; If it's not drHwVSC,
 				Bne.s		@BadExit						;	then quit.
 
 ;
@@ -1339,7 +1339,7 @@ VSCSetDefaultMode
 ;
 				
 				Move.b		csMode(A2),D1					; Copy the desired family mode.
-				Cmp.b		SP_LastConfig(Sp),D1			; If we’re already going to this mode,
+				Cmp.b		SP_LastConfig(Sp),D1			; If we're already going to this mode,
 				Beq.s		@GoodExit						;	then just go on.
 				
 				Movea.l		A0,A1							; Save the SpBlockPtr.
@@ -1350,17 +1350,17 @@ VSCSetDefaultMode
 				Btst		#gestaltDisplayMgrPresent,D0	; If the Display Manager is around,
 				Bne.s		@WriteIt						;	then skip the non-dynamic stuff.
 
-@NoDM			Bset		#spFamilyChanged,SP_Flags(Sp)	; Otherwise, say that we’re changing the mode.
-				Cmpi.b		#sRsrc_Vid_VSC_FPa,D1			; If we’re swapping to the 640x870 mode,
+@NoDM			Bset		#spFamilyChanged,SP_Flags(Sp)	; Otherwise, say that we're changing the mode.
+				Cmpi.b		#sRsrc_Vid_VSC_FPa,D1			; If we're swapping to the 640x870 mode,
 				Beq.s		@ChkDepth						;	then check the depth.
-				Cmpi.b		#sRsrc_Vid_VSC_RGBFPa,D1		; If we’re swapping to the 640x870 mode,
+				Cmpi.b		#sRsrc_Vid_VSC_RGBFPa,D1		; If we're swapping to the 640x870 mode,
 				Beq.s		@ChkDepth						;	then check the depth.
-				Cmpi.b		#sRsrc_Vid_VSC_1K,D1			; If we’re swapping to the 1024x768 mode,
+				Cmpi.b		#sRsrc_Vid_VSC_1K,D1			; If we're swapping to the 1024x768 mode,
 				Beq.s		@ChkDepth						;	then check the depth.
 				
-				Cmpi.b		#sRsrc_Vid_VSC_FPb,D1			; If we’re swapping to the 640x818 mode,
+				Cmpi.b		#sRsrc_Vid_VSC_FPb,D1			; If we're swapping to the 640x818 mode,
 				Beq.s		@SetDepth						;	then set to 8bpp.
-				Cmpi.b		#sRsrc_Vid_VSC_RGBFPb,D1		; If we’re swapping to the 640x818 mode,
+				Cmpi.b		#sRsrc_Vid_VSC_RGBFPb,D1		; If we're swapping to the 640x818 mode,
 				Beq.s		@SetDepth						;	then set to 8bpp.
 				Bra.s		@WriteIt						; Otherwise, just go on.
 				
@@ -1401,13 +1401,13 @@ VSCSwitchMode
 ; Check to see if we can do what was requested…
 ;
 				Tst.w		csPage(A2)						; If requested page is not zero,
-				Bne.s		VSCCtlBad						;	then we can’t help ’em.
+				Bne.s		VSCCtlBad						;	then we can't help 'em.
 				
 				Move.l		csData(A2),D2					; Get the requested SpID.
 				Moveq		#0,D0							; Clear hi-half of mode/depth register.
 				Lea			SwitchTable,A0					; Point to the SwitchMode table.
-@ChkLoop		Move.b		(A0)+,D1						; If we’re at the end of the table,
-				Beq			VSCCtlBad						; 	then something’s wrong.
+@ChkLoop		Move.b		(A0)+,D1						; If we're at the end of the table,
+				Beq			VSCCtlBad						; 	then something's wrong.
 				
 				Move.b		(A0)+,D0						; Get the max mode for this config.
 				
@@ -1425,7 +1425,7 @@ VSCSwitchMode
 
 ; Switch to the new resolution…
 ;
-				Cmp.b		dCtlSlotID(A1),D2				; If we’re already in the requested resolution,
+				Cmp.b		dCtlSlotID(A1),D2				; If we're already in the requested resolution,
 				Beq			VSCSetVidModeGuts				;	then go try the depth switch.
 				
 				Move.b		D2,D1							; Set up to do the resolution switch.
@@ -1439,7 +1439,7 @@ VSCSetAltSense
 ;---------------------------------------------------------------------
 ;
 ;	SetAltSense sets up the alternate senseID pRam byte to contain
-;		a valid “index” code if a valid sense code is passed
+;		a valid 'index' code if a valid sense code is passed
 ;		in csMode (byte 0 is the sense code, byte 1 is the type).
 ;
 ;		A1 = Ptr to AuxDCE/Ptr to VSCMonIDs table (not restored)
@@ -1475,11 +1475,11 @@ VSCSetAltSense
 				Move.b	csMode+1(A2),D0						; Get the sense-code type.
 				Lea		VSCMonIDsTbl,A1						; Point to the MonIDs table.
 
-@TypeLoop		Cmp.w	(A1)+,D0							; If we’ve come to the end of the table,
+@TypeLoop		Cmp.w	(A1)+,D0							; If we've come to the end of the table,
 				Bmi.s	@MonIDNotValid						;	then leave with an error.
-				Beq.s	@ChkOffset							; If we’ve found a match, then check it.
+				Beq.s	@ChkOffset							; If we've found a match, then check it.
 				Tst.w	(A1)+								; Otherwise, skip the offset.
-				Bra.s	@TypeLoop							; And keep looping until we’re done.
+				Bra.s	@TypeLoop							; And keep looping until we're done.
 
 @ChkOffset		Move.w	(A1)+,D1							; If the offset to the code table is nil,
 				Beq.s	@MonIDNotValid						; 	then leave with an error.
@@ -1487,17 +1487,17 @@ VSCSetAltSense
 				Adda.w	D1,A1								; And point to the appropriate sense-code table.
 				
 				Move.b	csMode(A2),D0						; Get the sense code.
-@CodeLoop		Cmp.b	(A1)+,D0							; If we’ve come to the end of the table,
+@CodeLoop		Cmp.b	(A1)+,D0							; If we've come to the end of the table,
 				Bmi.s	@MonIDNotValid						;	then leave with an error.
-				Beq.s	@ChkIt								; If we’ve found a match, then check it.
+				Beq.s	@ChkIt								; If we've found a match, then check it.
 				Tst.b	(A1)+								; Otherwise, skip the indexed code.
-				Bra.s	@CodeLoop							; And keep looping until we’re done.
+				Bra.s	@CodeLoop							; And keep looping until we're done.
 				
 @ChkIt			Move.b	(A1)+,D1							; Get the indexed ID for this code.
-				Cmpi.b	#indexedNoConnect,D1				; If it’s the no-connect code,
+				Cmpi.b	#indexedNoConnect,D1				; If it's the no-connect code,
 				Beq.s	@ClearIt							;	then say so.
 				
-				Move.b	D1,SP_AltSense(Sp)					; Write out “index” to pRam record.
+				Move.b	D1,SP_AltSense(Sp)					; Write out 'index' to pRam record.
 				Ori.b	#spAltSenseValidMask,SP_AltSense(Sp) ; Validate it.
 				Bra.s	@WritePRam
 
@@ -1531,21 +1531,21 @@ VSCSleepWake
 
 				With 	VSCVidPrivates
 
-				Move.b	#-1,sleepWakeFlag(A3)				; Say that we’re sleep-waking.
+				Move.b	#-1,sleepWakeFlag(A3)				; Say that we're sleep-waking.
 				
 				Tst.b	csMode(A2)							; If the request was to sleep, then
-				Beq.s	@ChkSleep							;	make sure it’s okay.
+				Beq.s	@ChkSleep							;	make sure it's okay.
 				
-				Btst	#IsSleeping,GFlags(A3)				; Otherwise, if we’re already awake, then
-				Beq		VSCCtlBad							;	something’s wrong.
-				Bclr	#IsSleeping,GFlags(A3)				; Remember that we’re no longer asleep.
+				Btst	#IsSleeping,GFlags(A3)				; Otherwise, if we're already awake, then
+				Beq		VSCCtlBad							;	something's wrong.
+				Bclr	#IsSleeping,GFlags(A3)				; Remember that we're no longer asleep.
 				Moveq	#0,D1								; Set up to power up.
 				Bra.s	VSCLowPwrGuts						; Do it.
 				
-@ChkSleep		Btst	#IsSleeping,GFlags(A3)				; If we’re already sleeping, then
-				Bne		VSCCtlBad							;	something’s wrong.
-				Move.w	saveMonID(A3),csMode(A2)			; Remember which display we’re driving.
-				Bset	#IsSleeping,GFlags(A3)				; Remember that we’ve been asked to sleep.
+@ChkSleep		Btst	#IsSleeping,GFlags(A3)				; If we're already sleeping, then
+				Bne		VSCCtlBad							;	something's wrong.
+				Move.w	saveMonID(A3),csMode(A2)			; Remember which display we're driving.
+				Bset	#IsSleeping,GFlags(A3)				; Remember that we've been asked to sleep.
 				Moveq	#-1,D1								; Set up to power down.
 				Bra.s	VSCLowPwrGuts						; Do it.
 
@@ -1568,13 +1568,13 @@ VSCPSelectRegs	REG		a0-a1
 				Lea		VSCValidCPUs,A0						; Point to list of valid CPUs.
 				Moveq	#0,D0								; Clear D0 for good measure.
 @CPULoop		Move.w	(A0)+,D0							; Get next entry in list.
-				Bmi.s	VSCCtlBad							; If at EOL, then we’re dead.
+				Bmi.s	VSCCtlBad							; If at EOL, then we're dead.
 				Cmp.b	CPUFlag,D0							; If the entry matches,
-				Beq.s	@EndCPUChk							;	then we’re okay.
+				Beq.s	@EndCPUChk							;	then we're okay.
 				Tst.w	(A0)+								; Skip over offset.
 				Bra.s	@CPULoop							; Loop until done.
 @EndCPUChk
-				Clr.b	sleepWakeFlag(A3)					; Say that we’re not sleep-waking.
+				Clr.b	sleepWakeFlag(A3)					; Say that we're not sleep-waking.
 				move.w	csMode(a2),d1						; determine which power state to enter
 VSCLowPwrGuts
 				movem.l	VSCPSelectRegs,-(sp)				; save them regs
@@ -1598,14 +1598,14 @@ VSCLowPwrGuts
 			Endif
 				move.b	#(1<<7)+(1<<AnySlotEn),AIV3IntEn(a1); make sure Any slot interrupts are enabled.
 				
-				Tst.b	sleepWakeFlag(A3)					; If we’re doing the sleep-wake case,
+				Tst.b	sleepWakeFlag(A3)					; If we're doing the sleep-wake case,
 				Bne.s	@SkipLowPwr0						;	then skip the low-power stuff.
 				Bsr		VSCRestoreBusErrH					; Otherwise, remove our bus error handler.
 			If Not usingTimeMgr Then
 				Bsr		VSCRemoveTTask						; Remove phony jVBLTask VBLs.
 ; •••			bsr		VSCEnableVGuts						; power up those interrupts
 			Endif
-				Bra.s	@SkipGrayScreen0					; Don’t grayscreen on low-power.
+				Bra.s	@SkipGrayScreen0					; Don't grayscreen on low-power.
 @SkipLowPwr0				
 				Move.w	saveMode(A3),D1						; Get the current depth.
 				Move.w	D1,csMode(A2)						; Save it for later.
@@ -1628,14 +1628,14 @@ VSCLowPwrGuts
 				move.b	VSC_BusInt(a1),(a0)+				; save the bus interface
 				move.b	VSC_VidCtrl(a1),(a0)+				; save the control register
 				
-				Tst.b	sleepWakeFlag(A3)					; If we’re doing the sleep-wake case,
+				Tst.b	sleepWakeFlag(A3)					; If we're doing the sleep-wake case,
 				Bne.s	@SkipLowPwr1						;	then skip the low-power stuff.
 				bsr		VSCInstallBusErrH					; Install our buserr handler
 			If Not usingTimeMgr Then
 ; •••			bsr		VSCDisableVGuts						; kill interrupts
 				Bsr		VSCInstallTTask						; Enable phony jVBLTask VBLs.
 			Endif
-				Bra.s	@SkipGrayScreen1					; Don’t grayscreen on low-power.
+				Bra.s	@SkipGrayScreen1					; Don't grayscreen on low-power.
 @SkipLowPwr1
 				Move.w	saveMode(A3),D1						; Get the current depth.
 				Subi.w	#FirstVidMode,D1					; Make it an index.
@@ -1645,10 +1645,10 @@ VSCLowPwrGuts
 				
 @VSCPSelectCommonOut
 				Movem.l	(Sp)+,VSCPSelectRegs				; Restore the work registers.
-				Tst.b	savePowerStatus(A3)					; If we’re powered down,
+				Tst.b	savePowerStatus(A3)					; If we're powered down,
 				Bne		VSCCtlGood							; 	then just leave.
 				Move.w	csMode(A2),D1						; Set up for sleep-wake just in case.
-				Tst.b	sleepWakeFlag(A3)					; If we’re doing the sleep-wake case,
+				Tst.b	sleepWakeFlag(A3)					; If we're doing the sleep-wake case,
 				Bne		VSCSetVidModeGuts					;	then restore the depth.
 				Bra		VSCCtlGood							; Vamoose.
 
@@ -1677,7 +1677,7 @@ VSCVidClose
 				MOVE.L	D0,A3								;
 				
 			If usingTimeMgr Then
-				MOVE.W	#-1,IntDisableFlag(A3)				; set this word to “disable” interrupts
+				MOVE.W	#-1,IntDisableFlag(A3)				; set this word to 'disable' interrupts
 				LEA		TTask(A3),A0						; get the time manager task block
 				_RmvTime									; remove this element from the queue
 			Else
@@ -1837,10 +1837,10 @@ VSCGetEntries
 				Move.b	scRange(A0),D3						; Get the CLUT range.
 						
 				Move.w	csCount(A2),D4						; Get the number of entries to change,
-				Bmi		@GEErr								; 	and hike if it’s out of range.
+				Bmi		@GEErr								; 	and hike if it's out of range.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
 				Bhi		@GEErr								;	then hike.
-				Tst.w	csStart(A2)							; If we’re doing indexed entries (-1),
+				Tst.w	csStart(A2)							; If we're doing indexed entries (-1),
 				Bmi.s	@skipStartChk						;	then just go on.
 				Add.w	csStart(A2),D4						; Adjust count for starting position.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count - range > 0),
@@ -1856,8 +1856,8 @@ VSCGetEntries
 				Beq.s	@GECom								; 	then go on.
 			
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing here, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing here, so we'll continue the trend for now.
 
 				Move.l	(Sp),A0								; Get ptr to csTable.
 				Move.w	D6,D1								; Get count.
@@ -2065,8 +2065,8 @@ VSCGetCurMode
 				Move.b	dCtlSlotID(A1),D0					; Get the current SpID.
 				
 				Lea		SwitchTable,A0						; Point to the SwitchMode table.
-@ChkLoop		Move.b	(A0)+,D1							; If we’re at the end of the table,
-				Beq		VSCStatBad							; 	then this mode can’t switch.
+@ChkLoop		Move.b	(A0)+,D1							; If we're at the end of the table,
+				Beq		VSCStatBad							; 	then this mode can't switch.
 				Cmp.b	D0,D1								; If this is not the current mode,
 				Bne.s	@ChkLoop							;	then keep looping.
 			
@@ -2100,7 +2100,7 @@ VSCGetConnection
 
 				Lea		VSCConnectTable,A0					; Point to the table of connect values.
 @ConnectLoop	Move.w	(A0)+,D0							; Get the indexed display code.
-				Bmi.s	@UseDefault							; If we’re at the table’s end, then use the defaults.
+				Bmi.s	@UseDefault							; If we're at the table's end, then use the defaults.
 				Cmp.w	saveMonID(A3),D0					; Otherwise, if we found a match, then
 				Beq.s	@FoundOne							;	hop to it.
 				Adda.w	#ConnectEntrySz-2,A0				; Otherwise, skip to the next entry.
@@ -2117,7 +2117,7 @@ VSCGetConnection
 VSCGetAltSense
 ;---------------------------------------------------------------------
 ;
-;	Returns the alternate senseID code that’s in use.  It
+;	Returns the alternate senseID code that's in use.  It
 ;		should be noted that we cannot disguish between PAL &
 ;		NTSC monitors & encoder boxes once SetAltSense has
 ;		been called (because both the monitor & box codes are
@@ -2163,11 +2163,11 @@ VSCGetAltSense
 				Lea		VSCType_0_MonIDs,A1					; Point to the Type_0_MonIDs.
 				Bsr		@ValidLoop							; Search there.
 				
-				Move.b	#6,csMode+1(A2)						; Assume we’ll find a type-6 sense code.
+				Move.b	#6,csMode+1(A2)						; Assume we'll find a type-6 sense code.
 				Lea		VSCType_6_MonIDs,A1					; Point to the Type_6_MonIDs.
 				Bsr		@ValidLoop							; Search there.
 				
-				Move.b	#7,csMode+1(A2)						; Assume we’ll find a type-7 sense code.
+				Move.b	#7,csMode+1(A2)						; Assume we'll find a type-7 sense code.
 				Lea		VSCType_7_MonIDs,A1					; Point to the Type_7_MonIDs.
 				Bsr		@ValidLoop							; Search there.
 				
@@ -2179,9 +2179,9 @@ VSCGetAltSense
 				Bra		VSCStatGood							;	go home.
 
 @ValidLoop		Move.b	(A1)+,D0							; Get the sense code.
-				Cmp.b	(A1)+,D1							; If the index matches what’s in PRAM,
+				Cmp.b	(A1)+,D1							; If the index matches what's in PRAM,
 				Beq.s	@WriteItOut							;	then return the sense code.
-				Tst.b	(A1)								; If we’re at the end of the list,
+				Tst.b	(A1)								; If we're at the end of the list,
 				Bmi.s	@ChkNextType						; 	then move on.
 				Bra.s	@ValidLoop							; Otherwise, loop away.
 
@@ -2213,9 +2213,9 @@ VSCGetPwrSelect
 				Lea		VSCValidCPUs,A0						; Point to list of valid CPUs.
 				Moveq	#0,D0								; Clear D0 for good measure.
 @CPULoop		Move.w	(A0)+,D0							; Get next entry in list.
-				Bmi.s	VSCStatBad							; If at EOL, then we’re dead.
+				Bmi.s	VSCStatBad							; If at EOL, then we're dead.
 				Cmp.b	CPUFlag,D0							; If the entry matches,
-				Beq.s	@EndCPUChk							;	then we’re okay.
+				Beq.s	@EndCPUChk							;	then we're okay.
 				Tst.w	(A0)+								; Skip over offset.
 				Bra.s	@CPULoop							; Loop until done.
 @EndCPUChk				
@@ -2318,7 +2318,7 @@ VSCChkMode
 
 VSCWaitVSync	
 
-			Tst.b	savePowerStatus(A3)						; If we’re powered down,
+			Tst.b	savePowerStatus(A3)						; If we're powered down,
 			Bne.s	@NoSyncs								; 	then just leave.
 
 			MOVE.L	A0,-(SP)								; Save work registers.
@@ -2339,7 +2339,7 @@ VSCWaitVSync
 			clr.b	VSC_IntClear(A0)						; Clear any pending interrupts.
 
 			Move.l	saveAIV3Base(A3),A0						; Get the AIV3 base address.
-@SyncLoop	Btst	#slotVBL,AIV3SlotInt(a0)				; If it’s not pending (0=pending),
+@SyncLoop	Btst	#slotVBL,AIV3SlotInt(a0)				; If it's not pending (0=pending),
 			Bne.s	@SyncLoop								;	then keep looping.
 		Endif
 															
@@ -2374,14 +2374,14 @@ VSCSetDepth
 			Move.w	Sr,-(Sp)								; Save the current interrupt level.
 			Bsr.s	VSCWaitVSync							; Wait for the next VBL.
 
-; Switch the framebuffer’s depth.
+; Switch the framebuffer's depth.
 ;
 			Move.l	saveVideoBase(A3),A0					; Get the Video Regs base address.
 			Move.b	D1,VSC_Depth(A0)						; Set the depth.
 
 			Bsr.s	VSCWaitVSync							; Wait for the next VBL.
 
-; Switch the CLUT/DAC’s depth.
+; Switch the CLUT/DAC's depth.
 ;
 			Move.l	saveVDACBase(A3),A0						; Point to Ariel.
 			Move.b	ArielConfigReg(A0),d0					; Save the current state.
@@ -2425,7 +2425,7 @@ VSCSetResolution
 			Suba.w	#spBlockSize,Sp							; Allocate a slot parameter block on the stack.
 			Move.l	Sp,A0									; Point to it with A0.
 			Move.b	dCtlSlot(A1),spSlot(A0)					; Set up the right slot number.
-			Clr.b	spExtDev(A0)							; Don’t ask why, just clear this guy.
+			Clr.b	spExtDev(A0)							; Don't ask why, just clear this guy.
 
 			Move.b	D0,spID(A0)								; Write out the spID of the sRsrc.
 			_sRsrcInfo										; (Update our SpBlock for below.)
@@ -2437,7 +2437,7 @@ VSCSetResolution
 			_SetSRsrcState									; Do it.
 			_sUpdateSRT										; Tell the Slot Manager to update itself.
 			
-; Load the “new” video hardware setup block…
+; Load the 'new' video hardware setup block…
 ;
 			Clr.w	spID(A0)								; Start looking at spID 0, no external devices.
 			Clr.b	spTBMask(A0)							; Only look for the board sRsrc.
@@ -2693,7 +2693,7 @@ VSCPowerOnPlanesReg		REG	a0-a2/a4/d0
 			
 			Movea.l		saveVidPtr(A3),A1					; Point to start of vidParams.
 
-; Make sure everything is off/reset until we’re ready to go.
+; Make sure everything is off/reset until we're ready to go.
 ;
 			Bset		#VidPwrEn,AIV3PwrEn(A2) 			; Turn on video power plane…
 			Clr.b		VSC_VidCtrl(A4)						; …but shut off syncs, dot clock, etc….
@@ -2705,7 +2705,7 @@ VSCPowerOnPlanesReg		REG	a0-a2/a4/d0
 			Bset		#vidReset,VSC_Test(A4)				; Reset the video subsystem by…
 			Bclr		#vidReset,VSC_Test(A4)				; …toggling the reset bit.
 			
-			move.b		#(1<<slotVBL),AIV3SlotEn(A2) 		; Disable VBL’s.
+			move.b		#(1<<slotVBL),AIV3SlotEn(A2) 		; Disable VBL's.
 
 ; Set up the video for 1bpp.
 ;
@@ -2715,7 +2715,7 @@ VSCPowerOnPlanesReg		REG	a0-a2/a4/d0
 			move.b		#((1<<VSCenB0)+(1<<VSCenB1)+\		; enable both banks of VRAM before we size	
 					  	 (1<<VSCEnDotClk)),VSC_VidCtrl(a4)	; enable the dot clock
 
-			Tst.b		saveSizeVRAM(A3)					; If we’ve got 1024K, then
+			Tst.b		saveSizeVRAM(A3)					; If we've got 1024K, then
 			Bne.s		@EndSize							;	then just go on.
 			Bclr		#VSCEnB1,VSC_VidCtrl(A4)			; Otherwise, configure VSC for only 1 bank.
 @EndSize
@@ -3184,9 +3184,9 @@ VSCTimeMgrIH
 			JSR		(A0)							; with slot # in D0
 			MOVEA.L	(SP)+,A1						; restore A1 (ptr to TTask block)
 			
-			TST.W	tmXQSize(A1)					; test the flag word to see if “interrupts” are on
+			TST.W	tmXQSize(A1)					; test the flag word to see if 'interrupts' are on
 													;	WARNING! - this field must be immediately after the TTask elem
-			BNE.S	@Done							; if ≠ 0, then “interrupts” are disabled, so don't reprime
+			BNE.S	@Done							; if ≠ 0, then 'interrupts' are disabled, so don't reprime
 			
 			MOVEA.L	A1,A0							; get time task block addr in A0
 			MOVE.L	#kVSCVBLTime,D0					; delay for about 1/60th of a second
@@ -3207,7 +3207,7 @@ VSCBeginIH
 @VBLInt		btst	#slotVBL,AIV3SlotInt(a0)		; is VBL pending?
 			bne.s	@notOurs						; no, not ours, exit
 			
-			Move.l	A1,-(Sp)						; Save A1 (it’s trashed by jVBLTask).
+			Move.l	A1,-(Sp)						; Save A1 (it's trashed by jVBLTask).
 			Move.b	saveSlot(A1),D0					; Set up for our slot…
 			Jsr		([jVBLTask])					; 	…and call the VBL Task Manager.
 			Movea.l	(Sp)+,A1						; Restore A1.

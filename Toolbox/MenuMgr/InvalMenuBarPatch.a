@@ -20,12 +20,12 @@
 ;		 <5>	 7/25/90	dba		fix bug that shows up in THINK Pascal (which patches DrawMenuBar
 ;									to call HiliteMenu) by clearing the invalid bit before calling
 ;									DrawMenuBar; also get rid of the patch to CheckUpdate that calls
-;									validate, since the Layer Manager’s CheckUpdate has a call
+;									validate, since the Layer Manager's CheckUpdate has a call
 ;									inside of it now
 ;		 <4>	 7/13/90	KSM		Add ValidateMenuBar call for WindowMgr's CheckUpdate comefrom
 ;									patch and to save a tiny bit of code.
 ;		 <3>	  7/9/90	KSM		Changed InvalMenuBar proc to use opword.
-;		 <2>	  6/7/90	EMT		Fix module names so they won’t be likely to conflict with other
+;		 <2>	  6/7/90	EMT		Fix module names so they won't be likely to conflict with other
 ;									patches.
 ;		 <1>	  4/9/90	dba		new to the system today
 ;
@@ -43,7 +43,7 @@
 ;
 ; Note: We depend on the fact that this patch gets invoked after the Process Mgr patch that
 ; determines whether or not to actually draw the menu bar.  Otherwise, we could clear the global
-; dirty even if the DrawMenuBar never happens, which we don’t want to do.
+; dirty even if the DrawMenuBar never happens, which we don't want to do.
 
 ; Clear the low memory bits whenever we draw the menu bar.
 

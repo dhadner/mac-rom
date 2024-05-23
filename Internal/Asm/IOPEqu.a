@@ -9,7 +9,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 3/15/90	djw		Add some IOP SCC declarations needed in the patch file
 ;	   <1.1>	 5/20/89	GGD		Moved the IOP manager trap definitions into Traps.a

@@ -13,7 +13,7 @@
 ;									bit in resource is set. Re-sync selection with actual password
 ;									when entire password gets selected after you've mistyped it.
 ;									(This corrects bugs with two-byte passwords.)
-;		<22>	  6/9/92	JSM		Nuke systemCentersWindow conditional, it’s always true.
+;		<22>	  6/9/92	JSM		Nuke systemCentersWindow conditional, it's always true.
 ;									Integrate changes from SuperMario: In ROM builds or in TheFuture
 ;									for System builds, use emPPCPromptForUserGlobals instead of
 ;									pGlobals.
@@ -215,7 +215,7 @@ PromptUser
 	MOVE.L	D5,pswPbPtr(A6)		; save the pb pointer
 	MOVE.L	D4,pswCallbackPtr(A6)		; save the Callback pointer
 	
-	IF forROM or TheFuture THEN	; can’t have data inside code in ROM				<22>
+	IF forROM or TheFuture THEN	; can't have data inside code in ROM				<22>
 
 	MOVE.L	ExpandMem,A4		; A4 -> Expanded Low Memory							<22>
 	MOVE.L	ExpandMemRec.emPPCPromptForUserGlobals(A4),A4	; A4-> ptr to globals	<22> 
@@ -545,7 +545,7 @@ PSWFilter
 	MOVE.L	fEventRec(A6),A1		; A1 -> event record
 	MOVE.L	fItemHit(A6),A2			; A2 -> item hit variable
 
-	IF forROM or TheFuture THEN		; can’t have data inside code in ROM			<22>
+	IF forROM or TheFuture THEN		; can't have data inside code in ROM			<22>
 
 	MOVE.L	ExpandMem,A4			; A4 -> Expanded Low Memory						<22>
 	MOVE.L	ExpandMemRec.emPPCPromptForUserGlobals(A4),A4	; A4-> ptr to globals	<22> 
@@ -1487,7 +1487,7 @@ TESelCopy
 ; Our Globals and other constants
 ;
 
-	IF NOT (forROM or TheFuture) THEN					; can’t use data inside code in ROM		<22>
+	IF NOT (forROM or TheFuture) THEN					; can't use data inside code in ROM		<22>
 pGlobals	DCB.B	pGlobSize,0	; our block of globals
 
 IKeyScriptDone	ds.w	1

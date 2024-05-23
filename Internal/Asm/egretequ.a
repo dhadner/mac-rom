@@ -42,7 +42,7 @@
 ;
 ;	7.0 Change History:
 ;
-;		<10>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<10>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <9>	  5/8/90	GA		Added Retry Count and Timeout count for SendEgretCmd new
 ;									RetryCount and Timeout support in SendPtype.

@@ -422,7 +422,7 @@ DoRead			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Ext.l	D0					; Force to long.
 				Asl.l	#8,D0				; Multiply by 512…
 				Asl.w	#1,D0				; …to get number of bytes.
-				Move.l	D0,ioActCount(A4)	; Update “actual” count.
+				Move.l	D0,ioActCount(A4)	; Update 'actual' count.
 				Add.l	D0,A2				; Update user buffer pointer.
 				_BlockMoveData					; Copy into buffer.
 				Move.l	A3,A1				; Floppy info record.
@@ -471,7 +471,7 @@ DoRead			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Sub.w	D1,D3				; Subtract number per side from start.
 				Bpl.s	@Seek				; Positive? Then indeed side 1.
 				Add.w	D1,D3				; Negative? Then side 0.
-				Clr.w	D7					; Set “head 0” flag.
+				Clr.w	D7					; Set 'head 0' flag.
 				Bra.s	@Seek				; Seek to track.
 
 @GCR			Moveq	#0,D3				; Init track register.
@@ -507,7 +507,7 @@ DoRead			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Sub.w	D1,D3				; Subtract number per side from start.
 				Bpl.s	@Seek				; Positive? Then indeed side 1.
 				Add.w	D1,D3				; Negative? Then side 0.
-				Clr.w	D7					; Set “head 0” flag.
+				Clr.w	D7					; Set 'head 0' flag.
 
 @Seek			Move.l	#NewAge32,A0		; Base address.
 				Sub.w	D3,D6				; Sectors left on cyclinder (if on side 1).
@@ -667,7 +667,7 @@ DoRead			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Move.w	#(1 << pscPause)	|	\	;
 						 (0 << pscSense),		\	;
 						(A3)						; Un-pause.
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Moveq	#0,D0				; DTL (no special sector size).
 				Move.b	#DisableFDCInt,VIA2IER	; Disable interrupts.						<SM23>
 				Bsr		WriteToFDC			; Write DTL.
@@ -803,7 +803,7 @@ DoWrite			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Sub.w	D1,D3				; Subtract number per side from start.
 				Bpl.s	@Seek				; Positive? Then indeed side 1.
 				Add.w	D1,D3				; Negative? Then side 0.
-				Clr.w	D7					; Set “head 0” flag.
+				Clr.w	D7					; Set 'head 0' flag.
 				Bra.s	@Seek				; Seek to track.
 
 @GCR			Moveq	#0,D3				; Init track register.
@@ -839,7 +839,7 @@ DoWrite			Moveq	#0,D7				; Set flag that FDC is not setup.
 				Sub.w	D1,D3				; Subtract number per side from start.
 				Bpl.s	@Seek				; Positive? Then indeed side 1.
 				Add.w	D1,D3				; Negative? Then side 0.
-				Clr.w	D7					; Set “head 0” flag.
+				Clr.w	D7					; Set 'head 0' flag.
 
 @Seek			Move.l	#NewAge32,A0		; Base address.
 				Sub.w	D3,D6				; Sectors left on cyclinder (if on side 1).
@@ -967,7 +967,7 @@ DoWrite			Moveq	#0,D7				; Set flag that FDC is not setup.
 						 (0 << pscSense),		\	;
 						(A3)						; Un-pause.
 
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Moveq	#0,D0				; DTL (no special sector size).
 				Move.b	#DisableFDCInt,VIA2IER	; Disable interrupts.						<SM23>
 				Bsr		WriteToFDC			; Write DTL.
@@ -1230,7 +1230,7 @@ MFMTrack		Movem.l	TrackRegs,-(Sp)		; Scratch registers.
 				Moveq	#GSL,D0				; Gap 3 length.
 				Bsr		WriteToFDC			; Write gap length.
 
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Moveq	#0,D0				; DTL (no special sector size).
 				Move.b	#DisableFDCInt,VIA2IER	; Disable interrupts.
 				Bsr		WriteToFDC			; Write DTL.
@@ -1357,7 +1357,7 @@ ReadAGCRTrack	Movem.l	GCRTrackRegs,-(Sp)	; Scratch registers.
 				Moveq	#GSL,D0				; Gap 3 length.
 				Bsr		WriteToFDC			; Write gap length.
 
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Moveq	#0,D0				; DTL (no special sector size).
 				Move.b	#DisableFDCInt,VIA2IER; Disable interrupts.
 				Bsr		WriteToFDC			; Write DTL.
@@ -1737,7 +1737,7 @@ FormatDisk		Move.l	#NewAge32,A0		; Base address of NewAge.
 				Move.w	#(1 << pscPause)	|	\	;
 						 (0 << pscSense),		\	;
 						(A3)						; Un-pause.
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Move.b	#$F6,D0				; Filler byte.
 				Btst	#fFM,D6				; MFM format?
 				Bne.s	@3					; Yes? Then fill with $F6.
@@ -1801,7 +1801,7 @@ FormatDisk		Move.l	#NewAge32,A0		; Base address of NewAge.
 				Move.w	ftFormatCode(A2),fFormat(A1)	; Set media format.
 				Move.w	ftBlocks(A2),dQDrvSz(A3)		; Number of blocks.
 				Move.b	#$FF,-1(A3)			; Non single-sided.								<LW14>
-				Move.b	#1,-3(A3)			; Set “Disk in place” flag.
+				Move.b	#1,-3(A3)			; Set 'Disk in place' flag.
 				Cmp.w	#f400K,fFormat(A1)	; 400K GCR?
 				Bne.s	@ExitFormat			; No? Then double-sided.
 				Clr.b	-1(A3)				; Single-sided.
@@ -1935,7 +1935,7 @@ TagBuffer		Rts							; Just return.
 TrackCache		Rts							; Just return.
 
 ;******************************************************************************
-;  Return drive icon and “where” info.
+;  Return drive icon and 'where' info.
 ;******************************************************************************
 ; locate equates for offset in icon table…
 itDrive		EQU		1
@@ -1950,7 +1950,7 @@ GetDriveIcon	Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Correct record?								<SM16>
 				Beq.s	@GetIcon			; Yes? Then use it.								<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitGetIcon		; No record? Then leave.
 
 @GetIcon		Lea		IconTable,A2		; Start of icon table.
@@ -1968,7 +1968,7 @@ GetDriveIcon	Move.w	ioDrvNum(A4),D0		; Drive number.
 				
 				Adda.l	itIcon(A2),A0		; Pointer to icon.
 				Move.l	A0,csParam(A4)		; Return pointer.
-				Moveq	#noErr,D6			; Indicate “no error”.
+				Moveq	#noErr,D6			; Indicate 'no error'.
 				Bra.s	@ExitGetIcon		; And leave.
 @Next			Adda.w	#itNextIcon,A2		; Next table.
 				Bra.s	@IconLoop			; And check it.
@@ -1995,7 +1995,7 @@ IconTable		Dc.b	37,0				; Cyclone33
 				Dc.b	0,0					; End of table
 
 ;******************************************************************************
-;  Return media icon and “where” info.
+;  Return media icon and 'where' info.
 ;******************************************************************************
 
 GetMediaIcon	Move.w	ioDrvNum(A4),D0		; Drive number.
@@ -2006,7 +2006,7 @@ GetMediaIcon	Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@GetIcon			; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@Exit				; No record? Then leave.
 				
 @GetIcon		Pea		MediaIcon			; Pointer to icon data.
@@ -2026,15 +2026,15 @@ DriveInfo		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@BuildRecord		; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitDriveInfo		; No record? Then leave.
 
 @BuildRecord	Moveq	#noErr,D6			; No error.
 				Moveq	#0,D2				; Init record.
 				Move.w	fDriveType(A1),D2	; Drive type.
 				Tst.b	fDriveSelect(A1)	; First drive found?
-				Beq.s	@ExitDriveInfo		; Yes? Then “primary” drive.
-				Bset	#11,D2				; “Secondary” drive.
+				Beq.s	@ExitDriveInfo		; Yes? Then 'primary' drive.
+				Bset	#11,D2				; 'Secondary' drive.
 				Bset	#8,D2				; External drive.
 
 @ExitDriveInfo	Move.l	D2,csParam(A4)		; Put it in the right place
@@ -2549,7 +2549,7 @@ DiskCopy		Link	A6,#-ioQElSize		; Local storage.								<LW10>
 				Move.b	fDriveSelect(A1),D0	; Drive select.
 				Tst.w	D3					; Check side.
 				Beq.s	@4					; Side 0? Then all set.
-				Bset	#fHd,D0				; Set “side 1” flag.
+				Bset	#fHd,D0				; Set 'side 1' flag.
 @4				Bsr		WriteToFDC			; Write head/drive.
 
 				Move.b	-2(A6),D0			; 512 bytes/sector (format code).
@@ -2619,7 +2619,7 @@ DiskCopy		Link	A6,#-ioQElSize		; Local storage.								<LW10>
 						(A3)						; Un-pause.
 
 				Move.l	D6,A4				; Restore interleave table.
-				Move.w	#1,fResult(A1)		; Set result to “in progress”.
+				Move.w	#1,fResult(A1)		; Set result to 'in progress'.
 				Move.b	D7,D0				; GCR sync groups or MFM Gap3 length.
 				Btst	#fFM,-1(A6)			; Is this a MFM format?							<LW7>
 				Bne.s	@WriteSync			; Yes? The just write GAP3 length.				<LW7>
@@ -2688,7 +2688,7 @@ DiskCopy		Link	A6,#-ioQElSize		; Local storage.								<LW10>
 				Move.w	ftFormatCode(A2),fFormat(A1) ; Set media format.
 				Move.w	ftBlocks(A2),dQDrvSz(A3)	 ; Number of blocks.
 				Move.b	#$FF,-1(A3)			; Non single-sided.								<LW14>
-				Move.b	#1,-3(A3)			; Set “Disk in place” flag.
+				Move.b	#1,-3(A3)			; Set 'Disk in place' flag.
 				Cmp.w	#f400K,fFormat(A1)	; 400K GCR?
 				Bne.s	@VerifyDisk			; No? Then double-sided.
 				Clr.b	-1(A3)				; Single-sided.
@@ -2823,7 +2823,7 @@ FormatList		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@BuildTable			; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitFormatList		; No record? Then leave.
 
 @BuildTable		Move.w	#offLinErr,D6		; Assume no disk.
@@ -2909,7 +2909,7 @@ DriveStatus		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@GetRecord			; Yes? Then check for drive.					<SM16>
 
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Cmp.w	#2,D0				; Must accept drive number 1 and 2.
 				Bgt.s	@ExitDrvStatus		; Unknown drive number? Then leave.
 				Cmp.w	#0,D0				; Must accept drive number 1 and 2.
@@ -2967,7 +2967,7 @@ MFMStatus		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@SetStatus			; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitMFMStatus		; No record? Then leave.
 
 @SetStatus		Clr.b	csParam(A4)			; Assume 800K floppy.
@@ -3012,7 +3012,7 @@ FloppyInfo		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@SetPointer			; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitFloppyInfo		; No record? Then leave.
 
 @SetPointer		Move.l	A1,csParam(A4) 		; Return pointer to floppy info record.
@@ -3033,7 +3033,7 @@ FormatByte		Move.w	ioDrvNum(A4),D0		; Drive number.
 				Beq.s	@100				;												<LW17>
 				Cmp.w	fDriveNum(A1),D0	; Match?										<SM16>
 				Beq.s	@GetByte			; Yes? Then check for drive.					<SM16>
-@100			Move.w	#nsDrvErr,D6		; Assume “No such drive” error.
+@100			Move.w	#nsDrvErr,D6		; Assume 'No such drive' error.
 				Bra.s	@ExitFormatByte		; No record? Then leave.
 
 @GetByte		Move.b	fData(A1),csParam(A4) ; Set format code.
@@ -3292,7 +3292,7 @@ SetUpFDC		Move.l	A2,-(Sp)			; Save A2.
 				Move.w	#fProDOS,fFormat(A1) ; Assume ProDOS format.
 				Cmp.b	#formatGCR4_1,D0	; Apple II format?
 				Beq		@SetQueue			; Yes? Then setup drive queue.
-				Move.w	#fUnknownGCR,fFormat(A1) ; Set “unknown” flag.
+				Move.w	#fUnknownGCR,fFormat(A1) ; Set 'unknown' flag.
 				Beq		@SetQueue			; Yes? Then setup drive queue.
 
 @MFM			Cmp.w	#fddSuperDrive,fDriveType(A1) ; At least a SuperDrive?
@@ -4106,7 +4106,7 @@ ResetFDC		Move.b	#(1 << fReset)	|    				\	;
 				Rts							; Return.
 
 ;------------------------------------------------------------------------------
-;	Data:		Icon data and “where” string.
+;	Data:		Icon data and 'where' string.
 ;------------------------------------------------------------------------------
 
 				STRING	PASCAL

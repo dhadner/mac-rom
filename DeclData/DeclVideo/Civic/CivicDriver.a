@@ -253,8 +253,8 @@ Return				DS.L	1								; Return address.
 A6Link				DS.L	1								; Saved A6.
 spBlk				DS		SPBlock							; SpBlock for generic use.
 sPRAMBlk			DS.B	SizeSPRAMRec					; sPRAMRec for generic use.
-civicBaseAddr		DS.L	1								; Pointer to Civic’s base address.
-mmcBaseAddr			DS.L	1								; Pointer to MMC’s base address.
+civicBaseAddr		DS.L	1								; Pointer to Civic's base address.
+mmcBaseAddr			DS.L	1								; Pointer to MMC's base address.
 vRAMBaseAddr		DS.L	1								; Pointer to base of vRAM.
 vidParamsPtr		DS.L	1								; Pointer to video parameters.
 configParamsPtr		DS.L	1								; Pointer to config parameters.
@@ -293,7 +293,7 @@ CivicVidTitle
 ; CivicCLUTTbl contains information required to write to the CLUT in the different screen depths.
 ;	Each depth's information has three values.  The first is the number of entries-1 in this depth
 ;	for range checking.  The second is the address of the first active CLUT position for that 
-;	screen depth.  The last number is the “skip” factor.  This is required because, in 1-4bpp, the
+;	screen depth.  The last number is the 'skip' factor.  This is required because, in 1-4bpp, the
 ;	entries are distributed throughout the CLUT address space.  As a result, we use sequential CLUT mode
 ;	ONLY in 8/16bpp modes.  The skip factor is the address difference between adjacent active positions
 ;	in each mode.  
@@ -531,9 +531,9 @@ CivicVidOpen
 				MOVE.L	UnivInfoPtr,A0						; get a pointer to universal data
 				Move.b	ProductKind(A0),saveBoxFlag(A3)		; Save this machine's boxflag
 				ADDA.L	DecoderInfoPtr(A0),A0				; point to the base address table
-				MOVE.L	SebastianAddr(A0),saveVDACBase(A3)	; save VDAC’s base address
-				Move.l	CivicAddr(A0),saveCivicBase(A3)		; save Civic’s base address
-				Move.l	DecoderAddr(A0),saveYMCABaseAddr(A3)	; Save YMCA’s base address.
+				MOVE.L	SebastianAddr(A0),saveVDACBase(A3)	; save VDAC's base address
+				Move.l	CivicAddr(A0),saveCivicBase(A3)		; save Civic's base address
+				Move.l	DecoderAddr(A0),saveYMCABaseAddr(A3)	; Save YMCA's base address.
 				
 				MOVE.L	UnivInfoPtr,A0						; get a pointer to universl data			 
 				ADDA.L	VideoInfoPtr(A0),A0					; point to the VideoInfo record		
@@ -680,7 +680,7 @@ CivicVidOpen
 ;
 ; At PrimaryInit time, we used the sense lines to determine the type of display attached.  For extended
 ;	sense displays, we just mapped them to the end of indexed-sense displays.  Since the gamma-correction
-;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the “real”
+;	code uses the monitor ID to determine if the passed-in table is applicable, we need to know the 'real'
 ;	monitor ID.  At PrimaryInit time, we store the real monitor ID in slot pRAM.  So, we extract that
 ;	information out here.  Also, it should be noted that it would actually be inappropriate for us
 ;	to re-read the sense-lines now, in that someone could potentially change/unplug the attached
@@ -697,7 +697,7 @@ CivicVidOpen
 				Bne		@OpError5							; If failed quit.
 				
 				Moveq	#0,D2								; Clear D2.w.
-				Move.b	SP_MonID(Sp),D2						; Get the monID (it’s byte sized).
+				Move.b	SP_MonID(Sp),D2						; Get the monID (it's byte sized).
 				Move.b	SP_Flags(Sp),D1						; Get the flags byte so we can use it later					<LW18>
 				
 				Adda	#sizeSPRamRec+spBlockSize,Sp		; Clean up the stack.
@@ -806,7 +806,7 @@ CivicVidOpen
 *   Entry: 	A0 		= param block pointer
 *			A1 		= AuxDCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= ptr to our privates/scrarch (doesn’t need to be preserved)
+*			A3 		= ptr to our privates/scrarch (doesn't need to be preserved)
 *			A4		= scratch (must be preserved)
 *			D0-D3 	= scratch (don't need to be preserved)
 *
@@ -980,8 +980,8 @@ CivicSetVidModeGuts2
 				Move.l	A4,A5								; Point to green data (assuming gChanCnt = 1).
 				Move.l	A4,A6								; Point to red data (assuming gChanCnt = 1).
 							
-				Cmp.w	#1,gChanCnt(A0)						; If there’s only one table,
-				Beq.s	@OnlyOneTable						;	then we’re set.
+				Cmp.w	#1,gChanCnt(A0)						; If there's only one table,
+				Beq.s	@OnlyOneTable						;	then we're set.
 				
 				Move.w	gDataWidth(A0),D2					; Get width of each entry (in bits).
 				Move.w	gDataCnt(A0),D0						; Get # of entries in table.
@@ -1129,8 +1129,8 @@ CivicSEGuts
 				CMP.W	#indexEntries,csStart(A2)			; was it indexed mode?
 				BEQ.S	@SkipSeq							; if so, then leave bit off (it's never turned on in GFlags)
 				Bset	#PsuedoIndex,D5						; turn on the bit that denotes a seq write that was xlated to indexed
-				Cmp.w	#FourthVidMode,saveMode(A3)			; If it’s not 8bbp, 16bpp, or 32bpp,
-				Blt.s	@SkipSeq							;	need to use “indexed”.
+				Cmp.w	#FourthVidMode,saveMode(A3)			; If it's not 8bbp, 16bpp, or 32bpp,
+				Blt.s	@SkipSeq							;	need to use 'indexed'.
 				BSET	#UseSeq,D5							; otherwise, turn on sequential mode bit
 @SkipSeq
 				MOVE.L	saveGammaPtr(A3),A0					; get pointer to gamma data structure
@@ -1175,7 +1175,7 @@ CivicSEGuts
 				CMP.W	D6,D3								; is it in the allowable range
 				BHI		CivicSEBadExit						; if out of range, then exit w/bad result
 				Move.w	csStart(A2),D0						; Get the start number to range check.
-				Addq.w	#2,D0								; If csStart < -2, then it’s out of
+				Addq.w	#2,D0								; If csStart < -2, then it's out of
 				Bmi		CivicSEBadExit						;	range.
 				Move.w	csStart(A2),D0						; Get the start number to range check.
 				Bmi		@SkipUpperRangeCheck				; Only do it if csStart is positive or 0.
@@ -1186,7 +1186,7 @@ CivicSEGuts
 @SkipUpperRangeCheck								
 				Move.l	D3,D4								; Make a copy of the table size (zero-based).
 				Addq	#1,D4								; Make it a counting number.
-				Btst	#UseSeq,D5							; If we’re not in sequential mode,
+				Btst	#UseSeq,D5							; If we're not in sequential mode,
 				Beq.s	@IsIndex							;	then do the indexed stuff.
 				Asl.w	#2,D4								; Make room for just R,G,B,alpha in sequential mode.
 				Bra.s	@AllocIt							; And continue.
@@ -1198,7 +1198,7 @@ CivicSEGuts
 ;	components is only eight bits (rather than 16).
 ;
 				
-				Move.l	A3,D6								; We’re about to torch A3, so save it for later.
+				Move.l	A3,D6								; We're about to torch A3, so save it for later.
 				Move.l	A0,A3								; Save the CLUT table entry pointer.
 
 				MOVE.L	SP,A0								; copy the stack buffer pointer
@@ -1222,7 +1222,7 @@ CivicSEGuts
 				BTST	#UseSeq,D5							; is it sequence mode?
 				BNE.S	@SLSeq								; yup, so go there
 				
-				Btst	#PsuedoIndex,D5						; If we are doing an “indexed” mode,
+				Btst	#PsuedoIndex,D5						; If we are doing an 'indexed' mode,
 				Beq.s	@IndexPresent						;	then go there now.
 				
 ; This case is a sequential request in a screen depth that does not allow sequential CLUT writes 
@@ -1525,7 +1525,7 @@ CivicSetGamma
 				MOVE.B	D0,(A0)+							; move a byte
 				DBRA	D2,@NxtByte							; => repeat for all bytes
 
-				Bra.s	@GammaDone							; Check to see if it’s a direct device.
+				Bra.s	@GammaDone							; Check to see if it's a direct device.
 
 ;
 ; Set up a linear gamma table.  To prevent memory thrash, build this new one
@@ -1785,28 +1785,28 @@ CivicSetDefaultMode
 ;
 ; Since PrimaryInit relies on the default mode being set correctly, we check to see that
 ;	the mode to be set is actually valid.  Monitors can only see valid sRsrcIDs, so
-;	it probably won’t cause a problem.  But we should check it anyway for unsavory
+;	it probably won't cause a problem.  But we should check it anyway for unsavory
 ;	applications.
 ;
 				
 				Move.b		csMode(A2),spID(A0)				; Look for the passed in spID.
 				Clr.l		spParamData(A0)					; Clear the fNext flag; we want THIS sRsrc.
-				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc’s
+				Ori.b		#(1<<fall)|\					; Search for both enabled/disabled sRsrc's
 							(1<<foneslot),spParamData+3(A0)	; Only search in our slot.
 				_GetsRsrc									; Do it.
 				Bne.s		@BadExit						; If failed, quit.
 				
 				Move.w		spCategory(A0),D0				; Get the category.
-				Cmp.w		#catDisplay,D0					; If it’s not catDisplay,
+				Cmp.w		#catDisplay,D0					; If it's not catDisplay,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spCType(A0),D0					; Get the type.
-				Cmp.w		#typVideo,D0					; If it’s not typVideo,
+				Cmp.w		#typVideo,D0					; If it's not typVideo,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spDrvrSw(A0),D0					; Get the software kind.
-				Cmp.w		#drSwApple,D0					; If it’s not drSwApple,
+				Cmp.w		#drSwApple,D0					; If it's not drSwApple,
 				Bne.s		@BadExit						;	then quit.
 				Move.w		spDrvrHw(A0),D0					; Get the hardware ID.
-				Cmp.w		#drHwCivic,D0					; If it’s not drHwCivic,
+				Cmp.w		#drHwCivic,D0					; If it's not drHwCivic,
 				Bne.s		@BadExit						;	then quit.
 
 ;
@@ -1999,14 +1999,14 @@ CGetVidInMonTable
 				bra.s		@ModifiedID							; don't adjust D1						<LW14>
 
 @ChkMultisync													;										<LW14>
-				Cmpi.w		#indexedSenseMSB1,saveMonID(A3)		; If we’re not in the multiscan mode,	<LW14>
+				Cmpi.w		#indexedSenseMSB1,saveMonID(A3)		; If we're not in the multiscan mode,	<LW14>
 				bne.s		@OutRGBSyncs						; don't adjust D1						<LW14>
 				Move.w		D2,-(SP)							; Save D2 'cause we trash it			<LW14>
 				Move.b		dCtlSlotID(A1),D2					; Get the  SpID.						<LW14>
 				Moveq		#0,D0								; Clear hi-half of mode/depth register.	<LW14>
 				Lea			EquivalendMonIDTable,A0				; get the equivalent ID table			<LW14>
-@ChkLoop		Move.b		(A0)+,D1							; If we’re at the end of the table,		<LW14>
-				Beq			@BadExit							; 	then something’s wrong.				<LW14>
+@ChkLoop		Move.b		(A0)+,D1							; If we're at the end of the table,		<LW14>
+				Beq			@BadExit							; 	then something's wrong.				<LW14>
 				Move.b		(A0)+,D0							; Get the monID for this config.		<LW14>
 				
 				Cmp.b		D1,D2								; If this is not our spID,				<LW14>
@@ -2238,7 +2238,7 @@ CivicSetAltSense
 ;---------------------------------------------------------------------
 ;
 ;	SetAltSense sets up the alternate senseID pRam byte to contain
-;		a valid “index” code if a valid sense code is passed
+;		a valid 'index' code if a valid sense code is passed
 ;		in csMode (byte 0 is the sense code, byte 1 is the type).
 ;
 ;		A1 = Ptr to AuxDCE/Ptr to MonIDs table (not restored)
@@ -2282,21 +2282,21 @@ CivicSetAltSense
 
 @2PExtended
 				Move.b	csMode(A2),D1						; Get the sense code into D0.
-				Cmp.b	#extended2PRdRGB,D1					; If it’s the Radius ColorTPD,
+				Cmp.b	#extended2PRdRGB,D1					; If it's the Radius ColorTPD,
 				Beq		@WriteIt							;	then write it out.
-				Cmp.b	#extended2PRdMono,D1				; If it’s the Radius MonoTPD,
+				Cmp.b	#extended2PRdMono,D1				; If it's the Radius MonoTPD,
 				Beq.s	@WriteIt							;	then write it out.
 				Bra		@MonIDNotValid						; Otherwise, return an error.
 
 @HRExtended
-				Cmp.b	#extendedHR,csMode(A2)				; If it’s not the MultiSync code,
+				Cmp.b	#extendedHR,csMode(A2)				; If it's not the MultiSync code,
 				Bne		@MonIDNotValid						;	return an error.
 				Move.b	#indexedSenseHR,D1					; Otherwise, default to HR.
 				Bra.s	@WriteIt
 
 @NoConnect
 				Move.b	csMode(A2),D1						; Get the monID.
-				Cmp.b	#indexedNoConnect,D1				; If it’s one of the no-connect codes, 
+				Cmp.b	#indexedNoConnect,D1				; If it's one of the no-connect codes, 
 				Beq.s	@ClearIt							;	then zero-out the no-connect pRam byte.
 				Cmp.b	#extendedNoConnect,D1				; 	
 				Beq.s	@ClearIt							;
@@ -2334,15 +2334,15 @@ CivicSetAltSense
 				Bra.s	@WriteIt
 				
 @TryGF			Cmp.b	#extendedSenseGF,D1					; Is it the GoldFish?
-				Bne.s	@Try19								; Nope, try 19”.
+				Bne.s	@Try19								; Nope, try 19'.
 				Move.b	#indexedSenseGF,D1					;
 				Bra.s	@WriteIt
 				
-@Try19			Cmp.b	#extendedSense19,D1					; Is it a 19”?
+@Try19			Cmp.b	#extendedSense19,D1					; Is it a 19'?
 				Bne.s	@WriteIt							; Nope, must be indexed.
 				Move.b	#indexedSense19,D1
 
-@WriteIt		Move.b	D1,SP_AltSense(Sp)					; Write out “index” to pRam record.
+@WriteIt		Move.b	D1,SP_AltSense(Sp)					; Write out 'index' to pRam record.
 				Ori.b	#spAltSenseValidMask,SP_AltSense(Sp) ; Validate it.
 				Bra.s	@WritePRam
 
@@ -2570,7 +2570,7 @@ CivicSetRGBByPass
 				Btst	#videoInEnb,D0						; if video in is enabled
 				Beq.s	CBypassExit							; if not, we don't have to adjust the video-in parameters
 			
-; Switch the CLUT/DAC’s depth.
+; Switch the CLUT/DAC's depth.
 ;
 	
 				Move.b	SebastPCBR(A5),D7					; Get the new programmed value 
@@ -2958,7 +2958,7 @@ CivicChangeHardware
 				dWrite_Civic cvpAdjF2(A4),#AdjF2			;
 				dWrite_Civic cvpPipeD(A4),#PipeD			;
 	
-; Switch the CLUT/DAC’s depth.
+; Switch the CLUT/DAC's depth.
 ;
 				Move.l	saveVDACBase(A3), A5				; Get the a pointer to CLUT/DAC
 				Move.w	cvpSebastPCBR(A4),D0				; Get the PCBR value 
@@ -3003,8 +3003,8 @@ CivicSetResolution
 ;
 				Suba.w	#spBlockSize,Sp						; Allocate a slot parameter block on the stack.
 				Move.l	Sp,A0								; Point to it with A0.
-				Clr.b	spSlot(A0)							; Say that we’re Slot $0.
-				Clr.b	spExtDev(A0)						; Don’t ask why, just clear this guy.
+				Clr.b	spSlot(A0)							; Say that we're Slot $0.
+				Clr.b	spExtDev(A0)						; Don't ask why, just clear this guy.
 
 				Move.b	D0,spID(A0)							; Write out the spID of the sRsrc.
 				_SRsrcInfo									; Update our SpBlock for SUpdateSRT call below.
@@ -3056,7 +3056,7 @@ CivicSetResolution
 				Addi.w	#1,d1								; Adjust mode that has the non-zero offset
 				move.w	d1,	saveNewBaseMode(A3)				; and save it in our privates
 
-; Load the “new” video hardware setup block…
+; Load the 'new' video hardware setup block…
 ;
 				Clr.w	spID(A0)							; Start looking at spID 0, no external devices.
 				Clr.b	spTBMask(A0)						; Only look for the board sRsrc.
@@ -3163,13 +3163,13 @@ CivicSwitchMode
 				
 ; Check to see if we even need to be here or not…
 ;
-				Cmpi.w		#indexedSenseMSB1,saveMonID(A3) ; If we’re not in the multiscan mode,
+				Cmpi.w		#indexedSenseMSB1,saveMonID(A3) ; If we're not in the multiscan mode,
 				Bne			CivicCtlBad						;	then it's not safe to be here.
 				
 ; Check to see if we can even do what was requested…
 ;
 				Tst.w		csPage(A2)						; If requested page is not zero,
-				Bne.s		CivicCtlBad						;	then we can’t help ’em.
+				Bne.s		CivicCtlBad						;	then we can't help 'em.
 				
 				Move.l		csData(A2),D2					; Get the requested SpID.
 				Moveq		#0,D0							; Clear hi-half of mode/depth register.
@@ -3178,8 +3178,8 @@ CivicSwitchMode
 				Lea			SwitchTable1Meg,A0				; Point to the SwitchMode1Meg table.
 				Bra.s		@ChkLoop						; start checking
 @2MegTable		Lea			SwitchTable2Meg,A0				; get the 2 meg table
-@ChkLoop		Move.b		(A0)+,D1						; If we’re at the end of the table,
-				Beq			CivicCtlBad						; 	then something’s wrong.
+@ChkLoop		Move.b		(A0)+,D1						; If we're at the end of the table,
+				Beq			CivicCtlBad						; 	then something's wrong.
 				
 				Move.b		(A0)+,D0						; Get the max mode for this config.
 				
@@ -3197,7 +3197,7 @@ CivicSwitchMode
 
 ; Switch to the new resolution…
 ;
-				Cmp.b		dCtlSlotID(A1),D2				; If we’re already in the requested resolution,
+				Cmp.b		dCtlSlotID(A1),D2				; If we're already in the requested resolution,
 				Beq			CivicSetVidModeGuts				;	then go try the depth switch.
 				
 				Move.b		D2,D1							; Set up to do the resolution switch.
@@ -3440,7 +3440,7 @@ CivicGetEntries
 				Move.b	ccRange(A0),D3						; Get the CLUT range.
 						
 				Move.w	csCount(A2),D4						; Get the number of entries to fill,
-				Bmi		@GEErr								; 	and hike if it’s out of range.
+				Bmi		@GEErr								; 	and hike if it's out of range.
 				Cmp.w	D3,D4								; If D4-D3 > 0 (count > entries),
 				Bhi		@GEErr								;	then hike.
 				Move.w	D4,D2								; Otherwise, copy the count.
@@ -3451,7 +3451,7 @@ CivicGetEntries
 				Move.l	#colorSpecSize,D7					; Save the size of each color spec entry
 				
 				Move.w	csStart(A2),D0						; Get the start number to range check.
-				Addq.w	#2,D0								; If csStart < -2, then it’s out of
+				Addq.w	#2,D0								; If csStart < -2, then it's out of
 				Bmi		@GEErr								;	range.
 
 				Cmp.w	#indexEntries,csStart(A2)			; If table accesses are to be indexed (csStart = -1),
@@ -3467,8 +3467,8 @@ CivicGetEntries
 				Add.w	csStart(A2),D2						; 	csStart thru csCount entries.
 			
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing here, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing here, so we'll continue the trend for now.
 
 				Move.l	(Sp),A0								; Get ptr to csTable.
 
@@ -3731,7 +3731,7 @@ CivicGetVidInRect
 CivicGetAltSense
 ;---------------------------------------------------------------------
 ;
-;	Returns the alternate senseID code that’s in use.  It
+;	Returns the alternate senseID code that's in use.  It
 ;		should be noted that we cannot disguish between PAL &
 ;		NTSC monitors & encoder boxes once SetAltSense has
 ;		been called (because both the monitor & box codes are
@@ -3781,11 +3781,11 @@ CivicGetAltSense
 				Bra.s	@WriteExtended
 								
 @TryGF			Cmp.b	#indexedSenseGF,D0					; Is it the GoldFish code?
-				Bne.s	@Try19								; Nope, try 19”.
+				Bne.s	@Try19								; Nope, try 19'.
 				Move.b	#extendedSenseGF,D0
 				Bra.s	@WriteExtended
 				
-@Try19			Cmp.b	#indexedSense19,D0					; Is it the 19” code?
+@Try19			Cmp.b	#indexedSense19,D0					; Is it the 19' code?
 				Bne.s	@TryRdRGB							; No, try the Radius ColorTPD.
 				Move.b	#extendedSense19,D0
 				Bra.s	@WriteExtended
@@ -4031,7 +4031,7 @@ dGetCivicReg
 @GetCWidth		Move.w	width(A0,D0),D1						; Get the register width
 				Move.w	offset(A0,D0),D0					; Get the register offset.
 				
-				Move.l	saveCivicBase(A3),A0				; Point A0 at Civic’s base address.
+				Move.l	saveCivicBase(A3),A0				; Point A0 at Civic's base address.
 				Adda.w	D0,A0								; Point to the desired register.
 
 				Rts
@@ -4072,12 +4072,12 @@ dWriteCivic
 ;
 ;	This routine complements the WriteCivic routine.  It takes as
 ;		input the Civic register to read and how wide the
-;		register is.  It returns the register’s value.
+;		register is.  It returns the register's value.
 ;
 ;	Note:	Civic Registers are ONLY accessible in 32-bit addressing
 ;			mode.
 ;
-;	<- D0:  The Civic register’s data.
+;	<- D0:  The Civic register's data.
 ;	-> D1:	The width (1 to 12 bits) of the Civic regiser/data.
 ;	-> A0:	Pointer to base address of the Civic register to write.
 ;
@@ -4247,7 +4247,7 @@ CivicSetDepth
 			Bsr.s	CivicWaitVSync							; Wait for the next VBL.
 			dWrite_Civic #0,#Enable							; Disable Casio (the timing generator).
 			
-; Switch the framebuffer’s depth.
+; Switch the framebuffer's depth.
 ;
 			dWrite_Civic cbpBusSize(A1),#BusSize			; Write the BusSize parameter
 			
@@ -4273,7 +4273,7 @@ CivicSetDepth
 			dWrite_Civic cbpAdjF2(A1),#AdjF2				;
 			dWrite_Civic cbpPipeD(A1),#PipeD				;
 
-; Switch the CLUT/DAC’s depth.
+; Switch the CLUT/DAC's depth.
 ;
 			Move.l	saveVDACBase(A3),A0						; Get a pointer to the CLUT/DAC.
 			Move.w	cbpSebastPCBR(A1),D0					; Get the PCBR value (Overlay is disabled in sresource).
@@ -4373,7 +4373,7 @@ CivicGrayScreen
 			
 @GetParms	Move.l	saveVidPtr(A3),A1						; Get a pointer to the vidParams.
 			Move.w	cvpNumRows(A1),D4						; Get the number of rows to gray.
-			Move.b	cvpScanCtl(A1),D2						; Flag whether we’re interlaced or not.
+			Move.b	cvpScanCtl(A1),D2						; Flag whether we're interlaced or not.
 			
 			Adda.w	#CVPHdrSize,A1							; Skip past the header info.
 			Move.w	#CBPSize,D0								; Get the size of each bpp entry.
@@ -4381,12 +4381,12 @@ CivicGrayScreen
 			Adda.l	D0,A1									; Skip to the entry we want.
 			
 			Move.w	cbpRowWords(A1),D3						; Get the number of longwords/row.
-			Tst.b	D2										; If we’re on an interlaced display
+			Tst.b	D2										; If we're on an interlaced display
 			Bne.s	@Interlace								;	then adjust accordingly.
 			Lsl.w	#3,D3									; Normalize for progressive displays.
 			Bra.s	@SizeIt									; (Skip interlace here.)
 @Interlace	Lsl.w	#2,D3									; Normalize for interlaced displays.
-@SizeIt		Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we’re not doing 32bpp,
+@SizeIt		Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we're not doing 32bpp,
 			Bne.s	@DbraAdj								;	then just go on.
 			Lsr.w	#1,D3									; 32bpp uses double longs.
 @DbraAdj	Subq	#1,D3									; Set up for Dbra loop.
@@ -4396,7 +4396,7 @@ CivicGrayScreen
 			
 @NxtRow		Move.w	D3,D5									; Get the number of longswords/row.
 @NxtLong	Move.l	D2,(A2)+								; Write out gray to the frame buffer…
-			Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we’re not doing 32bpp,
+			Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we're not doing 32bpp,
 			Bne.s	@Skip32bpp								;	then just go on.
 			Not.l	D2										; Invert for next pixel.
 			Move.l	D2,(A2)+								; Write it out.
@@ -4432,7 +4432,7 @@ CivicBlackScreen
 			
 @GetParms	Move.l	saveVidPtr(A3),A1						; Get a pointer to the vidParams.
 			Move.w	cvpNumRows(A1),D4						; Get the number of rows to gray.
-			Move.b	cvpScanCtl(A1),D2						; Flag whether we’re interlaced or not.
+			Move.b	cvpScanCtl(A1),D2						; Flag whether we're interlaced or not.
 			
 			Adda.w	#CVPHdrSize,A1							; Skip past the header info.
 			Move.w	#CBPSize,D0								; Get the size of each bpp entry.
@@ -4440,12 +4440,12 @@ CivicBlackScreen
 			Adda.l	D0,A1									; Skip to the entry we want.
 			
 			Move.w	cbpRowWords(A1),D3						; Get the number of longwords/row.
-			Tst.b	D2										; If we’re on an interlaced display
+			Tst.b	D2										; If we're on an interlaced display
 			Bne.s	@Interlace								;	then adjust accordingly.
 			Lsl.w	#3,D3									; Normalize for progressive displays.
 			Bra.s	@SizeIt									; (Skip interlace here.)
 @Interlace	Lsl.w	#2,D3									; Normalize for interlaced displays.
-@SizeIt		Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we’re not doing 32bpp,
+@SizeIt		Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we're not doing 32bpp,
 			Bne.s	@DbraAdj								;	then just go on.
 			Lsr.w	#1,D3									; 32bpp uses double longs.
 @DbraAdj	Subq	#1,D3									; Set up for Dbra loop.
@@ -4454,7 +4454,7 @@ CivicBlackScreen
 			
 @NxtRow		Move.w	D3,D5									; Get the number of longswords/row.
 @NxtLong	Move.l	D2,(A2)+								; Write out gray to the frame buffer…
-			Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we’re not doing 32bpp,
+			Cmp.b	#SixthVidMode-FirstVidMode,D1			; If we're not doing 32bpp,
 			Bne.s	@Skip32bpp								;	then just go on.
 			Not.l	D2										; Invert for next pixel.
 			Move.l	D2,(A2)+								; Write it out.
@@ -4539,7 +4539,7 @@ CivicDirectCLUTSet
 			Move.w		GFlags(A3),D5						; Get the flags for quick access.
 	
 			Move.w		saveMode(A3),D1						; Get the current mode.
-			Cmp.b		#FifthVidMode,D1					; If we’re not doing 16bpp,
+			Cmp.b		#FifthVidMode,D1					; If we're not doing 16bpp,
 			Bne.s		@32bpp								;	then go on.
 
 			Bset		#UseTrans,D5						; Remember to do 5-to-8 bit translation stuff.
@@ -4556,7 +4556,7 @@ CivicDirectCLUTSet
 			Bne			@VidRepeat							; before writing the grey
 			
 @Repeat		Move.w		D0,D1								; Copy the current index.
-			Btst		#UseTrans,D5						; If we don’t need to translate this value,
+			Btst		#UseTrans,D5						; If we don't need to translate this value,
 			Beq.s		@Index								; 	then just go on.
 			Bsr.s		CivicTrans5to8						; Otherwise, convert it, and use it
 			
@@ -4570,7 +4570,7 @@ CivicDirectCLUTSet
 			Bra.s		@FinishDGray						; Finish it off
 			
 @VidRepeat	Move.w		D0,D1								; Copy the current index.
-			Btst		#UseTrans,D5						; If we don’t need to translate this value,
+			Btst		#UseTrans,D5						; If we don't need to translate this value,
 			Beq.s		@VidIndex								; 	then just go on.
 			Bsr.s		CivicTrans5to8						; Otherwise, convert it, and use it
 			
@@ -5011,7 +5011,7 @@ CivicVidModeHWParams
 				Move.w	Sr,-(Sp)								; Save the current interrupt level.
 				Bsr		CivicWaitVSync							; Wait for the next VBL.
 			
-; Switch the framebuffer’s depth.
+; Switch the framebuffer's depth.
 ;
 ; Note:  cbpBusSize(A5) might not have the correct value.  Always program it 0 here.										<LW15>
 

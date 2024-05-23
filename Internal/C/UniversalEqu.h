@@ -20,13 +20,13 @@
 /* private low-memory globals for Universal info */
 
 enum {
-	AddrMapFlags = 0x0DD0,				// RAM copy of the machine’s BasesValid flags
+	AddrMapFlags = 0x0DD0,				// RAM copy of the machine's BasesValid flags
 	AddrMapFlags1 = 0x2400,
 	AddrMapFlags2 = 0x2404,
-	UnivROMFlags = 0x0DD4,				// RAM copy of the machine’s ExtValid flags
+	UnivROMFlags = 0x0DD4,				// RAM copy of the machine's ExtValid flags
 	UnivROMFlags1 = 0x2408,
 	UnivROMFlags2 = 0x240C,
-	UnivInfoPtr = 0x0DD8				// points to the machine’s ProductInfo record
+	UnivInfoPtr = 0x0DD8				// points to the machine's ProductInfo record
 };
 
 

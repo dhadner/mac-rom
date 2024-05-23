@@ -15,7 +15,7 @@
 	Change History (most recent first):
 
 		<11>	 6/22/92	DTY		#1033275 <csd>: Remove last change.  The quad alignment is now
-									done inside NewHiProcessManagerHandle or whatever it’s called
+									done inside NewHiProcessManagerHandle or whatever it's called
 									inside MemoryMgrPatches.c.
 		<10>	 6/12/92	pvh		#1032359: Added quad word alignment code in ChipFromFreeBlock
 									function so that we are properly aligned with the rest of the

@@ -11,7 +11,7 @@
 ;									24 bit mode. Normally, always installing this on a Mac II is OK,
 ;									since the Mac II normally only works in 24 bit mode. However,
 ;									with Scruffy, the Mac II could be in 32 bit mode, and in this
-;									case, this InstallProc shouldn’t be executed.
+;									case, this InstallProc shouldn't be executed.
 ;		 <4>	 2/12/92	JSM		Moved this file to MMU folder, keeping all the old revisions.
 ;		 <3>	 10/8/90	JDR		change hasPMMUNoVM to hasPMMU and notVM
 ;		 <2>	 8/18/90	dba		put SwapHMMU and SwapPMMU in here
@@ -57,7 +57,7 @@ DontDoMuchSwappingOfTheMMUMode PatchProc _SwapMMUMode,(Plus,SE,Portable)
 ;
 ;	This patch reduces the window for losing ASC interrupts to the minimum
 ;	possible, which is half an instruction.  After switching MMU modes,
-;	it checks the ASC’s interrupt register, and if any interrupts are present
+;	it checks the ASC's interrupt register, and if any interrupts are present
 ;	(but lost because the CB1 flag was cleared), it ORs the interrupt register back
 ;	to itself.  The ASC then generates a new interrupt.
 ;
@@ -78,13 +78,13 @@ SwapHMMU	Proc		Export
 			vBase2: equ $50F02000			; this Proc is for the Macintosh II only
 		endif
   		if &type('AscInt') = 'UNDEFINED' then
-			AscInt: equ $804 				; offset to ASC’s interrupt register
+			AscInt: equ $804 				; offset to ASC's interrupt register
   		endif
 
 			move.b		d0,d1				; check what mode desired, save it
 			bne.s		@to32				; IF we want 24 bit mode
 			moveq		#0,d0				;   clear return register
-			move.b		MMU32bit,d0			;   see what mode we’re in now
+			move.b		MMU32bit,d0			;   see what mode we're in now
 			beq.s		@done				;   IF in 32 bit mode now
 			move		sr,-(sp)			;     save current interrupt status
 			ori			#HiIntMask,sr		;     disable interrupts during switch
@@ -92,7 +92,7 @@ SwapHMMU	Proc		Export
 			bra.s		@common				;     (re-use common code)
 @to32										; ELSE (we want 32 bit mode)
 			moveq		#0,d0				;   clear return register
-			move.b		MMU32bit,d0			;   see (and return) what mode we’re in now
+			move.b		MMU32bit,d0			;   see (and return) what mode we're in now
 			bne.s		@done				;   IF in 24 bit mode now
 			move		sr,-(sp)			;     save current interrupt status
 			ori			#HiIntMask,sr		;     disable interrupts during switch
@@ -106,7 +106,7 @@ SwapHMMU	Proc		Export
 			move.b		(a0),d1				;     get ASC interrupt register
 			beq.s		@doneASC			;     IF ASC thinks interrupt is pending
 			tst.b		vBase2+vier			; 	    try to synch VIA so it catches the edge
-			or.b		d1,(a0)				;       re-generate interrupt to VIA’s CB1
+			or.b		d1,(a0)				;       re-generate interrupt to VIA's CB1
 @doneASC									;     ENDIF
 			move		(sp)+,sr			;     restore interrupt mask
 											;   ENDIF
@@ -138,7 +138,7 @@ InstallSwapPMMU InstallProc
 			lea		MMUInfo,a0					; point at buffer for config info
 			pmove	crp,theCRP(a0)				; get current 24 bit mode CRP
 			pmove	tc,theTC(a0)				; get current 24 bit mode tc
-			moveq	#true32b,d0					; where we’re going
+			moveq	#true32b,d0					; where we're going
 			_SwapMMUMode						; switch to 32 bit mode
 			pmove	crp,MMUInfoSize+theCRP(a0)	; get current 32 bit mode CRP
 			pmove	tc,MMUInfoSize+theTC(a0)	; get current 32 bit mode tc
@@ -163,7 +163,7 @@ InstallSwapPMMU InstallProc
 ;   SwapPMMU - switches PMMU between 24 & 32 bit modes.
 ;
 ;	This patch is just a more efficient version of SwapMMUMode that ONLY deals with
-;	PMMUs.  It eliminates the ROM version’s overhead of checking for the HMMU.
+;	PMMUs.  It eliminates the ROM version's overhead of checking for the HMMU.
 ;
 ;   Entry
 ;       d0.b	0 to set 24-bit mode, non-zero to set 32-bit mode.
@@ -185,14 +185,14 @@ SwapPMMU	Proc	Export
 			move.b	d0,d1					; check what mode we are going to, set up d1
 			bne.s	@to32					; IF we want 24 bit mode
 			moveq	#0,d0					;   clear return register
-			move.b	MMU32bit,d0				;   see what mode we’re in now
+			move.b	MMU32bit,d0				;   see what mode we're in now
 			beq.s	@endif					;   IF in 32 bit mode now
 			move.l	MMU24Info,a0			;     get ptr to 24 bit mode info
 			bra.s	@swap					;     go to common swap code
 											;   ENDIF
 @to32										; ELSE (we want 32 bit mode)
 			moveq	#0,d0					;   clear return register
-			move.b	MMU32bit,d0				;   see what mode we’re in now
+			move.b	MMU32bit,d0				;   see what mode we're in now
 			bne.s	@endif					;   IF in 24 bit mode
 			move.l	MMU32Info,a0			;     get ptr to 32 bit mode info
 @swap		move	sr,-(sp)				;     save current interrupt status

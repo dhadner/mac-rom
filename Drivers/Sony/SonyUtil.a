@@ -35,7 +35,7 @@
 ;		<11>	 4/27/92	JSM		Get rid of conditionals: supportsPWM, supportsDCD, and
 ;									has3rdFloppy are always false, forROM, supportsMFM, isUniversal,
 ;									hasPowerMgr, and hasPwrControls are always true (although
-;									hasPowerMgr currently isn’t for the ROM, it will be and was
+;									hasPowerMgr currently isn't for the ROM, it will be and was
 ;									always ORed with hasPwrControls here anyway). This file now has
 ;									no conditionals.
 ;		<10>	 1/17/91	GMR		Added additional 15 µs delay to Wait100 after step goes high

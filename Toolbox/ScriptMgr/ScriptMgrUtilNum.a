@@ -145,7 +145,7 @@
 ;									"##E#,###" + 1E1234 didn't yield "1E1,234"
 ;									"#.#" + "2." ≠> 2.0
 ;				  1/7/88	med		Added inversion for odd cases
-;				12/16/87	med		Included Dan’s assemblyized versions, for comments see pascal
+;				12/16/87	med		Included Dan's assemblyized versions, for comments see pascal
 ;									version
 ;___________________________________________________________________________________________________
 ;	To Do (old):

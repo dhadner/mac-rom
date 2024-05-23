@@ -11,7 +11,7 @@
 	 
 		<27>	11/11/92	FS		Modify the process manager to send events to the shell process
 									if a window in the TSM layer has the magic window kind (13)
-		<26>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<26>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<25>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature.  Conditionally
 									compiled under MODSQUAD
@@ -21,7 +21,7 @@
 		<23>	 6/22/92	YK		#1033306 <JH>: Always remove the mouse down event for a floating
 									window from the event queue.
 		<22>	  6/8/92	YK		<JH>: A boolean variable may not be either 0 or 1.  (Probably
-									$FF)   So ‘==true’ should be ‘!=false’.
+									$FF)   So ‘==true' should be ‘!=false'.
 		<21>	  6/8/92	JH		Removing PtInRgn from imLayerMouseDown. This is a superfluous
 									test since the swapCurLayer, FindWindow, SetCurLayer will always
 									do the right thing. In addition, for the PtInRgn call to work

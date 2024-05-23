@@ -123,7 +123,7 @@
 		void DbgCheckSize(ulong theSize);
 		void DbgCheckAlignment(void* thePtr);
 
-		#define garbageData						0x50FF50FF 		/* Greg MariottÕs "new" (as of 4/29/93) offical number */
+		#define garbageData						0x50FF50FF 		/* Greg Mariott's "new" (as of 4/29/93) offical number */
 		#define DbgGarbageFill(h ,a, b)			if ((h)->validationFlags & fillFreeBlocks) FillBytes(a, b, garbageData)
 
 	#else

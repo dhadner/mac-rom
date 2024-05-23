@@ -416,7 +416,7 @@ FasterValidRect
 				moveq	#-1,d0				;flag it as a valid
 				bra.s	IRectCommon
 FasterInvalRect
-				moveq	#0,d0				;flag that it’s an inval
+				moveq	#0,d0				;flag that it's an inval
 IRectCommon
 				move.l	4(sp),a0			;get pointer to rectangle 
 				move.l	a4,-(sp)			;save a4 <SM4> 
@@ -477,7 +477,7 @@ GetRearWindow	PROC	EXPORT					;					 				<SM16> FM
 
 @findNextVisibleWindow							;									<SM16> FM 
 				move.l	nextWindow(a0),d0		; Get next window					<SM16> FM 
-				bne.s	@findLastWindowLoop		; If there’s a window, branch back	<SM16> FM 
+				bne.s	@findLastWindowLoop		; If there's a window, branch back	<SM16> FM 
 
 @gotLastWindow									;									<SM16> FM 
 				rts								;									<SM16> FM 

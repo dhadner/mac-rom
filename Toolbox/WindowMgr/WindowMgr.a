@@ -53,7 +53,7 @@
 ;	  <SM27>	 3/31/93	IH		Use Display Manager to Draw Desktop if hasDisplayMgr is true.
 ;	  <SM26>	  2/4/93	CSS		Rollin Horror (WindowMgrPatch.a). Comments follow:
 ;		<H5>	  7/8/92	SWC		Fixed a bug in InitWindowFramePatch that would cause it to fall
-;									thru to the ‘normal’ code even in the LCD case.
+;									thru to the ‘normal' code even in the LCD case.
 ;		<H4>	01/27/92	jmp		Removed the BoxFlag dependencies in these patches, and padded to
 ;									match the TERROR/Zydeco ROM map.
 ;		<H3>	 1/14/92	SWC		Added DB-Lite LC to the list of LCD screen machines. Changed
@@ -143,12 +143,12 @@
 ;
 ;		 <9>	 4/23/92	DTY		The last change leaves a region on the screen if you drag a
 ;									window over the menu bar, then back again.  If the outline is
-;									just becoming visible again, don’t do the XorRgn.
-;		 <8>	 4/21/92	DTY		Get rid of the “fast paint” case in DragTheRgn.  _PaintRgn is
+;									just becoming visible again, don't do the XorRgn.
+;		 <8>	 4/21/92	DTY		Get rid of the 'fast paint' case in DragTheRgn.  _PaintRgn is
 ;									fast enough now to deal with funky regions. Also reworked
-;									dragging algorithm so the region doesn’t flicker as it is
+;									dragging algorithm so the region doesn't flicker as it is
 ;									dragged around.
-;		 <7>	 4/17/92	DTY		Dean hates the fact that everything’s lumped into one huge Proc.
+;		 <7>	 4/17/92	DTY		Dean hates the fact that everything's lumped into one huge Proc.
 ;									Make separate procs for all the routines.
 ;		 <6>	 9/25/91	JSM		Also, stop using useless conditional HMenus.
 ;		 <5>	 9/25/91	JSM		Cleanup header, remove use of hasCQD from this file since all
@@ -1493,7 +1493,7 @@ DoNextDev
 ;							CRT displays have rounded ones.
 		IF hasPwrControls THEN					;														<SM81>
 				IMPORT	LCDScreenChk			; <SM26> CSS
-				BigJsr	LCDScreenChk,a0			; If we don’t have an LCD screen,
+				BigJsr	LCDScreenChk,a0			; If we don't have an LCD screen,
 				BEQ.S	@DoNormalCode			;	then just go on.
 		
 				Move.l	A4,-(Sp)				; Push the temp rect.
@@ -1534,7 +1534,7 @@ DoNextDev
 
 ;<SM26> CSS Rollin patch: InitWIndowsRgnPatch from Horror:
 ; InitWindowsFramePatch	- 	Decides whether the corners of the screen should be rounded
-;							or not.  LCD displays don’t have rounded corners while CRT
+;							or not.  LCD displays don't have rounded corners while CRT
 ;							displays do.
 
 		IF hasPwrControls THEN					; <SM26> CSS														<SM81>
@@ -3236,7 +3236,7 @@ NegWords		Proc	Export
 ;
 ; If SendBehind is actually moving a window to the front, we should paint starting with the window
 ; that ends up behind the window we are moving instead of the window that was behind it before we
-; moved anything. To do this, we get the new “behind” window in A3, and then look through the list.
+; moved anything. To do this, we get the new 'behind' window in A3, and then look through the list.
 ; If we never see that window in A3, then we know we should start painting there, but if we do see
 ; it, then we use the old code which paints from the old front window.
 
@@ -3330,7 +3330,7 @@ MovedForward
 @doneUnionRgns								;														<39>
 
 				; Now we have a region including all windows that used to cover the window that
-				; moved but don’t cover it any more. By calling PaintOne with this region, we redraw
+				; moved but don't cover it any more. By calling PaintOne with this region, we redraw
 				; only the newly revealed part of the window that moved.
 
 				move.l	a3,-(sp)
@@ -3821,17 +3821,17 @@ NConstraint
 				MOVE.W	D1,-(SP)				;push dy
 				_OfsetRgn						;offset to new position
 				
-				tst.w	d5						; See if it’s visible
+				tst.w	d5						; See if it's visible
 				bnz.s	@regionIsVisible		; If it is, do the Xor to do a combination erase/paint
 				move.l	a3,-(sp)				; The drag region just came back into boundRect, so it needs to be draw anew
-				bsr 	DrawDraggedRgn			; Doing the Xor would also redraw the region in it’s last visible location, leaving garbage on the screen <SM29> CSS
-				bra.s	@markOutlineVisible		; Just paint the region in it’s new position
+				bsr 	DrawDraggedRgn			; Doing the Xor would also redraw the region in it's last visible location, leaving garbage on the screen <SM29> CSS
+				bra.s	@markOutlineVisible		; Just paint the region in it's new position
 				
 @regionIsVisible
 				move.l	a4,-(sp)				; Push the region before it was offset
-				move.l	a3,-(sp)				; Push the region in it’s new location
+				move.l	a3,-(sp)				; Push the region in it's new location
 				move.l	a4,-(sp)				; Mess with the copy
-				_XorRgn							; Make a region that’s the difference between the two locations
+				_XorRgn							; Make a region that's the difference between the two locations
 				move.l	a4,-(sp)				; Just paint this difference
 				bsr 	DrawDraggedRgn			; <SM29> CSS
 @markOutlineVisible
@@ -3988,7 +3988,7 @@ DrawDraggedRgn
 				tst.w	DragFlag			; control manager dragging thumb?
 				bne.s	@dragThumb			; Yes.  Force black drag
 				
-; We’re doing normal outline dragging, so just paint the region.
+; We're doing normal outline dragging, so just paint the region.
 
 @paintnormal
 				move.l	4(sp),-(sp)			; get rgn to paint
@@ -3996,7 +3996,7 @@ DrawDraggedRgn
 				move.l	(sp)+,(sp)			; strip parameter
 				rts
 
-; To get the thumb to show up in color against the scroll bar’s gray background,
+; To get the thumb to show up in color against the scroll bar's gray background,
 ; force the region outline to draw in black.
 
 @dragThumb
@@ -4830,8 +4830,8 @@ GetAuxGuts
 				MOVE.L	4(SP),A0			;get a pointer to var result
 				MOVE.L	A1,(A0)				;save the result
 				
-; <SM16> The routines that need to get at a window’s color table generally call GetAuxWin first to
-; <SM16> get the color table handle. That makes this a good place to reload the color table if it’s
+; <SM16> The routines that need to get at a window's color table generally call GetAuxWin first to
+; <SM16> get the color table handle. That makes this a good place to reload the color table if it's
 ; <SM16> been purged.
 
 				move.l	(A1), A0			; <SM16> FM Aux[Win|Ctl]Ptr in A0

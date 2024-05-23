@@ -20,28 +20,28 @@
 									colors near black or white don't show up later.
 		<16>	  2/6/91	SMC		DDG,#81681: Fixed ConvertBankTo555 to reset the count of unique
 									colors and to properly keep track of the number of pixels of a
-									specified color (it used to “forget” about some of the pixels
+									specified color (it used to 'forget' about some of the pixels
 									that corresponded to an index).
 		<15>	  2/4/91	SMC		KON,#82191: Fixed the way pixmaps were getting colorized. The
 									context of the fore and back colors was switched.
 		<14>	 1/16/91	dba		(DDG) calculate a source rectangle in RecordPixMapInfo
 		<13>	 9/25/90	DDG		Saved a few bytes throughout various routines.
-		<12>	 9/25/90	DDG		Fixed a bug in “RecordPixMapGuts”, where the
-									“MakeTrueColorTable” routine was being called with a bogus color
+		<12>	 9/25/90	DDG		Fixed a bug in 'RecordPixMapGuts', where the
+									'MakeTrueColorTable' routine was being called with a bogus color
 									table pointer in the case of bitMaps. Also fixed two bugs in the
-									“MakeTrueColorTable” routine when it generates relative colors.
+									'MakeTrueColorTable' routine when it generates relative colors.
 									The first one was that the dest pointer was not being set right
 									when the relative color loop started. The second was that colors
 									used to be able to wrap around to black, sometimes giving two
 									instances of black in the color table. They are now clipped to
 									white.
 		<11>	 9/21/90	DDG		Made changes from code review. Moved several routines to
-									assembly language (“puLowLevel.a”).
+									assembly language ('puLowLevel.a').
 		<10>	  8/5/90	DDG		Fixed several bugs with recording custom colors.
 		 <9>	  8/3/90	DDG		Cleaned up the code some and added the CalcExactTable routine.
 		 <8>	  8/2/90	DDG		Added support for recording colors in custom color procs. Also
-									incorporated Sean Callahan’s colorizing algorithm.
-		 <7>	  8/1/90	DDG		All sorts of changes to support relative entries in the pixmap’s
+									incorporated Sean Callahan's colorizing algorithm.
+		 <7>	  8/1/90	DDG		All sorts of changes to support relative entries in the pixmap's
 									color table.
 		 <6>	 7/31/90	DDG		Made RecordRGBColor respect the suppressBlackAndWhite verb.
 		 <5>	 7/31/90	DDG		Speeded up the suppressBlackAndWhite case for recording indexed
@@ -129,7 +129,7 @@ PixMapHandle		thePixMapHandle )
 		return pictInfoIDErr;
 
 /*
-|	Increment the proper count in the structure, depending on whether the “PixMap” is really a
+|	Increment the proper count in the structure, depending on whether the 'PixMap' is really a
 |	PixMap or a BitMap.
 */
 
@@ -153,7 +153,7 @@ PixMapHandle		thePixMapHandle )
 	theInfoPtr->ext.sourceRect.left		= 0;
 
 /*
-|	Check the current port’s version. If the port is a color port, then set the foreground and background
+|	Check the current port's version. If the port is a color port, then set the foreground and background
 |	colors to black and white respectively.
 */
 
@@ -172,7 +172,7 @@ PixMapHandle		thePixMapHandle )
 	}
 
 /*
-|	Now, call the main “guts” routine that records the real information for the pixMap
+|	Now, call the main 'guts' routine that records the real information for the pixMap
 */
 
 	error = RecordPixMapGuts(theInfoPtr, thePixMapHandle);
@@ -217,7 +217,7 @@ PixMapHandle					thePixMapHandle )
 	thePixMapPtr = *thePixMapHandle;
 
 /*
-|	Set the “isPixMap” and “thePixelSize” variables and set the maximum depth field is the information handle.
+|	Set the 'isPixMap' and 'thePixelSize' variables and set the maximum depth field is the information handle.
 */
 
 	thePixelSize = 1;
@@ -245,7 +245,7 @@ PixMapHandle					thePixMapHandle )
 
 /*
 |	If we have a pixMap, then lock down the color table after moving it high. Note that
-|	direct pixMaps do not have a color table, so we don’t lock them down.
+|	direct pixMaps do not have a color table, so we don't lock them down.
 */
 
 	if( isPixMap && (thePixMapPtr->pmTable) )
@@ -259,7 +259,7 @@ PixMapHandle					thePixMapHandle )
 	}
 
 /*
-|	If the foreground color is white and the background color is black, then don’t colorize. Otherwise, colorize
+|	If the foreground color is white and the background color is black, then don't colorize. Otherwise, colorize
 |	each RGBColor, using the stored foreground and background color.
 */
 
@@ -452,7 +452,7 @@ short			thePixelSize )
 		{
 		/*
 		|	The index into the color table should default to the value in the ColorSpec. However, if the
-		|	color table flag word has it’s highest bit set, then we need to ignore the value field and
+		|	color table flag word has it's highest bit set, then we need to ignore the value field and
 		|	use a constantly incrementing index.
 		*/
 

@@ -12,7 +12,7 @@
 ;		 <7>	 1/13/91	dba		(KIP) add fix for old key repeat bugs in the Macintosh Plus ROM;
 ;									specifically, be sure that KeyThresh and KeyRepThresh do not
 ;									have 0s in them
-;		 <6>	 7/10/90	dba		Oops! Frank forgot to export MTable and he didn’t test it (my
+;		 <6>	 7/10/90	dba		Oops! Frank forgot to export MTable and he didn't test it (my
 ;									fault, I was with him at the time).
 ;		 <5>	 7/10/90	fjs		more cleanup related to Darin
 ;		 <4>	 5/19/90	fjs		more cleanup related to Darin
@@ -135,7 +135,7 @@ MouseMapping PROC
 ; It is probably completely unnecessary; at the very least we could do something shorter.
 
 			STRING	ASIS
-Signature	dc.b		'Horowitz'			; isn’t that special
+Signature	dc.b		'Horowitz'			; isn't that special
 
 Globals
 
@@ -212,7 +212,7 @@ CountOK
 
 			move.w		d4,d2				; Get Count
 			sub.w		#1,d2				; Index into JTab
-			ASL.w		#1,d2				; REQUIRES bra.s’s IN JUMP TAbleS
+			ASL.w		#1,d2				; REQUIRES bra.s's IN JUMP TAbleS
 			JMP			JTab(PC,d2.w)		; Jump to the right code per Count
 
 JTab		bra.s		E1					; Count = 1

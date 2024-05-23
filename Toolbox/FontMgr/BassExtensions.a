@@ -14,7 +14,7 @@
 ;									to support InitializePartialFonts and InitializeDiskCache which
 ;									are enabled once the gestalt call turns on the new bits. Per
 ;									Reality BassPatches.a <14> comment follows:
-;		<14>	  3/9/92	DTY		#1023997: Don’t call InitializePartialFonts and
+;		<14>	  3/9/92	DTY		#1023997: Don't call InitializePartialFonts and
 ;							InitializeDiskCache as part of the TrueType installation process
 ;							any more. Instead, make them selectors off of vFontCache so that
 ;							they can be called by the Universal Two Byte Extension, since
@@ -29,7 +29,7 @@
 ;							the ATM patch that is no longer part of this file.
 ;							<16> 4/1/92	YK 	#1023997: Ignore case for InitializePartialFonts and
 ;										InitializeDiskcache since they are pascal functions now.
-;							<14> 3/9/92	DTY	#1023997: Don’t call InitializePartialFonts and
+;							<14> 3/9/92	DTY	#1023997: Don't call InitializePartialFonts and
 ;										InitializeDiskCache as part of the TrueType installation process
 ;										any more. Instead, make them selectors off of vFontCache so that
 ;										they can be called by the Universal Two Byte Extension, since
@@ -67,7 +67,7 @@
 ;	    <14>	 10/1/90	CL		The prglue patch does not work in Finder mode since the printing
 ;							code does in fact get memory for the app heap not the system
 ;							heap.  Need to check which mode and set accordingly.
-;	    <13>	 9/27/90	CL		Adding in Dave Harrison’s cool memory patch for the MacPlus ROM.
+;	    <13>	 9/27/90	CL		Adding in Dave Harrison's cool memory patch for the MacPlus ROM.
 ;	    <12>	 9/24/90	CL		Adding sb_searchForcache back into vector table.
 ;	    <11>	 9/13/90	CL		Taking out MachineType since it is no longer needed for the
 ;							MultiFinder exist check.  Memory manager has a bad bug.  It
@@ -96,9 +96,9 @@
 ;							using the dcImportResident macro instead of copying them into a
 ;							block in the system heap.  The cache cleaning traps have been
 ;							modified to use the jmpOld macro to return to the real toolbox
-;							routine, so these addresses don’t have to be saved in
+;							routine, so these addresses don't have to be saved in
 ;							ExdpandMem.  GetDevPix has been moved into FontMgr.a since
-;							that’s where it’s being called.
+;							that's where it's being called.
 ;
 ;		BassCommTail.a --> BassPatches.a
 ;
@@ -499,7 +499,7 @@ INSTALLBASSCOMMON	Proc	Export
 
 ;——————————————————————————————————————————————————————————————————————————————————————————
 ; Force _InitFonts to be called.
-; Don’t include Mac Plus in ROM list, since FMExist doesn’t on the Plus.
+; Don't include Mac Plus in ROM list, since FMExist doesn't on the Plus.
 ;——————————————————————————————————————————————————————————————————————————————————————————
 ;ForceInitFontsCall	InstallProc	(SE,II,Portable,IIci)
 FORCEINITFONTSCALL	Proc	Export

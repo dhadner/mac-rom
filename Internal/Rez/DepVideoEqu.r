@@ -17,7 +17,7 @@
 	  <SM30>	12/14/93	PN		Update the CPU resources ID to match DepVideoEqu.a.
 	  <SM29>	12/13/93	PN		Roll in KAOs and Horror changes to support Malcom and AJ
 									machines
-	  <SM28>	12-06-93	jmp		Removed the driver version equates since they aren’t used here
+	  <SM28>	12-06-93	jmp		Removed the driver version equates since they aren't used here
 									anyway.
 	  <SM27>	11/10/93	fau		Update from SuperMunggio <SMG2>.
 	  <SMG2>	10/27/93	fau		Added ATI directory support.
@@ -78,12 +78,12 @@
 //                                   enabled the last reboot. (At the momment, this bit is only used
 //                                   for DAFB because it puts out the sync-on-green signal, and we
 //                                   might want to keep the same sync-on-green state even though the
-//                                   AltSense code changed.  I don’t think Vail or Cyclone need to
+//                                   AltSense code changed.  I don't think Vail or Cyclone need to
 //                                   know that AltSense was enabled last reboot, but they could use
 //                                   this bit if they ever did.)
 //                                   (jmp,H38) Made the DAFBReadSenseLines macro work better with
 //                                   Wombat DAFBs (due to the fact that the WombatDAFB is not tied to
-//                                   the ’040 reset instruction like other DAFB-based CPUs are).
+//                                   the '040 reset instruction like other DAFB-based CPUs are).
 //                                   (jmp,H37) Added yet another base-address constant for Wombat.
 //                                   (jmp,H36) Needed some new base-address constants for Wombat.
 //                                   (jmp,H35) Added first-pass support for the Wombat version of
@@ -91,7 +91,7 @@
 //                                   (jmp,H34) Cleaned up the DAFB byte and word write macros, and a
 //                                   fixed a minor bug in the DAFBIdle macro (the way it was
 //                                   originally written, there could have been cases where the AC824A
-//                                   would NOT have put back into “compatible” mode).
+//                                   would NOT have put back into 'compatible' mode).
 //     <SM15>     7/13/92    CCH     Modified DAFBBWrite macro to perform byte writes.
 //     <SM14>     7/7/92     CSS     Change references for boxApollo to boxClassisII.
 //     <SM13>      7/7/92    fau     Moved the equ for sRsrc_BdWombat20 to the correct location as
@@ -109,7 +109,7 @@
 //      <SM8>     6/17/92    KW      (jmp,H34) Cleaned up the DAFB byte and word write macros, and a
 //                                   fixed a minor bug in the DAFBIdle macro (the way it was
 //                                   originally written, there could have been cases where the AC824A
-//                                   would NOT have put back into “compatible” mode).
+//                                   would NOT have put back into 'compatible' mode).
 //                                   (jmp,H33) Eliminated yet even more of the old DAFBVidParams
 //                                   fields, so I adjusted the data structures accordingly.
 //                                   (jmp,H31) Updated the SonoraVidParams record to accomdate
@@ -122,19 +122,19 @@
 //                                   their new, more descriptive names.
 //                                   (jmp,H28) Eliminated support for the no-vRAM case in V8-base
 //                                   systems.
-//                                   (jmp,H27) Changed the “sRsrcZydecoDir” name to the more generic
-//                                   “sRsrcBFBasedDir” (BF=BoxFlag) name.
+//                                   (jmp,H27) Changed the 'sRsrcZydecoDir' name to the more generic
+//                                   'sRsrcBFBasedDir' (BF=BoxFlag) name.
 //                                   (jmp,H26) Added some base-address constants for V8 to eliminate
 //                                   the VideoInfo arrays in Universal.a.
 //                                   (jmp,H25) Added some new CPU board ID constants (based on
 //                                   BoxFlag), added some new DAFB constants for Wombat, and added
 //                                   some conditionals for nuking the Apollo stuff and killing the
-//                                   Slot Manager checksum of Slot $0’s DeclData as it’s somewhat
+//                                   Slot Manager checksum of Slot $0's DeclData as it's somewhat
 //                                   redundant.
 //                                   KW Removed FirstVidMode,SecondVid etc since already in VideoEqu
 //      <SM6>     5/21/92    RB      Making changes for Cyclone
 //      <SM5>     5/17/92    kc      Roll in Horror changes. Comments follow:
-//      <H24>    04/24/92    jmp     Added constants to support the “switch-on-the-fly” Rubik-512 to
+//      <H24>    04/24/92    jmp     Added constants to support the 'switch-on-the-fly' Rubik-512 to
 //                                   Rubik-560 and vice-versa call for Sonora.
 //      <H23>    04/20/92    jmp     Added constants to support the 640x400 mode of the HiRes
 //                                   displays.
@@ -146,7 +146,7 @@
 //      <H19>     2/18/92    JC      Changed boxCarnation to boxCarnation33 and boxVail to boxVail25.
 //      <H18>     2/17/92    SAM     Changed boxCondor to boxWombat.
 //      <H17>    01/27/92    jmp     Moved some equates from DepVideoEqu.a to ROMEqu.a.
-//      <H16>    01/22/92    jmp     (jmp,Z26) Renamed all the “NoConnect” equates to “AltSense.”
+//      <H16>    01/22/92    jmp     (jmp,Z26) Renamed all the 'NoConnect' equates to 'AltSense.'
 //      <H15>     1/14/92    SWC     Updated boxFlag labels to use shipping product names.
 //      <H14>    01/11/92    jmp     Added equates for the newly-defined extended sense codes.
 //      <H13>    12/19/91    jmp     Added the initial support for Rubik-560 mode for Sonora.
@@ -156,8 +156,8 @@
 //       <H9>    11/27/91    jmp     Added massive amounts of Sonora equates.
 //       <H8>    11/26/91    jmp     Added some GSC and DBLite equates.
 //       <H7>    11/12/91    jmp     Defined two new DAFBFlag bits to indicate the size of vRam.
-//       <H6>    11/05/91    jmp     Added more 19” display equates for DAFB.
-//       <H5>    11/01/91    jmp     Added equates for (eventually) supporting 19” displays with
+//       <H6>    11/05/91    jmp     Added more 19' display equates for DAFB.
+//       <H5>    11/01/91    jmp     Added equates for (eventually) supporting 19' displays with
 //                                   DAFB.
 //       <H4>    10/29/91    jmp     Changed the Spike33 names to Condor.
 //       <H3>    10/24/91    jmp     Added in constants to support the gray-scale DB-Lite (up to
@@ -171,28 +171,28 @@
 //      <SM1>    12/29/91    RB      first checked in
 //   ----------------------------------------------------------------------
 //   Zydeco History:
-//       <26>    01/20/92    jmp     Renamed all the “NoConnect” equates to “AltSense.”
+//       <26>    01/20/92    jmp     Renamed all the 'NoConnect' equates to 'AltSense.'
 //       <25>    01/09/92    jmp     Added equates for the newly-defined extended sense codes.
 //       <24>    12/17/91    jmp     Added a new baseAddr offset for Kong & Vesuvio on DAFB.
 //       <23>    11/08/91    jmp     Defined two new DAFBFlag bits to indicate the size of vRam.
-//       <22>    11/05/91    jmp     Added equates for supporting 19” Displays with DAFB.
+//       <22>    11/05/91    jmp     Added equates for supporting 19' Displays with DAFB.
 //       <21>    10/16/91    jmp     Modified the DAFBIdle & DAFBReset macros to set & reset a flags
 //                                   register saying whether DAFB video is active or not.  This was
 //                                   added to support turning video back on immediately in the event
 //                                   that the video driver was closed and needed to be opened again
-//                                   during “normal” operation of the CPU.
-//       <20>    09/17/91    jmp     When “grounding out” the ECL clock, we also needed to make sure
+//                                   during 'normal' operation of the CPU.
+//       <20>    09/17/91    jmp     When 'grounding out' the ECL clock, we also needed to make sure
 //                                   the 100 Mhz clock is shut off.  This 100 Mhz clock is controlled
 //                                   by bit 9 (PIXSEL0) in the DAFB clock configuration register.  I
 //                                   just added an equate for this.
-//       <19>    09/17/91    jmp     Added support for “grounding out” the ECL clock signals in
+//       <19>    09/17/91    jmp     Added support for 'grounding out' the ECL clock signals in
 //                                   software using the AMD-ACDC for Zydeco/Spike33 CPUs.
 //       <18>    09/13/91    jmp     Added support for 16pp on Rubik displays when only 512K of vRAM
 //                                   is around in preparation for Spike33s.
 //       <17>     8/26/91    jmp     Added support for a Spike33-type box.
 //       <16>     8/21/91    jmp     Changed all the Eclipse33 references to Zydeco.
 //       <15>      8/9/91    jmp     Added equates to fix a problem with NTSC & PAL family modes
-//                                   where changing the amount of vRAM didn’t cause DAFB’s part of
+//                                   where changing the amount of vRAM didn't cause DAFB's part of
 //                                   PrimaryInit to re-validate the SP_LastConfig pRAM byte.  Also,
 //                                   added a boundary equate to distinguish 16bpp-capable DAFB sRsrcs
 //                                   from non-16bb-capable sRsrcs.
@@ -217,7 +217,7 @@
 //        <4>     5/25/91    jmp     The DAFBIdle macro was shutting off DAFB entirely.  For the most
 //                                   part, this is NOT wrong; however, if we completely shut DAFB off
 //                                   at driver close time, and someone reopens the driver before the
-//                                   machine is restarted, we can’t get video going again without
+//                                   machine is restarted, we can't get video going again without
 //                                   going thru the entire DAFB reset cycle, which causes the screen
 //                                   to jump.  So, I now just kill sync and video refresh, which does
 //                                   exactly what I need.
@@ -225,7 +225,7 @@
 //                                   DAFBResetDelay macro.
 //        <2>     5/22/91    jmp     Now enable/disable fast page mode depending on whether DAFB is
 //                                   configured for row interleave vRam accesses.  I only added this
-//                                   to the driver version of the DAFBSpeed macro because we don’t
+//                                   to the driver version of the DAFBSpeed macro because we don't
 //                                   need to do this in PrimaryInit.
 //        <1>     5/22/91    jmp     Changed name to DepVideoEqu.a from RBVDepVideoEqu.a to reflect
 //                                   the fact that this file is used by all built-in videos, not
@@ -233,7 +233,7 @@
 //       <25>     5/15/91    jmp     Added DB-Lite support.  Also, had the wrong constant for
 //                                   indexedSenseFP; should have been 1 not 5 (5 is for
 //                                   indexedSenseRGBFP).  This caused the Portrait Display to not be
-//                                   luminance-mapped when “Color” mode was turned on.
+//                                   luminance-mapped when 'Color' mode was turned on.
 //       <24>     5/10/91    jmp     Added sRsrc constants for SuperVGA.  Aliased IsSlow to Is16 (bit
 //                                   11) in GFlags for supporting 25 vs. 33 MHz CPU configs.  Added
 //                                   new DAFBSpeed macros for PrimaryInit & Driver.  Code review
@@ -245,13 +245,13 @@
 //                                   (i.e., they were zero).
 //       <20>     4/15/91    djw     Add spId for functional video sRsrc's video attibutes (a data
 //                                   field).
-//       <19>      4/4/91    jmp     My previous “optimization” caused some DAFB 1 machines to hang.
+//       <19>      4/4/91    jmp     My previous 'optimization' caused some DAFB 1 machines to hang.
 //                                   So, I now read the DAFB test register 4 times, which could take
 //                                   as long as 480 ns.  We only 320 ns DAFB reset writes (even on
 //                                   DAFB 1s), so this should be okay.
 //       <18>      4/3/91    jmp     Reduced the number of Nops in the DAFBResetDelay macro to two
 //                                   (from eight).  I determined this value empirically; before, I
-//                                   was just guessing based on Dale Adam’s spec.
+//                                   was just guessing based on Dale Adam's spec.
 //       <17>      4/1/91    jmp     SixteenBitGray & ThirtyTwoBitGray were inverted!
 //       <16>     3/25/91    jmp     Added a record for Slot pRam.
 //       <15>     3/18/91    jmp     Updated rowbytes constants for 32bpp PAL.
@@ -261,12 +261,12 @@
 //                                   Added equates for factory burn-in stuff.
 //       <12>     2/25/91    jmp     Added DAFBSpeed macro for supporting 33Mhz DAFBs.
 //       <11>     2/15/91    jmp     Added various comments and cleaned up file.  Added
-//                                   “indexEntries” equate for the -1 modes of Get/SetEntries.  Also,
+//                                   'indexEntries' equate for the -1 modes of Get/SetEntries.  Also,
 //                                   added macro for checking/setting 33Mhz operation of DAFB.
 //       <10>     2/10/91    jmp     Updated NTSC and PAL data for 4/8bpp convolved.  Added
-//                                   defmBaseOffset to screen clearing params.  Added in “Misc”
+//                                   defmBaseOffset to screen clearing params.  Added in 'Misc'
 //                                   params to video params for ChkMode in driver.  The Rubik gamma
-//                                   table contained the 4•8/8•24 gType id!  And updated GoldFish’s
+//                                   table contained the 4•8/8•24 gType id!  And updated GoldFish's
 //                                   clock parameters (to match those of the Portrait Display).
 //        <9>      2/3/91    jmp     Added the new rowbytes values (ST/FF) for PAL.  Added
 //                                   MinorLength values for NTSCFF/ST a,b and PALFF/ST a.  Added new
@@ -334,9 +334,9 @@
 
 // Various build flags…
 //
-#define ApolloSupported          0           // Apollo isn’t really supported by Horror, so no use carrying it around.
-#define RBVSupported             0           // Apollo isn’t really supported by Horror, so no use carrying it around.
-#define TIMSupported             0           // Apollo isn’t really supported by Horror, so no use carrying it around.
+#define ApolloSupported          0           // Apollo isn't really supported by Horror, so no use carrying it around.
+#define RBVSupported             0           // Apollo isn't really supported by Horror, so no use carrying it around.
+#define TIMSupported             0           // Apollo isn't really supported by Horror, so no use carrying it around.
 #define CheckSumEnabled          0           // No need to have the SlotManager checksum us since the ROM start code does it, too!
 
 // Driver Version Numbers…
@@ -384,7 +384,7 @@
 #define burnInSig13              ('RN13')      //   define all the Apple-produced displays.
 #define burnInSig15              ('RN15')      //   We could define similar signatures for
 #define burnInSig16              ('RN16')      //   things like VGA, NTSC, and PAL, but the
-#define burnInSig19              ('RN19')      //   factory probably couldn’t use them anyway.
+#define burnInSig19              ('RN19')      //   factory probably couldn't use them anyway.
 #define burnInSig21              ('RN21')
 
 // Timing mode constants for Display Manager MultiMode support
@@ -433,7 +433,7 @@
 // Slot pRAM
 //
 // Slot pRam is used in various ways.  The first two bytes are used by the Slot Manager to record
-// the slot’s boardID.  The remaining bytes are left undefined by the Slot Manager.  Built-in
+// the slot's boardID.  The remaining bytes are left undefined by the Slot Manager.  Built-in
 // video uses Slot pRam as follows:
 //
 #define SP_Params             0
@@ -449,11 +449,11 @@
                     
 // Slot pRAM flag bits
 //
-#define spSyncOnGreen            0           // True if we’re supposed to put sync on green (DAFB).
+#define spSyncOnGreen            0           // True if we're supposed to put sync on green (DAFB).
 #define spHas16bppACDC           1           // True if AC842A is around on DAFB.
-#define spAllow16bpp             2           // True if we’re allowing 16bpp to be used on DAFB.
-#define spPageMode               3           // True if we’re enabling DAFB’s PageMode.
-#define spHas16bppSRsrc          4           // True if we’ve actually using a 16bpp sRsrc on DAFB.
+#define spAllow16bpp             2           // True if we're allowing 16bpp to be used on DAFB.
+#define spPageMode               3           // True if we're enabling DAFB's PageMode.
+#define spHas16bppSRsrc          4           // True if we've actually using a 16bpp sRsrc on DAFB.
 #define spAltSenseEnb            5           // True if AltSense was used before (for keeping SOG state).
 
 #define spVRAMBit0               0           // These two bits are used to encode the amount of
@@ -462,11 +462,11 @@
 #define numSPVRamBits            2           // Width for Bfins/Bfext of spVRAMBits
 #define spVRAMBits               (31-spVRAMBit1) // Offset for Bfins/Bfext.
 
-#define spKbdNMI                 2           // True if we’re enabling Keyboard NMI (Sonora).
+#define spKbdNMI                 2           // True if we're enabling Keyboard NMI (Sonora).
 #define spFamilyChanged          2           // the family mode changed on PDM; always reset in PrimayrInit.
 #define spNoVRAM                 3           // True if video RAM is not VRAM-based.
 
-#define spVideoIn                0           // True if we’re supposed to enable video-in (Civic).
+#define spVideoIn                0           // True if we're supposed to enable video-in (Civic).
 #define spCompOut				 1			 // True if we should drive out composite even if no monitor connected (CIVIC)
 #define spCompOutPAL			 2			 // If spCompOut is set, then this tells us (if true), to drive PAL.  (CIVIC)
 #define spOpenComponent			 3			 // True if True if Open call to a component is for registering purposes only!  (Civic)
@@ -478,7 +478,7 @@
 
 #define spAltSenseDisable        $80         // Bits used for temporarily disabling the alternate senseID.
 
-// Definition of each of the entries in the ‘scrn’ resource.
+// Definition of each of the entries in the ‘scrn' resource.
 //
 #define ScrnRecord            0
 #define ScrnRecord_srDrvrHW            0           // Hardware id of video card.
@@ -487,8 +487,8 @@
 #define ScrnRecord_srMode              8           // Mode (spID) of depth.
 #define ScrnRecord_srFlagMask          10           // ????
 #define ScrnRecord_srFlags             12           // GDevice flags.
-#define ScrnRecord_srColorTable        14           // RsrcID of desired ‘clut’.
-#define ScrnRecord_srGammaTable        16           // RsrcID of desicred ‘gama’.
+#define ScrnRecord_srColorTable        14           // RsrcID of desired ‘clut'.
+#define ScrnRecord_srGammaTable        16           // RsrcID of desicred ‘gama'.
 #define ScrnRecord_srRect              18           // GDevice rectangle.
 #define ScrnRecord_srCtlCount          26           // ????
 #define ScrnRecord_ScrnRecSize              28
@@ -497,9 +497,9 @@
 // Various DAFB Equates…
 // 
 // The screen clearing code for DAFB is pretty straight forward with a couple of minor wrinkles.  The
-// wrinkles come about because NTSC and PAL support both “safe title” (ST) and “full frame” (FF) display
-// areas.  Since the ST mode is always smaller in area than a display’s FF area, the “non-viewable” area
-// in the ST mode must be “blacked out.”  But, in order to keep the code general, we always try to
+// wrinkles come about because NTSC and PAL support both 'safe title' (ST) and 'full frame' (FF) display
+// areas.  Since the ST mode is always smaller in area than a display's FF area, the 'non-viewable' area
+// in the ST mode must be 'blacked out.'  But, in order to keep the code general, we always try to
 // draw the border.  In order to do this, we must carry around the FF vs. ST information.  The following
 // SC_Params record is where that information is housed.  
 //
@@ -548,7 +548,7 @@
 #define DAFBVidParams_dvpMaxModeA         16           // Maximum mode (depth) for A-sized sRsrc.
 #define DAFBVidParams_dvpMaxModeB         17           // Maximum mode (depth) for B-sized sRsrc.
 
-#define DAFBVidParams_dvpBadDepth         18           // Index of depth having “bad” AMD param; 0 if okay.
+#define DAFBVidParams_dvpBadDepth         18           // Index of depth having 'bad' AMD param; 0 if okay.
 #define DAFBVidParams_dvpFudge            19           // Fudge factor to add to bad AMD param.
 
 #define DAFBVidParams_dvpNumRows          20           // Number of rows-1 for active (QD) part of screen.
@@ -595,11 +595,11 @@
 //
 #define DAFBFlags                (Swatch_Test) // A conveniently unused DAFB 12-bit register.
 
-#define rvBeenHere                0          // The “beenHere” flag for the Remote Video Switch.
+#define rvBeenHere                0          // The 'beenHere' flag for the Remote Video Switch.
 #define rvChanged                 1          // Says whether the remote video switch has changed states.
-#define rvRemoteState             2          // The “beenHere” state of remote video.
+#define rvRemoteState             2          // The 'beenHere' state of remote video.
 
-#define isWombat                  3          // If this bit is set, we’ve got a WombatDAFB.
+#define isWombat                  3          // If this bit is set, we've got a WombatDAFB.
 
 #define RadiusTPDBit              4          // If this bit is set, a Radius TPD is attached.
 #define RadiusDevType             5          // RadiusTPD DevType: 0=monochrome, 1=color.
@@ -631,13 +631,13 @@
 #define DAFBPALOffsetW           $0700       // Acitve video offset for PAL on Wombat.
 #define DAFBPALConvOff           $1420       // Active video offset for PAL convolved Displays.
 
-// DAFB supports several displays that are in the “extended” sense line range.  Since the raw
+// DAFB supports several displays that are in the 'extended' sense line range.  Since the raw
 // values that come back from doing the extended sense-line algorithm do not map into a nice
-// tablular form like the “normal” sense line codes do, we map the few extended-sense-line displays
+// tablular form like the 'normal' sense line codes do, we map the few extended-sense-line displays
 // that we support into the bottom of the normal sense line table.
 //
-// Notes:  The “normal” sense displays fall in the range of 0..7, where 7 means “go try the
-//         extended sense codes.”  So, we map the extended sense codes from 8 (yeah, we have
+// Notes:  The 'normal' sense displays fall in the range of 0..7, where 7 means 'go try the
+//         extended sense codes.'  So, we map the extended sense codes from 8 (yeah, we have
 //         blank entry).
 //
 //         Radius exploits the fact that the extended sense algorithm is generally only tried
@@ -652,8 +652,8 @@
 //
 
 #define extended2P               $35         // Raw Extended Sense for the Two-Page Display.
-#define extended2PRdRGB          $31         // Raw Extended Sense for Radius’ Color TPD.
-#define extended2PRdMono         $34         // Raw Extended Sense for Radius’ Mono TPD.
+#define extended2PRdRGB          $31         // Raw Extended Sense for Radius' Color TPD.
+#define extended2PRdMono         $34         // Raw Extended Sense for Radius' Mono TPD.
 
 #define extendedRGBFP            $1E         // Raw Extended Sense for the RGB Full-Page Display.
 
@@ -669,7 +669,7 @@
 #define extendedSenseLP          $2D         // Raw Extended Sense for GoldFish.
 #define extendedSenseGF          $2D         // Raw Extended Sense for GoldFish.
 #define extendedSensePAL         $30         // Raw Extended Sense for PAL.
-#define extendedSense19          $3A         // Raw Extended Sense for Third-Party 19” Displays.
+#define extendedSense19          $3A         // Raw Extended Sense for Third-Party 19' Displays.
 
 #define indexedSenseRGB2P         0          // For switching to 16bpp.
 #define indexedSenseFP            1          // For Mono-Only configs.
@@ -684,7 +684,7 @@
 #define indexedSenseLP           10          // Mapped Sense For GoldFish.
 #define indexedSenseGF           10          // Mapped Sense For GoldFish.
 #define indexedSense19           11          // Mapped Sense For 19" Displays.
-#define pIndexRdMono             12          // Pseudo Index for Radius’ Mono TPD. (DAFB)
+#define pIndexRdMono             12          // Pseudo Index for Radius' Mono TPD. (DAFB)
 #define indexedSenseMSB1		 12			 // Mapped Sense For Band-1 Multiscan Displays.
 #define indexedSenseMSB2		 13			 // Mapped Sense For Band-2 Multiscan Displays.
 #define indexedSenseMSB3		 14			 // Mapped Sense For Band-3 Multiscan Displays.
@@ -722,12 +722,12 @@
 //   really makes sense to turn this mode on (all the time) is when the VRams are configured
 //   for the row-interleave access (which is generally 640x480 @ 32bpp).  Bit 1 of the
 //   DAFBConfig register is RowInterleave enable/disable bit; it is bit 30 for bit-field
-//   extraction & insertion, and that’s how we use it.
+//   extraction & insertion, and that's how we use it.
 //
 // Update to above:  It really makes more sense to just turn page mode OFF when the VRams are
 //   configured for word-interleave.
 //
-// Wombat info:  The WombatDAFB doesn’t support either word or row interleaving of VRam, so
+// Wombat info:  The WombatDAFB doesn't support either word or row interleaving of VRam, so
 //   we just mask out those bits on Wombat in the DAFBSpeed macros.
 //
 
@@ -747,7 +747,7 @@
 
 #define dafbSyncOnGreen          22                                  // Bfins/Bfext-style number.
 
-// Originally, we used the “real” VBL interrupt line for doing VBL interrupts.  However, it
+// Originally, we used the 'real' VBL interrupt line for doing VBL interrupts.  However, it
 //   turned out VBL was generated at vSync, and this was way too late in the cycle.  So,
 //   to resolve this problem, we actually use the cursor interrupt line, which we can
 //   program ourselves. 
@@ -841,8 +841,8 @@
 //
 // The interrupt flags and enable bits are housed within the DisplayStatus register.  The
 //	following equates are setting and clearing CSC VBL interrupts.  The DisplayStatus
-//	register also controls “panel shading.”  The CSCUnBlank equate is for taking
-//	the display from an “off” state (blanked) to an “on” state (unblanked).
+//	register also controls 'panel shading.'  The CSCUnBlank equate is for taking
+//	the display from an 'off' state (blanked) to an 'on' state (unblanked).
 //
 
 #define CSCDSIER              0
@@ -868,8 +868,8 @@
 // Unlike most CLUT/DACs used in the various Macintosh CPUs, the CSC CLUT/DAC is called a
 //	Palette and is completely contained within the CSC itself.  One of the Palette
 //	registers (called the PaletteMask) is used for logically removing video.  We actually
-//	want all video data to be displayed, so we set the mask register to all 1’s (i.e.,
-//	the PaletteMask is AND’d with the video data).
+//	want all video data to be displayed, so we set the mask register to all 1's (i.e.,
+//	the PaletteMask is AND'd with the video data).
 //
 
 #define CSCNoMask              255
@@ -880,7 +880,7 @@
 //	various LCDs that could potentially be supported by CPUs using the CSC.
 //
 // Note:  In order to keep things sane (I think), we have allowed each of the products using
-//	CSC to have it’s own set of panel IDs.
+//	CSC to have it's own set of panel IDs.
 //
 
 // Escher/Yeager List…
@@ -907,7 +907,7 @@
 //
 // The following record describes the video parameters for Sonora built-in video.  The first
 //   set of parameters are for the Omega (clock generator) chip.  The monitor code value
-//   tells Sonora the type of sync and h/v “line” values to use.  The other parameters are
+//   tells Sonora the type of sync and h/v 'line' values to use.  The other parameters are
 //   for graying the screen, setting up sRsrcs, etc….
 //
 
@@ -946,7 +946,7 @@
 
 // Once we determine how much vRAM is actually installed into a Sonora System, we have to
 //   tell Sonora how much is there.  Currently, Sonora Systems are limited to 768K, but
-//   1024K is possible, so we’ll support it anyway.
+//   1024K is possible, so we'll support it anyway.
 //
 
 #define Sonora256K               0                                   // Bank0=256K,Bank1=0.
@@ -1167,7 +1167,7 @@
 #define IntDisFlag               14          // interrupts disabled if GFlags(IntFlag) =1
 #define IsMono                   13          // true if monochrome only display (Portrait/Kong)
 #define UseSeq                   12          // true if sequence mode SetEntries
-#define UseTrans                 12          // True if we’re supposed to translate 5-bit into 8 (DAFB 16bpp).
+#define UseTrans                 12          // True if we're supposed to translate 5-bit into 8 (DAFB 16bpp).
 #define Is16                     11          // true if 16Mhz (Slow) CPU
 #define IsSlow                   11          // True if Slow CPU (for DAFB, 20/25Mhz is slow, 33/40MHz is not).
 #define IsSleeping               11          // True if CPU is sleeping (PowerBook/LCDs).
@@ -1176,9 +1176,9 @@
 #define PsuedoIndex               9          // true if SetEntries request was mapped to indexed from sequential
                                         //   (due to screen depth hardware requirements)
 #define Has16bppSRsrc             9          // True if FifthVidMode is 16bpp instead of 32bpp (DAFB).
-#define SyncOnGreen               8          // True if we’re supposed to put sync on green (DAFB).
+#define SyncOnGreen               8          // True if we're supposed to put sync on green (DAFB).
 #define InRubik560Mode            8          // True if we started up in Rubik-560 mode (Sonora).
-#define InBlanking                8          // True if we’re supposed to be blanking the LCD (GSC/CSC).
+#define InBlanking                8          // True if we're supposed to be blanking the LCD (GSC/CSC).
 #define videoInEnb                8          // True if video-in is enabled (i.e., 32-bit wide graphics/video bus, Civic).
 
 #define CompositeSyncOn           7          // True if driving out of Composite port (Civic)
@@ -1291,7 +1291,7 @@
 #define Civic_3584_Base          3584
 #define Civic_4096_Base          4096
 
-// page counts for all (maybe one of these days we’ll support more than one page?)
+// page counts for all (maybe one of these days we'll support more than one page?)
 //
 #define OBMPagesHR               1
 #define TBMPagesHR               1
@@ -1423,7 +1423,7 @@
 #define defmBounds_BGF           624                         // bottom
 #define defmBounds_RGF           832                         // right 
 
-// for 19” displays
+// for 19' displays
 //
 #define defmBounds_T19           0                           // top
 #define defmBounds_L19           0                           // left
@@ -1472,7 +1472,7 @@
 #define defmBounds_BLCD          400                         // bottom
 #define defmBounds_RLCD          640                         // right
 
-// for the VGA-sized (“Big”) LCD display
+// for the VGA-sized ('Big') LCD display
 //
 #define defmBounds_TBigLCD       0                           // top
 #define defmBounds_LBigLCD       0                           // left
@@ -1551,7 +1551,7 @@
 #define FourBitGray              $F0F0F0F0
 #define EightBitGray             $FF00FF00
 #define SixteenBitGray           $0000FFFF
-#define ThirtyTwoBitGray         $00000000                   // need to do this twice (2nd time NOT’d)
+#define ThirtyTwoBitGray         $00000000                   // need to do this twice (2nd time NOT'd)
 
 #define GrayPatSize              4
 
@@ -1771,11 +1771,11 @@
 #define Civic_1792_Offset                    1792             // Offset to base of video RAM for some Civic modes
 #define Civic_2048_Offset                    2048             // Offset to base of video RAM for some Civic modes
 
-// For NTSC, we have two sizes:  “Safe Title” (ST) and “Full Frame” (FF), where ST is the
-// smaller size.  Because QuickDraw doesn’t support a changing base address, we have to
-// “lie” to it about where the base address really is.  So, we do this with an offset.
+// For NTSC, we have two sizes:  'Safe Title' (ST) and 'Full Frame' (FF), where ST is the
+// smaller size.  Because QuickDraw doesn't support a changing base address, we have to
+// 'lie' to it about where the base address really is.  So, we do this with an offset.
 // To calculate the offset, we do the following.  First, we calculate the horizontal offset.
-// We know that there are 1024 “real” pixels and 640 viewable pixels for NTSCFF.  So, we
+// We know that there are 1024 'real' pixels and 640 viewable pixels for NTSCFF.  So, we
 // have (with 512 viewable pixels for NTSCST):
 //
 //           640 - 512 = 128  (difference between FF and ST).
@@ -2036,8 +2036,8 @@
 
 // -------- DAFB sRsrc IDs --------
 
-#define sRsrc_Vid_DAFB_19a               $BE        // 19” 1,2,4         (Ugh:  There’s no where
-#define sRsrc_Vid_DAFB_19b               $BF        // 19” 1,2,4,8           else to put these!)
+#define sRsrc_Vid_DAFB_19a               $BE        // 19' 1,2,4         (Ugh:  There's no where
+#define sRsrc_Vid_DAFB_19b               $BF        // 19' 1,2,4,8           else to put these!)
 
 // -------- DAFB sRsrc IDs --------
 
@@ -2133,7 +2133,7 @@
 #define sRsrc_Vid_DAFB_SVGAb             $EB             // SuperVGA 1,2,4,8,32
 
 #define sRsrc_Vid_DAFB_GSx               $EC             // Rubik 1,2,4,8,16,32
-#define sRsrc_Vid_DAFB_GSz               $EE             // Rubik 1,2,4,8,16 (note that it’s out of order here)
+#define sRsrc_Vid_DAFB_GSz               $EE             // Rubik 1,2,4,8,16 (note that it's out of order here)
 
 #define sRsrc_Vid_DAFB_RGBFPbx           $ED             // RGBPort 1,2,4,8,16
 #define sRsrc_Vid_DAFB_RGB2Pbx           $EF             // Vesuvio 1,2,4,8,16
@@ -2149,7 +2149,7 @@
 #define sRsrc_Vid_DAFB_PALFFbx           $F7             // PAL FF 1,2,4,8,16
 
 #define sRsrc_Vid_DAFB_Reserved          $F8             // Reserved for future use.
-#define sRsrc_Vid_DAFB_19bx              $F9             // 19” 1,2,4,8,16
+#define sRsrc_Vid_DAFB_19bx              $F9             // 19' 1,2,4,8,16
 
 #define pSRsrc_Vid_DAFB_2PRdRGB          $FD             // Psuedo-sRsrcID for Radius ColorTPD (1,2,4,8[,16]).
 #define pSRsrc_Vid_DAFB_2PRdMono         $FE             // Psuedo-sRsrcID for Radius MonoTPD (1,2,4,8).
@@ -2161,9 +2161,9 @@
 // -------- CPU Resource IDs -----------
 //
 
-#define sRsrc_CPUMacIIci                 $FA             // Used for ’030 (and Mac LC) CPU sRsrcs.
-#define sRsrc_CPUMac030                  $FA             // Just an alias for the “IIci” CPU sRsrc.
-#define sRsrc_CPUMac040                  $FB             // CPU sRsrc for ’040 machines.
+#define sRsrc_CPUMacIIci                 $FA             // Used for '030 (and Mac LC) CPU sRsrcs.
+#define sRsrc_CPUMac030                  $FA             // Just an alias for the 'IIci' CPU sRsrc.
+#define sRsrc_CPUMac040                  $FB             // CPU sRsrc for '040 machines.
 
 #define sRsrc_Reserved1                  $FC             // Reserved for future use.
 
@@ -2204,7 +2204,7 @@
 //---------------------------------------------------------------------
 
 // Define the board sRsrc strategy for the sRsrcSonraDir.  We just use the boxFlag for
-//   covenience.  Unlike the Zydeco directory, we don’t need to add 1 because none
+//   covenience.  Unlike the Zydeco directory, we don't need to add 1 because none
 //   of the Sonora-based CPUs can have a boxFlag of zero.
 // 
 #define sRsrc_BdVail               		(boxLCIII)       // Board sResource ID for the Vail CPU.
@@ -2252,7 +2252,7 @@
 
 #define	sRsrc_Sonora_Mace				 $EF			 // Mace ethernet on Sonora		<SM12>
 
-#define sRsrc_Sonora_NeverMatch          $FE             // The “null” Sonora sRsrc.
+#define sRsrc_Sonora_NeverMatch          $FE             // The 'null' Sonora sRsrc.
 
 //---------------------------------------------------------------------
 //	sRsrc IDs in the sRsrcCSCDir Directory
@@ -2299,7 +2299,7 @@
 #define sRsrc_Vid_CSC_G_D_STN_400y			$94				// 1,2,4 		[Gray, STN, Dual-Drive, 64$400, Sharp]
 #define sRsrc_Vid_CSC_G_S_TFT_400y			$95				// 1,2,4 		[Gray, TFT, Single-Drive, 64$400, Hosiden]
 
-#define sRsrc_CSC_NeverMatch			$FE				 // The “null” CSC sRsrc.
+#define sRsrc_CSC_NeverMatch			$FE				 // The 'null' CSC sRsrc.
 
 // -------- VSC sRsrc IDs ----------
 //
@@ -2320,7 +2320,7 @@
 //---------------------------------------------------------------------
 
 // Define the board sRsrc strategy for the sRsrcCivicDir.  We just use the boxFlag for
-//   covenience.  Unlike the Zydeco directory, we don’t need to add 1 because none
+//   covenience.  Unlike the Zydeco directory, we don't need to add 1 because none
 //   of the Cyclone-based CPUs can have a boxFlag of zero.
 // 
 #define sRsrc_BdCyclone                  (boxQuadra840AV)      // Board sRsrc ID for the Cyclone family of CPUs.
@@ -2335,7 +2335,7 @@
 //
 //       $F0 - $FD are for misc. sRsrc IDs (e.g, Mace, DSP, etc…).
 //
-//       $FE is reserved as the “null” sRsrc ID.
+//       $FE is reserved as the 'null' sRsrc ID.
 
 #define sRsrc_Vid_Civic_NTSCFFConva      $80             // NTSC FF Conv 1,2,4,8
 #define sRsrc_Vid_Civic_NTSCSTConv       $81             // NTSC ST Conv 1,2,4,8
@@ -2423,14 +2423,14 @@
 
 // ------
 
-#define sRsrc_Civic_NeverMatch           $FE             // The “null” sRsrc ID
+#define sRsrc_Civic_NeverMatch           $FE             // The 'null' sRsrc ID
 
 //---------------------------------------------------------------------
 //   sRsrc IDs in the sRsrcATIDir Directory
 //---------------------------------------------------------------------
 
 // Define the board sRsrc strategy for the sRsrcCivicDir.  We just use the boxFlag for
-//   covenience.  Unlike the Zydeco directory, we don’t need to add 1 because none
+//   covenience.  Unlike the Zydeco directory, we don't need to add 1 because none
 //   of the ATI-based CPUs can have a boxFlag of zero.
 // 
 
@@ -2439,4 +2439,4 @@
 //
 
 #define sRsrc_VideoHR  				   $80             // Hi-Res
-#define sRsrc_ATI_NeverMatch           $FE             // The “null” sRsrc ID
+#define sRsrc_ATI_NeverMatch           $FE             // The 'null' sRsrc ID

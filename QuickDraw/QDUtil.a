@@ -660,14 +660,14 @@ DestBitMap
 		CMP.L	D6,D7						;is the fg color the same as the bk color?
 		BNE.S	REP							;if not, no conflict; just replicate the pixel
 
-; If the source RGBs are identical, don’t change the foreground.  But, if they started out
+; If the source RGBs are identical, don't change the foreground.  But, if they started out
 ; different, and they mapped to be the same thing, then flip (invert) the foreground color.
 
 		LEA		RGBFgColor(A2),A0			;get the forecolor RGB from the port
 		LEA		RGBBkColor(A2),A1			;and get the backcolor as well
 		CMP.L	(A0)+,(A1)+					;if the R or G are not equal, flip the back color
 		BNE.S	@goOnAndFlip
-		CMP		(A0)+,(A1)+					;if R, G and B are equal, don’t flip the back color
+		CMP		(A0)+,(A1)+					;if R, G and B are equal, don't flip the back color
 		BEQ.S	REP
 @goOnAndFlip
 		tst		d2							;color bit set?							<1.6> BAL
@@ -819,8 +819,8 @@ COLOROK	MOVE.L	D4,FCOLOR(A6)				;RETURN EXTENDED PIXEL
 		BRA.S	setUpPinWeight
 
 setOpColor
-; set up pin, weight rgb’s for modes max, min, and avg
-; set up weight’s complement for average
+; set up pin, weight rgb's for modes max, min, and avg
+; set up weight's complement for average
 ; note that rgb in pin & notWeight are in reverse order from source
 
 		MOVE.L	([grafVars,A2]),A0			;point to weight value
@@ -879,7 +879,7 @@ setUpPinWeight
 		MOVE.L	D5,D2						;COPY BK PIXEL
 		MOVE.L	(SP),D4						;copy of hilite pixel
 
-;note that we’re comparing against the port background (which may not be the drawing background)
+;note that we're comparing against the port background (which may not be the drawing background)
 
 		MOVEQ	#32,D1						;GET SIZE OF A LONG
 @nxtPixel
@@ -1956,7 +1956,7 @@ slMASK8	BGT 	NEXT8			;LOOP FOR ALL LONGS IN ROW
 ;******************************************************************************************
 ; QuickerDraw
 ; Scan line handler for clipped pattern fill copy mode (called by oval, rrect) -- trap $380
-; just like what’s in QDciPatchROM.a										<sm 6/9/92>stb
+; just like what's in QDciPatchROM.a										<sm 6/9/92>stb
 
 FillClipScanLine
 FCSL1							;	<< PB452 BAL>>
@@ -2129,7 +2129,7 @@ oldslMASK9
 ; Scan line handler for clipped pattern fill OR mode (called by oval, rrect) -- trap $381
 ; similar to above, but in OR mode.  We can only handle if the foreground pattern
 ; is all ones; if so, use the copy mode routine to fill.
-; just like what’s in QDciPatchROM.a										<sm 6/9/92>stb
+; just like what's in QDciPatchROM.a										<sm 6/9/92>stb
 
 UseOld381
 		TST.W	D2
@@ -2555,7 +2555,7 @@ slAddOver
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2660,7 +2660,7 @@ slAddPin
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2714,7 +2714,7 @@ slSubOver
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2786,7 +2786,7 @@ slSubPin
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2848,7 +2848,7 @@ slMax
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2910,7 +2910,7 @@ slMin
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -2987,7 +2987,7 @@ slAvg
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -3046,7 +3046,7 @@ slHilite
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -3090,7 +3090,7 @@ slTransparent
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -4384,9 +4384,9 @@ slTransparent16
 SlabMode
 		AND		#$37,D2					;toss all but arithmetic, hilite bits + variant bits
 		BCLR	#5,D2					;arithmetic mode?
-		BEQ.S	@clrInvBit				;if so, don’t clear the invert bit
+		BEQ.S	@clrInvBit				;if so, don't clear the invert bit
 		BCLR	#4,D2					;hilite?
-		BEQ.S	@skipHilite				;if not, don’t add hilite offset
+		BEQ.S	@skipHilite				;if not, don't add hilite offset
 		MOVEQ	#8,D2					;hilite is at $20, so put ($20 / 2) - 8 here
 		BRA.S	@2						;									<SMC 26SEP90> <12>
 @skipHilite

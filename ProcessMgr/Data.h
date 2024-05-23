@@ -10,11 +10,11 @@
 	Change History (most recent first):
 	 
 		<45>	 12/4/92	DRF		Added nativeFPR storage area in PCB. Fixed up some #includes.
-		<44>	11/25/92	DRF		Added additional PCB field for tracking the application’s code
+		<44>	11/25/92	DRF		Added additional PCB field for tracking the application's code
 									fragment manager context.  Changes for <44> and <43> are
 									conditionalized under PsychicTV.
 		<43>	11/25/92	DRF		Added some #includes for PowerPC Code Fragment Manager.
-		<42>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<42>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<41>	 8/26/92	DTY		Roll in latest changes for A/UX.
 		<40>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature. Conditionally
@@ -47,8 +47,8 @@
 		<27>	 9/22/91	DTY		Change PsychoticFarmerAndLater to PsychoticFarmerOrLater.
 		<26>	 9/16/91	DFH		Removed INITSR (#define to 0x2000). Added initialProcessSR.
 									Needed for NuKernel.
-		<25>	 9/13/91	DTY		Conditionalise previous change so it doesn’t get built for
-									CubeE. (It’ll get built for PsychoticFarmerAndLater.)
+		<25>	 9/13/91	DTY		Conditionalise previous change so it doesn't get built for
+									CubeE. (It'll get built for PsychoticFarmerAndLater.)
 		<24>	  6/4/91	DFH		Added emMessageManagerGlobals to PCB.
 		<23>	 3/22/91	DFH		jmp,WS#DFH-910322a: Fixed FPUUserRegs defintion to use
 									"extended96" for type of FP registers. Was using plain

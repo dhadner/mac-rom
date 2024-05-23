@@ -23,7 +23,7 @@
 ;									file could be copied into SuperMario.
 ;		 <4>	 4/27/92	JSM		Get rid of conditionals: supportsPWM is always false,
 ;									hasPowerMgr, hasPwrControls, supportsMFM, and isUniversal are
-;									always true (although hasPowerMgr currently isn’t for the ROM,
+;									always true (although hasPowerMgr currently isn't for the ROM,
 ;									it will be and was always ORed with hasPwrControls here anyway).
 ;									This file now has no conditionals.
 ;		 <3>	 5/11/90	MSH		Converted all onHcMac or hasPowerMgr conditionals to universal

@@ -21,7 +21,7 @@
 ;									the code would be called. (ag,H5) Added call to power dispatch
 ;									to allow power manager code execution at secondary init time.
 ;	   <SM3>	 5/16/92	kc		Roll in Horror Changes. Comments follow:
-;		<H4>	01/29/92	jmp		(jmp,Z4) Added in some code that eliminates the System 7 Tuner’s
+;		<H4>	01/29/92	jmp		(jmp,Z4) Added in some code that eliminates the System 7 Tuner's
 ;									secure-mode unfriendly keyboard patches.
 ;		 <2>	 3/31/92	JSM		Rolled this file into Reality.
 ;		<H3>	01/27/92	jmp		(BG,Z3) Added miscellaneous Zydeco-specific SoundMgr fixes.
@@ -120,7 +120,7 @@ SndVBLTask												; 7.0.1 System Disk Sound VBL Task (stored as data here)
 SndVBLSize		equ			*-SndVBLTask				;
 
 ;	The System 7.0 Tuner is not secure-switch friendly.  So, we need to tell it to not apply the
-;	“putter” keyboard fixes.  This routine is installed into the System heap as a Gestalt proc; it
+;	'putter' keyboard fixes.  This routine is installed into the System heap as a Gestalt proc; it
 ;	is not executed from within this file.
 ;
 
@@ -132,7 +132,7 @@ FixKBFix
 				Move.l		#(1<<gestaltKeyboardFix),D0 ; Say that the keyboard fix is unnecessary.
 				Move.l		D0,(A0)						; Return it.
 				
-				Move.w		#noErr,Result(A6)			; We don’t need to return an error here.
+				Move.w		#noErr,Result(A6)			; We don't need to return an error here.
 				Unlk		A6							; Clean up the stackframe.
 				Move.l		(Sp)+,A0					; Get the return address.
 				addq		#GSFParamSize,Sp			; Do Pascal-stlye clean up.
@@ -142,8 +142,8 @@ EndKBFix
 				
 ;	On the sucky FSTN LCD Panels, we want to alert the System (for WDEFs, CDEFs, etc…) that they
 ;	may not want to do deep gray drawing in wide areas.  This routine is used as either
-;	a new Gestalt selector or a replacement if it already exists.  It doesn’t get called
-;	from within this file, so it’s just data here.
+;	a new Gestalt selector or a replacement if it already exists.  It doesn't get called
+;	from within this file, so it's just data here.
 ;
 
 				With		GestaltSelectorFrame
@@ -156,7 +156,7 @@ NewGraysFlicker
 				Ori.l		#(1<<0),D0					; Say that the Slot 0 screen flickers.
 				Move.l		D0,(A0)						; Return it.
 				
-				Move.w		#noErr,Result(A6)			; We don’t need to return an error here.
+				Move.w		#noErr,Result(A6)			; We don't need to return an error here.
 				Unlk		A6							; Clean up the stackframe.
 				Move.l		(Sp)+,A0					; Get the return address.
 				addq		#GSFParamSize,Sp			; Do Pascal-stlye clean up.
@@ -195,16 +195,16 @@ EndNewGraysFlicker
 ;				all of our DrHwIDs are actually byte-sized, the ScrnInval
 ;				byte is generally cleared, which keeps the ROM version
 ;				of CheckDevicesInit from whacking us back into 1bpp.
-;				If this weren’t a shared SecondaryInit we would (more
+;				If this weren't a shared SecondaryInit we would (more
 ;				appropriately) use Slot PRAM for this sort of thing.
 ;
-;				ScrnInval & VidMode aren’t used during the boot-up
+;				ScrnInval & VidMode aren't used during the boot-up
 ;				process so this sort of hacking is okay.
 ;---------------------------------------------------------------------
 
 				With	SInitStackFrame,SpBlock,ScrnRecord,SP_Params
 
-ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn’t need validating by us,
+ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn't need validating by us,
 				Bne		@EndScrn							;	then just go on.
 				
 				Move.w	#-1,ScrnInval						; Clean up after ourselves.
@@ -219,10 +219,10 @@ ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn’t need validating b
 				Move.w	#drSwApple,spDrvrSW(A0)				;			Apple,
 				Move.w	D0,spDrvrHW(A0)						;			<DrHwID>.
 				Clr.l	spParamData(A0)						; Look only for enabled sRsrcs.
-				_GetTypeSRsrc								; If we didn’t find ourselves,
+				_GetTypeSRsrc								; If we didn't find ourselves,
 				Bne.s	@EndScrn							;	then just go on.
 
-; Check to see if there’s an 'scrn' resource available…
+; Check to see if there's an 'scrn' resource available…
 ;
 				Clr.l	-(Sp)								; Make room for the function result.
 				Move.l	#'scrn',-(Sp)						; Push desired resource type.
@@ -237,7 +237,7 @@ ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn’t need validating b
 				_HNoPurge									; Make it non-purgeable and…
 				_HLock										; …lock it down.
 				
-; Check to see if we’re in the 'scrn' resource…
+; Check to see if we're in the 'scrn' resource…
 ;
 				Movea.l	(A0),A0								; Get a pointer to the 'scrn' resource.
 				Move.w	(A0)+,D0							; Get the number of 'scrn' records to search.
@@ -247,17 +247,17 @@ ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn’t need validating b
 				Beq.s	@ChkDrHwID							;	then check the drHwID.
 				Adda.w	#ScrnRecSize,A0						; Otherwise, point A0 at the next entry.
 				Dbra	D0,@ScrnLoop						; Loop until done.
-				Bra.s	@EndScrnChk							; We couldn’t find our 'scrn' entry, so just go on.
+				Bra.s	@EndScrnChk							; We couldn't find our 'scrn' entry, so just go on.
 				
 @ChkDrHwID		Move.w	theDrHwID(A6),D0					; Get our drHwID back into D0.
-				Cmp.w	srDrvrHW(A0),D0						; If the drHwIDs don’t match,
+				Cmp.w	srDrvrHW(A0),D0						; If the drHwIDs don't match,
 				Bne.s	@EndScrnChk							;	then just go on.
 				
 ; Make sure the depth (mode) setting is correct…
 ;
 				Lea		sPRAMBlk(A6),A1						; Point to our sPRAM block.
 				Moveq	#0,D0								; Clear D0 for good measure.
-				Move.b	SP_Depth(A1),D0						; Get the mode we’d like to be at.
+				Move.b	SP_Depth(A1),D0						; Get the mode we'd like to be at.
 				Cmp.w	srMode(A0),D0						; If the modes match,
 				Beq.s	@EndScrnChk							;	then just go on.
 				Move.w	D0,srMode(A0)						; Otherwise, write out what we want.
@@ -269,7 +269,7 @@ ChkScrn			Cmp.w	ScrnInval,D0						; If 'scrn' resource doesn’t need validating b
 
 ; Clean up and go home…
 ;
-@EndScrnChk		_ReleaseResource							; Release the ‘scrn’ resource.
+@EndScrnChk		_ReleaseResource							; Release the ‘scrn' resource.
 @EndScrn		Rts											; And return home.
 						
 				Endwith		
@@ -288,14 +288,14 @@ BeginSecondaryInit
 ; Perform some generic intializations.
 				
 				Clr.b		spBlk.spSlot(A6)			; This is always a slot 0 SecondaryInit.
-				Clr.b		spBlk.spExtDev(A6)			; Don’t ask why, always clear this guy.
+				Clr.b		spBlk.spExtDev(A6)			; Don't ask why, always clear this guy.
 
 				With		ProductInfo,VideoInfo,SP_Params
 				
 				Lea			spBlk(A6),A0				; Point to our spBlock.
 				Lea			sPRAMBlk(A6),A2				; Point to a sPRAM block.
 				Move.l		A2,spResult(A0)				; Set up read buffer.
-				_sReadPRAMRec							; Read Slot 0’s pRAM.
+				_sReadPRAMRec							; Read Slot 0's pRAM.
 				
 				Movea.l		UnivInfoPtr,A0				; Point to the ProductInfo record.
 				Adda.l		VideoInfoPtr(A0),A0			; Point to the VideoInfo record.
@@ -305,22 +305,22 @@ BeginSecondaryInit
 				
 				Endwith
 				
-; For built-in video’s that support it, go seek out and cleanse the 'scrn' resource if it is
+; For built-in video's that support it, go seek out and cleanse the 'scrn' resource if it is
 ;	invalid.  Note:  This is generally used to prevent family-mode swapping from forcing the
 ;	screen back to 1bpp due to a historical oversight on the part of the Monitors control
 ;	panel.
 ;
 				Bsr.s		ChkScrn						; D0.w contains theDrHwID.
 
-; We can’t read the keyboard without lots of non-generic stuff during PrimaryInit, so we do that
+; We can't read the keyboard without lots of non-generic stuff during PrimaryInit, so we do that
 ;	here.  The reason we are doing this is to temporarily disable the type-6 multimode support.
 ;	To be consistent with the System, we use the shift key to disable.
 ;
 				With		SP_Params,SpBlock
 				
-				Cmpi.w		#drHwDAFB,theDrHwID(A6)		; If we’re using the DAFB driver,
+				Cmpi.w		#drHwDAFB,theDrHwID(A6)		; If we're using the DAFB driver,
 				Beq.s		@AltSense					;	then do the AltSense stuff.
-				Cmpi.w		#drHwSonora,theDrHwID(A6)	; If we’re using the Sonora driver,
+				Cmpi.w		#drHwSonora,theDrHwID(A6)	; If we're using the Sonora driver,
 				Beq.s		@AltSense					;	then do the AltSense stuff.
 				Bra.s		@EndAltSense				; Otherwise, keep going.
 				
@@ -337,8 +337,8 @@ BeginSecondaryInit
 				Bclr		#7,D3						; Clear off the power key.
 				Bclr		#1,D1						; Clear off capslock key.
 				Bclr		#0,D1						; Clear off and test the shift key.
-				Beq.s		@EndAltSense				; Don’t disable if shift key is not held down.
-				Or.l		D1,D0						; Also, don’t disable if
+				Beq.s		@EndAltSense				; Don't disable if shift key is not held down.
+				Or.l		D1,D0						; Also, don't disable if
 				Or.l		D2,D0						;	various other stray
 				Or.l		D3,D0						;	keys are being.
 				Bne.s		@EndAltSense				;	held down
@@ -369,12 +369,12 @@ BeginSecondaryInit
 @EndAltSense
 
 ; We only want the following to execute on CPUs with caboose keyswitches.  We are telling the
-;	System 7 Tuner to not load it’s secure-mode unfriendly version of the Keyboard fixes.
+;	System 7 Tuner to not load it's secure-mode unfriendly version of the Keyboard fixes.
 ;
-; Note:  The method used below to “fix” the System 7 Tuner is actually incomplete.  We really
+; Note:  The method used below to 'fix' the System 7 Tuner is actually incomplete.  We really
 ;	should check to see if the gestaltBugFixAttrs selector actually exists, and if so, use
-;	_ReplaceGestalt to OR-in the fact that we don’t want the keyboard fix (gestaltKeyboardFix)
-;	to be applied.  Instead, we “know” that if the gestaltBugFixAttrs does exist, then the
+;	_ReplaceGestalt to OR-in the fact that we don't want the keyboard fix (gestaltKeyboardFix)
+;	to be applied.  Instead, we 'know' that if the gestaltBugFixAttrs does exist, then the
 ;	problem we are addressing here must have already been fixed.
 
 				Move.l		#KeySwMask,D0				; Get isolation mask ready.											<4>
@@ -384,7 +384,7 @@ BeginSecondaryInit
 	
 				Move.l		#gestaltBugFixAttrs,D0		; Setup to load the bug-fix selector.
 				_Gestalt								; Try to load it.
-				Beq.s		@EndKBFixes					; If it’s there, assume it’s okay.
+				Beq.s		@EndKBFixes					; If it's there, assume it's okay.
 				
 				Lea			FixKBFix,A1					; Point to the beginning of the keyboard fix.
 				Lea			EndKBFix,A0					; Point to the end of the keyboard fix.
@@ -415,7 +415,7 @@ BeginSecondaryInit
 ;
 kSndMgrVersion	EQU			$02018000					; System 7.0.1 Version of the Sound Manager.
 
-				TestFor		djMEMCChipBit				; If we’re on a Wombat-class CPU, then
+				TestFor		djMEMCChipBit				; If we're on a Wombat-class CPU, then
 				Bne.s		@StrtSndFix					;	apply this fix.
 				cmpi.b		#boxQuadra950,BoxFlag		; are we a Quadra 950?
 				Bne.s		@EndSoundFixes				; nope ... we're outta here
@@ -477,18 +477,18 @@ kSndMgrVersion	EQU			$02018000					; System 7.0.1 Version of the Sound Manager.
 @EndSoundFixes
 
 ;	The Standard WDEF that shipped in the gybly for the Darts and DBLite had a fix which explicitely
-;	looked for the GSC hardware and then for a particular kind of screen.  We’re replacing that
+;	looked for the GSC hardware and then for a particular kind of screen.  We're replacing that
 ;	kind of thing with a Gestalt call that returns whether or not the screen sucks.  We do that
-;	here.  Since the Darts and DBLite have already shipped, we don’t include them here.
+;	here.  Since the Darts and DBLite have already shipped, we don't include them here.
 ;
-;	Note:  If we’re on an Escher/Yeager and we’re docked to an Atlantis or DuoDock, then we’ve already
-;	shut the CSC down at this point, and we’ll get a bus error if we try to talk to it.  So,
-;	we first check to see if the CSC has been reset or not.  If it hasn’t, then we just skip
+;	Note:  If we're on an Escher/Yeager and we're docked to an Atlantis or DuoDock, then we've already
+;	shut the CSC down at this point, and we'll get a bus error if we try to talk to it.  So,
+;	we first check to see if the CSC has been reset or not.  If it hasn't, then we just skip
 ;	all this.
 ;
 				With		ProductInfo,DecoderInfo
 
-				Cmpi.w		#drHwCSC,theDrHwID(A6)		; If we’re not using the CSC driver,
+				Cmpi.w		#drHwCSC,theDrHwID(A6)		; If we're not using the CSC driver,
 				Bne			@EndScreenSucks				;	then just leave.
 
 				Movea.l		UnivInfoPtr,A0				; Point to the ProductInfo table.
@@ -500,29 +500,29 @@ kSndMgrVersion	EQU			$02018000					; System 7.0.1 Version of the Sound Manager.
 				Bne.s		@Pratt						;	then hop to it.
 				Bra.s		@EndScreenSucks				; Otherwise, just leave.
 
-@MSC			Movea.l		RBVAddr(A0),A1				; Point to the MSC’s base address.
-				Btst		#MSCLCDReset,MSCClkCntl(A1)	; If CSC hasn’t been reset,
+@MSC			Movea.l		RBVAddr(A0),A1				; Point to the MSC's base address.
+				Btst		#MSCLCDReset,MSCClkCntl(A1)	; If CSC hasn't been reset,
 				Beq.s		@EndScreenSucks				;	then just leave.
 				
 				Movea.l		VDACAddr(A0),A1				; Point to the CSC base address.
 				Move.b		CSCPanelID(A1),D0			; Read the panel ID.
-				Cmpi.b		#isG_D_STN_640x400,D0		; If we’re are using the sucky screen,
+				Cmpi.b		#isG_D_STN_640x400,D0		; If we're are using the sucky screen,
 				Beq.s		@FixIt						;	then say so.
 				Bra.s		@EndScreenSucks				; Otherwise, just leave.
 				
 @Pratt			Movea.l		VDACAddr(A0),A1				; Point to the CSC base address.
 				Move.b		CSCPanelID(A1),D0			; Read the panel ID.
-				Cmpi.b		#isG_D_STN_640x480,D0		; If we aren’t using the sucky screen,
+				Cmpi.b		#isG_D_STN_640x480,D0		; If we aren't using the sucky screen,
 				Bne.s		@EndScreenSucks				;	then just leave.
 
-@FixIt			Moveq		#0,D2						; Assume we won’t be replacing the selector.
+@FixIt			Moveq		#0,D2						; Assume we won't be replacing the selector.
 				Move.l		#gestaltGraysFlicker,D0		; Setup to load the sucky-screen selector.
-				_Gestalt								; If it’s not already loaded, then
+				_Gestalt								; If it's not already loaded, then
 				Bne.s		@AddInNew					; 	just add it in.
 				
 				Lea			OldGraysFlicker,A1			; Point to the old-response value holder.
 				Move.l		A0,(A1)						; Fill it up with the old response.
-				Moveq		#1,D2						; Remember that we’ll be replacing.
+				Moveq		#1,D2						; Remember that we'll be replacing.
 @AddInNew		Lea			NewGraysFlicker,A1			; Point to the beginning of the flicker code.
 				Lea			EndNewGraysFlicker,A0		; Point to its end.
 				Sub.l		A1,A0						; Determine the size.
@@ -538,7 +538,7 @@ kSndMgrVersion	EQU			$02018000					; System 7.0.1 Version of the Sound Manager.
 				
 				Move.l		#gestaltGraysFlicker,D0		; Setup to install the new/replacement selector.
 				Exg			A1,A0						; Point to the code in the System heap.
-				Tst.l		D2							; If we’re supposed to be replacing,
+				Tst.l		D2							; If we're supposed to be replacing,
 				Bne.s		@ReplaceIt					;	then call the replacement trap.
 				_NewGestalt								; Otherwise, call new.
 				Bra.s		@ChkForErr					; See if there was an error.

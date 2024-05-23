@@ -42,7 +42,7 @@
 									definitions elsewhere.
 		 <4>	 6/20/92	chp		Changed enum syntax slightly to satisfy the overly-retentive
 									compiler from another famous Cupertino development tool
-									provider. (It thinks an enumeration list can’t end with a
+									provider. (It thinks an enumeration list can't end with a
 									comma.)
 		 <3>	 6/11/92	chp		Add a few more PSC constants, including one to support prototype
 									versions of the PSC. Use conditionals to permit building PSCHAL

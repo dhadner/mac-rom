@@ -25,7 +25,7 @@
 ;									ControlRecord.
 ;		 <5>	 1/13/91	VL		<dba> Added a patch to FrameRect to draw a solid outline when
 ;									dragging the thumb in 7.0 scroll bar (CDEF 1).
-;		 <4>	 11/8/90	dba		& gbm; move patch that does a system error if we can’t load a
+;		 <4>	 11/8/90	dba		& gbm; move patch that does a system error if we can't load a
 ;									CDEF here from PTCH files; move patch that disables Plus check
 ;									for control visible (for MacExpress) here from PatchPlusROM
 ;		 <3>	10/24/90	KSM		<dba>Fix SetCTitle to check if SetHandleSize failed.
@@ -229,7 +229,7 @@ comeBackHere
 		
 		EndProc
 
-	IF TheFuture THEN							; don’t put data in code space in the future
+	IF TheFuture THEN							; don't put data in code space in the future
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; InitScrollSpeedGlobals - defined in ControlMgrExtensions.a
@@ -297,7 +297,7 @@ result			DS.W	1
 			jmpOld							; Return to old _TrackControl
 			ENDWITH
 
-	IF NOT TheFuture THEN					; don’t put data in code space in the future
+	IF NOT TheFuture THEN					; don't put data in code space in the future
 
 saveAction		DS.L	1
 startTicks		DS.L	1

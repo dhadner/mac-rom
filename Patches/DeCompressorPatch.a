@@ -26,10 +26,10 @@
 ;									have a different format. DefProcs called when the new header is
 ;									present have a calling interface different from previous
 ;									defprocs.
-;		<10>	  9/2/90	csd		Made the resource handle NIL if we don’t have enough memory to
+;		<10>	  9/2/90	csd		Made the resource handle NIL if we don't have enough memory to
 ;									load the resource
-;		 <9>	 8/31/90	stb		Change var table allocation from NewPtr to NewHandle. It’s
-;									faster and won’t burp the new resource handle.
+;		 <9>	 8/31/90	stb		Change var table allocation from NewPtr to NewHandle. It's
+;									faster and won't burp the new resource handle.
 ;		 <8>	 3/23/90	DD		Fixed a bug in which the variable table was not being made large
 ;									enough.
 ;		 <7>	  3/9/90	DD		Fixed both decompression and SizeRsrc patch to be robust about
@@ -62,7 +62,7 @@ FromSizeRsrc		Bind	(MacPlus,$141DA),(MacSE,$E7EE),(MacII,$13128),(Esprit,$14780)
 ; Location of the Bsr SizeRsrc in Resource Manager's SizeResource routine - the _SizeRsrc code.
 FromSizeResource	Bind	(MacPlus,$1487A),(MacSE,$EE9C),(MacII,$137D6),(Esprit,$14E2E),(Aurora,$1C052)
 
-; Location of the second Bsr RdData in Resource Manager’s NewMap routine.
+; Location of the second Bsr RdData in Resource Manager's NewMap routine.
 FromNewMap			Bind	(MacPlus,$136B4),(MacSE,$DCB0),(MacII,$125E4),(Esprit,$13C54),(Aurora,$1AE6C)
 
 DecompressionLocals	RECORD	{a6Link},decr	;<17>
@@ -296,7 +296,7 @@ DeCompressor
 				move.l	a4,a1									;get a handle to the first file to look in
 @tryMap
 				move.l	a1,d0									;are we done?
-				bz		ErrorExit								;yes, we looked and didn’t find anything
+				bz		ErrorExit								;yes, we looked and didn't find anything
 
 				move.l	(a1),a0									;get map pointer
 				btst	#decompressionPasswordBit,mInMemoryAttr(a0)
@@ -308,8 +308,8 @@ DeCompressor
 				move.l	ResErrProc,-(sp)						;remember the ResErrProc		<15>
 
 				move.w	mRefNum(a0),CurMap						;get resource from this file
-				clr.w	ROMMapInsert							;don’t even think about ROM map	<15>
-				clr.l	ResErrProc								;and don’t call the app.		<15>
+				clr.w	ROMMapInsert							;don't even think about ROM map	<15>
+				clr.l	ResErrProc								;and don't call the app.		<15>
 
 				SubQ	#4,SP
 				Move.L	#DeCompressDefType,-(SP)				;'dcmp'
@@ -401,7 +401,7 @@ HaveSizeAndOffset
 				BZ.S	@GotHandle				;did it get allocated without an error?
 		Break	'Error from _ReallocHandle'
 				Move.W	D1,ResErr
-				Suba.l	A5, A5					; return NIL since we don’t have enough memory					<10>
+				Suba.l	A5, A5					; return NIL since we don't have enough memory					<10>
 				Bra 	@ExitPastHSetState		;exit if an error happened. Skip HSetState						<10>
 @GotHandle
 
@@ -453,7 +453,7 @@ HaveSizeAndOffset
 				Move.L	D0,D1					;save var table size.
 				_NewHandle						;get the table.  Used to be a _NewPtr, but that moves the Realloc'ed handle
 				Bne 	ErrorExitBlowoffHandle	;blow off the handle and return a nil handle
-				_HLock							;don’t let it move
+				_HLock							;don't let it move
 				Move.L	A0,D6					;save var table ptr.
 
 ; Finally we are ready to decompress the data in the clone into our larger handle.

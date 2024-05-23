@@ -11,7 +11,7 @@
 ;
 ;	   <SM3>	12/13/93	PN		Roll in KAOs and Horror changes to support Malcom and AJ
 ;									machines
-;	   <SM2>	12-05-92	jmp		Just added an alignment directive.  (It’ll defintiely be nice
+;	   <SM2>	12-05-92	jmp		Just added an alignment directive.  (It'll defintiely be nice
 ;									when we can add this to the Slot $0-based DeclData area for
 ;									sharing data.)
 ;		 <1>	12-04-92	jmp		first checked in
@@ -68,8 +68,8 @@
 ;	Hardware code names that pop up in the config ROM code:
 ;-------------------------------------------------------------------
 ;		Ariel  - the (Brooktree-like) CLUT/DAC in the Portable machines.
-;		VSC 	- kitchen-sink ASIC that is DAFB-like in it’s programability, but where video
-;				 is just one of it’s subfunctions.
+;		VSC 	- kitchen-sink ASIC that is DAFB-like in it's programability, but where video
+;				 is just one of it's subfunctions.
 ;-------------------------------------------------------------------
 ;	Displays supported by this code (ST=safe title interlaced modes, FF=full frame):
 ;-------------------------------------------------------------------
@@ -307,7 +307,7 @@ _VendorInfo		OSLstEntry	VendorId,_VendorId				; offset to vendor ID
 _VendorId		DC.L	'Copyright © 1991-1993 by Apple Computer, Inc.  All Rights Reserved.'	
 _RevLevel		Dc.b	'Macintosh Built-In External Video, Revision 2.0'
 
-; Part numbers no longer make much sense, so we’ll just put an appropriate string here.
+; Part numbers no longer make much sense, so we'll just put an appropriate string here.
 ;
 _PartNum		Dc.l	'The Keystone (ViSC) DeclROM'		; Appropriate string.
 _Date			Dc.b	'11/10/93'
@@ -555,8 +555,8 @@ _VideoNameVSC	Dc.b	'Display_Video_Apple_ViSC'
 ;-------------------------------------------------------------
 
 ; The current implementation of the Monitors cdev (i.e., versions 4.x - 7.0) lamely looks at the board
-; sRsrc for its icon.  And, for 7.0, Monitors’ current icon-plotting mechanism isn’t very studly.  So,
-; I have come up with in interrim solution:  For I’ll only include 1-bit icons at the CPU (board sResource)
+; sRsrc for its icon.  And, for 7.0, Monitors' current icon-plotting mechanism isn't very studly.  So,
+; I have come up with in interrim solution:  For I'll only include 1-bit icons at the CPU (board sResource)
 ; level.
 ;
 

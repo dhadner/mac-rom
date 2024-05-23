@@ -36,7 +36,7 @@ Created: Tuesday, July 30, 1991 at 3:46 PM
 		<34>	 1/10/91	PP		(PWD) Remove AFPVolMountBlock structure since it should not be
 									made public.
 		<33>	  1/7/91	JDR		(dba) Adding the FSSpecArray type.
-		<32>	  1/2/91	dba		(JDR) fix PBCloseWDAsync (wasn’t asynchronous), and the trap
+		<32>	  1/2/91	dba		(JDR) fix PBCloseWDAsync (wasn't asynchronous), and the trap
 									number for AllocContig
 		<30>	12/14/90	PP		(JSM) Remove duplicate definition of MediaType and
 									AppleShareMediaType.

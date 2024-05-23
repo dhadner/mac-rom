@@ -28,7 +28,7 @@
 		 <3>	11/11/91	BG		Added a local -long- variable and copied *rsrcID* to it, then
 									passed the long to -sprintf()- since passing negative -short-
 									values to it causes it to print the unsigned value under MPW3.2.
-		 <2>	10/25/91	jmp		Checking in Sam’s changes from Horror into Zydeco-TERROR.
+		 <2>	10/25/91	jmp		Checking in Sam's changes from Horror into Zydeco-TERROR.
 		 <1>	10/23/91	SAM		Reformatted all of the screen output so that it agrees with the
 									rest of the build status strings.  Recompiled under MPW 3.2.
 									Bumped version to d2.
@@ -795,7 +795,7 @@ void fastRead(fName, fBuffer, pSize)
 	long				codeRead, fSize;
 	short				refNum, retCode;
 	
-	fprintf(logFile, "    Opening file “%s” for reading.\n\n", fName);
+	fprintf(logFile, "    Opening file '%s' for reading.\n\n", fName);
 	fflush(stdout);
 
 	retCode = FSOpen(PasName(fName), 0, &refNum);
@@ -832,7 +832,7 @@ void fastWrite(fName, fBuffer, fSize)
 	long	codeWrit, codeWantWrit;
 	short	refNum, retCode;
 	
-	fprintf(logFile, "    Opening file “%s” to write 0x%x characters.\n\n", fName, fSize);
+	fprintf(logFile, "    Opening file '%s' to write 0x%x characters.\n\n", fName, fSize);
 	fflush(stdout);
 	
 	/*
@@ -842,21 +842,21 @@ void fastWrite(fName, fBuffer, fSize)
 	
 	retCode = Create(PasName(fName), 0, 'rom ', 0x524F4D20);
 	if ((retCode != dupFNErr) && (retCode))	{ 	/* error, not a dupe? */
-		fprintf(logFile, "    • Create of “%s” failed…\n", fName);
+		fprintf(logFile, "    • Create of '%s' failed…\n", fName);
 		fflush(stdout);
 		MySignal("Create failed, and not a duplicate filename error.", retCode);
 	}
 	
 	retCode = FSOpen(PasName(fName), 0, &refNum);
 	if (retCode) {
-		fprintf(logFile, "    • Create of “%s” failed…\n", fName);
+		fprintf(logFile, "    • Create of '%s' failed…\n", fName);
 		fflush(stdout);
 		MySignal("Open for R/W failed.", retCode);
 	}
 	
 	retCode = SetEOF(refNum, 0);
 	if (retCode) {
-		fprintf(logFile, "    • SetEOF of “%s” failed…\n", fName);
+		fprintf(logFile, "    • SetEOF of '%s' failed…\n", fName);
 		fflush(stdout);
 		MySignal("SetEOF failed after create.", retCode);
 	}
@@ -867,7 +867,7 @@ void fastWrite(fName, fBuffer, fSize)
 		codeWrit = codeWantWrit;
 		retCode = FSWrite(refNum, &codeWrit, fBuffer);
 		if (codeWrit != codeWantWrit) {
-			fprintf(logFile, "    • Error writing “%s”…\n", fName);
+			fprintf(logFile, "    • Error writing '%s'…\n", fName);
 			fflush(stdout);
 			MySignal("Couldn't write everything to file…", retCode);
 		}
@@ -876,7 +876,7 @@ void fastWrite(fName, fBuffer, fSize)
 		//SpinCursor(1);
 	} while (fSize > 0);
 	if (retCode) {
-		fprintf(logFile, "    • Couldn't write “%s”…\n", fName);
+		fprintf(logFile, "    • Couldn't write '%s'…\n", fName);
 		fflush(stdout);
 		MySignal("Failure in file write.", retCode);
 	}

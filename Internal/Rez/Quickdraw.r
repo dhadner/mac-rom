@@ -20,7 +20,7 @@
 //                                   Cyclone.  KW commented out value,rgb to prevent warning
 //       <22>     6/14/91    JL      Checked in official MPW 3.2ƒ version. Moved the color manager
 //                                   equates; they were in the middle of GrafPort.
-//       <21>     1/30/91    gbm     sab, #38: Change the ‘already including this file’ variable to
+//       <21>     1/30/91    gbm     sab, #38: Change the ‘already including this file' variable to
 //                                   all uppercase (for security reasons)
 //       <20>     1/20/91    JT      Removed the change to pnLocFixed since Peter was unhappy about
 //                                   it. This fix will have to wait for some future release.
@@ -68,7 +68,7 @@
 //   To Do:
 //__________________________________________________________________________________________________
 
-//EASE$$$ READ ONLY COPY of file “QuickEqu.a”
+//EASE$$$ READ ONLY COPY of file 'QuickEqu.a'
 // 1.1   CEL 06/10/1989 Moved Private.a QuickDraw Equates into proper QuickDraw
 //       private file (colorequ.a), got rid of QuickDraw nFiles dependencies
 //       and fixed up necessary files…

@@ -778,7 +778,7 @@ RESULT	EQU		X+4
 		CMP		D1,D2
 		BEQ.S	@noOverFlow
 		
-	; if one of the operands are 0, and the other one is negative, we’ll get here even though
+	; if one of the operands are 0, and the other one is negative, we'll get here even though
 	; there is no overflow.  Check for 0 in result going on.
 	
 		MOVE.L	(SP)+,D1		;get high word of result

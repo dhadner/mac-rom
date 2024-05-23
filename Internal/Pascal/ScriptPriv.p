@@ -45,8 +45,8 @@
 	{ Moved these KeyScript verbs here since adding smKeyEnableAboutKybds after the 7.0 interfaces have
   	 frozen. (and we also don't believe a developer will ever want them!)									<13>
 	}
-		smKeyDisableAboutKybds = -13;		{ Disable ‘About…’ menu item since another dialog is up	}	{<2>}
-		smKeyEnableAboutKybds = -14;		{ Enable ‘About…’ menu item	}								{<2>}
+		smKeyDisableAboutKybds = -13;		{ Disable ‘About…' menu item since another dialog is up	}	{<2>}
+		smKeyEnableAboutKybds = -14;		{ Enable ‘About…' menu item	}								{<2>}
 
 
 	FUNCTION IsCmdChar(keyEvent: EventRecord; test: CHAR): BOOLEAN;

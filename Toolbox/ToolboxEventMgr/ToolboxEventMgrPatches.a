@@ -61,16 +61,16 @@ AfterGetOSEventInGetNextEvent			ROMBind		(Plus,$1108E),(SE,$B65A),(II,$F21C),(Po
 ; There is some code (in all of our ROMs) that causes an update when a disk switch dialog has
 ; appeared, but there was not enough room on the stack to save the bits behind the dialog.
 ; There is a bug in this code (the high bit of the top coordinate was set, so we always painted
-; too much). Also, I needed the same mechanism to erase the space under the “forced quit” system
+; too much). Also, I needed the same mechanism to erase the space under the 'forced quit' system
 ; error dialog. In order to fix the bug and add a new feature, I introduced a new global (off of
 ; ExpandMem) to contain a rectangle that needs to be updated. Anyone (in system software) can union
 ; a rectangle into this global (even when the Memory Manager cannot be used) and the next
-; GetNextEvent call will take care of the updating. Patches to the file system’s disk switch
+; GetNextEvent call will take care of the updating. Patches to the file system's disk switch
 ; dialog code in FileSystemPatches.a cause it to union with this rectangle, so that it participates
 ; in this scheme.
 
 ; *** This does not take care of the case when the bits are scrolled or otherwise moved before
-; GetNextEvent is called, but neither did the old code, and I don’t have any ideas.
+; GetNextEvent is called, but neither did the old code, and I don't have any ideas.
 
 DoSysErrorUpdates patchproc _GetNextEvent,(Plus,SE,II,Portable,IIci)
 

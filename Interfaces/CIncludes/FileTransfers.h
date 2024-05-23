@@ -25,7 +25,7 @@
 									ftXXXXSetFPos
 		<15>	  7/3/91	BH		removed ftFullDuplex
 		<14>	  7/2/91	BH		added type definitions for application callback procedures
-		<13>	 6/26/91	BH		forgot to include files.h and also messed up decl’s of FTSend
+		<13>	 6/26/91	BH		forgot to include files.h and also messed up decl's of FTSend
 									and FTReceive
 		<12>	 6/26/91	BH		forgot to include Connections.h
 		<11>	 6/26/91	BH		added FTSend, FTReceive, and constants for read and write procs

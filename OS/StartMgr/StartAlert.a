@@ -21,7 +21,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <4>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		 <4>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		 <3>	 9/16/91	JSM		Cleanup header.
 ;		 <2>	 6/12/91	LN		Changed #include 'HardwareEqu.a' to 'HardwarePrivateEqu.a'

@@ -29,14 +29,14 @@
 ;									bra. Change that branch to the way it should be.
 ;		<59>	 3/20/91	KSM		dcc,#82082: Fix bug where cicn rect size is used to plot
 ;									nomarksmallicons.
-;		<58>	 3/15/91	DTY		gbm, #83819: Unroll <55> because Go5 said don’t fix.
+;		<58>	 3/15/91	DTY		gbm, #83819: Unroll <55> because Go5 said don't fix.
 ;		<57>	  3/4/91	dba		dty: kill SysVers conditionals
 ;		<56>	 2/27/91	KSM		ngk,#ngk-b5-001: Fix #51 (BRC#80417) uncovered a fudge in the
 ;									DoCalcItemMsg msg which is no longer correct (ADDQ #4,d7) and
 ;									was removed.
 ;		<55>	 2/27/91	KSM		rlc,#83819: Call RemoveBalloon before scrolling to avoid wrong
 ;									balloon bits being restored.
-;		<54>	 2/25/91	KSM		dcc,#DCC003: Don’t use ttDisabled mode to plot icons in B&W mode
+;		<54>	 2/25/91	KSM		dcc,#DCC003: Don't use ttDisabled mode to plot icons in B&W mode
 ;									when the item is disabled. Painting gray over that icon might
 ;									completely erase it.
 ;		<53>	 2/20/91	KSM		stb,#1003794: Don't call ProcessMgr unless trap is implemented
@@ -52,7 +52,7 @@
 ;									padding to the item width for items w/ small icons or h-menus.
 ;									RLC,#80417: Also (from same bug report) we find that the calc
 ;									for h-menus of id=256 never got the space for the arrow added to
-;									them NGK,#82082: NEVER try to plot a CICN when it’s a
+;									them NGK,#82082: NEVER try to plot a CICN when it's a
 ;									NoMarkSmallIcon
 ;		<50>	 1/14/91	KSM		<kaz> Clean up and speed up GetItemHeight (round 2).
 ;		<49>	 1/13/91	KSM		<KAZ> Update register saving conventions for GetItemHeight (No
@@ -81,7 +81,7 @@
 ;									modal dialog menu being up). Otherwise, the help manager puts up
 ;									the Aux menu information when, in fact, the menu item and title
 ;									should have gotten the 'modal dialog menu' help message.
-;		<40>	10/10/90	KSM		Fix bug where we couldn’t draw more than 256 items (real
+;		<40>	10/10/90	KSM		Fix bug where we couldn't draw more than 256 items (real
 ;									important).
 ;		<39>	 9/28/90	KSM		<dba> Fix bug where no icon is drawn for items that have
 ;									hierarchical menus (instead, we draw only a large icon).
@@ -198,7 +198,7 @@
 ;				 4/14/87	FJL		PMAB177 Use CopyBits instead of CopyMask for drawing
 ;									hierarchical and scrolling arrows. Do moveq #BitMapRec, d0
 ;									instead of move.w #BitMapRec, d0 before call to NewHandle.
-;				 3/30/87	FJL		PMAB155 Don’t reference MenuDisable in StandardMDEF.a on 64K
+;				 3/30/87	FJL		PMAB155 Don't reference MenuDisable in StandardMDEF.a on 64K
 ;									ROMs.
 ;				 3/17/87	FJL		Do invert for MacPlus/MacSE rather than redraw (for MacDraw
 ;									custom menu) when choosing item
@@ -220,7 +220,7 @@
 ;				10/30/86	FJL		C222 Fixes for hierarchical menus
 ;				 10/1/86	DAF		Changed include headers
 ;				 1/30/86	EHB		Re-did scrolling so icons would work
-;				  1/7/86	EHB		Don’t leave extra space at bottom of screen (reversed 30 Jan)
+;				  1/7/86	EHB		Don't leave extra space at bottom of screen (reversed 30 Jan)
 ;				  1/7/86	EHB		Fixed enable bug for items > 31 (see C466 below)
 ;				10/15/85	EHB		Fixed bugs in display of menu icons
 ;				10/11/85	EHB		Do test byte of low memory justification word, so intl. people
@@ -426,8 +426,8 @@ MDEFSaveReg	REG		D3-D7/A2-A4
 			clr.w	irItemNo(A6)		; clear the item #
 			clr.l	irItemAddr(A6)		; clear the address
 			clr.w	expandItemErr(a6)	; No Error yet
-			clr.b	processMgrIn(a6)	; Don’t know if Process Mgr installed		<53>
-			clr.b	processMgrChkd(a6)	; Haven’t done Process Mgr check yet		<53>
+			clr.b	processMgrIn(a6)	; Don't know if Process Mgr installed		<53>
+			clr.b	processMgrChkd(a6)	; Haven't done Process Mgr check yet		<53>
 			clr.l	arrowHandle(a6)		; Set handle to nil initially				<48>
 
 			cmpi	#LastMDMsg, d0		; is the message within bounds?				<FJL>
@@ -523,7 +523,7 @@ DoChooseMsg
 			add		d0, Top(a2)
 @NoScroll2
 ;
-; If the point isn’t in the adjusted menuRect, check for autoscrolling
+; If the point isn't in the adjusted menuRect, check for autoscrolling
 ;
 			CLR.W	-(SP)				; make room for PtInRect result
 			MOVE.L	D5,-(SP)			; push the point
@@ -539,9 +539,9 @@ DoChooseMsg
 ; -- return to a previous menu if outside of the scrolling rectangles.
 ;
 
-			cmp		left(a2), d5		; to left of menu’s left side?			<FJL C222>
+			cmp		left(a2), d5		; to left of menu's left side?			<FJL C222>
 			blt		NoItemSel			; yes, so no item selected				<FJL C222>
-			cmp		right(a2), d5		; to right of menu’s right side?		<FJL C222>
+			cmp		right(a2), d5		; to right of menu's right side?		<FJL C222>
 			bgt		NoItemSel			; yes, so no item selected				<FJL C222>
 
 			MOVE.W	MFHeight(A6),D7		; get distance for scroll					<30Sep85>
@@ -550,7 +550,7 @@ DoChooseMsg
 			BGE		@2					; => no, check bottom						<27Sep85>
 			ADD.W	D7,D4				; try to go up an item						<27Sep85>
 			CMP.W	top(A2),D4			; menu top must be <= to MenuRect.Top		<30Jan86>
-			BGT		NOITEMSEL			; => can’t go up							<27Sep85>
+			BGT		NOITEMSEL			; => can't go up							<27Sep85>
 
 										; how far is mouse into scrolling arrow?	<FJL 09Mar87>
 			move	top(a2), d0			; get top of menu into d0					<FJL 09Mar87>
@@ -572,7 +572,7 @@ DoChooseMsg
 
 			move.l	a2, a0				; BlitScrollIndic expects menuRect ptr in A0
 			bsr		BlitDownScrollIndic
-			move	MFHeight(a6), d0	; move bottom of menuRect up so arrow doesn’t get scrolled
+			move	MFHeight(a6), d0	; move bottom of menuRect up so arrow doesn't get scrolled
 			sub		d0, Bottom(a2)		; and fall into scrolling code
 
 ;-----------------------	DO THE AUTOSCROLLING	--------------------------------------
@@ -584,7 +584,7 @@ DoChooseMsg
 
 ; When a HMenu is up and the item with the HMenu is the topmost or bottommost item
 ; garbage is left on the screen unless we bring down the HMenu first.
-; Solution: 1) Don’t scroll if an HMenu is up.
+; Solution: 1) Don't scroll if an HMenu is up.
 ;			2) DrawMenu clears a flag in mbSaveLoc every time a menu is drawn.
 ;			3) If that flag is clear, then we set the flag and skip scrolling.
 ;				This gives MenuSelect a chance to bring down the HMenu before
@@ -691,14 +691,14 @@ DoChooseMsg
 
 			move.l	a2, a0				; BlitScrollIndic expects menuRect ptr in A0
 			bsr		BlitUpScrollIndic
-			move	MFHeight(a6), d0	; move top of menuRect up so arrow doesn’t get scrolled
+			move	MFHeight(a6), d0	; move top of menuRect up so arrow doesn't get scrolled
 			add		d0, Top(a2)			; and fall into scrolling code
 			bra		@1
 
 ;--------------------------------	DO THE CHOOSE	------------------------------------
 
 ; the point is in the menu, so waltz through the itemList keeping track of vertical
-; position seeing which item it’s in.  In the following loop, D4 holds the item number
+; position seeing which item it's in.  In the following loop, D4 holds the item number
 ; while D2 has the cumulative vertical space
 ;
 @3
@@ -725,12 +725,12 @@ MSELOOP		MOVE.L	(A3),A0				; get menuPtr
 			CMP		MPOINT+V(A6),D2		; compare with mouse point
 			BGT.S	GOTSEL				; when D2 is bigger, we found it
 ;
-; we didn’t reach it yet, so keep stepping down till we do
+; we didn't reach it yet, so keep stepping down till we do
 ;
 NEXTMSEL	ADDQ	#1,D4				; bump to next item
 			BRA.S	MSELOOP				; loop till we find it
 ;
-; we found it so update whichItem.  First we better make sure it’s enabled
+; we found it so update whichItem.  First we better make sure it's enabled
 
 GOTSEL
 ;
@@ -786,7 +786,7 @@ NOITEMSEL	clr		d4					; at this label no item selected
 ;
 DoInverting
 			CMP		(A4),D3				; have they changed?
-			BEQ.S	GetDisabledItem		; if not, we’re all done, no hiliting change
+			BEQ.S	GetDisabledItem		; if not, we're all done, no hiliting change
 			bsr		RemoveAnyBalloon	; Be sure to remove any balloon before inverting	<55>
 			MOVE	D3,D0				; unhilite old item
 			BSR		INVERTITEM			;
@@ -811,7 +811,7 @@ GetDisabledItem
 ;			_Button							; call button if helpmgr includes OSEventAvail patch
 			_StillDown
 			TST.B	(SP)+					; if true then button is still down
-			BEQ.S	@FlashInProgress		;	else the item is flashing so don’t flash the balloon
+			BEQ.S	@FlashInProgress		;	else the item is flashing so don't flash the balloon
 
 			BSR.S	ShowMenuBalloon			; show the balloon for the chosen item
 
@@ -936,7 +936,7 @@ DoScrollWait
 			_TickCount
 			cmp.l	(sp)+, d3			; reached desired tick count yet?
 			bgt.s	@Loop				; no	==> keep looping
-										; yes ==> we’re done waiting
+										; yes ==> we're done waiting
 @DoneWait
 			move.l	(sp)+, d3			; restore work register
 @NoWait
@@ -973,7 +973,7 @@ ChkScrollArrows
 
 ; if scrolling down, and if first item is appearing, then increase clip by height of	<FJL C792>
 ; rectangle containing indicator arrow, and erase arrow rectangle.
-; NOTE: TopMenuItem has already been adjusted by scroll amount, so don’t subtract it here
+; NOTE: TopMenuItem has already been adjusted by scroll amount, so don't subtract it here
 @ChkScrollDown
 			move	Top(a2), d0			; get Top of menuRect
 			sub		MFHeight(a6), d0	; sub height of scroll arrow
@@ -1001,12 +1001,12 @@ ChkScrollArrows
 
 GetSizes	LEA		MInfoRec(A6),A2		; point to our info rec						<1Aug85>
 			MOVE.L	A2,-(SP)			; push a pointer							<1Aug85>
-			_GetFontInfo				; and get the font’s info					<1Aug85>
+			_GetFontInfo				; and get the font's info					<1Aug85>
 			MOVE.W	(A2)+,D0			; get ascent								<1Aug85>
 			ADD.W	(A2)+,D0			; add descent								<1Aug85>
 
 ; fudge width if font is Chicago so that space between command key and command		<FJL 21Jan87>
-; character look better.  Can’t assume that a width of 14 means chicago, so check
+; character look better.  Can't assume that a width of 14 means chicago, so check
 ; explicitly.
 
 			TST.W	SysFontFam			; We ar on post-MacPlus so can check SysFontFamily
@@ -1047,7 +1047,7 @@ GetIconSize
 
 ; <51> the check of itemIconSize indicates if we have an icon, this check prevents the use of icon #256
 ; for things like smallIcon, shrunkIcon, etc.
-;			tst.b	itemIcon(a1)		; icon spec’d in resource type?			<2.2><51>
+;			tst.b	itemIcon(a1)		; icon spec'd in resource type?			<2.2><51>
 ;			beq.s	@noColor			; jump if not							<2.2><51>
 
 ; Get the cicn resource because its faster than calling GetCIcon				<S550	27Jul88	EMT>
@@ -1060,7 +1060,7 @@ GetIconSize
 			MOVE.L	(SP)+, D1			; get it in D1							<S550	27Jul88	EMT>
 			BEQ.S	@noColor			; no color icon, must be regular icon	<S550	27Jul88	EMT>
 
-			MOVE.L	D1, -(SP)			; Since we don’t know what resLoad is	<S550	27Jul88	EMT>
+			MOVE.L	D1, -(SP)			; Since we don't know what resLoad is	<S550	27Jul88	EMT>
 			_LoadResource				; call LoadResource to be sure			<S550	27Jul88	EMT>
 
 			MOVE.L	D1, A0				; get cicn resource handle in a0		<S550	27Jul88	EMT>
@@ -1267,7 +1267,7 @@ INVERTITEM	MOVEM.L D3-D4,-(SP)			; save work registers
 IILOOP		MOVE	D4,D0				; get item
 			MOVE.L	(A3),A0				; get menuPtr
 			BSR		GETITEMRECORD		; look it up
-			beq		InvertDone			; z-flag ==> can’t find it			<FJL 22Mar87>
+			beq		InvertDone			; z-flag ==> can't find it			<FJL 22Mar87>
 			BSR.S	GetItemHeight		; get item height into D0			<1Aug85>
 
 			CMP.W	D3,D4				; found the item we want yet?		<40>
@@ -1276,7 +1276,7 @@ IILOOP		MOVE	D4,D0				; get item
 			ADDQ	#1,D4				; bump to next position
 			BRA.S	IILOOP				; loop till we find it
 
-; it’s time to invert the item.  The menuRect contains the horizontal bounds, D2 contains
+; it's time to invert the item.  The menuRect contains the horizontal bounds, D2 contains
 ; the top of the vertical, D0 has the vertical size
 
 GOINVERT	MOVE.B	1(A0),D1			; remember 1st char of item
@@ -1289,13 +1289,13 @@ GOINVERT	MOVE.B	1(A0),D1			; remember 1st char of item
 			MOVE	D2,BOTTOM(A0)		; set up the bottom
 
 ;
-; Instead of inverting the item’s rectangle we redraw it.  If the invertFlag(a6)	<FJL C408>
-; is set then SetColors will invert the colors properly for us.  If it isn’t set	<FJL C408>
+; Instead of inverting the item's rectangle we redraw it.  If the invertFlag(a6)	<FJL C408>
+; is set then SetColors will invert the colors properly for us.  If it isn't set	<FJL C408>
 ; then the item will just be redrawn in normal colors.								<FJL C408>
 ;
 			movem.l	a2-a4/d3-d7, -(sp)	; save same work registers as does DrawMsg
 
-; set up for call to DrawTheItem.  Before doing this, we must clip to the item’s rectangle
+; set up for call to DrawTheItem.  Before doing this, we must clip to the item's rectangle
 ; so that outline and shadowed text will not draw outside of the item rect.  But, because
 ; scrolling with icons can produce "parts of items", we must clip to the intersection of the
 ; menu rect and the item rect.  AND we must clip to screen in case menu draws past screen bounds.
@@ -1328,8 +1328,8 @@ GOINVERT	MOVE.B	1(A0),D1			; remember 1st char of item
 			bne.s	@DoRedraw			; yes, so do the drawing
 
 ; On MacPlus and MacSE do InvertRect instead of redrawing when choosing an item.	<FJL 17Mar87>
-; Do this because MacDraw’s custom "line" menu does not handle "choose item" message properly.
-; Of course it’s not as easy as that since we use the Choose message as a way to clean up
+; Do this because MacDraw's custom "line" menu does not handle "choose item" message properly.
+; Of course it's not as easy as that since we use the Choose message as a way to clean up
 ; the garbage left over when a hierarchical menu is brought down, and this assumes that
 ; the item is redrawn, NOT inverted.  If this is the case then HItemFlag will be set.
 
@@ -1339,7 +1339,7 @@ GOINVERT	MOVE.B	1(A0),D1			; remember 1st char of item
 			tst		HItemFlag(a6)		; does item have submenu?
 			bne.s	@DoRedraw			; yes ==> then redraw to eliminate garbage beneath submenu
 
-			pea		TempRect			; push ptr to item’s rectangle
+			pea		TempRect			; push ptr to item's rectangle
 			_InverRect					; invert it
 			bra.s	@RedrawDone			; and leave
 
@@ -1356,7 +1356,7 @@ GOINVERT	MOVE.B	1(A0),D1			; remember 1st char of item
 			bsr		ResetPreviousColors ; reset colors after EraseRect
 
 ; and draw the item
-			lea		TempRect, a0		; get address of item’s rectangle
+			lea		TempRect, a0		; get address of item's rectangle
 			move	Top(a0), d3			; get top
 			add		MAscent(a6),d3		; add in the ascent for baseline
 
@@ -1470,7 +1470,7 @@ DrawScrolledItem
 			CMP		D3,D2				; compare with mouse point
 			BGT.S	@GotSel				; when D2 is bigger, we found it
 ;
-; we didn’t reach it yet, so keep stepping down till we do
+; we didn't reach it yet, so keep stepping down till we do
 ;
 			ADDQ	#1,D4				; bump to next item
 			BRA.S	@Loop				; loop till we find it
@@ -1516,10 +1516,10 @@ DrawScrolledItem
 ; vertical position.  DrawMenu is broken off for use in scrolling.
 ;
 ; To clear up a very tricky scrolling menu bug, we need to NOT SCROLL when a hierarchical menu
-; is up in the last item (i.e. topmost or bottommost).  If we don’t bring the HMenu down first
+; is up in the last item (i.e. topmost or bottommost).  If we don't bring the HMenu down first
 ; a little bit of garbage is left on the screen.  We clear the field mbUglyScroll each
 ; time a menu is drawn, then set it when the first time into the scrolling routine.  Thereafter
-; we check it and realize that the HMenu is already down, so it’s ok to scroll.
+; we check it and realize that the HMenu is already down, so it's ok to scroll.
 ;
 ; Changed so that caller sets global TopMenuItem so that can be forced to draw from <FJL C844>
 
@@ -1590,7 +1590,7 @@ DRAW1MLOOP	MOVE.L	MMENURECT(A6),A0	; get menuRect pointer		<27Sep85>
 ; "centering" scheme.  We try to undo the damage here
 
 			TST.W	itemIconSize(A4)	; does it have an icon?						<2.2>
-			BEQ.S	@1					; skip if it doesn’t
+			BEQ.S	@1					; skip if it doesn't
 			SUB.W	MFHeight(A6),D0		; undoes the algorithm in NotDash
 			LSR.W	#1,D0
 			SUB.W	D0, D3
@@ -1616,13 +1616,13 @@ ChkScrollIndic
 			move.l	MMenuRect(a6), a0		; get menu rect ptr
 			move	AtMenuBottom, d0		; get AtMenuBottom
 			cmp		Bottom(a0), d0			; is AtMenuBottom > bottom of MenuRect
-			ble.s	@CkUpIndic				; no ==> don’t need down arrow, see if need up arrow
+			ble.s	@CkUpIndic				; no ==> don't need down arrow, see if need up arrow
 			bsr.s	BlitDownScrollIndic		; yes ==> blit the down arrow
 
 @CkUpIndic	move.l	MMenuRect(a6), a0		; get menu rect ptr						<FJL C844>
 			move	TopMenuItem, d0			; get TopMenuItem
 			cmp		Top(a0), d0				; is TopMenuItem < top of MenuRect
-			bge.s	@DoneChk				; no ==> don’t need up arrow
+			bge.s	@DoneChk				; no ==> don't need up arrow
 			bsr.s	BlitUpscrollIndic		; yes ==> blit the up arrow
 @DoneChk	rts
 
@@ -1720,10 +1720,10 @@ BlitCommon
 			moveq	#atNone,d1				; Put the alignment into d0		<54>
 			move.l	arrowHandle(a6),a1		; Put the icon handle into a1	<54>
 			; NOTE: The clr.w below only affects the h-menu arrow.  The itemIconGray flag
-			; only applies to this item’s icon, but not the h-arrow.  Since we use a common
+			; only applies to this item's icon, but not the h-arrow.  Since we use a common
 			; subroutine to plot both the icon and the h-arrow, we must clear this flag before
 			; plotting the arrow, and thereby assume the icon has already been plotted.
-			clr.w	stackItem+itemIconGray(A6) ; Assumes item’s icon drawn before h-menu	<54>
+			clr.w	stackItem+itemIconGray(A6) ; Assumes item's icon drawn before h-menu	<54>
 			move.w	#PlotSICN,d0			; And plot the SICN				<54>
 			bsr.s	IconPlotFromHandle		; Go plot it					<54>
 @cantDoIt
@@ -1739,7 +1739,7 @@ BlitCommon
 ;			d0 is the call to make (PlotXXXX constant)
 ;			High byte is #of params, low byte is selector #
 ;			d1.w is the alignment
-; On Exit:  d0 contains result and cc’s are set
+; On Exit:  d0 contains result and cc's are set
 
 ; FUNCTION PlotIconSuite(theRect: Rect; align: INTEGER; transform: INTEGER; theIconSuite: Handle): OSErr;
 ; FUNCTION PlotIconHandle(theRect: Rect; align: INTEGER; transform: INTEGER; theIcon: Handle): OSErr;
@@ -1748,10 +1748,10 @@ BlitCommon
 
 ; NOTE: The ttDisabled transform conflicts with the BitClearItem used on disabled items
 ;		(avoids the use of slow grayishTextMode only on B&W machines currently).
-;		Icons drawn in ttDisabled mode and subsequently BitClear’d will become completely erased!
+;		Icons drawn in ttDisabled mode and subsequently BitClear'd will become completely erased!
 ;		The tests below insure that disabled items on B&W machines never use ttDisabled for the icon.
 ;		It is O.K. on any machine to use this mode when only the itemIconGray flag is true since the
-;		entire item will not be BitClear’d.  The Pascal-ish comments below indicate the intention.
+;		entire item will not be BitClear'd.  The Pascal-ish comments below indicate the intention.
 
 IconPlotFromHandle
 		subq.w	#2,sp					; Make room for result
@@ -1762,10 +1762,10 @@ IconPlotFromHandle
 		bne.s	@checkIconGray
 		tst.b	onColorMachine(a6)		; 	if (onColorMachine=true) then
 		bne.s	@mustDisable			; 		transform := ttDisabled;
-		bra.s	@haveTransform			; otherwise on B&W machine, don’t use it
+		bra.s	@haveTransform			; otherwise on B&W machine, don't use it
 @checkIconGray
 		tst		stackItem+itemIconGray(A6) ; end else if (itemIconGray=true) then
-		beq.s	@haveTransform			; EQ -> ProcessMgr doesn’t was it gray either
+		beq.s	@haveTransform			; EQ -> ProcessMgr doesn't was it gray either
 @mustDisable
 		moveq	#ttDisabled,d1			; transform := ttDisabled;
 @haveTransform
@@ -1832,16 +1832,16 @@ PushThePort
 ; just inverting it.
 ;
 ; Used to be:																		<S550	27Jul88	EMT>
-; On entry:		d3		Item’s baseline, top of item + font’s ascent
+; On entry:		d3		Item's baseline, top of item + font's ascent
 ;				d4		Item Number
 ;				d5		left edge, pixels
 ;				d6		right edge, pixels
-;				a2		item’s string pointer
-;				a4		item’s properties pointer
+;				a2		item's string pointer
+;				a4		item's properties pointer
 ;				--		GetSizes has been called
 ;
 ; Now:																				<S550	27Jul88	EMT>
-; On entry:		D3		Item’s baseline, top of item + font’s ascent
+; On entry:		D3		Item's baseline, top of item + font's ascent
 ;				D4		Item Number
 ;				A0		Menu rectangle pointer (for left and right edge)
 ;				A3		Menu handle
@@ -1928,7 +1928,7 @@ DrawDash
 			_LineTo						; draw	the line
 			MOVE.W	(SP)+,D3			; restore baseline
 
-			_PenNormal					; This won’t create a new pixpat
+			_PenNormal					; This won't create a new pixpat
 @oldMac2
 			BRA		DoneDrawItem		; dive	back into mainstream
 
@@ -1949,9 +1949,9 @@ NotDash
 			move.w	itemIconSize(A4),D0		; does it have an icon?					<2.2>
 			beq.s	DrawMark			; if not, skip
 
-; for icon, center the baseline in the item’s rect
+; for icon, center the baseline in the item's rect
 
-			Bsr		GetItemHeightA4		; get item’s height in D0
+			Bsr		GetItemHeightA4		; get item's height in D0
 			SUB.W	MFHeight(A6),D0		; subtract font height						<1Aug85>
 			MOVE.W	D0,D7				; save font height in D7					<1Aug85>
 			LSR.W	#1,D0				; get delta									<1Aug85>
@@ -2055,10 +2055,10 @@ CHKDRAWICON
 			tst.b	onColorMachine(a6)
 			beq.s	@DoPlotIcon
 			CMP.W	#NoMarkSmallIconCmd,itemIconSize(A4)	; small icon with no mark?				<51>
-			beq.s	@DoPlotIcon								; No mark small icons are never cicn’s	<51>
+			beq.s	@DoPlotIcon								; No mark small icons are never cicn's	<51>
 
 ; attempt to get color icon first and if unsuccessful then get regular icon		<FJL C408>
-			tst.b	itemIcon(a4)		; icon spec’d in resource?				<2.2>
+			tst.b	itemIcon(a4)		; icon spec'd in resource?				<2.2>
 			beq.s	@DoPlotIcon			; jump if not							<2.2>
 			subq	#4, sp				; make room for function result
 			move	#$0100, d0			; menu icons are 256-511
@@ -2076,7 +2076,7 @@ CHKDRAWICON
 ;		FUNCTION PlotCIconHandle(theRect: Rect; align: INTEGER; transform: INTEGER;
 ;			theCIcon: CIconHandle): OSErr;
 
-; Now plot that cicn using Dave’s cool new call made just for the MDEF...
+; Now plot that cicn using Dave's cool new call made just for the MDEF...
 			move.l	(sp)+,a0				; Save off the rectptr (already on stack)
 			move.l	iconHandle(a6),a1		; 							<54>
 			moveq	#atNone,d1				; alignment					<54>
@@ -2124,7 +2124,7 @@ CHKDRAWICON
 
 			; get out of here if there was no resource
 
-			movea.l	(sp)+,a0				; Get rect ptr off stack without changing cc’s
+			movea.l	(sp)+,a0				; Get rect ptr off stack without changing cc's
 			beq.s	DonePlot
 
 			move.l	d0,a1					; Put the rsrc handle into a1	<54>
@@ -2297,10 +2297,10 @@ DRAWITEXT
 
 ;	if the item is disabled, gray it out														<29>
 
-			TST.B	enableState(A6)		; If enabled, don’t bitclear or reset textmode
+			TST.B	enableState(A6)		; If enabled, don't bitclear or reset textmode
 			BNE.S	DoneDrawItem
 	;IF (not forROM) THEN																		<SM2> rb
-			TST.B	onColorMachine(A6)	; If color, we drew in gray so don’t bitclear
+			TST.B	onColorMachine(A6)	; If color, we drew in gray so don't bitclear
 			BNE.S	@fixcolor
 	;ENDIF																						<SM2> rb
 			BSR.S	BitClearItem
@@ -2359,7 +2359,7 @@ BitClearItem
 ;---------------------------------------
 ; Input		d0:		script number
 ;
-; set the script’s base font.  No need to check if script manager is installed
+; set the script's base font.  No need to check if script manager is installed
 ; since AddResMenu has already done that
 ;
 SetScriptFont
@@ -2388,13 +2388,13 @@ SetScriptFont
 ;				D0 has the item number of interest.
 ;
 ;	On exit:	A0 points to the item string of interest
-;				A1 points to that item’s attribute byte list.
-;	If the item can’t be found, A0 and A1 both return NIL.
+;				A1 points to that item's attribute byte list.
+;	If the item can't be found, A0 and A1 both return NIL.
 ;
 ;	Eats:		D0 and D1
 ;
 ; TODO:	If this is called inside a loop, we have a factorial function!!
-;		Therefore look where this is called from and see if we can’t be smarter about
+;		Therefore look where this is called from and see if we can't be smarter about
 ;		how to move thru the menulist
 ;<51>		<KSM #34>
 ;			We are smarter now because we just cache the last item we used
@@ -2403,18 +2403,18 @@ SetScriptFont
 
 GETITEMRECORD
 			TST		D0					; make sure item number is valid
-			BLE.S	NOITEM				; if it’s not, don’t bother
+			BLE.S	NOITEM				; if it's not, don't bother
 ;<34>begin
 			move.w	D0,irTmpItemNo(A6)	; save off the initial item number
 			move.w	irItemNo(A6), D1
 			beq.s	@oldEntry
 			cmp.w	D0,D1				; is this the one we saved?
-			beq.s	@cacheSavedTheDay	; EQ means we’ve cached this one
+			beq.s	@cacheSavedTheDay	; EQ means we've cached this one
 			bgt.s	@oldEntry			; GT means the cache is past D0
 
 		; Well, our cache is somewhere before D0, preflight loop entry
 			sub.w	D1,D0				; Offset the item number for loop entry
-			move.l	irItemAddr(A6),A1	; Get that item’s address
+			move.l	irItemAddr(A6),A1	; Get that item's address
 			moveq	#0,D1				; clear D1 for byte arithmetic
 			move.b	(A1)+,D1			; get length that item
 			addq	#4,D1				; Fudge it for the initial condition
@@ -2424,7 +2424,7 @@ GETITEMRECORD
 @cacheSavedTheDay
 			move.l	irItemAddr(A6),A1
 			tst.b	(A1)				; is this the NIL item?
-			beq.s	NOITEM				; if so, we really didn’t get one
+			beq.s	NOITEM				; if so, we really didn't get one
 			move.l	a1,a0				; put the item string into a0
 			lea		stackItem(a6),a1	; cached attributes to A1
 			bra.s	EXIT
@@ -2436,7 +2436,7 @@ GETITEMRECORD
 			ADD		D1,A1				; skip over title string
 
 ; here is the item search loop.  A1 points to the beginning of the next item.
-GETILOOP	SUBQ	#1,D0				; is this the one we’re looking for?
+GETILOOP	SUBQ	#1,D0				; is this the one we're looking for?
 			BEQ.S	GOTITEM				; if so, we got it
 			MOVE.B	(A1)+,D1			; get length of current item
 			BEQ.S	NOITEM				; length zero marks end of list
@@ -2444,7 +2444,7 @@ GETILOOP	SUBQ	#1,D0				; is this the one we’re looking for?
 			ADDQ	#4,D1				; there are 4 bytes of item properties
 			ADD		D1,A1				; bump to next item
 			BRA.S	GETILOOP			; loop till done
-;	the item couldn’t be found so return NIL
+;	the item couldn't be found so return NIL
 NOITEM		SUB.L	A0,A0				; zero A0
 			MOVE.L	A0,A1				; and A1 too
 
@@ -2454,8 +2454,8 @@ EXIT
 ; we found the item so return a pointer to it in A0 and a pointer to the
 ; item properties in A1
 GOTITEM		TST.B	(A1)				; is this the NIL item?
-			BEQ.S	NOITEM				; if so, we really didn’t get one
-			move.w	irTmpItemNo(A6), irItemNo(A6)		; Save off the item we’ve cached	<34>
+			BEQ.S	NOITEM				; if so, we really didn't get one
+			move.w	irTmpItemNo(A6), irItemNo(A6)		; Save off the item we've cached	<34>
 			move.l	A1,irItemAddr(A6)					; Save off the address				<34>
 			BSR.S	ExpandItem			; puff item up to full size			<2.2>
 			BRA.S	EXIT				; and leave							<2.2>
@@ -2466,7 +2466,7 @@ GOTITEM		TST.B	(A1)				; is this the NIL item?
 ;				A3 is the menu handle
 ;
 ;	On exit:	A0 points to the item string of interest
-;				A1 points to that item’s attribute byte list (on the stack)
+;				A1 points to that item's attribute byte list (on the stack)
 ;	Eats		D0, D1
 
 ExpandItem
@@ -2536,7 +2536,7 @@ unsizedIcon
 	tst.b	itemIcon(a0)				; is there an icon?
 	beq.s	getAuxdata					; jump if not
 	move.w	#LargeIconCmd,itemIconSize(a0)	; save default icon type
-	bra.s	getAuxData					; and continue (don’t clear itemCmd!)
+	bra.s	getAuxData					; and continue (don't clear itemCmd!)
 
 sizedIcon
 	move.w	d1,itemIconSize(a0)			; copy type to proper field
@@ -2554,7 +2554,7 @@ getAuxData
 	tst.b	processMgrIn(a6)			; Is Process Mgr installed?				<53>
 	bne.s	@pmgrInstalled				; NE means it is						<53>
 	tst.b	processMgrChkd(a6)			; Have we done Process Mgr check yet?	<53>
-	bne.s	@skipAuxCall				; NE means we did and it isn’t there!	<53>
+	bne.s	@skipAuxCall				; NE means we did and it isn't there!	<53>
 
 	st.b	processMgrChkd(a6)			; Show we have done Process Mgr check	<53>
 
@@ -2620,7 +2620,7 @@ DoCalcMsg
 			_SetPort						; set it									<PMAB364	23Jan88	EMT>
 	;	ENDIF	; if NOT forROM															<SM2> rb
 
-; since calc msg could be called at any time, we need to reset the wmgr’s textfont here else
+; since calc msg could be called at any time, we need to reset the wmgr's textfont here else
 ; could get incorrectly sized menus
 
 			clr.l		-(sp)				; clear stack for TextFont/Face				<FJL CXXX>	<51=BRC#79297>
@@ -2642,11 +2642,11 @@ GetMBHeight
 			sub		#16, d5					; hierarchical menus need a little more margin	<FJL C222>
 			MOVEQ	#0,D6				; set initial <height,width> to 0
 
-	IF 0 THEN	; We now call GetItemRecord to index thru the items (it’s fast now)			;	<51=BRC#79297>
+	IF 0 THEN	; We now call GetItemRecord to index thru the items (it's fast now)			;	<51=BRC#79297>
 			MOVEQ	#1,D0				; find item 1
 			MOVE.L	(A3),A0				; point to the menuRecord
 			BSR.S	GetItemRecord		; point to first item
-			BEQ		DoCalcDone1			; if zero, we’re done							<EHB 10-Apr-85>
+			BEQ		DoCalcDone1			; if zero, we're done							<EHB 10-Apr-85>
 			MOVE.L	A0,A4				; keep pointer in A4
 	ENDIF
 			MOVEQ	#1,D4				; D4 is the item number counter						;	<51=BRC#79297>
@@ -2658,7 +2658,7 @@ CMLOOP
 			MOVE.L	D4,D0				; find current item	record							;	<51=BRC#79297>
 			MOVE.L	(A3),A0				; point to the menuRecord							;	<51=BRC#79297>
 			BSR.S	GetItemRecord		; point to first item								;	<51=BRC#79297>
-			BEQ		DoCalcDone1			; if zero, we’re done								;	<51=BRC#79297>
+			BEQ		DoCalcDone1			; if zero, we're done								;	<51=BRC#79297>
 			MOVE.L	A0,A4				; keep pointer in A4								;	<51=BRC#79297>
 
 			MOVEQ	#0,D7				; set "extra" width to zero
@@ -2666,7 +2666,7 @@ CMLOOP
 			MOVE.L	(A3),A0				; handle -> pointer
 			MOVEQ	#0,D0				; clear out high part
 			MOVE.B	(A4),D0				; get length of item
-			BEQ		DoCalcDone			; if zero, we’re done with this menu
+			BEQ		DoCalcDone			; if zero, we're done with this menu
 
 ; handle the vertical
 
@@ -2679,7 +2679,7 @@ CMLOOP
 			ADD.W	D0,D6				; increment vertical height					<27Sep85>
 			CMP.W	D5,D6				; past bottom of screen?					<27Sep85>
 			BLT.S	@1					; => no										<27Sep85>
-			SUB.W	D0,D6				; yes, don’t make menu taller				<27Sep85>
+			SUB.W	D0,D6				; yes, don't make menu taller				<27Sep85>
 
 ; handle the horizontal
 
@@ -2703,7 +2703,7 @@ CALCNEXT
 			ADDQ	#1,D4				; Point to next item							<51=BRC#79297>
 			BRA		CMLOOP				; loop till done
 
-;	we’ve scanned all the items update menuHeight and menuWidth
+;	we've scanned all the items update menuHeight and menuWidth
 
 DoCalcDone	ADDQ.W	#4,D6				; add some extra for right margin
 DoCalcDone1								; if NIL menu, return 0				<EHB 10-Apr-85>
@@ -2758,8 +2758,8 @@ DoCalcDone1								; if NIL menu, return 0				<EHB 10-Apr-85>
 ;					time.  If there were two messages instead, one to save the bits behind
 ;					and one to draw the drop shadow, the we could save all of the bits behind
 ;					the menurect, from the top of the screen to the bottom, and then change
-;					the menu’s vertical height without worrying about saving more bits each
-;					time it got bigger.  But we can’t, so...
+;					the menu's vertical height without worrying about saving more bits each
+;					time it got bigger.  But we can't, so...
 ;
 ;	<FJL PMAB205> Pass PopUpItem = 0 and force top of menuRect to Top parameter
 
@@ -2774,9 +2774,9 @@ DoPopUpItemMsg
 @Loop		CMP		D3,D4				; have we reached the PopUpItem yet?
 
 			BGT.S	@1					; no ==> continue calculating			<FJL PMAB205><FJL PMAB234>
-			MOVE	D6, D2				; yes ==> save item’s vertical in D2, and continue
+			MOVE	D6, D2				; yes ==> save item's vertical in D2, and continue
 ;
-; We didn’t reach it yet, so get the height and keep stepping down.
+; We didn't reach it yet, so get the height and keep stepping down.
 ;
 @1			MOVE.L	(A3),A0				; get menuPtr
 			MOVE	D4,D0				; get item number
@@ -2788,12 +2788,12 @@ DoPopUpItemMsg
 			ADDQ	#1,D4				; bump to next item
 			BRA.S	@Loop				; loop till we get to end of item list
 
-; If we couldn’t find the item then default to item number 1
+; If we couldn't find the item then default to item number 1
 
 @LoopComplete
 			TST		D2					; is D2 still zero ?
-			BNE.S	@GotItem			; no ==> got the item, and it’s vertical is in D2
-			MOVEQ	#1, D4				; yes ==> couldn’t find item, use item #1
+			BNE.S	@GotItem			; no ==> got the item, and it's vertical is in D2
+			MOVEQ	#1, D4				; yes ==> couldn't find item, use item #1
 
 ; Distance from top of menu to top of PopUpItem is now in D2.
 
@@ -2873,7 +2873,7 @@ DoPopUpItemMsg
 			MOVE	D4, D1				; start at TopMenuItem
 @TopLoop	ADD		MFHeight(a6), D1	; move down to next item
 			CMP		D0, D1				; is top of menu >= 2 pixels below menu bar?
-			BLT.S	@TopLoop			; no	==> haven’t moved top down far enough yet
+			BLT.S	@TopLoop			; no	==> haven't moved top down far enough yet
 			MOVE	D1, Top(A0)			; yes ==> store new top
 			ADD		D6, D1
 			MOVE	D1, Bottom(A0)		; store bottom of menu
@@ -2890,7 +2890,7 @@ DoPopUpItemMsg
 										;			we get at least 5 pixels above the screen bottom
 @BotLoop	SUB		MFHeight(a6), D0	; move up to next item
 			CMP		D1, D0				; is bottom of menu <= 5 pixels above screen bottom ?
-			BGT.S	@BotLoop			; no	==> haven’t moved bottom up far enough yet
+			BGT.S	@BotLoop			; no	==> haven't moved bottom up far enough yet
 			MOVE	D0, Bottom(A0)		; store bottom
 			SUB		D6, D0				; calc top of menu
 			MOVE	D0, Top(a0)
@@ -2901,7 +2901,7 @@ DoPopUpItemMsg
 ;-------------------------------------------------------------------------------------------------
 ; Leave TopMenuItem alone, but calculate where menurect should go so that when the items scroll
 ; they fill up the menu exactly, i.e. as the menu is scrolled, TopMenuItem will match the
-; top of the menu rect at some point exactly.  If we don’t do this there may be strange
+; top of the menu rect at some point exactly.  If we don't do this there may be strange
 ; behavior when the menu is scrolled completely down, i.e. the top item is showing.
 ;
 ; If PopUpItem = 0 then force top of menu to be at Top/Left			<FJL PMAB205>
@@ -2965,7 +2965,7 @@ DoPopUpItemMsg
 			MOVE.W	portRect+Left(A1), D2	; Get left edge of screen					<PMAB364	23Jan88	EMT>
 			ADDQ.W	#4, D2				; Leave room for border							<PMAB364	23Jan88	EMT>
 			CMP.W	D2, D0				; Compare with left edge of screen				<PMAB364	23Jan88	EMT>
-			BGE.S	@TryRight			; If greater, it’s OK							<PMAB364	23Jan88	EMT>
+			BGE.S	@TryRight			; If greater, it's OK							<PMAB364	23Jan88	EMT>
 
 ; Adjust so the menu fits on the screen.
 			MOVE	D2, D0				; make left edge equal to (fake) screen edge	<PMAB364	23Jan88	EMT>
@@ -2976,7 +2976,7 @@ DoPopUpItemMsg
 			MOVE.W	portRect+Right(A1), D2	; Get right edge of screen					<PMAB364	23Jan88	EMT>
 			SUBQ.W	#4, D2				; Leave room for border							<PMAB364	23Jan88	EMT>
 			CMP.W	D2, D1				; Compare with right edge of screen				<PMAB364	23Jan88	EMT>
-			BLE.S	@StoreLeftRight		; if smaller, we’re cool
+			BLE.S	@StoreLeftRight		; if smaller, we're cool
 
 ; Adjust so the menu fits on the screen.
 			MOVE	D2, D1				; make right edge equal to (fake) screen edge	<PMAB364	23Jan88	EMT>
@@ -3081,7 +3081,7 @@ DoCalcItemMsg
 ;	Utility -- SaveCurrentColors											<FJL C408>
 ;----------------------------------------
 ; Save the current fore/back colors in the stackframe.
-; Get the device’s pixel depth in the stackframe too.
+; Get the device's pixel depth in the stackframe too.
 ; Only need to save if color machine
 
 SaveCurrentColors
@@ -3090,7 +3090,7 @@ SaveCurrentColors
 
 			pea		saveForeColor(a6)	; push location to save fore color
 			pea		saveBackColor(a6)	; push location to save back color
-			_GetBackColor				; and get ’em
+			_GetBackColor				; and get 'em
 			_GetForeColor
 
 			SUBQ	#4,SP
@@ -3103,7 +3103,7 @@ SaveCurrentColors
 			_GetMaxDevice					; get max pixel device
 			MOVE.L	(sp)+, A0				; get the grafDevice
 			MOVE.L	(A0),A0					; hndl->ptr
-			MOVE.L	GDPMap(A0),A1			; get the device’s pixmap
+			MOVE.L	GDPMap(A0),A1			; get the device's pixmap
 			MOVE.L	(A1),A1					; hndl->ptr
 			move.w	pixelSize(a1), PixelDepth(a6)	; and store the value
 
@@ -3161,7 +3161,7 @@ SetColors
 			tst		invertFlag(a6)		; normal or inverted colors ?
 			beq.s	@1					; 0 = normal colors, so branch
 
-; for inverted menu colors always invert the background color with the item name’s color
+; for inverted menu colors always invert the background color with the item name's color
 			move	#mctRGB2, colorOffset(a6)
 
 @1
@@ -3169,9 +3169,9 @@ SetColors
 			move.l	(a3), a0			; get menu ptr
 			move	menuID(a0), -(sp)	; push ID
 			move	d4, -(sp)			; push Item
-			_GetMCEntry					; get item’s color entry
+			_GetMCEntry					; get item's color entry
 			move.l	(sp)+, d1			; get the result, and set/un-set z-flag
-			beq.s	@TryTitleEntry		; couldn’t find item entry so try title entry
+			beq.s	@TryTitleEntry		; couldn't find item entry so try title entry
 
 			move.l	d1, a0				; get color record ptr in A0
 			move	colorOffset(a6), d0	; offset for mark/cmd/char
@@ -3184,9 +3184,9 @@ SetColors
 			move.l	(a3), a0			; get menu ptr
 			move	menuID(a0), -(sp)	; push ID
 			clr		-(sp)				; Item = 0 ===> title entry
-			_GetMCEntry					; get title’s color entry
+			_GetMCEntry					; get title's color entry
 			move.l	(sp)+, d1			; get the result, and set/un-set z-flag
-			beq.s	@TryMenuBarEntry	; couldn’t find title entry so try menu bar entry
+			beq.s	@TryMenuBarEntry	; couldn't find title entry so try menu bar entry
 
 			move.l	d1, a0				; get color record ptr in A0
 			move	#mctRGB3, d0		; offset for items default color
@@ -3197,9 +3197,9 @@ SetColors
 @TryMenuBarEntry
 			subq	#4, sp				; save space for result
 			clr.l	-(sp)				; ID = 0, Item = 0 ===> menu bar entry
-			_GetMCEntry					; get menu bar’s color entry
+			_GetMCEntry					; get menu bar's color entry
 			move.l	(sp)+, d1			; get the result, and set/un-set z-flag
-			beq.s	@SetDefault			; couldn’t find menu bar entry so use black/white
+			beq.s	@SetDefault			; couldn't find menu bar entry so use black/white
 
 			move.l	d1, a0				; get color record ptr in A0
 			move	#mctRGB3, d0		; offset for items default color

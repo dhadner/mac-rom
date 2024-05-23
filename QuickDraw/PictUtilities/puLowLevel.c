@@ -128,7 +128,7 @@ register short			requestedType	)
 
 /*
 |	Check to see if there is already a buffer allocated. If there is then make sure that it is big enough. If it
-|	isn’t, then kill the buffer and fall into the code that allocates a new one. If the buffer type is
+|	isn't, then kill the buffer and fall into the code that allocates a new one. If the buffer type is
 |	bufferVariableType and there is already a buffer allocated then just return noErr (use the buffer that is
 |	already there).
 */

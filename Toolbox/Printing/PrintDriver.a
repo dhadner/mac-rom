@@ -24,7 +24,7 @@
 ;		 <1>	  8/7/90	csd		Rebuilding the Printing project
 ;		 <6>	 4/21/90	dba		Set CurMap to TopMapHndl before calling PrLoadDriver, stealing
 ;									code from the old print driver. This fixes some obvious problems
-;									with background printing, but the entire MultiFinder “GetPrName”
+;									with background printing, but the entire MultiFinder 'GetPrName'
 ;									mechanism is no longer appropriate with aliases to printers
 ;									(instead of driver names); this must be fixed. Also note that
 ;									using CurMap directly and bypassing CurResFile and UseResFile is
@@ -51,14 +51,14 @@
 ;	  <A386>	 11/9/86	JTC		No code change, just an elaboration of C169/24Oct86 above. This
 ;									stub driver has the momentous job of determining the true print
 ;									driver, loading it, sneaking it into the RSRC map (on top of
-;									this stub’s own entry), and transferring control to it. It’s the
-;									sneakiness we’re concerned with here. When the true driver is
+;									this stub's own entry), and transferring control to it. It's the
+;									sneakiness we're concerned with here. When the true driver is
 ;									loaded and detached, the RSRC mgr clears the RSRC bit the master
 ;									ptr, as is to be expected. Alas, when the handle is stuffed into
 ;									the map, that bit should be set to 1 so that
 ;									consistency-checking code sniffing around the heaps and maps
 ;									will not find anything amiss. There should be no REAL problem
-;									here, since the drivers are not modified in RAM and thus don’t
+;									here, since the drivers are not modified in RAM and thus don't
 ;									require any special purge service by the ResPurgeProc.
 ;	  <A316>	10/31/86	LAK		Changed OpenResFile call to OpenRFPerm to avoid conflict with
 ;									'Q' INIT patch to former.

@@ -33,7 +33,7 @@
 											Spike, and Tim.
 		<29>	 3/28/91	DTY		Shade the handles a little better.
 		<28>	 3/28/91	DTY		Make the handles in the trash icons gray for Paul.
-		<27>	 3/21/91	DTY		Change the trash icon masks so you can’t see through the handle.
+		<27>	 3/21/91	DTY		Change the trash icon masks so you can't see through the handle.
 		<26>	 3/13/91	dba		bbm, #83173: realign stationery icon
 		<25>	 2/20/91	csd		dty, #GangOf5: Updated the Control Panels folder icon.
 		<24>	  2/8/91	dba		dty, #82470: add an 'SICN' for drop folders and fix the 'SICN'
@@ -41,7 +41,7 @@
 									folder icon in size and position
 		<23>	 1/17/91	DC		csd - updated Generic extenstion (-16415) generic stationary and
 									the extension folder
-		<22>	 1/17/91	csd		& JDR: Removed the mailbox and letter SICNs since they aren’t
+		<22>	 1/17/91	csd		& JDR: Removed the mailbox and letter SICNs since they aren't
 									part of 7.0
 		<21>	12/27/90	csd		Added the Clipboard File icon (-16509) and updated the generic
 									query document icon (-16506, genericQueryDocumentIconResource)

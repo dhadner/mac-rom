@@ -25,7 +25,7 @@
 ;									Removed the MoveHHi call on the itl0 and itl1 resources to avoid
 ;									System heap fragmentation.
 ;		<12>	 2/19/91	PKE		smb,#DTS FT: ToggleDate trashes one word past the end of its
-;									“VAR lSecs: LongDateTime” parameter (reported by a developer).
+;									'VAR lSecs: LongDateTime' parameter (reported by a developer).
 ;		<11>	 2/15/91	PKE		JSM,#54736: Redo conditionals to move change <10> to Post 7.0.
 ;									Object compare identical to <9>.
 ;		<10>	 1/28/91	JH		PKE,#54736: Changed InitDateCache so that the date separators
@@ -42,7 +42,7 @@
 ;									itl0 and itl1 may be purged before we try to use them.
 ;		 <6>	  6/1/90	PKE		Just cleaned up some comments, formatting, and superfluous
 ;									definitions.
-;		 <5>	  5/5/90	PKE		Updated 3 previously overlooked ‘SysVers’ symbols to
+;		 <5>	  5/5/90	PKE		Updated 3 previously overlooked ‘SysVers' symbols to
 ;									((smgrSysVers >= $605) OR (smgrROMVers >= 2)) so we can build
 ;									with new ScriptPriv.a.
 ;		 <4>	 4/10/90	PKE		Deleted conditionalized definitions of forRom, SysVers and

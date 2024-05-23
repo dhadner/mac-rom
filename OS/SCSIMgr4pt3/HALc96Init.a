@@ -378,7 +378,7 @@ Initc96Asm
 		IF forPDMProto THEN
 
 			IMPORT	DoWeHaveAMIC3B
-			bsr		DoWeHaveAMIC3B			; If we don’t have AMIC3B then
+			bsr		DoWeHaveAMIC3B			; If we don't have AMIC3B then
 			beq.s	@hasNoDMA				; use pseudo-DMA routines.
 
 		ENDIF

@@ -12,7 +12,7 @@
 ;
 ;	   <SM2>	 4/14/92	kc		Change LenBTCB from 54 to 74. Change hfsStkLen from 1280 to
 ;									1792.
-;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<12>	 8/28/90	KST		Make FCFree work as FCtrash on 6.0 RamCache
 ;		<11>	 8/27/90	KST		Adding new FlushCache and RelBlock option flags for the new

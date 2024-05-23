@@ -60,8 +60,8 @@
 ;									PatchDisposeControlForInvisibleControlsIIci,
 ;									CheckMemErrInSetCTitle, and ThrottleScrollingSpeed from
 ;									ControlMgrPatches.a.
-;		 <2>	 9/30/91	JSM		Add a header, don’t use hasCQD conditional - all future ROMs
-;									will have color QuickDraw, don’t use is32BitClean conditional -
+;		 <2>	 9/30/91	JSM		Add a header, don't use hasCQD conditional - all future ROMs
+;									will have color QuickDraw, don't use is32BitClean conditional -
 ;									all future ROMs will be.
 ;	   <1.3>	10/31/89	dba		concatenated source files ControlMgr1.a and ControlMgr2.a to
 ;									this one
@@ -362,7 +362,7 @@ GetCDefProc
 				MOVE.W	#MapTRUE,ROMMapInsert	; set flag to load from ROM 		<8 july 85>
 				_GetResource					;get the CDef handle
 
-				MOVEQ	#0,D0					;assume we couldn’t get it
+				MOVEQ	#0,D0					;assume we couldn't get it
 				MOVE.L	(A3),A0 				;get the control ptr
 				LEA 	ContrlDefHandle(A0),A0	;point to defHandle
 				MOVE.L	(SP)+,(A0)				;move it in
@@ -375,7 +375,7 @@ GetCDefProc
 				SUBQ	#6,SP					; get placeholder for auxCtlHndl, and boolean result <C612/12Jan87> DAF
 				MOVE.L	A3,-(SP)				; push controlhandle			<C612/12Jan87> DAF
 				PEA		6(SP)					; point to longword placeholder	<C612/12Jan87> DAF
-				_GetAuxCtl						; get this window’s auxRec		<C612/12Jan87> DAF
+				_GetAuxCtl						; get this window's auxRec		<C612/12Jan87> DAF
 				ADDQ	#2,SP					; flush boolean					<C612/12Jan87> DAF
 				MOVE.L	(SP)+,A0				; get auxCtlHndl				<C612/12Jan87> DAF
 				MOVE.L	(A0),A0					; get auxCtlPtr					<C612/12Jan87> DAF
@@ -398,7 +398,7 @@ GetCDefProc
 ; tell the control to draw itself if its visible
 ;
 				TST.B	NCVisFlag(A6)			;is it visible
-				BEQ.S	NCDone					;if not, we’re done
+				BEQ.S	NCDone					;if not, we're done
 ;
 				MOVEQ	#0,D1					;tell it to draw everything
 				BSR.S	CallDControl			;tell the control to draw itself
@@ -412,10 +412,10 @@ NCDone
 				ADD 	#26,SP					;strip parameters
 				JMP 	(A0)					;return to caller
 ;
-; CallControl is a utility used to send a message to a control’s definitions
+; CallControl is a utility used to send a message to a control's definitions
 ; procedure.  On entry, the controlHandle is in A3, the message number is in
 ; D0 while D1 contains an optional parameter (used for hit & calc messages).
-; CallControl makes sure that the control’s window is the current grafPort at
+; CallControl makes sure that the control's window is the current grafPort at
 ; the time the control definition procedure is invoked.  On return, D0 contains
 ; the result from the definition procedure.  The entry point  CallDControl
 ; is used for draw messages to save code; it preloads D0 with the draw message,
@@ -425,22 +425,22 @@ CallDControl
 				MOVEQ	#DrawCtlMsg,D0			;get the draw message
 				MOVE.L	(A3),A0 				;get control pointer
 				TST.B	ContrlVis(A0)			;is it visible?
-				BEQ.S	NoDControl				;don’t draw invisible ones
+				BEQ.S	NoDControl				;don't draw invisible ones
 
-; only draw the control if it’s in the portrect
-; Removed 14Jan86 because it didn’t work with MacExpress
+; only draw the control if it's in the portrect
+; Removed 14Jan86 because it didn't work with MacExpress
 
 ;				 MOVEM.L D0-D1,-(SP)			 ; save message, param				 <EHB 27-Apr-85>
 ;				 SUBA.L  #10,SP 				 ; make room for rect, result		 <EHB 27-Apr-85>
-;				 PEA	 ContrlRect(A0) 		 ; push address of control’s rect    <EHB 27-Apr-85>
+;				 PEA	 ContrlRect(A0) 		 ; push address of control's rect    <EHB 27-Apr-85>
 ;				 MOVE.L  ContrlOwner(A0),A1 	 ; get pointer to owning window 	 <EHB 27-Apr-85>
-;				 PEA	 PortRect(A1)			 ; push address of window’s portRect <EHB 27-Apr-85>
+;				 PEA	 PortRect(A1)			 ; push address of window's portRect <EHB 27-Apr-85>
 ;				 PEA	 10(SP) 				 ; point to temp rect				 <EHB 27-Apr-85>
 ;				 _SectRect						 ; should we draw it?				 <EHB 27-Apr-85>
 ;				 TST.B	 (SP)+					 ; NE if we should					 <EHB 27-Apr-85>
 ;				 ADDA.L  #8,SP					 ; strip the rect					 <EHB 27-Apr-85>
 ;				 MOVEM.L (SP)+,D0-D1			 ; restore message, param			 <EHB 27-Apr-85>
-;				 BEQ.S	 NoDControl 			 ; => don’t draw remote ones         <EHB 27-Apr-85>
+;				 BEQ.S	 NoDControl 			 ; => don't draw remote ones         <EHB 27-Apr-85>
 ;
 CallControl
 ;
@@ -518,7 +518,7 @@ NoDControl
 ;	GetCVariant returns the control variant code of the control whose
 ;	handle is whichControl.  Variant codes are 4-bit values returned
 ;	right-justified in the word result.  In case you are wondering
-;	the result is word rather than byte because it’s less complicated
+;	the result is word rather than byte because it's less complicated
 ;	for this stack-based routine, and the variant is passed to the
 ;	defprocs as a word.
 
@@ -527,7 +527,7 @@ GetCVariant										;					<C491/08Dec86> DAF
 				SUBQ	#6,SP					; leave room for result and boolean	<C612/12Jan87> DAF
 				MOVE.L	A0,-(SP)				; push the controlHandle		<C612/12Jan87> DAF
 				PEA		6(SP)					; point to result placeholder	<C612/12Jan87> DAF
-				_GetAuxCtl						; get the control’s auxRec		<C612/12Jan87> DAF
+				_GetAuxCtl						; get the control's auxRec		<C612/12Jan87> DAF
 				ADDQ	#2,SP					; flush the boolean				<C612/12Jan87> DAF
 				MOVE.L	(SP)+,A0				; get the auxCtlHndl			<C612/12Jan87> DAF
 				MOVE.L	(A0),A0					; get the auxRecPtr				<C612/12Jan87> DAF
@@ -553,7 +553,7 @@ EraseControl
 				MOVEM.L  A1-A4,-(SP)			;save work registers
 ;
 ; allocate a temporary region and ask the control definition procedure for the
-; control’s bounding region.  The above move multiple pushed an extra register
+; control's bounding region.  The above move multiple pushed an extra register
 ; to make room for the NewRgn function result
 ;
 				_NewRgn 						;allocate a new region
@@ -564,7 +564,7 @@ EraseControl
 				BSR		CallControl 			;send it the message						<1.2>
 
 ;
-; paint white to erase control and add it to the window’s update region
+; paint white to erase control and add it to the window's update region
 ;
 				_EraseRgn						;erase it from the window
 ;
@@ -584,7 +584,7 @@ EraseControl
 				CLR.B	ContrlVis(A0)			;mark it hidden
 
 ;
-; restore original grafPort and we’re done!
+; restore original grafPort and we're done!
 ;
 				MOVEM.L (SP)+,A2-A4 			;restore work registers
 				BRA.S	RPortExit				;use common code
@@ -593,7 +593,7 @@ EraseControl
 ;  PROCEDURE DisposeControl(theControl: controlHandle);
 ;
 ;	This routine disposes of a control.  It deallocates its storage, removes it from the
-;   window’s controlList and removes it from the screen.
+;   window's controlList and removes it from the screen.
 ;
 DisposeControl
 				MOVEM.L	A2/A3,-(SP)				;preserve a work register				<1.5>
@@ -653,11 +653,11 @@ DontEraseControl								;										<3>
 				MOVE.L	(A1),A1						; get a pointer to it
 				MOVE.L	acCTable(A1),D0				; get the doomed color table handle
 				CMP.L	(SP)+,D0					; does this doomed record have the same color table as the default?
-				BEQ.S	@30							; if so, then don’t delete it
+				BEQ.S	@30							; if so, then don't delete it
 				MOVE.L	D0,A0						; get the doomed ctab handle in A0
 				_HGetState							; get the tag bits of this color table
 				BTST	#resource,D0				; is the resource bit set?
-				BNE.S	@30							; if so, don’t delete it (it the app’s responsibility)
+				BNE.S	@30							; if so, don't delete it (it the app's responsibility)
 				_DisposHandle						; kill the color table
 @30
 				MOVE.L	A2,A0						; release the auxCtlRec
@@ -665,7 +665,7 @@ DontEraseControl								;										<3>
 				ADDQ	#4,SP						; get rid of the extra window pointer pushed above
 
 ;
-; delete it from the window’s controlList
+; delete it from the window's controlList
 ;
 				MOVE.L	A3,A0					;DeleteList needs handle in A0
 				MOVE.L	(A3),A1 				;get control pointer
@@ -679,7 +679,7 @@ NoString1
 				MOVEQ	#DispCtlMsg,D0			;send the dispose message
 				BSR 	CallControl 			;tell it to dispose its dataHandle
 ;
-; deallocate the data structure itself, and we’re done
+; deallocate the data structure itself, and we're done
 ;
 				MOVE.L	A3,A0
 				_DisposHandle					;dispose of the control data structure
@@ -711,7 +711,7 @@ KillControls
 ;
 KillCLoop
 				MOVE.L	WControlList(A3),D0 	;get next one in list
-				BEQ.S	CShowDone				;if NIL, we’re done
+				BEQ.S	CShowDone				;if NIL, we're done
 ;
 				MOVE.L	D0,-(SP)				;push the control handle
 				_DisposControl					;dispose of it
@@ -743,7 +743,7 @@ ShowControl
 ;  is it already visible?
 ;
 				TST.B	ContrlVis(A0)			;already visible?
-				BNE.S	CShowDone				;if so, there’s nothing to do
+				BNE.S	CShowDone				;if so, there's nothing to do
 ;
 ; make it visible
 ;
@@ -772,7 +772,7 @@ HideControl
 ;  is it already hidden?
 ;
 				TST.B	ContrlVis(A0)			;already hidden?
-				BEQ.S	CShowDone				;if so, there’s nothing to do
+				BEQ.S	CShowDone				;if so, there's nothing to do
 ;
 ; hide the control
 ;
@@ -785,7 +785,7 @@ HideControl
 ;  PROCEDURE MoveControl(theControl:controlHandle; h,v: INTEGER);
 ;
 ;	 MoveControl moves a control to the position specified by the (h,v) parameters.
-;  The (h,v) parameter is intepreted to be in the local coordinates of the control’s
+;  The (h,v) parameter is intepreted to be in the local coordinates of the control's
 ;  owning window and is the coordinate of the topLeft of the bounding rectangle
 ;
 MoveControl
@@ -817,7 +817,7 @@ MoveControl
 ;
 DoneMC0
 				TST.B	D3						;test the old visFlag
-				BEQ.S	DoneMC					;if not visible, we’re done
+				BEQ.S	DoneMC					;if not visible, we're done
 ;
 ; show the control again
 ;
@@ -876,7 +876,7 @@ SetCtlAction
 ;
 ; PROCEDURE SizeControl(theControl: controlHandle; width,heigth: INTEGER);
 ;
-;	change the size of a control’s bounding box to the specified width and height
+;	change the size of a control's bounding box to the specified width and height
 ;
 SizeControl
 				MOVEM.L D3/A3,-(SP) 			;save work registers
@@ -892,7 +892,7 @@ SizeControl
 				MOVE	12(SP),D0				;get height parameter
 				MOVE	14(SP),D1				;get width parameter
 ;
-; resize the control’s bounding rectangle
+; resize the control's bounding rectangle
 ;
 @2				MOVE.L	(A3),A0 				;get pointer to control
 
@@ -921,13 +921,13 @@ HiliteControl
 				MOVEQ	#0,D1					;clear out D1
 				MOVEQ	#0,D0					;ditto for D0
 ;
-;  get the value of hilite; if that’s the state the control is already in, we have
+;  get the value of hilite; if that's the state the control is already in, we have
 ;  nothing to do.
 ;
 				MOVE.B	9(SP),D1				;get low byte of fHilite
 				MOVE.B	ContrlHilite(A0),D0 	;remember old HiliteState
 				CMP.B	D0,D1					;are they the same?
-				BEQ.S	DoneHiControl			;if they are, we’re done
+				BEQ.S	DoneHiControl			;if they are, we're done
 ;
 ; the hilite state has changed so update the control data structure and redraw it
 ;
@@ -1014,7 +1014,7 @@ CopyCTitle										;									<3>
 ;
 GoTstVis
 				TST.B	D3						;was it visible?
-				BEQ.S	DoneSetCString			;if not, we’re done
+				BEQ.S	DoneSetCString			;if not, we're done
 				MOVE.L	A3,-(SP)				;push control handle
 				_ShowControl					;make it visible
 ;
@@ -1077,7 +1077,7 @@ SetCtlCommon
 ; if the new value is the same as the current one, we have nothing to do
 ;
 				CMP.W	0(A0,D0),D1 			;has it changed?
-				BEQ.S	ValSetDone				;if not, we’re done
+				BEQ.S	ValSetDone				;if not, we're done
 
 ; update the new value
 
@@ -1098,7 +1098,7 @@ SetCtlCommon
 
 @2
 				MOVE.W	D1,ContrlValue(A0)		;move in the new value
-				MOVE	#inThumb,D1 			;tell defProc we’re changing thumb
+				MOVE	#inThumb,D1 			;tell defProc we're changing thumb
 				BSR 	CallDControl			;tell control to redraw itself
 ;
 ; all done -- restore A3, strip parameters and return
@@ -1126,7 +1126,7 @@ SetCtlMax
 ;  FUNCTION TestControl(theControl: controlHandle; thePt: Point): INTEGER;
 ;
 ;	TestControl tests to see if a given point is inside a given control.  The point
-;  is assumed to be in the local coordinates of the control’s owning window.  It
+;  is assumed to be in the local coordinates of the control's owning window.  It
 ;  returns an integer which is 0 if the point is not in the control at all or some
 ;  small integer indicating what part of the control the button is in.
 ;
@@ -1135,16 +1135,16 @@ TestControl
 				MOVE.L	12(SP),A3				;get control handle
 				MOVE.L	(A3),A0 				;get control pointer
 ;
-;  if the control isn’t visible, return 0
+;  if the control isn't visible, return 0
 ;
 				CLR.W	16(SP)					;assume its not in the control
 				MOVE.B	ContrlVis(A0),D1		;is it visible?
-				BEQ.S	DoneTControl			;if not visible, we’re done
+				BEQ.S	DoneTControl			;if not visible, we're done
 ;
 ; if its hilite state is 255, pretend its invisible
 ;
 				CMP.B	#$FF,ContrlHilite(A0)	;is it selectable?
-				BEQ.S	DoneTControl			;if not, don’t really check it
+				BEQ.S	DoneTControl			;if not, don't really check it
 ;
 ;  test the control by sending the control definition routine the "hit-test" message
 ;
@@ -1170,25 +1170,25 @@ DoneTControl
 ;  the bounding rect but are acceptable if the mouse goes up in the slopRect (which
 ;  always contains the boundsRect)
 ;
-DragControl 	CLR.W	DragFlag				;flag where we’re coming from
+DragControl 	CLR.W	DragFlag				;flag where we're coming from
 ;
 DragCon1
 				LINK	A6,#0					;estblish stack frame
 				MOVEM.L D3-D4/A3-A4,-(SP)		;save work registers
 				MOVEM.L 14(A6),D3-D4/A3 		;suck up the parameters
 ;
-;  save current grafPort and get into the control owner’s port
+;  save current grafPort and get into the control owner's port
 ;
 				BSR 	OwnerPort
 ;
 ; issue the "custom drag" message -- if the control definition proc "accepts" it
-;  by returning a non-zero result, there’s nothing more to do
+;  by returning a non-zero result, there's nothing more to do
 ;
 				MOVE	DragFlag,D1 			;get indicator boolean as parameter
 				MOVEQ	#DragCtlMsg,D0			;its a drag, man...
 				BSR 	CallControl 			;tell the defProc about it
 				TST 	D0						;did the defProc implement it?
-				BNE.S	DoneDC1 				;if so, we’re done (clear offset)
+				BNE.S	DoneDC1 				;if so, we're done (clear offset)
 ;
 ;
 ;  allocate a region and ask the control definition procedure to update it
@@ -1196,7 +1196,7 @@ DragCon1
 				JSR 	GetNewRgn				;allocate a new region
 
 				MOVEQ	#CalcWholeCtlMsg,D0		;message is calculate whole regions			<1.2>
-				TST.W	DragFlag				;if we’re called as real MoveControl,		<1.2>
+				TST.W	DragFlag				;if we're called as real MoveControl,		<1.2>
 				BEQ.S	@0						;then we picked the right message			<1.2>
 				MOVEQ	#CalcThumbCtlMsg,D0		;else message is calculate thumb regions	<1.2>
 @0												;											<1.2>
@@ -1219,14 +1219,14 @@ DragCon1
 ;
 				MOVE.L	CurDragAction,-(SP) 	;push the action proc
 				TST.W	DragFlag				;are we tracking an indicator?
-				BNE.S	@1						;if so, we’re cool
+				BNE.S	@1						;if so, we're cool
 				CLR.L	(SP)					;no actionProc for DragControl
 @1				_DragTheRgn 					;use window manager drag routine
 
 				MOVE.L	ExpandMem,a0			;	Now, clear the parameter we passed to		<LW9>
 				Clr.l	ExpandMemRec.emControlHandle(a0)	; DragTheRgn						<LW9>
 ;
-; dispose of the region -- we don’t need it anymore
+; dispose of the region -- we don't need it anymore
 ;
 				MOVE.L	A4,-(SP)				;push the region
 				_DisposRgn						;dispose it
@@ -1234,16 +1234,16 @@ DragCon1
 ;  get the motion offset and, if its non-zero, send a message to the control
 ;
 				MOVE.L	(SP)+,D3				;get the delta it was moved
-				BEQ.S	DoneDrgControl			;if zero, don’t move it
+				BEQ.S	DoneDrgControl			;if zero, don't move it
 				CMP.W	#$8000,D3				;was it aborted?
 				BNE.S	DCMoveIt				;if not, skip
 DoneDC1
 				MOVEQ	#0,D3					;pretend it was 0
-				BRA.S	DoneDrgControl			;and we’re done
+				BRA.S	DoneDrgControl			;and we're done
 
 DCMoveIt
 				TST.W	DragFlag				;called from real MoveControl?
-				BNE.S	DoneDrgControl			;if not, don’t move
+				BNE.S	DoneDrgControl			;if not, don't move
 ;
 ;  call MoveControl to move it to its new position
 ;
@@ -1304,13 +1304,13 @@ OwnerPort
 ;  etc.).  It returns a position code indicating where the mouse was in the control when
 ;  the button when up (useful for momentary buttons).
 ;
-;  If the actionProc parameter is NIL, it won’t call any actionProc.  If its -1 (actually,
+;  If the actionProc parameter is NIL, it won't call any actionProc.  If its -1 (actually,
 ;  any odd number) it will use the local actionProc that is part of the control data
-;  structure. If the local actionProc is odd, don’t use it... instead, send a message
+;  structure. If the local actionProc is odd, don't use it... instead, send a message
 ;  to the defProc.
 ;
-;	  If the classification code of the part of the control we’re in is > 128, then
-;	we’re in an indicator part of a dial.  If so, case out and drag the indicator
+;	  If the classification code of the part of the control we're in is > 128, then
+;	we're in an indicator part of a dial.  If so, case out and drag the indicator
 ;	around.
 ;
 TrackControl
@@ -1375,7 +1375,7 @@ CheckAction
 				_HiliteControl					;hilite it
 
 				MOVE.L	8(A6),D0				;is there an actionProc?
-				BEQ.S	TCNextMouse 			;"There’s no action..." (E. Costello)
+				BEQ.S	TCNextMouse 			;"There's no action..." (E. Costello)
 ;
 ; is it odd? if so, use the local one
 ;
@@ -1482,7 +1482,7 @@ DoTheThumb
 				ADDQ	#4,SP					;pop off control handle
 				LEA 	-28(A6),A0				;get address of parameter block
 				MOVE.L	12(A6),(A0) 			;set it up with the mousePt
-				MOVE.L	A0,D1					;that’s the parameter block
+				MOVE.L	A0,D1					;that's the parameter block
 				MOVEQ	#ThumbCtlMsg,D0 		;calculate the boxes
 				BSR 	CallControl 			;ask the control to do it
 ;
@@ -1497,7 +1497,7 @@ DoTheThumb
 				BTST	#0,D0					;is the built-in one odd?
 				BEQ.S	@1						;if not, use it
 
-				MOVEQ	#0,D0					;otherwise, don’t use it
+				MOVEQ	#0,D0					;otherwise, don't use it
 @1
 				MOVE.L	D0,CurDragAction		;set up implicit actionProc param
 
@@ -1514,7 +1514,7 @@ DoTheThumb
 				CLR.W	DragFlag				;clear the drag flag		<SM17> CSS
 ;
 				TST.L	D1						;did it move at all?
-				BEQ.S	ReturnZero				;if not, we’re done
+				BEQ.S	ReturnZero				;if not, we're done
 				ADD		#2,SP					;remove saved value of control as DragControl 	<SM16> CSS
 												;told us the truth.
 ;
@@ -1564,7 +1564,7 @@ UpdtControls
 ;  PROCEDURE DrawControls(theWindow: windowPtr);
 ;
 ;	 DrawControls is used to draw all the controls of a given window
-;	 Don’t call the defProc for controls that aren’t in the portRect
+;	 Don't call the defProc for controls that aren't in the portRect
 
 DrawControls
 				LINK	A6,#-24 				; set up stack frame
@@ -1588,7 +1588,7 @@ DCCommon
 				_PenNormal						;set the pen to normal
 ;
 				MOVE.L	WControlList(A3),D0 	;get 1st control in list
-				BEQ.S	DoneDrwCtls 			;if NIL, we’re done
+				BEQ.S	DoneDrwCtls 			;if NIL, we're done
 ;
 ; Here is the loop that issues the "draw yourself" message to each control in the list.
 ; If it is UpdateControls, it only issues message to controls in update region.
@@ -1597,11 +1597,11 @@ DCLoop
 				MOVE.L	D0,A3					;get controlHandle in A3
 
 				CMP.W	#updateSW,D7			; is it update?
-				BNE.S	DoDC					; => no, don’t check region
+				BNE.S	DoDC					; => no, don't check region
 
 				SUBQ	#2,SP					; room for result
 				MOVE.L	(A3),A0 				; handle -> pointer
-				PEA 	contrlRect(A0)			; push the control’s rect
+				PEA 	contrlRect(A0)			; push the control's rect
 				MOVE.L	8(A6),-(SP) 			; push the region handle
 				_RectInRgn						; does the item need to be updated?
 				TST.B	(SP)+					; NE if update needed
@@ -1629,14 +1629,14 @@ DoneDrwCtls
 ;  DELETELIST -- delete an element from a list.  On entry, A0 contains the
 ;  handle of the element to be deleted while A1 contains the address of the
 ;  list header.  On exit, D0 contains zero if the deletion was successful
-;  and -1 if the element to be deleted couldn’t be found
+;  and -1 if the element to be deleted couldn't be found
 ;
 ;
 DeleteList
 				MOVEM.L D1/A2-A3,-(SP)			;save some A-regs to play with
-				MOVEQ	#-1,D0					;assume we can’t find it
+				MOVEQ	#-1,D0					;assume we can't find it
 				TST.L  (A1) 					;is the list empty?
-				BEQ.S	DELDONE 				;if so, we’re done
+				BEQ.S	DELDONE 				;if so, we're done
 				MOVE.L	(A1),A2 				;get handle of 1st element
 				MOVE.L	A1,A3					;header is "prev" element
 				BRA.S	DeleteNext				;dive right in
@@ -1646,12 +1646,12 @@ DeleteList
 DELETELOOP		MOVE.L	(A2),A3 				;get pointer to current element
 				MOVE.L	(A3),A2 				;get handle to next one
 				MOVE.L	A2,D1					;is it NIL?
-				BEQ.S	DELDONE 				;if so, we’re done
+				BEQ.S	DELDONE 				;if so, we're done
 DeleteNext
 				CMP.L	A0,A2					;is it the one we want?
-				BNE.S	DELETELOOP				;if at first you don’t succeed...
+				BNE.S	DELETELOOP				;if at first you don't succeed...
 ;
-; delete the element pointed to by A2.	A3 points to it’s predecessor
+; delete the element pointed to by A2.	A3 points to it's predecessor
 ;
 				MOVE.L	(A2),A2 				;get pointer to one to be deleted
 				MOVE.L	(A2),(A3)				;delete it!

@@ -38,7 +38,7 @@
 ;									Rolled in patches to DSHook.
 ;									include FileMgrHooks.a till someone rolls it in.
 ;									• Pre-SuperMario comments follow •
-;		 <4>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		 <4>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		 <3>	 9/12/91	JSM		Cleanup header.
 ;		 <2>	 6/12/91	LN		Changed #include 'HardwareEqu.a' to 'HardwarePrivateEqu.a'
@@ -71,7 +71,7 @@
 ;	   <1.4>	 1/16/89	GGD		Added a scratch register parameter to the BigJSR macro calls
 ;									since it will be needed when they change to use PC relative
 ;									addressing.
-;	   <1.3>	11/21/88	CCH		Replaced references to forRAM with “NOT forROM.”
+;	   <1.3>	11/21/88	CCH		Replaced references to forRAM with 'NOT forROM.'
 ;	   <1.2>	11/17/88	GGD		Moved file system initialization code from StartBoot into TFS.a,
 ;									Changed BigJsr's into Jsr, since they now reach.
 ;	   <1.1>	11/10/88	CCH		Fixed Header.

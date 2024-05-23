@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <3>	 8/15/91	MH		Add conditional assembly wrapper
-;		 <2>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <2>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

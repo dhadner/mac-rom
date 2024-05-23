@@ -18,8 +18,8 @@ Created: Saturday, July 27, 1991 at 8:49 PM
 									Mac comment. Matched parameter names to .h file.
 		 <5>	11/12/90	DFH		Add highLevelEventMask, remove childDiedMessage. Isolate
 									obsolete equates.
-		 <4>	10/19/90	gbm		Fix Dave’s mistake. Actually, his REAL mistake was checking in a
-									file that he hadn’t compiled... if he had, then he would have
+		 <4>	10/19/90	gbm		Fix Dave's mistake. Actually, his REAL mistake was checking in a
+									file that he hadn't compiled... if he had, then he would have
 									noticed the missing semi-colon!
 		 <3>	10/19/90	DFH		Added convertClipboardFlag.
 		 <2>	10/19/90	DFH		Added resumeFlag.

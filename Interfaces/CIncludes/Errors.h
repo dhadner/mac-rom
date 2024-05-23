@@ -12,7 +12,7 @@ Created: Saturday, July 27, 1991 at 3:09 PM
 
 	  <SM10>	  2/6/94	pdw		Removed trailing comma to avoid C warning.
 	   <SM9>	 1/13/94	chp		Moved some serial driver bit definitions to Serial.h since they
-									aren’t system errors or result codes.
+									aren't system errors or result codes.
 	   <SM8>	  8/3/93	BH		Added manual-eject errors: dsRemoveDisk, dsDirtyDisk.
 		<32>	 6/15/93	JDR		All errors belong here. Moved Speech Manager errors back to
 									where they belong.
@@ -404,7 +404,7 @@ enum {
  notLockedErr = -623							/*specified range of memory is not locked*/
 };
 enum {
- interruptsMaskedErr = -624,					/*don’t call with interrupts masked*/
+ interruptsMaskedErr = -624,					/*don't call with interrupts masked*/
  cannotDeferErr = -625,							/*unable to defer additional functions*/
  ddpSktErr = -91,								/*error in soket number*/
  ddpLenErr = -92,								/*data length too big*/
@@ -657,7 +657,7 @@ enum {
  dsFinderErr = 41,								/*can't load the Finder error*/
  dsBadSlotInt = 51,								/*unserviceable slot interrupt*/
  dsBadSANEOpcode = 81,							/*bad opcode given to SANE Pack4*/
- dsBadPatchHeader = 83,							/*SetTrapAddress saw the “come-from” header*/
+ dsBadPatchHeader = 83,							/*SetTrapAddress saw the 'come-from' header*/
  menuPrgErr = 84,								/*happens when a menu is purged*/
  dsMBarNFnd = 85,								/*Menu Manager Errors*/
  dsHMenuFindErr = 86,							/*Menu Manager Errors*/
@@ -666,7 +666,7 @@ enum {
  dsMDEFNotFound = 89							/*could not load MDEF*/
 };
 enum {
- dsNoFPU = 90,									/*an FPU instruction was executed and the machine doesn’t have one*/
+ dsNoFPU = 90,									/*an FPU instruction was executed and the machine doesn't have one*/
  dsNoPatch = 98,								/*Can't patch for particular Model Mac*/
  dsBadPatch = 99,								/*Can't load patch resource*/
  dsParityErr = 101,								/*memory parity error*/
@@ -684,28 +684,28 @@ enum {
  dsDirtyDisk = 20004,							/*request user to return a manually-ejected dirty disk <SM8> <BH 03Aug93>*/
 
 /*System Errors that are used after MacsBug is loaded to put up dialogs since these should not cause MacsBug to stop, they must be in the range (30, 42, 16384-32767) negative numbers add to an existing dialog without putting up a whole new dialog*/
- dsMacsBugInstalled = -10,						/*say “MacsBug Installed”*/
- dsDisassemblerInstalled = -11,					/*say “Disassembler Installed”*/
- dsExtensionsDisabled = -13,					/*say “Extensions Disabled”*/
+ dsMacsBugInstalled = -10,						/*say 'MacsBug Installed'*/
+ dsDisassemblerInstalled = -11,					/*say 'Disassembler Installed'*/
+ dsExtensionsDisabled = -13,					/*say 'Extensions Disabled'*/
  dsGreeting = 40,								/*welcome to Macintosh greeting*/
  dsSysErr = 32767,								/*general system error*/
 
-/*old names here for compatibility’s sake*/
+/*old names here for compatibility's sake*/
  WDEFNFnd = dsWDEFNotFound
 };
 enum {
  CDEFNFnd = dsCDEFNotFound,
  dsNotThe1 = 31,								/*not the disk I wanted*/
  dsBadStartupDisk = 42,							/*unable to mount boot volume (sad Mac only)*/
- dsSystemFileErr = 43,							/*can’t find System file to open (sad Mac only)*/
- dsHD20Installed = -12,							/*say “HD20 Startup”*/
+ dsSystemFileErr = 43,							/*can't find System file to open (sad Mac only)*/
+ dsHD20Installed = -12,							/*say 'HD20 Startup'*/
  mBarNFnd = -126,								/*system error code for MBDF not found*/
  hMenuFindErr = -127,							/*could not find HMenu's parent in MenuKey*/
  userBreak = -490,								/*user debugger break*/
  strUserBreak = -491,							/*user debugger break; display string on stack*/
  exUserBreak = -492,							/*user debugger break; execute debugger commands on stack*/
 
-/*obsolete errors that are no longer used, but I don’t have the guts to remove from this file*/
+/*obsolete errors that are no longer used, but I don't have the guts to remove from this file*/
  selectorErr = paramErr  						/*bad selector, for selector-based traps*/
 };
 

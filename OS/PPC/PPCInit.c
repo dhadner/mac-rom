@@ -10,14 +10,14 @@
 		<62>	10/28/92	DTY		Use new Get/Set macros to access ExpandMem.
 		<61>	  6/8/92	JSM		For TheFuture, check emProcessMgrExists global instead of
 									calling Gestalt all the time in initUserGroupFile().
-		<60>	 4/17/92	JSM		Don’t ever check to see whether to return
+		<60>	 4/17/92	JSM		Don't ever check to see whether to return
 									gestaltPPCSupportsStoreAndForward in PPCGESTALTFUNCTION(), it
 									will never happen for CubeE.
 		<59>	 4/14/92	BBM		<JSM>: Remove unfinished PPC code that is under the contitional
-									“TheFutute”, and remove the conditional “CubeE” since that is
+									'TheFutute', and remove the conditional 'CubeE' since that is
 									reality. Remove conditionals, since all they do is confuse.
 		<58>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
-		<57>	 9/30/91	DTY		Dean’s in the dog house. The System build got derailed with that
+		<57>	 9/30/91	DTY		Dean's in the dog house. The System build got derailed with that
 									last change.
 		<56>	 9/29/91	DTY		Conditionalize <54> and <55> out of CubeE.
 		<55>	 6/10/91	EMT		Optimize code for size
@@ -27,7 +27,7 @@
 									moved call to GetIndString after it has been determined that we
 									need to open the users and groups b-tree.
 		<52>	 1/27/91	csd		gbm: Begin and End System Mode around the call to OpenUGBT so
-									that the Users & Groups Data File doesn’t get closed when the
+									that the Users & Groups Data File doesn't get closed when the
 									active process terminates.
 		<51>	 1/25/91	EMT		VC: GSM-089, Fix problem that prevents PPC from opening the .MPP
 									driver when the portable wakes up.
@@ -73,7 +73,7 @@
 	    <30>	  9/4/90	EMT		Eric's Changes rolled in
 		<29>	 8/21/90	EMT		Fix Shutdown bug for SE with router.
 		<28>	 8/13/90	S		Bug Fix Related Checking Duplicate Network Name.
-		<27>	 8/10/90	gbm		get rid of “unused local variable” warning in SetToolBoxName
+		<27>	 8/10/90	gbm		get rid of 'unused local variable' warning in SetToolBoxName
 		<26>	 8/10/90	gbm		fix power manager attribute test for sleep proc install
 		<25>	 8/10/90	S		Change CountAcceptedNetworkSessions to pascal interface
 		<24>	  8/8/90	S		Fixed Portable Problem & CountAcceptedSessions Problem.

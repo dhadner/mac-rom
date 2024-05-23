@@ -112,7 +112,7 @@ SConfigRecSize	EQU		*
 ;
 ;	Routine:	PruneList
 ;
-;	Inputs:		d0.b	-	sRsrcID of the “keeper”
+;	Inputs:		d0.b	-	sRsrcID of the 'keeper'
 ;				d3.l	-	sRsrcID of 4 family-mode alternates
 ;				a0		-	pointer to appropriately filled-out SpBlock
 ;				a1		-	pointer to list of sRsrcIDs
@@ -121,22 +121,22 @@ SConfigRecSize	EQU		*
 ;
 ;	Destroys: 	d0-d2/a1
 ;
-;	Function:	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;				of the entries in the table.  Those IDs that don’t match
+;	Function:	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;				of the entries in the table.  Those IDs that don't match
 ;				the keeper or alternate ID's are pruned.  Those that don't match 
 ;				the keeper, but match one of the alternate ID's will be disabled.
 ;---------------------------------------------------------------------
 			WITH	SpBlock
 
-PruneList		move.b	d0,-(sp)					; Remember the ID of the “keeper.”							
+PruneList		move.b	d0,-(sp)					; Remember the ID of the 'keeper.'							
 				move.w	(a1)+,d1					; Get the zero-based counter into D1.
 
 				Move.l	D3,D2						; Get the list of family modes.
 				Andi.l	#$00FFFFFF,D2				; Remember if there are any alternatives.
 
 @repeat			move.b	(a1)+,d0					; Get an sRsrc ID.
-				cmp.b	(sp),d0						; If it’s the keeper,
-				beq.s	@until						;	then don’t prune it.
+				cmp.b	(sp),d0						; If it's the keeper,
+				beq.s	@until						;	then don't prune it.
 				move.b	d0,spID(a0)					; else, set ID so we can prune/disable it
 
 				Tst.l	D2							; If there are no family-mode alternatives,
@@ -203,7 +203,7 @@ Delay8ms		move.w	TimeVIADB,d0
 ;	Function:	Sends the specified data to the PLL through the VIA (AIV3).
 ;---------------------------------------------------------------------
 
-SendPLLData		Move.l		D3,-(Sp)				; Save D3 (as it’s a global).
+SendPLLData		Move.l		D3,-(Sp)				; Save D3 (as it's a global).
 				rol.l		#6,d0					; First, move starting bit into bit 6.
 
 @nextBit		move.l		d0,d3					; Get the data.
@@ -297,10 +297,10 @@ SetDotClock		move.l	a0,-(sp)							; save regs
 
 BeginVSCInit
 
-; Set up initial “vendor” status.
+; Set up initial 'vendor' status.
 				
 				link	a6,#SFSize							; Allocate stack space for locals.
-				move.w	#seSuccess,seStatus(a0)				; Just say that we’re okay.
+				move.w	#seSuccess,seStatus(a0)				; Just say that we're okay.
 				
 ;
 ; Perform some generic initializations.
@@ -316,7 +316,7 @@ BeginVSCInit
 				lea		spBlk(a6),a0						; Point A0 at our local SpBlock.
 				lea		sPRAMBlk(a6),a2						; Get a pointer to our local SPRAMBlock.
 				move.l	a2,spResult(a0)						; Put our pointer in the SpBlock.
-				_sReadPRAMRec								; Read Slot $E’s pRAM.
+				_sReadPRAMRec								; Read Slot $E's pRAM.
 				
 				tst.w	SP_BoardID(a2)						; If the board ID is non-zero,
 				bne.s	@VSCVideoInit						;	then just go on.
@@ -331,7 +331,7 @@ BeginVSCInit
 				move.l	A2,spsPointer(a0)					;
 				_InitSlotPRAM								;
 				
-; In a “classic” PrimaryInit, this is the point in the code where would actually go out to
+; In a 'classic' PrimaryInit, this is the point in the code where would actually go out to
 ;	detect the kind of display that is connected.  However, since that has already been
 ;	done for us by the Docking Manager, we just read the indexed MonID from PRAM here.
 
@@ -348,11 +348,11 @@ BeginVSCInit
 				lea		AIV3Base,a3							; Point to AIV3 base.
 				
 ;-------------------------------------------------------
-; We’ll size VRAM later if necessary.  For now, just assume
+; We'll size VRAM later if necessary.  For now, just assume
 ;	512K.  See the VRAM sizing notes below.
 ;-------------------------------------------------------
 
-				Moveq	#0,D4								; Assume there’s 512K of VRAM for now.
+				Moveq	#0,D4								; Assume there's 512K of VRAM for now.
 
 ;-------------------------------------------------------
 ; Get the video parameters for this monitor (1bbp) and use to setup the dot-clock
@@ -371,12 +371,12 @@ BeginVSCInit
 				mulu	d4,d0								; Multiply by the right entry.
 				adda.l	d0,a1								; Skip to the right VRAM entry.
 
-				Move.b	sRsrcID(A1),D5						; Get an “okay” sRsrcID into D5.
+				Move.b	sRsrcID(A1),D5						; Get an 'okay' sRsrcID into D5.
 				move.b	modeID(a1),d7						; Get the default mode (depth).
 				move.l	sRsrcID(a1),d3						; get both family ID's (if any) in d3 (for disabling)
 				
-				Clr.l	vidParamsPtr(A6)					; Remember that we haven’t loaded in vidParams yet.
-				Cmpi.b	#sRsrc_VSC_NeverMatch,D5			; If it’s the null one, then
+				Clr.l	vidParamsPtr(A6)					; Remember that we haven't loaded in vidParams yet.
+				Cmpi.b	#sRsrc_VSC_NeverMatch,D5			; If it's the null one, then
 				Beq		@SetConfig							;	just get ready to leave.
 				
 				lea		spBlk(a6),a0						; Point A0 at our local SpBlock.
@@ -386,7 +386,7 @@ BeginVSCInit
 				move.b	#sVidParmDir,spID(a0)				; Look for the video parameters directory.
 				_sFindStruct
 				
-				move.b	D5,spID(a0)							; Look in the directory for this config’s params.
+				move.b	D5,spID(a0)							; Look in the directory for this config's params.
 				_sGetBlock
 				
 				move.l	spResult(a0),a1						; Get a pointer to the vidParams for this config.
@@ -412,7 +412,7 @@ BeginVSCInit
 						  (1<<VSCEnDotClk)),VSC_VidCtrl(a4) ; enable the dot clock
 
 ;-------------------------------------------------------
-; Initialize built-in video’s PRAM.
+; Initialize built-in video's PRAM.
 ;-------------------------------------------------------
 			
 			WITH	SP_Params
@@ -429,7 +429,7 @@ BeginVSCInit
 				move.b	d7,SP_Depth(a2)						; Set the default depth for this configuration.
 
 @WritePRAM		move.l	a2,spsPointer(a0)					; Set up the PRAM parameter block.
-				_sPutPRAMRec								; Write out Slot $E’s pRAM.
+				_sPutPRAMRec								; Write out Slot $E's pRAM.
 
 				move.b	SP_LastConfig(a2),d5				; Get requested ID into D5.
 
@@ -446,7 +446,7 @@ BeginVSCInit
 ;	leave.
 ;-------------------------------------------------------
 				
-				Cmpi.b	#sRsrc_VSC_NeverMatch,D5			; If we’ve got a known configuration,
+				Cmpi.b	#sRsrc_VSC_NeverMatch,D5			; If we've got a known configuration,
 				Bne.s	@EndConfig							; 	then just go on.
 				
 				Bclr	#VidPwrEn,AIV3PwrEn(a3)				; Only turn off video power.
@@ -462,7 +462,7 @@ BeginVSCInit
 					
 				Movea.l	vidParamsPtr(a6),A0					; Get the vidParams pointer.
 								
-				Cmp.b	startingConfig(A6),D5				; If this isn’t the config we started with,
+				Cmp.b	startingConfig(A6),D5				; If this isn't the config we started with,
 				Bne.s	@NewConfig							;	then go reload.
 				
 				Movea.l	A0,A1								; Get the vidParams pointer into A1.
@@ -478,7 +478,7 @@ BeginVSCInit
 				move.b	#sVidParmDir,spID(a0)				; Look for the video parameters directory.
 				_sFindStruct
 				
-				move.b	d5,spID(a0)							; Look in the directory for this config’s params.
+				move.b	d5,spID(a0)							; Look in the directory for this config's params.
 				_sGetBlock
 				
 				move.l	spResult(a0),a1						; Get a pointer to the correct vidParams.
@@ -569,13 +569,13 @@ BeginVSCInit
 			
 ; Next, wait a few frames to let the monitor catch up with us…
 ;
-				Moveq	#5-1,D1								; We’re going to wait 5 VBLs. 
+				Moveq	#5-1,D1								; We're going to wait 5 VBLs. 
 @WaitBlank		Clr.b	VSC_IntClear(A4)					; Clear the current VBL.
-@SyncLoop		Btst	#slotVBL,AIV3SlotInt(A3)			; If it’s not pending (0=pending),
+@SyncLoop		Btst	#slotVBL,AIV3SlotInt(A3)			; If it's not pending (0=pending),
 				Bne.s	@SyncLoop							;	then keep looping.
-				Dbra	D1,@WaitBlank						; Keep loop ’til done.
+				Dbra	D1,@WaitBlank						; Keep loop 'til done.
 
-; Finally, let’s show that video.
+; Finally, let's show that video.
 ;
 				Ori.b	#(1<<VSCblankBit),VSC_VidCtrl(A4)	; Enable blanking.
 

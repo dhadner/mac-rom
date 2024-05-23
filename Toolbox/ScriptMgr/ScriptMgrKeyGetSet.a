@@ -57,9 +57,9 @@
 ;									(once with smScriptKeys and once with smScriptIcon) and
 ;									KeyScript to change the default keyboard layout.  (This assumes
 ;									s/he had already added the KCHR and icon resources to the System
-;									file.) Calling SetScript to update the ‘itlb’ to point to this new
-;									KCHR still works but calling KeyScript w/ the KCHR’s script no longer
-;									sets the KCHR as the active KCHR since the keyboard menu doesn’t
+;									file.) Calling SetScript to update the ‘itlb' to point to this new
+;									KCHR still works but calling KeyScript w/ the KCHR's script no longer
+;									sets the KCHR as the active KCHR since the keyboard menu doesn't
 ;									include it yet. (this broke in System 7)  The problem is that
 ;									the keyboard menu needs to be rebuilt to incorporate this
 ;									keyboard layout that was added to the system and which is now
@@ -69,7 +69,7 @@
 ;									smKeyRoman, smKeySysScript, smKeySwapScript, or when an explicit
 ;									script code is specified.  Once the menu is rebuild, we re-search
 ;									the menu for the desired KCHR.  If the keyboard layout is not found,
-;									the menu will default to the system script’s current keyboard 
+;									the menu will default to the system script's current keyboard 
 ;									layout rather than display a trashed icon.
 ;									• #1031491: when switching from an application using an old-style
 ;									IM to the Finder using a keyboard layout, will now correctly 
@@ -495,9 +495,9 @@ envKeyMenu
 			move.l	ExpandMem,a1			; get ExpandMemRec ptr								<35>
 			move.l	emScriptAppGlobals(a1),a1	; get globals handle							<35>
 			move.l	a1,d1					; is it 0 (no app-specific ScriptMgr globals)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 			addq.l	#1,d1					; is it -1 (no Process Mgr yet, use sys cache)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 
 			move.l	(a1),a1					; dereference - get ptr to globals					<35>
 			move.l	a1,-(sp)				; save for action routine (since use a1 for JmpDoVerb)	<35>
@@ -534,9 +534,9 @@ NextKybdInScript							; -4, smKeyNextKybd									<8>
 			move.l	ExpandMem,a1			; get ExpandMemRec ptr								<35>
 			move.l	emScriptAppGlobals(a1),a1	; get globals handle							<35>
 			move.l	a1,d1					; is it 0 (no app-specific ScriptMgr globals)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 			addq.l	#1,d1					; is it -1 (no Process Mgr yet, use sys cache)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 			move.l	(a1),a1					; dereference - get ptr to globals					<35>
 			cmp.b	#1,smgrAppDisableKybds(a1)	; all switching disabled?						<35>
 			endWith							;													<35>
@@ -591,7 +591,7 @@ NextKybdInScript							; -4, smKeyNextKybd									<8>
 			movem.l	(sp)+,d2-d5/a3
 			bra		KybdDone
 ; ------------------------------------------										<18>
-; move new KCHR id into itlbKeys temporarily (since not writing to ‘itlb’ resource in memory)
+; move new KCHR id into itlbKeys temporarily (since not writing to ‘itlb' resource in memory)
 @KCHRinput
 			move.w	itemRsrcID(a3),scriptBundle.itlbKeys(a0)	; move new KCHR id into itlbKeys	<12>
 @RestoreStack
@@ -614,7 +614,7 @@ NextKybdInScript							; -4, smKeyNextKybd									<8>
 ; -------------------------------------------										<40>
 SynchKbdMenuState							; -18, smKeySynchKbdMenuState			<40>
 
-;		Set the keyboard menu state to correspond to the application’s 
+;		Set the keyboard menu state to correspond to the application's 
 ;		desired setting (enable/disable) in the application-specific
 ;		global flag, smgrAppDisableKybds.
 ;
@@ -753,9 +753,9 @@ ChkKbdRegs	reg		a3/a4/d0/d2/d3/d5			; now saving (using) d5 in the place of d2	<
 			move.l	ExpandMem,a1			; get ExpandMemRec ptr								<35>
 			move.l	emScriptAppGlobals(a1),a1	; get globals handle							<35>
 			move.l	a1,d1					; is it 0 (no app-specific ScriptMgr globals)?		<35>
-			beq		PushItemAndSetKybd		; if so, don’t do anything							<35><36>need bogus item on stack <45>
+			beq		PushItemAndSetKybd		; if so, don't do anything							<35><36>need bogus item on stack <45>
 			addq.l	#1,d1					; is it -1 (no Process Mgr yet, use sys cache)?		<35>
-			beq		PushItemAndSetKybd		; if so, don’t do anything							<35><36>need bogus item on stack <45>
+			beq		PushItemAndSetKybd		; if so, don't do anything							<35><36>need bogus item on stack <45>
 			move.l	(a1),a1					; dereference - get ptr to globals					<35>
 			cmp.b	#1,smgrAppDisableKybds(a1)	; what level of switching is enabled?			<35>
 			endWith							;													<35>
@@ -772,7 +772,7 @@ ChkKbdRegs	reg		a3/a4/d0/d2/d3/d5			; now saving (using) d5 in the place of d2	<
 ; --------------------------------------------------------------------------------- <4>
 ; In case default input (KCHR or input method) changed must update default input 
 ; menu item #. An example of this is when Keybd Cdev changes the KCHR for a script: 
-; it makes a SetScript call w/ verb ‘smScriptKeys’ for the new KCHR and then KeyScript
+; it makes a SetScript call w/ verb ‘smScriptKeys' for the new KCHR and then KeyScript
 ; is called w/ the script code.  When KeyScript is called w/ a script code it comes
 ; through here so the script's menu item # must be set here.						<4>
 ; --------------------------------------------------------------------------------- <4>
@@ -902,7 +902,7 @@ ChkKbdRegs	reg		a3/a4/d0/d2/d3/d5			; now saving (using) d5 in the place of d2	<
 			move.w	d1,d0
 			move.l	a4,a3						; menu ptr
 			mulu.w	#AuxMenuInfoSize,d0
-			add.w	d0,a3						; pt to next menuItem’s aux info
+			add.w	d0,a3						; pt to next menuItem's aux info
 			tst.l	IconSuiteH(a3)
 			beq.s	@NextItem
 
@@ -933,7 +933,7 @@ ChkKbdRegs	reg		a3/a4/d0/d2/d3/d5			; now saving (using) d5 in the place of d2	<
 @NextItem
 			add.w	#1,d1
 			dbra	d5,@InputLoop
-;;			move.w	#3,d1						; can’t find input item, use system script (item 3) <28>
+;;			move.w	#3,d1						; can't find input item, use system script (item 3) <28>
 ; Use the system script's default menu item # since can't find input item:					<32>
 ; 	need to get this from the script record - item #3 is not guaranteed to be the default	<32>
 ; 	only that it's in the system script (and ONLY if About Keyboards… menu item exists!)	<32>
@@ -1000,7 +1000,7 @@ ChkKbdRegs	reg		a3/a4/d0/d2/d3/d5			; now saving (using) d5 in the place of d2	<
 			move.w	d1,d0
 			move.l	a4,a3						; menu ptr
 			mulu.w	#AuxMenuInfoSize,d0
-			add.w	d0,a3						; pt to next menuItem’s aux info
+			add.w	d0,a3						; pt to next menuItem's aux info
 			tst.l	IconSuiteH(a3)
 			beq.s	@GetNextMenuItem
 
@@ -1075,9 +1075,9 @@ RotateScript								; renamed - was RotateKybd						<4>
 			move.l	ExpandMem,a1			; get ExpandMemRec ptr								<35>
 			move.l	emScriptAppGlobals(a1),a1	; get globals handle							<35>
 			move.l	a1,d1					; is it 0 (no app-specific ScriptMgr globals)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 			addq.l	#1,d1					; is it -1 (no Process Mgr yet, use sys cache)?		<35>
-			beq		KybdDone				; if so, don’t do anything							<35>
+			beq		KybdDone				; if so, don't do anything							<35>
 			move.l	(a1),a1					; dereference - get ptr to globals					<35>
 			cmp.b	#1,smgrAppDisableKybds(a1)	; are all keyboards in the menu disabled?		<35>
 ;;			cmp.b	#1,smgrDisableKybds(sGlb)	; are all keyboards in the menu disabled?		<8><35>
@@ -1507,7 +1507,7 @@ UpdateRegs	reg	d0/d1/d3/a0/a2/a3/a4
 			move.l	a5,-(sp)							; save a5						<#50><52> moved this
 			move.l	ExpandMem,a0						; ExpandMemRec pointer	<52>
 			tst.w	ExpandMemRec.emProcessMgrExists(a0)	; See if Process Manager is around <52>
-			beq.s	@noProcessMgr						; It’s not.  Don’t do any of change 50 <52>
+			beq.s	@noProcessMgr						; It's not.  Don't do any of change 50 <52>
 		 	
 			
 			suba.w	#10,sp					; room for result and PSN		<#50>
@@ -1597,7 +1597,7 @@ utSetTextServiceLanguage	PROC EXPORT	; <KSCT #24, #50>
 		
 		move.l	ExpandMem,a0						; ExpandMemRec pointer	<52>
 		tst.w	ExpandMemRec.emProcessMgrExists(a0)	; See if Process Manager is around <52>
-		beq.s	@noProcessMgr						; It’s not.  Don’t do any of change 50 <52>
+		beq.s	@noProcessMgr						; It's not.  Don't do any of change 50 <52>
 		
 	;; set up front process's A5 ...	; <KSCT #50>
 

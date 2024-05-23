@@ -36,7 +36,7 @@
 ;		<26>	 1/19/92	DTY		Turn on gestaltDietPatches in 'bugz'.
 ;		<25>	 1/10/92	DTY		Add gestaltTrueTypeFix to 'bugz'.
 ;		<24>	 1/10/92	DTY		Add 'bugz' gestalt selector with bits for 7 Up bugs that have
-;									been rolled into CubeE.  (The ones with 0’s aren’t in CubeE
+;									been rolled into CubeE.  (The ones with 0's aren't in CubeE
 ;									yet.)
 ;		<23>	12/17/91	DTY		Add gestaltResourceOverrides to the 'rsrc' attributes.
 ;		<22>	 12/2/91	SAM		Using official boxflag equates now.
@@ -57,17 +57,17 @@
 ;									completely.
 ;		<16>	 3/17/91	DTY		gbm, #SAM-005: Setting 'lram' to ROMBase is the Wrong Thing.
 ;									Since 'ptch' 5 is installed on all machines now anyway, and
-;									there’s a wrapper in the patch files which fill in the right
-;									values for 'lram' and 'ram ', the lramFix routine isn’t needed
-;									anymore, and is IF 0’d out.
-;		<15>	 3/12/91	SAM		#SAM-005:  Made the “lram” selector universal and not assume 8mb
+;									there's a wrapper in the patch files which fill in the right
+;									values for 'lram' and 'ram ', the lramFix routine isn't needed
+;									anymore, and is IF 0'd out.
+;		<15>	 3/12/91	SAM		#SAM-005:  Made the 'lram' selector universal and not assume 8mb
 ;									limit on 24 bit machines (or 32 bit machines running in 24 bit
 ;									mode).
 ;		<14>	  3/6/91	gbm		dba,csd,dty,#gbm0008: add Quickdraw features selector, fix
 ;									gestaltFSAttr to override the existing one...
 ;		<13>	 1/15/91	gbm		(bbm) Add new hardware attribute, gestaltHasSoftPowerOff
 ;		<12>	12/14/90	SAM		Patched New/Replace Gestalt check for a nil proc ptr and updated
-;									the “lram” selector patch code to work on all machines.
+;									the 'lram' selector patch code to work on all machines.
 ;		<11>	 12/5/90	gbm		<dba> Add two file system selectors: one for FSSpec calls
 ;									existing, and another for file system manager existing
 ;		<10>	11/29/90	SAM		Fixed a typo.

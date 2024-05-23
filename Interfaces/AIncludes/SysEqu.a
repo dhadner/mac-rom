@@ -30,9 +30,9 @@
 ;									Capatalized hex values for ioDestNamePtr and ioForeignPrivInfo1.
 ;									Also added and deleted some blank lines to match shipped version
 ;									of file.
-;		<26>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<26>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
-;		<25>	 1/25/91	stb		JDR: remove “unused” comments. They’re wrong. changed
+;		<25>	 1/25/91	stb		JDR: remove 'unused' comments. They're wrong. changed
 ;									ioAltAccessInfo[1-4] to ioForeignPrivInfo[1-4].
 ;		<24>	 1/16/91	JDR		(dba) Removed the comment Unused $0DE0.
 ;		<23>	  1/7/91	JDR		(dba) Adding messages sent to the monitor function in the
@@ -44,7 +44,7 @@
 ;									equates.
 ;	   	<19>	10/30/90	dnf		(dnf/th) Change FXInfo and DXInfo records to have fdScript and fdXFlags
 ;									fields.
-;		<18>	10/25/90	JJ		Rex V8: Add an equate for V8, the base address of Rex’s RBV-like
+;		<18>	10/25/90	JJ		Rex V8: Add an equate for V8, the base address of Rex's RBV-like
 ;									registers.
 ;		<17>	 8/29/90	dnf		Rename CatSearch param block fields to latest and most
 ;									documentably harmonious names.
@@ -902,7 +902,7 @@ ioACAccess		EQU			$2C						; access privileges
 ; values of user IDs and group IDs
 
 noUser			EQU			0						; no user
-administratorUser	EQU		1						; administrator’s user number
+administratorUser	EQU		1						; administrator's user number
 noGroup			EQU			0						; no group
 
 ; values of access privileges

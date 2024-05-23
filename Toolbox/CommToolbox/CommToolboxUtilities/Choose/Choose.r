@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 
-		<12>	 10/1/91	JSM		Don’t use SystemSevenOrLater, it always is.
+		<12>	 10/1/91	JSM		Don't use SystemSevenOrLater, it always is.
 		<11>	12/18/90	stb		& JDR; change SystemSevenOrBetter to SystemSevenOrLater
 		<10>	 9/10/90	JNG		Add alert if fail to open a tool
 		 <9>	 8/15/90	kaz		Centering shutdown alert.

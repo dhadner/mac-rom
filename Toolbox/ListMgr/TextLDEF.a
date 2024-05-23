@@ -211,7 +211,7 @@ ListDraw
 				CMP.W		(SP),D7				; will string fit? <11> Leave width on stack
 				BGE 		@noTruncate			; yes, no need to truncate <SM3> CSS 
 
-				addq		#2,sp				; <11> Width isn’t needed til after truncation.  Lose it.
+				addq		#2,sp				; <11> Width isn't needed til after truncation.  Lose it.
 				
 			IF doCondense THEN
 
@@ -260,7 +260,7 @@ ListDraw
 ; for right justified systems, shift the pen position left the width of the text.
 
 				tst.b		TESysJust+1			; <11> Right justified?
-				bz.s		@dontShiftPen		; <11> No.  Don’t move the pen
+				bz.s		@dontShiftPen		; <11> No.  Don't move the pen
 				move.w		(sp),d0				; <11> Length of truncated text
 				subq		#2,sp				; <11>
 				pea			4(sp)				; <11> Pointer to truncated string
@@ -268,7 +268,7 @@ ListDraw
 				move.w		d0,-(sp)			; <11> Length of truncated string
 				_TextWidth						; <11> Find out how wide it is
 				neg.w		(sp)				; <11> Use -width as amount to move the pen horizontally
-				clr.w		-(sp)				; <11> Don’t shift it vertically
+				clr.w		-(sp)				; <11> Don't shift it vertically
 				_Move							; <11> Move the pen.
 				
 ; draw the truncated text
@@ -303,7 +303,7 @@ ListDraw
 				bra.s		@drawCellText		; <11>
 @shiftPen
 				neg.w		(sp)				; <11> Use -width as amount to move then pen horizontally
-				clr.w		-(sp)				; <11> Don’t move vertically
+				clr.w		-(sp)				; <11> Don't move vertically
 				_Move							; <11> Move the pen.
 
 ; draw the text

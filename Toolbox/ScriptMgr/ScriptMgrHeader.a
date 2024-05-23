@@ -9,8 +9,8 @@
 ;
 ;		 <4>	 4/29/92	FM		Get rid of SysVers conditionals
 ;		 <3>	 4/10/90	PKE		Deleted conditionalized definition of SysVers.
-;		 <2>	 3/25/90	PKE		Updated header to BBS format. Don’t define forRom if undefined
-;									(it shouldn’t ever be).
+;		 <2>	 3/25/90	PKE		Updated header to BBS format. Don't define forRom if undefined
+;									(it shouldn't ever be).
 ;		 <1>	12/18/89	CCH		Adding for the first time into BBS. Changed include 'inc.sum.a'
 ;									to load 'StandardEqu.d'. Updated file name references.
 ;

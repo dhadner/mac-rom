@@ -39,8 +39,8 @@
 ;									routine itself disappeared.
 ;	  <SMG3>	  9/1/93	chp		Remove (completely) commented-out references to DMADispatch.
 ;	  <SM21>	 8/20/93	chp		Reflect some entry point name changes in InterruptHandlers.a and
-;									remove some entry points that don’t even exist any more. All
-;									changes affected only “vNoVector” entry points.
+;									remove some entry points that don't even exist any more. All
+;									changes affected only 'vNoVector' entry points.
 ;	  <SM20>	 8/13/93	pdw		Rearranged SCSI section - put noVectors from end of file back up
 ;									into regular area, removed some eliminated routines,
 ;									unvectorized some doubly-vectored one.

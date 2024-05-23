@@ -14,8 +14,8 @@
 ;									it, unlocks it upon return, and returns to the caller.
 ;									CalcMenuSize is an example of such a routine. The problem is
 ;									that the 'MDEF' calls CalcMenuSize itself, which causes the
-;									'MDEF' to get unlocked while it’s still executing. If the 'MDEF'
-;									handle get relocated by the Memory Manager, you’ll crash.
+;									'MDEF' to get unlocked while it's still executing. If the 'MDEF'
+;									handle get relocated by the Memory Manager, you'll crash.
 ;									Bracket calls to CalcMenuSize with code that saves and restores
 ;									the 'MDEF' handle state.
 ;		<15>	 5/14/92	KSM		#1028474,<DCC>: Update patch that calls SCUpperText to skip the
@@ -27,10 +27,10 @@
 ;		<13>	10/10/91	PKE		#1012672, For Cube-E (and Bruges): Use new SCUpperText routine
 ;									in MenuKey instead of UpperText, so we are independent of any
 ;									grafPort font. Include ScriptPriv.a.
-;		<12>	 8/30/91	DTY		Define hasCQD here since it’s no longer defined in BBSStartup.
+;		<12>	 8/30/91	DTY		Define hasCQD here since it's no longer defined in BBSStartup.
 ;									Defining it to be 0 for the System build seems like the wrong
 ;									thing since some of these patches apply to the colour machines,
-;									but that’s the way it used to be, so that’s the way it’ll stay.
+;									but that's the way it used to be, so that's the way it'll stay.
 ;		<11>	 8/22/91	KSM		csd,#Bruges: New InsrtResMenu call to fix sorting problem with
 ;									FONTs & FONDs. Call _UpperText instead of _UprString, MARKS in
 ;									MenuKey.
@@ -58,7 +58,7 @@
 ;
 ; <12>	When hasCQD was defined in {AvailableFeatures} in BBSStartup, it was defined
 ;	to be 0 for System builds, so keep it that way for future System builds.  This
-;	file probably won’t be used in ROM builds, but in case it ever is, define
+;	file probably won't be used in ROM builds, but in case it ever is, define
 ;	hasCQD to be true for those builds.
 ;
 
@@ -176,14 +176,14 @@ SaveMDEFHandleStateAroundCalcMenuSize	PatchProc _CalcMenuSize,(Plus,SE,II,IIci,P
 				subq	#2,sp					; Save space for the handle state
 				move.l	a0,-(sp)				; Push menu handle again for call through to CalcMenuSize
 				move.l	(a0),a0
-				move.l	MenuDefHandle(a0),a0	; Get menu’s definition procedure
-				_HGetState						; Get the handle’s current state
+				move.l	MenuDefHandle(a0),a0	; Get menu's definition procedure
+				_HGetState						; Get the handle's current state
 				move.b	d0,4(sp)				; Save the state in the space we allocated just now
 				jsrOld							; Call CalcMenuSize
 				move.b	(sp)+,d0				; Get the saved handle state
 				move.l	4(sp),a0				; Get the menu handle again
 				move.l	(a0),a0
-				move.l	MenuDefHandle(a0),a0	; Get the menu’s definition procedure
+				move.l	MenuDefHandle(a0),a0	; Get the menu's definition procedure
 				_HSetState						; Restore the previous handle state
 				move.l	(sp)+,(sp)				; Bubble up the return address over the parameter
 				rts
@@ -200,11 +200,11 @@ SaveA5AroundCallMDEFProc ComeFromPatchProc _LoadResource,AfterLoadResourceInCall
 				addq	#4,sp					; get rid of the return address
 				jsrOld							; call LoadResource
 
-				_HLock							; lock it the gentleman’s way
+				_HLock							; lock it the gentleman's way
 				MOVE.L	(A0),A0					; handle -> pointer
 
 				move.l	a5,8(a6)				; store A5 over one of the (already copied) parameters
-				move.l	CurrentA5,a5			; get the A5 he’s expecting
+				move.l	CurrentA5,a5			; get the A5 he's expecting
 
 				JSR		(A0)					; call him
 
@@ -279,7 +279,7 @@ EnabledKeyItemLoop								; <10> Loops to here when item in D3 > 31
 												; $1B and $1F so skip comparison
 
 @DoCompare		CMP.B	D0,D4					;do they match?
-				beqROM	ROMGOTMKEY				;if they do, we’ve found it!
+				beqROM	ROMGOTMKEY				;if they do, we've found it!
 
 KEYNEXTITEM		ADDQ	#1,D3					;bump to next item
 				CMPI.W	#31,D3					;<10> items > 31 are always enabled
@@ -297,7 +297,7 @@ NEXTBAR			subq	#6, d5					; bump to next item
 
 				jsrROM	ROMGetHA0List			; get HMenuList ptr in A0
 				move	lastHMenu(a0), d5		; get #HMenus
-				beqROM	ROMKeyNotFound			; none, so don’t check ’em
+				beqROM	ROMKeyNotFound			; none, so don't check 'em
 
 												; yes there are menus so check them backwards
 				move.l	MinusOne, d1			; set up for GetHIndex call
@@ -334,7 +334,7 @@ canSkipUpper									; <14>
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; <14>
 ; SynchKeyboardMenuState —	Make sure the keyboard menu state corresponds to the
-;							application’s desired setting (enable/disable) in the
+;							application's desired setting (enable/disable) in the
 ;							application-specific global flag, scriptDisableKybds
 ; Note: This patch should never be rolled in, this code should be in Process Manager.
 

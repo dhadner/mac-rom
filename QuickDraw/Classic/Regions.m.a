@@ -1,11 +1,11 @@
-;EASE$$$ READ ONLY COPY of file “regions.m.a”
+;EASE$$$ READ ONLY COPY of file 'regions.m.a'
 ;•1.3	MSH 05/23/1989 New version from EASE with new Bruce Leak trap (sounds
 ;		like plumbing, eh?).
 ; 1.2	BAL 05/18/1989  Added BitmapToRegion trap.
 ; 1.1	CCH 11/11/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.
 ; OLD REVISIONS BELOW
-; 1.2	CCH 10/12/1988 Changed “m.GrafType.a” to “GrafType.m.a”.
+; 1.2	CCH 10/12/1988 Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ; 1.1	MSH 5/18/88 Changed inclides to use m.GRAPHTYPES to work under EASE.
 ; 1.0	BBM 2/11/88 Adding file for the first time into EASE…
 ; END EASE MODIFICATION HISTORY 

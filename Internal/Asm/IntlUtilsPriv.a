@@ -13,7 +13,7 @@
 ;									requires high word of D0 to be zero to work.
 ;		 <9>	 10/9/91	JSM		Remove SysVers conditionals to fix ROM build.
 ;		 <8>	 8/22/91	JSM		Clean up header.
-;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <6>	  1/2/91	PKE		(bbm) Add macro for private IUClearCacheSys routine.
 ;		 <5>	 9/10/90	PKE		Add macro for private IUGetScriptItl routine.

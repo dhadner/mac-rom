@@ -13,7 +13,7 @@
 ;									is: Updated to the QuickTime 1.5 release of the interfaces.
 ;									General rearrangement of the stuff too.
 ;		 <5>	11/13/92	JDR		fix problems
-;		 <4>	 12/6/91	YK		Change the ‘already including this file’ variable to all
+;		 <4>	 12/6/91	YK		Change the ‘already including this file' variable to all
 ;									uppercase like neighbors.
 ;		 <3>	 12/5/91	JH		Trap macros are duplicated in Traps.a, so I'm removing the
 ;									macros from Components.a.

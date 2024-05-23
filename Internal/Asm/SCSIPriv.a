@@ -38,7 +38,7 @@
 ;										are unique to the Regatta version of the c96 SCSIMgr.
 ;		<10>	 8/22/91	JSM		Clean up header.
 ;		 <9>	 6/12/91	LN		added #include 'InternalOnlyEqu.a'
-;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	12/14/90	dnf		Add dispatch selector and macro for _SCSIBusy
 ;		 <6>	 9/14/90	MSH		Added to conditional list that extends the local storage to

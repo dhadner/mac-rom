@@ -14,8 +14,8 @@
 ;
 ;	   <SM2>	10/28/92	SWC		Changed VideoEqu.a->Video.a and ShutdownEqu.a->Shutdown.a.
 ;		 <1>	 10/6/92	GDW		New location for ROMLink tool.
-;	   <SM2>	  6/4/92	KW		(jmp,H7) Changed the “sRsrcZydecoDir” name to the more generic
-;									“sRsrcBFBasedDir” (BF=BoxFlag) name.
+;	   <SM2>	  6/4/92	KW		(jmp,H7) Changed the 'sRsrcZydecoDir' name to the more generic
+;									'sRsrcBFBasedDir' (BF=BoxFlag) name.
 ;	   <SM1>	  5/2/92	kc		Roll in Horror. Comments follow:
 ;		<H6>	01/11/92	jmp		Eliminated the dependencies on BoxFlag.
 ;		<H5>	12/16/91	HJR		Fix header.
@@ -30,9 +30,9 @@
 ;	the VideoInfo data structure has been modified to contain two new
 ;	fields.  One of these fields contains the particular sRsrc directory
 ;	directory (or Super sRsrc directory) to select.  However, some CPUs
-;	don’t have built-in video (e.g., the IIfx), so, by definition, those
+;	don't have built-in video (e.g., the IIfx), so, by definition, those
 ;	CPUs should be placed into the BoxFlag-based sRsrc directory.  The other
-;	field is a “way out” in cases where BoxFlag is necessary -- i.e., it
+;	field is a 'way out' in cases where BoxFlag is necessary -- i.e., it
 ;	contains the BoardSRsrcID.  For CPUs that fall into the BoxFlag-based
 ;	sRsrc directory, this field is just zero, indicating that the
 ;	board sRsrc is a derivative of BoxFlag.  Where the BoardSRsrcID
@@ -98,7 +98,7 @@ BeginSuperInit
 				Adda.l	VideoInfoPtr(A1),A1					; Point to the VideoInfo.
 				
 				Cmpa.l	#0,A1								; If there is no VideoInfo record,
-				Beq.s	@Done								;	then we’re done.
+				Beq.s	@Done								;	then we're done.
 				Move.b	SuperSRsrcDirID(A1),D0				; Otherwise, use the defined Super sRsrcDir ID.
 
 @Done			Move.b	D0,seStatus+1(A0)					; Return the super sRsrc directory id.

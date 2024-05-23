@@ -19,7 +19,7 @@
 
 	Modification history from StandardFile3.r below:
 
-		<36>	 10/1/91	JSM		Don’t use SystemSevenOrLater, it always is.
+		<36>	 10/1/91	JSM		Don't use SystemSevenOrLater, it always is.
 		<35>	 4/10/91	ngk		JDR, #BB-KA-036: set MENU -4000 to be non-purgable
 		<34>	  4/4/91	ngk		#f1-ngk-005: fix misspelling of "original" in error dialog.
 		<33>	 3/21/91	RLC		ngk,#83924 - Change string for save & open buttons to include
@@ -223,37 +223,37 @@ resource 'DITL' (rStandardFileOldGetID, purgeable)
 	} };
 
 
-// “Replace Existing” dialog: keep bounds within SF dialog to allow updates
+// 'Replace Existing' dialog: keep bounds within SF dialog to allow updates
 resource 'DLOG' (rSFReplaceExistingDialogID, purgeable)
 	{ {0, 0, 80, 200}, dBoxProc, invisible, noGoAway, 0, rSFReplaceExistingDialogID, "", centerParentWindow };
 resource 'DITL' (rSFReplaceExistingDialogID, purgeable)
 	{ {
 	{50, 120, 70, 190}, Button { enabled, "Replace" };
 	{50, 10, 70, 80}, Button { enabled, "Cancel" };
-	{10, 10, 40, 190}, StaticText { disabled, "Replace existing “^0” ?" };
+	{10, 10, 40, 190}, StaticText { disabled, "Replace existing '^0' ?" };
 	} };
 
 
 
-// “Stationary Warning” dialog: keep bounds within SF dialog to allow updates
+// 'Stationary Warning' dialog: keep bounds within SF dialog to allow updates
 resource 'DLOG' (rSFStationeryWrnDialogID, purgeable)
 	{ {0, 0, 150, 200}, dBoxProc, invisible, noGoAway, 0, rSFStationeryWrnDialogID, "", centerParentWindow }; /* <30, #82234> */
 resource 'DITL' (rSFStationeryWrnDialogID, purgeable)
 	{ {
 	{120, 120, 140, 190}, Button { enabled, "OK" };
 	{120, 10, 140, 80}, Button { enabled, "Cancel" };
-	{8, 10, 110, 190}, StaticText { disabled, "“^0” is a stationery pad.  If you make changes, they will be saved into the stationery pad itself." }; /* <30, #82234> */
+	{8, 10, 110, 190}, StaticText { disabled, "'^0' is a stationery pad.  If you make changes, they will be saved into the stationery pad itself." }; /* <30, #82234> */
 	} };
 
 
-// “Locked File Warning” dialog: keep bounds within SF dialog to allow updates
+// 'Locked File Warning' dialog: keep bounds within SF dialog to allow updates
 resource 'DLOG' (rSFLockedWrnDialogID, purgeable)
 	{ {0, 0, 110, 200}, dBoxProc, invisible, noGoAway, 0, rSFLockedWrnDialogID, "", centerParentWindow };
 resource 'DITL' (rSFLockedWrnDialogID, purgeable)
 	{ {
 	{80, 120, 100, 190}, Button { enabled, "OK" };
 	{80, 10, 100, 80}, Button { enabled, "Cancel" };
-	{10, 10, 70, 190}, StaticText { disabled, "“^0” is locked, so you will not be able to save any changes." };
+	{10, 10, 70, 190}, StaticText { disabled, "'^0' is locked, so you will not be able to save any changes." };
 	} };
 
 
@@ -275,7 +275,7 @@ resource 'STR#' (rStandardFileStringsID, purgeable)
 	"Open",
 	"The disk is locked.",
 	"You do not have the access privileges to open that folder.",
-	"Bad character in name, or can’t find that disk.",
+	"Bad character in name, or can't find that disk.",
 	"Sorry, an error occurred.",													/* <31, #BS-044> */
 	"The alias could not be opened, because the original could not be found.",		/* <34, #f1-ngk-005> */
 	"That name is already used by a folder.",
@@ -706,7 +706,7 @@ resource 'STR#' (rStandardFileHelpStringsID, purgeable) {
 	/* [hsisfDesktop] Standard file "open", Desktop button, Normal */
 		"To see a list of the items on your desktop, click this button. To see the "
 		"contents of a different disk, click this button, then double-click the "
-		"disk’s name in the window on the left.";
+		"disk's name in the window on the left.";
 
 	/* [hsisfDesktopDimmed] Standard file "open", Desktop button, Dimmed */
 		"To see a list of the items on your desktop, click this button. The button "
@@ -752,7 +752,7 @@ resource 'STR#' (rStandardFileHelpStringsID, purgeable) {
 		"the disk named above.";
 		
 	/* [hsisfPopUpItem] Standard file "open", pop-up menu items, Normal */
-		"Displays this item’s contents in the list below.";
+		"Displays this item's contents in the list below.";
 		
 	/* [hsisfCreate] Standard file "save", new folder dialog, new button, Normal */
 		"To create a new folder with the name given above, click this button.";

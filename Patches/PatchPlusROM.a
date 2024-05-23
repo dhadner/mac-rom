@@ -8,9 +8,9 @@
 ;	Change History (most recent first):
 ;
 ;		<63>	 1/19/92	DTY		Look at emAppleTalkInactiveOnBoot before getting the AppleTalk
-;									version.  If AppleTalk is inactive, don’t set up the serial port
+;									version.  If AppleTalk is inactive, don't set up the serial port
 ;									for use by AppleTalk.  This is part of a large conspiracy to
-;									convince the universe that AppleTalk really isn’t around if it
+;									convince the universe that AppleTalk really isn't around if it
 ;									is inactive.
 ;		<62>	 8/30/91	DTY		Define onMac and has3rdFloppy in this file instead of in
 ;									FeatureList in BBSStartup.  onMac is true because this file
@@ -65,12 +65,12 @@
 ;		<41>	 11/9/90	dba		& gbm; Move LoadResource patch that checks for errors while
 ;									loading WDEFs and CDEFs to WindowMgrPatches.a and
 ;									ControlMgrPatches.a; move SectRect patch that disables the
-;									Control Manager’s overzealous change to not draw a control to
+;									Control Manager's overzealous change to not draw a control to
 ;									ControlMgrPatches.a — more steps towards the obsolescence of
 ;									this file; put patch protection header on patch to ResrvMem for
 ;									the async. driver
 ;		<40>	10/21/90	gbm		(with dba) get rid of GetVol patch (GVPatch) for StartBoot in
-;									7.0, since StartBoot isn’t used in 7.0
+;									7.0, since StartBoot isn't used in 7.0
 ;	    <39>	 9/25/90	KIP		Change Sound Mgr. to a linked patch.
 ;		<38>	 9/22/90	dba		get rid of Time Mgr. patching here since we now use the real
 ;									TimeMgr.a to make a linked patch
@@ -134,12 +134,12 @@
 ;									and made it happen for SysVers>=$605 instead of SysVers>=$700.
 ;									(This is already in the System6Proj sources).
 ;		 <4>	 1/13/90	EMT		Put StripAddress back in. Darin was confused.
-;		 <3>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <3>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <2>	  1/4/90	dba		conditionalized out WaitNextEvent for 7.0 since we always have
 ;									MultiFinder; install BadTrap patch for DebugStr as well as
 ;									Debugger for 7.0, since we have a large trap table; get rid of
 ;									Launch patch for Radius for 7.0 because Ed Tecot sez, and
-;									because it just makes some Radius features go away, it doesn’t
+;									because it just makes some Radius features go away, it doesn't
 ;									crash (we told Radius this would happen); got rid of pre-HMenus
 ;									Menu Mgr. patches and got rid of the HMenus conditional; got rid
 ;									of StripAddress since it is now installed before patches are
@@ -768,7 +768,7 @@ MeasureText PROC	EXPORT
 ;
 ;  PROCEDURE MeasureText(count: INTEGER; textAddr,charLocs: Ptr);
 ;
-;  Call textMeasProc via TextWidth for the benefit of Think’s Macintosh Pascal.
+;  Call textMeasProc via TextWidth for the benefit of Think's Macintosh Pascal.
 ;  (TextEdit used to use TextWidth but changed to MeasureText for efficiency;
 ;  Think added styles to TextEdit inside the bottleneck procs that no longer
 ;  got called.  This calls the bottleneck proc only if it is different from
@@ -1257,7 +1257,7 @@ MyDisHandle
 ;   When DisposHandle or ReallocHandle is called with a purged handle, the
 ; Memory Manager puts the master pointer in the free list of theZone (the
 ; current zone).  If theZone is not set up correctly, then the free list could
-; contain master pointers from the wrong zone.  We can’t read the minds of
+; contain master pointers from the wrong zone.  We can't read the minds of
 ; developers, so if theZone is set to some value other than SysZone or
 ; ApplZone, then we must blindly put the master pointer back in that zone.
 ; However, if theZone is set to SysZone or ApplZone we can at least put the
@@ -1394,11 +1394,11 @@ VBLHnd		EQU		$41AB1E		; MPP VBL task address in ROM
 			move.w		sr,-(sp)		; Save sr									<s481>
 			ori.w		#HiIntMask,sr	; Disable interrupts						<s483>
 			move.l		a0,-(sp)		; save new vbl element on stack				<s263>
-			lea 		SoundVBL,a0		; point at hertzfeld’s vbl element			<s263>
+			lea 		SoundVBL,a0		; point at hertzfeld's vbl element			<s263>
 			_VRemove					; remove sound vbl element					<s263>
 			move.l		(sp)+,a0		; get new vbl element back in a0			<s263>
 			tst.w		d0				; check for error from vremove				<pma287>
-			bne.s		@popstatus		; if error then don’t reinstall sound vbl	<s481>
+			bne.s		@popstatus		; if error then don't reinstall sound vbl	<s481>
 			bsr.s		@TruVinst		; install new vbl element back in queue		<s263>
 			lea 		SoundVBL,a0		; get sound vbl element, and install it		<s263>
 			bsr.s		@TruVinst		; install sound vbl element back in queue	<s481>
@@ -1631,7 +1631,7 @@ NewVRemove								; On each Vert. Task Remove...
 		MOVE.L	ApplZone,-(sp)			; get two zone ptrs where we can compare them
 		MOVE.L	SysZone,-(sp)			; two zones poised for compare
 		CMP.L	(sp)+,(sp)+				; if appl==sys get out with D0!=0
-		BEQ.S	@LeaveTask				; don’t nuke sys zone stuff at start time
+		BEQ.S	@LeaveTask				; don't nuke sys zone stuff at start time
 
 @RomVRemove
 		JMP		ROMVRemove				;
@@ -3009,8 +3009,8 @@ Patch66		PROC	EXPORT
 *****************************************************************
 * Fixround -- get negative case right by adding (1/2 - epsilon)
 *	to negative values (-M + f) and truncating to more negative
-*	integer.  This is a la CRC’s ultimate fix for Maui/Becks.
-*	It didn’t work for Mac64 either, but nobody used it there.
+*	integer.  This is a la CRC's ultimate fix for Maui/Becks.
+*	It didn't work for Mac64 either, but nobody used it there.
 *****************************************************************
 MyFixRound							; 					added code <17Jan87 JTC>
 			movea.l	(sp)+,a0		; strip return address
@@ -3250,9 +3250,9 @@ PatchPMA207	PROC	EXPORT
 NewRGetResource		PROC	EXPORT
 grStFr		equ		$0E					; size of the stack frame. (see note above)
 
-			clr.b	ROMMapInsert		; make sure we don’t use rom map
+			clr.b	ROMMapInsert		; make sure we don't use rom map
 			bsr.s	@getrsrc			;
-			bne.s	@exit				; if handle is not zero, then we don’t check rom
+			bne.s	@exit				; if handle is not zero, then we don't check rom
 
 			st.b	ROMMapInsert		; else make sure we use rom map
 			bsr.s	@getrsrc			;
@@ -3269,7 +3269,7 @@ grStFr		equ		$0E					; size of the stack frame. (see note above)
 			move.w	grStFr+2(sp),-(sp)	; push ID again
 			_GetResource				;
 			move.l	(sp)+,grStFr(sp)	; push the handle we got back into the area
-										; the user saved for the handle and set cc’s
+										; the user saved for the handle and set cc's
 			rts							;
 
 			ENDPROC						; NewRGetResource
@@ -3292,7 +3292,7 @@ grStFr		equ		$0E					; size of the stack frame. (see note above)
 ; during openresfile to get an address error.  The last trap before the check
 ; is _Read.  This patch to _Read has four parts:  first, it executes the rom
 ; read call; second, it checks if we are coming from the buggy place in ROM;
-; third, it checks if the type offset is odd; and fourth, it ‘doctors’ the
+; third, it checks if the type offset is odd; and fourth, it ‘doctors' the
 ; dataoffset and datasize in the map so that the validity check will fail
 ; before it gets an address error.
 ;
@@ -3307,7 +3307,7 @@ RdResgisters		DS.L	4				;four registers saved by RdData.
 RdDataReturn		DS.L	1				;return address (to NewMap?)
 					EndR
 
-rNewMap	EQU		$004136B4					; address  if coming from NewMap’s call
+rNewMap	EQU		$004136B4					; address  if coming from NewMap's call
 											; ... to RdData, which calls _Read
 ROMread	EQU		$004023BE					; address of _Read in ROM
 MTypOdd	EQU		$19							; mtype offset for byte in map odd check
@@ -5265,7 +5265,7 @@ BInOpen		bsr.s	NewChkBConfig
 
 NewChkBConfig
 			move.l		ExpandMem,a0					; <63>
-			tst.w		ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <63> If AppleTalk is inactive, don’t set up the LAP manager
+			tst.w		ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <63> If AppleTalk is inactive, don't set up the LAP manager
 			bnz.s		@appleTalkInactive				; <63> AppleTalk is not active.
 			move.l		#'atkv',d0						; what version of Appletalk?		
 			_Gestalt
@@ -5693,7 +5693,7 @@ ABClose
 
 @freeB		
 			move.l	ExpandMem,a0					; <63>
-			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <63> If AppleTalk is inactive, don’t set up the LAP manager
+			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <63> If AppleTalk is inactive, don't set up the LAP manager
 			bnz.s	@freeThePort					; <63> AppleTalk is not active.
 			move.l	#'atkv',d0						; what version of Appletalk?		<52>
 			_Gestalt

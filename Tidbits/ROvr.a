@@ -84,11 +84,11 @@ ROvr	main
 		cmpi.w	#kMinSystem,SysVersion		; If SysVersion is System 7.0 or greater, allow switch launching.
 		bge.s	DoOverrides					; (Network booting)
 
-;	If SysVersion was initialized, then we’re being called during a switch launch.
-;	Since we don’t want to allow this switch launch to finish, we need to go back to the previously running
+;	If SysVersion was initialized, then we're being called during a switch launch.
+;	Since we don't want to allow this switch launch to finish, we need to go back to the previously running
 ;	system.  In the switch launch code for Finder 6.x, _InitResources is called, then _InitFonts, then the working
 ;	directory reference number of the new System Folder is saved in BootDrive.
-;	Now that we’ve determined that we don’t want to switch launch, put a patch on _InitFonts which will close the
+;	Now that we've determined that we don't want to switch launch, put a patch on _InitFonts which will close the
 ;	System 7 (or newer) System file, re-open the old one, and rebuild the System resource map.  The patch also
 ;	bumps the return address past the instructions that stash the new WDRefNum in BootDrive, since up to this
 ;	point, BootDrive still contains the WDRefNum of the previous System Folder.  This fact makes life incredibly
@@ -107,7 +107,7 @@ ROvr	main
 
 PatchInitFonts
 		move.l	(sp),a1
-		_DetachResource						; Detach it so it’ll stick around
+		_DetachResource						; Detach it so it'll stick around
 
 		move.w	#kInitFontsTrap,d0
 		_GetTrapAddress						; Get the current _InitFonts routine

@@ -1,4 +1,4 @@
-/*EASE$$$ READ ONLY COPY of file “BootDefines.h”
+/*EASE$$$ READ ONLY COPY of file 'BootDefines.h'
 ** 1.0	PWD 10/30/1989 Adding to EASE
 ** END EASE MODIFICATION HISTORY */
 #define			osMax				10

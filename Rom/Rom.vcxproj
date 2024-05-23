@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{4e112616-08f0-4a0c-8091-7d2c5d0652a0}</ProjectGuid>
+    <RootNamespace>Rom</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Library Include="..\Interfaces\AIncludes\adsp.a" />
+    <Library Include="..\Interfaces\AIncludes\Aliases.a" />
+    <Library Include="..\Interfaces\AIncludes\ApplDeskBus.a" />
+    <Library Include="..\Interfaces\AIncludes\AppleTalk.a" />
+    <Library Include="..\Interfaces\AIncludes\Balloons.a" />
+    <Library Include="..\Interfaces\AIncludes\CommResources.a" />
+    <Library Include="..\Interfaces\AIncludes\Components.a" />
+    <Library Include="..\Interfaces\AIncludes\Connections.a" />
+    <Library Include="..\Interfaces\AIncludes\ConnectionTools.a" />
+    <Library Include="..\Interfaces\AIncludes\CRMSerialDevices.a" />
+    <Library Include="..\Interfaces\AIncludes\CTBUtilities.a" />
+    <Library Include="..\Interfaces\AIncludes\DatabaseAccess.a" />
+    <Library Include="..\Interfaces\AIncludes\DBDMA.a" />
+    <Library Include="..\Interfaces\AIncludes\DDEV.a" />
+    <Library Include="..\Interfaces\AIncludes\Devices.a" />
+    <Library Include="..\Interfaces\AIncludes\Dictionary.a" />
+    <Library Include="..\Interfaces\AIncludes\Displays.a" />
+    <Library Include="..\Interfaces\AIncludes\EDiskEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\Editions.a" />
+    <Library Include="..\Interfaces\AIncludes\EndianAware.a" />
+    <Library Include="..\Interfaces\AIncludes\ENetEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\FileTransfers.a" />
+    <Library Include="..\Interfaces\AIncludes\FileTransferTools.a" />
+    <Library Include="..\Interfaces\AIncludes\Finder.a" />
+    <Library Include="..\Interfaces\AIncludes\FixMath.a" />
+    <Library Include="..\Interfaces\AIncludes\Folders.a" />
+    <Library Include="..\Interfaces\AIncludes\FSEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\FSPrivate.a" />
+    <Library Include="..\Interfaces\AIncludes\GestaltEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\Graf3D.a" />
+    <Library Include="..\Interfaces\AIncludes\HardwareEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\HyperXCmd.a" />
+    <Library Include="..\Interfaces\AIncludes\Icons.a" />
+    <Library Include="..\Interfaces\AIncludes\IntEnv.a" />
+    <Library Include="..\Interfaces\AIncludes\IntModemMgrEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\Language.a" />
+    <Library Include="..\Interfaces\AIncludes\LAPEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\Menus.a" />
+    <Library Include="..\Interfaces\AIncludes\MIDI.a" />
+    <Library Include="..\Interfaces\AIncludes\Notification.a" />
+    <Library Include="..\Interfaces\AIncludes\ObjMacros.a" />
+    <Library Include="..\Interfaces\AIncludes\OSUtils.a" />
+    <Library Include="..\Interfaces\AIncludes\Packages.a" />
+    <Library Include="..\Interfaces\AIncludes\Palettes.a" />
+    <Library Include="..\Interfaces\AIncludes\Picker.a" />
+    <Library Include="..\Interfaces\AIncludes\PictUtil.a" />
+    <Library Include="..\Interfaces\AIncludes\Power.a" />
+    <Library Include="..\Interfaces\AIncludes\PowerMgrDispatchEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\PPCToolbox.a" />
+    <Library Include="..\Interfaces\AIncludes\Printing.a" />
+    <Library Include="..\Interfaces\AIncludes\PrintTrapsEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\Private.a" />
+    <Library Include="..\Interfaces\AIncludes\Processes.a" />
+    <Library Include="..\Interfaces\AIncludes\PrPrivate.a" />
+    <Library Include="..\Interfaces\AIncludes\QDOffscreen.a" />
+    <Library Include="..\Interfaces\AIncludes\Quickdraw.a" />
+    <Library Include="..\Interfaces\AIncludes\ROMEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\SANEMacs.a" />
+    <Library Include="..\Interfaces\AIncludes\SANEMacs881.a" />
+    <Library Include="..\Interfaces\AIncludes\Script.a" />
+    <Library Include="..\Interfaces\AIncludes\SCSI.a" />
+    <Library Include="..\Interfaces\AIncludes\SCSIStandard.a" />
+    <Library Include="..\Interfaces\AIncludes\ShutDown.a" />
+    <Library Include="..\Interfaces\AIncludes\Signal.a" />
+    <Library Include="..\Interfaces\AIncludes\Slots.a" />
+    <Library Include="..\Interfaces\AIncludes\SonyEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\StandardFile.a" />
+    <Library Include="..\Interfaces\AIncludes\SysEqu.a" />
+    <Library Include="..\Interfaces\AIncludes\SysErr.a" />
+    <Library Include="..\Interfaces\AIncludes\Terminals.a" />
+    <Library Include="..\Interfaces\AIncludes\TerminalTools.a" />
+    <Library Include="..\Interfaces\AIncludes\TextServices.a" />
+    <Library Include="..\Interfaces\AIncludes\Timer.a" />
+    <Library Include="..\Interfaces\AIncludes\ToolUtils.a" />
+    <Library Include="..\Interfaces\AIncludes\Traps.a" />
+    <Library Include="..\Interfaces\AIncludes\Video.a" />
+    <Library Include="..\Internal\Asm\AMICEqu.a" />
+    <Library Include="..\Internal\Asm\AppleDeskBusPriv.a" />
+    <Library Include="..\Internal\Asm\AtalkPrivateEQU.a" />
+    <Library Include="..\Internal\Asm\BalloonsPriv.a" />
+    <Library Include="..\Internal\Asm\BootEqu.a" />
+    <Library Include="..\Internal\Asm\BTreeEqu.a" />
+    <Library Include="..\Internal\Asm\ColorEqu.a" />
+    <Library Include="..\Internal\Asm\CommToolboxPriv.a" />
+    <Library Include="..\Internal\Asm\ComVideoEqu.a" />
+    <Library Include="..\Internal\Asm\ConnectionsExtensions.a" />
+    <Library Include="..\Internal\Asm\ControlPriv.a" />
+    <Library Include="..\Internal\Asm\CrsrDevEqu.a" />
+    <Library Include="..\Internal\Asm\DblByteCompatPriv.a" />
+    <Library Include="..\Internal\Asm\DebugMonEqu.a" />
+    <Library Include="..\Internal\Asm\Decompression.a" />
+    <Library Include="..\Internal\Asm\DeferredTaskEqu.a" />
+    <Library Include="..\Internal\Asm\DepVideoEqu.a" />
+    <Library Include="..\Internal\Asm\DialogsPriv.a" />
+    <Library Include="..\Internal\Asm\DiskCachePriv.a" />
+    <Library Include="..\Internal\Asm\DispatchHelperPriv.a" />
+    <Library Include="..\Internal\Asm\DisplaysPriv.a" />
+    <Library Include="..\Internal\Asm\DockingEqu.a" />
+    <Library Include="..\Internal\Asm\EDiskEqu.a" />
+    <Library Include="..\Internal\Asm\EditionsPrivate.a" />
+    <Library Include="..\Internal\Asm\egretequ.a" />
+    <Library Include="..\Internal\Asm\FileMgrPrivate.a" />
+    <Library Include="..\Internal\Asm\FileTransfersExtensions.a" />
+    <Library Include="..\Internal\Asm\FinderPriv.a" />
+    <Library Include="..\Internal\Asm\fontPrivate.a" />
+    <Library Include="..\Internal\Asm\GestaltPrivateEqu.a" />
+    <Library Include="..\Internal\Asm\GibblyMacros.a" />
+    <Library Include="..\Internal\Asm\GrandCentralPriv.a" />
+    <Library Include="..\Internal\Asm\HardwarePrivateEqu.a" />
+    <Library Include="..\Internal\Asm\i2cEqu.a" />
+    <Library Include="..\Internal\Asm\IconUtilsPriv.a" />
+    <Library Include="..\Internal\Asm\InternalMacros.a" />
+    <Library Include="..\Internal\Asm\InternalOnlyEqu.a" />
+    <Library Include="..\Internal\Asm\IntlResourcesPriv.a" />
+    <Library Include="..\Internal\Asm\IntlUtilsPriv.a" />
+    <Library Include="..\Internal\Asm\IntModemMgrPrivEqu.a" />
+    <Library Include="..\Internal\Asm\IOPEqu.a" />
+    <Library Include="..\Internal\Asm\IOPrimitiveEqu.a" />
+    <Library Include="..\Internal\Asm\LayerEqu.a" />
+    <Library Include="..\Internal\Asm\LinkedPatchMacros.a" />
+    <Library Include="..\Internal\Asm\MC680x0.a" />
+    <Library Include="..\Internal\Asm\MenuMgrPriv.a" />
+    <Library Include="..\Internal\Asm\MFPrivate.a" />
+    <Library Include="..\Internal\Asm\MMUEqu.a" />
+    <Library Include="..\Internal\Asm\PalettePriv.a" />
+    <Library Include="..\Internal\Asm\PatchMacros.a" />
+    <Library Include="..\Internal\Asm\PowerPrivEqu.a" />
+    <Library Include="..\Internal\Asm\PPCPriv.a" />
+    <Library Include="..\Internal\Asm\PSCEqu.a" />
+    <Library Include="..\Internal\Asm\ReliabilityEqu.a" />
+    <Library Include="..\Internal\Asm\ResourceMgrPriv.a" />
+    <Library Include="..\Internal\Asm\ScriptPriv.a" />
+    <Library Include="..\Internal\Asm\SCSIDiskModeEqu.a" />
+    <Library Include="..\Internal\Asm\SCSIEqu96.a" />
+    <Library Include="..\Internal\Asm\SCSIPriv.a" />
+    <Library Include="..\Internal\Asm\SlotMgrEqu.a" />
+    <Library Include="..\Internal\Asm\StandardEqu.a" />
+    <Library Include="..\Internal\Asm\SysPrivateEqu.a" />
+    <Library Include="..\Internal\Asm\TerminalsExtensions.a" />
+    <Library Include="..\Internal\Asm\TextEditPriv.a" />
+    <Library Include="..\Internal\Asm\TrapsPrivate.a" />
+    <Library Include="..\Internal\Asm\TSMPrivate.a" />
+    <Library Include="..\Internal\Asm\UniversalEqu.a" />
+    <Library Include="..\Internal\Asm\VectorTableInit.a" />
+    <Library Include="..\Internal\Asm\VectorTablePatch.a" />
+    <Library Include="..\OS\ADBMgr\ADBMgr.a" />
+    <Library Include="..\OS\Clock.a" />
+    <Library Include="..\OS\CrsrDev.a" />
+    <Library Include="..\OS\CudaMgr.a" />
+    <Library Include="..\OS\DeferredTaskMgr.a" />
+    <Library Include="..\OS\DeviceMgr.a" />
+    <Library Include="..\OS\DispatchHelper.a" />
+    <Library Include="..\OS\DispTable.a" />
+    <Library Include="..\OS\DockingMgr.a" />
+    <Library Include="..\OS\EgretMgr.a" />
+    <Library Include="..\OS\HwPriv.a" />
+    <Library Include="..\OS\InterruptHandlers.a" />
+    <Library Include="..\OS\IntModemMgr.a" />
+    <Library Include="..\OS\IOPMgr.a" />
+    <Library Include="..\OS\MagicData.a" />
+    <Library Include="..\OS\Mouse.a" />
+    <Library Include="..\OS\MPDispatchStub.a" />
+    <Library Include="..\OS\NKEventGroupWrapper.a" />
+    <Library Include="..\OS\OSEventMgr.a" />
+    <Library Include="..\OS\OverPatch.a" />
+    <Library Include="..\OS\Queue.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIBoot.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIDiskMode.a" />
+    <Library Include="..\OS\SCSIMgr\scsiLateLoad.a" />
+    <Library Include="..\OS\SCSIMgr\SCSILinkPatch.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgr96.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgr96BIOS.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrDB.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW96.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW96BIOS.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHWPSC.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit96.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit96BIOS.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitDB.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitFlags.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitPSC.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrNew.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrOld.a" />
+    <Library Include="..\OS\SCSIMgr\SCSIMgrPSC.a" />
+    <Library Include="..\OS\SysUtil.a" />
+    <Library Include="..\OS\Universal.a" />
+    <Library Include="..\OS\UniversalTables.a" />
+    <Library Include="..\OS\VerticalRetraceMgr.a" />
+    <Library Include="..\OS\VMPatches.a" />
+    <Library Include="..\OS\WallyWorld.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Misc\ADSP.rsrc" />
+    <None Include="..\Misc\AppleTalk.ROM.RSRC" />
+    <None Include="..\Misc\AppleTalk.rsrc" />
+    <None Include="..\Misc\APTK57.rsrc" />
+    <None Include="..\Misc\APTK58.RSRC" />
+    <None Include="..\Misc\ATAMgr.rsrc" />
+    <None Include="..\Misc\BCScreen.rsrc" />
+    <None Include="..\Misc\BootBeep.Rsrc" />
+    <None Include="..\Misc\DriverServices.rsrc" />
+    <None Include="..\Misc\EmulatorAccelerations.rsrc" />
+    <None Include="..\Misc\ErrorBeep.Rsrc" />
+    <None Include="..\Misc\Ethernet.RSRC" />
+    <None Include="..\Misc\FireWire.rsrc" />
+    <None Include="..\Misc\kbd.rsrc" />
+    <None Include="..\Misc\LANDisk.rsrc" />
+    <None Include="..\Misc\MediaBay.rsrc" />
+    <None Include="..\Misc\MultiprocessingServices.rsrc" />
+    <None Include="..\Misc\NativeItt.rsrc" />
+    <None Include="..\Misc\NativeNub.rsrc" />
+    <None Include="..\Misc\PCCard.rsrc" />
+    <None Include="..\Misc\PowerMgr.rsrc" />
+    <None Include="..\Misc\Responder.rsrc" />
+    <None Include="..\Misc\SerialDMA.rsrc" />
+    <None Include="..\Misc\USB.rsrc" />
+    <None Include="..\Misc\VM.rsrc" />
+    <None Include="..\OS\Hardware_Information" />
+    <None Include="..\OS\OS Release Notes" />
+    <None Include="..\OS\OS.make" />
+    <None Include="..\OS\SCSIMgr\SCSIMgr.make" />
+    <None Include="..\Resources\MiscROMRsrcs.r" />
+    <None Include="..\Resources\Resources.make" />
+    <None Include="..\Resources\ROMApple2Fonts.r" />
+    <None Include="..\Resources\ROMFonts.r" />
+    <None Include="..\Resources\RomResources.r" />
+    <None Include="..\Resources\Sys.r" />
+    <None Include="..\Resources\SystemFonts.r" />
+    <None Include="..\Resources\SystemSounds.r" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

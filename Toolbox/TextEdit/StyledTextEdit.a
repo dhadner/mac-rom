@@ -18,7 +18,7 @@
 ;		<1>		12/18/89	CCH		Adding for the first time into BBS.
 ; BBS versions above:
 ;___________________________________________________________________________________________________
-;EASE READ ONLY COPY of file “StyledTextEdit.a”
+;EASE READ ONLY COPY of file 'StyledTextEdit.a'
 ; 1.7	SMB 08/25/1989  Removed load of nEqu.d.
 ; 1.6	smb 05/20/1989   Had to reset A2 to selStart(a3) in TECopy after a NewHandle call, which may
 ;		have invalidated the pointer to the teRecord (upon which A2 was based!). See bug #46036.
@@ -693,10 +693,10 @@ TextBox
 			Link		A6,#0
 			MoveM.L 	D2-D7/A2-A4,-(SP)		; save StdRegs on stack
 
-			Tst.W		TBJust(A6)				; “left” justified?					<C971/RWW110987>
+			Tst.W		TBJust(A6)				; 'left' justified?					<C971/RWW110987>
 			Bne.S		@05						; no => skip this					<C971/RWW110987>
 
-			Move.W		teSysJust,TBJust(A6)	; he meant, “default justification”	<C971/RWW110987>
+			Move.W		teSysJust,TBJust(A6)	; he meant, 'default justification'	<C971/RWW110987>
 
 @05			Cmp.W		#teForceLeft,TBJust(A6)	; _real_ left justification?		<C971/RWW110987>
 			Bne.S		@08						; no => skip this					<C971/RWW110987>
@@ -1989,7 +1989,7 @@ TEEolHook
 ; 	Actual routine that tests character as end-of-line character.  Stock
 ; 		version only checks for CR.  To support tabs you'd add a
 ; 		test for TAB here as well, and then determine if the TAB puts
-; 		you over the length for “end of line”.
+; 		you over the length for 'end of line'.
 
 ; 	ENTRY:	D0.B	=	character to check
 
@@ -8136,7 +8136,7 @@ ContGuts
 
 ; We come here when we're done perusing the selection range.
 ; 	Now, we have to resolve the doFace bit.  This is all complicated by the fact that
-; 	“plain” isn't a style attribute, but rather a lack of other styles.
+; 	'plain' isn't a style attribute, but rather a lack of other styles.
 @2			BTst		#faceBit,D4				; check face?
 			Bz.S		@xit					; nope, skip resolution
 

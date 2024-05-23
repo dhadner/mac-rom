@@ -16,13 +16,13 @@
 ; ———————————————————————————————————————————————————————————————————————————————————————
 ;		 <4>	06-24-93	jmp		Since the CheckDevicesInit actually runs AFTER we do, we now
 ;									just fix the family-mode 'scrn' resource to have the right bit
-;									depth -- this way, we don’t blow away the user’s setup.
+;									depth -- this way, we don't blow away the user's setup.
 ;		 <3>	06-14-93	jmp		Performed general file clean up.
 ;		 <2>	06-11-93	jmp		Added code that removes the 'scrn' resource if it is invalid.
 ; ———————————————————————————————————————————————————————————————————————————————————————
 ;	  Pre-NuBrawl Proj comments begin here.
 ; ———————————————————————————————————————————————————————————————————————————————————————
-;		 <3>	03-17-93	jmp		Ripped out even more stuff.  If I remember, I’m going to pull
+;		 <3>	03-17-93	jmp		Ripped out even more stuff.  If I remember, I'm going to pull
 ;									this from DeclData!
 ; ———————————————————————————————————————————————————————————————————————————————————————
 ;	  Pre-Atlantis ROM comments begin here.
@@ -78,7 +78,7 @@ SInitStackSize	Equ		*
 ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 				Lea			sPRAMBlk(A6),A2					; Point to a sPRAM block.
 				Move.l		A2,spResult(A0)					; Set up read buffer.
-				_sReadPRAMRec								; Read our Slot’s pRAM.
+				_sReadPRAMRec								; Read our Slot's pRAM.
 
 				Bclr	#spFamilyChanged,SP_Flags(A2)		; Always reset the family-changed bit.
 				Beq		@EndScrn							; If it was already reset, then go on.
@@ -92,7 +92,7 @@ ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 				Move.w	#drSwApple,spDrvrSW(A0)				;			Apple,
 				Move.w	#drHwVSC,spDrvrHW(A0)				;
 				Clr.l	spParamData(A0)						; Look only for enabled sRsrcs.
-				_GetTypeSRsrc								; If we didn’t find ourselves,
+				_GetTypeSRsrc								; If we didn't find ourselves,
 				Bne.s	@EndScrn							;	then just go on.
 				
 				Move.l	A2,spsPointer(A0)					; Set up to write out Slot PRAM…
@@ -101,7 +101,7 @@ ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 				Moveq	#0,D2								; Clear D2 for good measure.
 				Move.b	spSlot(A0),D2						; Remember our slot number.
 
-; Check to see if there’s an 'scrn' resource available…
+; Check to see if there's an 'scrn' resource available…
 ;
 				Clr.l	-(Sp)								; Make room for the function result.
 				Move.l	#'scrn',-(Sp)						; Push desired resource type.
@@ -116,7 +116,7 @@ ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 				_HNoPurge									; Make it non-purgeable and…
 				_HLock										; …lock it down.
 				
-; Check to see if we’re in the 'scrn' resource…
+; Check to see if we're in the 'scrn' resource…
 ;
 				Movea.l	(A0),A0								; Get a pointer to the 'scrn' resource.
 				Move.w	(A0)+,D0							; Get the number of 'scrn' records to search.
@@ -126,18 +126,18 @@ ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 				Beq.s	@ChkDrHwID							;	then check the drHwID.
 				Adda.w	#ScrnRecSize,A0						; Otherwise, point A0 at the next entry.
 				Dbra	D0,@ScrnLoop						; Loop until done.
-				Bra.s	@EndScrnChk							; We couldn’t find our 'scrn' entry, so just go on.
+				Bra.s	@EndScrnChk							; We couldn't find our 'scrn' entry, so just go on.
 				
 @ChkDrHwID	
 				Move.w	#drHwVSC,D0							; Get our drHwID back into D0.
-				Cmp.w	srDrvrHW(A0),D0						; If the drHwIDs don’t match,
+				Cmp.w	srDrvrHW(A0),D0						; If the drHwIDs don't match,
 				Bne.s	@EndScrnChk							;	then just go on.
 				
 ; Make sure the depth (mode) setting is correct…
 ;
 				Lea		sPRAMBlk(A6),A1						; Point to our sPRAM block.
 				Moveq	#0,D0								; Clear D0 for good measure.
-				Move.b	SP_Depth(A1),D0						; Get the mode we’d like to be at.
+				Move.b	SP_Depth(A1),D0						; Get the mode we'd like to be at.
 				Cmp.w	srMode(A0),D0						; If the modes match,
 				Beq.s	@EndScrnChk							;	then just go on.
 				Move.w	D0,srMode(A0)						; Otherwise, write out what we want.
@@ -149,7 +149,7 @@ ChkScrn			Lea			spBlk(A6),A0					; Point to our spBlock.
 
 ; Clean up and go home…
 ;
-@EndScrnChk		_ReleaseResource							; Release the ‘scrn’ resource.
+@EndScrnChk		_ReleaseResource							; Release the ‘scrn' resource.
 @EndScrn		Rts											; And return home.
 						
 				Endwith		
@@ -168,7 +168,7 @@ BeginSInit
 ; Perform some generic intializations.
 ;				
 				Move.b		seSlot(A0),spBlk.spSlot(A6)		; Get our slot number from the Slot Manager.
-				Clr.b		spBlk.spExtDev(A6)				; Don’t ask why, always clear this guy.
+				Clr.b		spBlk.spExtDev(A6)				; Don't ask why, always clear this guy.
 
 ; Check to see if the 'scrn' resource needs updating.
 ;

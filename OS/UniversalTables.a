@@ -50,7 +50,7 @@
 ;									InterruptHandlers.a. Reflect that change in ProductInfo.
 ;	  <SM91>	 8/17/93	SAM		Put forSmurf conds around all the smurf junk.
 ;	  <SM90>	08-16-93	jmp		Changed the PDM VideoInfo record to reflect the fact that PDM
-;									uses Slot $9’s sPRAM as is reserved in the NuBusInfo record for
+;									uses Slot $9's sPRAM as is reserved in the NuBusInfo record for
 ;									PDM.  This fixes the problem where PDMs sPRAM kept getting blown
 ;									away.
 ;	  <SM89>	 8/13/93	KW		adding two more smurf wombats
@@ -155,12 +155,12 @@
 ;									machines and hasHMC for PDM.
 ;	  <SM45>	 12/9/92	SAM		Changed the CPU ID for PDM .  Added 3 additional CPU IDs for the
 ;									other PDM "boxes."
-;	  <SM44>	 12/9/92	jmp		Changed PDM’s VideoInfo record so that the physical framebuffer
+;	  <SM44>	 12/9/92	jmp		Changed PDM's VideoInfo record so that the physical framebuffer
 ;									base is now at 0 and not 1M.  Also, reflected this changed in
 ;									the logical base, as well.
-;	  <SM43>	 12/5/92	jmp		Temporarily pointed BlackBird’s VideoInfo tables to the
-;									“unknown” directory since CSC won’t be ready for initial
-;									bring-up (we’ll be using the VSC MMU-based DeclData instead).
+;	  <SM43>	 12/5/92	jmp		Temporarily pointed BlackBird's VideoInfo tables to the
+;									'unknown' directory since CSC won't be ready for initial
+;									bring-up (we'll be using the VSC MMU-based DeclData instead).
 ;	  <SM42>	 12/5/92	SWC		Added special sound table for DJMEMC machines so their sound
 ;									hardware initialization can also whack built-in video.
 ;	  <SM41>	 12/4/92	fau		Added StereoPlayandRecord and StereoMixing external features
@@ -251,7 +251,7 @@
 ;									match the real LC ROM (Somehow it got screwed up) and added a
 ;									sound control vector address for LC.
 ;	  <SM16>	  9/8/92	chp		For Cyclone, program the VIA1 port A W/Req bit as an output.
-;									This makes it a flip-flop which is initialized to “1,” disabling
+;									This makes it a flip-flop which is initialized to '1,' disabling
 ;									LocalTalk from polling serial characters on SCC port A.
 ;	  <SM15>	 8/26/92	PN		Set ASCBase globals to a safe location on Cyclone so that
 ;									application that writes to ASCBase will safely write to ROM
@@ -279,8 +279,8 @@
 ;									(BG,H41) Added Wombat(20,25,33,40) and WLCD (20,25) Universal
 ;									information.
 ;									(SWC,H40) Updated RamInfoDBLite for expandability up to 40MB.
-;									(jmp,H39) Changed the “sRsrcZydecoDir” name to the more generic
-;									“sRsrcBFBasedDir” (BF=BoxFlag) name.
+;									(jmp,H39) Changed the 'sRsrcZydecoDir' name to the more generic
+;									'sRsrcBFBasedDir' (BF=BoxFlag) name.
 ;									(AL,H38) Updated the Sonora info for the IHT entry point
 ;									(changed from $58000000 to $50fc0000).
 ;									The following H24..H21 came from Universal.a in Horror
@@ -288,10 +288,10 @@
 ;									machines that can play and record simultaneously.
 ;									(jmp,H23) Fixed a problem in the VideoInfo MacLC record that I
 ;									caused in <H21>.
-;									(jmp,H22) Changed the “sRsrcZydecoDir” name to the more generic
-;									“sRsrcBFBasedDir” (BF=BoxFlag) name.
-;									(jmp,H21) Pruned the array of V8 VideoInfo records ’cuz we no
-;									longer need ’em.
+;									(jmp,H22) Changed the 'sRsrcZydecoDir' name to the more generic
+;									'sRsrcBFBasedDir' (BF=BoxFlag) name.
+;									(jmp,H21) Pruned the array of V8 VideoInfo records 'cuz we no
+;									longer need 'em.
 ;	   <SM5>	 5/28/92	KW		Some Horror Stuff.  Moved VisaDecoderTable entry in
 ;									DecoderLookup in front of Niagra.  Changed VisaDecoderTable.
 ;									Added PatchRomAddr to OrwellDecoderTable.  Added
@@ -319,7 +319,7 @@
 ;									rev Sonoras are available.
 ;	   <H25>	 2/19/92	JC		Update CPUID Register values for Carnation when not using 1st
 ;									rev Sonora.
-;	   <H24>	02/18/92	jmp		Conditionalized (with “hasSonora1”) the video base addresses for
+;	   <H24>	02/18/92	jmp		Conditionalized (with 'hasSonora1') the video base addresses for
 ;									the Sonora-based machines for the upcoming turn of the Sonora
 ;									hardware.
 ;	   <H23>	 2/18/92	JC		Changed boxCarnation to boxCarnation33 and boxVail to boxVail25
@@ -352,7 +352,7 @@
 ;									machines here so it'll be next to the CPUID ProductInfo table.
 ;	   <H10>	 12/4/91	CCH		Changed DBLite, Carnation, Vail to use ProductInfo-based CPUID
 ;									register scheme. Also reorganized file to be info-type based.
-;		<H9>	11/26/91	jmp		Added a “VDAC” for DBLite and updated the framebuffer base
+;		<H9>	11/26/91	jmp		Added a 'VDAC' for DBLite and updated the framebuffer base
 ;									address for the DBLite and Sonora tables.
 ;		<H8>	11/25/91	SAM		Added Vail/Carnation RAMInfo tables.
 ;		<H7>	11/25/91	CCH		Modified Carnation/Vail's NuBus info table to not nuke

@@ -33,7 +33,7 @@
 ;									txMeasProc if installed, else measure using width table; stop
 ;									using slimy way of passing scaling parameters to MeasureText via
 ;									ExpandMem. Used heuristic to limit negative values of addSpExtra
-;									and addChExtra so net character widths don’t get negative; had
+;									and addChExtra so net character widths don't get negative; had
 ;									to rearrange CalcSpChExtra somewhat to do this. Reduced code
 ;									size by combining InitFontAndFlags and InitScaleFac into
 ;									InitFontAndScale, and have it also compute output scaling.
@@ -68,7 +68,7 @@
 ;									addChExtra is 0.
 ;		<14>	 8/31/90	PKE		For NChar2Pixel and NPixel2Char, need to scale DOWN addChExtra
 ;									by numer/denom to make pen moves at beginning and end of run
-;									accurate. For NDrawJust and NMeasureJust we don’t scale it.
+;									accurate. For NDrawJust and NMeasureJust we don't scale it.
 ;		<13>	 8/30/90	PKE		Change interaction of scaling, slop, and charExtra to be
 ;									correct: need to scale down qdChExtra and spExtra by numer/denom
 ;									scaling factor.
@@ -76,7 +76,7 @@
 ;									SMgrRecord). Use new names qdChExtra and qdRunSlop instead of
 ;									QDSmgrCharExtra and QDSmgrSlop (in GrafGlobals).
 ;		<11>	  8/9/90	PKE		If grafProcs are installed, DrawJust should call textProc
-;									instead of StdText! Otherwise printing doesn’t work. (Fixes BRC
+;									instead of StdText! Otherwise printing doesn't work. (Fixes BRC
 ;									#68148).
 ;		<10>	  8/8/90	PKE		New parameter to AdjustSpChExtra controls whether we scale
 ;									addChExtra (need to for NDrawJust, NMeasureJust). Now we always
@@ -123,7 +123,7 @@
 ;									GetFontSize, DrawGap, SignFixRound. Rewrote (N)PortionText,
 ;									(N)DrawJust, (N)MeasureJust, (N)Char2Pixel and (N)Pixel2Char
 ;									routines to fully implement the new justification model, using
-;									the above utility routines. Also made the ‘N’ versions standard
+;									the above utility routines. Also made the ‘N' versions standard
 ;									for these routines, so that the old interfaces just redo the
 ;									stack and fall through to the new routines.
 ;		 <x2>	 1/11/90	PKE		Moved Roman PortionText and Pixel2Char here so we can fix them
@@ -405,10 +405,10 @@ NDrawJust
 
 		IF useInterChar THEN				;											<20>
 
-			tst.l	jdRec.addChExtra(a6)	; any add’l CharExtra?						<15>
+			tst.l	jdRec.addChExtra(a6)	; any add'l CharExtra?						<15>
 			beq.s	@doneStartMove			; if not, skip this							<15>
 			tst.b	jdRec.startNoFwd(a6)	; do we move at beginning
-			bne.s	@doneStartMove			; if TRUE, we don't get add’l CharExtra
+			bne.s	@doneStartMove			; if TRUE, we don't get add'l CharExtra
 
 ; Fill out FontInfo Record to get scaled ascent, descent for DrawGap.
 
@@ -2586,7 +2586,7 @@ DoSpChExtra
 			move.l	addChExScal(a1),d1
 			beq.s	@doneChExtra
 
-; This does essentially the same thing as QuickDraw’s CharExtra routine.
+; This does essentially the same thing as QuickDraw's CharExtra routine.
 
 			bsr		GetFontSize				; assume thePort^ in a0, get font size in d0.w
 			swap	d0						; make it a Fixed

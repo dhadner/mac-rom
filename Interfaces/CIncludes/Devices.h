@@ -189,7 +189,7 @@ enum {
 	dStatEnable		= 3,	// can respond to Status calls
 	dNeedGoodBye	= 4,	// needs to be called before the application heap is reinitialized
 	dNeedTime		= 5,	// needs time for performing a periodic action
-	dNeedLock		= 6,	// will be locked in memory as soon as it’s opened
+	dNeedLock		= 6,	// will be locked in memory as soon as it's opened
 							//	(always set for ROM drivers)
 
 	/* DCE flags in low byte [IM II-190] */

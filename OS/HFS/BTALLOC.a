@@ -16,7 +16,7 @@
 ;		 <5>	 9/10/91	JSM		Cleanup header.
 ;		 <4>	 8/30/91	DTY		Define onMac, onMacPP, and onHcMac to keep SonyEqu.a happy.
 ;									Defined to be 0 because this file is only used for the ROM
-;									build, and we don’t build those ROMs any more.  (onMac32 is the
+;									build, and we don't build those ROMs any more.  (onMac32 is the
 ;									base ROM.)
 ;		 <3>	 9/21/90	BG		Removed <2>. 040s are behaving more reliably now.
 ;		 <2>	 6/20/90	CCH		Added some NOPs for flaky 68040's.

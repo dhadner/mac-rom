@@ -9,7 +9,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <3>	 1/16/91	JDR		(dba) Renamed METHOD_SYSTEM to systemMethod, METHOD_POPULAR to
 ;									popularMethod, and METHOD_MEDIAN to medianMethod

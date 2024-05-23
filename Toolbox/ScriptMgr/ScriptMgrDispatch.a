@@ -20,7 +20,7 @@
 ;		<16>	 5/14/92	PKE		#1029395,<bbm>: Move glue for using generic FindScriptRun to
 ;									Script Mgr dispatcher, so that we only call script's version if
 ;									a new-format table does not exist.
-;		<15>	 4/29/92	JSM		(really FM) Get rid of conditionals: don’t use smgrSysVers or
+;		<15>	 4/29/92	JSM		(really FM) Get rid of conditionals: don't use smgrSysVers or
 ;									smgrROMVers, delete lots of code which never gets compiled. Keep
 ;									NOT forROM conditionals for now until we fix the ROM build, keep
 ;									appTweaks conditional until we find out if we really might turn
@@ -47,7 +47,7 @@
 ;									Roman, not to system script (unless IntlScript call and
 ;									IntlForce flag is on). Needed for HyperCard!! Clean up a few
 ;									conditionals (lots more to do).
-;		 <8>	 1/14/91	PKE		(stb) Expand dispatch table for Kevin’s new private routine
+;		 <8>	 1/14/91	PKE		(stb) Expand dispatch table for Kevin's new private routine
 ;									FindCharInSet, needed for Dialog Mgr and Finder.
 ;		 <7>	12/10/90	PKE		(VL) Expand dispatch table for new private routine
 ;									ReInitScripts, needed for network booting.

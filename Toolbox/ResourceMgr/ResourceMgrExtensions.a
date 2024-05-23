@@ -63,15 +63,15 @@
 ;									CloseResFileUnderSystemMap is the file that the last used font
 ;									came from, invalidate the emLastFont global.
 ;		<55>	  6/5/92	DTY		#1031210: In OpenResFileUnderSystemMap, if there are no files
-;									underneath the system map yet, don’t set the twoDeep bit in the
+;									underneath the system map yet, don't set the twoDeep bit in the
 ;									new map. Additionally, in CloseResFileUnderSystemMap, if the map
 ;									being closed does not have the two deep bit set, clear it from
 ;									the map above it.
 ;		<54>	  6/4/92	DTY		#1031494: In MakeOverrideMap, put the new override map handle
-;									into TopMapHndl so that it’s actually in the resource chain
+;									into TopMapHndl so that it's actually in the resource chain
 ;									somewhere.
 ;		<53>	 5/26/92	DTY		#1027036 <jmg>: <46> Revisited. The check to see if a resource
-;									is loaded or not doesn’t take into account purged resources. The
+;									is loaded or not doesn't take into account purged resources. The
 ;									cool new way to see if a master pointer has already been
 ;									allocated for a resource is to patch CheckLoad, and set a bit
 ;									(DeanBit) in BrianBits if the resource reference entry contains
@@ -90,8 +90,8 @@
 ;		<47>	  5/8/92	DTY		#1029162: Let the caller pass in the desired permission to
 ;									OpenResFileUnderSystemMap.
 ;		<46>	 4/22/92	DTY		#1027036: Whenever we fetch a font from the main resource chain,
-;									see if it was already loaded. If it was, don’t call
-;									ReleaseTheFont on it so we don’t screw up people who have the
+;									see if it was already loaded. If it was, don't call
+;									ReleaseTheFont on it so we don't screw up people who have the
 ;									handle cached. Like the Finder.
 ;		<45>	 4/21/92	DTY		#1018901,<gbm>: Provide a new selector, GetNextFOND, which
 ;									provides an API to get the next 'FOND' resource of the same
@@ -106,7 +106,7 @@
 ;									instead of _IUMagString.
 ;		<42>	 3/30/92	DTY		#1025140,<FM>: Changed several occurances of three bset
 ;									instructions into one or instruction.  Changed an add to a move
-;									in ResolveIDConflicts since that’s what it was doing anyway.
+;									in ResolveIDConflicts since that's what it was doing anyway.
 ;		<41>	 3/25/92	DTY		#1024844: InsertOverrideMap on a map that already has an
 ;									override map is broken. Instead of trying to do everything in
 ;									one loop, be less tricky and remove the override map in one
@@ -123,7 +123,7 @@
 ;		<37>	 3/11/92	DTY		#1024124: Initialize scriptBase before using it. Initialize the
 ;									family number hint to be 256 instead of 0. This is the first
 ;									valid family number in the range reserved for renumbered fonts.
-;									Took this opportunity to rename “hint” to “familyHint” in the
+;									Took this opportunity to rename 'hint' to 'familyHint' in the
 ;									stack frame.
 ;		<36>	 3/11/92	DTY		#1024123: In the routine FindNewFamilyNumber, a FOND handle will
 ;									be disposed twice if the original number is hit while searching
@@ -134,16 +134,16 @@
 ;		<34>	 2/12/92	DTY		In OpenResFileUnderSystemMap, check to see if the file being
 ;									opened is a font file.  (I knew I called _GetCatInfo for a
 ;									reason!) If it is, bump the count in emOpenFontFiles. If this
-;									goes past our artificial limit of 128 font files, don’t open any
+;									goes past our artificial limit of 128 font files, don't open any
 ;									more font files.
 ;		<33>	 1/30/92	DTY		Set the preventFileFromBeingClosedBit on override maps and font
 ;									maps.
-;		<32>	 1/29/92	DTY		OK, we’ve got the real reason for what happened with that last
+;		<32>	 1/29/92	DTY		OK, we've got the real reason for what happened with that last
 ;									change. It turns out that the mInMemoryAttrs byte was destined
 ;									for use in another way than what I assumed, so these bits do get
 ;									written out to the disk, which is why we saw them set when a
 ;									resource file was being opened. Anyway, now that we know the
-;									real reason, I’m taking out the last change, and adding a patch
+;									real reason, I'm taking out the last change, and adding a patch
 ;									to vNewMap in ResourceOverridePatches.a which does the same
 ;									thing, but more thoroughly.
 ;		<31>	 1/28/92	DTY		With pvh – The ultimate in skanky band-aids to get past a
@@ -157,25 +157,25 @@
 ;									installs. Anyway, add some code to _HOpenResFile which strips
 ;									these bits off of newly opened files. This change should be
 ;									taken out as soon as a better way of solving this problem is
-;									found; it’s just too skanky for words. (And this is coming from
+;									found; it's just too skanky for words. (And this is coming from
 ;									Dean and Pete, the two skankiest INIT writers on this side of
 ;									Stevens Creek Blvd.)
 ;		<30>	 1/25/92	csd		When renumbering fonts, make sure that the changed FOND resource
 ;									actually gets written back out to the right file.
 ;		<29>	 1/22/92	DTY		Using A5 to point to a resource map, then calling _UniqueID is
-;									incredibly bad! (And I thought I could get away with it.) We’ll
+;									incredibly bad! (And I thought I could get away with it.) We'll
 ;									have to keep the loner resource map in the stack frame for lack
 ;									of a better place to put it.
 ;		<28>	 1/22/92	DTY		_WriteResource requires that the resource handle actually be in
 ;									memory.  So instead of loading a font resource in just to change
 ;									the ID, call _UpdateResFile to write out the map.
-;		<27>	 1/19/92	DTY		Tons o’ weekend fun in ResolveIDConflicts:  Don’t call
+;		<27>	 1/19/92	DTY		Tons o' weekend fun in ResolveIDConflicts:  Don't call
 ;									FindNewFamilyNumber to map to an existing ID if the IDs in the
 ;									two chains match.  FindNewFamilyNumber now determines whether to
 ;									map or renumber depending on a word on the stack instead of
 ;									seeing if existingFamilyID is set.  This makes renumbering to
-;									the system font work.  Also release each 'FOND' as we’re
-;									finished with it.  This means writing each change out as it’s
+;									the system font work.  Also release each 'FOND' as we're
+;									finished with it.  This means writing each change out as it's
 ;									made instead of doing a massive _UpdateResFile at the end.
 ;		<26>	 1/14/92	DTY		Save and restore TopMapHndl in ResolveIDConflicts. This guy
 ;									blocked build (15). Ooops.
@@ -188,18 +188,18 @@
 ;									family ID in the 'FOND' resource itself if the 'FOND' is
 ;									renumbered.
 ;		<23>	12/17/91	DTY		Add _ResolveIDConflicts, which makes sure that there will be no
-;									matching font ID’s.
+;									matching font ID's.
 ;		<22>	12/16/91	DTY		In SetOverrideAttributes, instead of merging the flags into the
 ;									memory attributes, just set the attributes to be the flags that
 ;									are passed in, preserving the decompression bit, of course.
 ;									This should make opening font suitcases (finally) work.
-;		<21>	12/14/91	DTY		The System process number is 1, not 0. (We’ll keep checking for
+;		<21>	12/14/91	DTY		The System process number is 1, not 0. (We'll keep checking for
 ;									0 as well, since that makes things a lot simpler.)
 ;		<20>	12/11/91	DTY		Better IsThisASystemResourceMap call. Instead of looking at the
 ;									map attribute bits to determine if a resource map is a system
 ;									resource map, look at the PSN of the process that opened the
 ;									file. If it was opened in system mode, then consider the file a
-;									system resource map.  This means that the Process Manager’s
+;									system resource map.  This means that the Process Manager's
 ;									patch on CheckLoad to make sure that system resources load in
 ;									the system heap will work for Gibblies, the System file, and
 ;									fonts files, too, which, in turn means that the SetSysHeap
@@ -229,17 +229,17 @@
 ;									GetOverrideAttributes, SetScanOverride, and InsertFontMap
 ;									routines.
 ;		<10>	 11/1/91	DTY		Make GetMap return resFNotFound if the map that was passed
-;									wasn’t found.  Also added code for _IsThisASystemResourceMap.
+;									wasn't found.  Also added code for _IsThisASystemResourceMap.
 ;		 <9>	10/23/91	DTY		Everybody in the world wants to close files from TopMapHndl down
 ;									to SysMapHndl, which is a really bad thing if there are override
 ;									maps for the System file. Provide a routine which returns a
 ;									handle to the resource map that people should stop closing files
-;									at. (The resource file that is returned shouldn’t be closed.)
+;									at. (The resource file that is returned shouldn't be closed.)
 ;		 <8>	 12/7/90	dba		<gbm> make ResourceDispatch use DispatchHelper
 ;		 <7>	 11/8/90	csd		& dba & stearno : Changed the sense of the test after NewPtr to
 ;									branch on non-zero for failure.
 ;		 <6>	 11/1/90	csd		& dba; Change the jsrROM for OpenResFile to be a jsrOld so we
-;									don’t nuke the other patch to OpenResFile. The other ...ROM
+;									don't nuke the other patch to OpenResFile. The other ...ROM
 ;									calls in this file need to be checked, too.
 ;		 <5>	10/17/90	stb		& bbm & stearno.  fix bug for very low memory situation in
 ;									SetResourceSize
@@ -275,7 +275,7 @@
 ;	To Do:
 ;		fix copy code in SetResourceSize so it copies just valid data instead of the whole space
 ;		get rid of extra seeks, etc.
-;		potential bug, if size we need to set to is odd, it probably won’t work
+;		potential bug, if size we need to set to is odd, it probably won't work
 ;		potential bug, if size is increased and it is the one just before
 ;			the map, and there are no resources after the map, then
 ;			the dataSize in the map header is not updated.
@@ -447,7 +447,7 @@ ResolveIDConflicts	Proc	Export
 				move.l	TopMapHndl,currentTopMap(a6)	; <26>
 				move.w	CurMap,currentMap(a6)
 				move.b	ResLoad,resLoadState(a6)
-				sf		ResLoad							; <27> Don’t load subsequent font resources
+				sf		ResLoad							; <27> Don't load subsequent font resources
 
 ;
 ; Find the resource map in the chain and remove it
@@ -465,7 +465,7 @@ ResolveIDConflicts	Proc	Export
 				beq.s	@removeMapFromChain				; Yes.  Go on
 				move.l	mapToRenumber(a6),a0			; <29> Remember map above
 				move.l	a1,mapToRenumber(a6)			; Try next map
-				bz		@exitResolve					; Hope Claris doesn’t sue…
+				bz		@exitResolve					; Hope Claris doesn't sue…
 				bra.s	@findMap
 				
 ;
@@ -483,11 +483,11 @@ ResolveIDConflicts	Proc	Export
 				move.l	(a0),a0							; Pointer to map above
 				move.l	a1,mNext(a0)					; Point around this map
 @rejoin
-				clr.l	mNext(a2)						; Now it’s out of the chain
+				clr.l	mNext(a2)						; Now it's out of the chain
 				move.l	TopMapHndl,a0					; Get TopMapHndl now that resource map is out of chain
 				move.l	a0,mainChain(a6)				; Save the main resource chain
 				move.l	(a0),a0
-				move.w	mRefNum(a0),d6					; Remember it’s reference number
+				move.w	mRefNum(a0),d6					; Remember it's reference number
 
 ;
 ; Loop through all the 'FOND' resources
@@ -502,7 +502,7 @@ ResolveIDConflicts	Proc	Export
 				move.w	d7,-(sp)						; Current index
 				_GetIndResource
 				move.l	(sp)+,d0						; Get handle to 'FOND'
-				bz		@replaceMapInChain				; If no more resources, we’re done
+				bz		@replaceMapInChain				; If no more resources, we're done
 				
 ;
 ; Get the name and ID of the resource
@@ -531,7 +531,7 @@ ResolveIDConflicts	Proc	Export
 				pea		resName(a6)
 				_GetNamedResource						; Look for font family by name
 				move.l	(sp)+,d0
-				bz.s	@lookForSameID					; This font family isn’t around.  Check for conflicts with other families
+				bz.s	@lookForSameID					; This font family isn't around.  Check for conflicts with other families
 				move.l	d0,a0							; <46>
 				btst	#kDeanBit,kBrianBits			; <53> See if we loaded the resource
 				seq		fontAlreadyLoaded(a6)			; <46> <53> Set our flag accordingly.
@@ -539,7 +539,7 @@ ResolveIDConflicts	Proc	Export
 ;
 ; <24> This font family already exists in the resource chain.  Check the family number to
 ;		make sure the two IDs match.  If not, renumber the font family that is being placed
-;		in the Fonts Folder to the family ID of the family that’s already there.
+;		in the Fonts Folder to the family ID of the family that's already there.
 ;
 
 				move.l	d0,-(sp)						; Push a second copy of the resource handle for call to ReleaseTheFont
@@ -550,9 +550,9 @@ ResolveIDConflicts	Proc	Export
 				_GetResInfo								; Get info about font family in main chain
 				move.w	mainResID(a6),d0				; <27>
 				cmp.w	resID(a6),d0					; <27> See if the IDs match.
-				beq.s	@newFamilyIDMatchesExistingOne	; <27> They do.  Don’t have to renumber.
+				beq.s	@newFamilyIDMatchesExistingOne	; <27> They do.  Don't have to renumber.
 				move.w	mainResID(a6),existingFamilyID(a6)	; <24> Change to this ID without using hinting.
-				move.w	#1,-(sp)						; <27> Pass the fact that we’re renumber to an existing ID as a parameter in case we’re renumbering to the System font.
+				move.w	#1,-(sp)						; <27> Pass the fact that we're renumber to an existing ID as a parameter in case we're renumbering to the System font.
 				bsr		FindNewFamilyNumber
 @newFamilyIDMatchesExistingOne
 				move.l	mainChain(a6),TopMapHndl		; Look in the main resource chain
@@ -570,13 +570,13 @@ ResolveIDConflicts	Proc	Export
 				move.w	resID(a6),-(sp)					; Look for the same resource ID
 				_GetResource
 				move.l	(sp)+,d0						; Get the resource handle
-				bz.s	@checkFontResources				; This ID doesn’t exist.  Validate other font resources.
+				bz.s	@checkFontResources				; This ID doesn't exist.  Validate other font resources.
 				move.l	d0,a0							; <46>
 				btst	#kDeanBit,kBrianBits			; <53> See if we loaded the resource
 				seq		fontAlreadyLoaded(a6)			; <46> <53> Set our flag accordingly.
 				
 ;
-; Found an ID match.  Get the name to see if it’s the same family.
+; Found an ID match.  Get the name to see if it's the same family.
 ;
 
 @gotSameID
@@ -649,7 +649,7 @@ ResolveIDConflicts	Proc	Export
 
 ;				
 ; Flush the 'FOND' candidate list in case anything in the cache was unloaded during the
-; renumber.  (The handle in the candidate list won’t do us much good now…)
+; renumber.  (The handle in the candidate list won't do us much good now…)
 ;
 				
 				move.l	fromToTable(a6),d0				; <57>
@@ -657,7 +657,7 @@ ResolveIDConflicts	Proc	Export
 				move.l	d0,a0							; <57>
 				_DisposeHandle							; <57> Dispose the from to table for this file.
 @noFromToTable
-				tst.w	hadConflict(a6)					; <27> Don’t flush if no renumbering happened.
+				tst.w	hadConflict(a6)					; <27> Don't flush if no renumbering happened.
 				bz.s	@exitResolve					; <27>
 				move.l	ExpandMem,a1					; <27>
 				move.l	ExpandMemRec.emSplineKey(a1),a1	; <27> Get handle to TrueType globals
@@ -699,8 +699,8 @@ FindNewFamilyNumber	Proc	Export
 				
 				With	ConflictStackFrame
 				
-				move.w	fontAlreadyLoaded(a6),-(sp)		; <52> Save ResolveIDConflict’s value of this flag before this routine uses it.
-				tst.w	6(sp)							; <27> <52> See if we’re looking for a unique number, or if we’re mapping to an existing ID.
+				move.w	fontAlreadyLoaded(a6),-(sp)		; <52> Save ResolveIDConflict's value of this flag before this routine uses it.
+				tst.w	6(sp)							; <27> <52> See if we're looking for a unique number, or if we're mapping to an existing ID.
 				bnz		@renumberToExistingFamilyNumber	; <24>
 				
 				move.w	resID(a6),d5					; Get the resource ID of the 'FOND'
@@ -737,7 +737,7 @@ FindNewFamilyNumber	Proc	Export
 				bra.s	@tryAnotherNumber				; <46> And look for another ID
 				
 ;
-; This ID is free in the main chain.  Double check in the resource map to make sure it’s
+; This ID is free in the main chain.  Double check in the resource map to make sure it's
 ; not taken.
 ;
 
@@ -753,7 +753,7 @@ FindNewFamilyNumber	Proc	Export
 				clr.w	fontAlreadyLoaded(a6)			; <46> We want to unload the 'FOND' from the loner file
 @tryAnotherNumber
 				move.l	d0,-(sp)
-				bsr		ReleaseTheFont					; Don’t keep it hanging around
+				bsr		ReleaseTheFont					; Don't keep it hanging around
 @gotOriginalID											; <36>
 				addq	#1,d3
 				cmp.w	d5,d3							; Check against the upper bound
@@ -793,20 +793,20 @@ FindNewFamilyNumber	Proc	Export
 				move.l	a4,-(sp)						; <27>
 				_WriteResource							; <27> Write out the changes now so the FOND can be unloaded.
 				tst.w	4(sp)							; <24> Are we renumbering to an existing family?
-				bnz.s	@existingFamilyExit				; <24> Yes.  Don’t mess with the hint.
+				bnz.s	@existingFamilyExit				; <24> Yes.  Don't mess with the hint.
 				addq	#1,d3
 				move.w	d3,familyHint(a6)				; <37> For fonts of the same script, start looking here next time around
 @existingFamilyExit
 				st		hadConflict(a6)					; Report a conflict occured
 @exit
-				move.w	(sp)+,fontAlreadyLoaded(a6)		; <52> Restore ResolveIDConflict’s value
+				move.w	(sp)+,fontAlreadyLoaded(a6)		; <52> Restore ResolveIDConflict's value
 				move.l	(sp)+,a0						; Get return address
 				addq	#2,sp							; Pop parameter
 				jmp		(a0)							; Return to caller
 				EndProc
 				
 ;
-; Make sure 'sfnt', 'NFNT', and 'FONT' resource IDs don’t conflict.
+; Make sure 'sfnt', 'NFNT', and 'FONT' resource IDs don't conflict.
 ;
 				
 ValidateFontResourceIDs	Proc	Export
@@ -817,8 +817,8 @@ ValidateFontResourceIDs	Proc	Export
 				
 				With	ConflictStackFrame
 				
-				move.w	fontAlreadyLoaded(a6),-(sp)		; <52> Save ResolveIDConflict’s value of this flag
-				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we’re reading out of the right map
+				move.w	fontAlreadyLoaded(a6),-(sp)		; <52> Save ResolveIDConflict's value of this flag
+				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we're reading out of the right map
 				move.w	refNum(a6),CurMap
 				
 				tst.l	(a4)							; See if the 'FOND' needs to be loaded
@@ -826,8 +826,8 @@ ValidateFontResourceIDs	Proc	Export
 				move.l	a4,-(sp)
 				_LoadResource							; Load in the 'FOND' now
 @isLoaded
-				move.l	a4,a0							; We don’t need to save the handle state since the resource will be released shortly
-				_HLock									; Lock it down while we’re working with it
+				move.l	a4,a0							; We don't need to save the handle state since the resource will be released shortly
+				_HLock									; Lock it down while we're working with it
 
 ;
 ; Make sure the resource ID of each entry in the font association table is unique
@@ -839,7 +839,7 @@ ValidateFontResourceIDs	Proc	Export
 				bmi		@exit							; Empty font
 				clr.w	fontHint(a6)					; Start afresh for every 'FOND'
 
-; Calculate the size we’ll need in a from-to list for this 'FOND'
+; Calculate the size we'll need in a from-to list for this 'FOND'
 
 				moveq	#0,d2							; <57>
 				move.w	d4,d2							; <57> Get the number of association table entries
@@ -849,14 +849,14 @@ ValidateFontResourceIDs	Proc	Export
 ; See if a new from-to list needs to be created.
 				
 				move.l	fromToTable(a6),d1				; <57> Is there a from-to list already?
-				bnz.s	@resizeExistingFromToList		; <57> Yes.  Resize it so there’s enough space for all the association entries in this 'FOND'.
+				bnz.s	@resizeExistingFromToList		; <57> Yes.  Resize it so there's enough space for all the association entries in this 'FOND'.
 	
 ; Create a new from-to list.
 
 				move.l	d2,d0							; <57> Create a handle of the size we calculated earlier
 				addq	#2,d0							; <57> Allocate an extra word for the number of entries in the from-to table
 				_NewHandle ,Sys,Clear					; <57> Create the handle
-				bnz		@noFontsRenumbered				; <57> If we couldn’t allocate the table, don’t renumber any fonts.
+				bnz		@noFontsRenumbered				; <57> If we couldn't allocate the table, don't renumber any fonts.
 				move.l	a0,fromToTable(a6)				; <57> Keep a handle on the list
 				move.l	(a0),a0							; <57>
 				move.w	#-1,(a0)						; <57> Initialize the count.
@@ -867,20 +867,20 @@ ValidateFontResourceIDs	Proc	Export
 @resizeExistingFromToList
 				move.l	d1,a0							; <57> Get the handle to the from-to list
 				_GetHandleSize							; <57> Get the size of the current from-to list
-				add.l	d2,d0							; <57> Add in the size we’ll need
+				add.l	d2,d0							; <57> Add in the size we'll need
 				_SetHandleSize							; <57> Grow the handle
-				bnz		@noFontsRenumbered				; <57> Bail if the handle couldn’t grow
+				bnz		@noFontsRenumbered				; <57> Bail if the handle couldn't grow
 @checkNextFont
 				move.w	(a3),d0							; Get the size
 				
 ;
 ; Get the resource type for this entry.  If we successfully get a type, then we assume that
-; this is the first time we’ve encountered this font resource, and we don’t have an entry
+; this is the first time we've encountered this font resource, and we don't have an entry
 ; for it in our from-to table, so look for any conflicts.
 ;
 
 @getFontResourceType
-				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we’re reading out of the right map
+				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we're reading out of the right map
 				move.w	refNum(a6),CurMap
 				subq	#4,sp
 				move.w	4(a3),-(sp)						; Resource ID
@@ -889,7 +889,7 @@ ValidateFontResourceIDs	Proc	Export
 				bnz		@checkForConflicts				; <57> If we have a type, go see if the ID conflicts with anything
 
 ;
-; Not taking that last branch means that we couldn’t find a font resource with the ID
+; Not taking that last branch means that we couldn't find a font resource with the ID
 ; specified in the font association table.  This means that either the 'FOND' is corrupt,
 ; or that the font resource got renumbered because it is referenced in another 'FOND' in
 ; this file.  Call FindIDInFromToList to determine if this font resource has already been
@@ -899,10 +899,10 @@ ValidateFontResourceIDs	Proc	Export
 				subq	#2,sp							; <57>
 				move.w	4(a3),-(sp)						; <57> Pass the ID to look for
 				bsr		FindIDInFromToList				; <57> Go find the ID
-				move.w	(sp)+,d2						; <57> FindIDInFromList will return the ID to renumber to, or -1 if this ID wasn’t in the table
+				move.w	(sp)+,d2						; <57> FindIDInFromList will return the ID to renumber to, or -1 if this ID wasn't in the table
 				cmpi.w	#-1,d2							; <57> Did we get back a -1?
 				bne		@changeFATEntry					; <57> This font was already renumbered.  Just change the font association table entry.
-				bra		@nextTableEntry					; <57> A -1 means that this ID isn’t in our list, so this 'FOND' entry is probably bad.
+				bra		@nextTableEntry					; <57> A -1 means that this ID isn't in our list, so this 'FOND' entry is probably bad.
 				
 ;
 ; See if the ID conflicts with a font resource in the main chain.
@@ -986,7 +986,7 @@ ValidateFontResourceIDs	Proc	Export
 				bne.s	@getUniqueID
 @isNeither
 
-				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we’re reading out of the right map
+				move.l	mapToRenumber(a6),TopMapHndl	; <29> Make sure we're reading out of the right map
 				move.w	refNum(a6),CurMap
 				subq	#4,sp
 				move.l	d3,-(sp)						; Push the resource type
@@ -1024,7 +1024,7 @@ ValidateFontResourceIDs	Proc	Export
 				bsr		NewFromToEntry					; <57> Put it in the list
 				
 ;
-; Change the font resource’s ID number.
+; Change the font resource's ID number.
 ;
 
 				move.l	a2,-(sp)						; Be prepared to change the resource ID
@@ -1044,14 +1044,14 @@ ValidateFontResourceIDs	Proc	Export
 @exit
 				tst.w	hadConflict(a6)					; <28> If a font resource was renumbered, the 'FOND' needs to be written out too.
 				bz.s	@noFontsRenumbered				; <28>
-				move.l	mapToRenumber(a6),TopMapHndl	; <30> Make sure we’re working with the right map
+				move.l	mapToRenumber(a6),TopMapHndl	; <30> Make sure we're working with the right map
 				move.w	refNum(a6),CurMap				; <30>
 				move.l	a4,-(sp)
 				_ChangedResource						; Mark the 'FOND' as being changed.
 				move.l	a4,-(sp)						; <27>
 				_WriteResource							; <27> Write out the changes now so the FOND can be unloaded.
 @noFontsRenumbered
-				move.w	(sp)+,fontAlreadyLoaded(a6)		; <52> Restore ResolveIDConflict’s setting
+				move.w	(sp)+,fontAlreadyLoaded(a6)		; <52> Restore ResolveIDConflict's setting
 				rts
 				EndProc
 
@@ -1138,8 +1138,8 @@ FontResourceType		Proc	Export
 ;
 
 @noFontResource
-				moveq	#0,d0							; Don’t return a handle
-				moveq	#0,d3							; Don’t return a type
+				moveq	#0,d0							; Don't return a handle
+				moveq	#0,d3							; Don't return a type
 				
 @gotFontResource
 				move.l	d0,a2							; Return handle to font resource in A2
@@ -1151,7 +1151,7 @@ FontResourceTypes
 				EndProc
 
 ;
-; The Process Manager doesn’t let fonts get released, but I know what I’m doing.
+; The Process Manager doesn't let fonts get released, but I know what I'm doing.
 ; Instead of calling _ReleaseResource, call _DetachResource then _DisposeHandle
 ; to free up the memory used up by the font.
 ;
@@ -1210,7 +1210,7 @@ localSize		equ		*
 				move.l	(sp)+,d0						; Got one?
 				bz		@exitCloseResFileUnderSystemMap	; No.  Get out.
 				
-; Get a pointer to this file’s FCB.
+; Get a pointer to this file's FCB.
 				
 				move.l	d0,a3							; Save resource map handle
 				move.l	FCBsPtr,a4						; Get pointer to FCB array
@@ -1218,10 +1218,10 @@ localSize		equ		*
 				
 ; See if this file is a font file
 
-				move.l	fcbFType(a4),-(sp)				; Get this file’s type
-				move.l	fcbDirID(a4),-(sp)				; And the folder it’s in.
+				move.l	fcbFType(a4),-(sp)				; Get this file's type
+				move.l	fcbDirID(a4),-(sp)				; And the folder it's in.
 				bsr		IsThisAFontFileInTheFontsFolder	; See if this is a font file
-				bz.s	@validateTwoDeepBit				; It’s not.  Close it.
+				bz.s	@validateTwoDeepBit				; It's not.  Close it.
 				
 ; This file is in the Fonts folder.  Decrement the count of open font files.
 
@@ -1240,20 +1240,20 @@ localSize		equ		*
 ; Prepare to close the file
 
 
-; <55> First, check the two deep bit on this map.  If it’s not set, clear it on the map above
+; <55> First, check the two deep bit on this map.  If it's not set, clear it on the map above
 ; it in the resource chain.
 
 @validateTwoDeepBit
 				move.l	(a3),a0							; <55>
-				btst	#twoDeepBit,mInMemoryAttr(a0)	; <55> Is the two deep bit set on the map we’re closing?
-				bnz.s	@closeTheFile					; <55> If not, don’t bother with this part
+				btst	#twoDeepBit,mInMemoryAttr(a0)	; <55> Is the two deep bit set on the map we're closing?
+				bnz.s	@closeTheFile					; <55> If not, don't bother with this part
 				move.l	SysMapHndl,d0					; <55> Start from the system map (since this IS CloseResFileUnderSystemMap).
 @findMapAbove
 				move.l	d0,a1							; <55>
 				move.l	(a1),a0							; <55>
 				move.l	mNext(a0),d0					; <55>
 				bz.s	@exitCloseResFileUnderSystemMap	; <55> If the end of the chain is reached before finding the map, just exit.
-				cmp.l	a3,d0							; <55> Is the map we’re closing the next one?
+				cmp.l	a3,d0							; <55> Is the map we're closing the next one?
 				bne.s	@findMapAbove					; <55> Nope.  Try again.
 				bclr	#twoDeepBit,mInMemoryAttr(a0)	; <55> Clear the twoDeep bit on this map.
 				
@@ -1262,7 +1262,7 @@ localSize		equ		*
 @closeTheFile
 				move.l	ExpandMem,a0
 				tst.w	ExpandMemRec.emProcessMgrExists(a0)	; See if Process Manager is around so _BeginSystemMode exists
-				bz.s	@noBeginSystemMode					; It’s not.  Don’t call BeginSystemMode
+				bz.s	@noBeginSystemMode					; It's not.  Don't call BeginSystemMode
 				subq	#2,sp
 				_BeginSystemMode							; The file was opened in system mode, so it needs to be closed that way.
 				addq	#2,sp
@@ -1273,7 +1273,7 @@ localSize		equ		*
 				_CloseResFile								; Really close the file now
 				move.l	ExpandMem,a0
 				tst.w	ExpandMemRec.emProcessMgrExists(a0)	; See if Process Manager is around so _BeginSystemMode exists
-				bz.s	@exitCloseResFileUnderSystemMap		; It’s not.  Don’t call EndSystemMode
+				bz.s	@exitCloseResFileUnderSystemMap		; It's not.  Don't call EndSystemMode
 				subq	#2,sp
 				_EndSystemMode
 				addq	#2,sp
@@ -1322,8 +1322,8 @@ localSize		equ		*
 				movem.l	a3-a4,-(sp)
 				move.w	CurMap,realCurMap(a6)			; <19> Save CurMap
 				
-				move.w	#-1,fileRefNum(a6)				; Be pessimistic and assume we’ll fail
-				clr.w	openingFontFile(a6)				; <34> Assume it’s not a font file.
+				move.w	#-1,fileRefNum(a6)				; Be pessimistic and assume we'll fail
+				clr.w	openingFontFile(a6)				; <34> Assume it's not a font file.
 				
 ; Get the file type and creator of this file.
 				
@@ -1334,7 +1334,7 @@ localSize		equ		*
 				move.l	(sp)+,ioNamePtr(a0)				; And stash the pointer
 				move.w	FSSpec.vRefNum(a1),ioVRefNum(a0)
 				move.l	FSSpec.parID(a1),ioDirID(a0)
-				clr.w	ioFDirIndex(a0)					; Don’t use indexing
+				clr.w	ioFDirIndex(a0)					; Don't use indexing
 				_GetCatInfo								; Get information about a file
 				move.w	d0,ResErr						; Save error, if any
 				bnz		@exit							; Leave if there was an error
@@ -1369,16 +1369,16 @@ localSize		equ		*
 				_FSpOpenResFile							; Try to open the file
 				move.w	(sp)+,d0
 				move.w	d0,fileRefNum(a6)				; Return the fileRefNum
-				bmi.s	@restoreHeap					; File wasn’t opened
+				bmi.s	@restoreHeap					; File wasn't opened
 				cmp.l	TopMapHndl,a3					; See if top resource map has changed
 				bne.s	@insertMap						; If it has, file is newly opened
-				move.w	#opWrErr,ResErr					; If file already opened, don’t let it be moved.
+				move.w	#opWrErr,ResErr					; If file already opened, don't let it be moved.
 				bra.s	@restoreHeap
 
-; The file has been opened.  Move it’s resource map down underneath the system file.
+; The file has been opened.  Move it's resource map down underneath the system file.
 
 @insertMap
-				move.l	TopMapHndl,-(sp)				; File’s resource map is at the top of the chain
+				move.l	TopMapHndl,-(sp)				; File's resource map is at the top of the chain
 				bsr		InsertMapUnderSystemMap			; Insert it.
 
 ; If this was a font file, bump the open font file counter.
@@ -1405,15 +1405,15 @@ localSize		equ		*
 
 ;
 ; <48> This routine checks to see if a file is a font file in the Fonts folder.
-; The file’s type and parent folder is passed to this routine on the stack.
+; The file's type and parent folder is passed to this routine on the stack.
 ; 
 
 IsThisAFontFileInTheFontsFolder	Proc	Export
 
 StackFrame		Record	{A6Link},Decr
 paramBegin		equ		*								; <49>
-fileType		ds.l	1								; File’s type
-parentID		ds.l	1								; File’s parent folder
+fileType		ds.l	1								; File's type
+parentID		ds.l	1								; File's parent folder
 paramSize		equ		paramBegin - *					; <49>
 retAddr			ds.l	1
 A6Link			ds.l	1
@@ -1433,18 +1433,18 @@ localSize		equ		*
 				cmp.l	d1,d0 							; <34> Is it a font file?
 				bne.s	@fileTypeLoop					; <34> Nope, try again.
 
-; This is a font file.  See if it’s in the Fonts folder.
+; This is a font file.  See if it's in the Fonts folder.
 
 				subq	#2,sp
 				move.w	#kOnSystemDisk,-(sp)			; Look on the System disk
 				move.l	#kFontsFolderType,-(sp)			; Look for the Fonts Folder
-				move.b	#kDontCreateFolder,-(sp)		; Don’t create it if it’s not there
+				move.b	#kDontCreateFolder,-(sp)		; Don't create it if it's not there
 				pea		folderVRefNum(a6)
 				pea		folderDirID(a6)
-				_FindFolder								; Let _FindFolder do it’s thing.
+				_FindFolder								; Let _FindFolder do it's thing.
 				tst.w	(sp)+							; Error?
-				bz		@gotFontFolder					; If there’s no Fonts folder,
-				moveq	#0,d0							; this file can’t be in it.
+				bz		@gotFontFolder					; If there's no Fonts folder,
+				moveq	#0,d0							; this file can't be in it.
 				bra.s	@exitFontFile
 				
 @gotFontFolder
@@ -1510,7 +1510,7 @@ InsertMapUnderSystemMap	Proc	Export
 ;____________________________________________________________________________________________________
 ; IsThisASystemResourceMap(resourceMap: Handle): Boolean;
 ;
-;	Given a resource map handle, this routine determines if it’s the resource map
+;	Given a resource map handle, this routine determines if it's the resource map
 ;	resource map was opened the by the system.  This is the ensure that fonts in the
 ;	Fonts folder and Gibbly resources are loaded in the System heap.
 ;
@@ -1531,7 +1531,7 @@ IsThisASystemResourceMap	Proc	Export
 
 @notNilHandle
 				cmp.l	ROMMapHndl,d1					; <39> Are we looking at the ROM map?
-				beq.s	@isSystemResource				; <39> If so, skip all this and say it’s a system resource.
+				beq.s	@isSystemResource				; <39> If so, skip all this and say it's a system resource.
 				move.l	d1,a0
 				move.l	(a0),a0
 				move.w	mRefNum(a0),d0					; Get the file reference number of this map
@@ -1540,7 +1540,7 @@ IsThisASystemResourceMap	Proc	Export
 ; I really should use EqualProcess, but the Process Manager might not be around yet…
 
 				move.l	(a0)+,d0						; Get high long of PSN
-				bnz.s	@exit							; If not zero, it can’t be kSystemProcess
+				bnz.s	@exit							; If not zero, it can't be kSystemProcess
 				cmpi.l	#kSystemProcess,(a0)			; <62><mc2> Check low word of PSN.
 				bne.s	@exit
 @isSystemResource
@@ -1597,7 +1597,7 @@ GetPSNFromParallelFCB	Proc	Export
 
 ; MarkFileAsOwnedByTheSystem
 ;
-;	If a file is considered to be a “system file” if the PSN of the process that opened
+;	If a file is considered to be a 'system file' if the PSN of the process that opened
 ;	the file is kSystemProcess.  Under 7.1, we also considered files with a PSN of 0
 ;	to be a system file.  This caused problems for extensions that opened files and
 ;	wanted to load resources into their own heap instead of the system heap.  In 7.2
@@ -1658,7 +1658,7 @@ A6Link			ds.l	1
 				move.l	a0,mapHandle(a6)
 				bra.s	@exitGetMap
 @mapNotFound
-				move.w	#resFNotFound,ResErr			; Return an error if the map wasn’t found
+				move.w	#resFNotFound,ResErr			; Return an error if the map wasn't found
 @exitGetMap
 				move.l	(sp)+,a1
 				unlk	a6
@@ -1679,7 +1679,7 @@ ReadPartialResource Proc Export
 		jsrROM	RefHandle
 		bne.s	Exit
 
-		jsrROM	RREntry6				; set up regs for a read/write (don’t change attrs)
+		jsrROM	RREntry6				; set up regs for a read/write (don't change attrs)
 		addq.l	#4,d2					; skip over the length longint
 		add.l	16(a6),d2				; add in offset inside this resource
 		move.l	12(a6),d1				; get pointer to buffer
@@ -1706,7 +1706,7 @@ WritePartialResource Proc Export
 		tst.b	MAttr(a0)				; check if map is read-only
 		bmi.s	MapIsReadOnly			; if high bit is set, map is read-only
 
-		jsrROM	RREntry6				; set up regs for a read/write (don’t change attrs)
+		jsrROM	RREntry6				; set up regs for a read/write (don't change attrs)
 		addq.l	#4,d2					; skip over the length longint
 		add.l	16(a6),d2				; add in offset inside this resource
 		move.l	12(a6),d1				; get pointer to buffer
@@ -1736,7 +1736,7 @@ SetResourceSize Proc Export
 
 sizeParam			equ		8
 handleParam			equ		12
-kMinResourceBuffer	equ		2048		; per Bryan’s request
+kMinResourceBuffer	equ		2048		; per Bryan's request
 
 		jsrROM	Std1Entry
 
@@ -1774,11 +1774,11 @@ kMinResourceBuffer	equ		2048		; per Bryan’s request
 		; Now with CheckGrowAt1 we have set the file length at the new size, all						<SM10> rb
 		; we need to do is copy the resource from the old location to the new.
 
-		; Check for the biggest block available w/o purging.  If it’s smaller than kMinResourceBuffer bytes,
+		; Check for the biggest block available w/o purging.  If it's smaller than kMinResourceBuffer bytes,
 		; try a NewPtr of kMinResourceBuffer.  This will cause purging.					<5>
 
 		sub.l	(a4),a2					; turn entry pointer into offset in map	 because right
-										;  now it’s a deref'd handle.  We’ll add it back after
+										;  now it's a deref'd handle.  We'll add it back after
 										;  we move memory with the NewPtr				<1.9>,<5>
 		_MaxBlock						; how big a buffer can we get?
 		cmp.l	#kMinResourceBuffer,d0	; is it at least kMinResourceBuffer?			<5>
@@ -1830,7 +1830,7 @@ kMinResourceBuffer	equ		2048		; per Bryan’s request
 ;		a4: map handle
 ;		d3: local offset into current resource, in chunks
 ;		d4: chunk size (size of buffer)
-;		d5: relative offset in file to the next ResData; doesn’t include file header.
+;		d5: relative offset in file to the next ResData; doesn't include file header.
 ;		d7: resource size to copy, however many bytes left to copy.
 
 CopyMore
@@ -1847,7 +1847,7 @@ CopyMore
 ;		d2: location of resource in file, offset.  Out of reference list for this resource.
 ;-------
 
-		jsrROM	RREntry6				; set up for a read/write (don’t change attrs)
+		jsrROM	RREntry6				; set up for a read/write (don't change attrs)
 		add.l	d3,d2					; add in offset inside this resource
 		move.l	a3,d1					; get pointer to buffer
 		move.l	d4,d0					; get amount of data to read
@@ -1855,7 +1855,7 @@ CopyMore
 
 		; write out to end of file
 
-		jsrROM	RREntry6				; set up regs for a read/write (don’t change attrs)
+		jsrROM	RREntry6				; set up regs for a read/write (don't change attrs)
 		move.l	ResDataOffset(a0),d2	; a0 already points to map					;;;(b3b)
 		add.l	d5,d2					; add in offset to new resource
 		move.l	a3,d1					; get pointer to buffer
@@ -1892,7 +1892,7 @@ WriteSize
 		move.l	(a4),a0					; deref map handle again
 		ori.b	#MCCMask,MAttr(a0)		;  and tell them the map has changed, needs compaction
 
-		jsrROM	RREntry6				; set up regs for a read (don’t change attrs)
+		jsrROM	RREntry6				; set up regs for a read (don't change attrs)
 		lea		sizeParam(a6),a0		; point to size
 		move.l	a0,d1
 		moveq	#4,d0					; get the size
@@ -1926,7 +1926,7 @@ MakeOverrideMap	Proc	Export
 				move.l	a5,-(sp)
 				move.l	ROMMapHndl,a5					; Keep ROM resource map in A5
 				move.w	CurMap,-(sp)					; I officially apologize to the AppleTalk guys
-				move.w	#1,CurMap						; for sliming them about doing this.  I see what they’re up to now.
+				move.w	#1,CurMap						; for sliming them about doing this.  I see what they're up to now.
 				
 				subq	#4,sp							; make space for handle
 				move.l	#'rovm',-(sp)					; push 'rovm' for _Get1Resource
@@ -1948,7 +1948,7 @@ MakeOverrideMap	Proc	Export
 				move.l	#30,(a0)+						; Map size
 				move.l	TopMapHndl,(a0)+				; Put it at the top of the chain for now
 				move.l	a4,TopMapHndl					; <54> Put the map in the chain.
-				move.w	#kFakeResourceOverrideMapRefNum,(a0)+	; A fake reference number for this map since it didn’t come from a file
+				move.w	#kFakeResourceOverrideMapRefNum,(a0)+	; A fake reference number for this map since it didn't come from a file
 				bset	#mapReadOnly,(a0)+
 				clr.b	(a0)+							; Clear the attributes
 				move.w	#mNames+2,(a0)+					; Type list always comes right after map header
@@ -2057,8 +2057,8 @@ InsertOverrideMap	Proc	Export
 				bz		@exitInsertOverrideMap			; <35> Yep.  Bail out.
 				tst.l	d7								; <35> Is overrideMap nil?
 				bz		@exitInsertOverrideMap			; <35> Yes.
-				move.w	#paramErr,ResErr				; <40> It’s not a nil handle problem.  Assume we have the same handle twice.
-				cmp.l	d6,d7							; <35> Make sure they’re not the same handle
+				move.w	#paramErr,ResErr				; <40> It's not a nil handle problem.  Assume we have the same handle twice.
+				cmp.l	d6,d7							; <35> Make sure they're not the same handle
 				beq		@exitInsertOverrideMap			; <35> Bail if they are.
 				
 ; Find the override map in the chain and remove it
@@ -2096,7 +2096,7 @@ InsertOverrideMap	Proc	Export
 				move.l	d6,-(sp)						; <41> Get any override maps already in place above mapToOverride
 				_GetOverrideMap							; <41>
 				move.l	(sp)+,d6						; <41>
-				bz.s	@exitInsertOverrideMap			; <41> mapToOverride isn’t in the chain.  Bail.
+				bz.s	@exitInsertOverrideMap			; <41> mapToOverride isn't in the chain.  Bail.
 				
 				moveq	#0,a0							; <41> Map above mapToOverride
 				move.l	TopMapHndl,a2					; <41> Start from the top again
@@ -2116,7 +2116,7 @@ InsertOverrideMap	Proc	Export
 				move.l	(a2),a1							; <41>
 				move.l	d6,mNext(a1)					; <41> Link mapToOverride after overrideMap
 				move.l	a0,d0							; <41> See whether overrideMap should become the top map
-				bnz.s	@overrideMapIsNotTopMap			; <41> It’s not
+				bnz.s	@overrideMapIsNotTopMap			; <41> It's not
 				move.l	d7,TopMapHndl					; <41> Make overrideMap the top map
 				bra.s	@setBits						; <41> Go set the bits to make this an override map
 @overrideMapIsNotTopMap
@@ -2155,10 +2155,10 @@ InsertOverrideMap	Proc	Export
 ;
 ; Given a resource map, GetOverrideMap finds the first override map for it.  If there are
 ; no override maps for this resource map, the handle to this resource map is returned. If
-; resourceMap isn’t found, nil is returned.
+; resourceMap isn't found, nil is returned.
 ;
-; This routine is allowed to trash D1 & D2 because it’s already been trashed by DispatchHelper.
-; It’s up to you to save these registers yourself when you call this routine.
+; This routine is allowed to trash D1 & D2 because it's already been trashed by DispatchHelper.
+; It's up to you to save these registers yourself when you call this routine.
 
 
 GetOverrideMap	Proc	Export
@@ -2185,7 +2185,7 @@ GetOverrideMap	Proc	Export
 @overrideCommon
 				move.l	mNext(a0),d0
 				bne.s	@getOverrideLoop				; Keep searching until the end of the chain is reached
-				move.w	#resFNotFound,ResErr			; End of chain, and map wasn’t found.  Error out
+				move.w	#resFNotFound,ResErr			; End of chain, and map wasn't found.  Error out
 				bra.s	@gotOverrideMap
 @gotToBaseMap
 				move.l	d1,d0							; Is there an override map for this resource map?
@@ -2283,7 +2283,7 @@ SetOverrideAttributes	Proc	Export
 ; be split across several files now, we need to provide developers a way of getting
 ; all the font information for a font family.  GetNextFOND will return NIL if there
 ; are no more 'FOND' resources in the chain after the one passed in.  If the handle
-; passed in is not a 'FOND' resource, resNotFound will be returned.  (Since we couldn’t
+; passed in is not a 'FOND' resource, resNotFound will be returned.  (Since we couldn't
 ; find a 'FOND' with this handle.)
 ;
 
@@ -2303,7 +2303,7 @@ localSize		equ		*
 				link	a6,#GetNextFONDFrame.localSize
 				move.l	a4,-(sp)
 				
-				clr.l	GetNextFONDFrame.nextFOND(a6)	; Assume we’re not going to find anything
+				clr.l	GetNextFONDFrame.nextFOND(a6)	; Assume we're not going to find anything
 				move.l	GetNextFONDFrame.fondHandle(a6),a4		; Keep the handle in a safe register
 				
 ; Make sure the handle that was passed in was really a 'FOND' resource
@@ -2316,9 +2316,9 @@ localSize		equ		*
 				tst.w	ResErr							; Did an error come back from GetResInfo?
 				bnz.s	@exitGetNextFOND				; Bummers.  Bail out.
 				cmp.l	#'FOND',GetNextFONDFrame.familyType(a6)	; Was it really a 'FOND'?
-				beq.s	@validFONDHAndle				; It’s ok.  Go find the file it came from
-				move.w	#resNotFound,ResErr				; Act like we didn’t find the handle
-				bra.s	@exitGetNextFOND				; It wasn’t a 'FOND'.  Go home.
+				beq.s	@validFONDHAndle				; It's ok.  Go find the file it came from
+				move.w	#resNotFound,ResErr				; Act like we didn't find the handle
+				bra.s	@exitGetNextFOND				; It wasn't a 'FOND'.  Go home.
 				
 ; This is really a 'FOND' resource.  Find out which resource map it came from.
 
@@ -2334,14 +2334,14 @@ localSize		equ		*
 				
 ; We have a handle the resource map that this 'FOND' came from.  Look for the next 'FOND'
 ; of the same ID starting at the next resource map down.  However, if the overrideNextMap
-; bit is set, don’t stop at the next map, and look for a map without this bit set.
+; bit is set, don't stop at the next map, and look for a map without this bit set.
 
 @findNonOverrideMap
 				move.l	d0,a0
 				move.l	(a0),a0
 				move.l	a0,d0							; Get map into a data register
 				btst	#overrideNextMapBit,d0			; Is this map an override map?
-				bz.s	@notOverrideMap					; No.  It’s ok to use the next map after this
+				bz.s	@notOverrideMap					; No.  It's ok to use the next map after this
 				move.l	mNext(a0),d0					; Get the next map
 				bz.s	@mapNotInChain					; If not, then bail
 				bra.s	@findNonOverrideMap				; Check this map for the override bit
@@ -2375,7 +2375,7 @@ localSize		equ		*
 				move.l	(sp)+,a4
 				unlk	a6
 				move.l	(sp)+,(sp)
-				move.w	ResErr,d0						; For compatibility’s sake
+				move.w	ResErr,d0						; For compatibility's sake
 				moveq	#0,a0
 				rts										; Return
 				EndProc

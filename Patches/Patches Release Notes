@@ -32,7 +32,7 @@ Radar bug: #1024282
 A Process Manager segment was being loaded high in the system heap, causing fragmentation.  It
 was loaded high because the linked patch blocks were in the way at boot time.  We tried to alleviate
 this by moving these blocks high in the heap, but that stopped working.  Now we load these segments
-in ‘PTCH’ 0, which is run before linked patches, so we don’t have to worry about the strange
+in ‘PTCH' 0, which is run before linked patches, so we don't have to worry about the strange
 memory setup at linked patch time.
 
 > What was tested:
@@ -89,7 +89,7 @@ to add a new value that can be returned for gestaltMachineType, gestaltMacLCII. 
 implications
 in several areas of the System.  We need to add a new entry in the machine icon table
 for Gestalt (the same icon as the LC) and a new string in the machine name STR# in the
-System (”Macintosh LC II”), both of which show up in the Finder.  We need to make sure
+System ('Macintosh LC II'), both of which show up in the Finder.  We need to make sure
 that Gestalt returns the same value for gestaltHasSoftPowerOff and gestaltSerialAttr
 as the Mac LC.  In the ShutDown Manager, we need to set the CLUT to 50% gray on a restart
 as we do for an LC.  In the Sound Manager, we need to expand the sound primitive vector
@@ -101,7 +101,7 @@ to include the LC II.
 
 On an LC II, verified that boxFlag was set correctly, verified that the right icon and
 machine string appear in About This Macintosh…, verified that the CLUT was set to 50%
-gray on restart, verified that sound input worked.  Didn’t check the returned values for
+gray on restart, verified that sound input worked.  Didn't check the returned values for
 gestaltHasSoftPowerOff and gestaltSerialAttr, though.
 ----------------------------------------------------------•----------------------------------------------------------
 4/22/92 10:46:31 AM
@@ -115,20 +115,20 @@ Radar bug: #1012961
 > Release notes for this change:
 
 If PrintMonitor is not in the Extensions folder when you try to do background printing,
-7-Up’s alert which asks the user whether he wants to print now or later because not
+7-Up's alert which asks the user whether he wants to print now or later because not
 enough memory is available appears.  Without 7-Up, Finder would report an error saying
 that you need to put PrintMonitor back in the extensions folder before you can print
 anything.  This was a change that 7-Up introduced.  They decided that if PrintMonitor
-wasn’t there, they would print right away.  Except that the message in the alert was
+wasn't there, they would print right away.  Except that the message in the alert was
 wrong.  Since this code was rolled into Cube-E, we have the same problem.  Change the
-code so that if it couldn’t find PrintMonitor, it wouldn’t try to print immediately, and
+code so that if it couldn't find PrintMonitor, it wouldn't try to print immediately, and
 let the Finder report the old error.
 
 > What was tested:
 
 Took PrintMonitor out of the extensions folder, then tried to background print from
-MacWrite II to an LS.  Without the change, the “Print now or later when there’s more
-memory” dialog appears.  With the change, the print job is spooled to the PrintMonitor
+MacWrite II to an LS.  Without the change, the 'Print now or later when there's more
+memory' dialog appears.  With the change, the print job is spooled to the PrintMonitor
 Documents folder, and the Finder brings up the notification that PrintMonitor must be put
 back before any printing could be done.
 
@@ -163,21 +163,21 @@ Radar bug: #1029735
 
 > Release notes for this change:
 
-The shipping version of the Macintosh Quadra 950’s ROM (1.7F2) has a bug in the built-in
+The shipping version of the Macintosh Quadra 950's ROM (1.7F2) has a bug in the built-in
 video driver which prevents the DirectSetEntries call from working correctly when the
 attached display is put into 32 bit-per-pixel mode.  To fix this problem, we just patch
 the bad table in place since it resides in the System heap. This is a five-entry table
 that needs to have six entries. We just add the sixth entry to the end. This writes over
-part of the table used for the SetGrayScreen call, but that’s okay since the gray screen
+part of the table used for the SetGrayScreen call, but that's okay since the gray screen
 call is generally only used at boot, before this patch gets installed.
 
 
 
 > What was tested:
 
-I wasn’t able to test this too well. I booted it on my Zydeco, but the patch didn’t fire
-because the Slot Manager says there’s no driver for the on-board slot. I did prove that
-the patch is harmless if it doesn’t get activated. I watched the code with Macsbug and
+I wasn't able to test this too well. I booted it on my Zydeco, but the patch didn't fire
+because the Slot Manager says there's no driver for the on-board slot. I did prove that
+the patch is harmless if it doesn't get activated. I watched the code with Macsbug and
 the patch exits cleanly.
 ----------------------------------------------------------•----------------------------------------------------------
 5/28/92 9:53:29 AM
@@ -248,7 +248,7 @@ its original value of boxPowerBook170 to boxPowerBook145 in PatchIIciROM.a.  We 
 to add a new value that can be returned for gestaltMachineType, gestaltPowerBook145.
 This has implications in several areas of the System.  We need to add a new entry in the
 machine icon table for Gestalt (the same icon as the PowerBook 140) and a new string in
-the machine name STR# in the System (”PowerBook 140.” for now, until we announce the
+the machine name STR# in the System ('PowerBook 140.' for now, until we announce the
 machine (the period at the end will let you tell the difference in the meantime)), both
 of which show up in the Finder.  In the ShutDown Manager, we need to close the video
 driver at shutdown or restart as we do for the 140 and 170. In the Sound Manager, we need
@@ -323,11 +323,11 @@ share the same basic hardware and ROM). The original attempt to distinguish betw
 and a 145 used the current processor speed: if the processor was running at 25MHz, then
 it was a 145, otherwise it was a 140.
 
-This doesn’t work because the 145 has a power-saving mode where it will run at 16MHz.
+This doesn't work because the 145 has a power-saving mode where it will run at 16MHz.
 This caused the code to think it was a 140.
 
 The solution was to check the maximum processor speed instead of the current processor
-speed. Now the code successfully identifies a 145 whether it’s running at 16MHz or 25MHz.
+speed. Now the code successfully identifies a 145 whether it's running at 16MHz or 25MHz.
 
 > What was tested:
 
@@ -350,12 +350,12 @@ Because of a hardware bug in the 140 ROM, the Power Manager thinks the maximum p
 speed of the 140 is 25MHz. So the code to distingish between the 140 and the 145 thinks
 that both are 145s.
 
-The fix is to check the hardware register directly. We’re still using maximum processor
+The fix is to check the hardware register directly. We're still using maximum processor
 speed as the determinant
 
 > What was tested:
 
-The 140 now thinks it’s a 140. I didn’t test the 145 yet because there’s only one in the
+The 140 now thinks it's a 140. I didn't test the 145 yet because there's only one in the
 building and the wonderful folks in SQE have it.
 ----------------------------------------------------------•----------------------------------------------------------
 7/5/92 2:03:56 AM
@@ -372,16 +372,16 @@ Radar bug: #1033139
 
 > Release notes for this change:
 
-The Cuda version of the firmware for the Egret chip doesn’t need the patches from
+The Cuda version of the firmware for the Egret chip doesn't need the patches from
 PatchIIciROM.a. So I added a check to see if we have Cuda or later firmware and skipped
-the patches if so. The change came from the hardware folks since they’re working with the
+the patches if so. The change came from the hardware folks since they're working with the
 new Egret chips on some of the upcoming CPUs.
 
 I also added the constants for the masks and values for the Egret firmware.
 
 > What was tested:
 
-I couldn’t do much since I don’t have a machine with Cuda firmware. However, I did
+I couldn't do much since I don't have a machine with Cuda firmware. However, I did
 examine the code with Macsbug to make sure that everything was as expected.
 ----------------------------------------------------------•----------------------------------------------------------
 7/7/92 12:41:38 AM
@@ -394,9 +394,9 @@ Radar bug: #1012754
 
 > Release notes for this change:
 
-There’s an old bug in the patches for Mac II class machines that causes VM and 32-bit
+There's an old bug in the patches for Mac II class machines that causes VM and 32-bit
 mode to not work. During patch time, we nuke the slot VBL queue and move it to a new
-location using updated routines. However, we weren’t clearing the low-memory global for
+location using updated routines. However, we weren't clearing the low-memory global for
 the VBL queue.
 
 I added the code to set the low-memory global SlotVBLQ to -1 right after the old queue
@@ -404,7 +404,7 @@ header gets disposed. This tell the rest of the software to use the new VBL stuf
 
 > What was tested:
 
-I wasn’t able to do any testing on this because I’m just adding the code at the request
-of MHD. I’m not sure what the specific effect of this change will be, so I’m relying on
+I wasn't able to do any testing on this because I'm just adding the code at the request
+of MHD. I'm not sure what the specific effect of this change will be, so I'm relying on
 Dallas to do the appropriate tests.
 ----------------------------------------------------------•----------------------------------------------------------

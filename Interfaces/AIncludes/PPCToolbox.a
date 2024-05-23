@@ -16,7 +16,7 @@
 ;									selector.
 ;		<12>	 8/15/91	MH		change formatting of comments, move conditional assembly
 ;									declaration immediately after copyright notice
-;		<11>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<11>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<10>	12/13/90	EMT		<JSM> Change interface to support new calling conventions,
 ;									basically rewrote interface.

@@ -1,4 +1,4 @@
-;EASE$$$ READ ONLY COPY of file “FontMgrPatch.a”
+;EASE$$$ READ ONLY COPY of file 'FontMgrPatch.a'
 ; 1.3	CCH 04/17/1989 Unconditionalized fixes from 6.0.3.
 ; 1.2	CCH 01/31/1989 Merged changes from 6.0.3.
 ; 1.1	CCH 01/16/1989 Merged 6.0.3 final sources into 7.0.
@@ -344,7 +344,7 @@ FamSizeInD0
 			MOVEQ	#12,D1				;if low memory is no help, hard code to 12
 @sizeNonZero
 			CMP		#1,D0				;is the font the application font?
-			BNE.S	@sysSizeOK			;if not, don’t change it
+			BNE.S	@sysSizeOK			;if not, don't change it
 			MOVE	ApFontID,D0			;change family to application family
 @sysSizeOK		
 			SWAP	D0					;save the family
@@ -360,7 +360,7 @@ FamSizeInD0
 copyInput		EQU		-16					;place to hold copy of CurFMInput
 styleID		EQU		copyInput-4			;saved style and ID from FOND (set up in GoLoadStrike)
 paramBlk		EQU		styleID-ioQElSize
-saveMap		EQU		paramBlk-2			;the application’s resource map in the system sub case
+saveMap		EQU		paramBlk-2			;the application's resource map in the system sub case
 fwidStyle		EQU		saveMap-2			;the style of the best width table found in the FOND
 stackFrame	EQU		fwidStyle				;size of stack frame
 
@@ -391,14 +391,14 @@ FMSwapFont
 			BEQ		GoDifFont
 			ADDQ.B	#1,FontFlag			;if not a re-entrant call, this sets to zero
 			BEQ.S	@notReentrant
-			BSR.S	InvalWidthTab			;don’t use the current cache; may be incomplete
+			BSR.S	InvalWidthTab			;don't use the current cache; may be incomplete
 			
 ; Here we know that the call to LoadResource failed, the disk switch hook is trying to go up, or a real
 ; SysError occured.
 
 			CMP.B	#9,FontFlag			;are all substitutions exhausted ?
 			BEQ		GoTryChicago			;if so, go straight for the ROM font
-			BGT		FMSwapDone			;if that didn’t work, this just return the last record 
+			BGT		FMSwapDone			;if that didn't work, this just return the last record 
 			MOVE.B	#8,FontFlag			;set to next re-entrant range.
 @notReentrant			
 			
@@ -445,7 +445,7 @@ FMSwapFont
 			BMI.S	StraightLineCP
 			MOVE.L	grafGlobals(A5),A0		;get grafGlobals
 			MOVE.L	thePort(A0),D0		;get thePort
-			BEQ.S	StraightLineCP			;if no port, don’t check space extra
+			BEQ.S	StraightLineCP			;if no port, don't check space extra
 			MOVE.L	D0,A0
 @checkLastSp
 			MOVE.L	LastSpExtra,D0		;get spaceExtra <DLD 24-Oct-85>
@@ -651,8 +651,8 @@ TryAgain
 ;			if no purged entry, and the last entry = 0, allocate a new entry at the end of the list.
 ;		if memory is full or the list is full:
 ;			reuse the last nonpurged entry in the list.
-;		if there isn’t a nonpurged entry then we’re out of luck; don’t use cache.
-;		if a memory allocation call fails, then the system heap is in bad shape; don’t use cache.
+;		if there isn't a nonpurged entry then we're out of luck; don't use cache.
+;		if a memory allocation call fails, then the system heap is in bad shape; don't use cache.
 ;
 ;	The actual size and font are stored in the width table instead of 0 or applFont.
 ;
@@ -728,7 +728,7 @@ DoMapFont
 			
 ; We already have the font handle (from the old width table), so skip most of MapFont.
 			
-			ST		D6					;don’t call MapFont
+			ST		D6					;don't call MapFont
 			MOVE	(A1),D0				;get new font family ID
 			CMP		FONDID,D0			;different from old one?
 			BEQ.S	@sameFOND			;if not, fond globals are already set up
@@ -808,7 +808,7 @@ DoMapFont
 			BPL.S	@reuseIt				;if so, skip purge check.
 			MOVE.L	#WidTabSize,D1		;get size of a table, in case we must allocate it.
 		IF	bugFix	THEN
-			_MaxBlock ,SYS				;better than FreeMem; unfortunately, didn’t know for Aladdin ROM
+			_MaxBlock ,SYS				;better than FreeMem; unfortunately, didn't know for Aladdin ROM
 		ELSE
 			MOVE.L	TheZone,A1
 			MOVE.L	SysZone,TheZone
@@ -875,7 +875,7 @@ DoMapFont
 ; check to see if font is already figured out and installed
 			
 			TST.B	D6					;call MapFont?
-			BNE.S	GotFontHandle			;don’t bother if the widths were found
+			BNE.S	GotFontHandle			;don't bother if the widths were found
 			
 ; call MapFont to do all the hard work, installing a font in the output record
 
@@ -993,12 +993,12 @@ CheckWTable
 ; fractional style extra in the FOND.
 
 			MOVE.L	LastFond,D0	 		;check if there is a last FOND.
-			BEQ		MakeITab				;if not, style extra can’t be fractional.
+			BEQ		MakeITab				;if not, style extra can't be fractional.
 
 			TST.B	FDevDisable 			;set if the device would prefer the FOND style extra.
 			BNE.S	@skipDevice
 
-			TST.B	fmInDevice(A3)		;if the device is not the screen, it can supply it’s
+			TST.B	fmInDevice(A3)		;if the device is not the screen, it can supply it's
 			BNE		MakeITab				; own style widths, so skip looking at the FOND widths.
 @skipDevice
 			BTST	#5,saveFondFlags		;set if fractional style extra is never from FOND.
@@ -1008,7 +1008,7 @@ CheckWTable
 			BNE.S	@computeFractExtra		;												<06Nov85>
 
 			TST.B	FractEnable 			;set if application allows fractional spacing
-			BEQ.S	MakeITab				;if not, don’t figure fractional style extra from FOND.									<06Nov85>
+			BEQ.S	MakeITab				;if not, don't figure fractional style extra from FOND.									<06Nov85>
 
 @computeFractExtra							;
 
@@ -1058,7 +1058,7 @@ CheckWTable
 			CMP		#$8FFF,D2			;is it -7.001 or smaller?
 			BGT.S	@doNormalAdd
 			BCLR	#15,D2				;throw away sign bit
-			NEG		D2					;make into a normal two’s complement number
+			NEG		D2					;make into a normal two's complement number
 @doNormalAdd
 			EXT.L	D2
 			ADD.L	D2,D6				;add it in
@@ -1081,7 +1081,7 @@ CheckWTable
 ;————————————————————————————————————————————————————————————————————
 
 			TST.B	FractEnable 			;fractional widths? 				<06Nov85>
-			BNE.S	MakeWTab			;yes, then don’t use the rounded result.
+			BNE.S	MakeWTab			;yes, then don't use the rounded result.
 
 ;  Must overwrite default value of FoutExtra if FractEnable is not true but we are using fractional extra
 ;  anyway—e.g. the FOND flags specify always use fractional widths.						<PMAB559 BAL 9/7/88>
@@ -1301,7 +1301,7 @@ AddD6ScaleD0
 			TST.B	D5					; need to scale it?
 			BEQ.S	@0
 
-; *** note that the smaller ELSE case is OK, since changing FixMul’s register conventions breaks applications
+; *** note that the smaller ELSE case is OK, since changing FixMul's register conventions breaks applications
 
 		IF	0	THEN
 			MOVEM.L 	A1/A0/D1,-(SP)		;save registers used by FixMul (D1, A0, A1)
@@ -1961,7 +1961,7 @@ fontOnlyLoad
 			MOVE.W	D0,-(SP)				;push ID
 			_GetResource
 
-; But wait!  What if we didn’t get a font at all?  (Most probably because of some quirk of data in FOND, we just asked
+; But wait!  What if we didn't get a font at all?  (Most probably because of some quirk of data in FOND, we just asked
 ; for and got the zero size FONT, which exists only in name.)  
 
 			MOVE.L	(SP)+,D0				;sets Z flag
@@ -2063,7 +2063,7 @@ FindClosest
 			MOVE.W	(A0)+,D4					;get # of entries-1
 			MOVEQ	#0,D1					;no font yet
 			; << note the unnecessary limit of the 127 point size
-			; *** let’s try 32767 instead
+			; *** let's try 32767 instead
 			MOVE	#$7FFF,D2 				;closest delta so far
 Scan4SizeLoop
 			MOVE.W	D5,D0					;get one we want <DLD-12-Sep-85>
@@ -2088,7 +2088,7 @@ sizeFound
 			MOVE	D1,D3					;get best alternative
 			BSR.S	FindSize					;try to get it...
 			BVS.S	NewFailed
-			BEQ.S	NewFailed					;if can’t get it, skip
+			BEQ.S	NewFailed					;if can't get it, skip
 
 ; OK, we found the size so now worry about the style.  The Font handle is
 ; in D0.
@@ -2237,7 +2237,7 @@ GotEntry
 			MOVE.L	(A2),A1 					;point to famDef
 
 			MOVE.W	FONDLast(A1),D1 			;get lastChar
-			BEQ.S	@noFamWidths				;if zero, must be a “null” FOND set up by Font/DA Mover
+			BEQ.S	@noFamWidths				;if zero, must be a 'null' FOND set up by Font/DA Mover
 			
 			SUB.W	FONDFirst(A1),D1			;compute # of chars-1
 			ADDQ	#4,D1					;compute word size of wTab (include style wd.)
@@ -2259,7 +2259,7 @@ GotEntry
 ; >> is found?
 ; >> Certainly, if a style width has styles outside of the requested style, it can not be used.
 
-; >> Although this code is very similar to the screen font code above, I can’t see any trival way of
+; >> Although this code is very similar to the screen font code above, I can't see any trival way of
 ; >> rolling them together.  For one, all registers are used.
 
 		;———————————————————————————————————————————————————————————————
@@ -2289,10 +2289,10 @@ GotEntry
 		ENDIF
 		;———————————————————————————————————————————————————————————————
 			CMP		(A1),D0					;exact match?
-			BEQ.S	@figureWidthPos			;don’t worry no more
+			BEQ.S	@figureWidthPos			;don't worry no more
 			NOT		D0						;set all cleared bits
 			AND		(A1),D0					;nonzero if style in width is not in request
-			BNE.S	@wrongFamWidths			;don’t consider widths with too much info.
+			BNE.S	@wrongFamWidths			;don't consider widths with too much info.
 			MOVEQ	#0,D5					;accumulated weight
 		;———————————————————————————————————————————————————————————————
 		; more of the same bug fix
@@ -2667,8 +2667,8 @@ ScaleFVal
 ; A0 = fontHandle (input)	A1 = strike pointer	A2 = fontPtr, locTable	A3 = fontHandle
 ; A4 = character height	A5 = mask table
 
-RightMask		EQU		$0					;position of right masks in QuickDraw’s table.
-LeftMask		EQU		$20					;position of left masks in QuickDraw’s table.
+RightMask		EQU		$0					;position of right masks in QuickDraw's table.
+LeftMask		EQU		$20					;position of left masks in QuickDraw's table.
 
 		
 BuildCharTable

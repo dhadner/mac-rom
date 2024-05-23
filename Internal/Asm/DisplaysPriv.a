@@ -78,14 +78,14 @@ fRemovedDevices			ds.l	1			; DeviceList of devices that have been removed (we do
 
 ; ••• Warning •••
 ;
-;	  The BlackBird/Yeager mirroring code currently accesses these globals directly.  So, don’t move them
+;	  The BlackBird/Yeager mirroring code currently accesses these globals directly.  So, don't move them
 ;	  without updating that code as well.
 ;
 ; •••
 ;
 fDevicesOverlap			ds.b	1			; If true, *some* gDevices are overlapped (partically or fully).
 fDevicesMirrored		ds.b	1			; If true, all gDevices are fully overlapped, smallest gDevice determines rectangle for all devices.
-fMirroringBlocked		ds.b	1			; If true, mirroring has been “artifically” blocked (several 3rd-parties asked for this).
+fMirroringBlocked		ds.b	1			; If true, mirroring has been 'artifically' blocked (several 3rd-parties asked for this).
 fUnused1Byte4			ds.b	1
 
 ;

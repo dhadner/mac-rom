@@ -14,7 +14,7 @@
 ;		<49>	 4/30/92	DTY		#1027995 <KSM>: SetTitleColor expects a4 to point to a MenuInfo
 ;									record on entry. The BannerMsg routine calls SetTitleColor
 ;									without setting up a4. This kinda makes sense, since the menu
-;									bar doesn’t have a MenuInfo record. However, if A4 contains
+;									bar doesn't have a MenuInfo record. However, if A4 contains
 ;									trash, an error will occur. Make a4 nil in BannerMsg, and have
 ;									SetTitleColor check to see if A4 contains nil. If it is, jump
 ;									directly to @TryMenuBar.
@@ -47,7 +47,7 @@
 ;		<41>	 3/19/91	KSM		ngk,#83253: BUT Gifford showed why letting the TITLE bits be
 ;									purgable was not too swift.
 ;		<40>	 3/13/91	KSM		ddc,#83253: Call SaveRestoreBits with purgable bits option (why
-;									didn’t we do this before?)
+;									didn't we do this before?)
 ;		<39>	  3/4/91	dba		dty: get rid of SysVers conditionals
 ;		<38>	 2/22/91	VL		KSM, #82413: ClipToTempRect didn't respect MBarHeight and that
 ;									caused icons to be drawn even when the MBar is not visible (i.e.
@@ -113,7 +113,7 @@
 ;		 <4>	 4/11/90	KSM		Update calls to _GetAuxMenuItem to include itemnum param and add
 ;									support for color icons.
 ;		 <3>	 4/10/90	dba		use SaveBits and RestoreBits; use fancy color Apple icons;
-;									include Kevin’s changes to support system menus; added support
+;									include Kevin's changes to support system menus; added support
 ;									for icon menu titles; put in stupid kludge to make things work
 ;									on the Mac II
 ;		 <2>	 1/31/90	RLC		Update HelpMgr calls and conditionally build in macros.
@@ -644,7 +644,7 @@ DrawBar
 				MOVE.L	Param2(A6), D3			; Get the parameter				<EMT S297>
 				BGT		Its1Title				; Skip if it's a 1 Title draw	<EMT S297>
 
-				cmp.l	#-1,d3					; if clear, don’t use buffer	<19>
+				cmp.l	#-1,d3					; if clear, don't use buffer	<19>
 				beq.s	@skipBuffering			; ignore the error				<19>
 
 				rsrv.w							; room for error				<20>
@@ -871,7 +871,7 @@ Its1Done										;										<EMT S297>
 
 DrawDone
 				rsrv.w							; make room for error					<20>
-				push.l	menuBarBuffer(a6)		; here’s where we stored it				<20>
+				push.l	menuBarBuffer(a6)		; here's where we stored it				<20>
 				_EndDrawingOffscreen			; finish buffering, and draw something	<20>
 				free.w							; discard error							<20>
 
@@ -1342,19 +1342,19 @@ HitBar
 				MOVE.W	portRect+Right(a2), D0	; Right edge of menu bar
 				SUB.W	#mbMenu1Loc,D0			; Right edge of right-hand system menu	;<KSM <4>>
 				CMP.W	D0, D1					; Is point to the right of it?			;<KSM <4>>
-				BGT.S	@NoTitle				; No way it’s in a title				;<KSM <4>>
+				BGT.S	@NoTitle				; No way it's in a title				;<KSM <4>>
 
 				SUB.W	portRect+Left(a2), D1	; adjust D1 for portRect+Left
 				CMP.W	#mbMenu1Loc, D1			; is it to the left of the first title ?
 				BLT.S	@NoTitle
 ;______________________<11>
 ; Notes on new hit testing:
-; 1) We don’t return a hit on a system menu whose left edge is <= lastRight (it "fell off").
+; 1) We don't return a hit on a system menu whose left edge is <= lastRight (it "fell off").
 ; CalcBar set lastRight to the left edge of the last system menu if there were too many
 ; application menus, thus the last system menu can never "fall off."
-; 2) We don’t return a hit on any application menu whose left edge is past lastRight, but if
+; 2) We don't return a hit on any application menu whose left edge is past lastRight, but if
 ; if lastRight is somewhere in the middle of the menu, it will be allowed to hit in
-; the area from it’s left up to lastRight.
+; the area from it's left up to lastRight.
 
 ; Check either system set or application set
 ;				_DMSG	'Welcome to Hitbar'
@@ -1477,9 +1477,9 @@ CalcBar
 				MOVE.L	menuOH(A3,D0.W),A1		; Get menuhandle of leftmost menu
 				MOVE.L	(A1),A1					; menuhandle -> menuptr
 				CMPI.W	#$0114,menuData(A1)		; Is it an apple menu?
-				BNE.S	SystemMenusAreIN		; NE means no apple menu, don’t add system menus
+				BNE.S	SystemMenusAreIN		; NE means no apple menu, don't add system menus
 
-				_HLock							; Lock SysList before munging (we’re pointing into it)
+				_HLock							; Lock SysList before munging (we're pointing into it)
 				MOVE.L	(A0),A1					; handle -> ptr
 				MOVEQ	#0, D1					; Clear the high word
 				MOVE.W	lastMenu(A1),D1			; Get # of bytes of system menus
@@ -1498,7 +1498,7 @@ CalcBar
 				MOVE.L	A1, -(SP)				; ptr2 = first system menu
 				MOVE.L	D1, -(SP)				; len2 = #Bytes of system menus
 				ADD.W	D1, lastMenu(A3)		; Just for luck, add up the new stuff we're adding
-				_HUnlock						; Don’t Munge locked handles!
+				_HUnlock						; Don't Munge locked handles!
 				_Munger							; oooh baby, munge me!
 				MOVE.L	MenuList, A0			; Get (potentially) new menulist handle
 				_HLock
@@ -1576,7 +1576,7 @@ CalcLoopDone
 				MOVE.W	menuLeft(A3,D4), D0		; Get left edge of the menu we are moving
 ;				MOVE.W	D0, lastRight(A3)		; Save as new last right (last one is correct)
 SysOffsetLoop
-				ADD.W	D1, menuLeft(A3,D4)		; Offset system menu’s left edge (D4 is 1st sys)
+				ADD.W	D1, menuLeft(A3,D4)		; Offset system menu's left edge (D4 is 1st sys)
 				CMP.W	lastMenu(A3),D4			; was this the last menu
 				BEQ.S	SysOffsetLoopDone		; it is, so leave this loop
 				ADDQ.W	#6, D4					; go to next one
@@ -1588,7 +1588,7 @@ SysOffsetLoopDone	; <48> (the rest of this routine)
 				; the app menus and the system menus, so no overlap checking is necessary
 				; and lastRight is correct.
 				TST.W	D1
-				BGE.S	CalcDone				; D1 > 0, there is no overlap: we’re done.
+				BGE.S	CalcDone				; D1 > 0, there is no overlap: we're done.
 
 			; Bummer, app menus overlap the system menus.
 			; Find the "hard lastRight" - the left edge of the leftmost system menu we must keep
@@ -1599,7 +1599,7 @@ SysOffsetLoopDone	; <48> (the rest of this routine)
 				BEQ.S	D4IsHardEdge6BO			; No special case
 				LSR.W	#4,D1					; Only "keep count" bits
 				ANDI.W	#$F,D1
-				BEQ.S	D4IsHardEdge6BO			; And we’ve got the 6B0 of the menu containing the hard edge
+				BEQ.S	D4IsHardEdge6BO			; And we've got the 6B0 of the menu containing the hard edge
 				ADD.W	D1,D1					; 2x
 				MOVE.W	D1,D0					; 2x copy
 				ADD.W	D0,D0					; 2x + 2x = 4x
@@ -1661,7 +1661,7 @@ FindFirstSystemMenu6BO
 				; Falling out of loop, D0=0 and 1st is system menu
 @bumpAndExit
 				ADDQ	#6, D0					; Bump D0 to point to next entry
-				BRA.S	@done					; And we’re outa here
+				BRA.S	@done					; And we're outa here
 @pastSysMenus
 				CMP.W	lastMenu(A0), D0		; were there any system menus at all?
 				BLT.S	@bumpAndExit			; D0 moved, so we found at least 1 system menu
@@ -2987,7 +2987,7 @@ DoneIPlot
 ;
 ;	Return the rectangle enclosing the area specified.
 ;	NOTE:  This call depends entirely on the GetTitleRect routine to calculate the
-;			bounding rectangle for each menu.  Don’t change it without changing this.
+;			bounding rectangle for each menu.  Don't change it without changing this.
 ; 			It also assumes lastRight is the right edge of the visible app menus.
 ;
 ;	Param1			Result

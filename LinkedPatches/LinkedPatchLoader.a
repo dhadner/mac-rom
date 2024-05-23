@@ -14,10 +14,10 @@
 ;	Change History (most recent first):
 ;
 ;		<63>	  8/1/92	DTY		Change a bsr.s to a bsr.w to keep this file building for linked
-;									patch INITs.  (Don’t ask me while it compiles differently for
+;									patch INITs.  (Don't ask me while it compiles differently for
 ;									the two.)
 ;		<62>	 7/31/92	DTY		Allow use of link patch debugging globals in linked patch INITs
-;									because we can’t think of a good reason why this was
+;									because we can't think of a good reason why this was
 ;									conditionalized out in the first place. Also added comments to
 ;									document which low mem globals to set to stop on a particular
 ;									link patch entry, or set of entries on boot.
@@ -25,14 +25,14 @@
 ;									g.patchTable global to g.patchRangeTable to avoid terminology
 ;									confusion, document format of patch range table in header of
 ;									CheckPatchTableRange.
-;		<60>	  6/3/92	DTY		#1026928: If we’re loading linked patches from ROM, ROMMapInsert
+;		<60>	  6/3/92	DTY		#1026928: If we're loading linked patches from ROM, ROMMapInsert
 ;									needs to be set for all GetResource calls, not just the first
 ;									one.  Since CurMap gets reset for the ROM case, the value needs
 ;									to be saved in a register before loading 'lpch' resources.
 ;		<59>	 4/30/92	DTY		#1023455 <JSM>: The offset from change <51> should be $14, not
 ;									#14.
 ;		<58>	  4/8/92	DTY		#1026928,<FM>: Check CurMap before loading a 'lpch' resource. If
-;									it’s 1, set ROMMapInsert to true to get linked patches from ROM.
+;									it's 1, set ROMMapInsert to true to get linked patches from ROM.
 ;		<57>	  4/7/92	pvh		Calculate end of boot globals using (a5+BootGlobals.size)
 ;		<56>	  4/6/92	DTY		#1024666,<JSM>: Three lines were lumped into one of the NOT
 ;									INITVERSION conditionals, breaking linked patch INITs. Fix this
@@ -44,16 +44,16 @@
 ;									enough room for Mac II class machines with 2 megs to load their
 ;									linked patches. This copying over the boot globals isn't done
 ;									with the init version.
-;		<54>	 3/26/92	DTY		#1024282,<gbm>: Doing a _MoveHHi isn’t good enough, so just take
-;									it out. We’re going to load the Process Manager segments in
-;									BeforePatches.a ('PTCH' 0) so they’ll be even lower, and they’ll
+;		<54>	 3/26/92	DTY		#1024282,<gbm>: Doing a _MoveHHi isn't good enough, so just take
+;									it out. We're going to load the Process Manager segments in
+;									BeforePatches.a ('PTCH' 0) so they'll be even lower, and they'll
 ;									load before linked patches.
 ;		<53>	 3/25/92	DC		FM - Heeeyyyy! somebody fogot to set up a0 to point to the
 ;									'ptbl' resource for the HLock call. As a result gPatchTable
 ;									doesn't get set up and linked patch inits fail.
-;		<52>	 3/16/92	DTY		Don’t try to release the patch range table for linked patch
-;									INITs, since we don’t know whether it came from a resource or
-;									from the static table. Well, we do know, but it’s a pain to
+;		<52>	 3/16/92	DTY		Don't try to release the patch range table for linked patch
+;									INITs, since we don't know whether it came from a resource or
+;									from the static table. Well, we do know, but it's a pain to
 ;									figure out again.
 ;		<51>	 3/13/92	DTY		#1023455: In CheckTerror, set hasTerror if this is a Horror ROM
 ;									as well.
@@ -61,34 +61,34 @@
 ;									high so free block coalescing will be better.  Among other
 ;									things, this allows the Process Manager segments to load a
 ;									little lower.
-;		<49>	 2/27/92	DTY		For linked patch inits, if a 'ptbl' resource couldn’t be found,
+;		<49>	 2/27/92	DTY		For linked patch inits, if a 'ptbl' resource couldn't be found,
 ;									use the static patch range table at the end of the loader which
 ;									causes all linked patches to load.
 ;		<48>	 2/12/92	DTY		Using _GetResource to fetch 'lpch' resources would get 'lpch'
-;									resources from the System file if a Gibbly doesn’t have that
+;									resources from the System file if a Gibbly doesn't have that
 ;									particular 'lpch' resource.  Always use _Get1Resource now to get
-;									'lpch's so this won’t happen.
+;									'lpch's so this won't happen.
 ;		<47>	  2/4/92	JSM		(with FM) Move patchTable global above residentTop so we can use
 ;									the same version of whip for 7.0 and CubeE.
-;		<46>	  2/3/92	JSM		(with FM) Add more comments so we won’t break the whip dcmd in
+;		<46>	  2/3/92	JSM		(with FM) Add more comments so we won't break the whip dcmd in
 ;									the future.
 ;		<45>	 1/31/92	JSM		Update comments on format of 'lpch' resources to show extra
-;									field that’s only in those resources for a single ROM.
+;									field that's only in those resources for a single ROM.
 ;		<44>	 1/27/92	DTY		Add some boundary conditions to CheckPatchTableRange: Provide a
 ;									way out for empty range lists.
-;		<43>	  1/6/92	DTY		Linked patch INITs don’t get passed a patch table, causing traps
+;		<43>	  1/6/92	DTY		Linked patch INITs don't get passed a patch table, causing traps
 ;									to point to wierd places, resident code not being there, and
 ;									other strange things. If the loader is being built as part of an
 ;									INIT, read in a 'ptbl' resource explicitly instead of expecting
 ;									a pointer to one in A3.
 ;		<42>	  1/3/92	DTY		Check the jump table entry number when making modules resident,
 ;									so that entries that a Gibbly wants to skip will not be loaded.
-;		<41>	12/12/91	DTY		Nick boo-boo’d in AllocateResidentBlock.  D6 wasn’t getting set
+;		<41>	12/12/91	DTY		Nick boo-boo'd in AllocateResidentBlock.  D6 wasn't getting set
 ;									up with the block pointer in the non-INIT case.
 ;		<40>	12/12/91	ngk		Use locked handle instead of pointer for code when compiling for
 ;									INIT version. This is so MacsBug symbols show up.
 ;		<39>	11/12/91	DTY		Add support for patch table in InstallOrExecute.  Check the
-;									routine number, and see if it’s in a range specified in the
+;									routine number, and see if it's in a range specified in the
 ;									patch table before installing the patch.
 ;		<38>	10/28/91	SAM/KSM	Rolled in Regatta changes:
 ;										Adding hasC96 and hasPwrMgr conditionals and made hasTerror
@@ -103,7 +103,7 @@
 ;									check, 'bnvs' resource, and HasSystem6LinkedPatches
 ;		<34>	  8/6/91	FM		Fixed bug in recursion for Install Procs. Required splitting the
 ;									jump table into two parts. Also made it possible for references
-;									to use the “real thing” if an island was out of range. Added
+;									to use the 'real thing' if an island was out of range. Added
 ;									some comments to help readability. Also added another field in
 ;									the CurApName debug info that tells whip that the jump tables
 ;									have changed in this version of the loader.
@@ -133,10 +133,10 @@
 ;	    <21>	 8/10/90	DTY		(w/ dba)  Make PatchProc take offsets into ExpandMem.
 ;		<20>	  8/2/90	MR		Fix initversion bug in FlushInstructionCache to reload registers
 ;									before rts
-;		<19>	 7/31/90	DTY		Check the vector at jCacheFlush to make sure it’s an implemented
+;		<19>	 7/31/90	DTY		Check the vector at jCacheFlush to make sure it's an implemented
 ;									routine before jumping to it for linked patch INITs.
 ;		<18>	 7/30/90	dnf		(really dba) fix recursion for FindResident; this caused
-;									“force-resident” stuff to be ineffective, except in the topmost
+;									'force-resident' stuff to be ineffective, except in the topmost
 ;									level of an InstallProc
 ;		<17>	 7/16/90	dba		add support for counting the number of patches
 ;		<16>	 7/11/90	dba		get dcImport to work
@@ -184,10 +184,10 @@
 ;	a note about conditions
 ;	———————————————————————
 ;
-;	A “ROM set” is a bitmap of ROMs that a particular ROM bind applies to. It may occupy 1-4 bytes
+;	A 'ROM set' is a bitmap of ROMs that a particular ROM bind applies to. It may occupy 1-4 bytes
 ;	depending on the number of ROMs. The loader is reassembled if the number of ROMs changes
 ;
-;	A “condition set” is a ROM set combined with bits for other conditions. It too may occupy 1-4
+;	A 'condition set' is a ROM set combined with bits for other conditions. It too may occupy 1-4
 ;	bytes (always at least as many as a ROM set). Each condition must have code in this loader to
 ;	determine if the condition is true (at label GetNonROMConditions).
 ;
@@ -208,8 +208,8 @@
 ;	the next, etc.
 ;
 ;	all references within a module are linked in a list; the head of this list is encoded in
-;	the packed jump table; the low bit of the link is set to 1 for “force resident” references;
-;	if a “force resident” reference is encountered in install code, the referenced module is moved
+;	the packed jump table; the low bit of the link is set to 1 for 'force resident' references;
+;	if a 'force resident' reference is encountered in install code, the referenced module is moved
 ;	into resident space in the system heap
 ;
 ;	†	2 bytes					number of 'lpch' resources for this ROM
@@ -384,7 +384,7 @@ makeSeenFlagBit							equ		2					; this is the bit set during a MakeResident
 kNailedDown								equ		$4EF9				; A JMP instructiion. Stuck in the opcode field
 																	; of a jump table entry when it is nailed-down
 kInitialReferenceListHead				equ		1					; A good initial value because there cannot be
-																	; an odd offset. Couldn’t use zero cause thats a valid offset
+																	; an odd offset. Couldn't use zero cause thats a valid offset
 kInitialRoutineSize						equ		-1					; unused jump table entries (low bit clear)
 
 
@@ -418,7 +418,7 @@ patchRangeTable							ds.l	1					; <39> Saved pointer to a patch range table ('p
 
 residentTop								ds.l	1					; pointer to available space in resident block
 																	; Bumped up as we go so we know how far to cut 
-																	; back the resident block when we’re done.
+																	; back the resident block when we're done.
 
 offset									equ		*-start
 qdGlobalsPtr							ds.l	1					; QuickDraw globals
@@ -469,7 +469,7 @@ GetROMNumber
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; There used to be essentially two copies of the linked patches in memory, one in the detached
 ; 'lpch' resources, and a copy of all the resident routines in the resident block.  This is fine except
-; that this doesn’t leave enough memory to boot on 2 Meg machines.  Fred was astute enough
+; that this doesn't leave enough memory to boot on 2 Meg machines.  Fred was astute enough
 ; to realize that we have half of memory not being used sitting above MemTop/2 + 1K,
 ; so we now copy the 'lpch' resources into this area and disposes the detached resource
 ; handle.  While we still have two copies around, one is not in the system heap,
@@ -492,7 +492,7 @@ LoadPatchResources
 		moveq	#0,d4												; count the number of resources
 		clr.w	-(sp)												; mark end of PatchResourceEntries
 	
-; <60> Save CurMap in case it’s 1 for the ROM map, since it will get set to
+; <60> Save CurMap in case it's 1 for the ROM map, since it will get set to
 ;		SysMap by the Resource Manager when leaving a GetResource call.
 
 		move.w	CurMap,d6											; <60>
@@ -506,7 +506,7 @@ LoadPatchResources
 		bz.s	@next												; no, go on
 
 		cmp.w	#1,d6												; <58> <60> Check if CurMap is 1.
-		bne.s	@linkedPatchNotInROM								; <58> If it’s not 1, it’s a resource in a real file
+		bne.s	@linkedPatchNotInROM								; <58> If it's not 1, it's a resource in a real file
 		move.w	#MapTrue,ROMMapInsert								; <58> Set ROMMapInsert so the call to _Get1Resource will look in the ROM resource map for the 'lpch'
 @linkedPatchNotInROM												; <58>
 		subq.l	#4,sp												; make room for the resource
@@ -526,7 +526,7 @@ LoadPatchResources
 		_SysError
 @notFound
 		tst.w	d4													; is this the first resource (i.e. the one for this ROM only)?
-		bnz.s	@next												; no, it’s OK that it be missing
+		bnz.s	@next												; no, it's OK that it be missing
 		moveq	#dsNoPatch,d0										; yes, if it is missing there is an error
 		_SysError
 @ok
@@ -535,7 +535,7 @@ LoadPatchResources
 		move.l	d2,-(sp)
 		_DetachResource												; detach the resource
 		move.l	d2,a0
-		_GetHandleSize												; add it’s size in
+		_GetHandleSize												; add it's size in
 		add.l	d0,d7												; calculate total size of all resources
 
 	if NOT INITVERSION then
@@ -548,7 +548,7 @@ LoadPatchResources
 		addq.l	#1,d0												; <55> If it is, make it even
 	
 	; Copy the 'lpch' resource data up above the boot globals.  A1 is set up
-	; to be the address where the data should be copied to.  It’s initially MemTop/2 + 1K.
+	; to be the address where the data should be copied to.  It's initially MemTop/2 + 1K.
 	; After each _BlockMove, it gets bumped up, so the next 'lpch' is copied above this
 	; one.
 	;
@@ -580,7 +580,7 @@ LoadPatchResources
 	; Create the PatchResourceEntry record for this 'lpch' resource
 		
 		subq.l	#8,sp												; <55> make room for codePtr (used later)
-		move.l	a0,-(sp)											; <55> push “Handle”
+		move.l	a0,-(sp)											; <55> push 'Handle'
 		move.w	d1,-(sp)											; <55> also push the romSet (same as resource ID)
 		move.l	d2,a0												; <56>
 		_DisposeHandle												; <56> Dispose of the handle to the 'lpch' resource (now that we have a copy)
@@ -674,7 +674,7 @@ AllocateA5World
 		; proc jump table information. Since we use the same allocated space for both
 		; the larger of the two will determine the size of our non resident block
 		
-		; we also set up the global offset into the jump table’s extra information
+		; we also set up the global offset into the jump table's extra information
 
 		move.l	PatchResourceEntry.ptr(sp),a0						; point at start of universal resource
 
@@ -788,7 +788,7 @@ CheckVM
 		move.l	#gestaltVMAttr,d0									; check for VM
 		jsr		MrGestalt
 		btst	#gestaltVMPresent,d0
-		bnz.s	@done												; bit is set, we have VM, so don’t set flag
+		bnz.s	@done												; bit is set, we have VM, so don't set flag
 @no
 		bset.l	#Condition$notVM,d3
 @done
@@ -823,7 +823,7 @@ CheckMemoryDispatch
 CheckSonyDriverVersion
 		; has800KDriver/hasFDHDDriver
 
-		move.l	UTableBase,a0										; look at the Sony driver’s DCE
+		move.l	UTableBase,a0										; look at the Sony driver's DCE
 		move.l	16(a0),a0											; get the DCE handle
 		move.l	(a0),a0												; dereference it
 		cmp.b	#1,dCtlQueue+1(a0)									; is it the old 800K driver?
@@ -841,7 +841,7 @@ CheckIWM
 		cmp.w	#$067C,8(a0)										; is this the IIci ROM family?
 		bne.s	@yes
 		TestFor	IWMExists											; are we running with an IOP?
-		bz.s	@no													; yes, so we don’t have an IWM
+		bz.s	@no													; yes, so we don't have an IWM
 @yes
 		bset.l	#Condition$hasIWM,d3
 @no
@@ -937,7 +937,7 @@ UnpackROMTable
 		lea		g.romTable(a5,d2.l),a0								; point at this entry in the ROM table
 
 		; each entry in the ROM table has a ROM bind for every ROM this 'lpch' applies to
-		; *** isn’t the offset into each entry in the packed ROM table constant for the ROM we’re loading on?
+		; *** isn't the offset into each entry in the packed ROM table constant for the ROM we're loading on?
 		; *** if so, why not calculate it once instead of looping through NumROMs$ and bit testing each time?
 		; *** also, the size of each entry in the packed ROM table is constant, too (3 bytes * number of ROMs
 		; *** supported by this 'lpch')
@@ -1018,7 +1018,7 @@ FixupROMReferences
 InitializeJumpTable
 		; Turns out things will work best if routineSizes are initialized to -1.
 		; This ensures that any unused entries will look like the beginning of a module, so
-		; we won’t loop past the end of a module that does not have another module after it.
+		; we won't loop past the end of a module that does not have another module after it.
 		; This includes one extra entry at the end of the jump table for that end case.
 		; Note that d5 contains the number of entries in the table, not counting the extra one.
 
@@ -1126,7 +1126,7 @@ UnpackJumpTable
 		rts
 		
 		; finishModule stores the size of any previous module in the routineSize field of its parallel jump table entry,
-		; then updates the pointer to the last module’s jump table entry and the pointer to the previous module
+		; then updates the pointer to the last module's jump table entry and the pointer to the previous module
 		;
 		; a1 = pointer to jump table entry in g.jumpTable for last module
 		; d1 = pointer to previous module in the code
@@ -1403,17 +1403,17 @@ NextCondition
 	if NumConditions$ <= 8 then
 		and.b	#NonROMConditionsMask$,d0								; conditions that must be true (1 byte)
 		move.b	g.nonROMConditions(a5),d1								; conditions that are true
-		and.b	d0,d1													; don’t care about conditions not in the check word
+		and.b	d0,d1													; don't care about conditions not in the check word
 		cmp.b	d0,d1													; if all are true, then we should load
 	elseif NumConditions$ <= 16 then
 		and.w	#NonROMConditionsMask$,d0								; conditions that must be true (2 bytes)
 		move.w	g.nonROMConditions(a5),d1								; conditions that are true
-		and.w	d0,d1													; don’t care about conditions not in the check word
+		and.w	d0,d1													; don't care about conditions not in the check word
 		cmp.w	d0,d1													; if all are true, then we should load
 	else
 		and.l	#NonROMConditionsMask$,d0								; conditions that must be true (3 or 4 bytes)
 		move.l	g.nonROMConditions(a5),d1								; conditions that are true
-		and.l	d0,d1													; don’t care about conditions not in the check word
+		and.l	d0,d1													; don't care about conditions not in the check word
 		cmp.l	d0,d1													; if all are true, then we should load
 	endif
 		beq.s	ConditionTrue											; required conditions are all met, go load
@@ -1509,7 +1509,7 @@ FindOrMakeResident
 MakeResident
 
 ; Fixes the routine down in resident space. No matter what (i.e. non-conservative)
-; even if some of it’s references aren’t nailed down yet. This takes care of cycles
+; even if some of it's references aren't nailed down yet. This takes care of cycles
 
 		moveq	#0,d7															; flag resident
 		bra.s	MakeResidentCommon
@@ -1534,7 +1534,7 @@ MakeResidentCommon
 
 FindResident
 
-; Makes all “resident” references in a routine resident.
+; Makes all 'resident' references in a routine resident.
 
 		moveq	#0,d7															; flag resident (when we get down a level)
 		moveq	#1,d6															; flag Find, not Make
@@ -1588,7 +1588,7 @@ MakeFindResidentAnyPoliticsCommon
 ;		if resident
 ;			set MakeSeenFlagBit for this module and all the references in it to prevent cycles
 ;			for each thing this module refers to, do a MakeResidentConservative
-;			unmark MakeSeenFlagBit for this module and all the references in it (it is no longer “half-nailed”)
+;			unmark MakeSeenFlagBit for this module and all the references in it (it is no longer 'half-nailed')
 ;			if conservative
 ;				if not all modules made themselves resident, return
 ;			make space in resident area for routine
@@ -1607,8 +1607,8 @@ MakeFindResidentAnyPoliticsCommon
 ;			if the reference is marked resident, do a MakeResident
 
 ; <42> Before an attempt is made to nail down this module, see if the entry number for
-;		the module is in a range specified by the Gibbly’s patch table range list.  If
-;		it’s not in any of the ranges specified by this list, don’t nail it down.
+;		the module is in a range specified by the Gibbly's patch table range list.  If
+;		it's not in any of the ranges specified by this list, don't nail it down.
 ;
 
 CheckPatchNumber
@@ -1619,7 +1619,7 @@ CheckPatchNumber
 		
 		bsr		CheckPatchTableRange											; See if patch is in range
 		tst.b	d2																; CheckPatchTableRange returns a condition in d2
-		bnz.s	ShortCircuitActive												; It’s in a range.  Try to nail it down.
+		bnz.s	ShortCircuitActive												; It's in a range.  Try to nail it down.
 		move.l	JumpTableEntry.address(a0),d2									; get address
 		bra		Done
 
@@ -1663,8 +1663,8 @@ WalkBackToProc
 		move.w	ParallelJumpTableEntryInfo.referenceListHead(a0,d3.l),d1		; get pointer to first reference inside module
 
 ; Check whether we are doing a find or a make and set the appropriate flag to prevent cycles
-; Setting these flags could be considered “half-nailing” because we are trying to nail down
-; the flagged entries but we can’t finish until we have nailed down all the entry’s references
+; Setting these flags could be considered 'half-nailing' because we are trying to nail down
+; the flagged entries but we can't finish until we have nailed down all the entry's references
 
 MarkOurselvesHalfNailed
 		move.l	a0,a3															; go through our references
@@ -1673,7 +1673,7 @@ MarkOurselvesHalfNailed
 		bz		@doingMake														; no, doing a make
 
 
-; Set the FindSeenFlagBit for this module and all its entries so we won’t get into an infinite loop later
+; Set the FindSeenFlagBit for this module and all its entries so we won't get into an infinite loop later
 
 @nextFindReference
 		bset	#FindSeenFlagBit, ParallelJumpTableEntryInfo.flags(a3,d3.l)		; prevent cycles in find
@@ -1686,7 +1686,7 @@ MarkOurselvesHalfNailed
 		tst.b	d7																; resident or non-resident?
 		bnz.s	FoundFinalRestingPlace											; non-resident, no need to move it out of the 'lpch'
 
-; Set the MakeSeenFlagBit for this module and all its entries so we won’t get into an infinite loop later
+; Set the MakeSeenFlagBit for this module and all its entries so we won't get into an infinite loop later
 
 @next
 		bset	#MakeSeenFlagBit, ParallelJumpTableEntryInfo.flags(a3,d3.l)		; prevent cycles in make
@@ -1701,7 +1701,7 @@ LureInTheConservatives
 
 		moveq	#1,d4															; assume for now that all will be nailed down
 
-		lea		@doOne,a3														; let’s go makin’
+		lea		@doOne,a3														; let's go makin'
 		bsr		ForAllReferences												; get those evil right wingers in memory
 		bra.s	@continue
 
@@ -1723,7 +1723,7 @@ LureInTheConservatives
 
 MarkOurselvesNotHalfNailed
 		; we can clear our MakeSeenFlagBit now that we are done luring in the conservatives
-		; we MIGHT end up recursing later in “MakeIslands” but by that time we will be nailed
+		; we MIGHT end up recursing later in 'MakeIslands' but by that time we will be nailed
 		; down and the protection of the MakeSeenFlagBit will be unecessary
 
 		move.l	a0,a3															; go through our references
@@ -1735,7 +1735,7 @@ MarkOurselvesNotHalfNailed
 		bz.s	@next															; no, still an entry within the current module
 
 ExitIfConservativeFailure
-		; if we’re conservative, and we couldn't make all our references resident, then fail
+		; if we're conservative, and we couldn't make all our references resident, then fail
 
 		tst.b	d5																; are we conservative?
 		bz.s	@survive														; no, we survive no matter what
@@ -1763,7 +1763,7 @@ FoundFinalRestingPlace
 		move.l	a1,d0															; calculate fixup
 		sub.l	JumpTableEntry.address(a2),d0									; by subtracting offset of start of module
 		add.l	d0,d2															; save away the resident address for the entry
-																				; we’re looking at (we return this later)
+																				; we're looking at (we return this later)
 @next
 		add.l	d0,JumpTableEntry.address(a2)									; convert address in non-resident space to a real address
 		move.w	#kNailedDown,JumpTableEntry.opcode(a2)							; mark as nailed down (this is a JMP opcode)
@@ -1777,8 +1777,8 @@ MakeIslands
 		tst.b	d7																; resident or non-resident?
 		bnz.s	FollowReferences												; non-resident, no need for islands
 
-		lea		@doOne,a3														; let’s go to the islands
-		bsr		ForAllReferences												; make ’em
+		lea		@doOne,a3														; let's go to the islands
+		bsr		ForAllReferences												; make 'em
 		bra.s	@continue
 
 ; MakeIslands iterator
@@ -1804,9 +1804,9 @@ MakeIslands
 		; mark as island, and if we already had an island, get real address from the island itself
 
 		bset	#islandFlagBit,ParallelJumpTableEntryInfo.flags(a0,d3.l)
-		bz.s	@gotAddress														; island flag wasn’t set, we have the real address
+		bz.s	@gotAddress														; island flag wasn't set, we have the real address
 		move.l	2(a4),a4														; extract the address from the island itself
-																				; we’ll be making an island to an island
+																				; we'll be making an island to an island
 
 @gotAddress
 		; lay down the island, and point jump table at it
@@ -1832,7 +1832,7 @@ FollowReferences
 		lea		@doOne,a3														; recurse over the references
 		bsr		ForAllReferences
 		tst.b	d6																; doing find?
-		bz 		@continue														; no, it’s a make
+		bz 		@continue														; no, it's a make
 
 		; if we were doing a find we need to clear our FindSeenFlagBit now
 		move.l	a0,a3															; yes, go through our references
@@ -1898,10 +1898,10 @@ FollowReferences
 		cmpa.w	a2,a2															; is it in range? (warning! 68000 hack!)
 		beq.s	@ok																; yes, everything is OK
 
-; Sometimes we can use the real thing instead of the island and it won’t be out of range.
+; Sometimes we can use the real thing instead of the island and it won't be out of range.
 
 		btst	#islandFlagBit,ParallelJumpTableEntryInfo.flags(a3,d3.l)
-		bz.s	@notOK															; if not island then we can’t try indirection
+		bz.s	@notOK															; if not island then we can't try indirection
 		
 		move.l	2(a0),a0														; get what the island points to
 		move.l	a0,a2															; get address of routine
@@ -1940,7 +1940,7 @@ FollowReferences
 
 @32Bit
 		btst	#islandFlagBit,ParallelJumpTableEntryInfo.flags(a3,d3.l)
-		bz.s	@noIsland														; don’t have to follow the island
+		bz.s	@noIsland														; don't have to follow the island
 		move.l	2(a0),a0														; get address of real thing from the island
 @noIsland
 		move.l	a0,-2(a1)														; store the address as a long absolute
@@ -1992,7 +1992,7 @@ ForAllReferences
 ;						d0.w	opcode, expressed as an offset into a table of words
 ;						a1		pointer to code (after opcode)
 ;						d2.w	jump table offset
-;						ccr		carry set if this is a “force-resident” reference
+;						ccr		carry set if this is a 'force-resident' reference
 ;						d4		passed through (in and out)
 ;						d5-d7	passed through
 ;					trashes d0-d7/a0-a4
@@ -2093,7 +2093,7 @@ InstallOrExecute
 
 ; debugging code to break before installing specified jump table entries
 ;
-; <62> This code used to be turned off for linked patch INITs, and we couldn’t figure out
+; <62> This code used to be turned off for linked patch INITs, and we couldn't figure out
 ; why so we turned it on.  If someone figures out why this was turned off for INITs,
 ; change it back, then come yell at us for not knowing any better.
 
@@ -2108,10 +2108,10 @@ InstallOrExecute
 
 		bsr		CheckPatchTableRange											; <39> See if patch is in range
 		tst.b	d2																; <39> CheckPatchTableRange returns a condition in d2
-		bz.s	Done															; <39> Zero means don’t load the patch.
+		bz.s	Done															; <39> Zero means don't load the patch.
 
-; Chris, Greg and I always have trouble how to use these globals, so I’m adding comments
-; about it so we don’t have to do this by trial and error any more.
+; Chris, Greg and I always have trouble how to use these globals, so I'm adding comments
+; about it so we don't have to do this by trial and error any more.
 ;
 ; To stop on a particular linked patch entry:
 ;	StopOnJumpTableEntryNum ($922) = linked patch entry to stop on
@@ -2140,7 +2140,7 @@ InstallOrExecute
 
 		; end of debugging code (have to do the tst.w since we screwed up the condition codes)
 
-		bnz.s	InstallPatch													; it’s a patch, go install it
+		bnz.s	InstallPatch													; it's a patch, go install it
 
 ExecuteInstallRoutine
 		; execute an install routine
@@ -2286,7 +2286,7 @@ FlushInstructionCache proc
 	if INITVERSION then
 
 		; *** we really only need to check if CacheFlush is implemented for pre-7.0 systems
-		; *** someday, we won’t have to support these systems even with linked patch INITs
+		; *** someday, we won't have to support these systems even with linked patch INITs
 		
 		move.w	#$9f,d0
 		_GetTrapAddress															; Get _Unimplemented
@@ -2308,8 +2308,8 @@ FlushInstructionCache proc
 CheckPatchTableRange	Proc	Export
 
 ;
-; <39> Check the patch count index against the ranges stored in the patch range table.  Don’t load the
-;		patch if it isn’t in one of the ranges.
+; <39> Check the patch count index against the ranges stored in the patch range table.  Don't load the
+;		patch if it isn't in one of the ranges.
 ;
 ; In:	D1: Jump table entry number
 ;
@@ -2336,12 +2336,12 @@ CheckPatchTableRange	Proc	Export
 				moveq	#1,d2											; Assume patch should be loaded
 @checkRangeLoop
 				cmp.w	(a0)+,d1										; Check against lower bound
-				blt.s	@dontLoadPatch									; If lower, don’t load
+				blt.s	@dontLoadPatch									; If lower, don't load
 				cmp.w	(a0)+,d1										; Check against upper bound
 				bls.s	@loadPatch										; Patch should be loaded
 				dbra	d0,@checkRangeLoop								; Loop through all the ranges
 @dontLoadPatch
-				moveq	#0,d2											; If patch was not in any range, don’t load it
+				moveq	#0,d2											; If patch was not in any range, don't load it
 @loadPatch
 				movem.l	(sp)+,a0/d0-d1									; Restore everything that was used except for D2
 				rts
@@ -2371,7 +2371,7 @@ MrGestalt	proc																; <31>
 
 ; Call Gestalt, and get the result into d0.
 ; Return 0 for result if Gestalt or selector is unknown.
-; This won’t work for all Gestalt selectors, but it will for most.
+; This won't work for all Gestalt selectors, but it will for most.
 ; Trashes d0 only.
 
 		move.l	a0,-(sp)
@@ -2398,7 +2398,7 @@ MrGestalt	proc																; <31>
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ;
 ; <49> For linked patch INITs trying to run on Systems before Cube-E, keep this patch range
-;		table around in case they don’t have a 'ptbl' resource handy.
+;		table around in case they don't have a 'ptbl' resource handy.
 ;
 
 	if INITVERSION then															; <49>

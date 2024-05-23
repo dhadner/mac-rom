@@ -12,18 +12,18 @@
 ;		 <2>	10/10/90	JL		Change FixRatio to MFixRatio to avoid conflict with Traps.a
 ;	   <1.1>	11/11/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
-;	   <1.2>	10/12/88	CCH		Changed “m.GrafType.a” to “GrafType.m.a”.
+;	   <1.2>	10/12/88	CCH		Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ;	   <1.1>	 5/18/88	MSH		Changed inclides to use m.GRAPHTYPES to work under EASE.
 ;	   <1.0>	 2/11/88	BBM		Adding file for the first time into EASE…
 ;
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “PUTLINE.m.a”
+;EASE$$$ READ ONLY COPY of file 'PUTLINE.m.a'
 ; 1.1	CCH 11/11/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.
 ; OLD REVISIONS BELOW
-; 1.2	CCH 10/12/1988 Changed “m.GrafType.a” to “GrafType.m.a”.
+; 1.2	CCH 10/12/1988 Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ; 1.1	MSH 5/18/88 Changed inclides to use m.GRAPHTYPES to work under EASE.
 ; 1.0	BBM 2/11/88 Adding file for the first time into EASE…
 ; END EASE MODIFICATION HISTORY 

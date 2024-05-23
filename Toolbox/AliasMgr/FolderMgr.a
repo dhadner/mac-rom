@@ -87,7 +87,7 @@
 ;				 8/15/89	prp		Allocate initial Cache empty handle in System heap
 ;	   <1.3>	 8/11/89	prp		Restore param blk in a0 after calling FindFolderInCache.
 ;	   <1.2>	 7/17/89	dba		changed error handling a big; got rid of extraneous system
-;									folder check; switched from “Any User” to “Administrator” for
+;									folder check; switched from 'Any User' to 'Administrator' for
 ;									owner of shared trash
 ;	   <1.1>	 6/28/89	dba		use ExpandMem instead of low-memory global; make some changes
 ;									from code review
@@ -99,9 +99,9 @@
 ;
 ;	To Do:
 ;		check to make sure that no one uses $FFFF0000 and higher dirIDs
-;		consider getting rid of “where to empty trash” as follows:
-;			check the “super-user” bit on the result of GetVolParms or GetDirAccess
-;			if the user is a “super-user”, then give the root trash folder
+;		consider getting rid of 'where to empty trash' as follows:
+;			check the 'super-user' bit on the result of GetVolParms or GetDirAccess
+;			if the user is a 'super-user', then give the root trash folder
 ;			otherwise, use the login-name folder scheme
 ;
 
@@ -123,28 +123,28 @@
 ; The second category is for special folders. These currently consist of the system folder, the
 ; desktop folder, and the trash folder. These folders are not visible to the user, and are not
 ; located by internationalizable names. The system folder is located by its dirID, which is
-; stored in the Finder’s volume information. The desktop and trash folders are located by their
+; stored in the Finder's volume information. The desktop and trash folders are located by their
 ; names, and the Finder and Standard File do not dispay the folders.
 ;
 ; If the FindFolder call is made for a volume which does not have a particular folder, the
 ; folder is created, if possible. (The exception to this is the system folder, which is created
 ; by the user when he drags a System and Finder into the same folder, or uses the Installer.)
-; New folders are created with the “name-locked” attribute, since they are identified by name.
+; New folders are created with the 'name-locked' attribute, since they are identified by name.
 ; New folders on volumes that support folder locking are also locked. Since the current
 ; implementation of user-visible folders is based on the system folder, disks without system
 ; folders, like AppleShare 1.0 and 2.0 volumes, do not have any user-visible folders. The desktop
-; folder is not created on any disk that has the “noDeskItems” attribute.
+; folder is not created on any disk that has the 'noDeskItems' attribute.
 ;
 ; The trash folder is handled specially on volumes that have access controls (privileges).
-; A “shared” trash folder is created, which contains all of the user-specific trash folders.
-; The “shared” trash folder is readable, writable, and searchable by all users, and a trash
+; A 'shared' trash folder is created, which contains all of the user-specific trash folders.
+; The 'shared' trash folder is readable, writable, and searchable by all users, and a trash
 ; folder is created within it for each login name. When the Finder empties the trash, it starts
-; from this “shared” trash folder, and moves down, emptying as much trash as privileges allow.
+; from this 'shared' trash folder, and moves down, emptying as much trash as privileges allow.
 ;
 ; To prevent excessive disk access, the Folder Manager maintains a cache of results from
 ; calls to FindFolder. If a disk is modified or its attributes change (it is unlocked), the
 ; cache is ignored. The cache is maintained as a purgeable handle in the system heap. The cache
-; stores error results, as well as folder’s that have been found. (It uses unusually high dirIDs
+; stores error results, as well as folder's that have been found. (It uses unusually high dirIDs
 ; to represent these error results internally: $FFFF0000 and up.)
 
 ; the following are a few notes about error handling (Darin and Prashant)
@@ -254,9 +254,9 @@ length				ds.w		1					; length of this folder name
 data				equ			*					; the data (text for version 0)
 					endr
 
-kFolderByNameVersion	equ		0					; this version’s data is just the name
+kFolderByNameVersion	equ		0					; this version's data is just the name
 
-kStringMaxLength	equ			255					; if string is too big, it’s invalid
+kStringMaxLength	equ			255					; if string is too big, it's invalid
 
 	if CACHING then
 
@@ -278,7 +278,7 @@ InternalNames	proc
 ; names should only be visible to programmers and to users who use 6.X systems on a
 ; disk that has been used with 7.X previously.
 
-; The Desktop Folder has to be named “Desktop Folder” instead of “Desktop” because that
+; The Desktop Folder has to be named 'Desktop Folder' instead of 'Desktop' because that
 ; name is already taken for the resource file containing the resource-based desktop file.
 
 		string		pascal
@@ -504,7 +504,7 @@ folderType			equ			d1					; register for folder specialty
 ; FUNCTION FindFolderInternal(vRefNum: INTEGER; folderType: OSType; createFolder: BOOLEAN;
 ;	VAR foundVRefNum: INTEGER; VAR foundDirID: LONGINT; resHandle : Handle): OSErr;
 ;
-; Find the folder of the specified type or create it if it doesn’t already exist.
+; Find the folder of the specified type or create it if it doesn't already exist.
 ; The vRefNum and dirID will be cached in a handle maintained in the system heap.
 ;
 ; The cache is kept so that no disk access will occur if you ask for the same folder
@@ -530,7 +530,7 @@ FindFolderInternal	proc		export
 ;					import		INITFolderNameListHandle
 ;	endif
 
-kFileNotOpen		equ			-1					; a refNum representing a file that isn’t open
+kFileNotOpen		equ			-1					; a refNum representing a file that isn't open
 
 					resultsStackFrame
 error				ds.w		1					; the resulting error code
@@ -584,7 +584,7 @@ namesResource		equ			systemVRefNum		; register for resource containing names
 
 GetSystemFileInfo
 		clr.l		ioFileName(a0)					; not interested in file name
-		move.w		SysMap,ioRefNum(a0)				; the system file’s refNum
+		move.w		SysMap,ioRefNum(a0)				; the system file's refNum
 		clr.w		ioFCBIndx(a0)					; get file by refNum
 		moveq		#fsRtDirID,d0					; initialize in case of an MFS disk
 		move.l		d0,ioFCBParID(a0)				; (MFS FCBs do not have parIDs in them)
@@ -595,7 +595,7 @@ GetSystemFileInfo
 GetDiskInfo
 		move.w		vRefNum(a6),d0					; put vRefNum in parameter block
 		cmp.w		#kOnSystemDisk,d0				; this means the system folder
-		bne.s		@notSystemDisk					; if they pass us this, it’s the system disk
+		bne.s		@notSystemDisk					; if they pass us this, it's the system disk
 		move.w		systemVRefNum,d0				; get the system disk vRefNum
 @notSystemDisk
 
@@ -622,7 +622,7 @@ GetDiskInfo
 		jsr			FindFolderInCache				; found the folder in the cache
 		lea			diskPB(a6),a0					; restore the parameter block
 		pop.l		d0								; did we get a dirID?
-		bz.s		@notInCache						; no, it’s not in the cache
+		bz.s		@notInCache						; no, it's not in the cache
 ; If we got a cache error and if the createFolder bit is set, ignore the cache and try to create the
 ; folder.
 		cmp.l		#kCachedErrorBase,d0			; is the folder an error?
@@ -638,7 +638,7 @@ GetDiskInfo
 	
 ;--------------------------------------------------
 
-; Since we didn’t find the folder in the cache, we need the list of disk attributes.
+; Since we didn't find the folder in the cache, we need the list of disk attributes.
 ; This is used when finding the system folder, creating new folders, and determining whether
 ; there should be a desktop folder.
 
@@ -716,7 +716,7 @@ FoundSystemFolder
 		cmp.w		cookedVRefNum,systemVRefNum		; is it the system disk?
 		beq.s		GetFolderList					; It is already open and current
 
-		push.b		#false							; don’t load any resources from the system file
+		push.b		#false							; don't load any resources from the system file
 		_SetResLoad									; while opening it
 
 		rsrv.w										; make room for result refNum
@@ -778,10 +778,10 @@ GotResHandle
 ;--------------------------------------------------
 
 ; We found a folder name in the folder name list resource. Make sure that it is a version 0
-; name (a sub-folder of the system folder): we haven’t defined any others yet, but folder
+; name (a sub-folder of the system folder): we haven't defined any others yet, but folder
 ; name lists might be from a newer system that has new ones. Once we are sure it is a
 ; version 0 name, get the pascal string name of the sub-folder, and go on. If we notice that
-; the fld# resouce is damaged, we return a “not found” error
+; the fld# resouce is damaged, we return a 'not found' error
 
 FolderNameInResource
 		sub.l		d1,a1							; subtract the size of the data
@@ -799,7 +799,7 @@ FolderNameInResource
 
 ;--------------------------------------------------
 
-; Here is where the “root” folders rejoin the main code path. The main difference of these
+; Here is where the 'root' folders rejoin the main code path. The main difference of these
 ; folders is that they start in the root, and have names that do not come from resources.
 
 ; These are folders like Trash, Desktop and Temporary.  Trash folders on shared volumes are
@@ -897,9 +897,9 @@ FolderInRoot
 
 ;--------------------------------------------------
 
-; Now we have the name of the folder in a1 and its parent folder’s dirID in “dirID”.
+; Now we have the name of the folder in a1 and its parent folder's dirID in 'dirID'.
 ; Find the folder by that name. If it is a file instead of a folder, we fail with a
-; “duplicate file name” error.
+; 'duplicate file name' error.
 
 FolderNameInA1
 		lea			folderPB(a6),a0					; get ready for calls
@@ -960,7 +960,7 @@ NewFolderNeeded
 
 		move.l		dirID,ioDrDirID(a0)				; in this folder
 		_DirCreate									; create the folder
-		bnz.s		GotErrorForCache				; get out if we couldn’t create it
+		bnz.s		GotErrorForCache				; get out if we couldn't create it
 
 		move.l		ioDrDirID(a0),d2				; save away the dirID for a bit
 
@@ -970,7 +970,7 @@ NewFolderNeeded
 		bnz.s		GotErrorForCache				; get out if there was a problem
 
 		; Note that although the above GetCatInfo is done by dirID, the rest of these
-		; operations are done by name and parent dirID, because that’s the only way
+		; operations are done by name and parent dirID, because that's the only way
 		; HFS lets us do them.
 
 		move.l		a1,ioFileName(a0)				; set info by name
@@ -978,9 +978,9 @@ NewFolderNeeded
 		move.l		dirID,ioDrDirID(a0)				; in this folder
 
 		_SetCatInfo									; change those bits a bit
-		bnz.s		GotErrorForCache				; couldn’t do it
+		bnz.s		GotErrorForCache				; couldn't do it
 
-		move.l		d2,dirID						; now we’ve got the dirID
+		move.l		d2,dirID						; now we've got the dirID
 
 ;--------------------------------------------------
 
@@ -1005,7 +1005,7 @@ FoundFolder
 		bne.s		@done							; see if its lock needs to be set
 @DoLocking
 		btst.l		#bHasFolderLock,diskAttributes	; does this disk support locking folders?
-		bz.s		@done							; no, don’t bother trying
+		bz.s		@done							; no, don't bother trying
 		btst.b		#ioLockFlg,ioFlAttrib(a0)		; check if it is already locked
 		bnz.s		@done							; it is!		
 		clr.l		ioFileName(a0)					; no name, lock it by dirID
@@ -1016,7 +1016,7 @@ FoundFolder
 
 ;--------------------------------------------------
 
-; We’ve got the dirID for the folder. Enter it into the folder cache.
+; We've got the dirID for the folder. Enter it into the folder cache.
 
 GotFolderForCache
 
@@ -1060,7 +1060,7 @@ GotFolder
 
 ;--------------------------------------------------
 
-; We are finished, and have the error code in d0. Close the other system’s resource file.
+; We are finished, and have the error code in d0. Close the other system's resource file.
 
 GotError
 		move.w		d0,error(a6)					; return result
@@ -1141,7 +1141,7 @@ cacheHandle			equ			a3					; store the cacheHandle here
 		linkSave	a3
 
 	if DEBUG then
-		tst.l		dirID(a6)						; can’t enter a 0 into the cache
+		tst.l		dirID(a6)						; can't enter a 0 into the cache
 		bnz.s		@ok
 		_Debugger
 @ok
@@ -1170,7 +1170,7 @@ cacheHandle			equ			a3					; store the cacheHandle here
 		move.l 		cacheHandle,a0					; copy in a0 for the calls
 		moveq		#0,d0							; reallocate handle (no contents)
 		_ReallocHandle sys
-		bnz			Done							; can’t reallocate, get out
+		bnz			Done							; can't reallocate, get out
 		_HPurge										; keep it purgeable
 		bra.s		NewDiskAndFolder				; we reallocated the handle
 
@@ -1204,7 +1204,7 @@ NewDiskAndFolder
 
 		lea			stage(a6),a1					; set up for both disk and folder
 		moveq		#FolderCacheDisk.sizeWithOneFolder,d1	; get size
-		moveq		#0,d2							; don’t replace anything
+		moveq		#0,d2							; don't replace anything
 		bra.s		FillInFolder
 
 NewFolderOnly
@@ -1228,7 +1228,7 @@ NewFolderOnly
 ;--------------------------------------------------
 
 ; Now we have the place to insert the new entry, size to be replaced, new entry composed on the
-; stack frame, pointer to the new entry, and size of the new entry. All that’s left it to munge
+; stack frame, pointer to the new entry, and size of the new entry. All that's left it to munge
 ; it in.
 
 FillInFolder
@@ -1238,14 +1238,14 @@ FillInFolder
 		rsrv.l										; room for the result
 		push.l		cacheHandle						; munge this handle
 		push.l		d0								; munge it in here
-		push.l		#nil							; don’t search, just insert
+		push.l		#nil							; don't search, just insert
 		push.l		d2								; number of bytes to replace
-		push.l		a1								; here’s what you should insert
-		push.l		d1								; here’s the length of what you should insert
+		push.l		a1								; here's what you should insert
+		push.l		d1								; here's the length of what you should insert
 		_Munger
 		free.l										; ignore the result
 
-		bra.s		Done							; it’s in, now we’re done
+		bra.s		Done							; it's in, now we're done
 
 ;--------------------------------------------------
 
@@ -1399,7 +1399,7 @@ EntryObsolete
 		push.l		cacheHandle						; munge this handle
 		sub.l		(cacheHandle),a0				; get offset
 		push.l		a0								; pass offset
-		push.l		#nil							; don’t search, just delete
+		push.l		#nil							; don't search, just delete
 		push.l		d1								; length to delete
 		assert		1 <> nil
 		push.l		#1								; pass something non-nil so Munger will delete

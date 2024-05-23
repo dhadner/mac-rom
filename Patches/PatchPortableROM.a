@@ -8,9 +8,9 @@
 ;	Change History (most recent first):
 ;
 ;		<66>	 1/19/92	DTY		Look at emAppleTalkInactiveOnBoot before getting the AppleTalk
-;									version.  If AppleTalk is inactive, don’t set up the serial port
+;									version.  If AppleTalk is inactive, don't set up the serial port
 ;									for use by AppleTalk.  This is part of a large conspiracy to
-;									convince the universe that AppleTalk really isn’t around if it
+;									convince the universe that AppleTalk really isn't around if it
 ;									is inactive.
 ;		<65>	12/26/91	RB		Rename definition of SleepQRec in the serial patch because it is
 ;									also used for Power Mgr.
@@ -21,7 +21,7 @@
 ;											that have the same ROM number & boxFlag, if the ROM minor
 ;											version is 1.1f1 then boxAsahi is jammed into BoxFlag. This is
 ;											placed before Gestalt gets loaded and uses boxFlag.
-;		<62>	 8/30/91	DTY		Define onHcMac in this file because it’s not an available
+;		<62>	 8/30/91	DTY		Define onHcMac in this file because it's not an available
 ;									feature in BBSStartup any more.
 ;		<60>	 6/12/91	LN		added #include 'InternalOnlyEqu.a'
 ;		<59>	 6/12/91	LN		removed #include 'HardwareEqu.a'
@@ -34,7 +34,7 @@
 ;									need for the linked patch to _Open to patch the version number
 ;									in the DCE, a fix which was causing FileShare to crash.
 ;		<56>	 3/15/91	DTY		kip, #fixGestalt: Add Gestalt fixes ('ptch' 5) to Portable
-;									because some of Gestalt’s globals are trashed.
+;									because some of Gestalt's globals are trashed.
 ;		<55>	  3/4/91	dba		dty: get rid of SysVers conditionals
 ;		<54>	 2/26/91	eh		(djw) Fixed bug that was causing crash on serial read if a break
 ;									is received. An address offset was off by 2.
@@ -70,7 +70,7 @@
 ;									linkpatch.
 ;		<42>	 8/18/90	dba		get rid of ptchInst 7 and 8 (Sony Format and Eject patches) as
 ;									they are now linked patches
-;		<41>	 8/14/90	DTY		Removed TextEdit patches since they’re in a linked patch now.
+;		<41>	 8/14/90	DTY		Removed TextEdit patches since they're in a linked patch now.
 ;									(For real this time.)
 ;		<40>	 8/14/90	JWK		NEEDED FOR SIXPACK: Removed old Slot Mgr Gestalt selectors.
 ;		<39>	 8/13/90	JWK		NEEDED FOR SIXPACK: Added NuBus and Serial Gestalt selectors.
@@ -116,7 +116,7 @@
 ;									some.
 ;		<14>	 3/23/90	NC		Added ptch 43 for System 6.0.6 on up. This is for Sound.
 ;		<13>	  3/4/90	PKE		Changed _UprText to _UpperText to match new Traps.a.
-;		<12>	 2/28/90	PKE		For 7.0, moved Script Mgr ROM patches into ‘ptch’ 39: patches to
+;		<12>	 2/28/90	PKE		For 7.0, moved Script Mgr ROM patches into ‘ptch' 39: patches to
 ;									_Pack6 and _GetIndADB, fixes to String2Date/InitDateCache,
 ;									installation of some new vectors, and the change to SwapIcon.
 ;									For all of these except the SwapIcon change, the code is still
@@ -138,16 +138,16 @@
 ;		 <7>	 1/18/90	MSH		Roll in latest version of Pmgr trap from main sources. Fixed the
 ;									trap to preserve the VIA sound enable bit.  Added intercept to
 ;									PowerOff trap to reset the SCC before calling the ROM version.
-;		 <6>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
-;		 <5>	 1/11/90	PKE		Changed quotes in previous comment to “” so scripts don't get
+;		 <6>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
+;		 <5>	 1/11/90	PKE		Changed quotes in previous comment to '' so scripts don't get
 ;									messed up.
 ;		 <4>	 1/11/90	PKE		Initialize Script Manager's new sVectFixSpExtra vector. Changed
-;									so PtchInst 0 is conditionalized on “Scripts604 OR (SysVers >=
-;									$605)” instead of “Scripts604 OR (SysVers >= $700)”; at the
+;									so PtchInst 0 is conditionalized on 'Scripts604 OR (SysVers >=
+;									$605)' instead of 'Scripts604 OR (SysVers >= $700)'; at the
 ;									moment, this won't affect anything since Scripts604 is presently
 ;									TRUE for the 6.0.5 build.
 ;		 <3>	  1/4/90	BBM		NEEDED FOR 6.0.5.  We now patch out the soundmanger on all
-;									cpu’s.
+;									cpu's.
 ;		 <2>	  1/4/90	dba		converted header; used PatchMacros setTrap and stuffOldTrap
 ;									instead of Set/GetTrapAddress (makes the object code a little
 ;									bit shorter)
@@ -2331,7 +2331,7 @@ CloseFix
 
 @freeB		
 			move.l	ExpandMem,a0					; <66>
-			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <66> If AppleTalk is inactive, don’t set up the LAP manager
+			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <66> If AppleTalk is inactive, don't set up the LAP manager
 			bnz.s	@freeThePort					; <66> AppleTalk is not active.
 			move.l	#'atkv',d0						; what version of Appletalk?		<51>
 			_Gestalt
@@ -2553,7 +2553,7 @@ OpenAFix
 ;	Except of course for the BAP stuff 
 OpenBFix
 		move.l		ExpandMem,a0					; <66>
-		tst.w		ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <66> If AppleTalk is inactive, don’t set up the LAP manager
+		tst.w		ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <66> If AppleTalk is inactive, don't set up the LAP manager
 		bnz.s		@appleTalkInactive				; <66> AppleTalk is not active.
 		move.l		#'atkv',d0						; what version of Appletalk?			<51>
 		_Gestalt
@@ -3442,13 +3442,13 @@ OptimizePACKs
 ;	The GestaltFuction.a file is used to build a ptch for machines without
 ;	Gestalt in ROM, but it also contains fixes and improvements that are not
 ;	in the Portable ROMs OR in the GestaltPatches.a file...  The changes are not
-;	trivial, so we’re punting and loading the Gestalt ptch on Portable ROMs, too...
+;	trivial, so we're punting and loading the Gestalt ptch on Portable ROMs, too...
 ;
 ;	Before we do, though, we throw away any storage that Gestalt has allocated.
 ;
 
 			move.l		ExpandMem, a0
-			move.l		ExpandMemRec.emGestalt(a0), a0	; get Gestalt’s pointer
+			move.l		ExpandMemRec.emGestalt(a0), a0	; get Gestalt's pointer
 			_DisposPtr									; now throw away the old pointer
 
 			move.l		GestaltGlobals.longH(a0), a0	; get the table handle

@@ -781,7 +781,7 @@ OrphanScrapIntoPartition(void)
 			return;
 	
 	/* Remember whether handle is from APPLZONE.
-	 * NOTE: Will be ÒfalseÓ for nil handle, which is what we want.
+	 * NOTE: Will be 'false' for nil handle, which is what we want.
 	 */
 	scrapInZone = ( (scrapHdl >= APPLZONE) && (scrapHdl < APPLZONE->bkLim) );
 

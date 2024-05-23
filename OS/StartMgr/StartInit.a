@@ -255,7 +255,7 @@
 ;		<H16>	07-01-92	jmp		Made the change in <H13> only take effect on warm-starts.
 ;		<H13>	06-26-92	jmp		Added some code to InitSoundHW that checks for the presence of a
 ;									djMEMC.  If a djMEMC exists, this code then shuts off the
-;									djMEMC’s (DAFB’s) sync control so that video is off BEFORE the
+;									djMEMC's (DAFB's) sync control so that video is off BEFORE the
 ;									boot beep occurs.
 ;		<H12>	 6/24/92	ag		Added Dartanian to the list of cpu's which must use the sound
 ;									pan registers for volume control. Allow Zero volume which will
@@ -325,7 +325,7 @@
 ;									<72> 8/18/92 DTY	Change the name of BootGlobs to StartGlobals to avoid confusion
 ;														with BootGlobals, which is used by the boot code in Boot[1-3].a.
 ;	  <SM44>	 8/17/92	CCH		Extended universal support to 96-bits.
-;	  <SM43>	08-11-92	jmp		Added ReAnimator support for ’030 CPUs (taken straight from
+;	  <SM43>	08-11-92	jmp		Added ReAnimator support for '030 CPUs (taken straight from
 ;									HORROR).
 ;	  <SM42>	  8/9/92	CCH		Added conditional StartPC address for Smurf cards.
 ;	  <SM41>	 7/28/92	WS		Init DSP now use gestaltRealtimeMgr instead of checking the box
@@ -488,18 +488,18 @@
 ;									in a QuickDraw file too.
 ;		<61>	12/27/91	RB		Open backlight driver on machines with Power Mgr.
 ;		<60>	12/27/91	RB		Added Terror changes.
-;		<59>	11/16/91	DTY		Replacing hard addresses with a record to make the equates “more
-;									universal” is nice but useless if the code has no way of getting
+;		<59>	11/16/91	DTY		Replacing hard addresses with a record to make the equates 'more
+;									universal' is nice but useless if the code has no way of getting
 ;									to those addresses any more.  Add equates for VidRAMSleepFlag
 ;									and VidRAMWakeVect to this file to keep the ROM build building
-;									until the hardware guys figure out what they’re trying to do.
+;									until the hardware guys figure out what they're trying to do.
 ;		<58>	10/17/91	JSM		Get rid of all the stupid conditionals.
 ;		<57>	 10/2/91	JSM		Use MemoryMgrPriv.a instead of HeapDefs.a.
-;		<56>	 10/1/91	JSM		Don’t use onMvMac conditional, Modern Victorian never existed.
-;		<55>	 10/1/91	JSM		Don’t use hasADB conditional, all future ROMs will support ADB.
-;		<54>	 10/1/91	JSM		Don’t use eclipseDebug.
-;		<53>	 9/30/91	JSM		Don’t use is32BitClean conditional, all future ROMs will be.
-;		<52>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		<56>	 10/1/91	JSM		Don't use onMvMac conditional, Modern Victorian never existed.
+;		<55>	 10/1/91	JSM		Don't use hasADB conditional, all future ROMs will support ADB.
+;		<54>	 10/1/91	JSM		Don't use eclipseDebug.
+;		<53>	 9/30/91	JSM		Don't use is32BitClean conditional, all future ROMs will be.
+;		<52>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		<51>	 9/16/91	JSM		Cleanup header.
 ;		<50>	 6/12/91	LN		Changed #include 'HardwareEqu.a' to 'HardwarePrivateEqu.a'
@@ -586,7 +586,7 @@
 ;									start time to prevent possible double bus errors on machines
 ;									with overlay bits. Also fixed a few bugs in the 040 detection
 ;									code.
-;		<11>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		<11>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		<10>	 1/10/90	BG		Updated WhichCPU to recognize 040s.
 ;		 <9>	  1/9/90	BG		Change StartBoot to be run-time detection of 040s instead of
 ;									assembly-time for universality.
@@ -626,7 +626,7 @@
 ;	  <10.9>	 8/22/89	GMR		Removed RunDiags, always call universal StartTest diags now.
 ;									Prep A2 with VIA1 base before calling quasiPwrMgr when reading
 ;									RamDisk size, to work with universal RdXByte.
-;	  <10.8>	 8/16/89	BBM		made EDisk open on feature “hasEDisk”, rather than the hack
+;	  <10.8>	 8/16/89	BBM		made EDisk open on feature 'hasEDisk', rather than the hack
 ;									onHcMac.
 ;	  <10.7>	 7/27/89	CCH		Fixed _real_ bug that was trashing a4 in configureRam, and
 ;									restored fixAddr.
@@ -681,7 +681,7 @@
 ;	   <8.5>	 6/16/89	CSL		Moved ValidatePRAM to after StartTest.
 ;	   <8.4>	 6/15/89	SWC		Added a call to ValidatePRAM (Clock.a) to make sure PRAM's got
 ;									good stuff in it.
-;	   <8.3>	 6/13/89	DAF		Moved routine which calculated dead mac’s top left corner inline
+;	   <8.3>	 6/13/89	DAF		Moved routine which calculated dead mac's top left corner inline
 ;									into StartFail.a
 ;	   <8.2>	 6/12/89	rwh		corrected comment in FixAddr. Fixed setting of Glu size bits in
 ;									ConfigureRam. Added register usage comments in ConfigureRam.
@@ -976,20 +976,20 @@
 dsGNLoadFail	EQU			20011		
 MBProcHndl		EQU			$D54					;put it here until we're rid of nFiles
 
-;	During startup, the system heap is growable (since it masquerades in app’s clothing).  This constant
+;	During startup, the system heap is growable (since it masquerades in app's clothing).  This constant
 ;	specifies how much space we need beyond the suite of drivers and before the final size is specified.
 
 MinSysExtra		EQU		128*1024						; was 16K		<SM117> CCH & joe												<SM75>
 
-;	The boot time stack size depends on quickdraw, since there’s no significant nesting of start routines.
+;	The boot time stack size depends on quickdraw, since there's no significant nesting of start routines.
 ;	WARNING -- cross-defined in StartBoot.a
 
 BootStackSize	EQU		8*1024
 
-;	While drawing Horst’s BeepScreen, a QD world is required just below the area where the boot blocks are
+;	While drawing Horst's BeepScreen, a QD world is required just below the area where the boot blocks are
 ;	loaded.  BootGlobalsSize gives the amount below the boot blocks buffer where the stack can begin.
 ;	QDBootGlobalsSize gives the amount above the stack that the A5 world can begin.  We err on the big side
-;	here for slack’s sake.  For example, on a megabyte machine, MemTop is $100000.  Boot blocks will arrive
+;	here for slack's sake.  For example, on a megabyte machine, MemTop is $100000.  Boot blocks will arrive
 ;	at $80000.  Allowing $400 for boot globals and $190 (400 decimal) for QD globals, SP would be at $7FC00,
 ;	and A5 at $7FD90.  The utter clarity of it all!
 
@@ -1688,7 +1688,7 @@ BootRetry	MOVE	#$2700,SR						; disable interrupts
 			BSR.L	PowerDownAll					; power down all peripheral subsystems
 		ENDIF
 	
-			BSR		DrawBeepScreen					; Horst Beepmanh’s patented gray screen
+			BSR		DrawBeepScreen					; Horst Beepmanh's patented gray screen
 			
 			MOVE.L	#WmStConst,WarmStart			; write warm start constant to indicate warm start
 
@@ -2251,8 +2251,8 @@ ConfigureRAM
 ; Outputs:	none
 ; Trashes:	D0,A0
 ;
-; Function:	Creates the system heap we’ll use till rebooting.  It’s handy to fool the
-;			Memory Manager into thinking it’s both system and application heaps in order
+; Function:	Creates the system heap we'll use till rebooting.  It's handy to fool the
+;			Memory Manager into thinking it's both system and application heaps in order
 ;			to allow the heap to grow as drivers, buffers, etc. are loaded.  One subtlety
 ;			is that HeapEnd (which applies to the app heap) must be set up along with ApplZone.
 ;________________________________________________________________________________________
@@ -2270,12 +2270,12 @@ SetUpSysAppZone
 			MOVE.L	bkLim(A0),A0					; Point to the end of the System Heap
 			MOVE.L	A0,HeapEnd						; Set it as the end of the Application Heap
 
-; Set ApplLimit (really, ‘SysLimit’) based on having a real qd-capable stack smack in the middle of RAM.
+; Set ApplLimit (really, ‘SysLimit') based on having a real qd-capable stack smack in the middle of RAM.
 
 			BSR.S	CompBootStack					; A0 <- the future location of our stack
 			CMPA.L	SP,A0							; Future - Current stack ptrs (want A0 = lower value)
 			BLS.S	@3								; Future <= Current means use Future (be pessimistic)
-			MOVE.L	SP,A0							; Use the current sp when it’s lower
+			MOVE.L	SP,A0							; Use the current sp when it's lower
 @3			SUBA.W	#BootStackSize,A0				; Give ourselves some stack space
 			_SetApplLimit							; Don't let the System Heap crash our stack
 
@@ -3115,7 +3115,7 @@ FROVideo	MOVE.L	A0,A1							; save the param block pointer for _Open
 			MOVE.L	#(CatDisplay<<16) ++ TypVideo, spCategory(A0)	;	stuff Category and Type, looking
 													;	 for an Apple compatible video card
 			MOVE.W	#DrSwApple,spDrvrSw(A0)			;	want Apple driver software interface
-			MOVE.B	#1,spTBMask(A0)					;	mark spDrvrHw field as don’t care
+			MOVE.B	#1,spTBMask(A0)					;	mark spDrvrHw field as don't care
 			CLR.B	spSlot(A0)						;	start with slot #0
 			CLR.B	spId(A0)						;	start with sResource ID #0
 			CLR.B	spExtDev(A0)					;	no external devices
@@ -3496,7 +3496,7 @@ InitDefGamma
 			MOVE.W	#CatDisplay,spCategory(A0)		;	look for this slot's card
 			MOVE.W	#TypVideo,spCType(A0)
 			MOVE.W	#DrSwApple,spDrvrSW(A0)
-			MOVE.B	#1,spTBMask(A0)					;	mark spDrvrHw field as don’t care
+			MOVE.B	#1,spTBMask(A0)					;	mark spDrvrHw field as don't care
 			_sNextTypesRsrc							; get the spsPointer
 			BNE.S	@Error							; -> couldn't get it
 
@@ -3756,7 +3756,7 @@ InitSCC
 
 		IF hasIopScc THEN
 			TestFor	SCCIOPExists					; see if we have an SCC IOP
-			bz.b	@NoIOP							; if not, don’t try to initialize it
+			bz.b	@NoIOP							; if not, don't try to initialize it
 			bsr.l	SCCIOPHwInit					; initialize the IOP hardware registers
 @NoIOP												; fall thru -- IOP boots in bypass mode
 		ENDIF

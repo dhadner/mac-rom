@@ -12,7 +12,7 @@
 	  <SM28>	 7/21/93	joe		Back out <SM27>.
 		<27>	10/28/92	DTY		Use new Get/Set macros to access ExpandMem.
 		<26>	 9/25/92	DRF		Get rid of MyGestalt, since inline glue exists
-		<25>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<25>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<24>	 8/26/92	DTY		Roll in latest changes for A/UX.
 		<23>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature.  Conditionally
@@ -24,7 +24,7 @@
 		<20>	 3/23/92	JSM		OSEvents.h is obsolete, use Events.h.
 		<19>	 1/11/92	YK		Initialize new globals for the TSM.
 		<18>	11/22/91	DTY		Initialize allocateGMBlkInSysHeap to be false. GMBlk normally
-									tries to allocate it’s block in the Process Manager zone first,
+									tries to allocate it's block in the Process Manager zone first,
 									except when an 'obit' event is being sent.
 		<17>	 11/1/91	DTY		Set TOPMAPHANDLE to point to the first system override map
 									instead of SYSMAPHANDLE in main().

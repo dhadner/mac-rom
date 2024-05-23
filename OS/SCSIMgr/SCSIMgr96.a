@@ -18,7 +18,7 @@
 ;									use byte accesses to the DREQ register.
 ;		 <4>	 5/22/92	DTY		#1029009 <jab>: Modified DREQ bit testing from global (setup in
 ;									SCSIInit96).
-;		 <3>	  5/1/92	JSM		Don’t use isUniversal conditional, which was always commented
+;		 <3>	  5/1/92	JSM		Don't use isUniversal conditional, which was always commented
 ;									out anyway.
 ;		 <2>	10/24/91	SAM		Changed an include of HardwareEqu to HardwarePrivEqu.
 ;		 <1>	10/24/91	SAM		Rolled in Regatta file.

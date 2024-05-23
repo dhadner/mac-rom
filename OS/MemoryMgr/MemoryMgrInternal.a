@@ -64,7 +64,7 @@
 ;									DerefHandle and ZoneCheck.  Added ZC040BusErrHandler and
 ;									DH040BusErrHandler, and modified DH and ZC to use the 040 bus
 ;									error handlers.
-;		 <3>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <3>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <2>	  1/3/90	BG		Fix error messages produced by various BusErrHandlers regarding
 ;									the 040 to use the correct quotes (single quotes, not double
 ;									quotes).  I'll be fixing the actual BusErrHandlers to do the
@@ -1030,7 +1030,7 @@ MMPrologue
 ;----------------------------------------------------------------------				<A305>
 ; Function MMRHPrologue: [z: Zone];													<A305>
 ; MMRHPrologue -- a variant of MMPrologue called only by RecoverHandle.  It gets TheZone into
-;	A6 as usual, but then checks that A6 is “sensible” in case TheZone is SysZone or ApplZone.
+;	A6 as usual, but then checks that A6 is 'sensible' in case TheZone is SysZone or ApplZone.
 ;	More precisely, when TheZone is SysZone or ApplZone, force A6 to be ApplZone if the ptr
 ;	to the given handle data is above ApplZone; else make A6 SysZone.
 ;	See comments in MMRHPrologue for interface definition.
@@ -2647,7 +2647,7 @@ a32ZoneAdjustEnd
 ;	the first block; and then update the relative handles of the pointers (decrementing
 ;	by the delta) and of the handles (incrementing by the delta).
 ;
-; When jamming HeapEnd with new value, there’s no need to check HiHeapMark since in	<C765><C778>
+; When jamming HeapEnd with new value, there's no need to check HiHeapMark since in	<C765><C778>
 ;	principle it was pinned to ApplLimit.											<C778>
 ;
 ; Arguments:

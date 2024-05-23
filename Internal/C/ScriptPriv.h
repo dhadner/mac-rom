@@ -42,7 +42,7 @@
 		<16>	 8/27/91	JSM		Cleanup header.
 		<15>	 1/14/91	PKE		(stb) Updated Itl2Header. Updated SMgrRecord from ScriptPriv.a
 									with corrected comments and names for new fields. Added
-									interface for Kevin’s private FindCharInSet routine to be called
+									interface for Kevin's private FindCharInSet routine to be called
 									by Dialog Mgr & Finder.
 		<14>	12/14/90	SMB		(csd) I forgot the approval signature for the previous change.
 		<13>	12/14/90	SMB		Moving KeyScript verb, smKeyModalDialog, here and renaming it
@@ -499,8 +499,8 @@ pascal ScriptRunStatus NFindScriptRun(Ptr textPtr,long textLen,long *lenUsed,
 /* Moved these KeyScript verbs here since adding smKeyEnableAboutKybds after the 7.0 interfaces have
    frozen. (and we also don't believe a developer will ever want them!)									<13>
 */
-enum {smKeyDisableAboutKybds = -13};		/* Disable ‘About…’ menu item since another dialog is up	<13>*/
-enum {smKeyEnableAboutKybds = -14};			/* Enable ‘About…’ menu item							 	<13>*/
+enum {smKeyDisableAboutKybds = -13};		/* Disable ‘About…' menu item since another dialog is up	<13>*/
+enum {smKeyEnableAboutKybds = -14};			/* Enable ‘About…' menu item							 	<13>*/
 
 /* for input methods (add from ScriptPriv.a) */
 #define kUsingOldInputMethodVerb (-1000)	/* Secret verb which is used for checking on input method type. */	/*<24>*/

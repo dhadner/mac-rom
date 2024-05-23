@@ -137,7 +137,7 @@
 ;									pseudo-packets was a hard-coded name check instead of an
 ;									end-of-table check.
 ;		<19>	12/29/91	RB		Added Terror changes and rolled in patches to support Quadras.
-;		<18>	 8/30/91	JSM		Cleanup header, don’t include SysErr.a since it’s in
+;		<18>	 8/30/91	JSM		Cleanup header, don't include SysErr.a since it's in
 ;									StandardEqu.d.
 ;		<17>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		<16>	 4/24/91	dba		fix warning

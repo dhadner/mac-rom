@@ -156,7 +156,7 @@ enum {
  burstDevice = 7
 };
 enum {
- roundedDevice = 5,					/* 1 if device has been “rounded” into the GrayRgn */
+ roundedDevice = 5,					/* 1 if device has been 'rounded' into the GrayRgn */
  hasAuxMenuBar = 6,					/* 1 if device has an aux menu bar on it */
  ext32Device = 8,
  ramInit = 10,						/*1 if initialized from 'scrn' resource*/

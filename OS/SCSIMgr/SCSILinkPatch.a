@@ -14,7 +14,7 @@
 ;
 ;	   <SM6>	 11/3/92	SWC		Changed SCSIEqu.a->SCSI.a.
 ;		 <SM4>	  8/11/92	CSS		Update from Reality:
-;									<16> 8/10/92 csd	#1035754 <gbm>: Added another cache flush to be more ’040 studly
+;									<16> 8/10/92 csd	#1035754 <gbm>: Added another cache flush to be more '040 studly
 ;														and locked out interrupts while changing code that could get
 ;														called at interrupt time.
 ;									<15> 8/1/92	csd		#1035754 <dty>: The delay patch in the previous version is not
@@ -27,7 +27,7 @@
 ;		 <3>	 2/12/92	RLM		change jsr to jmp
 ;		 <2>	 2/12/92	RLM		InstallProc roll-in (SCSIC96Install & SCSIBusyPlusInstall). •
 ;									Pre-SuperMario Comments Follow •
-;		<13>	11/25/91	DTY		Roll in the SCSIBusy fix from 7-Up. Based on Dave Wong’s
+;		<13>	11/25/91	DTY		Roll in the SCSIBusy fix from 7-Up. Based on Dave Wong's
 ;									original code.
 ;		<12>	10/28/91	SAM/KSM	Rolled in Regatta changes.
 ;										Put one of those semicolon things before a comment made in the
@@ -579,7 +579,7 @@ scsiVersion				equ		-$E
 				bz.s	@havePointer				; skip the deref if dRAMBased=0
 				move.l	(A1), A1					; get pointer to RAM driver
 @havePointer
-				move.w	scsiVersion(A1), D1			; version field for Apple’s SCSI driver
+				move.w	scsiVersion(A1), D1			; version field for Apple's SCSI driver
 				sub.w	#LowestDriverVersion, D1	; normalize $27-$29 => $0-$2
 				bmi.s	@nextSCSIDriver				; bail if earlier than $27
 				cmp.w	#HighestDriverVersion-LowestDriverVersion, D1	; check high end of supported versions
@@ -597,7 +597,7 @@ scsiVersion				equ		-$E
 
 				add.w	D2, A1
 				move	SR, -(SP)					; save current state of the world
-				ori.w	#$0700, SR					; we’re not safe for page faults
+				ori.w	#$0700, SR					; we're not safe for page faults
 				move.w	#JSROpcode, (A1)+			; patch in a JSR
 				move.l	A2, (A1)+					; patch in operand
 
@@ -610,7 +610,7 @@ scsiVersion				equ		-$E
 				dbra	D1, @blastSomeInstructionsLoop
 				_FlushDataCache						; we wrote into a copyback cache
 				_FlushInstructionCache				; we changed code
-				move	(SP)+, SR					; we’re safe for page faults again
+				move	(SP)+, SR					; we're safe for page faults again
 
 @nextSCSIDriver
 				addq	#4, A0						; point to next DCEPtr in the unit table
@@ -642,14 +642,14 @@ SCSILargestIOBlockSize	equ		256
 
 				move.l	D2,D5								; Potential number of blocks to read in this pass
 				tst.w	D3									; Are we reading or writing?
-				bnz.s	@pinBlocksToReadOrWriteTo256		; If we’re writing, just pin the blocks to 256
+				bnz.s	@pinBlocksToReadOrWriteTo256		; If we're writing, just pin the blocks to 256
 				cmp.l	#SCSISmallestSafeBlock, D2			; Are we reading less than 10 blocks?
 				bls.s	@rejoinDriver						; Yeah.  Go back to the driver
 				cmp.l	#SCSILargestSafeBlock, D2			; Are we reading more than 15 blocks?
-				bhs.s	@pinBlocksToReadOrWriteTo256		; Yes.  This read is safe.  Go make sure we’re not reading more than 256 blocks
-				move.l	#SCSISmallestSafeBlock, D5			; We’re reading 10 to 15 blocks.  Read only 9.  (We’ll get the rest on the next pass.)
+				bhs.s	@pinBlocksToReadOrWriteTo256		; Yes.  This read is safe.  Go make sure we're not reading more than 256 blocks
+				move.l	#SCSISmallestSafeBlock, D5			; We're reading 10 to 15 blocks.  Read only 9.  (We'll get the rest on the next pass.)
 				bra.s	@rejoinDriver						; Go back to the driver
-@pinBlocksToReadOrWriteTo256								; Make sure we don’t operate on more than 256 blocks in a pass
+@pinBlocksToReadOrWriteTo256								; Make sure we don't operate on more than 256 blocks in a pass
 				cmp.l	#SCSILargestIOBlockSize, D2			; Are we operating on more than 256 blocks?
 				bls.s	@rejoinDriver						; No.  Get on with it.
 				move.l	#SCSILargestIOBlockSize, D5			; Pin the operation to 256 blocks.

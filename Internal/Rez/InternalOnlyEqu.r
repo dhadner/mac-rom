@@ -23,11 +23,11 @@
 	   <SM7>	 8/11/93	KW		adding some new smurf machines
 		 <6>	 7/21/93	JRH		Changed the definition of boxPenLite, and added Yeager boxFlags
 									and a few others that were missing.
-	   <SM5>	04-01-93	jmp		Sync’ed up the BoxFlag list to match the InternalOnlyEqu.a file.
+	   <SM5>	04-01-93	jmp		Sync'ed up the BoxFlag list to match the InternalOnlyEqu.a file.
 	   <SM4>	12/23/92	RC		Added Support for Smurf on Wombat
 	   <SM3>	 12/4/92	fau		Added boxTempest33 and boxCyclone40.  Changed boxCyclone to
 									boxCyclone33 and boxTempest to boxTempest25.
-	   <SM2>	10-29-92	jmp		Sync’ed-up the BoxFlag list with the HORROR, Excelsior, and
+	   <SM2>	10-29-92	jmp		Sync'ed-up the BoxFlag list with the HORROR, Excelsior, and
 									Reality projects.
 */
 //     <SM14>     8/17/92    CCH     Added equates for new universal flag longwords.
@@ -80,7 +80,7 @@
 //       <14>     4/10/91    ag      change pmfree word to pmgrflag and pmfree bytes. changed bit
 //                                   definition of insleep flag.
 //       <13>     2/15/91    ag      MSH: #BRC 80886 - Added a bit definition in sleep flags.
-//       <12>     1/30/91    gbm     sab, #38: Change the ‘already including this file’ variable to
+//       <12>     1/30/91    gbm     sab, #38: Change the ‘already including this file' variable to
 //                                   all uppercase (for security reasons)
 //       <11>      1/8/91    SAM     Added BoxFlags for Spike and Apollo.
 //       <10>    10/22/90    JJ      Rex V8: Change all box flag references to use boxMacLC. Get rid

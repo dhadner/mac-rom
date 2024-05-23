@@ -12,7 +12,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <8>	 6/12/91	JL		Removed nmTypErr which is defined in SysErr.a.
-;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <6>	 7/16/90	VL		Changed nmSicon to nmIcon.
 ;

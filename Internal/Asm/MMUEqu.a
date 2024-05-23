@@ -11,7 +11,7 @@
 ;
 ;	   <SM2>	  2/5/93	SAM		Added EMMU type for emulated MMUs.
 ;		 <7>	12/31/91	RB		Added writeProtectBit equate.
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <4>	 2/20/90	CCH		Added theSRP field to MMUConfigInfo record.
 ;		 <3>	  1/5/90	BG		Clarification comments added to the *MMUConfigInfo* record

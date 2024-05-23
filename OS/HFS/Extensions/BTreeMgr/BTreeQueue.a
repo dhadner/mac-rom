@@ -325,7 +325,7 @@ bt_DispNext	;; check if there's anything else for us to do
 			bne.s	@noRequirements		; if it was already busy, we can return asynchronously	<17>
 			move.w	(sp)+,sr			; restore interrupt state								<17>
 	
-			lea.l	ExtBTDispatchRequest,a0		; our dispatcher’s entry point					<17>
+			lea.l	ExtBTDispatchRequest,a0		; our dispatcher's entry point					<17>
 			jmp		CallWithRegistersPreserved	; call it 										<17>
 
 @noRequirements:

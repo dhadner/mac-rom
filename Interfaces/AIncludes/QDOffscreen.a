@@ -13,7 +13,7 @@
 ;									file name.
 ;		 <9>	 6/14/91	JL		Checked in official MPW 3.2Ä version. Adjusted keepLocalBit's
 ;									comment; removed <27MAR90 KON>.
-;		 <8>	 1/30/91	gbm		sab, #38: Change the Ôalready including this fileÕ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the Ôalready including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	 1/15/91	KON		Change useMFTempBit to UseTempMemBit. [csd]
 ;		 <5>	 3/27/90	KON		Add KeepLocal flag (bit3) for gWorld flags.

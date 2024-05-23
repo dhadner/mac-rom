@@ -721,9 +721,9 @@ enum {
 #define	matrixErr		-2203			/* bad matrix, digitizer did nothing */
 #define	notExactMatrix	-2204			/* warning of bad matrix, digitizer did its best */
 #define	noMoreKeyColors	-2205			/* all key indexes in use */
-#define	notExactSize	-2206			/* Can’t do exact size requested */
-#define	badDepth		-2207			/* Can’t digitize into this depth */
-#define	noDMA			-2208			/* Can’t do DMA digitizing (i.e. can't go to requested dest */
+#define	notExactSize	-2206			/* Can't do exact size requested */
+#define	badDepth		-2207			/* Can't digitize into this depth */
+#define	noDMA			-2208			/* Can't do DMA digitizing (i.e. can't go to requested dest */
 #define badCallOrder	-2209			/* Usually due to a status call being called prior to being setup first */
 
 /* Digitizer Input Capability/Current Flags	*/

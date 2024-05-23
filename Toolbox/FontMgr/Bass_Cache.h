@@ -16,8 +16,8 @@
 		 <9>	 8/28/92	DCL		Fixed enums with commas before the closing brace. MPW now
 									complains.
 		 <8>	  5/4/92	DTY		There really was a good reason for me to stick fondCache in the
-									middle of SplineKey, honest! But since I don’t remember what it
-									is, I’m moving it to the end of the structure to keep existing
+									middle of SplineKey, honest! But since I don't remember what it
+									is, I'm moving it to the end of the structure to keep existing
 									offsets the same.
 		 <7>	11/15/91	DTY		Remember which resource map a font was loaded from.
 		 <6>	10/11/91	DTY		Building the candidate FOND list takes too long. Cache two lists
@@ -74,7 +74,7 @@
 	   <1.2>	 8/14/89	CEL		Added some vars for mfexists & machinetype. These are used for
 									mem checks. Added in extra handle for temp memory that is not in
 									system heap. Updated widthtable to include encryption var.
-	   <1.1>	  8/1/89	CEL		Fixed EASE’s “C” comment brackets. On check in they were wrong!
+	   <1.1>	  8/1/89	CEL		Fixed EASE's 'C' comment brackets. On check in they were wrong!
 	   <1.0>	  8/1/89	CEL		Adding into Bass build for the first time…
 	   <1.5>	 6/12/89	CEL		Re-Structured sp_Glyph data. Got rid of some unnecessary
 									constants.

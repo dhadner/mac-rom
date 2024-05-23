@@ -3,7 +3,7 @@
 ;
 ;	Contains:	This file holds the ADB implementation as used on the Mac SE and later machines.
 ;				It is separated out from the original Mac keyboard implementation to reduce
-;				conditional assembly confusion.  Some of the original file’s modification 
+;				conditional assembly confusion.  Some of the original file's modification 
 ;				history has been preserved here for your amusement.
 ;
 ;	Written by: ADB manager re-written 15-May-89 by Gary G. Davidian
@@ -2151,8 +2151,8 @@ SkipHeader
 ; ----------------------------------------------------------------------------
 ; In order to map the old international keyboard correctly, we use the
 ; following translation table to map key codes to virtual key codes. This
-; is not necessary on an old domestic keyboard as the key codes “just happen
-; to match” the virtual key codes.
+; is not necessary on an old domestic keyboard as the key codes 'just happen
+; to match' the virtual key codes.
 ; ----------------------------------------------------------------------------
 
 keyTable

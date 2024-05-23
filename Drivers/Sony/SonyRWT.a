@@ -25,7 +25,7 @@
 ;		 <4>	 4/27/92	JSM		Get rid of conditionals: supportsPWM, supportsDCD, and
 ;									hasHarpoVIA are always false, forROM, supportsMFM, forDiskDup,
 ;									isUniversal, hasPowerMgr, and hasPwrControls are always true
-;									(although hasPowerMgr currently isn’t for the ROM, it will be
+;									(although hasPowerMgr currently isn't for the ROM, it will be
 ;									and was always ORed with hasPwrControls here anyway). This file
 ;									now has no conditionals.
 ;		 <3>	 1/21/91	SWC		Cleaned up header comments.

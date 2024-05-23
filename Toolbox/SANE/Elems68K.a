@@ -1,4 +1,4 @@
-;EASE$$$ READ ONLY COPY of file “ELEMS68K.a”
+;EASE$$$ READ ONLY COPY of file 'ELEMS68K.a'
 ; 1.2	GGD 07/14/1989  Changed the ROMRSRC flag to 1 so that it doesn't waste time locking
 ;		a ROM resource.
 ; 1.1	CCH 11/11/1988 Fixed Header.

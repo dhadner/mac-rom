@@ -23,7 +23,7 @@
 ;									ptchDrawMenuBar since no longer patching this. (See
 ;									ScriptMgrKeyGetSet.a comments for new strategy.)
 ;		<58>	 4/30/92	DTY		Get rid of debugger breaks that Jeff left lying around.
-;		<57>	 4/29/92	JSM		Don’t include ScriptMgrDispatch.a and ScriptMgrKetGetSet.a here,
+;		<57>	 4/29/92	JSM		Don't include ScriptMgrDispatch.a and ScriptMgrKetGetSet.a here,
 ;									link them in instead, delete some unneeded include files.
 ;		<56>	 4/28/92	JSM		Move all resident code to ScriptMgrExtensions.a. Leave tail
 ;									patch ptchLwrString here (compiled only when FixCacheAndStr2Date
@@ -34,9 +34,9 @@
 ;									space in CubeE. Note that these two things are the only pieces
 ;									of resident code now left in this file, and under the current
 ;									conditional settings none of them are compiled. They probably
-;									don’t work anyway and should be removed, but I left it here.
+;									don't work anyway and should be removed, but I left it here.
 ;									Only fix up ROM binds if there are any (i.e. if either of the
-;									above routines are compiled). Don’t include GestaltEqu.a or use
+;									above routines are compiled). Don't include GestaltEqu.a or use
 ;									smgrSysVers conditional anymore.
 ;		<55>	 4/22/92	PKE		#1026767: (no reviewer before check-in: it is late at night,
 ;									nobody is around, I am going out of town early tomorrow morning,
@@ -110,7 +110,7 @@
 ;									String2Time could use the new Date Cache structure.
 ;		<33>	 1/14/91	PKE		(stb, except that routine in here by KSM was reviewed by PKE,
 ;									with algorithm review by dba): Allocate handle to ClientLLRecord
-;									and put handle in SMgrRecord. Add Kevin’s private FindCharInSet
+;									and put handle in SMgrRecord. Add Kevin's private FindCharInSet
 ;									routine to be called by Dialog Mgr and Finder.
 ;		<32>	12/10/90	PKE		(VL) Add private ReInitScripts routine to be called after net
 ;									booting switches system files. It cleans up Script Mgr data
@@ -126,7 +126,7 @@
 ;									not implemented in Roman. Otherwise print driver may try to call
 ;									IsSpecialFont or RawPrinterValues for Roman, and crash.
 ;		<29>	 8/24/90	PKE		CleanupScriptApp should reset ExpandMemRec.emScriptAppGlobals to
-;									0 to ensure that we don’t try to use a disposed handle.
+;									0 to ensure that we don't try to use a disposed handle.
 ;		<28>	  8/2/90	PKE		Initialize application-specific Script Mgr globals to all 0.
 ;		<27>	 7/25/90	PKE		Add private InitScriptApp and CleanupScriptApp routines to be
 ;									called when apps are launched and closed in order to set up and
@@ -138,13 +138,13 @@
 ;									patch out ROM version entirely. Change script enable loop so IT
 ;									copies extended itlb info into ScriptRecord, instead of doing it
 ;									in patch initialization separately for Roman and simple scripts.
-;									We now get extended font info from script’s itlb resource
+;									We now get extended font info from script's itlb resource
 ;									regardless of the state of the auto-initialization bit. (2) Move
 ;									setting of smgrRegionCode to InitScripts. (3) InitScripts now
 ;									pre-loads the sys itl cache. (4) InitScripts now loops through
 ;									each enabled script and calls its scriptAvail vector (if ≠0).
 ;									(4) AddScriptFonts now loops through each enabled script and
-;									calls its scriptAddFonts vector (if ≠0). Also, don’t bother
+;									calls its scriptAddFonts vector (if ≠0). Also, don't bother
 ;									doing ReleaseResource on purgeable resources.
 ;		<25>	 7/16/90	PKE		Use new names for fields in ExpandMemRec: emItlCache2Ptr becomes
 ;									emItlSysCachePtr, emItlAppCachePtr becomes emItlAppCacheHndl.
@@ -166,7 +166,7 @@
 ;									Roman 'itlb'.
 ;		<18>	 5/29/90	PKE		NEEDED FOR SIXPACK DISK: Moved ParseTable here from ptch 4 so we
 ;									can fix an old unbalanced stack bug in both RAM and ROM
-;									versions. Also, for 6.x, don’t override version number set in
+;									versions. Also, for 6.x, don't override version number set in
 ;									ROM or ptch 4. The new sections are flagged with <18>.
 ;		<17>	 5/24/90	PKE		Moved ScriptUtil dispatcher and FontScript, Font2Script,
 ;									IntlScript here (ptch 27) from ScriptMgrUtil.a (ptch 4).
@@ -185,8 +185,8 @@
 ;									marked <**>. NEEDED ONLY FOR 7.0: Added private ScriptUtil
 ;									routine InitScripts (called by StartSystem.a); it calls
 ;									FixSMgrWorld and then does other extensions that have yet to be
-;									added. Install InitScripts and Sue’s InitKeyboardMenu routine
-;									into Script Mgr dispatch table. Added Sue’s installation for her
+;									added. Install InitScripts and Sue's InitKeyboardMenu routine
+;									into Script Mgr dispatch table. Added Sue's installation for her
 ;									SystemMenu patch. Added doExpandSMgrDispTable conditional
 ;									symbol.
 ;		<13>	 4/26/90	PKE		NEEDED FOR 6.0.7: Cleaned up script auto-initialize stuff - use
@@ -223,7 +223,7 @@
 ;									GetFontSize, DrawGap, SignFixRound. Rewrote (N)PortionText,
 ;									(N)DrawJust, (N)MeasureJust, (N)Char2Pixel and (N)Pixel2Char
 ;									routines to fully implement the new justification model, using
-;									the above utility routines. Also made the ‘N’ versions standard
+;									the above utility routines. Also made the ‘N' versions standard
 ;									for these routines, so that the old interfaces just redo the
 ;									stack and fall through to the new routines.
 ;		 <4>	 1/18/90	PKE		Fixed bug introduced in <2>: for most of the installation code,

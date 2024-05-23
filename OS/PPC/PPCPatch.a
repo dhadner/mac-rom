@@ -31,7 +31,7 @@
 ;===============================================================================
 ;
 ;	Install ppcDispatcher as the PPC trap.  Link this in after PPCInstall.a so
-;	this will happen after PPC’s InstallProc is executed, although this isn’t
+;	this will happen after PPC's InstallProc is executed, although this isn't
 ;	strictly necessary.
 ;
 ;===============================================================================

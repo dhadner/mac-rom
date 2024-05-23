@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <6>	 3/13/91	JL		Checking in MPW version.  Removed precision code masks
-;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

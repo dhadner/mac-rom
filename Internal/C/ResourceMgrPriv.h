@@ -66,9 +66,9 @@ struct TypeEntry {
 typedef struct TypeEntry TypeEntry, *TypeEntryPtr;
 
 // For each resource in a resource file, the resource map contains a reference entry
-// which specifies the resource ID, the offset to the resource’s name (if any), the
+// which specifies the resource ID, the offset to the resource's name (if any), the
 // offset to the actual resource data from the beginning of the resource data, and
-// the handle to the resource data in memory, if it’s loaded.
+// the handle to the resource data in memory, if it's loaded.
 
 struct ReferenceEntry {
 	short			rID;							// Resource ID
@@ -85,7 +85,7 @@ typedef struct ReferenceEntry ReferenceEntry, *ReferenceEntryPtr;
 // reference entries, and a list of resource names.  It also contains the file reference
 // number of the resource file, and some attributes.
 //
-// I’ve split the resource map into two structs, the ResourceMapHeader, which contains
+// I've split the resource map into two structs, the ResourceMapHeader, which contains
 // information that is in an empty resource map (a resource map that contains no resources)
 // and the ResourceMap proper, which contains fields which describe type entries, reference
 // entries, and the name list.

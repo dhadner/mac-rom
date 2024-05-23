@@ -27,7 +27,7 @@
 ;									remain in 'lpch' 31, since none of them apply to SuperMario.
 ;									'lpch' 32 is the patch resource for only the SuperMario ROM.
 ;									Neither of these 'lpch' resources currently contain any code,
-;									since SuperMario doesn’t have any patches.
+;									since SuperMario doesn't have any patches.
 ;		<48>	 1/20/92	PN		Nullify the cmpROM for ROM build
 ;		<47>	 1/11/92	JSM		Add MakeDispatcherTable macro so we can go back to defining a
 ;									common EndDispatcher for both the ROM and patch versions, get
@@ -49,7 +49,7 @@
 ;		<41>	 5/28/91	FM		Added new dcOLD macro for use in building dispatch tables
 ;		<40>	  4/2/91	dba		KIP: add hasEricksonSoundMgr, since the newer Sound Mgr. is on
 ;									some machines that have the overpatch mistake fixed
-;		<39>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<39>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<38>	 1/27/91	PKE		bbm: (also dba) fixed optimization of jsrROM, since it was
 ;									bogus. Fix was deleting LastJMP$&name parameter from Try$ call
@@ -103,7 +103,7 @@
 ;									do not save A0
 ;		 <8>	 4/20/90	KSM		Modified the Dispatcher macro to allow the routine selector
 ;									number to be defaulted.  The default symbol generated for a
-;									routine named “MyProc” is “selectMyProc” (how easy can this
+;									routine named 'MyProc' is 'selectMyProc' (how easy can this
 ;									get?).
 ;		 <7>	 4/19/90	dba		make the Dispatcher macro with Kevin; improve error messages and
 ;									some of the looping logic
@@ -112,7 +112,7 @@
 ;		 <5>	  4/4/90	dba		fix so it complains when patching for no ROMs
 ;		 <4>	 3/21/90	dba		fix ROM version number for the SE
 ;		 <3>	  3/9/90	KSM		Now INCLUDES TrapNames.d -- TrapNames.a is too huge!
-;		 <2>	  3/9/90	KSM		Now includes “TrapNames.a.”
+;		 <2>	  3/9/90	KSM		Now includes 'TrapNames.a.'
 ;		 <1>	 2/20/90	KSM		First checked in.
 ;				 2/12/90	dba		use the real opcode for xxxROM macros instead of NOPs
 ;				 1/27/90	dba		added branches to ROM addresses
@@ -155,7 +155,7 @@
 		elseif &lowcase(&sizeOrSpeed) = 'speed' then
 			&optimizeForSpeed: seta 1
 		else
-			aerror &concat('only “size” or “speed” allowed, not “',&sizeOrSpeed,'”')
+			aerror &concat('only 'size' or 'speed' allowed, not '',&sizeOrSpeed,''')
 		endif
 	endm
 
@@ -164,7 +164,7 @@
 	macro
 	ExportSymbol$ &symbol
 		; make a proc to put the symbol in if the the module name is empty
-		; *** this won’t work for unnamed modules, but I can’t figure out a better way
+		; *** this won't work for unnamed modules, but I can't figure out a better way
 
 		lcla &makeProc
 		&makeProc: seta &sysmod = ''
@@ -207,7 +207,7 @@
 	if forROM then
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
-; macros for ROM (so we don’t have to heavily conditionalize code used both in ROM and patches)
+; macros for ROM (so we don't have to heavily conditionalize code used both in ROM and patches)
 
 	macro
 	ROMs
@@ -257,7 +257,7 @@
 		Try$ LastRealJMP$&name,128-2,bra.s,,LastJMP$&name
 		Try$ LastJMP$&name,128-2,bra.s,,LastJMP$&name
 
-		; if optimized cases didn’t kick in, generate a JMP for the patch linker
+		; if optimized cases didn't kick in, generate a JMP for the patch linker
 
 		if &noCodeYet then
 			import &name
@@ -290,7 +290,7 @@
 		Try$ LastRealJMP$&name,128-2,bsr.s
 		Try$ LastJMP$&name,128-2,bsr.s
 
-		; if optimized cases didn’t kick in, generate a JSR for the patch linker
+		; if optimized cases didn't kick in, generate a JSR for the patch linker
 
 		if &noCodeYet then
 			import &name
@@ -321,7 +321,7 @@
 		Try$ LastRealJMP$&name,128-2,b&condition..s
 		Try$ LastJMP$&name,128-2,b&condition..s
 
-		; if optimized cases didn’t kick in, generate a JMP for the patch linker
+		; if optimized cases didn't kick in, generate a JMP for the patch linker
 
 		if &noCodeYet then
 			b&oppositeCondition..s @skip
@@ -613,12 +613,12 @@
 			if &type(&symbol) = 'EQU' then
 				&mask: seta 1 << &eval(&symbol)
 				if (&mask and &loadConditions) ≠ 0 then
-					aerror &concat('ROM “',&conditionName,'” mentioned twice')
+					aerror &concat('ROM '',&conditionName,'' mentioned twice')
 				else
 					&loadConditions: seta &loadConditions or &mask
 				endif
 			else
-				aerror &concat('never heard of ROM named “',&conditionName,'”')
+				aerror &concat('never heard of ROM named '',&conditionName,''')
 			endif
 		endwhile
 
@@ -675,15 +675,15 @@
 				&romNum: seta &eval(&symbol)
 				&mask: seta 1 << &romNum
 				if (&mask and ROMsMask$) = 0 then
-					aerror &concat('can’t bind with a condition like “',&romName,'”, only a ROM')
+					aerror &concat('can't bind with a condition like '',&romName,'', only a ROM')
 				elseif (&mask and &seenMask) ≠ 0 then
-					aerror &concat('“',&romName,'” mentioned twice')
+					aerror &concat(''',&romName,'' mentioned twice')
 				else
 					ExportSymbol$ BIND$&name.$&romNum.$&eval(&syslist[&index,2])$
 					&seenMask: seta &seenMask or &mask
 				endif
 			else
-				aerror &concat('never heard of ROM named “',&romName,'”')
+				aerror &concat('never heard of ROM named '',&romName,''')
 			endif
 		endwhile
 	endm
@@ -699,7 +699,7 @@
 
 		Try$ LastOld$,32768-4,move.l,&register
 
-		; if optimized cases didn’t kick in, generate a MOVE.L with the magic cookie
+		; if optimized cases didn't kick in, generate a MOVE.L with the magic cookie
 
 		if &noCodeYet then
 			if &type('InComeFrom$') = 'UNDEFINED' then
@@ -722,7 +722,7 @@
 
 		Try$ LastOld$,32768-4,move.l,-(sp)
 
-		; if optimized cases didn’t kick in, generate a MOVE.L with the magic cookie
+		; if optimized cases didn't kick in, generate a MOVE.L with the magic cookie
 
 		if &noCodeYet then
 			if &type('InComeFrom$') = 'UNDEFINED' then
@@ -749,7 +749,7 @@
 		Try$ LastRealJMPOld$,32768-4,bra.w,,LastJMPOld$
 		Try$ LastJMPOld$,32768-4,bra.w,,LastJMPOld$
 
-		; if optimized cases didn’t kick in, generate a JMP.L with the magic cookie
+		; if optimized cases didn't kick in, generate a JMP.L with the magic cookie
 
 		if &noCodeYet then
 			if &type('InComeFrom$') = 'UNDEFINED' then
@@ -778,7 +778,7 @@
 		Try$ LastRealJMPOld$,32768-4,bsr.w
 		Try$ LastJMPOld$,32768-4,bsr.w
 
-		; if optimized cases didn’t kick in, generate a JSR.L with the magic cookie
+		; if optimized cases didn't kick in, generate a JSR.L with the magic cookie
 
 		if &noCodeYet then
 			if &type('InComeFrom$') = 'UNDEFINED' then
@@ -805,7 +805,7 @@
 		Try$ LastRealJMPOld$,32768-4,b&condition..w
 		Try$ LastJMPOld$,32768-4,b&condition..w
 
-		; if optimized cases didn’t kick in, generate a JMP.L with the magic cookie
+		; if optimized cases didn't kick in, generate a JMP.L with the magic cookie
 
 		if &noCodeYet then
 			if &type('InComeFrom$') = 'UNDEFINED' then
@@ -966,7 +966,7 @@
 
 		Try$ LastROM$&name,32768-4,move.l,&register
 
-		; if optimized cases didn’t kick in, generate an LEA for the patch linker
+		; if optimized cases didn't kick in, generate an LEA for the patch linker
 
 		if &noCodeYet then
 			@where: move.l #'dba',&register
@@ -989,7 +989,7 @@
 
 		Try$ LastROM$&name,32768-4,move.l,-(sp)
 
-		; if optimized cases didn’t kick in, generate a PEA for the patch linker
+		; if optimized cases didn't kick in, generate a PEA for the patch linker
 
 		if &noCodeYet then
 			@where: move.l #'dba',-(sp)
@@ -1015,7 +1015,7 @@
 		Try$ LastRealJMPROM$&name,32768-4,bra.w,,LastJMPROM$&name
 		Try$ LastJMPROM$&name,32768-4,bra.w,,LastJMPROM$&name
 
-		; if optimized cases didn’t kick in, generate a JMP for the patch linker
+		; if optimized cases didn't kick in, generate a JMP for the patch linker
 
 		if &noCodeYet then
 			@where: jmp 'dba'
@@ -1043,7 +1043,7 @@
 		Try$ LastRealJMPROM$&name,32768-4,bsr.w
 		Try$ LastJMPROM$&name,32768-4,bsr.w
 
-		; if optimized cases didn’t kick in, generate a JSR for the patch linker
+		; if optimized cases didn't kick in, generate a JSR for the patch linker
 
 		if &noCodeYet then
 			@where: jsr 'dba'
@@ -1077,7 +1077,7 @@
 			Try$ LastROM$&name,32768-4,cmp.l,&operand
 		endif
 
-		; if optimized cases didn’t kick in, generate a PEA and CMP for the patch linker
+		; if optimized cases didn't kick in, generate a PEA and CMP for the patch linker
 
 		if &noCodeYet then
 			@where: cmp.l #'dba',&operand
@@ -1104,7 +1104,7 @@
 		Try$ LastRealJMPROM$&name,32768-4,b&condition..w
 		Try$ LastJMPROM$&name,32768-4,b&condition..w
 
-		; if optimized cases didn’t kick in, generate a JMP for the patch linker
+		; if optimized cases didn't kick in, generate a JMP for the patch linker
 
 		if &noCodeYet then
 			b&oppositeCondition..s @skip
@@ -1270,7 +1270,7 @@
 		endif
 
 		if &module = '' then
-			aerror 'come-from patches must be named; invent one that I’ll like'
+			aerror 'come-from patches must be named; invent one that I'll like'
 			exitm
 		endif
 
@@ -1697,8 +1697,8 @@
 			if &element ≠ '' then
 				&equalPos: seta &pos('=',&element)
 				if (&equalPos = 1) or (&equalPos >= &len(&element)) then
-					aerror &concat('selector must have the form “name=number”, not “',\
-					   &element,'”, you unfortunate slime')
+					aerror &concat('selector must have the form 'name=number', not '',\
+					   &element,'', you unfortunate slime')
 				else
 					if (&equalPos = 0) then
 						&name: setc &trim(&element)
@@ -1708,8 +1708,8 @@
 						&num: seta &eval(&substr(&element,&equalPos+1,32767))
 					endif
 					if (&num > 127) or (&num < -128) then
-						aerror &concat('selector must be between -128 and 127, “',\
-							&element,'” is byteing off more than you can chew')
+						aerror &concat('selector must be between -128 and 127, '',\
+							&element,'' is byteing off more than you can chew')
 					else
 						; file away the results in a cool array
 
@@ -1722,8 +1722,8 @@
 						&selectorName[&numSelectors]: setc &name
 						if &selectorIndex[&num + 129] ≠ 0 then
 							aerror &concat('selector ',&inttostr(&num),' was used twice, ',\
-								'for “',&selectorName[&selectorIndex[&num + 129]],'” and “',&name,\
-								'”; make up your mind')
+								'for '',&selectorName[&selectorIndex[&num + 129]],'' and '',&name,\
+								''; make up your mind')
 						endif
 						&selectorIndex[&num + 129]: seta &numSelectors
 
@@ -1777,7 +1777,7 @@
 		; check parameters
 
 		if &numSelectors = 0 then
-			aerror 'you must specify at least one selector, otherwise there’s not much to dispatch'
+			aerror 'you must specify at least one selector, otherwise there's not much to dispatch'
 			exitm
 		endif
 

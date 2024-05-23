@@ -50,7 +50,7 @@
 /*----------------------------------------------------------------------------------------------------------*/
 
 /*
-|	This routine is called to initialize the popular method. It doesn’t really do anything, except tell
+|	This routine is called to initialize the popular method. It doesn't really do anything, except tell
 |	the main picture utilities package that it should store the colors in the ExactAnd555 format.
 */
 
@@ -70,7 +70,7 @@ short	*colorBankTypePtr	)
 /*----------------------------------------------------------------------------------------------------------*/
 
 /*
-|	This routine is called to kill the popular method. It doesn’t do anything.
+|	This routine is called to kill the popular method. It doesn't do anything.
 */
 
 pascal OSErr KillPopularMethod(
@@ -168,7 +168,7 @@ register ColorSpec	*resultPtr	)
 |	than or equal to our threshold MINUS the number of requested colors. This prevents us from overflowing the
 |	return table and returning too many colors.
 |
-|	Note that we don’t need to check the index for underflowing, since we know that there are more unique colors
+|	Note that we don't need to check the index for underflowing, since we know that there are more unique colors
 |	than were requested.
 |
 |	Before we check this, we set the threshold to one and the ignoreCount to zero, so that we can use the same
@@ -204,9 +204,9 @@ register ColorSpec	*resultPtr	)
 |	of this value over 5 bits and or it back into the main value. Then we shift a copy of the new main value over
 |	10 bits (not 5) and or it with the main value again. The reason why we shift 10 bits instead of five is that
 |	we need to fill the remaining bit (bit 0) and we always have to shift in multiples of five so that oring the
-|	colors together doesn’t change any of the bits.
+|	colors together doesn't change any of the bits.
 |
-|	Every time we add a color into the table, we set the color’s value field and increment our value counter.
+|	Every time we add a color into the table, we set the color's value field and increment our value counter.
 */
 
 	histogramPtr = (short *)colorBankPtr;
@@ -246,7 +246,7 @@ register ColorSpec	*resultPtr	)
 
 /*
 |	After we have returned all the colors in the histogram, we need to clear the remaining entries in the table.
-|	Note that the loop terminating condition will ensure that we don’t execute this loop if we don’t need to.
+|	Note that the loop terminating condition will ensure that we don't execute this loop if we don't need to.
 */
 
 	colorsRequested -= uniqueColors;

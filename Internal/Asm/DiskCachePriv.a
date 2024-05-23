@@ -13,7 +13,7 @@
 ;		<12>	 12/3/91	KST		Added some documentation.
 ;		<11>	 8/21/91	JSM		Clean up header.
 ;		<10>	  7/8/91	JSM		Remove obsolete SysVers conditionals.
-;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <8>	  1/2/91	KST		Adding some new defs.
 ;		 <7>	10/29/90	KST		Set minimum number of buckets of the device hash table to be 16.

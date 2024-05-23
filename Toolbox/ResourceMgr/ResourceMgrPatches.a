@@ -27,8 +27,8 @@
 ;														current resource map will be pointing at a font map below the
 ;														system map, and the call to get the 'mitq' resource out of the
 ;														system file will fail.
-;									<23> 5/27/92 DTY 	#1008888: Of course, SuitCase’s code has changed between
-;														versions. Change the code that checks for SuitCase’s patch to
+;									<23> 5/27/92 DTY 	#1008888: Of course, SuitCase's code has changed between
+;														versions. Change the code that checks for SuitCase's patch to
 ;														RsrcZoneInit to calculate a checksum of the first 8 words of
 ;														this patch, so we can compare against different checksums for
 ;														different versions.
@@ -46,14 +46,14 @@
 ;									needs to be rolled in. • Pre-SuperMario comments follow •
 ;		<20>	  2/3/92	DTY		#1021208: Compatiblity hack for Suitcase II. The patch to
 ;									_RsrcZoneInit in ResourceOverridePatches.a winds up in an
-;									infinite loop because SuitCase’s patch to _RsrcZoneInit makes a
+;									infinite loop because SuitCase's patch to _RsrcZoneInit makes a
 ;									circular resource chain. Since our patch does the same thing
-;									that SuitCase’s wants to do, patch _SetTrapAddress to watch
-;									patches to _RsrcZoneInit. If the patch code is Suitcase’s patch
-;									code, don’t install the patch. An imbedded semaphore is
+;									that SuitCase's wants to do, patch _SetTrapAddress to watch
+;									patches to _RsrcZoneInit. If the patch code is Suitcase's patch
+;									code, don't install the patch. An imbedded semaphore is
 ;									necessary so that once Suitcase has tried to apply the patch, we
-;									don’t have to prevent any other patches.
-;		<19>	  1/3/92	DTY		Make sure the handle isn’t nil in CheckCandidate.
+;									don't have to prevent any other patches.
+;		<19>	  1/3/92	DTY		Make sure the handle isn't nil in CheckCandidate.
 ;		<18>	12/19/91	DTY		#1018500: Do the same thing for _AddResource and _RmveResource.
 ;									(This avoids any changes to the Finder on Mover invocations.)
 ;		<17>	12/18/91	DTY		Oops. My finger slipped on that last checkin. That was a bug fix
@@ -80,7 +80,7 @@
 ;									defproc handles
 ;		 <8>	11/28/90	JSM		<bbm> Move come-from patches on _NewHandle and _DisposeHandle
 ;									inside UpdateResFile here from PatchPlusROM.a.
-;		 <7>	 9/11/90	csd		Rewrote the patch to Unique1ID so that it doesn’t eat stack if
+;		 <7>	 9/11/90	csd		Rewrote the patch to Unique1ID so that it doesn't eat stack if
 ;									it has to try more than once for a legal ID.
 ;		 <6>	 8/15/90	stb		Fix my typo on UniqueID
 ;		 <4>	 7/30/90	stb		conditionalize out some fixes for 6.0.x
@@ -89,7 +89,7 @@
 ;		 <1>	  7/9/90	stb		first checked in
 ;
 ;	To Do:
-;		Return ResNotFound in GetResource once GetResource come-from patches are lpch’s
+;		Return ResNotFound in GetResource once GetResource come-from patches are lpch's
 ;		? getindexedresource in numerical order
 ;		? Turn AddResource into a ReplaceResource
 ;		SetResFileAttrs and mapReadOnly; teach to actually set the bit on disk
@@ -112,7 +112,7 @@ Std1Entry		ROMBind (Plus,$13F52),(SE,$0E55C),(II,$12E94),(IIci,$1B704),(Portable
 RStdExit			ROMBind (Plus,$1400C),(SE,$0E616),(II,$12F4E),(IIci,$1B7C4),(Portable,$145A6)
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
-;	<20> Don’t let Suitcase’s patch to _RsrcZoneInit happen.
+;	<20> Don't let Suitcase's patch to _RsrcZoneInit happen.
 ;   !!!!!!! NEVER ROLL THIS INTO ROM !!!!!!!!
 
 kRsrcZoneInitTrapWord	equ		$A996						; Suitcase patches by the trap word, not by the number.
@@ -124,9 +124,9 @@ DontLetSuitcasePatchRsrcZoneInit	PatchProc	_SetTrapAddress,(Plus,SE,II,Portable,
 			cmpi.w	#kRsrcZoneInitTrapWord,d0				; Patching _RsrcZoneInit?  (Suitcase uses the full trapword, so this might filter out other patches.)
 			bneOld											; No.  Let it go.
 			
-			movem.l	d0-d1/a0-a2,-(sp)						; Save the registers we’re using
+			movem.l	d0-d1/a0-a2,-(sp)						; Save the registers we're using
 			
-; Calculate a checksum of the first 8 words of this patch routine so we can make sure it’s
+; Calculate a checksum of the first 8 words of this patch routine so we can make sure it's
 ; one of several versions of SuitCase.
 
 			moveq	#0,d0									; <23>
@@ -142,18 +142,18 @@ DontLetSuitcasePatchRsrcZoneInit	PatchProc	_SetTrapAddress,(Plus,SE,II,Portable,
 			lea		SuitcaseChecksums,a1					; <23> A list of checksums for different versions of SuitCase
 @codeMatchLoop
 			move.w	(a1)+,d1								; <23> Get a checksum
-			bz.s	@notSuitcaseCode						; <23> If we’re out of checksums, it’s not SuitCase.  (At least, not one we know about)
+			bz.s	@notSuitcaseCode						; <23> If we're out of checksums, it's not SuitCase.  (At least, not one we know about)
 			cmp.w	d1,d0									; <23> Does this checksum match the calculated one?
-			bne.s	@codeMatchLoop							; <23> If it doesn’t, try another checksum.
+			bne.s	@codeMatchLoop							; <23> If it doesn't, try another checksum.
 			
-; This is Suitcase’s code.  Return instead of patching _RsrcZoneInit
+; This is Suitcase's code.  Return instead of patching _RsrcZoneInit
 			
 			lea		PatchState,a0
-			move.w	#1,(a0)									; Don’t fire this patch any more
+			move.w	#1,(a0)									; Don't fire this patch any more
 			movem.l	(sp)+,d0-d1/a0-a2
 			rts
 			
-; This wasn’t Suitcase’s code.  Apply this patch to _RsrcZoneInit
+; This wasn't Suitcase's code.  Apply this patch to _RsrcZoneInit
 			
 @notSuitcaseCode
 			movem.l	(sp)+,d0-d1/a0-a2
@@ -224,7 +224,7 @@ localSize	equ		*
 			move.l	d1,-(sp)
 			
 ;
-; Check to see if we’re being called from CheckForAddedFOND.
+; Check to see if we're being called from CheckForAddedFOND.
 ;
 
 			tst.l	addResType(a6)							; <18>
@@ -245,14 +245,14 @@ localSize	equ		*
 			pea		resName(a6)
 			_GetResInfo
 
-; See if it’s a 'FOND' resource.
+; See if it's a 'FOND' resource.
 
 @isItAFOND
 			cmp.l	#'FOND',resType(a6)
-			bne.s	@notFONDResource						; It’s not a FOND
+			bne.s	@notFONDResource						; It's not a FOND
 			
 ;
-; It’s a 'FOND'.  If the candidate lists have this 'FOND' cached,
+; It's a 'FOND'.  If the candidate lists have this 'FOND' cached,
 ; invalidate it.
 ;
 
@@ -294,7 +294,7 @@ CheckCandidate
 			moveq	#-1,d1									; Assume handle is not disposed
 			move.w	(a1),d0									; Fetch the font family number
 			cmp.w	resID(a6),d0							; Compare it against the resource ID of the changed 'FOND'
-			bne.s	@notSameFamily							; Don’t invalidate if not the right ID
+			bne.s	@notSameFamily							; Don't invalidate if not the right ID
 			_DisposeHandle									; If ID matches, dispose the handle
 			moveq	#0,d1									; Mark as handle was disposed
 @notSameFamily
@@ -372,7 +372,7 @@ ROZSizeCorrection InstallProc (IIci)
 		sub.l	a3,d0					; new size = header.bkLim + trailerPhysicalSize - zoneStart
 		move.l	a3,a0
 		_SetPtrSize						; chop, chop
-										; don’t check for error, as we couldn’t handle it anyway.
+										; don't check for error, as we couldn't handle it anyway.
 		rts
 
 		EndProc
@@ -385,8 +385,8 @@ ROZSizeCorrection InstallProc (IIci)
 ;		FMSwapFont calls MakeITable, chances are the current resource map will be
 ;		below the system file, and the call to RGetResource to get the 'mitq' resource
 ;		from the system file will fail.
-;		Inside Macintosh Volume V states that RGetResource “searches the chain of open
-;		resouce files (including the System Resource File) for the given resource”.  I’m
+;		Inside Macintosh Volume V states that RGetResource 'searches the chain of open
+;		resouce files (including the System Resource File) for the given resource'.  I'm
 ;		taking artistic license and interpretting this to mean that it searches from the
 ;		top of the resource chain instead of from the current resource map.  Making this
 ;		change in interpretation will allow the RGetResource call in MakeITable to always
@@ -439,7 +439,7 @@ MyUnique1ID		PatchProc	_Unique1ID,(Plus,SE,II,Portable,IIci)
 		import	MyUniqueID
 
 		st		ResOneDeep				; entry for one map deep call
-		jmp		MyUniqueID				; can’t fall through to a linked patch, the
+		jmp		MyUniqueID				; can't fall through to a linked patch, the
 										;   code might be rearranged.
 		EndProc
 
@@ -646,7 +646,7 @@ RdDataReturn		DS.L	1				;return address (to NewMap?)
 					EndR
 
 AfterReadInRdData			ROMBIND	(Plus,$14250)	; address if coming from RdData call
-AfterBsrReadDataInNewMap	ROMBIND	(Plus,$136B4)	; address if coming from NewMap’s call
+AfterBsrReadDataInNewMap	ROMBIND	(Plus,$136B4)	; address if coming from NewMap's call
 
 BadMapCheckInCheckMap	ComeFromAfterPatchProc	_Read,AfterReadInRdData,(Plus)
 
@@ -713,9 +713,9 @@ RmveNamePatch
 		jsrROM 	GetRsrcCnt				; Check all entries and update name offsets.	<24aug85> BBM	<13>
 @1
 		CMP.W	RNameOff(A2),D2 		; is this name offset >= the removed one?						<13>
-		bgt.s	@notBlownAway			; no, so this name wasn’t blown away							<13>
+		bgt.s	@notBlownAway			; no, so this name wasn't blown away							<13>
 		cmp.w	RNameOff(A2),d6			; is this name offset >= the end of the removed one				<13>
-		ble.s	@notBlownAway			; yes, so this name wasn’t blown away							<13>
+		ble.s	@notBlownAway			; yes, so this name wasn't blown away							<13>
 		move.w	#-1,RNameOff(a2)		; nuke the name	offset											<13>
 		bra.s	@2						; and advance to the next resource								<13>
 
@@ -743,7 +743,7 @@ RmveNamePatch
 ;		decided to delay returning an error.  Times have changed.  Excel is here,
 ;		death to MultiPlan., and long live robustness.  We will see if this works.
 
-; This patch is still turned off, because we haven’t had a good chance to do compatibility testing
+; This patch is still turned off, because we haven't had a good chance to do compatibility testing
 ; to see which applications this affects. We wanted to do that for 7.0, but somehow it slipped
 ; through the cracks until it was too late.
 
@@ -753,7 +753,7 @@ MyGet1Resource	PatchProc	_Get1Resource,(Plus,SE,II,Portable,IIci)
 		import	MyGetResource
 
 		st		ResOneDeep				;entry for one map deep call
-		jmp		MyGetResource			;can’t fall through to a linked patch
+		jmp		MyGetResource			;can't fall through to a linked patch
 		EndProc
 
 MyGetResource	PatchProc	_GetResource,(Plus,SE,II,Portable,IIci)
@@ -906,7 +906,7 @@ OpenDirIDResFile PatchProc	_HOpenResFile,(Plus,SE,II,Portable,IIci)
 ; patch to Create to use dirID
 ;
 ; This patch should only apply to the Create call in CreateResFile.
-; Since come-from patches are a pain, instead we assume that the “resourceMgrDirID”
+; Since come-from patches are a pain, instead we assume that the 'resourceMgrDirID'
 ; global will be zero, except for some cases when Create is called from CreateResFile.
 ;
 ; Come-from patches are now cake with linked patches, so this routine has been changed into
@@ -920,7 +920,7 @@ NewCreate ComeFromPatchProc	_Create,AfterCreateInCreateResFile,(Plus,SE,II,Porta
 
 		move.l	ioFileName(a0),ioFileName(sp)	; use the same file name
 		move.w	ioVRefNum(a0),ioVRefNum(sp)		; use the same vRefNum
-		move.b	ioFileType(a0),ioFileType(sp)	; use the same “file type”
+		move.b	ioFileType(a0),ioFileType(sp)	; use the same 'file type'
 		move.l	ExpandMem,a1					; point to extended low-memory
 		move.l	ExpandMemRec.resourceMgrDirID(a1),d0	; get the dirID
 		move.l	d0,ioDirID(sp)					; put in the dirID
@@ -942,7 +942,7 @@ NewCreate ComeFromPatchProc	_Create,AfterCreateInCreateResFile,(Plus,SE,II,Porta
 ; patch to OpenRF to use dirID
 ;
 ; This patch should only apply to the OpenRF call in ORFCommon.
-; Since come-from patches are a pain, instead we assume that the “resourceMgrDirID”
+; Since come-from patches are a pain, instead we assume that the 'resourceMgrDirID'
 ; global will be zero, except for some cases when OpenRF is called from ORFCommon.
 ;
 ; Come-from patches are now cake with linked patches, so this routine has been changed into
@@ -959,7 +959,7 @@ NewOpenRF ComeFromPatchProc	_OpenRF,AfterOpenRFInORFCommon,(Plus,SE,II,Portable,
 
 		move.l	ioFileName(a0),ioFileName(sp)	; use the same file name
 		move.w	ioVRefNum(a0),ioVRefNum(sp)		; use the same vRefNum
-		move.b	ioFileType(a0),ioFileType(sp)	; use the same “file type”
+		move.b	ioFileType(a0),ioFileType(sp)	; use the same 'file type'
 		move.b	ioPermssn(a0),ioPermssn(sp)		; use the same permissions
 		move.l	ioOwnBuf(a0),ioOwnBuf(sp)		; and the same file buffer
 
@@ -1007,7 +1007,7 @@ InstallResourceMgrExtensions	InstallProc	(Plus,SE,II,Portable,IIci)
 ValidateFileSizeInCheckGrow ComeFromPatchProc _SetEOF,AfterSetEOFInCheckGrow,(Plus,SE,II,Portable,IIci)
 	
 		tst.b	(a1)					; get new size of file set up by CheckGrow (a1 points to ioLEOF inside param block)
-										; note: 16 meg = $01000000, so if any bits are set in first byte it’s >= 16 meg
+										; note: 16 meg = $01000000, so if any bits are set in first byte it's >= 16 meg
 		beqOld							; no, grow the file as usual
 		move.w	#eofErr,d0				; yes, return an error (not really an eofErr, but it is the end of the resource fork)
 		rts
@@ -1033,7 +1033,7 @@ ValidateFileSizeInCheckGrow ComeFromPatchProc _SetEOF,AfterSetEOFInCheckGrow,(Pl
 ;	SetResFileAttrs and mapReadOnly
 ;
 ;		The resource manager allows you to set the mapReadOnly bit. However, that
-;		doesn’t do what you think it does.  The mapReadOnly bit is used for internal
+;		doesn't do what you think it does.  The mapReadOnly bit is used for internal
 ;		housekeeping while the file is open.  It signals to the resource manager
 ;		that this file was opened read only.  Upon CloseResFile or UpdateResFile the
 ;		resource manager aborts when it sees this flag set, and writes nothing to

@@ -53,7 +53,7 @@
 #	   <SM3>	 3/27/93	IH		Add hasDisplayMgr to available features.
 #	   <SM2>	  3/5/93	RC		added hasCAppleTalkInROM for PDM version of AppleTalk (all
 #									written in C)
-#	  <SM12>	  2/5/93	SAM		Removed ÔRISCÕ conditional.
+#	  <SM12>	  2/5/93	SAM		Removed ÔRISC' conditional.
 #	  <SM11>	  2/2/93	GMR		Added hasSwim3 feature.
 #	  <SM10>	12/17/92	RB		Added the features hasYMCA, hasHMC, hasCPUIDRegister.
 #	   <SM9>	 12/8/92	RC		Added "RISC" to the FeatureList

@@ -598,7 +598,7 @@ CreateProcess(InternalLaunchPBPtr pParams, PEntryPtr pNewProc, PEntryPtr pLaunch
 #endif HAS_AUX_PROCESSMGR
 #if	PsychicTV
 	static struct code0 fakeCode0 =				/*	<54> This should be combined with A/UX stuff, 	*/
-		{										/*	but the #ifdefs don’t seem to be working out…	*/
+		{										/*	but the #ifdefs don't seem to be working out…	*/
 		32,					/* above a5 */
 		sizeof(qd),			/* below a5 */
 		0,					/* jtSize */
@@ -730,7 +730,7 @@ CreateProcess(InternalLaunchPBPtr pParams, PEntryPtr pNewProc, PEntryPtr pLaunch
 	 */
 	*--(Ptr *)curStackEnd = INITRET;
 #if	PsychicTV
-	/*	<54> If we’re launching a fragment, push it’s main entry point instead of jumptable entry	*/
+	/*	<54> If we're launching a fragment, push it's main entry point instead of jumptable entry	*/
 	
 	if (launchingFragment)
 		*--(Ptr *)curStackEnd = nativeEntryPoint;	//	a pointer to a private_RD that points to the native entry point
@@ -1834,7 +1834,7 @@ PEntryFromFileSpec(FSSpecPtr pSpec, StringPtr pResName)
 Boolean
 FindFragmentEntryPoint(FSSpec *theAppFSSpec,FragmentLocatorPtr mainFragment,OSType	*architecture)
 	{
-	// <55> we’re looking for a longword version for now, and we only support version 0.
+	// <55> we're looking for a longword version for now, and we only support version 0.
 	//		(PowerPC code in the datafork).
 	
 	long	**codeFragIndex;	
@@ -1893,14 +1893,14 @@ SetupPsychicTVProcess(PEntryPtr pNewProc,Boolean launchingFragment,FragmentLocat
 			*nativeEntryPoint = NewRoutineDescriptor((ProcPtr) entryPoint,kCStackBased+kNoReturnValue,kCodeTypePower);
 		else
 			{
-			//	We couldn’t load a fragment, so destroy the context, and return the
+			//	We couldn't load a fragment, so destroy the context, and return the
 			//	error code.  We could pass the badLibName up a level, but I'm not sure
 			//	this is useful to the average user.  Maybe a debugging version could…
 			
 			DebugStr("\pPrepare Failed!");
 			
 			(void) FragRelease(fragContext,kAllConnections,kDefaultRelease,kNormalTerm);
-			(*pNewProc->p_pcb)->fragContext = 0;	// so we don’t double-release
+			(*pNewProc->p_pcb)->fragContext = 0;	// so we don't double-release
 			return (err);
 			}
 		}

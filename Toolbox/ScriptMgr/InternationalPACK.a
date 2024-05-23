@@ -34,12 +34,12 @@
 ;									revert to making direct calls to GetIntl pay attention to
 ;									ResLoad (as in <43>), but handle ResLoad as a byte.
 ;		<44>	  6/1/92	DTY		#1028868 <FM>: The previous change only turns on ResLoad (if
-;									it’s false) for calls to GetIntl made internally.  This isn’t
+;									it's false) for calls to GetIntl made internally.  This isn't
 ;									enough.  There are some cases where an external call to GetIntl
-;									will fail and crash because ResLoad is false, and it’s not
-;									turned on before getting an ‘itl ’ resource. Get rid of the
+;									will fail and crash because ResLoad is false, and it's not
+;									turned on before getting an ‘itl ' resource. Get rid of the
 ;									check to see if the call to GetIntl is made from an internal 
-;									call, and always turn on ResLoad before getting an ‘itl ’
+;									call, and always turn on ResLoad before getting an ‘itl '
 ;									resource.
 ;		<43>	 5/14/92	PKE		#1028868,<bbm>: Fix crash in internal call to GetIntl (e.g. from
 ;									MagString) if ResLoad false and itl resource purged. Fix
@@ -92,7 +92,7 @@
 ;									and pre-7.0-only code.
 ;		<31>	 9/15/91	PKE		smb,#85675: IUSetIntl was causing crashes. It assumed that
 ;									_HomeResFile returned the actual refNum (not 0) for the system
-;									file, so it failed to remove an ‘INTL’ resource before adding
+;									file, so it failed to remove an ‘INTL' resource before adding
 ;									another one with the same ID. Also, it was setting the
 ;									resChanged attribute with _SetResAttrs instead of calling
 ;									ChangedResource.
@@ -108,7 +108,7 @@
 ;									passed to them if necessary.
 ;		<25>	12/19/90	PKE		(VL) Have app caches ignore SetScript changes to itl2 or itl4
 ;									ID, since IUClearCache eliminates the need for this. This
-;									isolates each application’s cache from the effects of other
+;									isolates each application's cache from the effects of other
 ;									apps. Add private ClearCacheSys routine. Protect against bad
 ;									selectors.
 ;		<24>	12/14/90	PKE		(DC) Use itl1 extension, if present, to make IUDateString,
@@ -130,7 +130,7 @@
 ;									<16> in the internal routine GetLArray. If IULDateString or
 ;									IULTimeString were passed an intlParam value of 0, this bug
 ;									would cause GetIntl to look for an invalid resource type;
-;									GetIntl wouldn’t find it, and these procedures would bail,
+;									GetIntl wouldn't find it, and these procedures would bail,
 ;									returning null strings.
 ;		<17>	 8/24/90	PKE		Let IUGetItlTable provide unTokenTable too.
 ;		<16>	  8/1/90	PKE		NEEDED FOR SIXPACK: Change IUGetIntl to do better error
@@ -150,21 +150,21 @@
 ;									Renamed Cache2Rec to NewItlCacheRec.
 ;		<11>	  7/5/90	PKE		Fixed bugs in new cache scheme (see <10>): register use bug was
 ;									wiping out the script code used for finding the right cache
-;									entry, so we didn’t find a match and defaulted to system script;
+;									entry, so we didn't find a match and defaulted to system script;
 ;									save app cache handle (!); better handling of BlockMove errs,
 ;									etc. Changed IUClearCache to fit more nicely into this scheme.
 ;									Reworked itl2 handle fetching for IUTextOrder and IUTextOrderSys
 ;									to use new caching via GetScriptItl entry point; ensures that
 ;									IUTextOrderSys uses system sorting and not app sorting.
-;		<10>	  7/2/90	PKE		Redo GetIntl’s itl2/itl4 caching to use emItlAppCachePtr so
+;		<10>	  7/2/90	PKE		Redo GetIntl's itl2/itl4 caching to use emItlAppCachePtr so
 ;									Process Mgr can swap cache for each application. Put in
 ;									framework for private IUTextOrderSys routine - a new entry point
-;									for IUTextOrder that uses the system’s cached itl2/itl4 handles
-;									instead of the current application’s cached handles.
+;									for IUTextOrder that uses the system's cached itl2/itl4 handles
+;									instead of the current application's cached handles.
 ;		 <9>	  5/8/90	PKE		Changed script and language sorting routines to use new
-;									emScriptMap and emLangMap tables, which are set up from ‘itlm’
-;									resource. Use new emItlCache2 for improved caching of ‘itl2’ and
-;									‘itl4’ resource handles. Changed ClearCache to work with new
+;									emScriptMap and emLangMap tables, which are set up from ‘itlm'
+;									resource. Use new emItlCache2 for improved caching of ‘itl2' and
+;									‘itl4' resource handles. Changed ClearCache to work with new
 ;									cache.
 ;		 <8>	  5/3/90	ngk		Fixed bug in TypeSelectNewKey of script not being set in tsr.
 ;		 <7>	  5/2/90	ngk		Added private TypeSelect (a.k.a. keyboard navigation) routines.
@@ -1241,7 +1241,7 @@ ClearCache
 		move.l	a0,d0						; is it 0 (no app-specific ScriptMgr globals)?
 		beq.s	ccExit						; if so, don't do anything
 		addq.l	#1,d0						; is it -1 (no Process Mgr yet, use sys cache)?
-		beq.s	ccExit						; if so, don’t do anything
+		beq.s	ccExit						; if so, don't do anything
 
 		move.l	(a0),a0						; dereference - get ptr to globals
 		lea		smgrAppCacheCount(a0),a0	; point to record count
@@ -2796,10 +2796,10 @@ VernTable
 		dc.b  $EE, $80, $00		; Ó
 		dc.b  $EF, $82, $00		; Ô
 		dc.b  $F1, $81, $00		; Ò
-		dc.b  $F2, $80, $00		; Ú
-		dc.b  $F3, $82, $00		; Û
+		dc.b  $F2, $80, $00		; '
+		dc.b  $F3, $82, $00		; '
 		dc.b  $F4, $81, $00		; Ù
-		dc.b  $F5, $8B, $00		; ı (change to 'i' + $22)
+		dc.b  $F5, $8B, $00		; ' (change to 'i' + $22)
 
 		dc.b  $00, $00			; stop codes
 		align					;											<3>
@@ -2990,7 +2990,7 @@ ProjTable
 	
 		dc.b  $E0, $E1, $E2, $E3, $E4, 'A', 'E', 'A'	; add Â,Ê,Á
 		dc.b  'E', 'E', 'I', 'I', 'I', 'I', 'O', 'O'	; add Ë,È,Í,Î,Ï,Ì,Ó,Ô		<3/10/89 pke>
-		dc.b  $F0, 'O', 'U', 'U', 'U', 'I', $F6, $F7	; add Ò,Ú,Û,Ù,ı				<03/10/89 pke>
+		dc.b  $F0, 'O', 'U', 'U', 'U', 'I', $F6, $F7	; add Ò,',',Ù,'				<03/10/89 pke>
 		dc.b  $F8, $F9, $FA, $FB, $FC, $FD, $FE, $FF
 	
 		endWith		; iuSortFrame/iuNSortFrame, IUStrData

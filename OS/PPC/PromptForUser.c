@@ -54,7 +54,7 @@ char GetIntlTokenChar(short whichToken, short whichScript, char defaultChar)
 	Handle	itl4H;
 	long	offset, len;
 
-	// Look up the untoken table -- bail if we canÕt get it
+	// Look up the untoken table -- bail if we can't get it
 	IUGetItlTable(whichScript, iuUnTokenTable, &itl4H, &offset, &len);
 	if (itl4H && (offset > 0) && (len >= 0))
 	{

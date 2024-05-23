@@ -68,11 +68,11 @@
 ;		<66>	 10/8/92	KST		emUnused4 is now used by WS II printing stuff.
 ;		<65>	 7/21/92	bbm		Add emNetBootGlobals for Network Booting and Appletalk stuff.
 ;									(see Steve Roth)
-;		<64>	  7/6/92	gbm		Add the emDragGlobals entry (for Finder’s drag-o-matically cool
+;		<64>	  7/6/92	gbm		Add the emDragGlobals entry (for Finder's drag-o-matically cool
 ;									stuff)
 ;		<63>	  7/6/92	PN		Take out emCommToolBoxTable and emBigModel and put them in
 ;									CTBBlock
-;		<62>	  7/6/92	JSM		Remove emPrinterPortCache, it’s no longer needed by the Icon
+;		<62>	  7/6/92	JSM		Remove emPrinterPortCache, it's no longer needed by the Icon
 ;									Utilities.
 ;		<61>	  7/1/92	PN		Adding emCommToolboxTable and emBigModel for SuperMario
 ;		<60>	 6/25/92	PN		Add emRectRgn for SuperMario
@@ -83,8 +83,8 @@
 ;									(like _BeginSystemMode or _GetNextHighLevelEvent) to easily
 ;									check if the boot process is far enough along yet instead of
 ;									calling Gestalt all the time. Add emScrollSpeedGlobals from
-;									SuperMario. Renumber emUnused fields. Don’t update the
-;									emCurVersion field, it’s kind of stupid to always do this during
+;									SuperMario. Renumber emUnused fields. Don't update the
+;									emCurVersion field, it's kind of stupid to always do this during
 ;									development builds.
 ;		<57>	 4/23/92	TN		Replaced emUnused4 with emResrvMemSemaphore for MemoryMgr roll
 ;									in (as part of SuperMario).
@@ -94,13 +94,13 @@
 ;		<53>	  4/9/92	RLM		Moved emDialogGlobals to an emUnused slot, also updated from
 ;									SuperMario…
 ;		<52>	  4/7/92	JSM		Split up emPackGlobals to show unused areas since we really
-;									don’t use very much of this block. emUnused fields should be
+;									don't use very much of this block. emUnused fields should be
 ;									used before adding on to ExpandMem again.
 ;		<51>	 3/19/92	DC		Added the printerPortCache for bug fix to Icon Utilities
 ;		<50>	  3/2/92	DTY		Add entry for LowMemoryPrintingPatchGlobals
 ;		<49>	 2/12/92	DTY		Add emOpenFontFiles, a counter of how many font files in the
 ;									Fonts folder are open. We want to keep a cap on this number.
-;									It’s currently 128.
+;									It's currently 128.
 ;		<48>	 1/19/92	DTY		Add emAppleTalkInactiveOnStartup. This is set by
 ;									BeforePatches.a.
 ;		<47>	12/09/91	HY		Added emFFSwapMMUMode ptr to ExpandMem. Needed for Foster Farms
@@ -122,7 +122,7 @@
 ;									allocated an expandmem global from the forked off regatta
 ;									sources, without checking to see if it was already allocated.
 ;									It was.  The Tsunami projects global gets smashed by 7.0.1.
-;									Since Tsunami didn’t ship with the new printers, we were lucky
+;									Since Tsunami didn't ship with the new printers, we were lucky
 ;									this time.  Move the Tsunami global past the two globals that
 ;									7.0.1 allocated and bump the version number.
 ;		<35>	 8/29/91	DC		Changed comment on emIconCluts to indicate that it is a ptr to
@@ -135,7 +135,7 @@
 ;									should be left after allocating from the system heap.
 ;		<30>	  2/7/91	djw		<hjr> Add new field in ExpandmemRec for emSndPrimitives - a
 ;									pointer to a vector table of sound primitives.
-;		<29>	  2/6/91	gbm		sab, #38: Change the ‘keep this file from loading’ variable to
+;		<29>	  2/6/91	gbm		sab, #38: Change the ‘keep this file from loading' variable to
 ;									upper case for security reasons...
 ;		<28>	 1/30/91	VL		dba, #Whiteboard7.0b4q6HowDoYouLikeThisBugNumberChris?: Add one
 ;									more field ancestorRgnsCalced to ExpandMem for PaintOne and
@@ -322,7 +322,7 @@ emStartTicks		ds.l		1					; 140 ; PN global used by ListMgrPack
 
 emRectRgn			ds.l		1					; 144 ; <SM10> global used by WindowMgr routine <PN>
 
-emPPCPromptForUserGlobals ds.l	1					; 148 ; <59> global used by PPC’s PromptForUser routine
+emPPCPromptForUserGlobals ds.l	1					; 148 ; <59> global used by PPC's PromptForUser routine
 
 emScrollSpeedGlobals ds.l		1					; 14c ; <58> global used by scroll speed throttling
 

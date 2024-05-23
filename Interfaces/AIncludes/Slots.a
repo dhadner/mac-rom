@@ -19,7 +19,7 @@
 ;		<H2>	10/29/91	jmp		Added the extended format header block for super sRsrc
 ;									directories.
 ;		 <9>	 8/14/91	JL		Changed lower case equ to EQU to match database output
-;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	12/14/90	dba		<JDR> make capitalization match Slots.h and Slots.p
 ;		 <6>	  7/3/90	jmp		Added handy mask equates for setting the spTBMask field.

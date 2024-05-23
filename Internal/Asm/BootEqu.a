@@ -21,19 +21,19 @@
 ;									This gives a little more room for 'PACK' resource to get loaded
 ;									when the system heap is packed down in low memory conditions.
 ;		 <9>	 5/28/92	DTY		#1030972: Add systemEnabledBit. 'boot' 2 will set this bit if it
-;									couldn’t find any Gibblies to boot the machine. 'boot' 3 will
-;									check this bit and display the “This disk is too old to be used
-;									on this Macintosh.” message.
+;									couldn't find any Gibblies to boot the machine. 'boot' 3 will
+;									check this bit and display the 'This disk is too old to be used
+;									on this Macintosh.' message.
 ;		 <8>	 1/23/92	KC		Roll in Terror patches from BootEqu.a. Original comments follow.
 ;		 {2}	12/20/90	CCH		Added defStackAddr equate.
-;		 <7>	 1/17/92	DTY		Take the kROMVersion equates out of this file; they’re defined
+;		 <7>	 1/17/92	DTY		Take the kROMVersion equates out of this file; they're defined
 ;									in LinkedPatchMacros.a
 ;		 <6>	 1/14/92	csd		Move the BootGlobals record here from BootCode.a and
-;									StartSystem.a so we don’t have to keep the two versions in sync.
+;									StartSystem.a so we don't have to keep the two versions in sync.
 ;									NOTE: BootGlobals is not the same as BootGlobs!
 ;		 <5>	12/30/91	RB		Added space for Edisk variables in the BootGlobals record.
 ;		 <4>	 8/21/91	JSM		Clean up header.
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;	   <1.3>	 5/30/89	rwh		moved warm start to near top of boot globals record. Added
 ;									bgTopOff, bgPhysicalTableOff.
@@ -85,7 +85,7 @@ physicalMemTop			ds.l	1			;	  4	MemTop as set from diagnostics
 logicalMemTop			ds.l	1			;	  4	MemTop after loading VM
 postBootNewPtrStartup	ds.l	1			;	  4	pointer to implementation of NewPtrStartup
 bufPtrLimit				ds.l	1			;	  4 barrier; how low bufPtr is allowed to go
-resetFlag				ds.w	1			;	  2 clear if don’t reset; -1 if do reset
+resetFlag				ds.w	1			;	  2 clear if don't reset; -1 if do reset
 reservedForAfterBoot	ds.l	1			;	  4 minSysHeapFreeAfterBoot until launch time
 						ds.b	86			;	 86	padding (so we match the ROM boot code)
 port					ds.b	portRec		;	108	GrafPort already opened by the boot code
@@ -125,7 +125,7 @@ processMgrStackSize 	equ 	8*1024		; stack size
 minProcessMgrSpace		equ		500*1024	; stack & heap size for Finder and 1 cdev
 
 ; 
-elbowRoomCacheCantHave	equ		400*1024	; special-case adjustment to limit File Cache’s use of BufPtr <38>
+elbowRoomCacheCantHave	equ		400*1024	; special-case adjustment to limit File Cache's use of BufPtr <38>
 
 systemEnabledBit		equ		2			; bit number to prevent booting the System on an unknown machine.
 extensionsEnabledBit	equ		5			; bit number to disable extensions *** move to SysEqu.a?
@@ -139,10 +139,10 @@ kROMMajorIIci		equ		$67C			; IIci, Horror, Terror, Kaos
 kROMMinorTERROR		equ		$15
 kROMMinorTERROR2	equ		$17				; Zydeco's flavor of TERROR
 kROMMinorDart		equ		$18				; PowerBook 160,165,165c,180,180c version of HORROR.
-kROMMinorSlice		equ		$24				; Slice’s version of HORROR.
+kROMMinorSlice		equ		$24				; Slice's version of HORROR.
 kROMMinorPO			equ		$26				; Primus/Optimus HORROR.
-kROMMinorEscher		equ		$27				; PowerBook 270c’s ROM, a revision of HORROR.
-kROMMinorYeager		equ		$29				; Yeager’s flavor of HORROR.
+kROMMinorEscher		equ		$27				; PowerBook 270c's ROM, a revision of HORROR.
+kROMMinorYeager		equ		$29				; Yeager's flavor of HORROR.
 kROMMinorBlackBird	equ		$30				; BlackBird is using Kaos, which is a 2MB overpatch of HORROR.
 
 ; SuperMario ROM minors ($77D)

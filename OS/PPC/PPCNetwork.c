@@ -10,7 +10,7 @@
 	Change History (most recent first):
 
 		<46>	 4/14/92	BBM		<JSM>: Remove unfinished PPC code that is under the contitional
-									“TheFutute”, and remove the conditional “CubeE” since that is
+									'TheFutute', and remove the conditional 'CubeE' since that is
 									reality. Remove conditionals, since all they do is confuse.
 		<45>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
 		<44>	 9/29/91	DTY		Conditionalize <42> and <43> out of CubeE.

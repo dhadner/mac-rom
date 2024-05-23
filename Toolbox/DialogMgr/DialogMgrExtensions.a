@@ -9,12 +9,12 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <3>	 6/10/92	JSM		Can’t do a beqOld in DSEdit, since it isn’t inside a patch proc.
+;		 <3>	 6/10/92	JSM		Can't do a beqOld in DSEdit, since it isn't inside a patch proc.
 ;									Just do the same thing the ROM does: repush the parameters and
-;									call _TEKey again. This means we don’t need to include
+;									call _TEKey again. This means we don't need to include
 ;									LinkedPatchMacros.a anymore.
 ;		 <2>	 6/10/92	JSM		Moved some routines here from DialogMgrPatches.a to factor out
-;									common code in both the ROM and the System. Don’t define
+;									common code in both the ROM and the System. Don't define
 ;									kProcessInfoRecSize here (it was 6 bytes too big anyway), use
 ;									ProcessInfoRec.size from Processes.a. Implement DSEdit slightly
 ;									differently for ROM builds and System builds.
@@ -177,7 +177,7 @@ PasteKey		EQU 		$76
 				cmp.b		#PasteKey, D0
 				beq.s		@DoPaste				; Is it Paste?
 
-				bra.s		@Bail					; don’t pass (char) FunctionKey into TE
+				bra.s		@Bail					; don't pass (char) FunctionKey into TE
 
 @cmdkey			move.w		evtMeta(A0), D0			; Check the cmd key
 				moveq		#cmdKey, D2
@@ -205,12 +205,12 @@ PasteKey		EQU 		$76
 				bra.s		@Done
 
 @DoCut
-				bsr.s		@ChkSelection			; Don’t cut without a selection
+				bsr.s		@ChkSelection			; Don't cut without a selection
 				_TECut								; teHandle is already on the stack from above
 				bra.s		@XCcommon				; Do common Cut and Copy stuff
 
 @DoCopy
-				bsr.s		@ChkSelection			; Don’t copy without a selection
+				bsr.s		@ChkSelection			; Don't copy without a selection
 				_TECopy								; teHandle is already on the stack from above
 
 @XCcommon

@@ -31,7 +31,7 @@
 ;									since it is supposed to be done by the file system.
 ;		<11>	10/18/91	JSM		Get rid of all the stupid conditionals.
 ;		<10>	 10/1/91	JSM		Commented out code that used eclipseDebug.
-;		 <9>	 9/30/91	JSM		Don’t use is32BitClean conditional, all future ROMs will be.
+;		 <9>	 9/30/91	JSM		Don't use is32BitClean conditional, all future ROMs will be.
 ;		 <8>	 8/29/91	JSM		Cleanup header.
 ;		 <7>	 6/12/91	LN		Changed #include 'HardwareEqu.a' to 'HardwarePrivateEqu.a'
 ;		 <6>	 3/13/91	bbm		&CCH; fix hard instruction cpusha to a call to jCacheFlush

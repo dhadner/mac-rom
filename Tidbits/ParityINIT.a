@@ -14,7 +14,7 @@
 ;		 <2>	 8/18/90	dba		do a Shut Down instead of a Restart, since Restart just gives
 ;									you this dialog again
 ;		 <1>	 4/19/90	dba		checked in for the first time
-;				 4/18/90	dba		create from two older ParityINITs; dispose of ourselves when we’re done
+;				 4/18/90	dba		create from two older ParityINITs; dispose of ourselves when we're done
 ;
 
 		load 'StandardEqu.d'
@@ -48,7 +48,7 @@ Parity		main	export
 			btst	#gestaltParityEnabled,d0	; is parity enabled?
 			beq.s	@doDialog					; no, put up dialog
 
-; Check for PGC chip present, parity enabled, failed startup diagnostics (probably won’t happen).
+; Check for PGC chip present, parity enabled, failed startup diagnostics (probably won't happen).
 
 			clr.l	-(sp)						; make buffer to read into
 			move.l	sp,a0						; point to buffer
@@ -61,7 +61,7 @@ Parity		main	export
 			bcc.s	@noDialog					; not set, no problem
 
 			cmp.b	#ErrPGCTest,d1				; some error, was it PGC?
-			bne.s	@noDialog					; no, don’t put up alert
+			bne.s	@noDialog					; no, don't put up alert
 
 			clr.b	-(sp)
 			move.l	sp,a0

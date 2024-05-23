@@ -35,7 +35,7 @@
 									greater speed and precision. Removed fsg_InitScaling. [rb]
 		<20>	 8/22/90	MR		Only call fixmul when needed in finalComponentPass loop
 		<19>	  8/1/90	MR		Add line to set non90DegreeTransformation
-		<18>	 7/26/90	MR		remove references to metricInfo junk, don’t include ToolUtils.h
+		<18>	 7/26/90	MR		remove references to metricInfo junk, don't include ToolUtils.h
 		<17>	 7/18/90	MR		Change error return type to int, split WorkSpace routine into
 									two calls, added SWAPW macros
 		<16>	 7/14/90	MR		Fixed reference to const SQRT2 to FIXEDSQRT2
@@ -109,7 +109,7 @@
 	   <1.3>	  6/2/89	CEL		16.16 scaling of metrics, minimum recommended ppem, point size 0
 									bug, correct transformed integralized ppem behavior, pretty much
 									so
-	   <1.2>	 5/26/89	CEL		EASE messed up on “c” comments
+	   <1.2>	 5/26/89	CEL		EASE messed up on 'c' comments
 	  <•1.1>	 5/26/89	CEL		Integrated the new Font Scaler 1.0 into Spline Fonts
 	   <1.0>	 5/25/89	CEL		Integrated 1.0 Font scaler into Bass code for the first time…
 
@@ -121,7 +121,7 @@
 
 #include "setjmp.h"
 
-/** FontScaler’s Includes **/
+/** FontScaler's Includes **/
 #include "FSError.h"
 #include "FSCdefs.h"
 #include "FontMath.h"

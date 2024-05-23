@@ -40,7 +40,7 @@
 ;									level to previous level (determined by looking at the actual
 ;									interrupt stack frame).
 ;	  <SM30>	11/19/93	chp		Vectorize test of SCSI IE. Rework Install_ISR one more time.
-;									Implement “standard” VIA IRQ primitives as subroutines
+;									Implement 'standard' VIA IRQ primitives as subroutines
 ;									(basically copied from macros in HALc96equ.a).
 ;	  <SM29>	11/17/93	DCB		Changing TestFor_GrandCentralExists so that it works on
 ;									pre-SuperMario ROMs. This is necessary for the INIT version of

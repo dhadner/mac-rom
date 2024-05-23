@@ -33,7 +33,7 @@ Created: Monday, July 22, 1991 at 4:45 PM
 		<15>	11/19/90	DC		ngk - Moved System Icon ID's from private to public and added
 									interfaces for PlotIconHandle PlotSICNHandle and PlotCIconHandle
 	   								interfaces for PlotIconHandle PlotSICNHandle and PlotCIconHandle
-		<14>	 10/09/90	JAL		Don’t use C++ comment delimiters for Think C compatability.
+		<14>	 10/09/90	JAL		Don't use C++ comment delimiters for Think C compatability.
 		<13>	 9/19/90	DC		Changed names of some routines to be more descriptive
 		<12>	 9/15/90	DC		Removed SetLabel from public interface
 		<11>	  9/4/90	DC		Fixed interface to icon-to-region conversion routines

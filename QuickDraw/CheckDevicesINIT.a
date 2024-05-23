@@ -32,7 +32,7 @@
 ;														Under A/UX, the video driver is a ROM based driver, and is a
 ;														pointer. Add a check to see whether the driver is RAM based or
 ;														ROM based before doing an extra dereference.
-;									<26> 05-20-92 jmp	Moved the “PatchQuadra950Driver” code from VideoPatch.a to this
+;									<26> 05-20-92 jmp	Moved the 'PatchQuadra950Driver' code from VideoPatch.a to this
 ;														file so that the patch would work both when the Quadra 950
 ;														built-in video is the main device and when it is secondary.
 ;		 <2>	 2/13/92	PN		Add forRom conditionals.
@@ -45,17 +45,17 @@
 ;									pointed to by the 'scrn' resource were not being loaded.
 ;		<22>	 7/11/90	gbm		define true (this was the only file that used it when it was in
 ;									StandardEqu.d)
-;		<21>	 7/10/90	jmp		Added another item to the “To Do” list below. NO CODE CHANGES
+;		<21>	 7/10/90	jmp		Added another item to the 'To Do' list below. NO CODE CHANGES
 ;									WERE MADE.
 ;		<20>	 7/10/90	DDG		NEEDED FOR SIXPACK: Fixed bug in setting gamma entries
 ;									(SetDevGamma) where the csParam was being setup as if it was a
 ;									word instead of what it really is: a long. Also fixed duplicate
 ;									comment for change 19.
-;		<19>	  7/4/90	jmp		Cleaned up and corrected MY previous inequities (and it’s about
+;		<19>	  7/4/90	jmp		Cleaned up and corrected MY previous inequities (and it's about
 ;									time, too). ••• NEEDED FOR SIXPACK •••
 ;		<18>	  7/2/90	jmp		Move of the same -- rolling out my changes to fix the build.
 ;		<17>	  7/2/90	jmp		Put things back to the way they were because I was breaking
-;									everybody (I’ll hang my head in shame).
+;									everybody (I'll hang my head in shame).
 ;		<16>	  7/2/90	jmp		Took out <15> changes due to breaking build -- will put back in
 ;									later.
 ;		<15>	  7/2/90	jmp		Moved the NoScrn routine to CheckDeviceINIT.c in preparation for
@@ -106,15 +106,15 @@
 ;
 ;	 	This code contains lots of jumping around, and it would be nice to eliminate it.
 ;
-;	 	In the ••• 3rd INIT ••• there a several “Move.l DeviceList,Ax”.  It might be
-;		nice to use something like A5 (since it’s free and all the registers are
+;	 	In the ••• 3rd INIT ••• there a several 'Move.l DeviceList,Ax'.  It might be
+;		nice to use something like A5 (since it's free and all the registers are
 ;		being saved) to just cache the DeviceList.
 ;
 ;	 	If the above is implemented, the SetDevEntries and SetDevGamma utilites could
 ;		be tightened up to some degree (i.e, saving of input register(s)).
 ;	
 ;	    SetDevEntries and SetDevGamma should return _Control errors.  (This would be handy
-;		in the 4th INIT when SetDevGamma fails -- e.g., the card doesn’t support it -- so
+;		in the 4th INIT when SetDevGamma fails -- e.g., the card doesn't support it -- so
 ;		that the subsequent SetDevEntries call is NOT made.)
 ;			
 ; This system file INIT basically contains the CheckDevices routine from within Color QuickDraw
@@ -133,7 +133,7 @@
 ;	INIT before the first _InitGraf.  The code in ROM will see that the allInit flag is set, and will
 ;	just skip over the faulty code in ROM.  There's no attempt to modify the ROM version.
 ;
-; I’ve left this code as close to CheckDevices as possible.  Live code that has been left out of
+; I've left this code as close to CheckDevices as possible.  Live code that has been left out of
 ;	this init version is marked with ';+++'.
 ;
 ; UPDATE FOR 6.0.5:  I've added another INIT function to the tail end of the main Init.  This
@@ -146,9 +146,9 @@
 ;	up jumping to the same piece of code, and the third (although it uses some of the code from
 ;	the first two) is totally different.  The addeded functionality in the first two INIT functions
 ;	is to correct the problem where there is no and/or no valid 'scrn' resource in the System.  To do
-;	this we just call SetEntries on the boot device’s pmTable.  The other problem is a little more
+;	this we just call SetEntries on the boot device's pmTable.  The other problem is a little more
 ;	subtle and only happens on $067C machines.  The problem is that InitDefGamma (in StartInit)
-;	doesn’t set up non-TFB, non-gamma dir cards at all.  So, the INIT here is does a SetEntries
+;	doesn't set up non-TFB, non-gamma dir cards at all.  So, the INIT here is does a SetEntries
 ;	and SetGamma on $067C machines on all non-TFB cards that contain no gamma directories.
 ;
 
@@ -214,7 +214,7 @@ DavesRandomVideoStuff PROC EXPORT
 ;
 ;  CheckDevices is called by InitGraf.
 
-;PARAMSIZE	EQU		0						; <19> What is this for? Doesn’t appear to be used.
+;PARAMSIZE	EQU		0						; <19> What is this for? Doesn't appear to be used.
 
 IOPBlk		EQU		-IOVQElSize				; [64] parameter blk for I/O calls
 SlotParms   EQU     IOPBlk-spBlock.SPBlockSize  ; parameter block for slot manager calls
@@ -232,7 +232,7 @@ UTILVARS	EQU		VidParms-$30			; size of local vars for utility routines
 			RTS								; if not, then exit
 		else
 			Bra		CheckDevices			; <19>: Jump abound utility routines.  Should we make a
-											;	real INIT out of this (i.e., using a “standard header”)?
+											;	real INIT out of this (i.e., using a 'standard header')?
 		endif
 
 ; Utilities ------------------------------------------------------------------------------------------------
@@ -256,12 +256,12 @@ SetDevEntries
 			Bne.s	@sdeExit				;	then do nothing.
 			
 			Cmp.l	#-1,A1					; If A1 == -1, then use the
-			Beq.s	@usePMap				; 	gDevice’s PixMap.
+			Beq.s	@usePMap				; 	gDevice's PixMap.
 			
 			Move.l	A1,A0					; Otherwise copy the colorTable Handle
 			Bra.s	@continue				;	and continue on.		
 			
-@usePMap 	Move.l	gdPMap(A2),A0			; Get the gDevice’s pixMap’s
+@usePMap 	Move.l	gdPMap(A2),A0			; Get the gDevice's pixMap's
  			Move.l	(A0),A0					;	colorTable.
 			Move.l	pmTable(A0),A0			;	
 			
@@ -346,10 +346,10 @@ CheckDevices								; <19>: Moved label from within if-endif to embed utility
 											;	stuff AFTER the GotScrn entrypoint.
 
 			LINK	A6,#VARSIZE				; allocate local stack frame
-			MOVEM.L	A0-A4/D0-D7,-(SP)		; so we don’t screw up the boot process
+			MOVEM.L	A0-A4/D0-D7,-(SP)		; so we don't screw up the boot process
 
 			Move.l	DeviceList,A0			; A0 contains gDevice.
-			Move.l	#-1,A1					; Use gDevice’s PixMap for colorTable.
+			Move.l	#-1,A1					; Use gDevice's PixMap for colorTable.
 			Bsr.s	SetDevEntries			;
 			Bra		NoGammaFix
 
@@ -358,7 +358,7 @@ CheckDevices								; <19>: Moved label from within if-endif to embed utility
 ; As explained above in the SixPack update notes, the NoGammaFix is for $067C-class
 ; machines only.  The function of this code is to seek out non-TFB video cards that
 ; do not have gamma directories.  When such cards are found, they are issued a
-; SetDevGamma call with the ROM’s default gamma table.
+; SetDevGamma call with the ROM's default gamma table.
 ;
 ; [This should just be fixed in the SuperMario CQD sources directly.]
 ;
@@ -366,8 +366,8 @@ NoGammaFix
 
 	WITH	spBlock,vpBlock
 
-; Get the default gamma table from ROM (so we don’t have to get it every time
-;	we find a card that needs it -- if we don’t find any cards that need
+; Get the default gamma table from ROM (so we don't have to get it every time
+;	we find a card that needs it -- if we don't find any cards that need
 ;	to be fixed, no harm done).
 ;
 			Clr.l	-(Sp)					; Make an RGetResource('gama',0) call.
@@ -376,8 +376,8 @@ NoGammaFix
 			_RGetResource					; (RGetResource exists on $067C machines.)
 			
 ; Since this is a ROM resource, I assume that the _RGetResource will NOT fail.  Is
-;	this a bad assumption?  (I’ve seen several places in various other OS files that
-;	make the same assumption, but I won’t name any names.)
+;	this a bad assumption?  (I've seen several places in various other OS files that
+;	make the same assumption, but I won't name any names.)
 
 			Move.l	(Sp),-(Sp)				; Transform the 'gama' resource into
 			_DetachResource					;	a Handle, and prevent it from
@@ -396,7 +396,7 @@ NoGammaFix
 @nextGD		Move.l	A3,A4					; 	A4 to keep the gDevice Ptr.
 			Move.l	(A4),A4					;
 
-			Move.w	gdRefNum(A4),D0			; Get the gDevice’s slotID by looking
+			Move.w	gdRefNum(A4),D0			; Get the gDevice's slotID by looking
 			Not.w	D0						;	it up in the UnitTable.
 			Move.l	UTableBase,A0			;				
 			Move.l	(A0,D0*4),A0			; DCE Handle.
@@ -447,11 +447,11 @@ NoGammaFix
 			_HUnlock
 			
 			Move.l	A3,A0					; gDevice Handle into A0.
-			Move.l	#-1,A1					; Use gDevice’s PixMap for colorTable.
+			Move.l	#-1,A1					; Use gDevice's PixMap for colorTable.
 			Bsr		SetDevEntries
 
 @skipGD		Move.l	gdNextGD(A4),D0			; Get the next gDevice.  And if
-			Move.l	D0,A3					;	we’re not at the end of the
+			Move.l	D0,A3					;	we're not at the end of the
 			Bne.s	@nextGD					;	list, go around again.
 
 											
@@ -623,7 +623,7 @@ DoDrvrPatches
 ;
 ; Save all registers to prevent problems with the ROM INIT running code.
 ;
-				MOVEM.L		A5-A6,-(SP)					; so we don’t screw up the boot process
+				MOVEM.L		A5-A6,-(SP)					; so we don't screw up the boot process
 
 ;
 ; Point to UnitTable in A2.
@@ -793,7 +793,7 @@ NxtSlotLoop
 @IncFlag		ADDQ		#1,D5						; increment patching flag
 NxtSlot
 				MOVE.L		gdNextGD(A3),D0				; get handle to next gDevice
-				Beq.s		@EndSlotLoop				; If nil, we’re done.
+				Beq.s		@EndSlotLoop				; If nil, we're done.
 				Move.l		D0,A3						; Otherwise, copy the handle.
 				Move.l		(A3),A3						; Turn it into a pointer.
 				Bra.s		NxtSlotLoop					; Loop until done.
@@ -826,7 +826,7 @@ Out				LEA			spBlockSize(SP),SP			; clean up the stack						<SM6>
 ; Lets restore more registers than have ever been restored before. (Hey, you can never be too careful.)
 ;
 				MOVEM.L	(SP)+,A5-A6
-				MOVEM.L	(SP)+,A0-A4/D0-D7				; so we don’t screw up the boot process
+				MOVEM.L	(SP)+,A0-A4/D0-D7				; so we don't screw up the boot process
 
 				UNLK		A6
 				RTS

@@ -211,16 +211,16 @@ TheMachine( OSErr * finalStatus, SIM_IO ** completedIO, SIMglobals * SIMg)
 		//ÑÑÑÑ NEW API ÑÑÑÑÑÑ
 
 			// Set up for sending an Identify message during Initiate
-			//	depending on our default disc, we check the other Do/DonÕt flag to make sure
+			//	depending on our default disc, we check the other Do/Don't flag to make sure
 
 			if (SIMg->defaultDisc) {
-				if ( ioPtr->scsiFlags & scsiDontDisconnect)	// if default=Do but client says DonÕt
+				if ( ioPtr->scsiFlags & scsiDontDisconnect)	// if default=Do but client says Don't
 					SIMg->halPB.msg[0] = IdentifyMsg( false, ioPtr->scsiDevice.LUN);
 				else 
 					SIMg->halPB.msg[0] = IdentifyMsg( true, ioPtr->scsiDevice.LUN);
 			}
 			else {
-				if ( ioPtr->scsiFlags & scsiDoDisconnect)		// if default=DonÕt but client says Do
+				if ( ioPtr->scsiFlags & scsiDoDisconnect)		// if default=Don't but client says Do
 					SIMg->halPB.msg[0] = IdentifyMsg( true, ioPtr->scsiDevice.LUN);
 				else
 					SIMg->halPB.msg[0] = IdentifyMsg( false, ioPtr->scsiDevice.LUN);

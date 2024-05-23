@@ -20,7 +20,7 @@
 ;
 ;	   <SM2>	 2/12/93	PW		Cleaned up
 ;		 <1>	  2/8/93	KW		first checked in
-;		 <3>	  7/4/92	csd		#1033141 <gbm>: We’ve decided to take the fix to GetNewDriveList
+;		 <3>	  7/4/92	csd		#1033141 <gbm>: We've decided to take the fix to GetNewDriveList
 ;									for Cube-E, so I removed the conditional for theFuture.
 ;		 <2>	 6/22/92	csd		For theFuture: Fixed the bug in GetNewDriveList which would
 ;									unbalance the stack.

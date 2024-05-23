@@ -12,9 +12,9 @@
 		 <1>	 12/7/92	DRF		first checked in
 		 <5>	 12/3/92	HSC		Added the rest of the CFM functions defs
 		 <4>	 11/2/92	DRF		InterfaceTool has changed, so redo <3> the new way.
-		 <3>	10/30/92	DRF		Added “#ifdef applec” so we don’t put glue for this into
+		 <3>	10/30/92	DRF		Added '#ifdef applec' so we don't put glue for this into
 									PrivateInterfaceLib!
-		 <2>	10/26/92	DRF		Added prerequisite #includes so that InterfaceTool doesn’t choke
+		 <2>	10/26/92	DRF		Added prerequisite #includes so that InterfaceTool doesn't choke
 		 <1>	10/22/92	DRF		first checked in
 
 */
@@ -26,7 +26,7 @@
 #pragma skipping on
 #ifndef	interface_glue
 
-/* <3>,<4> Don’t generate glue for this stuff!!! */
+/* <3>,<4> Don't generate glue for this stuff!!! */
 
 #include <Types.h>
 #include <Memory.h>

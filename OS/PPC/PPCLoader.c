@@ -13,7 +13,7 @@
 									-16409. we are trying to move these PACK9 resources into ROM
 									eventually.
 		<25>	 4/14/92	BBM		<JSM>: Remove unfinished PPC code that is under the contitional
-									“TheFutute”, and remove the conditional “CubeE” since that is
+									'TheFutute', and remove the conditional 'CubeE' since that is
 									reality. Remove conditionals, since all they do is confuse.
 		<24>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
 		<23>	 9/29/91	DTY		Conditionalize <21> and <22> out of CubeE.

@@ -24,7 +24,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “GetServer.c”
+/*EASE$$$ READ ONLY COPY of file 'GetServer.c'
 ** 1.1	PWD 12/12/1989 Added support for self-authenticating images
 ** 1.0	PWD 10/30/1989 Adding to EASE
 ** END EASE MODIFICATION HISTORY */

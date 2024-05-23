@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 
-		<19>	 10/1/91	JSM		Don’t use SystemSevenOrLater, it always is.
+		<19>	 10/1/91	JSM		Don't use SystemSevenOrLater, it always is.
 		<18>	 3/29/91	kaz		Final version string!!
 		<17>	  2/5/91	kaz		jng: Updating version strings
 		<16>	 1/10/91	kaz		<jng>Updating version string

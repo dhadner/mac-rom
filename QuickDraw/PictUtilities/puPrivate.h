@@ -10,9 +10,9 @@
 	Change History (most recent first):
 
 		 <9>	 9/25/90	DDG		Saved a few bytes by changing the IsColorPort and IsPixMap
-									macros to cast everything to short before the “and” operation.
+									macros to cast everything to short before the 'and' operation.
 		 <8>	 9/21/90	DDG		Made changes from code review. Pulled out all the public stuff
-									into the public interface file (“PictUtil.h”).
+									into the public interface file ('PictUtil.h').
 		 <7>	  8/5/90	DDG		Fixed the prototype of the RecordColors routine. Added two
 									fields for checking to see if we are reading data past the end
 									of a picture.

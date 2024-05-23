@@ -26,7 +26,7 @@
 ;									allowing the config ROMs to patch up anything we might have
 ;									forgotten.
 ;	   <H25>	 8/11/92	SWC		Exported DockInitSCC and fixed it to preserve its registers.
-;	   <H24>	 8/10/92	SWC		Specifically check for (and handle) the ‘docking slot’ selector
+;	   <H24>	 8/10/92	SWC		Specifically check for (and handle) the ‘docking slot' selector
 ;									in DockingDispatch so handlers, etc., have a way of determining
 ;									which slot they're in.
 ;	   <H23>	 7/29/92	SWC		Fixed a typo (ended up looking at the wrong thing).
@@ -49,7 +49,7 @@
 ;									fixed now. TravelBarHandler now returns SWIM2 power status if a
 ;									SWIM2 exists.
 ;	   <H15>	 6/18/92	SWC		As part of our continuing incestuous relationship with the Power
-;									Manager, clear the clamshellClosed flag in the ‘sleep denied’
+;									Manager, clear the clamshellClosed flag in the ‘sleep denied'
 ;									Notification Manager completion routine so we won't try to keep
 ;									posting messages until the current one goes away. Added
 ;									RegisterVideo to the wakeup installation so we'll have a hook to
@@ -146,7 +146,7 @@ DockingMgr	PROC	EXPORT
 DockingDispatch
 			MOVEA.L	DockingGlobals,A0		; point to our variables
 			MOVEA.L	dockingHandler(A0),A1	;  and get the address of our handler
-			CMPI.L	#dockDockingSlot,8(SP)	; is this the ‘docking slot’ selector?						<H24>
+			CMPI.L	#dockDockingSlot,8(SP)	; is this the ‘docking slot' selector?						<H24>
 			BNE.S	@CallHandler			; -> no, pass it thru to the docking handler				<H24>
 			MOVEA.L	(SP)+,A1				; pop the return address									<H24>
 			ADDQ.W	#8,SP					;  and toss the parameters									<H24>
@@ -485,9 +485,9 @@ vDockingWakeup
 ;  clean up after any slots that went away (including the docking slot)...
 
 			Moveq	#0,D1					; Always do Slot #0 first.
-			Btst	D1,D3					; If Slot #0 doesn’t to be removed,
+			Btst	D1,D3					; If Slot #0 doesn't to be removed,
 			Beq.s	@SkipZeroRmv			;	then just go on.
-			Bsr		RemoveVideo				; Unregister Slot #0’s video.
+			Bsr		RemoveVideo				; Unregister Slot #0's video.
 			Bsr		RemoveSlot				; And make slot zero go away.
 @SkipZeroRmv
 			MOVEQ	#sLastSlot,D1
@@ -520,8 +520,8 @@ vDockingWakeup
 
 			BSR.S	@GetNubusSlots			; find out if there are any NuBus connectors on this bar
 
-			Moveq	#0,D1					; Always do Slot #0 first (it’s never the docking slot).
-			Btst	D1,D3					; If Slot #0 doesn’t to be removed,
+			Moveq	#0,D1					; Always do Slot #0 first (it's never the docking slot).
+			Btst	D1,D3					; If Slot #0 doesn't to be removed,
 			Beq.s	@SkipZeroAdd			;	then just go on.
 			Bsr		AddSlot					; Make the slot appear.
 			Bsr		AddVideoDevice			; Initialize its video.
@@ -545,7 +545,7 @@ vDockingWakeup
 
 			BSR		ResolveSerialPorts		; make sure serial ports are properly registered			<H9>
 
-			Move.l	#dockFlush,D0			; We’re done waking up,
+			Move.l	#dockFlush,D0			; We're done waking up,
 			Bsr		DockStatus				;	so alert the handler.		
 
 @Done		MOVEM.L	(SP)+,@savedRegs
@@ -774,7 +774,7 @@ vInstallHandler
 			_PowerDispatch					; get the CPU's maximum and current speed in MHz			<H10>
 			EXT.L	D0						;  sign-extend it to a long									<H10>
 			BMI.S	GetDockingAttributes	; -> either very fast, or selector is not supported	:)		<H10>
-			MOVEA.L	D0,A0					; stuff it into ‘params’									<H10>
+			MOVEA.L	D0,A0					; stuff it into ‘params'									<H10>
 			MOVE.L	#dockCPUSpeed,D0		; go tell the docking handler what it is					<H10>
 			BSR.S	DockControl				;															<H10>
 		ENDIF								;															<H2>
@@ -1413,7 +1413,7 @@ CheckForEject2
 			BRA.S	*
 
 @Locked		LEA		ejectNMEntry(A2),A0			; point to the NM record
-;••• 		MOVE.L	lockedEjectMsg(A2),nmStr(A0); load the “CPU is locked to docking bar” message
+;••• 		MOVE.L	lockedEjectMsg(A2),nmStr(A0); load the 'CPU is locked to docking bar' message
 NMInstall	TST.B	nmRefCon(A0)				; is this request already pending?
 			BNE.S	NMDone						; -> yes, let it complete
 			TST.L	nmStr(A0)					; is there a string to use to notify the user?
@@ -1453,7 +1453,7 @@ EjectShutdown									;														<H17>
 			BGT.S	@NoEject					; -> yes, we'll finish up later
 
 			LEA		ejectNMEntry(A1),A0			; point to the NM record
-;••• 		MOVE.L	finderBlockedMsg(A1),nmStr(A0); load the “something’s blocking shutdown” message
+;••• 		MOVE.L	finderBlockedMsg(A1),nmStr(A0); load the 'something's blocking shutdown' message
 			BSR.S	NMInstall					; install the NM request if it's not already installed
 			BNE.S	@NoEject					; -> task was installed
 			BCLR	#dockEjectPressed,dockingEjectFlags(A1)	; back us out of the eject
@@ -1540,7 +1540,7 @@ GracefulShutdown
 			TST.W	(SP)+						; is there a front process?								<H20>
 			BNE.S	@JustShutDown				; -> no, just shut down (why no foreground process?)	<H20>
 
-			CLR.L	-(SP)						; space for ‘result’ + result code						<H20>
+			CLR.L	-(SP)						; space for ‘result' + result code						<H20>
 			PEA		processNumber(A2)			;  PSN1													<H20>
 			PEA		4+2+2(SP)					;  PSN2													<H20>
 			PEA		4+4+2(SP)					;  result												<H20>
@@ -1579,7 +1579,7 @@ GracefulShutdown
 			RTS
 
 @JustShutDown
-			_SDPowerOff							; ‘single’ Finder: shutdown the system
+			_SDPowerOff							; ‘single' Finder: shutdown the system
 			BRA.S	*
 
 @ShutDownEvent									; HighLevel EventRecord to tell the Finder to shutdown
@@ -1780,7 +1780,7 @@ NiagraVectors
 ;
 ; Trashes:	A0,D0
 ;
-; Function:	returns ‘connected’ if the VSC video is turned on since Dartanian's ‘bar’ is built
+; Function:	returns ‘connected' if the VSC video is turned on since Dartanian's ‘bar' is built
 ;			into the box.
 ;__________________________________________________________________________________________________
 
@@ -1839,13 +1839,13 @@ PrattVectors
 ;
 ; Function:	Filters the docking attributes so we can decide how to behave depending on what kind
 ;			of system software support we have.  The Display Manager is (currently) a disk thing,
-;			so we’ll patch this filter out on disk if the Display Manager is around, otherwise
-;			we don’t allow sleeping if external video is enabled.
+;			so we'll patch this filter out on disk if the Display Manager is around, otherwise
+;			we don't allow sleeping if external video is enabled.
 ;
-;			Note:  This filter differs from the “standard” filters in that we don’t need to check
-;				   for the case where the LCD screen isn’t useable (since all-in-one PowerBooks
-;				   don’t “dock” per se), and since Pratt is ’040 based, the FPU doesn’t matter.
-;				   (I believe that the FPU won’t matter for the PowerPC case, either.)
+;			Note:  This filter differs from the 'standard' filters in that we don't need to check
+;				   for the case where the LCD screen isn't useable (since all-in-one PowerBooks
+;				   don't 'dock' per se), and since Pratt is '040 based, the FPU doesn't matter.
+;				   (I believe that the FPU won't matter for the PowerPC case, either.)
 ;__________________________________________________________________________________________________
 
 PrattDockingFilter
@@ -1872,9 +1872,9 @@ PrattDockingFilter
 ;
 ; Trashes:	A0, D0
 ;
-; Function:	Since the “bar” on Pratt-based CPUs is built-in, the Docking Handler would never be
+; Function:	Since the 'bar' on Pratt-based CPUs is built-in, the Docking Handler would never be
 ;			swapped out.  So, we now call the Docking Handler to ask it if the world changed.
-;			If it did, then “BNE”.
+;			If it did, then 'BNE'.
 ;__________________________________________________________________________________________________
 
 CheckBarChangedPratt

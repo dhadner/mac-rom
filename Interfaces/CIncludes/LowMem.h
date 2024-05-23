@@ -23,7 +23,7 @@
 	
 		 <4>	 6/24/93	EPT		<EPT, JRG> Moved low-mem macros from various other public
 									headers into this file and added LM accessor macros for
-									platforms that don’t use code fragments.
+									platforms that don't use code fragments.
 		 <3>	 6/10/93	jrc		(with DTY) Fix some naming problems.
 		 <2>	 6/10/93	jrc		(with JCM) Split into public and private.
 

@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		<29>	12/17/92	JSM		Fix bug in DialogSelectFixes patch where item hit was not being
-;									set to -1 (just putting it in D3 isn’t enough, since we jump
+;									set to -1 (just putting it in D3 isn't enough, since we jump
 ;									back into ROM after the point where D3 is stuffed into
 ;									DSItemHit).  This code path appears to be rarely taken, so the
 ;									bug probably doesn't show up much (I discovered it just looking
@@ -20,7 +20,7 @@
 ;									FixDoAlertToDisposeCIconHandles, FixDoStaticSub, and
 ;									DontPurgeDialogColorTables.
 ;		<27>	 6/10/92	JSM		Move some routines common to both ROM and System to
-;									DialogMgrExtensions.a from this file, don’t define kOSEvent
+;									DialogMgrExtensions.a from this file, don't define kOSEvent
 ;									here, use osEvt from SysEqu.a instead, change DSEditPatch to
 ;									just jump to the common routine DSEdit in DialogMgrExtensions.a.
 ;		<26>	 2/13/92	KSM		xxx: #1019549: Fix ROM bind "AfterH2HinDoStatic" re: <23> for
@@ -35,7 +35,7 @@
 ;									the 2-byte problem and the recursive crash.
 ;		<22>	  4/5/91	dba		gbm, KSM: enable fix to 'actb' and 'dctb' purging
 ;		<21>	 3/31/91	dba		gbm, #85902: patch the Dialog Manager so actb and dctb resources
-;									don’t get purged
+;									don't get purged
 ;		<20>	 3/27/91	DC		KSM, #85626:  Rewrite patches to TEDelete and TEPaste (revision
 ;									15)
 ;		<19>	  3/4/91	dba		dty: get rid of SysVers conditionals
@@ -63,12 +63,12 @@
 ;									from Patch[PlusPortableSE]ROM.a.
 ;		 <9>	11/12/90	dba		& KSM; get rid of a warning by removing the equate for the
 ;									high-level event number
-;		 <8>	 9/24/90	KSM		<dba>Let’s return thru the right address in the TEKey patch.
+;		 <8>	 9/24/90	KSM		<dba>Let's return thru the right address in the TEKey patch.
 ;		 <7>	 8/28/90	DFH		Correct capitialiazion of highLongOfPSN and lowLongOfPSN
 ;		 <6>	 8/17/90	dba		move Plus patch to CloseDialog here (come-from on DisposeHandle)
 ;		 <5>	  8/7/90	KSM		Fix bug in DialogSelect patch. Add Cut/Copy/Paste to
 ;									DialogSelect via comefrom on TEKey.
-;		 <4>	 7/16/90	stb		resynch with process manager, which now uses FSSpec’s rather
+;		 <4>	 7/16/90	stb		resynch with process manager, which now uses FSSpec's rather
 ;									than filename for GetProcessInfo
 ;		 <3>	 7/10/90	stb		bug fix
 ;		 <2>	 6/26/90	stb		Add patches for IsDialogEvent and DialogSelect to deal with nil
@@ -87,7 +87,7 @@
 DialogStdEntry					ROMBind	(Plus, $14C50), (SE, $0F272), (II, $13CC0), (Portable, $12F78), (IIci, $19D76)
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
-;	The ROM default sound routine for the dialog manager doen’t preserve a1/d2.
+;	The ROM default sound routine for the dialog manager doen't preserve a1/d2.
 ;	The fix is to duplicate the code in initDialog till the sound routine is
 ;	set up and then jump to rom to continue with the rest of InitDialog.
 ;
@@ -300,7 +300,7 @@ DSResult		EQU 		DSEvent+4				; function result
 				jmprom		DSAfterClaimEvent		; rejoin the ROM
 @NotValid
 				moveq		#-1,d3
-				move.l		DSItemHit(a6), a0		; get VAR address of user’s item		<29>
+				move.l		DSItemHit(a6), a0		; get VAR address of user's item		<29>
 				move.w		d3, (a0)				; Save item number hit					<29>
 				jmprom		DSNotMineExit			; not a dialog event; exit through ROM
 
@@ -458,7 +458,7 @@ DisposDialogFix		PatchProc		_DisposDialog,(II)
 				MOVE.L		10(SP),-(SP)		; window for GetAuxWin
 				PEA			6(SP)				; handle for GetAuxWin
 				_GetAuxWin
-				ADDQ		#2,SP				; don’t care if it is the default
+				ADDQ		#2,SP				; don't care if it is the default
 				MOVE.L		(SP)+,A0			; get the aux handle
 				MOVE.L		(A0),A0				; dereference
 				MOVE.L		dialogCItem(A0),D0	; use the reserved field for ditl
@@ -537,7 +537,7 @@ CleanupTwoBytes	Proc		Export
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; patches on TEDelete and TEPaste 																<20>
 ;
-; When any text operation is performed on a color dialog with an 'ictb', it sets up the dialog’s
+; When any text operation is performed on a color dialog with an 'ictb', it sets up the dialog's
 ; grafPort with the appropriate font and color information before and restores after. Since DlgPaste,
 ; DlgClear and DlgCut are glue, and were not revised for System 4, they do not do the appropriate set up
 ; and restore required for changing an EditText item.  Even if they were rewritten, existing applications
@@ -718,7 +718,7 @@ FixDoStaticSub ComeFromAfterPatchProc _HandToHand,AfterH2HinDoStatic,(Plus,SE,II
 
 		MOVE.L	A0,A2					; save handle in A2
 		TST.B	D6						; is it an edit text item?
-		beqROM	ROMskipParam			; if so, don’t substitute carets
+		beqROM	ROMskipParam			; if so, don't substitute carets
 
 		MOVE.L	A2,-(SP)				; Push the string handle
 		IMPORT	ReplaceCitations
@@ -730,7 +730,7 @@ FixDoStaticSub ComeFromAfterPatchProc _HandToHand,AfterH2HinDoStatic,(Plus,SE,II
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; Come-from patch on _GetResource inside doColorStuff	
 ;
-; Don’t purge 'actb' and 'dctb' color tables for alerts and dialogs.
+; Don't purge 'actb' and 'dctb' color tables for alerts and dialogs.
 ;
 ; This patch has been rolled into DialogMgr.a.
 ;

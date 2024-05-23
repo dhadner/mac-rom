@@ -33,15 +33,15 @@
 ;	   <SM6>	  8/9/92	CCH		Modified boxflag check for Spike to include boxRiscQuadra.
 ;		 <5>	 5/22/92	DTY		#1029009 <jab>: Modified DREQ bit testing from global (setup in
 ;									SCSIInit96) and rearranged writebacks to conform with Moto spec.
-;		 <4>	  5/1/92	JSM		Don’t use isUniversal conditional, which was commented out
-;									anyway. Don’t use internal GEEZ conditional, which was always
+;		 <4>	  5/1/92	JSM		Don't use isUniversal conditional, which was commented out
+;									anyway. Don't use internal GEEZ conditional, which was always
 ;									false. Use Max020030BusErrs instead of MaxBusErr, which is
 ;									equated differently in SCSIPriv.a depending on how CPU was
 ;									defined. For System builds, CPU is set to 00, which gave us the
 ;									wrong value since this file is only used on 020's and above.
 ;		 <3>	 3/17/92	pvh		#1021847:
 ;									Fix the removable device bug (CD ROMs etc.) on Quadras which
-;									caused the “This disk is unreadable.  Do you want to format?”
+;									caused the 'This disk is unreadable.  Do you want to format?'
 ;									dialog to randomly appear.  Apparently there is a bug in the
 ;									53C96 chip which causes the FIFO count to get stuck on occasion.
 ;									We now flush the FIFO buffer to make sure the count is correct.

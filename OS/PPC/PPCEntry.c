@@ -10,10 +10,10 @@
 	Change History (most recent first):
 
 		<39>	 4/14/92	BBM		<JSM>: Remove unfinished PPC code that is under the contitional
-									“TheFutute”, and remove the conditional “CubeE” since that is
+									'TheFutute', and remove the conditional 'CubeE' since that is
 									reality. Remove conditionals, since all they do is confuse.
 		<38>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
-		<37>	 9/30/91	DTY		Dean’s in the dog house. The System build got derailed with that
+		<37>	 9/30/91	DTY		Dean's in the dog house. The System build got derailed with that
 									last change.
 		<36>	 9/29/91	DTY		Conditionalize <33> through <35> out of CubeE.
 		<35>	 6/26/91	EMT		Add support to kill PPCInform calls

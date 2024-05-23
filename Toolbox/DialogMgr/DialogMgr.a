@@ -41,7 +41,7 @@
 ;									a couple of BRA.S to BRA.
 ;	  <SM16>	12/18/92	CSS		Rollin Fix from DialogMgrPatches: <29>	12/17/92	JSM		Fix bug in
 ;									DialogSelectFixes patch where item hit was not being set to -1
-;									(just putting it in D3 isn’t enough, since we jump back into ROM
+;									(just putting it in D3 isn't enough, since we jump back into ROM
 ;									after the point where D3 is stuffed into DSItemHit).  This code
 ;									path appears to be rarely taken, so the bug probably doesn't
 ;									show up much (I discovered it just looking at the code).
@@ -69,7 +69,7 @@
 ;									WindowMgrPatches.a. The last patch needs to be revisited, either
 ;									to share code with the WindowMgr or rolled-in more
 ;									intelligently, but it works.
-;		 <8>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		 <8>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		 <7>	 9/19/91	JSM		Cleanup header, roll-in fix to [Could|Free][Alert|Dialog] from
 ;									DialogMgrPatches.a, without testing since these traps are
@@ -104,7 +104,7 @@
 ;				 1/31/87	CRC		try once more to properly save/restore text state around TE
 ;									calls
 ;				 1/15/87	CRC		look for color icons and pictures; do direct branches to StdExit
-;				  1/8/87	CRC		don’t do paramtext substitutions in edittext items; always apply
+;				  1/8/87	CRC		don't do paramtext substitutions in edittext items; always apply
 ;									color
 ;				12/21/86	CRC		skip text colors if destination is 1 bit deep; error check on
 ;									all GetResource calls; fixed invisible color dialog bug
@@ -122,10 +122,10 @@
 ;				 1/20/86	BBM		CouldAlert was not linking in the ROM Map - thus it was getting
 ;									WDEF 0 out of System File instead of ROM.
 ;				 11/2/85	EHB		In GetDItem, never return NIL handle.
-;				10/31/85	EHB		In DrawItem, don’t do vis check for user items.
+;				10/31/85	EHB		In DrawItem, don't do vis check for user items.
 ;				 10/1/85	EHB		In BeginInWind, set D1 to $1A to make Edit goaway box work
 ;									(GetNewDialog!).
-;				 7/15/85	EHB		In GetDItem, don’t check for NIL parameters if parm <= 4 bytes
+;				 7/15/85	EHB		In GetDItem, don't check for NIL parameters if parm <= 4 bytes
 ;									(fixes Write)
 ;				 7/11/85	EHB		In DoStatic, fixed infinite loop if non-citation '^' (oops!)
 ;				 5/20/85	SC		In ChangeField made it reset the scrolling when the field
@@ -136,7 +136,7 @@
 ;									instead of the bit poke
 ;				  5/9/85	SC		In SetItNew, enable scrolling. Even horizontal if 1 line record
 ;				  5/8/85	EHB		Ignore NIL parameters in GetDItem. In GetDItem, if specified
-;									item doesn’t exist, return NIL handle.
+;									item doesn't exist, return NIL handle.
 ;				  5/4/85	EHB		Changed default filterProc for ModalDialog so that it only
 ;									returns a Return or Enter in default button if button is
 ;									enabled. Also hilites the button as visual feedback.
@@ -149,11 +149,11 @@
 ;				 4/30/85	EHB		TAB to next editText field -> TAB to next visible editText field
 ;				 4/27/85	EHB		Added routine UpdateDialog(d: dialogPtr; h: rgnHandle) that only
 ;									draws items that intersect update region.
-;				 4/26/85	EHB		BeginInWind didn’t do a LoadResource before locking down item
+;				 4/26/85	EHB		BeginInWind didn't do a LoadResource before locking down item
 ;									list! Took out LoadResource of item list from GetDLItem
 ;				 4/26/85	EHB		Added routine NextDLItem (merged with GetDLItem) to avoid
 ;									LoadResource and item scanning overhead for large item lists.
-;				 4/24/85	EHB		In SetIText, don’t draw if window invisible
+;				 4/24/85	EHB		In SetIText, don't draw if window invisible
 ;				 4/23/85	EHB		Changed BSR DrawDialog to _DrawDialog in DBUpdate
 ;				 4/23/85	EHB		Optimized parameters in staticText items
 ;				 2/15/85	LAK		Changed CtrlItem, StatText, EditText, IconItem, PicItem,
@@ -164,7 +164,7 @@
 ;				 1/25/85	EHB		Added Traps CouldDialog and FreeDialog to Dialog Manager Added
 ;									routine GetDHndl, called by both. (DMgrAsm1)
 ;				 1/24/85	EHB		No disk insert events in GetNextEvent from ModalDialog Blink
-;									caret in ModalDialog if there’s editable text. (DMgrAsm1)
+;									caret in ModalDialog if there's editable text. (DMgrAsm1)
 ;				  9/9/83	SC		Added lo mem default font stuff
 ;				  9/7/83	SC		Used Delay in zounds not delay loop
 ;				  9/6/83	SC		Tried to make beeps sound more pleasant
@@ -628,19 +628,19 @@ DoAlert
 			MOVE.W		D3, -(SP)				; Push default icon number
 			_GetIcon							; Get the icon
 			MOVE.L		(SP)+, D0				; Pop handle.  Is it nil?
-			BEQ.S		NoDefIcon				; Yes, don’t try to plot it.
+			BEQ.S		NoDefIcon				; Yes, don't try to plot it.
 			PEA 		ICRect					; Push icon rectangle first
 			MOVE.L		D0, -(SP)				; and push back handle
 			_PlotIcon							; finally plot it!
 NoDefIcon
 ; Calculate the default item and stuff in dialog record
 			ASR 		#3, D4					; Shift ok/cancel bit down, trashing stages
-			ADDQ.W		#1, D4					; one’s based
+			ADDQ.W		#1, D4					; one's based
 			MOVE		D4,ADefItem(A4) 		; set the default item in the dialog
 
 ; Hilite the default item with bigger frame
 			MOVE.L		A4, -(SP)				; Push window pointer
-			MOVE.W		D4, -(SP)				; Push index of def item calc’ed aboive
+			MOVE.W		D4, -(SP)				; Push index of def item calc'ed aboive
 			PEA 		scratch(A6) 			; Ignore kind and ...
 			MOVE.L		(SP),-(SP)				; Ignore handle
 			PEA 		curRect(A6) 			; but get rectangle
@@ -651,8 +651,8 @@ NoDefIcon
 			MOVEQ		#4, D2					; Roundness 16x16
 			BSR 		FrameOut				; Frame outside rectangle pointed to by A0.
 
-; Now that the dialog’s up, call modal dialog with the user’s action proc
-			MOVE.L		ABAction(A6),-(SP)		; push user’s action proc
+; Now that the dialog's up, call modal dialog with the user's action proc
+			MOVE.L		ABAction(A6),-(SP)		; push user's action proc
 			PEA 		ABResult(A6)			; pass receiver for item
 			_ModalDialog
 
@@ -695,7 +695,7 @@ GetILCopy
 			MOVE.L		#'DITL', -(SP)			; push type
 			MOVE.W		D0, -(SP)				; Push ID number
 			BSR			getIctb					; get the ditl color table, if any
-			MOVE.L		colorDctb(A6),D0		; did it succeed? (set cc’s)
+			MOVE.L		colorDctb(A6),D0		; did it succeed? (set cc's)
 			BEQ.S		@skipRest				; if not, skip
 			MOVE.L		D0,A0					; set up for hand to hand
 			_HandToHand
@@ -704,7 +704,7 @@ GetILCopy
 			MOVE.W		#MapTrue,RomMapInsert	; make sure to link in the ROM Map		<20jan86> BBM
 			_GetResource						; and get resource handle
 			MOVE.L		(SP)+, A0				; save handle in register
-; set cc’s for caller, and branch around HandToHand if error
+; set cc's for caller, and branch around HandToHand if error
 			MOVE.L		A0,D0					; error?
 			BEQ.S		@noResource				; z flag set
 
@@ -1030,7 +1030,7 @@ ValidDE											;																<9>
 
 			MOVE.W		EvtNum(A2), D3			; Get the event number
 			SUBQ		#MButDwnEvt,D3			; see if mouse down
-			BNE.S		OKDlg					; if not it’s ok
+			BNE.S		OKDlg					; if not it's ok
 
 			SUBQ		#2, SP					; Set up findWindow stack:
 			MOVE.L		EvtMouse(A2),-(SP)		; Push mouse position
@@ -1038,7 +1038,7 @@ ValidDE											;																<9>
 			_FindWindow 						; Find out where the mouse hit was
 			SUBQ.W		#InContent, (SP)+		; Is it in the content?
 			BNE.S		NotDlg					; If not in content, return not dialog
-			CMP.L		whichWindow(A6),A4		; Was it THIS dialog window’s content?
+			CMP.L		whichWindow(A6),A4		; Was it THIS dialog window's content?
 			BNE.S		NotDlg
 
 OKDlg
@@ -1138,7 +1138,7 @@ ValidDS											; not an osEvt													<9>
 			BMI.S		NotDS					; Not my event
 			ADDQ.B		#$01, DSResult(A6)		; turn into TRUE, was my event. @
 NotDS
-			MOVE.L		DSItemHit(A6), A0		; get VAR address of user’s item
+			MOVE.L		DSItemHit(A6), A0		; get VAR address of user's item
 			MOVE.W		D3, (A0)				; Save item number hit
 			BSR 		EndInWind				; Restore port
 			MOVEQ		#12, D0 				; Pop 16 bytes of parameter										<9>
@@ -1146,7 +1146,7 @@ NotDS
 
 NotValidDS										;																<9>
 			moveq		#-1,d3					; no item hit													<9>
-			move.l		DSItemHit(a6), a0		; get VAR address of user’s item		<SM16> CSS
+			move.l		DSItemHit(a6), a0		; get VAR address of user's item		<SM16> CSS
 			move.w		d3, (a0)				; Save item number hit					<SM16> CSS
 
 ; end roll-in DialogSelectFixes patch																			<9>
@@ -1162,7 +1162,7 @@ NotMine
 ;		This should be called after NewDialog or GetNewDialog has created a
 ;		dialog and brought it to the top.  It will ignore all non-dialog
 ;		events and wait for a dialog event that chooses a valid item.  This is
-;		used by the alert stuff above and by any user’s who desire modal dialogs.
+;		used by the alert stuff above and by any user's who desire modal dialogs.
 ;
 ;		The filter proc is defined as:
 ;
@@ -1220,7 +1220,7 @@ ModalDialog
 ELoop
 			_SystemTask 						; Allow desk ornaments some time
 
-; flash cursor if there’s an active edit field                                          <EHB 1/24/85>
+; flash cursor if there's an active edit field                                          <EHB 1/24/85>
 			SUBQ		#4,SP
 			MOVE.L		SP,-(SP)
 			_GetPort
@@ -1230,7 +1230,7 @@ ELoop
 			_SetPort
 			MOVE.L		(SP)+,A0				; (we know there is one)				<EHB 1/24/85>
 			TST.W		EditField(A0)			; is there an edit field?				<EHB 1/24/85>
-			BMI.S		@1						; no, don’t blink cursor                <EHB 1/24/85>
+			BMI.S		@1						; no, don't blink cursor                <EHB 1/24/85>
 			MOVE		EditField(A0),D0
 			BSR			SetUpTE
 			MOVE.L		TEHandle(A0),-(SP)		; else push handle to TE record 		<EHB 1/24/85>
@@ -1239,7 +1239,7 @@ ELoop
 @1
 			_SetPort
 			SUBQ		#6, SP					; Save space for boolean result
-			MOVE.W		#$017F, -(SP)			; Don’t go for disk inserted events     <EHB 1/24/85>
+			MOVE.W		#$017F, -(SP)			; Don't go for disk inserted events     <EHB 1/24/85>
 			PEA 		theEvent(A6)			; Push pointer to event record
 			_GetNextEvent						; Get the next event. ignore result
 
@@ -1353,7 +1353,7 @@ UpdtDialog
 ; Utility EndInWind
 ;
 ; Restore port, handle other terminating stuff. (nothing currently).
-; Since this is called just before exiting, it’s ok to kill D0/A0.		<C169>
+; Since this is called just before exiting, it's ok to kill D0/A0.		<C169>
 EndInWind
 			MOVE.L		oldPort(A6), -(SP)		; Restore port
 			_SetPort
@@ -1386,8 +1386,8 @@ CloseDialog
 			Move.L	A0,-(SP)			; save TEHandle (will be used by TEDispose!)		<1.2>
 			Clr.L	D0					;													<1.2>
 			_NewHandle					;													<1.2>
-			Move.L	A0,D0				; Don’t care about result (if we can’t…				<1.2>
-			Move.L	(SP),A0				; …allocate 0 bytes, we’re in beeg trouble anyway)	<1.2>
+			Move.L	A0,D0				; Don't care about result (if we can't…				<1.2>
+			Move.L	(SP),A0				; …allocate 0 bytes, we're in beeg trouble anyway)	<1.2>
 			Move.L	(A0),A0				; Dereference TEHandle								<1.2>
 			Move.L	D0,teTextH(A0)		; Stuff fake text handle							<1.2>
 			_TEDispose					; (TEHandle is still on stack!)						<1.2>
@@ -1410,7 +1410,7 @@ DCExit
 Begin2InWind
 			MOVE.L		Items(A4), A3			; Get items in A3
 			TST.L		(A3)					; has it been purged?
-			BNE.S		@1						; => no, don’t load it
+			BNE.S		@1						; => no, don't load it
 			MOVE.L		A3, -(SP)				; Otherwise push the handle
 			_LoadResource						; Load in the dialog item list			<EHB 26-Apr-85>
 @1
@@ -1445,7 +1445,7 @@ BeginInWind
 GetEditField
 
 			MOVE.W		EditField(A4), D3		; Get edit field
-			BMI.S		FindOne 				; If there isn’t one yet, find one.
+			BMI.S		FindOne 				; If there isn't one yet, find one.
 SRLoop
 			BSR 		GetDLItem				; Get the item
 			BRA.S		GotField				; Set the variables now
@@ -1476,7 +1476,7 @@ DisposDialog
 			MOVE.L		10(SP),-(SP)			; window for GetAuxWin
 			PEA			6(SP)					; handle for GetAuxWin
 			_GetAuxWin
-			ADDQ		#2,SP					; don’t care if it is the default
+			ADDQ		#2,SP					; don't care if it is the default
 			MOVE.L		(SP)+,A0				; get the aux handle
 			MOVE.L		(A0),A0					; dereference
 			MOVE.L		dialogCItem(A0),D0		; use the reserved field for ditl
@@ -1537,8 +1537,8 @@ getIctb
 ;
 ; Procedure CouldDialog(dialogID:  Integer);
 ;
-; This procedure loads the dialog item list into memory (if it isn’t already) and
-; locks it.  This is useful for when the application isn’t sure that the resource
+; This procedure loads the dialog item list into memory (if it isn't already) and
+; locks it.  This is useful for when the application isn't sure that the resource
 ; file is accessable, such as during a diskette copy.
 ;
 ; note: this call is obsolete.
@@ -1550,8 +1550,8 @@ CouldDialog
 ;
 ; Procedure CouldAlert(alertID:  Integer);
 ;
-; This procedure loads the alert item list into memory (if it isn’t already) and
-; locks it.  This is useful for when the application isn’t sure that the resource
+; This procedure loads the alert item list into memory (if it isn't already) and
+; locks it.  This is useful for when the application isn't sure that the resource
 ; file is accessable, such as during a diskette copy.
 ;
 ; note: this call is obsolete.
@@ -1606,11 +1606,11 @@ GetADHndl
 
 ; begin roll-in patchGetResource patch														<9>
 ;
-; I basically just copied and pasted this code here, changing some A6 offsets now that we’re
+; I basically just copied and pasted this code here, changing some A6 offsets now that we're
 ; not calling through as a patch to GetResource.  This is kind of a stupid way to
 ; do this, we should either share code with the Window Mgr like the patch does or
 ; make a more intelligent attempt at rolling in the patch. I deleted the 'WIND'
-; specific code at least, since we’ll only get 'DLOG' and 'ALRT' resources here.
+; specific code at least, since we'll only get 'DLOG' and 'ALRT' resources here.
 ;
 ; The old code was just:
 ;
@@ -1770,7 +1770,7 @@ ErrorSound
 ;					VAR item:		Handle; 					12(A6)
 ;					VAR box:		Rect);						 8(A6)
 ;
-; This procedure returns the item in the list.	If the item doesn’t exist, returns NIL
+; This procedure returns the item in the list.	If the item doesn't exist, returns NIL
 ; handle.
 ;
 ; Stack offsets to parameters
@@ -1785,12 +1785,12 @@ GetDItem
 			MOVE.W		20(A6), D3				; Get item index.
 			SUBQ.W		#1, D3					; need it zero-based
 			BSR 		GetDLItem				; point to the item.
-			BEQ.S		NoItm1					; If it can’t be found, just return.
+			BEQ.S		NoItm1					; If it can't be found, just return.
 
-; don’t allow a rect to be stored into location 0 (bigger than 4 bytes)
+; don't allow a rect to be stored into location 0 (bigger than 4 bytes)
 
 			MOVE.L		8(A6), D0				; test Destination rect
-			BEQ.S		@0						; => NIL, don’t pass rect
+			BEQ.S		@0						; => NIL, don't pass rect
 			LEA 		ItmRect(A2), A0 		; Rectangle source
 			MOVE.L		D0,A1					; get Var parameter
 			MOVE.L		(A0)+,(A1)+ 			; Copy rect in
@@ -1801,11 +1801,11 @@ GetDItem
 			MOVE.B		itmType(A2), D0 		; get kind parameter
 			MOVE.W		D0, (A0)				; Save kind in VAR
 @1
-			MOVE.L		itmHndl(A2),D5			; get the item’s handle
+			MOVE.L		itmHndl(A2),D5			; get the item's handle
 ;NoItm1 																			<EHB 3-Nov-85>
 			MOVE.L		12(A6),A0				; point to VAR item
 			MOVE.L		D5,(A0) 				; and return D5 (handle or NIL)
-NoItm1											; Don’t return NIL handle           <EHB 3-Nov-85>
+NoItm1											; Don't return NIL handle           <EHB 3-Nov-85>
 			BSR			EndInWind				; Restore port
 			MOVEQ		#18, D0 				; Parms to pop
 			BRA 		StdExit					; standard exit
@@ -1909,7 +1909,7 @@ WILoop
 
 notEditing
 			TST.B		wVisible(A4)			; is the window visible
-			BEQ.S		ExitWnd 				; => no, don’t draw
+			BEQ.S		ExitWnd 				; => no, don't draw
 			PEA 		CurRect(A6) 			; Push the rectangle...
 			MOVE.L		(SP), -(SP) 			; ...
 			_EraseRect							; and erase the destination rectangle.
@@ -1958,7 +1958,7 @@ SelIText
 
 
 ; -----------
-; Utility GetRect -- Gets the item’s enclosing rect (including space for box around editText
+; Utility GetRect -- Gets the item's enclosing rect (including space for box around editText
 ; items and boldness around default button) and return it on the stack.  Item is in D3
 
 GetRect
@@ -1988,7 +1988,7 @@ GetRect
 ;					   itemNo: INTEGER;)		 8
 ;
 ; Hide the specified item.	An item is hidden if itmRect.left >= $4000.
-; If it is already hidden, then don’t hide it again.
+; If it is already hidden, then don't hide it again.
 
 ; NOTE: Entry code could be easily shared between Hide and Show
 
@@ -2014,7 +2014,7 @@ HIExit										; fall through if 01xx, already hidden
 HideIt
 			BSR.S	GetRect 				; get our rect onto the stack
 
-; if it’s an editText item, and it’s active, then deactivate it before we move the rect
+; if it's an editText item, and it's active, then deactivate it before we move the rect
 
 			CMP.W	EditField(A4),D3		; are we the active field??
 			BNE.S	NotEText				; => nope
@@ -2024,16 +2024,16 @@ NotEText
 			MOVE.L	SP,-(SP)				; point to rect
 			_EraseRect						; and forcibly hide the item
 
-; now move the item’s rect to never-never land (>#$2000)
+; now move the item's rect to never-never land (>#$2000)
 
 			ADD.W	#$4000,itmRect+left(A2) ; and then move its rect
 			ADD.W	#$4000,itmRect+right(A2)
 
-; now that the item has been moved, get an edit field if there isn’t one.
+; now that the item has been moved, get an edit field if there isn't one.
 ; test to see if the item is a control, return NE if it is.
 
 			BSR.S	ShowHideCmn 			; use common code
-			BEQ.S	InvalExit				; => the item isn’t a control
+			BEQ.S	InvalExit				; => the item isn't a control
 
 			MOVE.L	ItmHndl(A2),-(SP)		; push control handle
 			MOVE.L	ItmRect(A2),-(SP)		; and topLeft of rect
@@ -2050,7 +2050,7 @@ GoHIExit
 ;					   itemNo: INTEGER;)		 8
 ;
 ; Show the specified item.	An item is hidden if itmRect.Left >= $2000
-; If the item is not hidden, then don’t show it again.
+; If the item is not hidden, then don't show it again.
 
 ShowDItem
 			BSR 	StdEntry				; do standard entry
@@ -2071,11 +2071,11 @@ ShowIt
 			SUB.W	#$4000,itmRect+right(A2)
 			BSR		GetRect 				; get current rect onto stack
 
-; now that the item has been moved, get an edit field if there isn’t one
+; now that the item has been moved, get an edit field if there isn't one
 ; test to see if the item is a control, return NE if it is
 
 			BSR.S	ShowHideCmn 			; use common code
-			BEQ.S	@1						; => nope, it’s not a control
+			BEQ.S	@1						; => nope, it's not a control
 
 ; make the control invisible before moving to avoid drawing it (and letting the
 ; update draw it again).  Need to do inval to support bolded buttons.
@@ -2102,13 +2102,13 @@ ShowHideCmn
 
 ; If there is not an active edit field, then get a visible one.  Activate it
 ; with the cursor at the beginning.  Note: this destroys D3, our item, but we
-; don’t need it anymore.
+; don't need it anymore.
 
 			TST.W	EditField(A4)			; is there an active field?
-			BPL.S	@1						; => yes, don’t change it
+			BPL.S	@1						; => yes, don't change it
 			MOVE.L	A2,-(SP)				; save item pointer
 			BSR 	GetEditField			; get an edit field into D3
-			BEQ.S	@0						; => didn’t find one
+			BEQ.S	@0						; => didn't find one
 			MOVEQ	#0,D2					; set SelStart and SelEnd to 0
 			BSR 	ChangeField 			; and make it active
 @0
@@ -2139,7 +2139,7 @@ FindNxt
 
 			SUBQ	#2,SP					; room for boolean result
 			MOVE.L	8(A6),-(SP) 			; push point
-			PEA 	curRect(A6) 			; and item’s rect
+			PEA 	curRect(A6) 			; and item's rect
 			_PtInRect						; is it in the rect?
 			TST.B	(SP)+					; get result
 			BEQ.S	FindNxt 				; => not in this rect, try next one
@@ -2239,7 +2239,7 @@ OKInit
 		BMI.S	IIconItem				; (bIconItem = 5)
 		BCS.S	IPicItem				; (bPicItem=6)
 
-		RTS 							; If none of these, it’s a user field
+		RTS 							; If none of these, it's a user field
 
 ; Initialize a text item, either static or editable
 ITextItem
@@ -2356,7 +2356,7 @@ UpdateItem
 DrawItem
 		BSR		GetHT					; Get handle and type in D0 			<EHB 31-Oct-85>
 		AND.B	#$7F,D0 				; mask off enable/disable bit			<EHB 31-Oct-85>
-		BEQ.S	DUserField				; => user item, don’t do vis check      <EHB 31-Oct-85>
+		BEQ.S	DUserField				; => user item, don't do vis check      <EHB 31-Oct-85>
 
 		BSR 	IsVisThing				; is item visible?
 		BEQ.S	NoUFDraw				; => no, use handy RTS
@@ -2378,7 +2378,7 @@ DUserField
 		BSR		SavePort				; save the colors and the text
 										; If none of above, draw a user field.
 		MOVE.L	ItmHndl(A2), D0 		; Get proc ptr
-		BEQ.S	NoUFDraw				; If NIL, don’t do anything
+		BEQ.S	NoUFDraw				; If NIL, don't do anything
 		MOVE.L	A4, -(SP)				; Push my window
 		MOVE.W	D3, -(SP)				; and item
 		ADDQ.W	#1, (SP)				; +1 for ones based
@@ -2437,7 +2437,7 @@ DPicItem
 		_DrawPicture					; Draw it
 										; watch sleazy return here...
 
-; don’t need to draw controls, we did a DrawControls
+; don't need to draw controls, we did a DrawControls
 DCtrlItem
 		RTS 							; so just return
 
@@ -2488,7 +2488,7 @@ DoStatic
 		MOVE.L	A0,A2					; save handle in A2
 
 		TST.B	D6						; is it an edit text item?
-		BEQ.S	@skipParam				; if so, don’t substitute carets
+		BEQ.S	@skipParam				; if so, don't substitute carets
 
 ; begin roll-in FixDoStaticSub patch														<9>
 
@@ -2568,7 +2568,7 @@ RTextItem
 ; Remove (dispose) a control item--button/check/radio button/resource control.
 RCtrlItem
 		MOVE.L	WControlList(A4),D0 	; check window control list - if nill we have already disposed of controls. <SM22> CSS
-		BEQ.S	ClrItmHndl				; if NIL, we’re done, but zero the control item in the DITL just to be safe. <SM22> CSS
+		BEQ.S	ClrItmHndl				; if NIL, we're done, but zero the control item in the DITL just to be safe. <SM22> CSS
 		MOVE.L	A0, -(SP)				; Push the control handle
 		_DisposControl					; Get rid of it.
 		BRA.S	ClrItmHndl				; Clear the item handle on the way out.
@@ -2717,12 +2717,12 @@ SkipLp
 
 StartField
 		TST.W	D5						; first time through?
-		BMI.S	NoItemHit				; => no, can’t find a field
+		BMI.S	NoItemHit				; => no, can't find a field
 		MOVEQ	#-1, D5 				; else flag 2nd time through
 		MOVEQ	#-1, D3 				; Start item loop again
 		TST.W	EditField(A4)			; Was there a field selected?
 		BPL.S	SkipLp					; If so, go ahead and wrap around
-		BRA.S	NoItemHit				; otherwise can’t find a field.
+		BRA.S	NoItemHit				; otherwise can't find a field.
 
 DBMouse
 		MOVE.L	eventPos(A6), LocalPoint(A6)	   ; save mouse position	<19feb86> BBM
@@ -2749,7 +2749,7 @@ DBCLoop
 		BTST	#bCtrlItem, ItmType(A2)  ; is it a control item?
 		BEQ.S	NotControl				; If not, check below
 
-; It’s a click in a control item
+; It's a click in a control item
 		SUBQ	#2, SP					; Save space for findControl result
 		MOVE.L	localPoint(A6), -(SP)	; Push local point
 		MOVE.L	A4, -(SP)				; Push my window
@@ -2762,7 +2762,7 @@ DBCLoop
 		SUBQ	#2, SP					; Save space for integer result
 		MOVE.L	whichCtrl(A6), -(SP)	; Push my control
 		MOVE.L	LocalPoint(A6), -(SP)	; Push the point
-		MOVE.L	MinusOne, -(SP) 		; use control’s own actionProc, if possible
+		MOVE.L	MinusOne, -(SP) 		; use control's own actionProc, if possible
 		_TrackControl					; Track it
 		TST.W	(SP)+					; Test result
 		BEQ 	NoItemHit 				; if not up in the control, ignore it
@@ -2777,7 +2777,7 @@ NotControl
 		BEQ.S	ItemHit 				; If not, simply return
 
 		CMP.W	EditField(A4), D3		; Is this = current edit field
-		BEQ.S	TstContinue 			; then don’t skip to new one
+		BEQ.S	TstContinue 			; then don't skip to new one
 
 ; Select a new field with D3/A2 pointing to "new" field to open for edits
 
@@ -2799,9 +2799,9 @@ TstContinue
 ; An item was hit, if disabled ignore that fact, though
 ItemHit
 		BTST	#bItemDisable, ItmType(A2); is it disabled?
-		BNE 	NoItemHit 				; If not, escape and don’t look back
+		BNE 	NoItemHit 				; If not, escape and don't look back
 
-		ADDQ.W	#1, D3					; return one’s based index
+		ADDQ.W	#1, D3					; return one's based index
 		RTS 							; D3=index of control pushed
 
 
@@ -3097,7 +3097,7 @@ restoreCommon
 ;----------------------------
 ; Utility IsVisItem - returns NE if the item is visible
 ; Utility IsVisThing - returns NE if the item + 4 extra pixels on each side is
-; visible, just in case it’s editText or default button.
+; visible, just in case it's editText or default button.
 ;
 ; A4 has the window pointer
 ; A2 has the item list pointer
@@ -3118,9 +3118,9 @@ IsVis
 			MOVE.L		D0,-(SP)				; push offset to make rect bigger
 			_InsetRect
 			CLR.W		-(SP)					; room for boolean result
-			PEA 		2(SP)					; point to the item’s rect
+			PEA 		2(SP)					; point to the item's rect
 			PEA 		portRect(A4)			; and the rect to compare against
-			PEA 		10(SP)					; put result in the item’s rect
+			PEA 		10(SP)					; put result in the item's rect
 			_SectRect							; do they intersect?
 			MOVE.B		(SP)+,D0				; test result (NE if intersect)
 			ADD.W		#8,SP					; strip off rect
@@ -3184,7 +3184,7 @@ StrToHandle
 ; the next item in the itemList.  Copy the item rectangle into CurRect.
 ;
 ;		  D3=Item index
-;		  D7=previous item’s offset (if NextDLItem)
+;		  D7=previous item's offset (if NextDLItem)
 ;		  A3=dialogList handle
 ;
 ; Return   A2=item pointer
@@ -3224,7 +3224,7 @@ GDLError
 			SUB.L		A2,A2					; 0 pointer for error
 			BRA.S		XDLE					; test and return
 GDLLoop
-			MOVE.B		ItmData(A2,D7), D2		; get length of item’s string
+			MOVE.B		ItmData(A2,D7), D2		; get length of item's string
 			ADD.W		D2, D7					; and add it in (fixes 241 bug too)
 			ADD.W		#15, D7 				; skip to next--14 for rect, hndl, type, len bytes
 												; +1 to round it up

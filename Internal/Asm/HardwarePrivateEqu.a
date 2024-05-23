@@ -82,12 +82,12 @@
 ;									VIA 1 list. <P11> 03/04/92 jmp Updated the comments and changed
 ;									the names of some of the Civic-related equates. <P10> 02/28/92
 ;									jmp (ejb) Turned off the DSP frame-interrupt enable bit so that
-;									DSP driver doesn’t suffer frame overrun when it trys to boot the
+;									DSP driver doesn't suffer frame overrun when it trys to boot the
 ;									DSP. <P9> 02/20/92 jmp (JC,H14) Define PatchFlags in unused by
 ;									of ROM header ($0014). Define PatchBits based on available
 ;									features in BBSStartup. Include support for Horror based and
 ;									Pandora (Cyclone) based ROMs. <P8> 2/19/92 chp (jmp,H13) Put a
-;									“hasSonora1” conditional around the Sonora video control
+;									'hasSonora1' conditional around the Sonora video control
 ;									register base address to reflect impending hardware changes to
 ;									Sonora. <P7> 02/07/92 jmp (HJR,H12) Added new Niagra Equates.
 ;									(SWC,H11) One more go-round on MSC configuration: RAM bank 1
@@ -157,14 +157,14 @@
 ;
 ;	7.0 Change History:
 ;
-;		<32>	 10/1/91	JSM		Don’t use eclipseDebug.
-;		<31>	 8/30/91	DTY		Complicate matters so onMac32 stuff doesn’t get defined for
-;									onMac, onMacPP, or onMacHc. (Since these aren’t defined in
+;		<32>	 10/1/91	JSM		Don't use eclipseDebug.
+;		<31>	 8/30/91	DTY		Complicate matters so onMac32 stuff doesn't get defined for
+;									onMac, onMacPP, or onMacHc. (Since these aren't defined in
 ;									BBSStartup anymore, this is necessary.)
 ;		<30>	 8/22/91	JSM		Clean up header.
 ;		<29>	 7/24/91	MH		Added conditional wrapper(s) to prevent duplication of public
 ;									interface declarations: TimeSCSIDB
-;		<28>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<28>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<27>	11/26/90	gbm		(and bbm) On 7.0 (and other places eventually) HiIntMask will be
 ;									$0700 instead of $0300 all the time, not just when on a
@@ -205,16 +205,13 @@
 ;		 <4>	 1/30/90	BG		Added Eclipse-specific hardware constant definitions.
 ;		 <3>	 1/18/90	SWC		Updating FMCInit and FMCRPUInit with the final values.
 ;		 <2>	 1/12/90	CCH		Added missing ENDIF.
-;		 <1>	 1/11/90	CCH		Moved in private equates from “HardwareEqu.a”.
+;		 <1>	 1/11/90	CCH		Moved in private equates from 'HardwareEqu.a'.
 ;
 ;	NOTE:
 ;
 ;		For change history versions not mentioned in the above -Change History-, refer
 ;		to <Sources>:Interfaces:AIncludes:HardwareEqu.a.
 ;
-
-	IF &TYPE('__INCLUDINGHARDWAREPRIVATEEQU__') = 'UNDEFINED' THEN
-__INCLUDINGHARDWAREPRIVATEEQU__	SET	1
 
 
 
@@ -554,33 +551,26 @@ iopBypassIntReq	equ			6						; peripheral chip interrupt request in bypass mode
 iopSCCWrReq		equ			7						; 0 -> SCC REQ active, 1 -> inactive
 
 ;	commands bytes to write to the iopStatCtl register
-setIopIncEnable	equ			(1<<iopIncEnable)|\		; set increment enable
-							(1<<iopRun)				; leave iop running
+setIopIncEnable	equ			(1<<iopIncEnable)|(1<<iopRun)		; set increment enable
+											; leave iop running
 
-clrIopIncEnable	equ			(0<<iopIncEnable)|\		; reset increment enable
-							(1<<iopRun)				; leave iop running
+clrIopIncEnable	equ			(0<<iopIncEnable)|(1<<iopRun)		; reset increment enable
+											; leave iop running
 
-clrIopInt0		equ			(1<<iopInt0Active)|\	; clear interrupt 0 active
-							(1<<iopRun)|\			; leave iop running
-							(1<<iopIncEnable)		; leave increment enabled
+clrIopInt0		equ			(1<<iopInt0Active)|(1<<iopRun)|(1<<iopIncEnable)	; clear interrupt 0 active
+							
 
-clrIopInt1		equ			(1<<iopInt1Active)|\	; clear interrupt 1 active
-							(1<<iopRun)|\			; leave iop running
-							(1<<iopIncEnable)		; leave increment enabled
+clrIopInt1		equ			(1<<iopInt1Active)|(1<<iopRun)|(1<<iopIncEnable)	; clear interrupt 1 active
+										; leave iop running
+									; leave increment enabled
 
-setIopGenInt	equ			(1<<iopGenInterrupt)|\	; interrupt the IOP
-							(1<<iopRun)|\			; leave iop running
-							(1<<iopIncEnable)		; leave increment enabled
+setIopGenInt	equ			(1<<iopGenInterrupt)|(1<<iopRun)|(1<<iopIncEnable)	; interrupt the IOP
+										; leave iop running
+									; leave increment enabled
 
-resetIopRun		equ			(0<<iopRun)|\			; stop iop from running
-							(1<<iopInt0Active)|\	; clear interrupt 0 active
-							(1<<iopInt1Active)|\	; clear interrupt 1 active
-							(1<<iopIncEnable)		; set increment enable
+resetIopRun		equ			(0<<iopRun)|(1<<iopInt0Active)|(1<<iopInt1Active)|(1<<iopIncEnable)		; set increment enable
 
-setIopRun		equ			(1<<iopRun)|\			; start iop running
-							(1<<iopInt0Active)|\	; clear interrupt 0 active
-							(1<<iopInt1Active)|\	; clear interrupt 1 active
-							(1<<iopIncEnable)		; set increment enable
+setIopRun		equ			(1<<iopRun)|\(1<<iopInt0Active)|(1<<iopInt1Active)|(1<<iopIncEnable)		; set increment enable
 
 
 
@@ -1202,7 +1192,7 @@ Misc_ParmSize		Equ			$4				; Just for consistency with other DAFB parms.
 ; GSC register definitions (offsets from VDACAddr in ProductInfo) ($50F2 0000)					<H5> jmp
 ;----------
 GSCDeviceID			Equ		$00						; Device revision register; read only.
-GSCPanelID			Equ		$01						; “Senseline” read/write register.
+GSCPanelID			Equ		$01						; 'Senseline' read/write register.
 GSCPanelControl		Equ		$02						; Switches r/w sense of PanelID reg.
 GSCPanelSetup		Equ		$03						; Panel intialization register.
 GSCGrayScale		Equ		$04						; The depth-switching register.
@@ -1213,7 +1203,7 @@ GSCRefreshRate		Equ		$08						; Refresh cycles per scanline.
 GSCBlankShade		Equ		$09						; Shade of gray for depth switches.
 GSCPanelSkew		Equ		$0A						; Who knows?
 
-GSCDiag0			Equ		$1D						; Undocumented “diagnostic” registers.
+GSCDiag0			Equ		$1D						; Undocumented 'diagnostic' registers.
 GSCDiag1			Equ		$1E
 GSCDiag2			Equ		$1F
 
@@ -1221,12 +1211,12 @@ GSCDiag2			Equ		$1F
 ; CSC register definitions (offsets from VDACAddr in ProductInfo) ($50F2 0000)					<H30> jmp
 ;----------
 CSCDeviceID			Equ		$00						; Device revision register; read only.
-CSCPanelID			Equ		$02						; “Senseline” register; read only.
+CSCPanelID			Equ		$02						; 'Senseline' register; read only.
 CSCPanelIDControl	Equ		$04						; Extended senseline control.
 CSCPanelType		Equ		$06						; Controls mono/color, size, etc….
 CSCPanelSetup		Equ		$08						; Controls polarity, power, etc….
 CSCDataOutputForm	Equ		$0A						; Controls datapath output type.
-CSCFRCControl		Equ		$0C						; “DAC” control from CLUT for panel.
+CSCFRCControl		Equ		$0C						; 'DAC' control from CLUT for panel.
 CSCPolyMAdj			Equ		$0E						; M adjustment for FRC.
 CSCPolyNAdj			Equ		$10						; N adjustment for FRC.
 CSCDisplayDataForm	Equ		$12						; 1,2,4,8,16 bpp.
@@ -1248,7 +1238,7 @@ CSCFrstReg			Equ		CSCPanelType			; First CSC register we need to save/restore.
 CSCLastReg			Equ		CSCFLMControl+2			; Last  CSC register we need to save/restore.
 CSCNumRegs			Equ		((CSCLastReg-CSCFrstReg)/2) ; Total number of registers to save/restore.
 
-CSCGTweak			Equ		$3C						; For “tweaking” the gray-only panels.
+CSCGTweak			Equ		$3C						; For 'tweaking' the gray-only panels.
 
 CSCAddrRegW			Equ		$40						; Sets the index of the NEXT Palette Write.
 CSCAddrRegR			Equ		$46						; Sets the index of the NEXT Palette Read.
@@ -1522,7 +1512,7 @@ Civic_VBLInt	Equ			$000					; Read-only VBL flag register
 Civic_VBLEnb	Equ			$110					; Enables VBL interrupt.
 Civic_VBLClr	Equ			$120					; Clear VBL interrupt.
 
-Civic_Enable	Equ			$004					; Enables Civic’s timing generator (Casio).
+Civic_Enable	Equ			$004					; Enables Civic's timing generator (Casio).
 Civic_Reset		Equ			$10C					; Resets Casio.
 
 Civic_VDCInt	Equ			$008					; Read-only VDC flag register.

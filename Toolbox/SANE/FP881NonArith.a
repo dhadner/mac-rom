@@ -1,4 +1,4 @@
-;EASE$$$ READ ONLY COPY of file ÒFP881nonarith.aÓ
+;EASE$$$ READ ONLY COPY of file 'FP881nonarith.a'
 ; 1.2	GGD 07/14/1989  Fixed CopySign to copy Sign(dst) -> Sign(src), even though it seems
 ;	backwards, that is how it is documented, and how the Mac Plus/SE work.
 ; 1.1	CCH 11/11/1988 Fixed Header.

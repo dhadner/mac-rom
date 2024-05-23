@@ -122,8 +122,8 @@
 ;									HOpenResFile, HCreateResFile and ResourceDispatch traps.
 ;		<18>	  1/7/92	PN		Roll in DeferUserFn and AliasMgr into ROM
 ;		<17>	12/30/91	RB		Added PowerDispatch trap.
-;		<16>	 10/1/91	JSM		Don’t use hasADB conditional, all future ROMs will support ADB.
-;		<15>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		<16>	 10/1/91	JSM		Don't use hasADB conditional, all future ROMs will support ADB.
+;		<15>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		<14>	 8/29/91	JSM		Cleanup header.
 ;		<13>	 6/12/91	LN		removed #include 'HardwareEqu.a'
@@ -137,14 +137,14 @@
 ;		<10>	 9/22/90	dba		Add __ to names of the Time Mgr. traps to avoid conflicting with
 ;									glue in Interface.o.
 ;		 <9>	 7/25/90	GGD		Added the _MicroSeconds OS trap $A193.
-;		 <8>	 7/23/90	dba		change name of GetItemStyle so it doesn’t conflict with glue
+;		 <8>	 7/23/90	dba		change name of GetItemStyle so it doesn't conflict with glue
 ;		 <7>	 7/17/90	dba		change names of GetHandleSize, BlockMove, and StripAddress, so
-;									they don’t conflict with glue
+;									they don't conflict with glue
 ;		 <6>	 3/29/90	MSH		Made PmgrOp and Sleep traps conditioned on features.
 ;		 <5>	 3/26/90	KON		Add OS trap A0A5 VisRgnChanged.
 ;		 <4>	  2/4/90	GA		Added EgretDispatch trap to table $A092
 ;		 <3>	  2/3/90	BAL		Added the CQD vector GetPMData.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <3.4>	 7/14/89	BAL		For Aurora: Added tons of new CQD vectors
 ;	   <3.3>	 6/30/89	BAL		Added QuickDraw temp memory vectors: NewTempHandle,NewTempBuffer
 ;	   <3.2>	 6/29/89	BBM		Added vectors for JRMgrStdEntry and JRMgrStdExit
@@ -252,7 +252,7 @@
 ;		new addresses.  Each table entry is either the value zero if it doesn't
 ;		exist, or the offset from ROMStart to the start of the routine.
 ;------------------------------------------------------------------------------
-; Note:	To find the unused traps, search for “unknown”.  “Unimplemented” means
+; Note:	To find the unused traps, search for 'unknown'.  'Unimplemented' means
 ;		that trap is not used on old machines, but is already used in new ones.
 ;------------------------------------------------------------------------------
 

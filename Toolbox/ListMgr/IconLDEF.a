@@ -188,7 +188,7 @@ DrawIcon	cmp.w		#lDrawMsg,lsMessage(a6)	; erase the cell if it is
 ; truncate text
 
 			move.w		d5,d4				; get cell width
-			sub.w		#2,d4				; don’t let text touch sides of cell
+			sub.w		#2,d4				; don't let text touch sides of cell
 			moveq		#0,d3				; clear d3
 			move.b		(a3),d3				; get length of string
 			add.b		#1,d3				; initial conditions
@@ -316,7 +316,7 @@ DrawTheText
 			bz.s		@1					; no
 		
 			move.w		textRect+left(a6),d0
-			add.w		#1,d0				; don’t touch left side of textRect
+			add.w		#1,d0				; don't touch left side of textRect
 			move.w		d0,-(sp)			; horiz
 			move.w		textRect+top(a6),d0
 			add.w		fontinfo+leading(a6),d0

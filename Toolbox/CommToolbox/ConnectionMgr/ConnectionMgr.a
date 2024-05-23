@@ -17,7 +17,7 @@
 ;									keep the build warningless.
 ;		<10>	 10/2/91	DTY		Conditionalise <7> out of CubeE.
 ;		 <9>	 6/26/91	BH		forgot to change import declarations of extension routines to
-;									include __Õs
+;									include __'s
 ;		 <8>	 6/26/91	BH		change extensions to use __ to distinguish from glue
 ;		 <7>	 6/18/91	BH		remove new calls for open/close
 ;		 <6>	 1/14/91	CP		;Removed CMConnectPrep and added CMListenPrep and CMOpenPrep.

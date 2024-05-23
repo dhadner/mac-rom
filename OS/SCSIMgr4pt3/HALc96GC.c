@@ -35,7 +35,7 @@ OSErr InitHW_GC (HALc96Globals *HALg)
 {
 	#pragma unused (HALg)
 
-	// Grand Central doesn’t require any particular channel hardware initialization.
+	// Grand Central doesn't require any particular channel hardware initialization.
 
 	/*
 	 *	It is assumed that HammerHead is previously programmed to allow the system

@@ -22,20 +22,20 @@
 ;		 <9>	 5/31/92	FM		Remove rom only version of PrintAction. It is in
 ;									ScriptMgrExtensions now. I left in the forROM conditionals that
 ;									cause the ScriptMgr to jump through vectors.
-;		 <8>	 4/29/92	JSM		Get rid of conditionals: Don’t use smgrSysVers, smgrUseStdExit
+;		 <8>	 4/29/92	JSM		Get rid of conditionals: Don't use smgrSysVers, smgrUseStdExit
 ;									and ScriptMgrKeyboardMenu are always true. Leave forROM
 ;									conditionals in for now until we fix the ROM build.
 ;		 <7>	12/10/91	PKE		#1017754: Script Mgr Print Action dispatcher should leave
 ;									ScriptRecord ptr in a0. For non-ROM builds, move PrintAction to
 ;									ptch 27 for all CPUs. Delete some obsolete conditionalized code.
-;		 <6>	12/15/90	PKE		(gbm) Move ‘itlk’ loading from KeyScript into SwapKybd. Fixes
+;		 <6>	12/15/90	PKE		(gbm) Move ‘itlk' loading from KeyScript into SwapKybd. Fixes
 ;									bugs with some European keyboards when using Keyboard menu, etc.
 ;		 <5>	12/14/90	PKE		(DC) Force SwapKybd to load 'KCHR' resources from System file.
-;		 <4>	 5/13/90	SMB		Just ‘rts’ if SwapIcon is called. No one should still be calling
+;		 <4>	 5/13/90	SMB		Just ‘rts' if SwapIcon is called. No one should still be calling
 ;									it in 7.0, but just in case.... (better safe than sorry..)
 ;		 <3>	 4/10/90	PKE		Use smgrSysVers, smgrROMVers, forRom, doScriptMgrUseKscn, and
 ;									doScriptMgrRstKCHRFix symbols instead of buildLevel. Deleted
-;									conditionalized def’n of forRom and SysVers. Fixed up header and
+;									conditionalized def'n of forRom and SysVers. Fixed up header and
 ;									tabs.
 ;		 <2>	 3/20/90	EMT		Removed unnecessary ROM85 references and oldMacTweek code.
 ;		 <1>	12/18/89	CCH		Adding for the first time into BBS. Changed include 'inc.sum.a'
@@ -70,7 +70,7 @@
 ;				10/10/88	ldc		use inc.sum.a for rom
 ;				 5/19/88	ldc		standardized exit via StdUnlink
 ;			** changes above for ROM or sys $700 **
-;				 2/22/88	med		Zap Ed’s keyboard if it is left around
+;				 2/22/88	med		Zap Ed's keyboard if it is left around
 ;				 8/21/87	med		Used smgrGenFlags (field) as offset, not verb.
 ;				 7/24/87	med		SwapKybd was not saving D4
 ;				  7/7/87	med		Cleaned up adb equate usage
@@ -361,7 +361,7 @@ ResetKCHR
 		move.l	pointer(a6),(a0)				; reset KCHR pointer. (20)			<2/22/88med>
 @1		dbra	d3,@0							; do the next ADB device.
 
-; zap Tecot’s keyboard first time through											<2/22/88med>
+; zap Tecot's keyboard first time through											<2/22/88med>
 
 		move.l	expandMem,a1				; globals
 		lea		emFirstKeyboard(a1),a1		; get location of byte

@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <5>	 3/13/91	JL		Checked in MPW version.  Restored TIOFlush.
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

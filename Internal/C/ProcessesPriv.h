@@ -14,8 +14,8 @@
 									allows you to bring a window to the front layer while forcing
 									all other windows in the front layer into the back layer.
 		<31>	 3/10/93	mgl		Add new calls for MultiLayer Support.
-		<30>	  3/9/93	DRF		Add some recent additions to _OSDispatch so people don’t have to
-									“roll their own” prototypes.
+		<30>	  3/9/93	DRF		Add some recent additions to _OSDispatch so people don't have to
+									'roll their own' prototypes.
 		<29>	 2/23/93	mgl		Added toFront parameter to StopCurrentProcess and ResumeProcess
 									to allow the debugger to control whether the incoming process
 									will be switched to the front.
@@ -24,9 +24,9 @@
 									so we don't need to define gestaltGraphicsVersion here.
 		<26>	12/19/92	mgl		Added StopCurrentProcess and ResumeProcess, as part of extended
 									debugger support in the Process Manager.
-		<25>	 3/30/92	DTY		#1025416,<DDG>: Define Gestalt selector for Skia. We’re putting
-									it here because there’s no GestaltPrivate.h, and Process Manager
-									is the only thing in the System that’s using this selector right
+		<25>	 3/30/92	DTY		#1025416,<DDG>: Define Gestalt selector for Skia. We're putting
+									it here because there's no GestaltPrivate.h, and Process Manager
+									is the only thing in the System that's using this selector right
 									now.
 		<24>	 3/25/92	DTY		#1024114,<pvh>: Add inline for PEntryFromProcessSerialNumber
 		<23>	 1/14/92	YK		Removed obsolete constant for the TSM.

@@ -58,10 +58,10 @@ resource 'ICON' (kAppleShareICONID, sysheap) {
 /* Various strings used by the alias manager. */
 resource 'STR#' (kAliasResID, sysHeap, purgeable) { {
 	"Sorry, your password is incorrect.  Please try again.";
-	"The user name Ò";
-	"Ó is not valid.";
-	"Connect to shared disk Ò";
-	"Ó as:";
+	"The user name '";
+	"' is not valid.";
+	"Connect to shared disk '";
+	"' as:";
 	"AFPServer";
 	"No User Authent";
 	"Unknown Name"

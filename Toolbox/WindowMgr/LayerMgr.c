@@ -39,13 +39,13 @@
 		<66>	 9/22/91	DTY		Change PsychoticFarmerAndLater to PsychoticFarmerOrLater.
 		<65>	 9/13/91	dba		Fix the bug where a window which is created with a nil
 									titleHandle gets an empty string for its handle, even though
-									layers don’t use the titleHandle field.
+									layers don't use the titleHandle field.
 		<64>	 9/12/91	DTY		This is the last time I listen to Greg. The title handle needs
 									to be checked because LayerRecords get hosed without it.
 		<63>	 8/30/91	DTY		Always create a title handle. (For PsychoticFarmerAndLater.)
 		<62>	 7/15/91	dba		get rid of MemErr
 		<61>	  4/3/91	dba		kill enjoyable part of the code
-		<60>	 3/26/91	dba		BAL: add a selector for VisRgnChanged so we don’t burn a whole
+		<60>	 3/26/91	dba		BAL: add a selector for VisRgnChanged so we don't burn a whole
 									trap
 		<59>	 3/14/91	dba		dty, #b6q8crash: check for nil titleHandle before dereferencing
 		<58>	  3/4/91	dba		gbm: put in SetWTitle workaround
@@ -54,7 +54,7 @@
 									HMInvalidateSavedBits for better performance.
 		<56>	 1/30/91	VL		dba, #Whiteboard7.0b4q6HowDoYouLikeThisBugNumberChris?: Use a
 									flag for checking whether ancestor regions have already been
-									recalc’ed.
+									recalc'ed.
 		<55>	 1/17/91	VL		(dba) Changed PaintOne to PaintOneLite and PaintBehind to
 									PaintBehindLite. These routines do not recalculate ancestor
 									rgns.
@@ -77,7 +77,7 @@
 									what MultiFinder did).
 		<49>	 11/1/90	csd		& dba; Add CalcDeskPortVisRgn and call it after creating a new
 									window.
-		<48>	10/30/90	dba		special case for Finder; don’t calculate visRgns if the visRgn
+		<48>	10/30/90	dba		special case for Finder; don't calculate visRgns if the visRgn
 									is shared with the DeskPort
 		<47>	10/24/90	DC		VL - Fix a bug in my inline divide (ShortDiv) that was
 									introduced in the conversion to C3.2
@@ -86,7 +86,7 @@
 		<46>	 10/2/90	JAL		Changing #pragmas to 3.2 version.
 		<45>	 9/23/90	dba		Add an ActivatePalette in NewWindowCommon so that newly created
 									windows with default palettes will work properly. Maintain the
-									DeskPort’s visRgn when painting the desk so that the Finder can
+									DeskPort's visRgn when painting the desk so that the Finder can
 									use it and avoid extraneous region calculations. Also tighten
 									code and check it agains the 3.2 C compiler (optimize register
 									use for locals).
@@ -123,7 +123,7 @@
 		<32>	 7/11/90	EMT		Fixed BeginUpdate/EndUpdate reentrancy problem.
 		<31>	 7/10/90	dba		get rid of C warnings
 		<30>	  7/2/90	EMT		Miscellaneous size and performance improvements: Rewrite
-									__NewWindow, __NewCWindow and __DrawNew in 68000. Don’t Call
+									__NewWindow, __NewCWindow and __DrawNew in 68000. Don't Call
 									PaintOne or CalcVisBehind for invisible windows. Content region
 									of layers is now empty instead of "wide open".
 		<29>	 6/15/90	DC		Improved time complexity of stagger algorithm
@@ -132,7 +132,7 @@
 	   								NewWindowCommon caused by calling AutoPositionWindow on a window
 									in a half-made state.
 		<26>	 4/20/90	dba		make ClipAbove(root) work so that PaintOne(root) will work; note
-									that ClipAbove(root) doesn’t need to do anything at all
+									that ClipAbove(root) doesn't need to do anything at all
 		<25>	 4/18/90	DC		Change the Dialog centering constant from 3 to 5
 		<24>	  4/3/90	DC		Fixed MoveWindow bug in SetWindowState
 		<23>	  4/2/90	EMT		Made friends with Palette Manager.
@@ -161,10 +161,10 @@
 		 <2>	12/21/89	EMT		Put back change to CheckUpdate. CheckUpdateIn now checks the
 									layer it is passed as well as its children. Rewrote
 									FrontWindowIn to stay "in bounds".
-	   <2.3>	12/12/89	EMT		Back out change to CheckUpdate until MultiFinder’s ready for it.
+	   <2.3>	12/12/89	EMT		Back out change to CheckUpdate until MultiFinder's ready for it.
 	   <2.2>	12/11/89	EMT		Fixed bug in IsLayer when a "window" has no defProc. Added
 									CheckUpdateIn, FrontWindowIn and ActiveWindow. Changed
-									CheckUpdate to only look in application’s windows.
+									CheckUpdate to only look in application's windows.
 	   <2.1>	 12/7/89	JSM		Replace code accidentally deleted from __EachWindow.
 	   <2.0>	 12/6/89	DAM		Added UNTESTED window positioning code, compiles with
 									'hasWindowPositioning' defined.
@@ -175,7 +175,7 @@
 	   <1.6>	 6/27/89	EMT		Rewrite NewWindow, NewCWindow, NewLayer to use common code and
 									splice window into the list before making any window manager or
 									defproc calls. Swap AuxWinHead and AuxCtlHead with layers. Added
-									Chris Derossi’s centering code.
+									Chris Derossi's centering code.
 	   <1.5>	 6/12/89	EMT		Use CallWindowCalc in ROM. Blast PaintWhite in PaintBehind for
 									compatibility.
 	   <1.4>	  6/9/89	EMT		Enforce window hierarchy in CalcAncestorRgns.
@@ -445,13 +445,13 @@ void GetNewStructRect(Rect *newStruct, WindowPeek whichWindow, Rect *thePort)
 
 	Boolean		oldVisibility;
 
-	//	Save the current port and install the window’s (in case they’re not the
+	//	Save the current port and install the window's (in case they're not the
 	//	same (more than likely))
 
 	GetPort(&curPort);
 	SetPort((GrafPtr) whichWindow);
 
-	//	Save the current condition of the window’s GrafPort	because we’re going
+	//	Save the current condition of the window's GrafPort	because we're going
 	//	to doctor it up considerably to fool the WDEF into giving us its strucRgn.
 
 	oldVisibility = whichWindow->visible;
@@ -463,7 +463,7 @@ void GetNewStructRect(Rect *newStruct, WindowPeek whichWindow, Rect *thePort)
 	oldSize.h = aRect.right - aRect.left;		//	Get old size;
 	oldSize.v = aRect.bottom - aRect.top;
 
-	//	Move the window’s GrafPort to the new location. thePort is already global.
+	//	Move the window's GrafPort to the new location. thePort is already global.
 
 	MovePortTo(thePort->left, thePort->top);
 
@@ -507,7 +507,7 @@ typedef struct
 
 #define slopConstant 3		// amount of slack in deciding whether a window is in position
 
-//	Creates a rectangular around a point.  the area is used to check a window’s position
+//	Creates a rectangular around a point.  the area is used to check a window's position
 //	against the point, taking a few pixels of slack into account.
 
 void CreateCheckRect(Rect *checkRect, Point thePoint)
@@ -535,7 +535,7 @@ int	WindowAtPos(WindowPeek window, GetNextPrivateData *privateData)
 
 pascal OSErr FindFirst(WindowPeek window, LayerPeek /* parent */, GetNextPrivateData *privateData)
 {
-	//	if this is the window we’re trying to position, just ignore it.
+	//	if this is the window we're trying to position, just ignore it.
 
 	if (window == privateData->windowToAvoid)
 		return noErr;
@@ -562,7 +562,7 @@ pascal OSErr FindFirst(WindowPeek window, LayerPeek /* parent */, GetNextPrivate
 }
 
 //	NextPosToCheck moves windCont to the next stagger position in the sequence.  If
-//	the window dosen’t fit in any possible next step, NextPosToCheck returns false.
+//	the window dosen't fit in any possible next step, NextPosToCheck returns false.
 
 int	NextPosToCheck(Point *curStaggerPos, Rect *windCont, Rect *theScreen)
 {
@@ -571,13 +571,13 @@ int	NextPosToCheck(Point *curStaggerPos, Rect *windCont, Rect *theScreen)
 	if (TestContent(windCont, theScreen))
 		return true;
 
-	// if that doesn’t work, move down to the beginning of another row.
+	// if that doesn't work, move down to the beginning of another row.
 
 	curStaggerPos->h += staggerIncrement;
 	curStaggerPos->v += staggerIncrement;
 	OffsetRect(windCont, curStaggerPos->h - windCont->left, curStaggerPos->v - windCont->top);
 
-	// if that doesn’t work, we’ve occupied all possible locations and need to start over.
+	// if that doesn't work, we've occupied all possible locations and need to start over.
 
 	return TestContent(windCont, theScreen);
 }
@@ -608,7 +608,7 @@ Point GetNextStaggerPos(WindowPeek whichWindow,
 	OffsetRect(windCont, firstStaggerPos.h - windCont->left,
 		firstStaggerPos.v - windCont->top);
 
-	//	If it doesn’t fit in the first stagger position, it won’t fit any better anywhere
+	//	If it doesn't fit in the first stagger position, it won't fit any better anywhere
 	//	else.  Might as well place it the beginning.
 
 	if (!TestContent(windCont, theScreen))
@@ -618,7 +618,7 @@ Point GetNextStaggerPos(WindowPeek whichWindow,
 
 	privateData.backList = (WindowPeek **)NewHandleClear(blockSize);
 
-	//	if we’re real low on memory, we’re stuck with the first stagger position.
+	//	if we're real low on memory, we're stuck with the first stagger position.
 
 	if (MemError() != noErr)
 		goto out;
@@ -629,14 +629,14 @@ Point GetNextStaggerPos(WindowPeek whichWindow,
 	privateData.noOfWindows = 0;
 	privateData.windowToAvoid = whichWindow;
 
-	//	Create an area for testing the window’s position.
+	//	Create an area for testing the window's position.
 
 	CreateCheckRect(&(privateData.checkRect), TOPLEFT(*windCont));
 
 	//	Search all windows in the layer for one that occupies the first stagger position,
 	//	keeping a record of all the foreward windows you covered along the way.  If
 	//	EachWindow returns noErr, it means there is no window in the first location, so
-	//	we’re going to occupy that prime piece of real-estate.
+	//	we're going to occupy that prime piece of real-estate.
 
 	if (EachWindow(firstWindow, afterLastWindow, nil,
 					(WindowAction *)FindFirst, (void *)(&privateData)) == noErr)
@@ -645,7 +645,7 @@ Point GetNextStaggerPos(WindowPeek whichWindow,
 
 	//	Get the results of the search for the window in the first stagger position.
 	//	noOfWindows is the number of windows we walked over in trying to find
-	//	a window in the first stagger position (minus the one we’re trying to
+	//	a window in the first stagger position (minus the one we're trying to
 	//	position and the one in the first position).  backPtr points to the
 	//	rear-most member of this list, i.e. the window in front of the first window.
 
@@ -691,14 +691,14 @@ pascal void __PositionWindow(WindowPtr whichWindow,
 								HorizontalControlValues horizontalControl,
 								VerticalControlValues verticalControl)
 {
-	Rect	windStruct,			//	bounding box of the window’s structure region
-			windCont,			//	bounding box of the window’s content region
+	Rect	windStruct,			//	bounding box of the window's structure region
+			windCont,			//	bounding box of the window's content region
 			theRefRect;			//	adjusted reference rect.
 
 	Point	thePoint,			//	the position to move the structure region of the window
 			structOffset;		//	to offset of structure region from contentregion
 
-	//	get the boundary rect of the windows content region.  We don’t care about what
+	//	get the boundary rect of the windows content region.  We don't care about what
 	//	coordinate system its in.
 	windCont = whichWindow->portRect;
 
@@ -830,7 +830,7 @@ pascal void __GlobalPortRect(WindowPtr whichWindow, Rect *theRect)
 	BitMap* theMap;
 
 	if ((theMap = &whichWindow->portBits)->rowBytes < 0)
-		/* It’s a CGrafPort. */
+		/* It's a CGrafPort. */
 		theMap = *((BitMap**) theMap->baseAddr);
 
 	*theRect = whichWindow->portRect;
@@ -869,7 +869,7 @@ Boolean IsZoomed(WindowPtr window)
 
 //	GetWindowState returns a handle to data which records the current size of the window as
 //	a Rect in global coordinates.  If the window is zoomable and it is zoomed this information
-//	is stored and the size recorded is the window’s stored userState.
+//	is stored and the size recorded is the window's stored userState.
 
 pascal OSErr __GetWindowState(WindowPtr whichWindow, Handle windState, Size *infoSize)
 {
@@ -949,12 +949,12 @@ pascal OSErr __SetWindowState(WindowPtr whichWindow, Handle windState)
 
 	windStateRec = * (WindowStateInfoPtr) *windState;
 
-	// Check if version is one we don’t know about
+	// Check if version is one we don't know about
 
 	if (windStateRec.infoVersion != 1)
 		return badVersNo;
 
-	// if the saved info indicates a zoomed window and the window isn’t zoomable, its an error
+	// if the saved info indicates a zoomed window and the window isn't zoomable, its an error
 
 	if (windStateRec.zoomed && !((WindowPeek) whichWindow)->spareFlag)
 		return badWindowType;
@@ -967,7 +967,7 @@ pascal OSErr __SetWindowState(WindowPtr whichWindow, Handle windState)
 	{
 		RgnHandle rgn = NewRgn();	// create region for testing visibility on the screen.
 
-		//	if the window is draggable, we’re only testing the drag bar for a valid location
+		//	if the window is draggable, we're only testing the drag bar for a valid location
 
 		if (IsDraggable(whichWindow))
 			testRect.bottom = testRect.top + 20;	// assume a drag bar in the top 20 pixels of the structure region;
@@ -1019,7 +1019,7 @@ pascal Boolean __CheckWindow(WindowPtr whichWindow, CheckControlValues checkCont
 	RgnHandle theRgn;
 	Boolean rval;
 
-	//	Get the rectangle of the portion of the window we’re concerned about
+	//	Get the rectangle of the portion of the window we're concerned about
 
 	if (checkControl < ccDragBar)	// If the we are checking the structure or dragbar, …
 	{
@@ -1068,7 +1068,7 @@ __IsLayer(WindowPtr window)
 }
 
 
-/* Returns the window’s "type". */
+/* Returns the window's "type". */
 pascal short
 __WindowType(WindowPtr window)
 {
@@ -1122,7 +1122,7 @@ NewWindowCommon(register Ptr wStorage, register const Rect *boundsRect, const St
 		} else
 			InsertWindow((WindowPtr) wStorage, behind);
 
-		/* Get the WDEF.  If the one we’re looking for doesn’t exist, get id = 0. */
+		/* Get the WDEF.  If the one we're looking for doesn't exist, get id = 0. */
 		{
 			register short wdefID = theProc >> 4;
 			register Handle wdefHandle;
@@ -1360,7 +1360,7 @@ __GetSubWindows(LayerPtr layer)
  * Nil and -1 are valid for start and stop, nil meaning after the last window in parent, and
  * -1 meaning the first window in parent.    If stop is -1, the iteration "wraps", causing the
  * iteration to continue to the end of the hierarchy (useful for xxxBehind traps).  If parent is
- * nil, EachWindow will use start’s parent, or CurLayer if start is nil or -1.
+ * nil, EachWindow will use start's parent, or CurLayer if start is nil or -1.
  */
 pascal OSErr
 __EachWindow(WindowPeek start, WindowPeek stop, LayerPeek parent, WindowAction *action, void *privateData)
@@ -1391,18 +1391,18 @@ __EachWindow(WindowPeek start, WindowPeek stop, LayerPeek parent, WindowAction *
 
 	for (;;) {
 		while ((start == nil) && (parent != nil)) {
-			/* We’ve just finished searching a family with no luck.  Pop up a level.
-			 * The next child to be searched is Dad’s little sister.
+			/* We've just finished searching a family with no luck.  Pop up a level.
+			 * The next child to be searched is Dad's little sister.
 			 */
 			if ((WindowPeek) parent == stop)
-				/* We’re done. */
+				/* We're done. */
 				return noErr;
 			start = parent->nextWindow;
 			parent = parent->parent;
 		}
 
 		if ((start == stop) || (start == nil))
-			/* We’re done looking. */
+			/* We're done looking. */
 			return noErr;
 
 		{
@@ -1431,7 +1431,7 @@ __EachWindow(WindowPeek start, WindowPeek stop, LayerPeek parent, WindowAction *
 
 #if !hasLayerlessApps
 
-/* ParentSearch is an action procedure that finds a specific window’s parent.
+/* ParentSearch is an action procedure that finds a specific window's parent.
  * It always descends into sub-trees.
  */
 pascal OSErr
@@ -1480,7 +1480,7 @@ __GetRootLayer(void)
 	if ((layer = (LayerPtr) CurLayer) == nil)
 		return nil;
 
-	/* The root is the only layer that doesn’t have a parent. */
+	/* The root is the only layer that doesn't have a parent. */
 	while ((parent = (LayerPtr) ((LayerPeek) layer)->parent) != nil)
 		layer = parent;
 
@@ -1690,8 +1690,8 @@ CalcDeskPortVisRgn(void)
 	RgnHandle wMgrPortClipRgn = wMgrPort->clipRgn;
 
 	/* Recalculate the visible part of the desktop.
-	 * Note that we use ClipAbove, which works on the WMgrPort’s clipRgn directly.
-	 * Start by opening the region wide, and putting it in the WMgrPort’s clipRgn.
+	 * Note that we use ClipAbove, which works on the WMgrPort's clipRgn directly.
+	 * Start by opening the region wide, and putting it in the WMgrPort's clipRgn.
 	 */
 	CopyRgn(GrayRgn, deskPortVisRgn);
 	wMgrPort->clipRgn = deskPortVisRgn;
@@ -1701,7 +1701,7 @@ CalcDeskPortVisRgn(void)
 		ClipAbove(nil);
 		SetCurLayer((LayerPtr) saveLayer);
 	}
-	/* Finally, restore the WMgrPort’s clipRgn.. */
+	/* Finally, restore the WMgrPort's clipRgn.. */
 	wMgrPort->clipRgn = wMgrPortClipRgn;
 }
 #endif
@@ -1720,7 +1720,7 @@ PaintTheDesk(RgnHandle clobberedRgn)
 	CalcDeskPortVisRgn();
 	/* Set up clipping of the WMgrPort to intersection of what was clobbered and visible. */
 	SectRgn(clobberedRgn, deskPort->visRgn, wMgrPortClipRgn);
-	/* Accumulate visible clobbered areas into the DeskPort’s updateRgn. */
+	/* Accumulate visible clobbered areas into the DeskPort's updateRgn. */
 	{
 		register RgnHandle deskUpdate = ((WindowPeek) deskPort)->updateRgn;
 		UnionRgn(deskUpdate, wMgrPortClipRgn, deskUpdate);
@@ -1740,7 +1740,7 @@ typedef struct {
 	RgnHandle	clobberedRgn;
 } PaintInfoRec, *PaintInfoPtr;
 
-/* PaintAction is an action procedure that doesn’t find anything.
+/* PaintAction is an action procedure that doesn't find anything.
  * It paints the window, clipped to clobberedRgn.
  */
 pascal OSErr
@@ -1835,7 +1835,7 @@ __PaintOnePal(WindowPeek window, RgnHandle clobberedRgn)
 	short			savePaintWhite = PaintWhite;
 
 	if (window == nil) {
-		/* In this case, we’re painting everything. */
+		/* In this case, we're painting everything. */
 		PaintTheDesk(clobberedRgn);
 		window = (WindowPeek) GetRootLayer();
 	}
@@ -1856,7 +1856,7 @@ UpdatedVisRgn(WindowPeek window)
 	VisRgnChanged((WindowPtr) window);
 
 	if (window == WMgrUpdate) {
-		/* We’re changing the visRgn of a window inside BeginUpdate/EndUpdate.
+		/* We're changing the visRgn of a window inside BeginUpdate/EndUpdate.
 		 * Invalidate SaveVisRgn.
 		 */
 		WMgrUpdate = nil;
@@ -1866,7 +1866,7 @@ UpdatedVisRgn(WindowPeek window)
 
 #if !hasLayerlessApps
 
-/* EmptyVisAction is an action procedure that doesn’t find anything.  It sets the visRgn
+/* EmptyVisAction is an action procedure that doesn't find anything.  It sets the visRgn
  * of all its windows to be empty.  It skips the children of all layers whose visRgn is
  * already empty as an optimization.
  */
@@ -1884,14 +1884,14 @@ EmptyVisAction(WindowPeek window, LayerPeek, void*)
 	return noErr;
 }
 
-/* CalcVisAction is an action procedure that doesn’t find anything.  It recalculates the visRgn
+/* CalcVisAction is an action procedure that doesn't find anything.  It recalculates the visRgn
  * for any window that intersects the clobberedRgn.
  */
 pascal OSErr
 CalcVisAction(WindowPeek window, LayerPeek parent, RgnHandle clobberedRgn)
 {
 	if (!window->visible) {
-		/* If it’s invisible, don’t waste time, just make all the visRgns empty. */
+		/* If it's invisible, don't waste time, just make all the visRgns empty. */
 		(void) EachWindow(window, window->nextWindow, parent, EmptyVisAction, nil);
 		return skipChildren;
 	}
@@ -1915,7 +1915,7 @@ CalcVisAction(WindowPeek window, LayerPeek parent, RgnHandle clobberedRgn)
 				/* Adjust to local coordinates. */
 				BitMap* theMap;
 				if ((theMap = &window->port.portBits)->rowBytes < 0)
-					/* It’s a CGrafPort. */
+					/* It's a CGrafPort. */
 					theMap = *((BitMap **) theMap->baseAddr);
 				OffsetRgn((RgnHandle) myVis, theMap->bounds.left, theMap->bounds.top);
 			}
@@ -1924,7 +1924,7 @@ CalcVisAction(WindowPeek window, LayerPeek parent, RgnHandle clobberedRgn)
 		}
 	}
 	else if (FastIsLayer(window) && !RectInRgn(&(**window->strucRgn).rgnBBox, clobberedRgn))
-		/* Don’t waste time looking at children if structure doesn’t intersect. */
+		/* Don't waste time looking at children if structure doesn't intersect. */
 		return skipChildren;
 
 	return noErr;
@@ -1973,11 +1973,11 @@ __FindWindow(Point point, WindowPtr *window)
 		/* Call the old FindWindow. */
 		result = FindLayer(point, window);
 
-		/* We’re done if it’s not in a layer. */
+		/* We're done if it's not in a layer. */
 		if ((result != inContent) || !FastIsLayer(*window))
 			break;
 
-		/* It’s a layer, go down and try again. */
+		/* It's a layer, go down and try again. */
 		__SetCurLayer((LayerPtr) *window);
 	}
 
@@ -2007,10 +2007,10 @@ __FrontWindowIn(LayerPtr layer)
 		while (window != nil) {
 			if (window->visible && (window != GhostWindow)) {
 				if (!FastIsLayer((WindowPtr) window))
-					/* It’s not a layer, so it must be the right one. */
+					/* It's not a layer, so it must be the right one. */
 					break;
 				if (!((LayerPeek) window)->neverActive) {
-					/* It’s a normal layer (not neverActive), so descend and continue. */
+					/* It's a normal layer (not neverActive), so descend and continue. */
 					window = __GetSubWindows((LayerPtr) window);
 					continue;
 				}
@@ -2060,18 +2060,18 @@ __CloseWindow(WindowPtr window)
 		if (IsAncestor(window, saveLayer))
 			saveLayer = (LayerPtr) CurLayer;
 
-		/* Clear out title handle so we don’t crash.  Layers use this as auxWinHead. */
+		/* Clear out title handle so we don't crash.  Layers use this as auxWinHead. */
 		((WindowPeek) window)->titleHandle = nil;
 
-		/* Clear out control list so we don’t crash.  Layers use this as auxCtlHead. */
+		/* Clear out control list so we don't crash.  Layers use this as auxCtlHead. */
 		((WindowPeek) window)->controlList = nil;
 
 #if !hasLayerlessApps
 		//	we will do this in our come-from patch DisposeRgn in the rom CloseWindow
 		
-		/* Set subWindows to nil so that KillPicture isn’t called.
+		/* Set subWindows to nil so that KillPicture isn't called.
 		 * If any of the children are also layers, their parent pointers will be invalid,
-		 * but you’re not supposed to call CloseWindow on a layer in this case anyway.
+		 * but you're not supposed to call CloseWindow on a layer in this case anyway.
 		 */
 		((LayerPeek) window)->subWindows = nil;
 #endif
@@ -2144,7 +2144,7 @@ Redraw(RgnHandle region)
 
 	/* Here is a hack to get help windows updated. Since Process Mgr. uses CheckUpdate only on the appl layer, 	*/
 	/* it never passes updates to the system windows (e.g. help windows).										*/
-	/* This CheckUpdateIn doesn’t really work unless the system windows use the WindowPic updating scheme. 		*/
+	/* This CheckUpdateIn doesn't really work unless the system windows use the WindowPic updating scheme. 		*/
 	(void) __CheckUpdateIn(&discardEvent, __GetRootLayer());
 
 	SetPort(origPort);

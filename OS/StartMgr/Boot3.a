@@ -9,7 +9,7 @@
 ;				up to the launch of the Process Manager.  This code used to be in
 ;				Boot2.a itself but was split off during the implementation of the
 ;				CPU Gibbly mechanism.  All code which handles booting should be added to
-;				this file; Boot2.a doesn’t do much beyond finding a CPU Gibbly with
+;				this file; Boot2.a doesn't do much beyond finding a CPU Gibbly with
 ;				this code and passing on the boot baton.  This code, unlike Boot2.a,
 ;				can be in ROM if we so choose.
 ;
@@ -77,12 +77,12 @@
 ;	   <SM9>	10/29/92	SWC		Changed ShutdownEqu.a->Shutdown.a.
 ;		<SM8>	10/22/92	CSS		Change short branches to word branches.
 ;		<41>	 8/13/92	JDR		Offset to CloseTheFile was out of range in ForTheFuture.
-;		<40>	 8/13/92	DTY		#1039434 <BBM>: Don’t register components from QuickTime if
-;									we’re booting on a 68000.
-;		<39>	 7/22/92	csd		#1018711: If script extensions can’t be found in the Extensions
+;		<40>	 8/13/92	DTY		#1039434 <BBM>: Don't register components from QuickTime if
+;									we're booting on a 68000.
+;		<39>	 7/22/92	csd		#1018711: If script extensions can't be found in the Extensions
 ;									folder, change <26> added a check for the System Folder. On
-;									Install 1 disks, though, we don’t even have that; everything is
-;									at the root. So we’ll also check there. This is required so WSI
+;									Install 1 disks, though, we don't even have that; everything is
+;									at the root. So we'll also check there. This is required so WSI
 ;									and WSII systems can have Install 1 disks.
 ;		<38>	 6/27/92	DTY		#1033818: We decided to leave the Gibbly the current resource
 ;									map after all, so CurMap needs to be changed to SysMap before
@@ -94,27 +94,27 @@
 ;									from which INITs are run. These are Telephone Tools from the
 ;									Comm Toolbox Telephone Manager.
 ;		<35>	 5/28/92	DTY		#1030972: After 'DSAT' 0 is set up, look at a bit in low memory
-;									to see if 'boot' 2 could find a Gibbly or not.  If it couldn’t,
+;									to see if 'boot' 2 could find a Gibbly or not.  If it couldn't,
 ;									the bit is set, which means that this code should bring up the
 ;									error alert saying that the disk is too old.
 ;		<34>	 4/29/92	DTY		#1027105: Roll out changes from <27>. The script extensions were
 ;									being loaded, but seconary inits, like Akiko and
-;									InputBackSupport were still being disabled since they’re just
+;									InputBackSupport were still being disabled since they're just
 ;									normal INITs. Making them work would take a lot of hacking
-;									around, and that doesn’t give us a nice general solution anyway,
-;									so just don’t try to fix the problem at all.
+;									around, and that doesn't give us a nice general solution anyway,
+;									so just don't try to fix the problem at all.
 ;		<33>	 4/23/92	DTY		Fix a bug in the linked patch extension mechanism. (I TOLD you
-;									it wasn’t tested.)  Set up D5 with a pointer to the linked patch
+;									it wasn't tested.)  Set up D5 with a pointer to the linked patch
 ;									loader so that linked patch extensions will work.
-;		<32>	 4/20/92	DTY		#1024149: Don’t prevent DAL from loading if AppleTalk is off.
+;		<32>	 4/20/92	DTY		#1024149: Don't prevent DAL from loading if AppleTalk is off.
 ;		<31>	 4/20/92	JSM		Moved this file from BootCode.a to Boot3.a, keeping all
 ;									revisions.
 ;		<30>	 4/17/92	DTY		Add mechanism to load linked patch files from the Extensions
-;									folder. Conditionalized for theFuture.  No, I didn’t test this
-;									change.  I don’t have an 'lpch' file to test with.  And it’s not
+;									folder. Conditionalized for theFuture.  No, I didn't test this
+;									change.  I don't have an 'lpch' file to test with.  And it's not
 ;									theFuture yet.
 ;		<29>	 4/16/92	DTY		Always include ResourceMgrPriv.a (in case this file is used for
-;									a Gibbly), and don’t include LAPEqu.a any more, since the dummy
+;									a Gibbly), and don't include LAPEqu.a any more, since the dummy
 ;									LAP routine went away.
 ;		<28>	 4/15/92	JSM		Roll-in changes from SuperMario to support their ROM gibbly,
 ;									should not change System build. Take out some leftover revision
@@ -126,7 +126,7 @@
 ;									Also, removed changes from revision <12>, AppleTalk does the
 ;									right thing now.
 ;		<26>	  4/2/92	csd		#1018711,<FM>: Change the LoadINITFilesInFolder routine to look
-;									in the System Folder if there’s an error trying to get the
+;									in the System Folder if there's an error trying to get the
 ;									Extensions Folder when loading script extensions.
 ;		<25>	  4/2/92	DTY		#1025555,<BBM>: When this file was part of StartSystem.a,
 ;									MakeSysHeapGrowable was done way early in the boot process. It
@@ -141,7 +141,7 @@
 ;									application heap that will get trashed by the call to
 ;									_SetAppBase.
 ;		<22>	 3/26/92	DTY		#1024282,<gbm>: I took the MoveHHi out of LinkedPatchLoader, so
-;									we don’t need to keep so much stack space in memory all the
+;									we don't need to keep so much stack space in memory all the
 ;									time. Go back to the way it was before <19>.
 ;		<21>	 3/25/92	FM		last checkin was #1025326
 ;		<20>	 3/25/92	FM		Rolled in code from StartSystem.a. Now StartSystem.a only
@@ -156,7 +156,7 @@
 ;		<17>	  3/3/92	DTY		#1023670: The system 'boot' 3 needs to call _UseResFile before
 ;									loading linked patches. This is because MacsBug resets CurMap to
 ;									be the reference number of TopMapHndl, which could be a Gibbly
-;									calling the system’s boot code. This causes the linked patch
+;									calling the system's boot code. This causes the linked patch
 ;									loader to fail since it might not find any 'lpch' resources in
 ;									the Gibbly.
 ;		<16>	 2/18/92	DTY		Use d5 as a flag meaning that we had to implement StripAddress
@@ -173,23 +173,23 @@
 ;									fault, guaranteed.
 ;		<12>	 1/19/92	DTY		Add a bunch of skanky code to prevent network code from being
 ;									loaded if AppleTalk is turned off: Set up a fake LAP manager,
-;									and don’t load DAL, AppleShare, or FileShare. (And just think
+;									and don't load DAL, AppleShare, or FileShare. (And just think
 ;									about how 7 Up had to do this without changing the boot code!)
 ;									Also get rid of NewROMCheck since this is done implicitly by the
 ;									Gibblies.
-;		<11>	 1/17/92	DTY		Don’t set up StkLowPt when relocating the boot world. Setting it
+;		<11>	 1/17/92	DTY		Don't set up StkLowPt when relocating the boot world. Setting it
 ;									causes the stack sniffer to fire.
 ;		<10>	 1/14/92	csd		If VM adds memory the machine, relocate the boot world (code,
 ;									stack, globals) to the new MemTop/2 area. This is because the VM
 ;									code costs memory in the System heap, and CubeE no longer has
 ;									room to boot on a 2 megabyte machine. Also, move the BootGlobals
-;									record and other equates to BootEqu.a so we don’t have to keep
+;									record and other equates to BootEqu.a so we don't have to keep
 ;									the StartSystem.a and BootCode.a versions in sync.
 ;		 <9>	12/12/91	csd		#1017421: with bal, loading the components from the QuickTime
-;									init because it won’t since the Component Manager is implemented
+;									init because it won't since the Component Manager is implemented
 ;									already. Load components from the System file before we load
-;									init files. This doesn’t work yet because the component manager
-;									can’t handle 'thng' resources which come from a resource file
+;									init files. This doesn't work yet because the component manager
+;									can't handle 'thng' resources which come from a resource file
 ;									with the refnum 0, which is what HomeResFile returns for the
 ;									System.
 ;		 <8>	12/10/91	JH		Oops, forgot to fill out the script language record before
@@ -206,7 +206,7 @@
 ;									loader.  Change type of linked patch load resource to 'lodr'.
 ;		 <3>	11/11/91	DTY		The linked patch loader has been moved to the 'pldr' 0 resource
 ;									for CPU Gibblies. Get this resource and jump to it instead of
-;									importing the label and jsr’ing.
+;									importing the label and jsr'ing.
 ;		 <2>	 11/8/91	DTY		Adding a comment describing why this file is here.
 ;		 <1>	 11/8/91	DTY		first checked in
 ;
@@ -241,7 +241,7 @@
 ;											in copyback!
 ;										Inhibited all 040 caches while loading Macsbug cuz its too
 ;											brain-damaged to load in copyback.
-;		<52>	 9/16/91	JSM		Cleanup header, don’t include SysPrivateEqu.a (already in dump
+;		<52>	 9/16/91	JSM		Cleanup header, don't include SysPrivateEqu.a (already in dump
 ;									file).
 ;		<51>	  7/2/91	JSM		Remove obsolete 7.0 related SysVers conditionals.
 ;		<50>	 6/12/91	LN		added #include 'InternalOnlyEqu.a'
@@ -251,7 +251,7 @@
 ;									accelerators be VM-capable.
 ;		<47>	  4/2/91	SAM		Bumping HighestSupportedBoxFlag for Regatta build.
 ;		<46>	 3/31/91	csd		dba: Changed the test for 040 in the WhichCPU routine so that it
-;									doesn’t jam 0 into the CACR, thereby possibly nuking any data
+;									doesn't jam 0 into the CACR, thereby possibly nuking any data
 ;									which has not been flushed out of the cache.
 ;		<45>	 3/13/91	stb		bbm, #83253: setup and use new ExpandMem global
 ;									emMinSysHeapFreeSpace which specifies how much elbow room to
@@ -261,7 +261,7 @@
 ;									ROM that sets MMUType wrong.
 ;		<43>	 2/15/91	gbm		stb & dba, BRC # 82829: Fix the WhichCPU routine so that is
 ;									stops turning off data cache and data bursting on '030s
-;		<42>	 2/11/91	stb		gbm, WS #stb211: change BSR.S back to BSR so MacsBug won’t die
+;		<42>	 2/11/91	stb		gbm, WS #stb211: change BSR.S back to BSR so MacsBug won't die
 ;									if you bail during install (by holding down the mouse button).
 ;									Disassembler, too.
 ;		<41>	 2/11/91	stb		gbm, BRC # 82423: implement StripAddress early enough to use
@@ -269,7 +269,7 @@
 ;		<40>	 1/29/91	csd		stb, Whiteboard Bug: Moved the SetDefaults code to an earlier
 ;									position so that it executes before code that uses the
 ;									variables.
-;		<39>	 1/23/91	stb		TED,81551: test a result code before BCC’ing.
+;		<39>	 1/23/91	stb		TED,81551: test a result code before BCC'ing.
 ;		<38>	 1/19/91	stb		& DC (& dfh for some of it) change 'dbex' id; adjust file cache
 ;									allowance; coordinate upward and downward growth limits.
 ;		<37>	 1/14/91	stb		& mda; more net booting stuff; disable extension disabling if
@@ -278,9 +278,9 @@
 ;									Disassembler; jam CPUflag to support 3rd-party processors for
 ;									VM.
 ;		<36>	12/18/90	stb		& JDR; add error check after _MemoryDispatch.
-;									fix infinite loop in MakeSysFree if couldn’t get desired amount.
+;									fix infinite loop in MakeSysFree if couldn't get desired amount.
 ;		<35>	12/15/90	stb		& KSM; move the currently-executing filename to avoid conflict
-;									with INITs which check CurApName to see if it’s post-boot time.
+;									with INITs which check CurApName to see if it's post-boot time.
 ;									Replace error 106 with 25. Remove _MemoryDispatch declaration.
 ;		<34>	12/13/90	stb		& gbm; no longer load AppleTalk from a file.
 ;									Use source to GetDefaultStartup to avoid problem on Plus.
@@ -330,7 +330,7 @@
 ;									MacsBug before VM)
 ;		<11>	 4/20/90	dba		check to see that the Shift key is the only key held down for
 ;									Extensions Disabled
-;		<10>	 4/20/90	dba		close QD port much earlier; it isn’t doing anyone any good; do
+;		<10>	 4/20/90	dba		close QD port much earlier; it isn't doing anyone any good; do
 ;									InitApplZone for each INIT file; rely on patch to SetAppBase to
 ;									do InitApplZones
 ;		 <9>	 4/19/90	dba		add support for Script Systems; increase system heap size
@@ -341,7 +341,7 @@
 ;									bit work right
 ;		 <5>	 4/17/90	dba		fix bug with InitApplZone stuff
 ;		 <4>	 4/16/90	csd		save registers around calls to ptch and PTCH resources since
-;									they don’t obey the register saving conventions.
+;									they don't obey the register saving conventions.
 ;		 <3>	 4/11/90	dba		put dynamic system heap size code for the Plus and SE back here;
 ;									do InitApplZone before each INIT, instead of after each
 ;									MakeSysFree; detach ourselves so we can support remote booting
@@ -363,7 +363,7 @@
 ;	   <1.4>	10/14/89	EMT 	Always load in RAM cache in system 7.
 ;	   <1.3>	  6/5/89	EMT 	One more try.
 ;	   <1.2>	  6/2/89	EMT 	Fixed coding errors in 1.1.
-;	   <1.1>	  6/1/89	EMT 	Removed ROM69 stuff. Bootstrap StripAddress if it doesn’t exist.
+;	   <1.1>	  6/1/89	EMT 	Removed ROM69 stuff. Bootstrap StripAddress if it doesn't exist.
 ;									Use StripAddress before executing 'PTCH's.
 ;	   <1.0>	11/16/88	CCH 	Added to EASE.
 ;	  <S174>	 4/10/87	bbm 	Save off the A5 world for the inits. (Some inits relied on
@@ -377,9 +377,9 @@
 ;	  <S115>	 3/19/87	JTC 	Ensure sufficient sys heap space before loading patches, using
 ;									SizeResource to figure the local min. Then guarantee MinSysExtra
 ;									space after loading last one. Code borrowed from INIT=31.
-;	  <S109>	 3/18/87	bbm 	Added the code for ‘PTCH $FFFF’. This enables general patches
-;									for all machines before the patches are read in by ‘PTCH 0’ and
-;									general patches after the patches are read in by ‘PTCH $FFFF’.
+;	  <S109>	 3/18/87	bbm 	Added the code for ‘PTCH $FFFF'. This enables general patches
+;									for all machines before the patches are read in by ‘PTCH 0' and
+;									general patches after the patches are read in by ‘PTCH $FFFF'.
 ;	  <S108>	 3/17/87	bbm 	For system heaps larger than 58k, rom69patch needed to move the
 ;									boot code (the boot code is loaded in at $10000). Since the boot
 ;									code has moved, the return address on the stack should be
@@ -474,7 +474,7 @@ supportsMFM				equ		1
 						MACHINE	MC68020		; <SM28>
 
 
-_AUXDispatch	 		opword	$ABF9		; <24> A/UX’s trap dispatch *** move to Traps.a
+_AUXDispatch	 		opword	$ABF9		; <24> A/UX's trap dispatch *** move to Traps.a
 auxSecondaryInit		equ		36			; <24> Parameter for _AUXDispatch
 auxExtraDebuggerSize	equ		$1c00-debuggerGlobalSize	; <24> Amount of additional storage space required by A/UX for MacsBug
 
@@ -556,7 +556,7 @@ BootCode	MAIN
 
 SetUpStartupScreen
 
-; Load everything we need for “Welcome to Macintosh” or a startup screen.
+; Load everything we need for 'Welcome to Macintosh' or a startup screen.
 
 			move.w	SysMap,CurMap			; <38> Make the System the current map so the DSAT will load.
 			moveq	#0,d0					; load DSAT 0
@@ -575,7 +575,7 @@ SetUpStartupScreen
 kProcessManagerSegmentType	equ		'scod'		; Process Manager segment resource type <28>
 
 				subq	#2,sp					; make room in stack for old resfile id	<28>
-				_CurResFile						; Remember the current resource file, in case we’re booting from a gibbly <28>
+				_CurResFile						; Remember the current resource file, in case we're booting from a gibbly <28>
 				clr.w	-(sp)					; id zero is always the system file		<28>
 				_UseResFile						; Work on the System file				<28>
 
@@ -588,7 +588,7 @@ kProcessManagerSegmentType	equ		'scod'		; Process Manager segment resource type 
 				move.l	#kProcessManagerSegmentType,-(sp) ;	push res type				<28>
 				move.w	d1,-(sp)				; push id								<28>
 				_Get1Resource					; Load it in							<28>
-				addq	#4,sp					; We don’t really care about the resource <28>
+				addq	#4,sp					; We don't really care about the resource <28>
 				bra.s	@loadSegmentLoop		; go for the next one					<28>
 
 ProcessManagerSegmentTable						;										<28>
@@ -629,7 +629,7 @@ ShowStartupScreen
 			move.l	d0,a2					; save the handle for later
 			move.l	(a2),a0					; dereference it
 
-			move.l	picFrame+botRight(a0),-(sp)	; push the picture’s bounds rect
+			move.l	picFrame+botRight(a0),-(sp)	; push the picture's bounds rect
 			move.l	picFrame+topLeft(a0),-(sp)
 			bsr		CenterOnMainScreen		; center a rectangle on the screen
 			move.l	a2,-(sp)				; get the picture handle
@@ -701,7 +701,7 @@ FixMMUTypeAndKillMemoryDispatch
 ;	The ci ROM has a bug in 32-bit mode which causes MMUType to be set to $FF.  So, if MMUType
 ;	is $FF, we set it to the right thing.  _MemoryDispatch is mistakenly implemented
 ;	in 32-bit mode on machines where there is no MMU (because of the previous bug....).
-;	So, for machines without an MMU, we’ll unimplement the call.
+;	So, for machines without an MMU, we'll unimplement the call.
 ;	NOTE: 	The MMUType that we set here is a "best guess", since checking for PMMU vs. HMMU at
 ;			this point is hard to do.  We're assuming that accelerator makers will either:
 ;			have this set up correctly before we get here, or set it up correctly later on.
@@ -818,7 +818,7 @@ CheckForExtensionsDisabled
 			_GetResource
 			st		ResLoad 				; restore resLoad to proper state
 			move.l	(sp)+,d0				; did we get a handle?
-			bz.s 	@dontDisable			; no, user won’t get to disable
+			bz.s 	@dontDisable			; no, user won't get to disable
 			move.l	d0,-(sp)				; get rid of the empty handle
 			_ReleaseResource
 
@@ -826,11 +826,11 @@ CheckForExtensionsDisabled
 			bclr	#7,d3					; clear off the power key
 			bclr	#1,d1					; clear off the Caps Lock key
 			bclr	#0,d1					; clear off and test the Shift key
-			bz.s	@dontDisable			; Shift key not held down, don’t disable extensions
+			bz.s	@dontDisable			; Shift key not held down, don't disable extensions
 			or.l	d1,d0					; stray keys held down?
 			or.l	d2,d0
 			or.l	d3,d0
-			bnz.s	@dontDisable			; yes, don’t disable extensions
+			bnz.s	@dontDisable			; yes, don't disable extensions
 
 			bclr	#extensionsEnabledBit,ExtensionsEnabledByte	; disable extensions
 			moveq	#dsExtensionsDisabled,d0
@@ -844,11 +844,11 @@ ResetPRAM
 ; CheckForResetPRAM: Checks for the Cmd-Option-R-P keys down, and Resets PRAM				<33>
 ; if they are down.
 ;
-; Only do this if we’re on a Plus ($0075), SE ($0276), II ($0178), or Portable ($037A).
+; Only do this if we're on a Plus ($0075), SE ($0276), II ($0178), or Portable ($037A).
 ; Reset the extended parameter RAM by invalidating the validity longword.
 ;
 ; TERROR ROM note:  There is a bug in the TERROR ROM where the cmd-opt-r-p sequence			<7> jmp
-;	sometimes doesn’t work (a register is being trashed).  So, to rectify this problem,
+;	sometimes doesn't work (a register is being trashed).  So, to rectify this problem,
 ;	we go ahead and let the reset fly on TERROR ROM machines even though they are
 ;	IIci overpatches.  This problem seems to be most accute on Spikes, so we may
 ;	be able to restrict this code to Spikes only.  Still investigating.
@@ -856,16 +856,16 @@ ResetPRAM
 ; *** TO DO:
 ;	reset mouse speed in original PRAM to medium speed on all machines
 
-; Keymap’s locations for Cmd-Opt-P-R
+; Keymap's locations for Cmd-Opt-P-R
 ;	Cmd	= $37 => bit .15 of D1
 ;	Opt	= $3A => bit  .2 of D1
 ;	P 	= $23 => bit .27 of D1
 ;	R	=  $F => bit .23 of D0
 
-			clr.w	BootGlobals.resetFlag(a5)	; by default, don’t reboot
+			clr.w	BootGlobals.resetFlag(a5)	; by default, don't reboot
 			movem.l	KeyMap,d0-d3			; get four words worth of keys
 
-			; clear off keys which might be down but we don’t care about
+			; clear off keys which might be down but we don't care about
 			bclr.l	#7,d3					; clear off the power key
 			bclr.l	#1,d1					; clear off the Caps Lock key
 
@@ -874,16 +874,16 @@ ResetPRAM
 			eori.l	#(1<<15)+(1<<2)+(1<<27),d1
 			bne		@noReset
 
-			; the only bit left set should be the R bit, so we’ll change it,
+			; the only bit left set should be the R bit, so we'll change it,
 			; and then OR everything together, and reset PRAM only if
 			; everything is clear.
 			bchg.l	#23,d0					; change the R key bit
 
-			or.l	d2,d0					; OR together everything that’s left
+			or.l	d2,d0					; OR together everything that's left
 			or.l	d3,d0
-			bnz.s	@noReset				; something else is down, don’t reset PRAM
+			bnz.s	@noReset				; something else is down, don't reset PRAM
 
-			; now check to see if we’re on a ROM which needs resetting help
+			; now check to see if we're on a ROM which needs resetting help
 			movea.l	ROMBase,a0
 			move.w	8(a0),d2
 			cmp.w	#kROMVersionPlus,d2
@@ -938,7 +938,7 @@ ResetPRAM
 RememberPhysicalMemTop
 
 ; Prior to loading VM, MemTop holds the top of physical memory.
-; We’ll use this later for our reality checking.
+; We'll use this later for our reality checking.
 
 			move.l	MemTop,BootGlobals.physicalMemTop(a5)
 
@@ -946,7 +946,7 @@ RememberPhysicalMemTop
 
 DoWeHaveEnoughRAMToBoot
 
-; We’ve got to have at least minRAMNeeded to get 7.0 on its feet.  minRAMNeeded was chosen
+; We've got to have at least minRAMNeeded to get 7.0 on its feet.  minRAMNeeded was chosen
 ; for just enough to get Finder up with room for one control panel.  Moved earlier in <37> to crash
 ; before VM or MacsBug soaks up too much memory.
 
@@ -966,7 +966,7 @@ LoadTemporaryStripAddress
 ;																				moved earlier in <41>
 ; This must get stomped by anyone who installs a _real_ StripAddress later.
 
-			moveq	#0,d5					; <16> Assume we don’t patch _StripAddress
+			moveq	#0,d5					; <16> Assume we don't patch _StripAddress
 			moveq	#$55,d0 				; check if StripAddress is already implemented
 			_GetTrapAddress newOS
 			MOVE.L	A0,D1					; save its address
@@ -977,7 +977,7 @@ LoadTemporaryStripAddress
 
 			moveq	#$55,d0
 			LEA 	TemporaryStripAddress,a0
-			_SetTrapAddress newOS			; StripAddress doesn’t exist, use mine as a bootstrap
+			_SetTrapAddress newOS			; StripAddress doesn't exist, use mine as a bootstrap
 			moveq	#1,d5					; <16> Use D5 to mean we patched _StripAddress.  Any number will do…
 @done
 		ENDIF
@@ -985,7 +985,7 @@ LoadTemporaryStripAddress
 
 LoadVMAndDebugger
 
-; Load VM and MacsBug, but do it in a different order if Joe’s debugging signature is found.
+; Load VM and MacsBug, but do it in a different order if Joe's debugging signature is found.
 
 			btst	#extensionsEnabledBit,ExtensionsEnabledByte
 			bz.s	@done					; extensions disabled means VM and MacsBug are disabled
@@ -1001,7 +1001,7 @@ LoadVMAndDebugger
 
 @forDebugging
 
-			bsr		LoadDebugger			; debugger first; we’ll crash for sure (well, not for sure...)
+			bsr		LoadDebugger			; debugger first; we'll crash for sure (well, not for sure...)
 			bsr		LoadVM
 
 @done
@@ -1012,7 +1012,7 @@ ChooseBufPtrLimit							;													<33>
 
 ; If VM loaded, _MemoryDispatch with D0 = -4 will return any limit to BufPtr that VM knows about.
 ; This might be NuBus™ slots or ROM in the logical RAM space (as on the IIci in 24bit mode).
-; Put any VM limit to bufPtr’s descent into BootGlobals.bufPtrLimit(a5) (replacing the default).
+; Put any VM limit to bufPtr's descent into BootGlobals.bufPtrLimit(a5) (replacing the default).
 
 GetBufPtrLimit		equ			-4			; MemoryDispatch selector to get any bufPtr limit
 
@@ -1023,7 +1023,7 @@ GetBufPtrLimit		equ			-4			; MemoryDispatch selector to get any bufPtr limit
 
 			move.l	a0,d0
 			btst	#gestaltVMPresent,d0
-			beq.s	@noVMLimit				; if VM isn’t present, then leave
+			beq.s	@noVMLimit				; if VM isn't present, then leave
 
 			move.w	#GetBufPtrLimit,d0
 			_MemoryDispatch					; if no limit, leave it set to the default
@@ -1031,7 +1031,7 @@ GetBufPtrLimit		equ			-4			; MemoryDispatch selector to get any bufPtr limit
 			ble.s	@noVMLimit				; if error, skip out.  if zero, VM knows no limit
 
 			move.l	BootGlobals.bufPtrLimit(a5),d1
-			cmp.l	d0,d1					; VM’s limit < default?
+			cmp.l	d0,d1					; VM's limit < default?
 			bhi.s	@noVMLimit				;  if so, stick with the default.
 
 			move.l	d0,BootGlobals.bufPtrLimit(a5)
@@ -1068,7 +1068,7 @@ RelocateBootWorld
 
 			move.l	BootGlobals.logicalMemTop(a5), d0		; starting MemTop					<10>
 			cmp.l	BootGlobals.physicalMemTop(a5), d0		; did we add memory?				<10>
-			bls 	LoadUserAlerts							; if not, don’t bother				<10> <SM8> CSS 
+			bls 	LoadUserAlerts							; if not, don't bother				<10> <SM8> CSS 
 
 			lsr.l	#1, d0									; new MemTop/2						<10>
 			move.l	d0, a1									; point to the new stack			<10>
@@ -1108,7 +1108,7 @@ RelocateBootWorld
 
 			lea		BootGlobals.lowestBufPtr(a5), a0		; new minimum BufPtr default		<10>
 			cmp.l	BootGlobals.bufPtrLimit(a5), a0			; is the limit already higher than this?	<10>
-			bls.s	@bootCodeMoved							; if so, don’t need to worry		<10>
+			bls.s	@bootCodeMoved							; if so, don't need to worry		<10>
 			move.l	a0, BootGlobals.bufPtrLimit(a5)			; bump lower limit past new globals	<10>
 
 @bootCodeMoved												;									<10>
@@ -1117,7 +1117,7 @@ RelocateBootWorld
 FinishMovingBootWorld										;									<10>
 		IF NOT forROM THEN									;									<SM28> SAM
 			tst.w	d5										; <16> Check our _StripAddress semaphore
-			bz.s	@done									; <16> If D5 is not set, we didn’t patch _StripAddress
+			bz.s	@done									; <16> If D5 is not set, we didn't patch _StripAddress
 
 			moveq	#$55, d0								;									<10>
 			lea 	TemporaryStripAddress, a0				;									<10>
@@ -1146,7 +1146,7 @@ LoadTemporaryNewPtrStartup
 
 			move.w	#$9C,d0
 			LEA 	TemporaryNewPtrStartup,a0
-			_SetTrapAddress newOS			; NewPtrStartup doesn’t exist, use mine as a bootstrap
+			_SetTrapAddress newOS			; NewPtrStartup doesn't exist, use mine as a bootstrap
 
 ; Create a block containing the NewPtrStartup that will be used after boot.						<30>
 ; It will be installed at the end of the boot below, just before starting the Process Mgr.
@@ -1170,7 +1170,7 @@ MakeBootDriveWDRefNum
 ; Up until now, BootDrive contained a drive number; make it a WDRefNum (the current volume).
 
 			lea		BootGlobals.paramBlock(a5),a0
-			clr.l	ioFileName(A0)			; we don’t want the name
+			clr.l	ioFileName(A0)			; we don't want the name
 			_GetVol 						; make BootDrive a VRefNum/WDRefNum
 			move.w	ioVRefNum(A0),BootDrive
 
@@ -1272,7 +1272,7 @@ LoadFileSystemCache
 
 ;____________________________________________________________________________________
 ; Jam system version number.												<PP149>
-; *** we may not really want to do this in the ROM gibbly, but it doesn’t hurt
+; *** we may not really want to do this in the ROM gibbly, but it doesn't hurt
 
 			move.w	#SysVersForROM,SysVersion ; jam sys version number				<28>
 
@@ -1284,9 +1284,9 @@ LoadFileSystemCache
 
 			move.b	SPConfig,d0				;  Get serial port configuration		<28>
 			and.b	#$0f,d0					;  Mask off Port B bits					<28>
-			beq.s	@appleTalkIsActive		;  Yes.  Don’t set emAppleTalkInactiveOnBoot <62>
+			beq.s	@appleTalkIsActive		;  Yes.  Don't set emAppleTalkInactiveOnBoot <62>
 			cmp.b	#useATalk,d0			;  Configured for AppleTalk?			<28>
-			beq.s	@appleTalkIsActive		;  Yes.  Don’t set emAppleTalkInactiveOnBoot <28>
+			beq.s	@appleTalkIsActive		;  Yes.  Don't set emAppleTalkInactiveOnBoot <28>
 
 			with	ExpandMemRec						; Get the system's globals	<28>
 			move.l	ExpandMem,a0						; 							<28>
@@ -1311,7 +1311,7 @@ SetupResourceFileAttributes					;											<28>
 			move.l	SysMapHndl,a0			;get the system map							<28>
 			move.l	(a0),a0					;											<28>
 			bset	#decompressionPasswordBit,mInMemoryAttr(a0)			; allow dcmps here 		<28>
-			bset	#dontCountOrIndexDuplicatesBit,mInMemoryAttr(a0)	; Don’t count duplicate resources in the System file <28>
+			bset	#dontCountOrIndexDuplicatesBit,mInMemoryAttr(a0)	; Don't count duplicate resources in the System file <28>
 			bset	#twoDeepBit,mInMemoryAttr(a0)						; One deep calls on the System file will search two (or more) maps. <28>
 
 
@@ -1337,7 +1337,7 @@ LoadPTCHZero
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 
-	IF NOT forROM THEN						; don’t load ROM specfic patches or linked patches	<28>
+	IF NOT forROM THEN						; don't load ROM specfic patches or linked patches	<28>
 											; for SuperMario									<28>
 
 LoadPTCHROMSpecific
@@ -1365,7 +1365,7 @@ LoadLinkedPatches
 					subq	#4,sp
 					move.l	#kPatchLoaderResourceType,-(sp)	; 'lodr'
 					move.w	#kPatchLoaderResourceID,-(sp)
-					_GetResource					; Use the System’s patch loader if the gibbly doesn’t have one.
+					_GetResource					; Use the System's patch loader if the gibbly doesn't have one.
 					move.l	(sp),d0					; <15> Keep handle to 'lodr' on the stack for a release later
 					bz.s	@noPatchLoader
 					move.l	d0,a0
@@ -1389,7 +1389,7 @@ LoadLinkedPatches
 		
 @noPatchTable
 @noPatchLoader
-					moveq	#dsBadPatch,d0			; Couldn’t find the patch loader code
+					moveq	#dsBadPatch,d0			; Couldn't find the patch loader code
 					_SysError
 		
 @done
@@ -1467,7 +1467,7 @@ LoadEmulatorAccel
 
 TestForNeedToReset
 
-; Earlier we chose whether we need to reboot.  On the Plus, we don’t have _SDRestart until
+; Earlier we chose whether we need to reboot.  On the Plus, we don't have _SDRestart until
 ; linked patches are loaded.  Rather than move that code into this file, we simply waited.
 
 			tst.w	BootGlobals.resetFlag(a5)
@@ -1618,7 +1618,7 @@ LoadNetBoot									;													<33>
 			subq	#4,sp					; Make room for parameters
 			move.l	sp,a0					; Point to the parameter block
 
-; We’d like to call GetDefaultStartup, but it’s not on the Plus or SE, so we reimplement it.	<34>
+; We'd like to call GetDefaultStartup, but it's not on the Plus or SE, so we reimplement it.	<34>
 			MOVE.L	#$00040078,D0			; Read 4 bytes starting at loc $78
 			_ReadXPRam						; Get it from PRAM.
 
@@ -1632,7 +1632,7 @@ LoadNetBoot									;													<33>
 			move.w	#kNetBootProcID,d6
 			moveq	#1,d3					; set the DontCloseOnError flag
 			bsr		ExecuteFromSystemOrFileByName
-; ***		beq.s	@skip					; we’re not actually net-booting this time
+; ***		beq.s	@skip					; we're not actually net-booting this time
 
 ; ***		subq	#2,sp					; room for OSErr
 ; ***		_ReInitScripts
@@ -1673,16 +1673,16 @@ LoadINITFiles
 ; and INIT. When it finds one, it opens it and attempts to Get1IndResource
 ; on type INIT. If successful, it locks down the resource and executes the
 ; code within. When the code returns, it closes the file (thus throwing away
-; the code if it didn’t DetachResource itself), and continues with the next
+; the code if it didn't DetachResource itself), and continues with the next
 ; cdev/RDEV/INIT file it finds. Note that ResLoad is turned off over the
 ; OpenResFile call.
 ;
-; Differences between this and the boot blocks’ INIT launcher:
+; Differences between this and the boot blocks' INIT launcher:
 ;
-; • This doesn’t DetachResource before calling the INIT code (if the
+; • This doesn't DetachResource before calling the INIT code (if the
 ;	code wants to be detached, it must RecoverHandle and do it itself).
 ; • This assumes that the Locked bit of the INIT is set (so did the
-;	boot blocks, but it’s worth restating!).
+;	boot blocks, but it's worth restating!).
 ;
 ;			MemTop		->	+-------------------+ Top RAM location
 ;							| I/O, screen RAM	|
@@ -1766,7 +1766,7 @@ LoadINITFiles
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 
 ; We still have two heaps.  We are going to get minSysHeapFreeAfterBoot bytes, even if it
-; means growing the system heap again.  This time, though, we’ll stop reserving anything,
+; means growing the system heap again.  This time, though, we'll stop reserving anything,
 ; and take as much as we need.
 
 			_RsrcZoneInit					; <23> Call _RsrcZoneInit to blow away system resources loaded in the application heap
@@ -1920,7 +1920,7 @@ DontOpenAFile
 			tst.w	d3						; do we care about closing the file?				<33>
 			bz.s	@continue				; nope, just release and close						<33>
 			tst.w	d0						; yes, check for response							<33>
-			beq.s	@continue				; glad we checked, but don’t close it				<37>
+			beq.s	@continue				; glad we checked, but don't close it				<37>
 			addq	#4,sp					; pop the (no longer a resource) handle				<37>
 			rts								; leave without closing								<37>
 @continue
@@ -1961,7 +1961,7 @@ SetUpForFileByName
 ;
 ; a5	->	globals, including parameter block and file name storage
 ; d7.L	->	folder type to look for
-; d0.W	->	resource ID of the file’s name
+; d0.W	->	resource ID of the file's name
 ;
 ; d0.W	<-	error code
 ; d7.L	<-	dirID of found folder
@@ -1993,7 +1993,7 @@ SetUpForFileByName
 LoadINITFilesInFolder
 
 ; The major file-loading loop for INITs.  For each file in the folder specified by d7,
-; by index, check whether it’s an INIT, RDEV or cdev.  If so, open the file, look
+; by index, check whether it's an INIT, RDEV or cdev.  If so, open the file, look
 ; for an 'sysz', and cycle through the INITs.  If the system heap must be resized,
 ; then must close and reopen the resource file.
 ;
@@ -2011,7 +2011,7 @@ LoadINITFilesInFolder
 			bsr		SetUpForFolder
 			bz.s	@foundFolder					; we got it, keep going				<26>
 			cmp.l	#'scri', a2						; looking for script extensions?	<26>
-			bne		DoneWithFolder					; if not, don’t try System Folder	<26>
+			bne		DoneWithFolder					; if not, don't try System Folder	<26>
 			move.l	#kSystemFolderType, d7			; try the System Folder				<26>
 			bsr		SetUpForFolder					;									<26>
 			bz.s	@foundFolder					; it worked							<39>
@@ -2019,7 +2019,7 @@ LoadINITFilesInFolder
 			moveq	#0, D7							; try the root						<39>
 
 @foundFolder
-			lea 	BootGlobals.fileName(a5),a0		; store pointer to file’s name
+			lea 	BootGlobals.fileName(a5),a0		; store pointer to file's name
 			move.l	a0,BootGlobals.paramBlock+ioFileName(a5)
 			clr.w	BootGlobals.paramBlock+ioFileType(a5)	; "version" and permissions
 
@@ -2038,14 +2038,14 @@ NextFileInFolder
 			move.l	ioFlUsrWds+fdCreator(A0),a4	; save file creator type for LoadInitFile <9>
 			move.l	a2,d1					; what file type are we looking for
 			bz.s	@allTypes				; 0, means look for all boot-executable types
-			cmp.l	d1,d0					; is this the type we’re looking for?
+			cmp.l	d1,d0					; is this the type we're looking for?
 			bra.s	@checkType				; go ask the storm trooper
 @allTypes
 			cmp.l	#'INIT',d0				; is it a system extension?
 			bne.s	@notExtension			; <12> no, keep checking
 			cmp.l	#kFileShareCreator,a4	; <12> Is it FileShare?
-			bne.s	@goodFile				; <12> No, it’s just some extension
-			bra		@checkAppleTalkState	; <12> See if AppleTalk is active.  If not, don’t load FileShare
+			bne.s	@goodFile				; <12> No, it's just some extension
+			bra		@checkAppleTalkState	; <12> See if AppleTalk is active.  If not, don't load FileShare
 
 @notExtension
 			cmp.l	#'pext',d0				; <18> Is it an El Kabong printing extension?
@@ -2055,8 +2055,8 @@ NextFileInFolder
 			cmp.l	#'RDEV',d0				; is it a Chooser extension?
 			bne.s	@notRDEV				; <12> no, keep checking
 			cmp.l	#kAppleShareCreator,a4	; <12> Is it AppleShare?
-			bne.s	@goodFile				; <12> No, it’s just some Chooser extension
-			bra		@checkAppleTalkState	; <12> See if AppleTalk is active.  If not, don’t load AppleShare
+			bne.s	@goodFile				; <12> No, it's just some Chooser extension
+			bra		@checkAppleTalkState	; <12> See if AppleTalk is active.  If not, don't load AppleShare
 
 @notRDEV
 			cmp.l	#'cbnd',d0				; is it a connection tool?
@@ -2095,7 +2095,7 @@ NextFileInFolder
 			bsr.s	LoadINITFile			; load all the INITs from the file
 			bnz.s	NextFileInFolder
 
-; Check to see if we actually found any INITs in this file.	If we didn’t, then save this useful
+; Check to see if we actually found any INITs in this file.	If we didn't, then save this useful
 ; information as a fndrInfo bit so we can skip the really slow OpenResFile the next time we start up.
 
 			cmp.w	#1,d6					; exit on first time through loop?
@@ -2110,19 +2110,19 @@ NextFileInFolder
 			bset	#bFNoINIT,ioFlUsrWds+fdFlags+1(a0)	; remember that there are no INIT resources
 			move.l	d7,ioDirID(a0)			; reset the dirID, since HGetFileInfo trashes it
 			_HSetFileInfo					; write out the bit
-											; ignore errors, we’re just optimizing
+											; ignore errors, we're just optimizing
 @hadINIT
 			bra		NextFileInFolder
 
-; See if AppleTalk is active.  If not, don’t load the current extension.
+; See if AppleTalk is active.  If not, don't load the current extension.
 
 @checkAppleTalkState
 			move.l	a0,-(sp)				; <12> Save parameter block
 			move.l	ExpandMem,a0			; <12>
 			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; <12> Check saved AppleTalk state
 			move.l	(sp)+,a0				; <12> Restore parameter block
-			bz.s	@goodFile				; <12> AppleTalk is on.  It’s ok to load this extension.
-			bra.s	NextFileInFolder		; <12> AppleTalk is off.  Don’t load this extension.
+			bz.s	@goodFile				; <12> AppleTalk is on.  It's ok to load this extension.
+			bra.s	NextFileInFolder		; <12> AppleTalk is off.  Don't load this extension.
 
 DoneWithFolder
 			move.l	(sp)+,a4				; restore a4 for folder.  Used for creator type. <9>
@@ -2163,17 +2163,17 @@ LoadLinkedPatchFile
 ; Open a file, and install linked patches from it, using the linked patch loader in the
 ; system file.
 ;
-; A3 -> Pointer to system’s 'ptbl' resource that loads every linked patch.
-; D5 -> Pointer to system’s patch loader.
+; A3 -> Pointer to system's 'ptbl' resource that loads every linked patch.
+; D5 -> Pointer to system's patch loader.
 ;
 
 			bsr.s	OpenTheFile				; <30> Open the resource file, making it the current resource file
-			bnz.s	@skip					; <30> skip file if the file couldn’t be opened.
+			bnz.s	@skip					; <30> skip file if the file couldn't be opened.
 
 			move.l	d5,a0					; <30> Get the linked patch loader into an address register
 			jsr		(a0)					; <30>Call the linked patch loader.
 
-			bsr		CloseTheFile			; <30> Close the file now that we’re done.
+			bsr		CloseTheFile			; <30> Close the file now that we're done.
 @skip
 			rts								; <30>
 	endif
@@ -2222,13 +2222,13 @@ LoadINITFile
 			bsr.s	MakeSysFree 			; get it in the sys zone
 @noRequest
 			cmp.l	#'ånd5',A4				; is this QuickTime™?						<9>
-			bne.s	@skipQuickTimeFix		; if not, we don’t have to load components	<9>
+			bne.s	@skipQuickTimeFix		; if not, we don't have to load components	<9>
 
 ; <40> QuickTime components should not be registered on 68000 machines, since they all
 ;		assume the 020.
 
 			cmp.b	#cpu68020,CPUFlag		; <40> Are we on a 68000? (you mean, less than an '020 right? <SM28>)
-			blo.s	@skipQuickTimeFix		; <40> If so, don’t register QuickTime’s components
+			blo.s	@skipQuickTimeFix		; <40> If so, don't register QuickTime's components
 
 ;pascal long RegisterComponentResourceFile(short resRefNum, short global)				<9>
 			clr.l	-(sp)					; return value								<9>
@@ -2277,7 +2277,7 @@ OpenTheFile
 			move	(sp)+,d4				; save the refnum
 			bmi.s	@nothingOpened
 
-			lea 	BootGlobals.fileName(a5),a0	; pointer to file’s name						<30>
+			lea 	BootGlobals.fileName(a5),a0	; pointer to file's name						<30>
 			move.l	a0,CurNamePtr			; Put ptr to the filename into CurApName+4			<35>
 
 @nothingOpened
@@ -2327,7 +2327,7 @@ MakeSysFree
 ;	Add a result code indicating success or failure.
 ;
 ; Assertions:
-;	d1 doesn’t get trashed by CloseTheFile, PinSysHeapTop, _SetApplBase, _CompactMem
+;	d1 doesn't get trashed by CloseTheFile, PinSysHeapTop, _SetApplBase, _CompactMem
 
 			bsr		ApplZoneExists
 			beq.s	@exit					; yes, sys. heap is growable; do nothing
@@ -2340,7 +2340,7 @@ MakeSysFree
 
 ; d0 is negative																				<36>
 			move.l	d0,d2					; size for later
-			subq.l	#1,d2					; round up and	(it’s negative, so subtract)		<36>
+			subq.l	#1,d2					; round up and	(it's negative, so subtract)		<36>
 			and.w	#~1,d2					; make sure it is even
 
 			tst.w	d4						; is a resource file open?
@@ -2405,7 +2405,7 @@ LoadINITResources
 
 ; The resource loading loop.
 ;
-; d4.W	->	refNum of file we’re loading from, or -1 meaning the system file
+; d4.W	->	refNum of file we're loading from, or -1 meaning the system file
 ;
 ; d6.W	<-	number of resources loaded
 ; d1.W	<-	error code
@@ -2425,7 +2425,7 @@ LoadINITResources
 			bsr.s	GetINITResource
 			bnz.s	@continue				; got one
 
-; If we didn’t get a handle and we are working on a file, we are done.
+; If we didn't get a handle and we are working on a file, we are done.
 ; If we are working on the System file, we just move on to the next resource by number.
 
 			tst.w	d4						; in System?
@@ -2446,26 +2446,26 @@ LoadINITResources
 
 			move.w	#mapTrue,ROMMapInsert	; get ROM as well as System file
 			bsr.s	GetINITResource			; now get it for real
-			bz.s	@next					; skip this one if we can’t load it
+			bz.s	@next					; skip this one if we can't load it
 
 ; Detach the resource, if it is one of the ones from the System file.
 
 			tst.w	d4						; in System?
-			bpl.s	@noDetach				; no, then don’t detach
+			bpl.s	@noDetach				; no, then don't detach
 			move.l	d1, -(sp)				; yes, push handle to detach						<23>
 			_DetachResource					; and cut it off!									<23>
 @noDetach
 
 ; Lock the sucker down, and call him, preserving registers.
 
-			bsr		SetBufPtrLimit			; jam MemTop so they won’t lower BufPtr too far
+			bsr		SetBufPtrLimit			; jam MemTop so they won't lower BufPtr too far
 			bsr.s	ExecuteHandle			; execute the stuff in that resource
 			move.l	BootGlobals.logicalMemTop(a5),MemTop	; set MemTop back					<30>
 
 @next
 			addq.w	#1,d6					; up the resource index
 			tst.w	d4						; in System?
-			bpl.s	@loop					; no, keep going until we can’t get any more INITs
+			bpl.s	@loop					; no, keep going until we can't get any more INITs
 
 			cmp.w	#36,d6					; done yet?
 			blt.s	@loop					; no, keep loading
@@ -2526,25 +2526,25 @@ GetINITResource
 HandleMacIIWith030							; rewrite to simpler, more informed case			<48>
 
 ; Check for a Mac II ROM with a 68030.
-; This specific case handles getting in early enough to tell VM that we’ve got an 030 (VM-capable).
+; This specific case handles getting in early enough to tell VM that we've got an 030 (VM-capable).
 ; Normally, accelerator manufacturers are responsible for setting up CPUFlag, MMUType, and their cache
 ; settings.  Out of the kindness of our hearts, we chose to give this extra support in this one case
-; where VM is a new feature, and they can’t get in early enough to let VM know they are capable.
+; where VM is a new feature, and they can't get in early enough to let VM know they are capable.
 ;
 ; MacIIci ROMs and later do all the right setup for CPUFlag, MMUType, and caches.
 ; MacII ROMs do not.
 ; Pre-MacII ROMs can't take advantage of VM, so don't help or hurt them.
 
 ; Lessons learned:
-;	You can’t turn on CACR_DE_030 even for an instant with some accelerators; they may depend on
-;	MMU tables being set up and die if they aren’t.
+;	You can't turn on CACR_DE_030 even for an instant with some accelerators; they may depend on
+;	MMU tables being set up and die if they aren't.
 ;
-;	You can’t set MMUType for them.  That confuses SwapMMUMode (as evidenced by MacsBug not loading
-;	because it couldn’t find a monitor).  They’ll have to provide their own rad SwapMMUMode if they
+;	You can't set MMUType for them.  That confuses SwapMMUMode (as evidenced by MacsBug not loading
+;	because it couldn't find a monitor).  They'll have to provide their own rad SwapMMUMode if they
 ;	want to jam MMUType.
 ;
-;	We thought about turning off interrupts during the period we’re setting CACR_WA_030, but figured
-;	out that it can never hurt.  Check the manual if you don’t believe this.
+;	We thought about turning off interrupts during the period we're setting CACR_WA_030, but figured
+;	out that it can never hurt.  Check the manual if you don't believe this.
 
 ; On Exit:	IF actual processor is 68030 & ROM is kROMVersionII
 ;				CPUFlag <- 030
@@ -2555,10 +2555,10 @@ HandleMacIIWith030							; rewrite to simpler, more informed case			<48>
 
 			move.l	ROMBase,a0				; point to ROM to get ROM version
 			cmp.w	#kROMVersionII,8(a0)	; do we have a MacII ROM?
-			bne.s	@bail					; no?  don’t do anything.
+			bne.s	@bail					; no?  don't do anything.
 
 			cmp.b	#cpu68020,CPUFlag		; does the ROM think that this is a 68020?
-			bne.s	@bail					; no?  don’t do anything.
+			bne.s	@bail					; no?  don't do anything.
 
 			; we have now decided to second-guess the ROM
 
@@ -2569,14 +2569,14 @@ HandleMacIIWith030							; rewrite to simpler, more informed case			<48>
 			move.l	d1,d0
 			bset	#CACR_WA_030,d0			; WA, (enable data cache)
 			movec	d0,cacr					; enable data cache (temporarily)
-			movec	cacr,d0					; IF CACR WA bit != 0 THEN we’re on an 030 because an 020 doesn’t have WA
+			movec	cacr,d0					; IF CACR WA bit != 0 THEN we're on an 030 because an 020 doesn't have WA
 			btst	#CACR_WA_030,d0			; see if the bit exists in CACR by seeing whether it stays set
-			bz.s	@bail					; no?  don’t do anything.
-											; don’t restore CACR because we just set a bit which doesn’t exist
+			bz.s	@bail					; no?  don't do anything.
+											; don't restore CACR because we just set a bit which doesn't exist
 
-			movec	d1,cacr					; restore CACR (VERY IMPORTANT: some accelerators can’t handle the cache)
-			move.b	#cpu68030,CPUFlag		; it’s an 030, let everyone know.
-											; You might be tempted to add setting MMUType.  Don’t.
+			movec	d1,cacr					; restore CACR (VERY IMPORTANT: some accelerators can't handle the cache)
+			move.b	#cpu68030,CPUFlag		; it's an 030, let everyone know.
+											; You might be tempted to add setting MMUType.  Don't.
 
 
 @bail
@@ -2587,7 +2587,7 @@ HandleMacIIWith030							; rewrite to simpler, more informed case			<48>
 LoadVM
 
 ; Load the Virtual Memory system, which is contained in the 'ptch' (42) resource (which is locked).
-; Also note that VM code contains the true test for whether a machine is “VM capable”.
+; Also note that VM code contains the true test for whether a machine is 'VM capable'.
 
 			btst.b	#hwCbAUX,HWCfgFlags		; are we under A/UX?
 			bnz.s	@noVM
@@ -2611,7 +2611,7 @@ LoadDebugger
 ; If there is no MacsBug, no attempt is made to load Disassmbler.
 ; Before loading MacsBug (below BufPtr), 1024 bytes of globals are reserved.
 ; MacsBug and the Disassembler are responsible for lowering BufPtr themselves after being loaded.
-; If they don’t, they will be overwritten by the stack and globals of the first application.
+; If they don't, they will be overwritten by the stack and globals of the first application.
 
 			SUB.L	#debuggerGlobalSize,BufPtr	; leave space for MacsBug globals
 			btst.b	#hwCbAUX,HWCfgFlags		; <24> Are we running under A/UX?
@@ -2641,7 +2641,7 @@ LoadDebugger
 
 			lea 	BootGlobals.bootBlocks+bbDbg2Name(a5),a1
 			bsr.s	LoadBelowBufPtrSkip512	; search for Disassembler
-			BNE.S	@done					; branch if there’s no disassembler
+			BNE.S	@done					; branch if there's no disassembler
 
 			lea		DisassemblerName,a0		; put name of Disassembler into CurApPtr			<37>
 			move.l	a0,CurNamePtr			; Put ptr to the Disassembler string				<37>
@@ -2759,7 +2759,7 @@ DetachAndExecute
 ;
 ; D0.W	->	patch resource id
 ; D1.L	->	patch resource type
-; D2.L  ->  bufPtr’s lower limit (added for the file cache)										<33>
+; D2.L  ->  bufPtr's lower limit (added for the file cache)										<33>
 ;
 ; Trashes: d0-d1/a0
 ;
@@ -2780,7 +2780,7 @@ DetachAndExecute
 	IF forROM THEN							; <SM23> 
 			ADDA.L	#6,SP					; clean up stack and get out of here	<SM22> hy
 	ENDIF		
-			BRA.S	@skip					; we didn’t get it, so just go on		<SM22> hy
+			BRA.S	@skip					; we didn't get it, so just go on		<SM22> hy
 	
 @GotResource								; found it								<SM22> hy
 
@@ -2815,7 +2815,7 @@ DetachAndExecute
 			MOVEA.L D0,A0
 			movem.l	A3-A6, -(SP)			; save important registers
 			jsr 	(A0)					; call it (note that the handle must be in D1)
-			movem.l	(SP)+, A3-A6			; restore ’cause ptch/PTCH trashes these
+			movem.l	(SP)+, A3-A6			; restore 'cause ptch/PTCH trashes these
 
 @skip
 			RTS
@@ -2852,8 +2852,8 @@ MakeSystemHeapGrowable
 			_InitApplZone
 @noApplZone
 			move.l	SysZone,a0				; calculate a new minimum size for the heap
-			add.l	#initialSysHeapSize,a0	; make it big enough so it won’t need to grow much
-			bsr.s	PinSysHeapTop			; don’t go farther than we really can
+			add.l	#initialSysHeapSize,a0	; make it big enough so it won't need to grow much
+			bsr.s	PinSysHeapTop			; don't go farther than we really can
 			_SetApplBase					; SetApplBase will never shrink the heap
 
 			move.l	SysZone,a0				; the one true heap
@@ -2902,7 +2902,7 @@ PinSysHeapTop								;													<34>
 
 TemporaryNewPtrStartup	;																	<30>
 
-; This is a routine to lower BufPtr.  It’s usable only during startup.
+; This is a routine to lower BufPtr.  It's usable only during startup.
 ; Another routine is used after startup is through.
 
 ;	->	d0.L	logicalSize
@@ -2980,11 +2980,11 @@ ClearBlock
 SetBufPtrLimit
 
 ; This sets MemTop to a value which will put a (faked-up) limit on how far BufPtr may be lowered.
-; It’s based on the rule that BufPtr may not be lowered past MemTop / 2 + 1024. We believe that
+; It's based on the rule that BufPtr may not be lowered past MemTop / 2 + 1024. We believe that
 ; many INITs use this rule, so we also expect that they will stop where we want them to when they
 ; use our computed value of MemTop.
 ;
-; Things which limit BufPtr’s descent:
+; Things which limit BufPtr's descent:
 ;	must have at least 350K + stack space to launch Finder
 ;	must have at least ???K + stack space to launch some essential control panel
 ;   NuBus™ cards or ROM in the logical memory space (when VM is in 24 bit mode
@@ -3010,7 +3010,7 @@ SetBufPtrLimit
 ;					|
 ;					|
 ;					|—————————————	<- barrier = BootGlobals.lowestBufPtr(a5)
-;	boot code	->	|±±±±±±±±±±±±±		BufPtr can’t go lower than this without killing the machine.
+;	boot code	->	|±±±±±±±±±±±±±		BufPtr can't go lower than this without killing the machine.
 ;	boot globals->	|≠≠≠≠≠≠≠≠≠≠≠≠≠
 ;	top of stack->	|\\\\\\\\\\\\\
 ;					|\\\ stack \\\
@@ -3068,7 +3068,7 @@ IsThisBufPtrOK	;																			<30>
 ; Would it be OK to lower BufPtr to the place suggested by d1?
 ;
 ;	1.	Moved past the boot-time barrier. This is a test for whether boot globals would be smashed.
-;	2.	Consumed so much room we won’t have room to launch Finder.
+;	2.	Consumed so much room we won't have room to launch Finder.
 ;
 ;	a5		->	globals
 ;	d1.L	->	suggested BufPtr
@@ -3107,15 +3107,15 @@ AdjustBarrier	;																				<38>
 			move.l	a0,d0							; copy baseAddr of SysZone
 			move.l	bkLim(a0),a0
 			add.l	#initialSysHeapSize,d0
-			cmp.l	d0,a0							; if heap is small because we’re on a small RAM machine
+			cmp.l	d0,a0							; if heap is small because we're on a small RAM machine
 			bhs.s	@enoughReservedForSysHeap		;   pretend heap is at initialSysHeapSize because it will
 													;   be that big soon anyway.
-			move.l	d0,a0							;   Set to be the minimum we’d ever consider.
+			move.l	d0,a0							;   Set to be the minimum we'd ever consider.
 @enoughReservedForSysHeap
 			add.l	#minProcessMgrSpace,a0			; where the process mgr heap would end if we
 													; created it right now
 			cmp.l	BootGlobals.bufPtrLimit(a5),a0	; processMgrHeap.bkLim > current barrier?
-			bls.s	@dont							; if not, don’t adjust
+			bls.s	@dont							; if not, don't adjust
 
 			move.l	a0,BootGlobals.bufPtrLimit(a5)	; set new barrier
 @dont

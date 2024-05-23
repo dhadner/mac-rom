@@ -51,7 +51,7 @@ typedef short StatusRegisterContents;
 #define notHeldErr					(-621)		/* specified range of memory is not held */
 #define cannotMakeContiguousErr		(-622)		/* cannot make specified range contiguous */
 #define notLockedErr				(-623)		/* specified range of memory is not locked */
-#define interruptsMaskedErr			(-624)		/* don’t call with interrupts masked */
+#define interruptsMaskedErr			(-624)		/* don't call with interrupts masked */
 #define	cannotDeferErr				(-625)		/* unable to defer additional user functions */
 
 /* data structures for VM calls */

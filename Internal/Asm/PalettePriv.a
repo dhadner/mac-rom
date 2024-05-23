@@ -5,7 +5,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	12/13/90	dvb		Make .h and .p and .a files consistent.
 ;		 <6>	10/31/90	SMC		Added equate for flag bit in pmFlags.

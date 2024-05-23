@@ -13,7 +13,7 @@
 ;									<20> 2/7/92	BH ResourceMapRecord removed, use ResourceMgrPriv.a instead
 ;	   <SM2>	  7/6/92	PN		Add CommToolBoxTable into CTBBlock
 ;		<19>	 8/21/91	JSM		Clean up header.
-;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<17>	 1/14/91	CP		Moved gestalt EQU's to GestaltPrivateEqu.a <BBH>
 ;		<16>	  1/9/91	kaz		<jng> Changing ModemStringType and PrinterStringType to STR# to

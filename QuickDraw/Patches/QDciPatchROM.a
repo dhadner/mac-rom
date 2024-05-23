@@ -34,7 +34,7 @@
 ;									when colorizing is a no-op.
 ;	   <131>	  5/5/92	SAH		Put fix for clipped vertical stretch back in for Cube-E
 ;	   <130>	 4/10/92	SAH		Moved the bSetup0 patch from this file to QuickDrawPatches.a.
-;	   <129>	 2/18/92	DTY		Pete, y’broke the dang build! :)
+;	   <129>	 2/18/92	DTY		Pete, y'broke the dang build! :)
 ;	   <128>	 2/18/92	pvh		Leave out bSETUP0 (questionable MOVE16 patch) to save a K or so
 ;									of space in the System.
 ;	   <127>	 2/17/92	pvh		Removed QD patch for MOVE16.  Fast blit abandoned for Regatta &
@@ -50,9 +50,9 @@
 ;									stack sniffer and then calls stretch which turns it back on.
 ;									Also abort picture playback when QDerror = AbortPicPlayBackErr.
 ;	   <121>	 9/25/91	JSM		Change PsychoticFarmerAndLater to PsychoticFarmerOrLater.
-;	   <120>	 9/13/91	DTY		What was I thinking? (Obviously I wasn’t.) Give the If a Then to
+;	   <120>	 9/13/91	DTY		What was I thinking? (Obviously I wasn't.) Give the If a Then to
 ;									keep it company.
-;	   <119>	 9/13/91	DTY		Don’t build <117> for CubeE.  (The optimization will build for
+;	   <119>	 9/13/91	DTY		Don't build <117> for CubeE.  (The optimization will build for
 ;									PsychoticFarmer.)
 ;	   <118>	 8/23/91	JSM		Remove benign redefinition of TRUE and FALSE, which are now
 ;									defined by the build script.
@@ -177,8 +177,8 @@
 ;		<82>	11/12/90	KON		Stretch now copies input rectangles and negative pmVersion
 ;									pixmaps work. [smc]
 ;		<81>	 11/6/90	gbm		the fact that change #80 broke the build with an assembly error
-;									was all Konstantin’s fault, really. My initials were on it, but
-;									I really didn’t have anything to do with it. (with sab)
+;									was all Konstantin's fault, really. My initials were on it, but
+;									I really didn't have anything to do with it. (with sab)
 ;		<80>	 11/6/90	gbm		All patches to picitem1 assume the result will be non-zero.
 ;									Centralize this so that each opcode proc doesn't need to set
 ;									this individually. [KON]
@@ -641,9 +641,9 @@ ciPatPrep		EQU	$2FEFC
 
 		AND		#$37,D2					;toss all but arithmetic, hilite bits + variant bits
 		BCLR	#5,D2					;arithmetic mode?
-		BEQ.S	@clrInvBit				;if so, don’t clear the invert bit
+		BEQ.S	@clrInvBit				;if so, don't clear the invert bit
 		BCLR	#4,D2					;hilite?
-		BEQ.S	@skipHilite				;if not, don’t add hilite offset
+		BEQ.S	@skipHilite				;if not, don't add hilite offset
 		CMP		#16,dstPix+pixelSize(A6)
 		BLT.S	@1
 		jsrROM	ciPatPrep
@@ -720,7 +720,7 @@ slHilite
 		ADD.L	D7,D4					;bump destination and mask
 		MOVE	D4,D0					;copy destination offset
 		AND		#31,D0					;combine with long sized mask
-		BNE.S	@loopTop				;loop if haven’t finished a long yet
+		BNE.S	@loopTop				;loop if haven't finished a long yet
 		MOVEQ	#-1,D3					;flush the mask
 		SUBQ	#1,D2					;decrement long counter
 @loopEnd
@@ -1448,7 +1448,7 @@ CLRMASK CLR.L	-(SP)						;ALLOCATE AND CLEAR
 @nextPatRow
 		CMP.L	(A0)+,D1					;is the row non-background?
 		DBEQ	D0,@nextPatRow				;if so, check for more rows
-		BEQ.S	@oldWay						;if not, can’t do fast hiliting
+		BEQ.S	@oldWay						;if not, can't do fast hiliting
 		MOVE	#$10,locMode(A6)			;set the mode to the fast hilite variety
 		BRA.S	@newWay						;assume D0 = -1
 @noHilite
@@ -10842,7 +10842,7 @@ NOSCALE	MOVE.L	DSTRECT(A6),A0				;POINT TO DSTRECT
 		LSR.l	#5,D1						;GET NUMBER OF LONGS IN SCANBUF - 1	<C954>
 		addq.l	#1,d1						;***make it one based for stretch!!	<C954>
 		BTST	#5,locMode+1(A6)			;arithmetic?
-		BNE.S	@skipDotToLong				;if so, don’t update bufSize
+		BNE.S	@skipDotToLong				;if so, don't update bufSize
 
 		MOVE	D1,BUFSIZE(A6)				;BUFSIZE = # LONGS -1				<C954>
 

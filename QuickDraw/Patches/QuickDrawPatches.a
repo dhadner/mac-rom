@@ -35,7 +35,7 @@
 ;									ciClosePortPatch in CoorAsm.A, NewPixMap in ColorAsm.a,
 ;									BitMapRgn in Regions.a
 ;		<19>	10/17/91	DTY		Avoid duplicate NewPatExpand label, and use trap number for
-;									PatExpand instead of macro because the linked patch macros don’t
+;									PatExpand instead of macro because the linked patch macros don't
 ;									seem to know about it.
 ;		<18>	10/16/91	KON		Move some routines from QDciPatchROM over and make them linked
 ;									patches.
@@ -75,7 +75,7 @@
 ;									_DisposeGWorld inside UpdateGWorld.  Split the _CopyBits patch
 ;									into a come-from and a regular patch to avoid future problems.
 ;		 <3>	 8/22/90	DTY		OK, so I botched it.  Forget I ever did anything.
-;		 <2>	 8/22/90	DTY		Install the GetPMData trap here since it’s used by both
+;		 <2>	 8/22/90	DTY		Install the GetPMData trap here since it's used by both
 ;									QuickDrawPatchII and AllB&WQDPatch.
 ;		 <1>	 6/11/90	JSM		First checked in.
 ;
@@ -88,7 +88,7 @@
 ;
 ;	do nothing for purged handles and mark handles non-purgeable before doing DrawPicture
 ;	this could be rolled into the main DrawPicture patches, but it would probably be trickier there
-;	we’re doing it here because we are working on the final candidate for 7.0
+;	we're doing it here because we are working on the final candidate for 7.0
 
 ;
 ; Save and restore global info so DrawPicture is reentrant.  This should be rolled into DrawPicture 
@@ -118,7 +118,7 @@ VarSize 			EQU 	SaveHandleState				;TOTAL BYTES OF LOCALS
 				beq.s	Done						; if purged, do nothing
 
 				link	a6, #VarSize
-				_HGetState							; get the handle’s state
+				_HGetState							; get the handle's state
 				; DO NOT CHECK ERRORS HERE
 				; that would mess up people who do DrawPicture on fake handles
 

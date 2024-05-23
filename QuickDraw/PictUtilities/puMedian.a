@@ -112,25 +112,25 @@ regSize			EQU  20
 				move.l	regSize+8(SP),resultPtr
 				move.l	regSize+12(SP),colorsRequested
 
-				clr.w	index								;this is our counter for the color’s value.
+				clr.w	index								;this is our counter for the color's value.
 				moveq	#5,five								;these are some constants that we want in registers
 				moveq	#10,ten
 				moveq	#11,eleven
 				bra.s	@enter								;enter the loop properly for the DBRA instruction.
 
-@loop			move.w	index,(resultPtr)+					;set the value for the current entry and move “resultPtr”
-				addq.w	#1,index							;..to the red component. Then increment “index”
+@loop			move.w	index,(resultPtr)+					;set the value for the current entry and move 'resultPtr'
+				addq.w	#1,index							;..to the red component. Then increment 'index'
 
 				move.w	count(boxInfoPtr),colorCount		;check the box count - if it is zero, then we are at
 				beq.s	@empty								;..the end of the unique colors, so clear the entry.
 
 				move.l	totalRed(boxInfoPtr),component		;get the total red value, divide by the color count,
-				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in “resultPtr”
+				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in 'resultPtr'
 				move.l	totalGreen(boxInfoPtr),component	;get the total green value, divide by the color count,
-				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in “resultPtr”
+				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in 'resultPtr'
 				move.l	totalBlue(boxInfoPtr),component		;get the total blue value, divide by the color count,
-				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in “resultPtr”
-				bra.s	@next								;skip over the “clear” code.
+				bsr.s	smearAndCopy						;..smear it into a 16-bit color and put it in 'resultPtr'
+				bra.s	@next								;skip over the 'clear' code.
 
 @empty			clr.l	(resultPtr)+						;clear both the red and green components at once
 				clr.w	(resultPtr)+						;clear the blue component

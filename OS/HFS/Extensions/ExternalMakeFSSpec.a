@@ -598,9 +598,9 @@ ExternalMakeFSSpec:	proc	export
 		;	1) a file in the middle of a path is an error, and its ioDirID is not a dirID
 		;	2) a file at the end of a colon-terminated path is an error, too (Bill B. sez)
 
-		bne.s	@WeLikeItFine						; an error happened, so we can’t be picky
+		bne.s	@WeLikeItFine						; an error happened, so we can't be picky
 		btst.b	#ioDirFlg, ioFlAttrib(a0)			; was the thing we found a directory?
-		bne.s	@WeLikeItFine						; yes, and we’re always happy to find directories
+		bne.s	@WeLikeItFine						; yes, and we're always happy to find directories
 		tst.l	d3									; did we have a colon?
 		bmi.s	@WeLikeItFine						; no, and that is correct for a file
 		moveq.l	#dirNFErr, d0						; silly rabbi, colons are for directories
@@ -618,7 +618,7 @@ ExternalMakeFSSpec:	proc	export
 
 @DoubleColon:
 		cmp.l	#fsRtDirID, d4						; are we trying to go higher than the root?
-		beq.s	@DirNFExit							; yes, we can’t (even though GetCatInfo would)
+		beq.s	@DirNFExit							; yes, we can't (even though GetCatInfo would)
 		move.w	#-1, ioFDirIndex(a0)				; we need this guy's parent
 		go_GetCatInfo
 		bne.s	@ErrorExit							; barf on badness
@@ -646,7 +646,7 @@ ExternalMakeFSSpec:	proc	export
 		go_GetCatInfo
 		bne.s	@ErrorExit							; an error implies a bad directory
 		moveq.l	#fnfErr, d0							; good directory, so restore the fnfErr
-		cmp.l	#fsRtParID, d4						; were we searching in the root’s parent?
+		cmp.l	#fsRtParID, d4						; were we searching in the root's parent?
 		bne.s	@Exit								; no, we can return safely (can't create in fsRtParID)
 
 @ErrorExit:	

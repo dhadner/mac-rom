@@ -15,7 +15,7 @@
 ;		 <3>	 1/21/91	csd			& PKE: Use SANE and the Script Manager to build the file name.
 ;									This will let us localize the file name so that it works for all of the
 ;									various script cases, i.e. right to left text in Hebrew.
-;		 <2>	 9/25/90	dba			Check in Bo3b’s change to use D7 instead of D2. This caused a crash in
+;		 <2>	 9/25/90	dba			Check in Bo3b's change to use D7 instead of D2. This caused a crash in
 ;									32-bit mode.
 ;		 <1>	 1/17/90	fjs			Recover from stupid mistakes
 ;
@@ -45,7 +45,7 @@
 ;	9/26/88:
 ;		Fixed the problem with overwriting the header of the PICT, now leaving space
 ;		for the header before starting the spooling.
-;		Killed the SetGDevice/GetGDevice stuff as Darin noted it isn’t necessary.
+;		Killed the SetGDevice/GetGDevice stuff as Darin noted it isn't necessary.
 ;	9/27/88:
 ;		Skip the buffer finding operation, the spooling is sufficiently fast to make it
 ;		unnecessary, even on floppies.  Timing results with Kong:  about 5 seconds
@@ -185,7 +185,7 @@
 ;	killing the picture, closing the file and so on, as long as the variables are cleared
 ;	before the first possible error.
 ;
-;	If I get an error during creating, naming or preflighting the file I can’t finish
+;	If I get an error during creating, naming or preflighting the file I can't finish
 ;	the job, so I need to clean up and split.  A SysBeep is wimpy user feedback on 
 ;	errors, but there isn't a whole lot better.  It doesn't really seem appropriate to
 ;	put up a dialog from an FKEY either.  The only Expected error is DiskFull.
@@ -389,7 +389,7 @@ FkeyGlobals		RECORD	{QDglobalPtr},DECR	; build a stack frame record
 
 ; Here I define all the variables that are used.  These are
 ; used in a global variable fashion, even though they are allocated on the stack.
-; FKEYs can’t have global vars though, so this is a reasonable way out.
+; FKEYs can't have global vars though, so this is a reasonable way out.
 ; RA5 will still be used to point to our globals, so we set up the first element of 
 ; our globals to be the pointer to the QD variables as QD expects.  This is relatively
 ; complicated, so peruse the Segment loader and Memory manager chapters to see
@@ -533,7 +533,7 @@ Start
 ; GetSysInfo:
 ;	We need to determine if colorQD exists on the machine or not, so call SysEnvirons
 ; to find out.  This also gets the boot volume vRefNum, which is more robust than the
-; BootDrive low memory global.  We don’t link with the glue here since we know that
+; BootDrive low memory global.  We don't link with the glue here since we know that
 ; the trap has to exist on machines where this FKEY will run.  We can always expect
 ; Version 1 to exist, and thus don't check the error code on return.
 
@@ -591,7 +591,7 @@ GetSysInfo
 	MOVE.L	D0, A0							; the itl4 resource handle
 	_HGetState									; remember its present state
 	MOVE.B	D0, itlState(A5)					; save it for a later restore
-	_HLock										; don’t let it go anywhere (or get purged)
+	_HLock										; don't let it go anywhere (or get purged)
 	
 ; We have the handle to the STR resource.  Make sure it is valid.
 
@@ -610,7 +610,7 @@ GetSysInfo
 
 ; If there are files there already, I want to keep upping the number to
 ; find an unused file name.  There is not much point in stopping at 9,
-; so I’ll just keep trying until it fails, or I get  an OK file name. 
+; so I'll just keep trying until it fails, or I get  an OK file name. 
 ; We have a valid handle to the string, which starts as 'Picture ^0'.  Make a copy of it so we
 ; can change the handle with ReplaceText.  We do this each time through the TryFileName
 ; loop so we can start with a fresh 'Picture ^0' each time.  We copy the handle instead
@@ -630,9 +630,9 @@ TryFileName
 	EXG		A0, A1							; make source & dest registers correct
 	_BlockMove
 	
-; Increment our number by one. We use SANE because we don’t want this code to
-; know about the extended type implementation. Also, since we’re going to use the
-; international utilities to convert this to a string, and they call SANE, there’s no
+; Increment our number by one. We use SANE because we don't want this code to
+; know about the extended type implementation. Also, since we're going to use the
+; international utilities to convert this to a string, and they call SANE, there's no
 ; extra hit because we call SANE here. Finally, SANE in ROM is likely to be used,
 ; saving us from loading it in any case.
 
@@ -819,7 +819,7 @@ TryFileName
 ; Now open a port for our
 ; use to allow us to easily copy the screen to itself, and to avoid having to worry if
 ; a port is valid currently.  We have preflighted at least 500 bytes out of the heap,
-; which should be enough for a port, so we won’t blow up on this call at least.
+; which should be enough for a port, so we won't blow up on this call at least.
 ; In addition to the Open, this becomes the current port. (as: thePort)  The
 ; same record is used whether it is color or not.
 
@@ -1070,7 +1070,7 @@ PictureDone
 	BNE.S		DeathCity						; if an error, split.
 
 ; From here on out, we are cleaning up the world to what it was before we came in.
-; That means we won’t have any failures (recoverable anyway) during this exit.
+; That means we won't have any failures (recoverable anyway) during this exit.
 
 	BSR.S		CloseNClean					; close the file, clean up blocks.
 
@@ -1090,7 +1090,7 @@ DeathCity
 	BSR.S		CloseNClean					; close the file and cleanup.
 	
 ; Since we had some skanky error, attempt to delete the file we created at the start,
-; to clean up bogus junk.  If we get an error on the delete that’s OK.
+; to clean up bogus junk.  If we get an error on the delete that's OK.
 
 	LEA		filePB(A5),A0					; the parameter block,
 ;	LEA		fileName(A5),A1				; the pointer to the file name string,
@@ -1120,7 +1120,7 @@ CloseNClean
 	
 ; Restore the state of the itl4 resource handle if we got one
 	MOVE.L	itlHandle(A5), D0				; did we have this handle
-	BEQ.S		@3								; if not, don’t bother
+	BEQ.S		@3								; if not, don't bother
 	MOVE.L	D0, A0							; get the handle into A0
 	MOVEQ	#0, D0							; a clean register is probably not needed
 	MOVE.B	itlState(A5), D0					; get the saved handle state
@@ -1273,7 +1273,7 @@ extendedOne									; the constant 1 in extended format
 				
 numFormat
 				DC.B	$30,$00,$00,$05,$00,$00	; internal representation of the format
-				DC.B	$00,$00,$00,$05,$00,$05	; for our number “####”
+				DC.B	$00,$00,$00,$05,$00,$05	; for our number '####'
 				DC.B	$00,$05,$00,$04,$00,$00
 				DC.B	$00,$00,$00,$00,$00,$00
 				DC.B	$00,$00,$01,$00,$00,$00

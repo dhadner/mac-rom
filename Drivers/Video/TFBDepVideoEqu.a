@@ -9,18 +9,18 @@
 ;
 ;	Change History (most recent first):
 ;
-;	   <SM2>	09-24-92	jmp		Strange problem:  On 040 CPU’s the TFBResetReg is seen only on
+;	   <SM2>	09-24-92	jmp		Strange problem:  On 040 CPU's the TFBResetReg is seen only on
 ;									byte-lane 3 (as would be expected), but on 020/030 CPUs, the
 ;									TFBResetReg MUST be smeared from byte-lane zero.  So, for the
-;									moment, I’ve “fixed” this problem with a conditional.  In the
+;									moment, I've 'fixed' this problem with a conditional.  In the
 ;									future, we should perhaps do this dynamically in the code (i.e.,
 ;									so the build will work for both ROMs and Systems).
 ;		 <4>	 8/21/91	JSM		Clean up header.
-;		 <3>	  4/3/91	jmp		When I was doing the byte-smearing fixes, I didn’t offset the
+;		 <3>	  4/3/91	jmp		When I was doing the byte-smearing fixes, I didn't offset the
 ;									TFB reset register correctly; i.e., TFBResetReg is one of the -3
 ;									instead of +3 offsets:  TFB is weird.
 ;		 <2>	 3/22/91	jmp		Rolled in the current TERROR ROM version of the TFBDriver (for
-;									fixing a “screen tearing” problem at SetEntries time).
+;									fixing a 'screen tearing' problem at SetEntries time).
 ;		 <1>	 11/5/90	jmp		first checked in
 ;		 <2>	 11/2/90	jmp		Made changes so that the TFB Driver would no longer rely on the
 ;									byte-smearing properties of the 68020/68030 to do its thing.
@@ -80,7 +80,7 @@ defmVertRefRate		EQU		67				;Vert refresh rate
 
 defmDevType			EQU		0				;0 = CLUTType
 
-; Hardware definitions (+3 to fix the fact the byte-smearing doesn’t happen
+; Hardware definitions (+3 to fix the fact the byte-smearing doesn't happen
 ;	on machines with MC68040 processors).
 ;
 TFBIBase			EQU		$8FFFC+3
@@ -98,7 +98,7 @@ RdVSync				EQU		$D0000+3
 RdVInt				EQU		$D0004+3
 RdIntIc				EQU		$D0008+3
 
-; TFB Registers -- these are relative to dCtlDevBase+TFBBase (the -3’s are due
+; TFB Registers -- these are relative to dCtlDevBase+TFBBase (the -3's are due
 ;	to the fact that these addresses are in fact relative to the 0th addresses
 ;	shown above.  Ugh.)
 ;

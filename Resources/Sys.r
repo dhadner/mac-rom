@@ -22,7 +22,7 @@
 	   <287>	 1/14/92	pvh		Add Zydeco's real name to STR# -16395 so we can take out an
 									Installer action item which modifies it on the fly.
 	   <286>	  1/3/92	JSM		#1017240: Add STR -16391 with name of TrueType font cache file.
-	   <285>	12/16/91	DTY		Don’t mark 'WDEF' 0 as purgeable. (Ask the 7 Up guys for the
+	   <285>	12/16/91	DTY		Don't mark 'WDEF' 0 as purgeable. (Ask the 7 Up guys for the
 									reason…)
 	   <284>	 12/4/91	hsK		Changed the 'dtab' resource (dictionary attribute table)
 									according to the new definition.
@@ -68,7 +68,7 @@
 										Added atlk#10 to the list of 67C ROvrs.  Added some seeding
 											support.
 										Split off from 7.0 GM sources. Added Built-In video names for
-											Spike, Eclipse, Tim, and Apollo.  Added “About this Macintosh…”
+											Spike, Eclipse, Tim, and Apollo.  Added 'About this Macintosh…'
 											(and responder) strings for Spike, Eclipse, Tim, and Apollo.
 											Now including FPHW.rsrc & ElemsHW.rsrc (backpatching SANE) into
 											the System build.  Cheesy software gets a cheesy Color Icon.
@@ -80,7 +80,7 @@
 	   <274>	10/23/91	JH		Changed Dictionary dimg resource to have an ID of -16385 which
 									was officially obtained from the meanies.
 	   <273>	10/23/91	YK		Added InputUtils code.
-	   <272>	10/14/91	JSM		Don’t use hasDictionaryMgr conditional.
+	   <272>	10/14/91	JSM		Don't use hasDictionaryMgr conditional.
 	   <271>	10/11/91	JH		Added DictionManager code and dtab resource.
 	   <270>	 10/2/91	JSM		Use StandardFile.rsrc instead of StandardFile3.rsrc.
 	   <269>	 9/19/91	PKE		(for Ian Hendry) For Cube-E, add 3 PICTs for use by Clock
@@ -94,15 +94,15 @@
 	   <265>	  4/2/91	SAM		Added Regatta conditionalized strings and cicn.
 	   <264>	 3/23/91	EMT		Tune NBP Timeout and Retry parameters for PPC.
 	   <263>	 3/21/91	DTY		Cindy got mad at me because the year and Apple Computer, Inc.
-									are backwards from the “official” copyright format. She’s still
+									are backwards from the 'official' copyright format. She's still
 									going to get mad at me for not doing this for c3, but at least
-									it’s getting done.
+									it's getting done.
 	   <262>	 3/20/91	ngk		Add back popup triangle PICT that Darin removed.
-	   <261>	 3/13/91	DTY		Updated 'vers' 1 resource’s copyright notice.
+	   <261>	 3/13/91	DTY		Updated 'vers' 1 resource's copyright notice.
 	   <260>	  3/4/91	dba		dty: get rid of SysVers conditionals and the popup triangle
 									PICT; get rid of sysHeapFromNowOn since it was for 6.X vs. 7.0
 									convenience
-	   <259>	 2/26/91	PKE		smb,#perCindyR: Change resource name “US” to “U.S.”.
+	   <259>	 2/26/91	PKE		smb,#perCindyR: Change resource name 'US' to 'U.S.'.
 	   <258>	 2/23/91	PKE		ngk,#perCSD: Clean up international resource names.
 	   <257>	 2/22/91	ag		djw: hjr: Rolled in backlight support. new low power dialog
 									string and backlight driver resource.
@@ -122,8 +122,8 @@
 	   <250>	 1/18/91	stb		& RLC; add 'dbex' resource, the presence of which permits the
 									user to disable extensions at startup time by holding down the
 									shift key.
-	   <249>	 1/17/91	csd		& KSM: Changed the name of the “Users & Groups” file to “Users &
-									Groups Data File” so it’s different than the name of the control
+	   <249>	 1/17/91	csd		& KSM: Changed the name of the 'Users & Groups' file to 'Users &
+									Groups Data File' so it's different than the name of the control
 									panel.
 	   <248>	 1/12/91	kaz		Removing purge bit on popupCDEFMDEF 'proc'.
 	   <247>	 1/12/91	gbm		<dba> Take out the obviously untested (wrong filenames and
@@ -131,7 +131,7 @@
 									makefile dependencies are fixed by mjq. Also fixed some typos
 									from <246>, wondering the whole time why Eric would check this
 									in untested (since <245> broke the build).  How the hell are we
-									ever going to get b4 out the door if people aren’t testing their
+									ever going to get b4 out the door if people aren't testing their
 									changes?!?
 	   <246>	 1/11/91	EMT		<VC> change help strings for Prompt for user dialog
 	   <245>	 1/11/91	mjq		Update AppleTalk resource locations for new AppleTalk Source
@@ -153,8 +153,8 @@
 	   <235>	12/11/90	stb		& gbm; add 'STR ' -16507 for net booting
 	   <234>	 11/9/90	VL		(dc) Deleted entries added in <228> as we don't need to draw
 									titles in TrueGray anymore.
-	   <233>	 11/4/90	dba		include Scheduler and DAHandler separately so we don’t waste so
-									much space on people’s disks
+	   <233>	 11/4/90	dba		include Scheduler and DAHandler separately so we don't waste so
+									much space on people's disks
 	   <232>	 11/1/90	fjs		add color icons for the modem port and printer port
 	   <231>	10/31/90	csd		Added 'atlk' 10 to the Mac32 Rov#.
 	   <230>	10/31/90	RLC		Change help 'ICN#' resource ID to be -5696 instead of -5695.
@@ -170,8 +170,8 @@
 	   <224>	 10/8/90	VL		Changed 'pixs' resources so that it can handle 1-bit pixmap data
 									by adding an additional field to contain the number of bits per
 									pixel. This reduces the size of pixs significantly.
-	   <223>	 10/6/90	jmp		Added a space in front of the “Memory Allocation for Built-In
-									Video” strig so that it would look centered, and made the
+	   <223>	 10/6/90	jmp		Added a space in front of the 'Memory Allocation for Built-In
+									Video' strig so that it would look centered, and made the
 									static-text item associated with this string 5 pixels larger to
 									accomodate my change in the version number from 1.0 to 1.0.1
 									(i.e., had to change VidExtVers in Build).
@@ -184,7 +184,7 @@
 	   <218>	 9/21/90	DDG		Used the new conditional for picture utilities.
 	   <217>	 9/16/90	csd		Include the snd resource from PictWhapSound.rsrc.
 	   <216>	 9/16/90	VL		Replaced old-style 'wctb' and 'cctb' with 7.0 extended ones.
-	   <215>	 9/15/90	csd		Changed “A/ROSE Prep” to just “A/ROSE”.
+	   <215>	 9/15/90	csd		Changed 'A/ROSE Prep' to just 'A/ROSE'.
 	   <214>	 9/14/90	kaz		Marking CommToolbox 'cmtb' and 'proc' code resources as locked
 									to load 'em in low in the system heap.
 	   <212>	 9/10/90	EMT		Added BubbleHelp Strings for PPCToolBox PromptForUser Dialog
@@ -206,7 +206,7 @@
 									there...
 	   <200>	 8/19/90	gbm		mark a few more things purgeable, take steps to speed up the
 									build (a little)
-	   <199>	 8/19/90	dba		got rid of old SixPack conditionals since we don’t build system
+	   <199>	 8/19/90	dba		got rid of old SixPack conditionals since we don't build system
 									versions older than SixPack; got rid of the forAppleTalk20
 									switch since it is always true these days; made new defines so
 									we can use dialog centering, and it will be ignored on 6.0
@@ -234,13 +234,13 @@
 									LCs). So, I removed the referenced to C.
 	   <197>	 8/17/90	csd		Added more machine names to the STR# to correspond to the
 									Gestalt machine IDs.
-	   <196>	 8/17/90	DTY		Removed IncSys for Slot Manager since it’s a linked patch now.
+	   <196>	 8/17/90	DTY		Removed IncSys for Slot Manager since it's a linked patch now.
 	   <195>	 8/14/90	jmp		Added the "Macintosh II C Built-In Video" 'card' resource for
 									V8, and the "Macintosh II C Built-In Video" 'STR#' translation
 									resource.  This is for LC-V8s (Rexes?).  Also, changed the
 									translated name from "Macintosh II Built-In Video" to "Macintosh
 									Built-In Video" for Rexes only since Rexes are not going to be
-									Macintosh II’s by name.
+									Macintosh II's by name.
 	   <194>	 8/14/90	DTY		Removed ptch 0 since TextEdit is a linked patch now.
 	   <193>	 8/10/90	dba		add new strings for AppleTalk and A/ROSE, get rid of INIT 22
 	   <192>	 8/10/90	S		Modified A String in STR# -16409.
@@ -250,7 +250,7 @@
 	   <188>	  8/8/90	SAM		Including ptch 45 DispatchHelper & ProcHelper in the System.
 									•••---> Temporary <--- ••• Remove this when sound becomes an
 									Lptch.
-	   <187>	  8/7/90	DTY		Removed ptch for ADBMgrPatch since it’s been converted to a
+	   <187>	  8/7/90	DTY		Removed ptch for ADBMgrPatch since it's been converted to a
 									linked patch.
 	   <186>	  8/7/90	csd		Added some more resources to the Rov#s for Appletalk.
 	   <185>	  8/7/90	SMB		Added IncSys for keyboard menu 'hmnu' found in
@@ -260,12 +260,12 @@
 	   <182>	  8/6/90	VC		Changed the bad-user and bad-pasword alert strings in the PPC
 									log-in dialog.
 	   <181>	  8/6/90	VL		Updated pixs resources for color scroll bars.
-	   <180>	  8/5/90	csd		Include Geneva 9 from SystemFonts.rsrc since the Plus doesn’t
+	   <180>	  8/5/90	csd		Include Geneva 9 from SystemFonts.rsrc since the Plus doesn't
 									have it in ROM.
 	   <179>	  8/5/90	RLC		Change IncludeColorHelpIcons to zero to skip inclusion of 2
 									color ics's.
 	   <178>	  8/4/90	DTY		Got rid of 'pixs' resources -14336 & -14332 from Window Manager;
-									they’re no longer used by the Standard WDEF. Modified 'pixs'
+									they're no longer used by the Standard WDEF. Modified 'pixs'
 									-14335 & 'pixs' -14334.
 	   <177>	  8/2/90	JSM		Read in all PPC Browser resources from a separate file.
 	   <176>	 7/30/90	DDG		Updated the build commands for picture utilities.
@@ -275,12 +275,12 @@
 									{RIncludes} now.
 	   <172>	 7/24/90	KIP		NEEDED FOR SIXPACK: Create 'proc' resources from
 	   								SoundPFDProc.rsrc and SoundInputProc.rsrc.
-	   <171>	 7/23/90	PKE		Moved the ‘resource’ and ‘data’ definitions for international
+	   <171>	 7/23/90	PKE		Moved the ‘resource' and ‘data' definitions for international
 									resources that were defined here into a new file,
 									International.r; replaced with IncSys statements here.
 	   <170>	 7/23/90	dba		get rid of ptch 1
 	   <169>	 7/23/90	dba		get rid of ptch 25 for 7.0; also get rid of ptch 16 for good
-	   <168>	 7/20/90	DTY		Remove Bass 'ptch' resources since it’s a linked patch now.
+	   <168>	 7/20/90	DTY		Remove Bass 'ptch' resources since it's a linked patch now.
 	   <167>	 7/20/90	dba		get rid of PTCH -1 for 7.0
 	   <166>	 7/20/90	csd		Added even more resources to the Mac32 ROv# for Appletalk.
 	   <165>	 7/19/90	CCH		NEEDED FOR SIXPACK: Removing include of HwPriv ptch, since it is
@@ -289,19 +289,19 @@
 									Already Connected To Server dialog.
 	   <164>	 7/19/90	PP		Remove obsolete AliasMgr DLOG and DITL resource for Already
 									Connected To Server dialog.
-	   <163>	 7/17/90	PKE		‘kscn’ resource (see <9.8>) has been superseded by keyboard icon
-									suite (kcs#, etc. - see <102>). Changed ‘kscn’ 0 back to ‘SICN’
+	   <163>	 7/17/90	PKE		‘kscn' resource (see <9.8>) has been superseded by keyboard icon
+									suite (kcs#, etc. - see <102>). Changed ‘kscn' 0 back to ‘SICN'
 									0 for backward compatibility.
 	   <162>	 7/16/90	csd		Added four more resources needed by Appletalk to the Mac32 ROv#.
-	   <161>	 7/16/90	DDG		NEEDED FOR SIXPACK: Added the button CDEF back to the ‘ROv#’
-									list for the Mac SE, since my patch didn’t work !! Maybe later I
+	   <161>	 7/16/90	DDG		NEEDED FOR SIXPACK: Added the button CDEF back to the ‘ROv#'
+									list for the Mac SE, since my patch didn't work !! Maybe later I
 									will come back and fix this patch if we REALLY need the ≈1000
 									bytes that it saves.
-	   <160>	 7/11/90	gbm		Fixed Darin “BoneHead” Adler’s glaring errors.  Maybe someday
-									he’ll learn to build before he checks in files.
+	   <160>	 7/11/90	gbm		Fixed Darin 'BoneHead' Adler's glaring errors.  Maybe someday
+									he'll learn to build before he checks in files.
 	   <159>	 7/11/90	dba		improve inclusion of ProcessMgr and VM, set system heap bit a
 									lot more
-	   <158>	  7/7/90	PKE		Define “sysHeapFromNowOn” symbol to use as heap attribute for
+	   <158>	  7/7/90	PKE		Define 'sysHeapFromNowOn' symbol to use as heap attribute for
 									resources that did not have sysheap attribute in 6.x, but which
 									should have sysheap attribute set for 7.0 and beyond (Darin gets
 									credit for the symbol name). Use it for itlb, itl0, itl1, itl2,
@@ -310,22 +310,22 @@
 									and STR# (-16491). This fixes a bug with saving handles to
 									resources loaded at INIT time.
 	   <157>	  7/3/90	fjs		Die Hard II: Die Harder
-	   <156>	  7/2/90	DTY		Removed IncSys for Resource Manager Extensions, since they’re in
+	   <156>	  7/2/90	DTY		Removed IncSys for Resource Manager Extensions, since they're in
 									a linked patch.
 	   <155>	  7/2/90	csd		Added resources needed by AppleTalk to the Mac32 ROv#.
 	   <154>	  7/1/90	JSM		Change 'char' to 'TEXT' in the 'rtt#' resource.
 	   <153>	  7/1/90	JSM		Updated some data types for SnarfMan in the 'rtt#' resource.
-	   <152>	 6/29/90	DDG		NEEDED FOR SIXPACK: Removed the button CDEF from the ‘ROv#’ list
+	   <152>	 6/29/90	DDG		NEEDED FOR SIXPACK: Removed the button CDEF from the ‘ROv#' list
 									for the Mac SE, because we now have a patch to fix the SE case.
 	   <151>	 6/27/90	DC		Included label resources (IconUtils.rsrc)
-	   <150>	 6/26/90	DTY		Removed IncSys for NotificationMgr, since it’s now a linked
+	   <150>	 6/26/90	DTY		Removed IncSys for NotificationMgr, since it's now a linked
 									patch.
 	   <149>	 6/26/90	JSM		Don't include 'ckid' resources from AppleTalk.rsrc and
 									ADSP.rsrc.
 	   <148>	 6/26/90	csd		get AppleTalk and ADSP resources from their own .rsrc files
 									instead of System7.0Resources. Added a default, empty machine
 									name STR .
-	   <147>	 6/25/90	DTY		Removed 'ptch' for ScrollSpeedFix.a.rsrc since it’s now in an
+	   <147>	 6/25/90	DTY		Removed 'ptch' for ScrollSpeedFix.a.rsrc since it's now in an
 									'lpch'.
 	   <146>	 6/22/90	PKE		Updated 'itlm' data to use new script, language, and region
 									names, and rearranged sorting order of scripts, languages, and
@@ -345,7 +345,7 @@
 									button hilites, uses dialog mgr approved offset (not 1000) to
 									show/hide items.
 	   <136>	 6/15/90	PP		Remove 'SelectAlias' related obsolete resources from AliasMgr.
-	   <135>	 6/15/90	DDG		Added the button CDEF to the ‘ROv#’ lists to fix a small bug in
+	   <135>	 6/15/90	DDG		Added the button CDEF to the ‘ROv#' lists to fix a small bug in
 									drawing text in buttons.
 	   <134>	 6/14/90	JBS		NEEDED FOR SIXPACK-Removed Elsie Extension, Mapped all names to
 									the same
@@ -356,7 +356,7 @@
 									by the Disk Initialization package back to -6047 for 6.x systems.
 									The ID number for the 7.0 system was NOT changed.
 	   <130>	 6/11/90	DDG		NEEDED FOR SIXPACK: Changed the Macintosh XO string to just say
-									macintosh. This means that we can do seed versions that can’t
+									macintosh. This means that we can do seed versions that can't
 									contain real product names without the extra step of changing all
 									these little strings. Right before XO is actually shipped, we
 									should change this to the real name of the computer.
@@ -377,8 +377,8 @@
 									resSysheap,resLocked.
 	   <119>	  6/1/90	RLC		Fixed IncSys includes for balloon pack resources.
 	   <118>	 5/30/90	JBS		NEEDED FOR SIXPACK-Changed Elsie resources
-	   <117>	 5/29/90	PKE		Added bytes for valid style and alias style to ‘itlb’ type.
-									Added list of additional separators to ‘itl1’. Both changes
+	   <117>	 5/29/90	PKE		Added bytes for valid style and alias style to ‘itlb' type.
+									Added list of additional separators to ‘itl1'. Both changes
 									match new formats in SysTypes.r.
 	   <116>	 5/29/90	JSM		Update PPCBrowser resources for new interface.
 	   <115>	 5/29/90	JBS		NEEDED FOR SIXPACK-Fixed Elsie video extension resource
@@ -387,12 +387,12 @@
 									six-point-oh-seven to six-point-oh-six.
 	   <113>	 5/25/90	NC		Added SnthLoading.r to System File.
 	   <112>	 5/24/90	kaz		Removed Choose.r 'finf'
-	   <111>	 5/23/90	csd		Changed the ctSeeds of cluts 5 and 9 so that they don’t match
+	   <111>	 5/23/90	csd		Changed the ctSeeds of cluts 5 and 9 so that they don't match
 									the standard system cluts.
 	   <110>	 5/22/90	kaz		Changed StandardNBP.r 'STR#' to 'PICT'
-	   <109>	 5/21/90	PKE		Added region code table to ‘itlm’ resource to match new format
+	   <109>	 5/21/90	PKE		Added region code table to ‘itlm' resource to match new format
 									in SysTypes.r. Updated itlm data to use newer script, lang, and
-									region codes (smTradChinese, etc.). Converted ‘itl1’ resource
+									region codes (smTradChinese, etc.). Converted ‘itl1' resource
 									for 7.0 to new extended form with list of abbreviated day and
 									month names, etc.
 	   <108>	 5/18/90	csd		added clut 5 and clut 9 for drawing dimmed icons.
@@ -446,7 +446,7 @@
 	   <77+>	 4/11/90	KSM		Change IncSys's for BalloonPack resources.
 		<77>	 4/11/90	BBH		eliminate inclusion of temporary CommToolbox resources (INIT 29,
 									proc -32509, -32508, ctbp -32512, -32511, -32510)
-		<76>	 4/11/90	dba		put back the STR resource containing “Spool Folder”, since
+		<76>	 4/11/90	dba		put back the STR resource containing 'Spool Folder', since
 									PrintMonitor is still looking at it; add GenericIcons.rsrc;
 									change IDs for DiskInit package resources for Nick K.
 		<75>	 4/10/90	dba		marked the bootblocks resource protected to keep it safe from
@@ -507,7 +507,7 @@
 		<42>	  3/5/90	BBH		added resources for Popup CDEF
 		<41>	  3/1/90	DC		Changed layerMgr.c.rsrc include to expect type 'ptch' and id 17.
 									Changed sysobj.make to generate 'ptch' 17.
-		<40>	 2/27/90	PKE		For 7.0, add new ScriptMgrROMPatch.rsrc as ‘ptch’ 39 (combines
+		<40>	 2/27/90	PKE		For 7.0, add new ScriptMgrROMPatch.rsrc as ‘ptch' 39 (combines
 									common Script Mgr patch code from IIci and Portable patch
 									files).
 		<39>	 2/23/90	JSM		Add some more resources and private .r file for the Database
@@ -552,9 +552,9 @@
 									nuked.
 		 <9>	  1/3/90	dba		override the MBDF on Mac Plus and Mac SE
 		 <8>	  1/3/90	RC		Update stdfile help strings (STR# -3999).
-		 <7>	  1/3/90	CCH		Changed “Gestalt.a.rsrc” to “Gestalt.rsrc”.
+		 <7>	  1/3/90	CCH		Changed 'Gestalt.a.rsrc' to 'Gestalt.rsrc'.
 		 <6>	  1/2/90	ngk		Fix DataPub.p.rsrc to explicitly include code resources
-		 <5>	12/28/89	dba		create new #define (codeAs) so we don’t need 'RSRC' (0)
+		 <5>	12/28/89	dba		create new #define (codeAs) so we don't need 'RSRC' (0)
 									sprinkled all over the file; change some code resources to be
 									compiled as 'RSRC' (0) (includes changes to SysObj.Make); move
 									patter and icon LDEF to appropriate places in the file and add
@@ -641,7 +641,7 @@
 									changed the color apple to have a more minimal rowBytes
 	   <9.1>	 8/28/89	PKE		Add Script Manager extensions patch as 'ptch' 27 (SysVers >=
 									$700 only).
-	   <9.0>	 8/17/89	dba		got rid of “purgeable” on ROv# resources and fixed build
+	   <9.0>	 8/17/89	dba		got rid of 'purgeable' on ROv# resources and fixed build
 	   <8.9>	 8/17/89	dba		reorganization of this entire file; be careful not to roll this
 									into 6.0.4 because some of the dialogs have been edited, and the
 									attributes have been changed on some resources
@@ -661,7 +661,7 @@
 	   <8.2>	  8/8/89	PKE		NEEDED FOR 6.0.4: In ROv# 117 & 630, conditionalize WDEF 0
 									override for SysVers >= $700 only. Change STR# -10 to -16395 and
 									delete attributes. All of this per DBA and CSD.
-	   <8.1>	  8/8/89	dba		NEEDED FOR 6.0.4: Neil sez: MIDI doesn’t work; take it out also,
+	   <8.1>	  8/8/89	dba		NEEDED FOR 6.0.4: Neil sez: MIDI doesn't work; take it out also,
 									get rid of extraneous names in this file
 	   <8.0>	  8/7/89	GMR		added new MiscPatches.a - Big Bang only patches for all ROMs.
 	   <7.8>	  8/7/89	prp		AliasMgr has several additional resources to be included.
@@ -889,7 +889,7 @@
 	} };
 
 	type 'dbex' { integer=0; };		// nothing
-	resource 'dbex' (-16385) { };	// doesn’t need to contain anything, just needs to be present
+	resource 'dbex' (-16385) { };	// doesn't need to contain anything, just needs to be present
 //__________________________________________________________________________________________________
 // startup stuff
 
@@ -1177,9 +1177,9 @@
 	// IncSys "Responder.rsrc" not 'vers';
 
 	resource 'STR#' ($BFE8, sysheap, locked) { {
-		"Your system has been placed in AppleTalk zone “",
+		"Your system has been placed in AppleTalk zone '",
 
-		"”.  "
+		"'.  "
 		"To select a different zone, please click the Network icon in the Control Panel, "
 		"then click the selected AppleTalk connection icon.",
 
@@ -1896,7 +1896,7 @@ resource 'STR ' (-16391, purgeable) { "Font Cache" };
 #define FakeFONDTables { }, { }, { }, { }
 #define glyphNameResID	-16488
 
-// FONDs that point to the fonts in ROM (except Geneva 9 since Macintosh Plus doesn’t have it)
+// FONDs that point to the fonts in ROM (except Geneva 9 since Macintosh Plus doesn't have it)
 
 	resource 'FOND' (0, "Chicago", sysHeap) {
 		FakeFONDFlags, 0, FakeFONDFields, 1, { 12, plain, 12; }, FakeFONDTables
@@ -2243,12 +2243,12 @@ resource 'pslt' (gestaltEclipse33, purgeable) {
 	};
 
 	resource 'STR ' (-16387, sysHeap, locked) {
-		"Only 50% of the battery’s reserve power remains.  "
+		"Only 50% of the battery's reserve power remains.  "
 		"Plug in your power adapter to begin recharging the battery as soon as possible."
 	};
 
 	resource 'STR ' (-16388, sysHeap, locked) {
-		"Only 25% of the battery’s reserve power remains.  "
+		"Only 25% of the battery's reserve power remains.  "
 		"Please put your Macintosh to sleep and plug in your power adapter.  "
 		"You might not be able to wake the computer again until the power adapter is connected."
 	};
@@ -2265,7 +2265,7 @@ resource 'pslt' (gestaltEclipse33, purgeable) {
 		"Please plug in your power adapter to begin recharging the battery."
 	};
 	resource 'STR ' (-16512, sysHeap, locked) {
-		"Very little of the battery’s reserve power remains.  "
+		"Very little of the battery's reserve power remains.  "
 		"Please put your Macintosh to sleep and plug in your power adapter immediately.  "
 		"Doing so will help extend the life of your battery."
 	};
@@ -2283,7 +2283,7 @@ resource 'pslt' (gestaltEclipse33, purgeable) {
 	};
 
 	resource 'STR ' (-16516, sysHeap, locked) {
-		"Very little of the battery’s reserve power remains.  "
+		"Very little of the battery's reserve power remains.  "
 		"Please put your Macintosh to sleep and plug in your power adapter immediately."
 	};
 
@@ -2360,7 +2360,7 @@ resource 'STR#' (-16409, sysHeap, purgeable) { {
 	"As a guest you do not have to enter your name or password.",
 
 	// Guest radio button dimmed
-	"Not available because the computer you’re connecting to does not allow guest access.",
+	"Not available because the computer you're connecting to does not allow guest access.",
 
 	// Registered user radio button
 	"Click this button to connect to the computer as a registered user. "
@@ -2458,7 +2458,7 @@ resource 'hdlg' (-16409, sysHeap, purgeable) {
 	resource 'DITL' (-16409, sysHeap) { {
 		{205, 285, 225, 355}, Button { enabled, "OK" };
 		{205, 55, 225, 125}, Button { enabled, "Cancel" };
-		{40, 48, 73, 360}, StaticText { disabled, "Link to “^0” on “^1” as :" };
+		{40, 48, 73, 360}, StaticText { disabled, "Link to '^0' on '^1' as :" };
 		{126, 63, 143, 142}, StaticText { disabled, "Name:" };
 		{126, 144, 142, 356}, EditText { enabled, "" };
 		{152, 63, 169, 136}, StaticText { disabled, "Password:" };
@@ -3096,7 +3096,7 @@ resource 'ppci' (-16409)
 	resource 'DITL' (-4080, purgeable) { {
 		{78, 95, 98, 165}, Button { enabled, "OK" };
 		{10, 72, 66, 250}, StaticText { disabled,
-			"You have made changes that won’t take effect until Restart."
+			"You have made changes that won't take effect until Restart."
 		};
 	} };
 
@@ -3104,7 +3104,7 @@ resource 'ppci' (-16409)
 // EDisk
 	resource 'STR#' (-4097, sysHeap, Locked) {
 		{
-			"The contents of the RAM Disk volume “^1” will be lost by shutting down.  "
+			"The contents of the RAM Disk volume '^1' will be lost by shutting down.  "
 			"Do you wish to continue?",
 			"OK",
 			"Cancel",

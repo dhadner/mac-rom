@@ -34,21 +34,21 @@
 ;		 <8>	 6/11/90	DDG		NEEDED FOR SIXPACK: Fixed the dsNoFPU error to not spill over the
 ;									end of the dialog.
 ;		 <7>	  6/1/90	PKE		DARIN IS A BAD DOG. In <5>, he changed the symbol name
-;									UImpTrapNumber to UnimplementedTrapNumber, but didn’t change the
+;									UImpTrapNumber to UnimplementedTrapNumber, but didn't change the
 ;									reference to it, thus breaking the SixPack build. Fixed it.
 ;		 <6>	 5/31/90	DDG		Added a generic system error (dsNoFPU) for ericksons and elsies
-;									that don’t have floating point chips.
+;									that don't have floating point chips.
 ;		 <5>	 5/30/90	dba		add alert for forced quit
 ;		 <4>	 1/30/90	dba		get rid of warnings when assembling; put in fancier messages;
 ;									fix bug #34819 by reaching down the stack to restore the value
 ;									of CurMap for the convenience of applications with ResumeProcs
-;		 <3>	 1/12/90	CCH		added include of “HardwarePrivateEqu.a”
+;		 <3>	 1/12/90	CCH		added include of 'HardwarePrivateEqu.a'
 ;		 <2>	12/28/89	dba		changed PROC to MAIN so we get dead code stripping; got rid of
 ;									the grayed resume button
-;	   <1.4>	10/11/89	dba		reformatted file; added new ShutDown Manager “user choice”
+;	   <1.4>	10/11/89	dba		reformatted file; added new ShutDown Manager 'user choice'
 ;									alerts; improved icons
-;	   <1.3>	 8/15/89	dba		OK FOR 6.0.4: get rid of Resume button in “can’t load the
-;									application: Finder”
+;	   <1.3>	 8/15/89	dba		OK FOR 6.0.4: get rid of Resume button in 'can't load the
+;									application: Finder'
 ;	   <1.2>	 8/11/89	dba		NEEDED FOR 6.0.4: changed text for alerts; improved ShutDown
 ;									code used when ShutDown Manager is not present; added duplicate
 ;									button lists to handle case where ResumeProc is not NIL; added
@@ -57,7 +57,7 @@
 ;	   <1.0>	11/16/88	CCH		Added to EASE.
 ;				 8/16/88	dba		changed procs 98 and 99 to avoid collision with errors 98 and 99
 ;									proc 98 is now proc 1098; proc 99 is now proc 1099 this caused a
-;									crash after “force-launching” a document from the Finder
+;									crash after 'force-launching' a document from the Finder
 ;				 3/20/88	EKH		Added SysErr #98 (dsNoPatch) for RomNoPatch, so it has it's very
 ;									own SysErr number.
 ;				  1/7/88	EKH		Added Alert for "needed resource can't be loaded" error at boot
@@ -69,7 +69,7 @@
 ;									that the application could not be opened and allow return to
 ;									Finder. Specifically, added Alert 26, Text 47, Icon 39, Procs
 ;									98-99, Button List 74, and String 81. Changed ShutDown alert
-;									text from “power off your machine” to “turn off your Macintosh”;
+;									text from 'power off your machine' to 'turn off your Macintosh';
 ;									it now shares icon 39 with launch fail alert. This file may now
 ;									be built as an INIT 31 file for testing (see below for sample
 ;									build code).
@@ -310,7 +310,7 @@ SystemDamagedMessage
 			dc.w	dstSystemDamaged,@end-@rest
 @rest
 			dc.w	94,114
-			DC.B	'The “System” file on this startup disk may be/'
+			DC.B	'The 'System' file on this startup disk may be/'
 			dc.b	'damaged.  The Installer can be used to repair this/'
 			dc.b	'disk.'
 			DC.B	0
@@ -321,7 +321,7 @@ MissingPatchMessage
 			dc.w	dstMissingPatch,@end-@rest
 @rest
 			dc.w	94,114
-			DC.B    'This startup disk was created with “Minimal”/'
+			DC.B    'This startup disk was created with 'Minimal'/'
 			dc.b	'software and will not work on this Macintosh/'
 			dc.b	'model.  Use the Installer to update this disk for/'
 			dc.b	'this model.'
@@ -367,7 +367,7 @@ SomebodyAteAlltheRAMMessage
 ;	(8 bytes)	location (rectangle) - global coordinates
 ;	(128 bytes)	icon data
 
-; Susan’s bomb icon
+; Susan's bomb icon
 
 BombIcon
 			dc.w	dsiBomb,@end-@rest
@@ -810,10 +810,10 @@ MessagesTable
 			dc.b	51,'unserviceable slot interrupt'
 			dc.b	81,'bad SANE opcode'
 			dc.b	84,'menu purged while in use'
-			dc.b	85,'couldn’t load MBDF'
-			dc.b	86,'couldn’t find hierarchical menu’s parent'
-			dc.b	87,'couldn’t load WDEF'
-			dc.b	88,'couldn’t load CDEF'
+			dc.b	85,'couldn't load MBDF'
+			dc.b	86,'couldn't find hierarchical menu's parent'
+			dc.b	87,'couldn't load WDEF'
+			dc.b	88,'couldn't load CDEF'
 			dc.b	90,'floating point coprocessor not installed'
 			dc.b	0
 			align
@@ -864,17 +864,17 @@ DrawNameStr
 			MOVE.L	(SP)+,D0		; and parameter
 			MOVEM.L	A0/D0,-(SP)		; swap them on the stack
 			
-			MOVE.W	#210,-(SP)									; “
+			MOVE.W	#210,-(SP)									; '
 			MOVE.L	#((TextTop+LineHeight)<<16)+TextEdge,-(SP)	; start of second line
 			_MoveTo												; go there
-			_DrawChar											; draw “
+			_DrawChar											; draw '
 			
 			_DrawString											; draw name (already on stack)
 			
-			MOVE.W	#211,-(SP)									; ”
+			MOVE.W	#211,-(SP)									; '
 			MOVE.W	#46,-(SP)									; .
 			_DrawChar											; draw .
-			_DrawChar											; draw ”
+			_DrawChar											; draw '
 			
 			RTS
 			
@@ -976,10 +976,10 @@ EndDrawRmvDsk
 ;
 ; DrawCurrentName is used to draw the name of the INIT or application which ate up too much memory.
 
-; Use the INIT name pointed to by CurApName+4 if we’re at INIT time.  Otherwise, use CurApName.
-; If the name looks bogus, don’t draw a name.
+; Use the INIT name pointed to by CurApName+4 if we're at INIT time.  Otherwise, use CurApName.
+; If the name looks bogus, don't draw a name.
 ;
-; If we’re at INIT time, also draw the disableExtensionMsg
+; If we're at INIT time, also draw the disableExtensionMsg
 
 
 			dc.w	dspDrawCurrentName,EndDrawCurrentName-DrawCurrentName
@@ -1041,8 +1041,8 @@ DrawCurrentName
 
 	string pascal
 
-@prefix		dc.b	'“'
-@suffix		dc.b	'”'
+@prefix		dc.b	'''
+@suffix		dc.b	'''
 			align
 @disableExtensionMsg1
 			dc.b	'To temporarily turn off extensions, restart and'
@@ -1084,7 +1084,7 @@ MacJmpOK
 ; user stack.
 ; NOTE: The Process Manager switches to its own stack (but doesn't switch modes).  Application patches
 ; to ExitToShell, though, may use the stack extensively (e.g. to close windows) before calling through.
-; The order here is important.  We don’t want to set the Supervisor stack pointer to CurStackBase.  That
+; The order here is important.  We don't want to set the Supervisor stack pointer to CurStackBase.  That
 ; would be interesting, but not right.  So we must clear Supervisor mode first, then set the stack.
 
 			move.l	#gestaltVMAttr,d0				; pass selector for VM attributes
@@ -1093,8 +1093,8 @@ MacJmpOK
 			bne.s	@stackAndModeOK					; if there was an error, forget it
 			move.l	a0,d0
 			btst	#gestaltVMPresent,d0
-			beq.s	@stackAndModeOK					; if VM isn’t present, we shouldn't change mode/stacks
-			andi	#$DFFF,SR						; turn off Supervisor mode.  Do this first, or we’ll reset
+			beq.s	@stackAndModeOK					; if VM isn't present, we shouldn't change mode/stacks
+			andi	#$DFFF,SR						; turn off Supervisor mode.  Do this first, or we'll reset
 													;  the wrong stack pointer.  This is ~(1<<13)
 			move.l	CurStackBase,sp					; reset the stack to a safe place so we can bail out cleanly
 @stackAndModeOK
@@ -1104,7 +1104,7 @@ EndExitToShell
 
 ; —————————————————————————————————————————————————
 ;
-; ShutDown is used by the ShutDown Manager’s “user choice” alert to turn off the machine.
+; ShutDown is used by the ShutDown Manager's 'user choice' alert to turn off the machine.
 
 			dc.w	dspShutDown,EndDoShutDown-DoShutDown
 
@@ -1118,7 +1118,7 @@ DoShutDown
 
 @noShutDownManager									;											<14>
 			moveq	#shutDownAlert,d0				;											<14>
-			clr.l	ResumeProc						; don’t show resume button					<14>
+			clr.l	ResumeProc						; don't show resume button					<14>
 			_SysError								;											<14>
 
 EndDoShutDown
@@ -1164,8 +1164,8 @@ DrawForcedQuitMessage
 
 	string pascal
 
-@prefix		dc.b	'Force “'
-@suffix		dc.b	'” to quit?'
+@prefix		dc.b	'Force ''
+@suffix		dc.b	'' to quit?'
 			align
 
 	string asis

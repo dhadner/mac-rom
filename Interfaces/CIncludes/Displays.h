@@ -128,7 +128,7 @@ enum{
 	kDMMirroringOnAlready = -6221,			// Returned by all calls that need mirroring to be off to do their thing.
 	kDMWrongNumberOfDisplays = -6222,		// Can only handle 2 displays for now.
 	kDMMirroringBlocked = -6223,			// DMBlockMirroring() has been called.
-	kDMCantBlock = -6224,					// Mirroring is already on, can’t Block now (call DMUnMirror() first).
+	kDMCantBlock = -6224,					// Mirroring is already on, can't Block now (call DMUnMirror() first).
 	kDMMirroringNotOn = -6225,				// Returned by all calls that need mirroring to be on to do their thing.
 
 // Other Errors

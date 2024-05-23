@@ -40,7 +40,7 @@
 	———————————————————————————————————————————————————————————————————————————————————————
 							Pre-Ludwig ROM comments begin here.
 	———————————————————————————————————————————————————————————————————————————————————————
-	  <SM11>	 12/8/92	chp		ClkConfig struct extended to support a “direct” flag which
+	  <SM11>	 12/8/92	chp		ClkConfig struct extended to support a 'direct' flag which
 									effectively suppresses use of programmable baud rate generation.
 									It specifies that the hardware clock pins are to be used
 									directly as transmitter/receiver clocks.
@@ -53,12 +53,12 @@
 	   <SM8>	 10/8/92	chp		More additions to SHALParamBlock (to be cleaned up later) and
 									removal of handshaking flags from TransmitBlock structure.
 	   <SM7>	  9/8/92	chp		Added predefined constants for various flavors of HAL. These
-									should correspond to ‘shal’ resource IDs.
+									should correspond to ‘shal' resource IDs.
 	   <SM6>	 8/28/92	chp		Added HAL service to disable interrupts on transitions of the
 									input handshake line. Added a field to the HAL parameter block
 									for specification of an XOn/XOff character.
 	   <SM5>	 8/13/92	chp		Discontinue the halRxBlock service. This is now handled
-									automatically by the HAL’s primary receive interrupt handler.
+									automatically by the HAL's primary receive interrupt handler.
 	   <SM4>	 7/30/92	chp		Remove an unused field in the TransmitBlock data structure. This
 									should have been axed before the last checkin, but the results
 									were benign.

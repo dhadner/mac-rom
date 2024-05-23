@@ -5663,7 +5663,7 @@ SizeVRAM
 			cmp.l	#'256K',SonoraWrap(a2)	; if we got our signature back, then
 			adda.l	#k256KvRAM*2,a2			; 	point to longword 0 in physbank 2
 			beq.s	@256K					; it wrapped, so go on (256K on board)
-			add.l	d0,d0					; otherwise, we’ve got 512K on-board
+			add.l	d0,d0					; otherwise, we've got 512K on-board
 			bra.s	@512Kb
 
 @256K		move.l	#'512?',(a2)			; write signature to longword 0 in physbank 2
@@ -5671,18 +5671,18 @@ SizeVRAM
 			add.l	#4,(Sp)
 
 			cmp.l	#'512?',(a2)			; if we got our signature back, then
-			beq.s	@512Ka					;	we’ve got expansion vRAM
-			move.b	#Sonora256K,SonoraVRAMSize(a3)	; otherwise, there’s only 256K out there
+			beq.s	@512Ka					;	we've got expansion vRAM
+			move.b	#Sonora256K,SonoraVRAMSize(a3)	; otherwise, there's only 256K out there
 			bra.s	@EndSize
 				
-@512Ka		add.l	d0,d0					; say there’s at least 512K out there
+@512Ka		add.l	d0,d0					; say there's at least 512K out there
 			cmp.l	#'512?',SonoraWrap(a2)	; if we got our signature back, then
 			beq.s	@Set512Ka				;	it wrapped, so set 512K
-			move.b	#Sonora768Ka,SonoraVRAMSize(a3)	; otherwise, there’s 768K out there
+			move.b	#Sonora768Ka,SonoraVRAMSize(a3)	; otherwise, there's 768K out there
 			add.l	#256*1024,d0			; set the size to 768K
 			bra.s	@EndSize
 				
-@Set512Ka	move.b	#Sonora512Ka,SonoraVRAMSize(a3)	; say that there’s 512K out there
+@Set512Ka	move.b	#Sonora512Ka,SonoraVRAMSize(a3)	; say that there's 512K out there
 			bra.s	@EndSize
 
 				
@@ -5691,16 +5691,16 @@ SizeVRAM
 			add.l	#4,(Sp)
 
 			cmp.l	#'768?',(a2)			; if we got our signature back, then
-			beq.s	@768Kb					;	we’ve got expansion vRAM
-			move.b	#Sonora512Kb,SonoraVRAMSize(a3)	; otherwise, there’s only 512K out there
+			beq.s	@768Kb					;	we've got expansion vRAM
+			move.b	#Sonora512Kb,SonoraVRAMSize(a3)	; otherwise, there's only 512K out there
 			bra.s	@EndSize
 				
 @768Kb		add.l	#256*1024,d0			; there must be 768K out there
 			cmp.l	#'768?',SonoraWrap(a2)	; if we got our signature back, then
 			beq.s	@Set768Kb				;	it wrapped, so set 768K
-			bra.s	@EndSize				; otherwise, there’s 1024K out there	
+			bra.s	@EndSize				; otherwise, there's 1024K out there	
 				
-@Set768Kb	move.b	#Sonora768Kb,SonoraVRAMSize(a3)	; say that there’s 768K out there
+@Set768Kb	move.b	#Sonora768Kb,SonoraVRAMSize(a3)	; say that there's 768K out there
 
 @EndSize	lea		(a0,d0.l),a1			; point to end of video RAM (for end of Mod3 test)
 			moveq.l	#0,D6

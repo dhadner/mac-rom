@@ -9,7 +9,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;	   <SM2>	  5/5/92	stb		incorporate the ‘scod’-loading patch for the segment loader into
+;	   <SM2>	  5/5/92	stb		incorporate the ‘scod'-loading patch for the segment loader into
 ;									SegmentLoader.a.
 ;		 <6>	 2/10/92	JSM		Moved this file to SegmentLoader folder, keeping all the old
 ;									revisions.
@@ -28,8 +28,8 @@
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ;	Force system code to load as 'scod' resources.  The Process Mgr. is our distinguished first guest
-;	of this mechanism.  The segment loader thinks it’s loading a ‘CODE’ resource.  This patch checks
-;	whether the id is in the reserved range [$BFFF,$BF00].  If so, it replaces ‘CODE’ with ‘scod’ on 
+;	of this mechanism.  The segment loader thinks it's loading a ‘CODE' resource.  This patch checks
+;	whether the id is in the reserved range [$BFFF,$BF00].  If so, it replaces ‘CODE' with ‘scod' on 
 ;	the stack and calls on through to _GetResource.
 ;	Rolled into SegmentLoader.a 3/30/92 by stb for SuperMario ROM.
 

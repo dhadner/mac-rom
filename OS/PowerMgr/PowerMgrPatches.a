@@ -78,7 +78,7 @@
 ;											"with PMgrRec" everywhere.
 ;										Split off from 7.0 GM sources. Added low power and SCSI Link
 ;											warnings.
-;		 <9>	 8/30/91	DTY		Define onHcMac here, since it’s not an available feature in
+;		 <9>	 8/30/91	DTY		Define onHcMac here, since it's not an available feature in
 ;									BBSStartup any more.
 ;		 <8>	 4/10/91	ag		HJR: changed the location of the insleep semaphore. the old
 ;									location was being overwritten by other parts of the power

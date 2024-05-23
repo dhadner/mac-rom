@@ -882,7 +882,7 @@ CMCatSearch:	proc	export
 	bsr 		StartTimer					; start a timer, if needed, right away			<12>
 
 	jsrRom		DTRMV3   					; find vol using ioNamePtr & ioVRefNum (D023/A234 trashed)
-	MOVEA.L 	A6, A3						; reload pointer to CSSR (doesn’t hurt CCs)		<12>
+	MOVEA.L 	A6, A3						; reload pointer to CSSR (doesn't hurt CCs)		<12>
 	BNE 		@Exit						; (DtrmV3 puts VCBPtr in A2)
 	MOVE.W		vcbSigWord(A2), D0			; Check out the volume signature
 	CMP.W		#SigWord, D0				; Is this an MFS disk?	•• use TFSVCBCk
@@ -963,7 +963,7 @@ CMCatSearch:	proc	export
 
 @continue:
 	btst		#timerFired, CSSR.flags(a3)	; did the timer fire?						<12>
-	bz.s		@noTimerYet					; no, don’t bug Mr. Scanner					<12>
+	bz.s		@noTimerYet					; no, don't bug Mr. Scanner					<12>
 	bset		#noMoreReads, PSR.flags(a4)	; yes, tell him not to hit the disk again	<12>
 @noTimerYet
 

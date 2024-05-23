@@ -79,7 +79,7 @@ struct FontSpec {
  short sysFontID;					/* ID of the same font in the current system file */
  long size[4];						/* bit array of all the sizes found (1..127) (bit 0 means > 127) */
  short style;						/* combined style of all occurrances of the font */
- long nameOffset;					/* offset into the fontNamesHdl handle for the font’s name */
+ long nameOffset;					/* offset into the fontNamesHdl handle for the font's name */
 };
 
 typedef struct FontSpec FontSpec;

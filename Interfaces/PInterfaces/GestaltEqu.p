@@ -26,7 +26,7 @@
 	   								<54> 7/28/92 JDR	<DCL> Added Sound Mgr 3.0 flags.
 	   <SM5>	 7/28/92	WS		add realtime manager attribute for gestalt call
 		<53>	 7/23/92	DTY		Remove inline from last change, since Gestalt is register based,
-									and Pascal doesn’t have #pragma parameters.
+									and Pascal doesn't have #pragma parameters.
 		<52>	 7/15/92	DCL		Adding SystemSevenOrLater inline for the Gestalt call.  Added
 									TSM selector.
 		<51>	  6/5/92	DC		Add the selector for checking for the presence of icon
@@ -69,7 +69,7 @@
 		<25>	 11/8/90	EMT		<stb>Fix comments and spelling errors for PPCToolBox. Remove
 									masks that are not applicable for system 7.0
 		<24>	10/8/90		JAL		Added SoundIOMgrPresent and SoundInputPresent to match C Interfaces.
-		<23>	 9/14/90	gbm		Sam’s compiler must be broken.
+		<23>	 9/14/90	gbm		Sam's compiler must be broken.
 		<22>	 9/14/90	SAM		Added final machine names for IIsi, LC, and Classic
 		<21>	 9/10/90	gbm		add file system attribute selector, gestaltFSAttr
 		<20>	 8/30/90	PP		gestaltFolderMgrAttr is gestaltFindFolderAttr.

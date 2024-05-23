@@ -13,19 +13,19 @@
 ;		<19>	11/25/92	DRF		Add a conditional patch inside a_hfsdispatch to save and restore
 ;									A2 across calls the the real _HFSDispatch. This is a temporary
 ;									fix until the PowerPC trap glue follows the proper register
-;									saving conventions. Code is conditionalized under “PsychicTV”
+;									saving conventions. Code is conditionalized under 'PsychicTV'
 ;									and will be removed at the earliest possibility.
 ;		<18>	 9/25/92	DRF		Get rid of MyGestalt, since inline glue exists
 ;		<17>	 3/30/92	DTY		#1025416,<DDG>: Add gestaltSkiaGlobalsSwitched to the list of
 ;									attributes for gestaltOSAttr.
 ;		<16>	11/25/91	DTY		Call GetParallelFCBFromRefNum in the _OpenRF patch to nail the
 ;									PSN in the parallel FCB for printer drivers, if it they have the
-;									“MultiFinder compatible” bit set.  This prevents the driver from
+;									'MultiFinder compatible' bit set.  This prevents the driver from
 ;									being closed out from under other applications which happen to
 ;									be using it at the same time.
 ;		<15>	 11/4/91	DTY		Of course, keeping your own copy of an interface macro tends to
 ;									screw things up when the selectors change…
-;		<14>	 11/1/91	DTY		Don’t assume SysMapHndl really has a handle to the system
+;		<14>	 11/1/91	DTY		Don't assume SysMapHndl really has a handle to the system
 ;									resource map, as it will have a handle to an override map when
 ;									ROMMapInsert is true. Call _IsThisASystemResourceMap to
 ;									determine whether it is or not instead.
@@ -35,7 +35,7 @@
 ;									system override map in the resource chain to NewProcess so that
 ;									new resource chains will have system override maps too.
 ;		<11>	 4/12/91	DFH		TES, #86777 : Change _Close patch to just call through when trap
-;									was made async. Our “shared printer file” check can not be made
+;									was made async. Our 'shared printer file' check can not be made
 ;									safely at interrupt time. Fortunately, it is not necessary for
 ;									it to be done on async Close's, since the printer files are
 ;									closed by the Print Manager synchronously. First found in

@@ -15,22 +15,22 @@
 ;									present.
 ;		<11>	 8/25/92	DTY		Always use the popup CDEF. Get rid of usePopUpCDEF conditional.
 ;		<10>	  7/5/92	csd		#1034877 <gbm>: Reversed some of change <9> because the code to
-;									rebuild the popup menu gets called multiple times. If it doesn’t
+;									rebuild the popup menu gets called multiple times. If it doesn't
 ;									_DeleteMenu the old menu, then it stays in the list and
-;									_InsertMenu fails. The first time _DeleteMenu is called, it’s
-;									being called for the CDEF’s menu which has already been removed
+;									_InsertMenu fails. The first time _DeleteMenu is called, it's
+;									being called for the CDEF's menu which has already been removed
 ;									from MenuList. This is okay, though; _DeleteMenu will do
 ;									nothing.
 ;		 <9>	  7/5/92	gbm		#1034877,<csd>: Standard file was relying on some behavior of
 ;									the pop-up CDEF, which has changed for Cube-E, so we must alter
 ;									the handling of the pop-up menu. (We need to delete it from
-;									memory and the menu list when we’re through with it, because the
+;									memory and the menu list when we're through with it, because the
 ;									CDEF no longer does that for us.
 ;		 <8>	 5/26/92	FM		Change the invisible check to special case remote volumes to
 ;									never be invisible. That way if someone mounts a High Sierra or
 ;									ISO format CD as an AppleShare volume it will show up in
 ;									Standard File. (This is getting sick…)
-;		 <7>	 5/12/92	DTY		#1028452: Make sure a volume is on line before seeing if it’s
+;		 <7>	 5/12/92	DTY		#1028452: Make sure a volume is on line before seeing if it's
 ;									invisible or not.
 ;		 <6>	 4/28/92	DTY		Get rid of hasBalloonHelp conditional.
 ;		 <5>	 4/21/92	FM		Fix invisible check. I was using the wrong offset in the
@@ -38,7 +38,7 @@
 ;		 <4>	  4/3/92	gbm		Change smKeyDisabState to a kinder, gentler spelling.
 ;									(smKeyDisableState)
 ;		 <3>	  4/3/92	DTY		#1019375,<FM>: Check to see if the keyboard was already locked
-;									on entry to Standard File.  If it was, don’t lock it or unlock
+;									on entry to Standard File.  If it was, don't lock it or unlock
 ;									it.
 ;		 <2>	  4/2/92	FM		#1022940,<DTY>: #1022940 Make Standard file respect invisible
 ;									volumes. Unfortunately High Sierra and ISO drivers that are
@@ -180,7 +180,7 @@
 ;									the folder in use for each volume. Stop using colorized icons in
 ;									non-color grafports.
 ;		<36>	  8/7/90	PKE		(first item is per NGK) Fix bug disposing of color table handle
-;									that doesn’t exist. (Now PKE changes) If setting of script tags
+;									that doesn't exist. (Now PKE changes) If setting of script tags
 ;									is disabled, then lock keyboards when in Standard File, and - if
 ;									sfPut - return smSystemScript as ScriptCode in reply record, and
 ;									set Finder script tag byte to unused (=0) when creating folders.
@@ -324,7 +324,7 @@
 ;									tabbing to file name TE in put file to select all.
 ;		 <2>	12/19/89	RC		Fix odd addressing problem in lOpenState flag from TST.W to
 ;									TST.B.
-;	   <3.8>	12/11/89	BBM		made the entry point ‘StandardFile’ a ‘MAIN’ entry for 6.0.x
+;	   <3.8>	12/11/89	BBM		made the entry point ‘StandardFile' a ‘MAIN' entry for 6.0.x
 ;									systems
 ;	   <3.7>	 12/7/89	dba		improve type-select by using event.when instead of TickCount;
 ;									fix bug that ignored all type-select characters when command key
@@ -352,7 +352,7 @@
 ;									GetFilenameScript
 ;	   <2.8>	 11/7/89	csd		With dba: change IDs of SICNs so they stay in the Standard File
 ;									range
-;	   <2.7>	10/31/89	JRM		Add command-open of an alias which open the alias’s parent
+;	   <2.7>	10/31/89	JRM		Add command-open of an alias which open the alias's parent
 ;									folder
 ;	   <2.6>	10/31/89	JRM		Fix type-select by using new UpperStr
 ;	   <2.5>	10/30/89	JRM		Use script byte for sorting, drawing Call RelString for sorting
@@ -868,7 +868,7 @@ lMainDesktop	DS.L	1			; cache of control handle for desktop button in main dialo
 lMainNewFolder	DS.L	1			; cache of control handle for new folder button in main dialog
 lNFCreate		DS.L	1			; cache of control handle for create button in new folder dialog
 lEvent			DS		EventRecord	; an event record for disk insert events
-lMeta			DS.W	1			; word for event manager’s modifiers
+lMeta			DS.W	1			; word for event manager's modifiers
 lTicks			DS.L	1			; long for event manager ticks
 lMouseWhere		DS		Point		; Point for moused down in pop up							<60>
 lTrashDir		DS.L	1			; dirID of trash for volume
@@ -880,8 +880,8 @@ lOpenAltExists	DS.B	1			; 0 for no alt name, 1 for is alt name
 lOpenName		DS.B	32			; title of open button when non-file selected
 lOpenAltName	DS.B	32			; title of open button when file selected
 lSystemScript	DS.W	1			; cached system script
-lSystemFont		DS.W	1			; cached system script’s font
-lSystemFontSize	DS.W	1			; cached system script’s font size
+lSystemFont		DS.W	1			; cached system script's font
+lSystemFontSize	DS.W	1			; cached system script's font size
 lBootVol		DS.W	1			; vrefnum of startup disk
 lBootDrive		DS.W	1			; drive of startup disk
 lTempDrive		DS.W	1			; temp drive (used during enumerate)
@@ -1004,7 +1004,7 @@ SkipHeader
 			beq.s	@CustomGetFileEntry		; selector = 8
 
 			MOVEQ	#dsNoPk3,D0 		; passed bad parameter
-			_SysError					; and don’t come back
+			_SysError					; and don't come back
 
 
 
@@ -1174,7 +1174,7 @@ Initialize
 			move.w	#smKeyDisableState,-(sp)	; <33> See if keyboard is already locked
 			_GetEnvirons
 			move.l	(sp)+,IKeyboardState(a6)	; <33> Save it
-			tst.l	IKeyboardState(a6)			; <33> If it’s already locked, don’t bother locking it again.
+			tst.l	IKeyboardState(a6)			; <33> If it's already locked, don't bother locking it again.
 			bnz.s	@doneKeybdLock				; <33>
 			move.w	#smKeyDisableKybds,-(sp)	; disable keybds not in sys or Roman script
 			_KeyScript
@@ -1538,12 +1538,12 @@ Finalize
 			move.l	lPopUpDirIDs(a6),a0
 			_DisposHandle
 
-; get rid of the menu we stuck in the menu list (if it’s still there)							<9>
+; get rid of the menu we stuck in the menu list (if it's still there)							<9>
 ; NOTE: This code is totally dependent on the current behavior of the pop-up CDEF.  The latest	<9>
-; (as this code is written) version of the pop-up does NOT arbitrarily remove and dispose it’s	<9>
+; (as this code is written) version of the pop-up does NOT arbitrarily remove and dispose it's	<9>
 ; menu handle when the control is destroyed.   Since the CDEF no longer cleans up after us,		<9>
-; we must delete the menu ourselves.  Actually, I’m being a LITTLE paranoid here and not trying	<9>
-; to delete the menu if I can’t find it in the list (even though I KNOW it will be there...)	<9>
+; we must delete the menu ourselves.  Actually, I'm being a LITTLE paranoid here and not trying	<9>
+; to delete the menu if I can't find it in the list (even though I KNOW it will be there...)	<9>
 			clr.l	-(sp)							; make room for handle						<9>
 			move.w	#sfPopUpMenuID, -(sp)			; give it our special id					<9>
 			_GetMHandle								; and ask for the handle					<9>
@@ -1595,7 +1595,7 @@ Finalize
 
 ; Re-enable keybds for all enabled scripts in case we disabled some of them.	<36>
 
-			tst.l	IKeyboardState(a6)	; <33> But if it was locked when we came in, don’t unlock it.
+			tst.l	IKeyboardState(a6)	; <33> But if it was locked when we came in, don't unlock it.
 			bnz.s	@keyboardWasLockedOnEntry	; <33>
 			move.w	#smKeyEnableKybds,-(sp)
 			_KeyScript
@@ -3195,7 +3195,7 @@ GetNextItemHit
 @1			bra.s	@doReturn_1			
 
 @doubleClk	tst.b	FileEntry.feFile.dimmed(a0)	; is it dimmed?
-			bne.s	@nullItem				; can’t double click on a dimmed selection
+			bne.s	@nullItem				; can't double click on a dimmed selection
 			moveq	#sfItemOpenButton,d0	; coerce item into open button
 			bsr		VirtualToRealItem
 			move.w	d0,lHit(A6)			; coerce original item into open button
@@ -3428,7 +3428,7 @@ FindD7Disk
 ; the current refnum.  It makes that local set to the new one.
 
 ; Also, this is two routines in one. We use D3 as a flag and do either
-; “next” disk, or “previous” disk.
+; 'next' disk, or 'previous' disk.
 
 PrevDisk
 			moveq	#-1,d3				; flag that we are going backward
@@ -3463,7 +3463,7 @@ tryDrive								;							<2> FM
 			NEG.W 	D1					; drive really is there
 @found
 			BSR		VolumeIsInvisible	; If the drive is invisible, <2> <7>
-			TST.W	D0					; don’t show it in the list. <2> <7>
+			TST.W	D0					; don't show it in the list. <2> <7>
 			BNE.S	inSearch			;							 <2> <7>
 			tst.w	d3					; are we looking for the previous?
 			bz.s	foundDrive			; no, go report that we found the next
@@ -4903,7 +4903,7 @@ CallActivate
 	; jump to apps proc to tell it what is happening
 			move.l	lActivateProc(a6),A0	; get ActivateProc Ptr in A0
 			move.l	a0,d0
-			beq.s	@noActvProc				; if NIL then don’t call
+			beq.s	@noActvProc				; if NIL then don't call
 			move.l	(sp),-(sp)				; move return address down to make room
 			move.l	lCallBackPtr(a6),4(SP)	; for the extra parameter
 			jmp 	(a0)					; note: does not return here 
@@ -6167,7 +6167,7 @@ ForDiskDo	MOVEM.L	A1/D0,-(sp)			; save so we can use in invisible check	<2> FM
 @online 	
 			MOVE.L	A2,A1				; <2> <7>
 			BSR		VolumeIsInvisible	; <2> <7> See if this volume is invisible
-			TST.W	D0					; <2> <7> If it is, don’t call the procedure
+			TST.W	D0					; <2> <7> If it is, don't call the procedure
 			BNE.S	@skipDisk			; <2> <7> for it
 
 			MOVE	vcbDrvNum(A2),lTempDrive(A6); setup drive for enumerate
@@ -8039,7 +8039,7 @@ ReBuildMenu
 			st		contrlVis(a0)		; force it visible (it was initially hidden)
 			move.l	contrlData(a0),a0
 
-	; <10> The following code was removed for change <9>, but shouldn’t have been. Since this code path is taken
+	; <10> The following code was removed for change <9>, but shouldn't have been. Since this code path is taken
 	; <10> every time the path popup changes, it needs to delete the old version of the menu from MenuList before
 	; <10> inserting the updated version. Otherwise, the _InsertMenu fails.
 	; <10>
@@ -8047,7 +8047,7 @@ ReBuildMenu
 	; <10> already have called _DeleteMenu, removing its menu from the MenuList. Our _DeleteMenu is harmless and
 	; <10> does nothing in that case. However, since we, and not the CDEF, are now inserting the menu, the CDEF will
 	; <10> assume we own it and will never _DeleteMenu or _DisposMenu it. Because of this, we _DeleteMenu and _DisposMenu
-	; <10> every subsequent time through this code and once when we’re all done (see change <9>).
+	; <10> every subsequent time through this code and once when we're all done (see change <9>).
 	
 			move.l	a0,d5							; save data handle 							<10>	<68, #f2-ngk-001> 
 			move.l	(a0),a0							;											<10>

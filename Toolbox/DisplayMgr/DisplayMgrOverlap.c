@@ -1,7 +1,7 @@
 /*
 	File:		DisplayMgrOverlap.c
 
-	Contains:	Overlapping and purely overlapping (aka “mirroring”) support for
+	Contains:	Overlapping and purely overlapping (aka 'mirroring') support for
 				the Display Manager.
 
 	Written by:	Mike Puckett, September 29, 1993.
@@ -56,7 +56,7 @@ DM_QDIsMirroringCapable(
 	
 {	long	response;
 
-	// Assume that we’re not mirroring capable.
+	// Assume that we're not mirroring capable.
 	//
 	*qdIsMirroringCapable = false;
 	
@@ -85,7 +85,7 @@ DM_CanMirrorNow(
 {	OSErr						theErr = kSysSWTooOld;
 	Boolean						qdIsMirroringCapable;
 	
-	// Assume that we can’t mirror now.
+	// Assume that we can't mirror now.
 	//
 	*canMirrorNow = false;
 	
@@ -156,7 +156,7 @@ DM_MirrorDevices(
 		if (canMirrorNow)
 		{	theErr = kDMMirroringOnAlready;
 
-			/* If we can’t mirror now and we’re not already mirroring, then
+			/* If we can't mirror now and we're not already mirroring, then
 			// just get out of here for now.
 			*/
 			if (!dmGlobals->fDevicesMirrored)
@@ -224,7 +224,7 @@ DM_MirrorDevices(
 						(*gD1)->gdRect = (*gD2)->gdRect = mirrorRect;
 						dmGlobals->fDevicesMirrored = dmGlobals->fDevicesOverLap = true;
 							
-						/* What if these fail?  I think we’re hosed.  We should probably have
+						/* What if these fail?  I think we're hosed.  We should probably have
 						// some sort of restoration capability here.
 						*/
 						DMMoveDisplay(gD1,0,0,nil);
@@ -271,22 +271,22 @@ DM_UnmirrorDevice(
 	{	DisplayManagerGlobalsPtr dmGlobals = GetDMGlobalsPtr();
 		theErr = kDMMirroringNotOn;
 
-		/* If we’re not mirroring, then we can’t unmirror.
+		/* If we're not mirroring, then we can't unmirror.
 		*/
 		if (dmGlobals->fDevicesMirrored)
 		{	theErr = kDMGenErr;
 		
-			/* If the passed-in device isn’t active, then it hasn’t been mirrored.
+			/* If the passed-in device isn't active, then it hasn't been mirrored.
 			*/
 			if (IsActiveScreenDevice(gDevice,true))
 			{	DisplayInfoPtr displayInfo = DM_GetDisplayInfoByGDevice(gDevice,dontFailToMain);
 			
-				/* Make sure that the Display Manager knows what’s going on.
+				/* Make sure that the Display Manager knows what's going on.
 				*/
 				if (nil != displayInfo)
 				{	GDHandle mirroredDevice = displayInfo->mirroredDevice;
 					
-					/* Make sure that the device we’re supposed to unmirror was really
+					/* Make sure that the device we're supposed to unmirror was really
 					// mirrored to something else.  And if so, go thru the restoration
 					// process, which includes clearing out the globals.
 					*/
@@ -366,7 +366,7 @@ DM_GetNextMirroredDevice(
 {	OSErr		theErr = kDMMirroringNotOn;
 	Boolean		mirroringIsOn;
 
-	/* Assume we’ll fail (safety first, you know).
+	/* Assume we'll fail (safety first, you know).
 	*/ 
 	*mirroredDevice = nil;
 	
@@ -375,7 +375,7 @@ DM_GetNextMirroredDevice(
 	if ((noErr == DMIsMirroringOn(&mirroringIsOn)) && mirroringIsOn)
 	{	theErr = kDMGenErr;
 	
-		/* If the passed-in device isn’t active, then it hasn’t been mirrored.
+		/* If the passed-in device isn't active, then it hasn't been mirrored.
 		*/
 		if (IsActiveScreenDevice(gDevice,true))
 		{	DisplayInfoPtr displayInfo = DM_GetDisplayInfoByGDevice(gDevice,dontFailToMain);

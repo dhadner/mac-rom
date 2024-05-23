@@ -11,7 +11,7 @@
 
 		 <2>	  1/3/92	JSM		Roll-in changes from Sakura: When shrinking cache, add Glyph
 									header size to new cache size. Fix
-									AllocateEntrySpaceInCurrentCache() so heap isn’t trashed.
+									AllocateEntrySpaceInCurrentCache() so heap isn't trashed.
 
 		System 6.1.0 Changes:
 		

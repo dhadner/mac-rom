@@ -51,8 +51,8 @@ HighLevelFSDispatch:	BeginDispatcher	_HighLevelFSDispatch,(Plus,SE,II,Portable,I
 	DispatchSelectors	__FSpCreateResFile = selectFSpCreateResFile
 	DispatchSelectors	__FSpExchangeFiles = selectFSpExchangeFiles
 
-; This one isn’t in the interfaces anywhere, but is here in the dispatcher.
-; We dreamed it up for use by FSpExchangeFiles but it’s a bit late 
+; This one isn't in the interfaces anywhere, but is here in the dispatcher.
+; We dreamed it up for use by FSpExchangeFiles but it's a bit late 
 ; to make it into Inside Mac.  Feel free to add this call later.
 selectFSpGetCatInfo equ selectFSpExchangeFiles+1
 	DispatchSelectors	__FSpGetCatInfo = selectFSpGetCatInfo

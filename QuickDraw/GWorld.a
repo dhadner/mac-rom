@@ -37,7 +37,7 @@
 ;									taken from the device.
 ;		<12>	  6/8/90	dba		oops...the last change made buffers that were too small; must
 ;									calculate buffer sizes for NewScreenBuffer from actual
-;									off-screen rectangle, since we don’t add the extra slop for
+;									off-screen rectangle, since we don't add the extra slop for
 ;									realignment
 ;		<11>	  6/8/90	dba		Fix bug where we tried to dispose handles but put them in d0
 ;									instead of a0. Also fix bug that I introduced in change <3>
@@ -55,8 +55,8 @@
 ;									selected.
 ;		 <4>	 1/17/90	BAL		Added the GetGworldPixmap selector for compatibility with
 ;									classic machines
-;		 <3>	12/28/89	dba		don’t allocate 31 pixels for slop in NewScreenBuffer; there is
-;									no UpdateScreenBuffer, so the slop wasn’t helping; also fix a
+;		 <3>	12/28/89	dba		don't allocate 31 pixels for slop in NewScreenBuffer; there is
+;									no UpdateScreenBuffer, so the slop wasn't helping; also fix a
 ;									bug in NewScreenBuffer: the bottom right was not slid over when
 ;									aligning, so the bounds of the pixMap would be open a bit too
 ;									wide
@@ -65,7 +65,7 @@
 ;	   <1.7>	 9/25/89	BAL		Conditionalized includes for system 7.0 builds
 ;	   <1.6>	 8/23/89	BAL		Altered UGW to 'OR' (not MOVE) clip/stretch bit into result.
 ;	   <1.5>	 8/15/89	dba		save port around OpenCPort so that NewGWorld does not change
-;									thePort; also use ClosePort instead of CloseCPort ’cause it’s
+;									thePort; also use ClosePort instead of CloseCPort 'cause it's
 ;									much better
 ;	   <1.4>	 7/16/89	DAF		FOR AURORA BUILD - Rolled in a MultiFinder-related change for
 ;									Jean-Charles
@@ -78,7 +78,7 @@
 ;	   <1.0>	 5/29/89	BAL		Blasting in 32-Bit QuickDraw version 1.0 Final
 ;
 ;	To Do:
-;		don’t allocate 31 pixels of slop all the time; the real thing is 32-pixelSize bytes of slop
+;		don't allocate 31 pixels of slop all the time; the real thing is 32-pixelSize bytes of slop
 ;
 
 		STRING	ASIS

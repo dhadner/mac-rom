@@ -52,13 +52,13 @@
 ;				  3/9/87	LAK 	Rebuilt for inclusion in system resource file as resource of
 ;									type 'boot'.
 ;				  5/7/84	LAK 	reverted to early rev num to placate MacWorks.
-;				 4/20/84	SC		drop the font fix... (f--k I’m brilliant)
+;				 4/20/84	SC		drop the font fix... (f--k I'm brilliant)
 ;				 4/16/84	SC		soften event number and do appl font fix
 ;				 2/23/84	SC		Max event and file # maximums
 ;				 2/23/84	AJH 	fixed system heap size for systems > 512K
-;				 2/13/84	SC		there’s a 512 version tacked on end. Copy entire .PROC, chg to
+;				 2/13/84	SC		there's a 512 version tacked on end. Copy entire .PROC, chg to
 ;									boot512 and uncomment code @ H512 label
-;				 1/13/84	AJH 	don’t SetAppBase until after InitResources
+;				 1/13/84	AJH 	don't SetAppBase until after InitResources
 ;				 1/12/84	AJH 	load in INIT routines in resID order
 ;				 1/12/84	AJH 	check to see the file to launch exists
 ;				 1/10/84	AJH/LAK read-only permissions for Macsbug, clear less FS globals
@@ -173,7 +173,7 @@ NextROM
 		bne.s	NextROM						; no, go on to the next one
 
 ; At this point, D6.W contains an offset into all of the ROM-specific tables.
-; Next, set the system heap size for pre-Mac II ROMs where it isn’t growable.
+; Next, set the system heap size for pre-Mac II ROMs where it isn't growable.
 
 		cmp.b	#$76,d1						; is this an old ROM that we must help?
 		bhi.s	NoSysZoneResizeNeeded		; no, system heap is already growable
@@ -200,7 +200,7 @@ JoinROM
 		jmp		0(a0,d1.w)					; jump to the routine
 
 BadROM
-		moveq	#dsNoPatch,d0				; can’t boot on this ROM
+		moveq	#dsNoPatch,d0				; can't boot on this ROM
 		_SysError
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
@@ -287,13 +287,13 @@ MountStartupDisk
 		move.l	d7,a0						; point to parameter block
 		move.w	BootDrive,ioDrvNum(a0)		; set up drive number
 		_MountVol							; mount startup disk
-		bnz.s	Return						; reboot if there’s an error
+		bnz.s	Return						; reboot if there's an error
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 
 FindBlessedFolder
 
-		clr.l	ioFileName(a0)				; we don’t want the disk’s name
+		clr.l	ioFileName(a0)				; we don't want the disk's name
 		clr.w	ioVolIndex(a0)				; use the vRefNum left over from MountVol
 		_HGetVInfo							; see if there is a system folder
 		bnz.s	UnmountAndReturn			; if we fail, tell our caller
@@ -302,7 +302,7 @@ FindBlessedFolder
 		bz.s	@noFolder					; if it is 0, boot the root
 		move.l	#'ERIK',ioWDProcID(a0)		; magic incantation from hell
 		_OpenWD								; use the vRefNum left over from MountVol
-		bnz.s	UnmountAndReturn			; can’t open, tell our caller
+		bnz.s	UnmountAndReturn			; can't open, tell our caller
 		_SetVol								; make blessed folder the default volume
 @noFolder
 
@@ -313,7 +313,7 @@ InitializeResourceManager
 		subq	#2,sp						; make room for function result
 		_InitResources						; open that system file
 		tst.w	(sp)+						; did we get it?
-		bmi.s	InitResourcesFailed			; yes, we’re OK
+		bmi.s	InitResourcesFailed			; yes, we're OK
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -365,7 +365,7 @@ Return
 
 	bootBlocksSoFar: equ *-BootBlocks
 	if bootBlocksSoFar > maxBootCodeSize then
-		aerror &concat('boot blocks don’t fit: ',	\
+		aerror &concat('boot blocks don't fit: ',	\
 			&i2s(bootBlocksSoFar),' bytes; ',		\
 			'maximum ',&i2s(maxBootCodeSize),' bytes')
 	else

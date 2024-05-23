@@ -79,11 +79,11 @@
 		<44>	 10/8/92	KST		emUnused4 is now used by WS II printing stuff.
 		<43>	 7/21/92	bbm		Add emNetBootGlobals for Network Booting and Appletalk stuff.
 									(see Steve Roth)
-		<42>	  7/6/92	gbm		Add the emDragGlobals entry (for Finder’s drag-o-matically cool
+		<42>	  7/6/92	gbm		Add the emDragGlobals entry (for Finder's drag-o-matically cool
 									stuff)
 		<41>	  7/6/92	PN		Take out emCommToolBoxTable and emBigModel and put them in
 									CTBBlock
-		<40>	  7/6/92	JSM		Remove emPrinterPortCache, it’s no longer needed by the Icon
+		<40>	  7/6/92	JSM		Remove emPrinterPortCache, it's no longer needed by the Icon
 									Utilities.
 		<39>	  7/1/92	PN		Adding emCommToolboxTable and emBigModel for SuperMario
 		<38>	 6/25/92	PN		Add emRectRgn for SuperMario
@@ -94,8 +94,8 @@
 									(like _BeginSystemMode or _GetNextHighLevelEvent) to easily
 									check if the boot process is far enough along yet instead of
 									calling Gestalt all the time. Add emScrollSpeedGlobals from
-									SuperMario. Renumber emUnused fields. Don’t update the
-									emCurVersion field, it’s kind of stupid to always do this during
+									SuperMario. Renumber emUnused fields. Don't update the
+									emCurVersion field, it's kind of stupid to always do this during
 									development builds.
 		<35>	 4/23/92	TN		Replaced emUnused4 with emResrvMemSemaphore for MemoryMgr roll
 									in (as part of SuperMario).
@@ -107,7 +107,7 @@
 		<30>	  4/9/92	RLM		Moved emDialogGlobals to an emUnused slot, also updated from
 									SuperMario…
 		<29>	  4/7/92	JSM		Split up emPackGlobals to show unused areas since we really
-									don’t use very much of this block.  emUnused fields should be
+									don't use very much of this block.  emUnused fields should be
 									used before adding on to ExpandMem again.
 		<28>	 3/19/92	DC		Added the printerPortCache for bug fix to Icon Utilities
 		<27>	  3/2/92	DTY		Add entry for LowMemoryPrintingPatchGlobals
@@ -116,7 +116,7 @@
 									work.
 		<25>	 2/12/92	DTY		Add emOpenFontFiles, a counter of how many font files in the
 									Fonts folder are open. We want to keep a cap on this number.
-									It’s currently 128.
+									It's currently 128.
 		<24>	 1/19/92	DTY		Add emAppleTalkInactiveOnBoot. This is set in BeforePatches.a.
 									Other parts of the boot process, and the Chooser look at this to
 									determine whether or not to use network resources.
@@ -128,7 +128,7 @@
 		<20>	 11/2/91	DTY		Add emScanOverrideMaps to allow programs like ResEdit to turn
 									off resource overriding.
 		<19>	 11/1/91	DTY		Silly me. I need to remember the override map, too.
-		<18>	 11/1/91	DTY		Rename emTopOverrideMap to emLastOverridenMap to reflect it’s
+		<18>	 11/1/91	DTY		Rename emTopOverrideMap to emLastOverridenMap to reflect it's
 									new use.
 		<17>	10/28/91	DTY		Add emResourceCache for more resource override stuff.
 		<16>	10/24/91	sam		Added Tsunami Printing Manager global to ExpandMemRec.
@@ -141,7 +141,7 @@
 									allocated an expandmem global from the forked off regatta
 									sources, without checking to see if it was already allocated. It
 									was. The Tsunami projects global gets smashed by 7.0.1. Since
-									Tsunami didn’t ship with the new printers, we were lucky this
+									Tsunami didn't ship with the new printers, we were lucky this
 									time. Move the Tsunami global past the two globals that 7.0.1
 									allocated and bump the version number.  (also added a comment to
 									warn about changing cache size)
@@ -184,9 +184,9 @@
 
 #define GetExpandMem()	(*((ExpandMemPtr *)ExpandMem))
 #define emCurVersion	0x0133			// version	<SM21/LW3><62><SM27><SM30>
-#define emItlCacheSize	16				// bytes in cache.  WARNING, you cann’t change this
+#define emItlCacheSize	16				// bytes in cache.  WARNING, you cann't change this
 										// without distroying all fixed offsets from
-										// emItlNeedUnlock on.  Don’t do it!
+										// emItlNeedUnlock on.  Don't do it!
 
 /*___________________________________________________________________________
 
@@ -308,7 +308,7 @@ struct ExpandMemRec
 
 	long		emRectRgn;				//			ds.l	1				; <SM10> global used by WindowMgr routine <PN>
 
-	long		emPPCPromptForUserGlobals;	//		ds.l	1				; <37> global used by PPC’s PromptForUser routine
+	long		emPPCPromptForUserGlobals;	//		ds.l	1				; <37> global used by PPC's PromptForUser routine
 
 	long		emScrollSpeedGlobals;	//			ds.l	1				; <36> global used by scroll speed throttling
 

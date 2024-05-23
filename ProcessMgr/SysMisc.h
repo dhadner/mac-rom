@@ -11,8 +11,8 @@
 	 
 		<13>	 8/26/92	DTY		Roll in latest changes for A/UX.
 		<12>	 1/22/92	DTY		Take the synFOND field out of the synthetic strike table
-									structure. We’re gauranteeing unique font IDs, so this extra
-									differentiation won’t be necessary.
+									structure. We're gauranteeing unique font IDs, so this extra
+									differentiation won't be necessary.
 		<11>	11/15/91	DTY		Added synFOND to the SynEntry structure.  (We might need to
 									store this information elsewhere if it turns out that developers
 									are looking at the synthetic fonts.

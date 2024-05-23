@@ -16,14 +16,14 @@
 ;		 <1>	  1/7/92	RB		first checked in
 ;	=============== Terror History ========================
 ;
-;		 <4>	 6/17/91	jmp		Fixed a “memory leak” bug in SetGamma when changing the size of
+;		 <4>	 6/17/91	jmp		Fixed a 'memory leak' bug in SetGamma when changing the size of
 ;									the current gamma table (i.e., form size 3 to 1, or vice-versa).
 ;									Also, eliminated support for PAL displays & encoder boxes since
-;									the versions of the 4•8 & 8•24 cards that we’re patching out
-;									don’t have the sRsrcs.
+;									the versions of the 4•8 & 8•24 cards that we're patching out
+;									don't have the sRsrcs.
 ;		 <3>	  4/4/91	jmp		Cleaned up the conditional assembly stuff (i.e., now use ForRom
 ;									instead of PadForOverPatch).
-;		 <2>	 2/25/91	jmp		Rolled in Casey’s latest changes.
+;		 <2>	 2/25/91	jmp		Rolled in Casey's latest changes.
 ;		 <1>	01/06/91	jmp		Checked into TERROR ROM for the first time.
 ;		 <0>	11/19/90	jmp		Formatted for use with TERROR ROM (as opposed to a
 ;									declaration ROM).
@@ -3640,7 +3640,7 @@ WaitVSync
 *  is identical to primaryinit with the following exception, the clock
 *  generation chip is not set up here for all modes except NTSC mode because
 *  the setup would be redundant.  In addition it is only necessary to change
-*  the clock generation chip’s timing in modes that support convolution, since
+*  the clock generation chip's timing in modes that support convolution, since
 *  that is the only mode where more than one dot clock may be necessary.
 *  The dot clock for interlaced ops is 12.27 MHz and convolution ops is 4*12.27 MHz.
 *

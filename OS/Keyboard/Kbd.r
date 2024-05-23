@@ -35,15 +35,15 @@
 									built in keyboard. IDs $0C and $0D are the domestic and ISO
 									keyboards, respectively, that will be in production and ID $0A
 									will be removed.  Regatta only.
-		<11>	 2/26/91	PKE		smb,#perCindyR: Change resource name “US” to “U.S.”.
-		<10>	 2/23/91	PKE		ngk,#83134: (also per CSD) Remove ‘KCAP’ resource names for 7.0.
+		<11>	 2/26/91	PKE		smb,#perCindyR: Change resource name 'US' to 'U.S.'.
+		<10>	 2/23/91	PKE		ngk,#83134: (also per CSD) Remove ‘KCAP' resource names for 7.0.
 		 <9>	  2/1/91	PKE		JSM,#81408: Fix KMAP 5 handling of right Shift, right Control,
 									and right Option keys.
 		 <8>	12/14/90	PKE		(DC) Fix bug in US KCHR for ISO extended keyboard. This keyboard
-									has an extra key that didn’t generate the correct characters (or
+									has an extra key that didn't generate the correct characters (or
 									even an event) with the US KCHR. This combo is used in several
 									localized versions. (fixes BRC #65484).
-		 <7>	 5/13/90	PKE		Moved hasKCHRTweaks definition inside “if forROM” conditional.
+		 <7>	 5/13/90	PKE		Moved hasKCHRTweaks definition inside 'if forROM' conditional.
 		 <6>	 5/13/90	PKE		Put in US KCHR changes: (1) Ignore CapsLock if Cmd key down. (2)
 									If neither Opt-key nor Opt-Shift-key produce letters,
 									Opt-CapsLock-key should produce the same character as Opt-key
@@ -53,7 +53,7 @@
 									accent by itself; this eliminates Opt-Shift entry of a few
 									accented characters. (2) Changed dead key tables for tilde and
 									circumflex so the character produced for a completor of space or
-									no-match is the “real” accent character (code above $F0), not
+									no-match is the 'real' accent character (code above $F0), not
 									the low-ASCII approximation. All of the above changes are
 									flagged with the symbol hasKCHRTweaks.
 		 <5>	 3/23/90	PKE		Add name "US" for KCHR 0, remove names from Elmer KCAPs.
@@ -217,7 +217,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"ç";	"√";	"§";	"∫";	"œ";	"∑";	"\$00";	"®";	/* handle keycode $0A <8> */
 				"¥";	"†";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"ø";
-				"\$00";	"“";	"\$00";	"π";	"\n";	"¬";	"∆";	"æ";
+				"\$00";	"'";	"\$00";	"π";	"\n";	"¬";	"∆";	"æ";
 				"\$FB";	"…";	"«";	"≤";	"÷";	"\$00";	"µ";	"≥";
 				"\t";	" ";	"\$00";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -234,8 +234,8 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"Å";	"\$EA";	"\$EB";	"\$EC";	"\$EE";	"\$FD";	"\$FC";	"\$FE";
 				"Ç";	"◊";	"±";	"\$F5";	"Œ";	"\$E3";	"´";	"\$E4";		/*<6><8>*/
 				"\$E7";	"\$FF";	"\$DA";	"\$DB";	"\$DC";	"\$DD";	"\$DF";	"\$DE";
-				"±";	"\$E1";	"\$E0";	"—";	"°";	"\$E2";	"’";	"Ø";
-				"¨";	"”";	"\$F6";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
+				"±";	"\$E1";	"\$E0";	"—";	"°";	"\$E2";	"'";	"Ø";
+				"¨";	"'";	"\$F6";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
 				"\$F0";	"\$F2";	"»";	"\$F8";	"¿";	"\$F7";	"\$E5";	"\$F9";
 				"\t";	" ";	"`";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";		/*<6>*/
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -253,7 +253,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"Ç";	"√";	"§";	"\$F5";	"Œ";	"∑";	"´";	"®";		/*<6><8>*/
 				"\$E7";	"†";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"Ø";
-				"¨";	"“";	"\$F6";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
+				"¨";	"'";	"\$F6";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
 				"\$FB";	"…";	"«";	"≤";	"÷";	"\$F7";	"\$E5";	"≥";
 				"\t";	" ";	"`";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -271,7 +271,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"ç";	"√";	"§";	"∫";	"œ";	"∑";	"´";	"®";	/* handle keycode $0A <8> */
 				"¥";	"†";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"ø";
-				"¨";	"“";	"^";	"π";	"\n";	"¬";	"∆";	"æ";
+				"¨";	"'";	"^";	"π";	"\n";	"¬";	"∆";	"æ";
 				"\$FB";	"…";	"«";	"≤";	"÷";	"~";	"µ";	"≥";
 				"\t";	" ";	"`";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -469,7 +469,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"ç";	"√";	"\$00";	"∫";	"œ";	"∑";	"\$00";	"®";
 				"¥";	"†";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"ø";
-				"\$00";	"“";	"\$00";	"π";	"\n";	"¬";	"∆";	"æ";
+				"\$00";	"'";	"\$00";	"π";	"\n";	"¬";	"∆";	"æ";
 				"\$FB";	"…";	"«";	"≤";	"÷";	"\$00";	"µ";	"≥";
 				"\t";	" ";	"\$00";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -486,8 +486,8 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"Å";	"\$EA";	"\$EB";	"\$EC";	"\$EE";	"\$ED";	"\$F3";	"\$F4";		/* changed in Sys 7 */
 				"Ç";	"◊";	"\$00";	"\$F5";	"Œ";	"\$E3";	"\$E4";	"\$E5";		/* changed in Sys 7 */
 				"\$E7";	"\$E6";	"\$DA";	"\$DB";	"\$DC";	"\$DD";	"\$DF";	"\$DE";
-				"±";	"\$E1";	"\$E0";	"—";	"°";	"\$E2";	"’";	"Ø";
-				"\$E8";	"”";	"\$E9";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
+				"±";	"\$E1";	"\$E0";	"—";	"°";	"\$E2";	"'";	"Ø";
+				"\$E8";	"'";	"\$E9";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
 				"\$F0";	"\$F2";	"»";	"\$F8";	"¿";	"\$F6";	"\$F7";	"\$F9";
 				"\t";	" ";	"\$D9";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";		/* changed in Sys 7 */
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -505,7 +505,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"Ç";	"◊";	"\$00";	"\$F5";	"Œ";	"\$E3";	"\$E4";	"\$E5";		/* changed in Sys 7 */
 				"\$E7";	"\$E6";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"Ø";
-				"\$E8";	"“";	"\$E9";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
+				"\$E8";	"'";	"\$E9";	"∏";	"\n";	"\$F1";	"\$EF";	"Æ";
 				"\$F0";	"…";	"«";	"≤";	"÷";	"\$F6";	"\$F7";	"≥";
 				"\t";	" ";	"`";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -523,7 +523,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 				"ç";	"√";	"\$00";	"∫";	"œ";	"∑";	"´";	"®";
 				"¥";	"†";	"¡";	"™";	"£";	"¢";	"§";	"∞";
 				"≠";	"ª";	"¶";	"–";	"•";	"º";	"‘";	"ø";
-				"¨";	"“";	"^";	"π";	"\n";	"¬";	"∆";	"æ";
+				"¨";	"'";	"^";	"π";	"\n";	"¬";	"∆";	"æ";
 				"\$FB";	"…";	"«";	"≤";	"÷";	"~";	"µ";	"≥";
 				"\t";	" ";	"`";	"\b";	"\$03";	"\$1B";	"\$00";	"\$00";
 				"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";	"\$00";
@@ -817,7 +817,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 
 #if hasNonADBKeyLayouts
 
-// original Macintosh keyboard (“midget”)
+// original Macintosh keyboard ('midget')
 
 	resource 'KCAP' ($03) {
 		{60, 60, 220, 370},
@@ -898,7 +898,7 @@ resource 'KCHR' (0, USname, KCHRAttributes) {											/*<11>*/
 		}
 	};
 
-// original Macintosh International keyboard (international “midget”)
+// original Macintosh International keyboard (international 'midget')
 
 	resource 'KCAP' ($103) {
 		{60, 60, 220, 370},

@@ -10,8 +10,8 @@
 ;									to delete some old code that was compiled under the "CubeE"
 ;									conditional.
 ;		 <4>	  6/8/92	JSM		For TheFuture, check emProcessMgrExists instead of Gestalt to
-;									test for the existence of the Process Mgr. Doesn’t really
-;									matter, since this file isn’t used in any builds??
+;									test for the existence of the Process Mgr. Doesn't really
+;									matter, since this file isn't used in any builds??
 ;		 <3>	 7/10/91	BH		better patch (all three rolled into a single patch)
 ;		 <2>	 7/10/91	BH		add fix to CRMGetHeader
 ;		 <1>	  7/9/91	BH		first checked in

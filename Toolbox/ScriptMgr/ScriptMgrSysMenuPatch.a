@@ -61,7 +61,7 @@
 ;									to disable the keyboard appropriately for the state of the
 ;									current applications scriptDisableKybds flag. Also, fixed the
 ;									bug that assumed item #1 was always the About Keyboards… item.
-;									Now if an iconSuiteH does not exist for item #1 then I know it’s
+;									Now if an iconSuiteH does not exist for item #1 then I know it's
 ;									About.
 ;		<24>	  4/6/92	SMB		#1022196,<pke>: In ptchSystemMenu, fixed branch from old-style
 ;									IMs code so that they didn't write the FEP ID into the itlbKeys
@@ -98,7 +98,7 @@
 ;									menu bar (SystemMenuList) and not the current menu bar which may
 ;									be an application's menu bar.
 ;		<13>	  2/9/91	PKE		smb,#81489: A call to KeyScript with the verb
-;									smKeyDisableKybdSwitch disables the “About…” item in the
+;									smKeyDisableKybdSwitch disables the 'About…' item in the
 ;									Keyboard menu, but should not.
 ;		<12>	12/15/90	SMB		(gbm/csd) Modified EnableKeyboardItems to not enable the About
 ;									Keyboards… menu item since it has an explicit verb of its own
@@ -117,7 +117,7 @@
 ;									EnableKeyboardItems by using indexed addressing to fetch icon
 ;									suite handles. Also cleaned up improper use of stack for
 ;									GetItmIcon in DisableKeyboardItems.
-;		 <8>	 8/10/90	SMB		Adding ‘About Keyboards…’ support. Removed code that was going
+;		 <8>	 8/10/90	SMB		Adding ‘About Keyboards…' support. Removed code that was going
 ;									to write the new KCHR id into the script record. No longer
 ;									necessary. Cleaned up comments here too!<
 ;		 <7>	  8/7/90	SMB		Reading default keybd marker from a resource now.
@@ -134,7 +134,7 @@
 ;									after the END statement.
 ;		 <3>	 5/31/90	SMB		Renaming IconUtils.a to Icons.a.
 ;		 <2>	 5/13/90	SMB		Adding UpdateKeybdMenu and guts for ptchSystemMenu!
-;		 <1>	  5/5/90	PKE		Added a butchered version of Sue’s new file with a temporary
+;		 <1>	  5/5/90	PKE		Added a butchered version of Sue's new file with a temporary
 ;									stub for ptchSystemMenu. Sue will fill this in later and add
 ;									UpdateKeyboardMenu.
 ;___________________________________________________________________________________________________
@@ -269,10 +269,10 @@ HandleKeyboardMenu							; <SM8> CSS we already know we are handling keyboard me
 					_CountMItems
 					move.w	(sp)+,d0
 					move.w	#-4,d1						; assume rotate to next available keyboard in script
-					cmp.w	d3,d0						; last item is ‘Next Keyboard in Script’
+					cmp.w	d3,d0						; last item is ‘Next Keyboard in Script'
 					beq.s	@GetNext
 					sub.w	#1,d0
-					cmp.w	d3,d0						; second to last item is ‘Next Script’
+					cmp.w	d3,d0						; second to last item is ‘Next Script'
 					bne.s	@InputMenuItem
 			; must have been Next Keyboard menu item
 					move.w	#-1,d1						; rotate to next keyboard in script
@@ -483,7 +483,7 @@ ShowNewSelection							;													<5>
 		move.l	menuH(a6),-(sp)
 		move.w	d5,-(sp)
 ; setup defaultMark for the menu																<7>
-		move.w	#KeybdDefaultMrk,-(sp)		; null is the default if the resource can’t be loaded
+		move.w	#KeybdDefaultMrk,-(sp)		; null is the default if the resource can't be loaded
 
 ; setup for resource fetch from the system file													<12>
 		subq.w	#2,sp						; storage for current resource file					<12>
@@ -554,8 +554,8 @@ ShowNewSelection							;													<5>
 		move.w	itemRsrcID(a4),scriptBundle.itlbKeys(a3)	;									<5>
 		
 	IF DoCmdKeyEquivalents THEN				; 													<6>
-			; if there is only one KCHR for this script, disable the ‘Next Keyboard in Script’ menuItem
-			; last item is ‘Next Keyboard in Script’
+			; if there is only one KCHR for this script, disable the ‘Next Keyboard in Script' menuItem
+			; last item is ‘Next Keyboard in Script'
 					move.l	menuH(a6),-(sp)				; push early for _DisableItem call
 					sub.w	#2,sp						; result
 					move.l	menuH(a6),-(sp)
@@ -604,7 +604,7 @@ DoAboutDialog
 		with 	menuFrame,smgrRecord
 ; set up param text
 	IF 0 THEN
-		move.b	#KeybdDefaultMrk,kbdMenuString1+1(a6)	; null is default if the resource can’t be loaded
+		move.b	#KeybdDefaultMrk,kbdMenuString1+1(a6)	; null is default if the resource can't be loaded
 		move.b	#1,kbdMenuString1(a6)		; default string length								<30>
 	ENDIF
 	
@@ -681,7 +681,7 @@ DoAboutDialog
 		move.l	#0,-(sp)					; string ^3 is empty
 		_ParamText
 
-; get the ‘DITL’ resource
+; get the ‘DITL' resource
 		subq	#4,sp						; result of GetResource
 		move.l  #'DITL',-(sp)				; theType
 		move.w	d4,-(sp)					; itemListID										<30>
@@ -787,7 +787,7 @@ SetKbdMenuInfo
 ;
 ; These are private Script Mgr routines that are called by KeyScript when the keyboard menu
 ; items need to be enabled (or disabled) for keyboard input. <7>  These are also called by
-; ptchDrawMenuBar now for restoring the keyboard menu to the frontmost application’s disabled
+; ptchDrawMenuBar now for restoring the keyboard menu to the frontmost application's disabled
 ; setting.
 ;
 ;————————————————————————————————————————————————————————————————————————————————————————————————————

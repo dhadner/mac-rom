@@ -19,7 +19,7 @@
 ;									back in this file because the shipping version has been shipping
 ;									with them for years.
 ;		<19>	 6/12/91	LN		Remove private interface includes
-;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<17>	11/12/90	dnf		Move FSVars to a truly private file
 ;		<16>	 9/25/90	dnf		(dnf/pwd) Add a field in FSVars to hold a pointer to the

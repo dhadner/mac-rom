@@ -23,7 +23,7 @@
 ;		 <7>	  7/3/91	BH		add CRMParseCAPSResource
 ;		 <6>	 6/25/91	JNG		Add CRMIsDriverOpen
 ;		 <5>	 6/24/91	BH		change wrapper to conform to standard
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <3>	 4/27/90	gbm		DID NOT INCLUDE A CHECKIN COMMENT - BAD BAD BAD!!!!!	
 ;		 <2>	 4/27/90  	gbm		DID NOT USE CHECKIN ACTIVE SCRIPT - BAD BAD BAD!!!!

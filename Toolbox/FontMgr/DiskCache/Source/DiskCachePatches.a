@@ -31,12 +31,12 @@
 ;	   <SM2>	  5/6/92	stb		roll the InitZone and SetResPurge patches into MemoryMgr.a and
 ;									ResourceMgr.a, respectively.
 ;		 <3>	 12/3/91	DTY		DiskCacheResPurgePatch is leaving the parameter on the stack
-;									when it’s exiting. Fix this by popping the return address into
-;									A0. (This trashes A0, but A0 doesn’t need to be preserved for
+;									when it's exiting. Fix this by popping the return address into
+;									A0. (This trashes A0, but A0 doesn't need to be preserved for
 ;									_SetResPurge.)
 ;		 <2>	10/18/91	DTY		Fixed DiskCacheSetResPurgePatch: the parameter needs to be
 ;									pushed on the stack again if a jsrOld is being used, since
-;									there’s a return address on the stack.
+;									there's a return address on the stack.
 ;
 ;    System 6.1.0 Changes:
 ;

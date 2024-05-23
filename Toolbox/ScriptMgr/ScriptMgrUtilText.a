@@ -601,8 +601,8 @@ ReverseCluster
 ;--------------------------------------------------------------------------
 ;The following symbols are unique tokens:
 ;	(	)	[	]	{	}	«	»	+	-	*	÷	±	/	\	>	<
-;	=	<=	≤	>=	≥	==	:=	≠	<>	!=	!	~	,	.	“	”	‘
-;	’	"	'	;	%	^	_	&	@	|	?	π	√	∑	∫	µ	∏
+;	=	<=	≤	>=	≥	==	:=	≠	<>	!=	!	~	,	.	'	'	‘
+;	'	"	'	;	%	^	_	&	@	|	?	π	√	∑	∫	µ	∏
 ;	∞	:	#	$
 ;--------------------------------------------------------------------------
 ;The tokenizer is a function:
@@ -645,7 +645,7 @@ ReverseCluster
 ;		specified. If only one is needed, the second must be 127.
 ;		These delimit literal strings. The position of a delimiter in the
 ;		rightDelims array must match the position of its counterpart in 
-;		the leftDelims array. As an example, the pairs “” and ‘’ are [47,49]
+;		the leftDelims array. As an example, the pairs '' and ‘' are [47,49]
 ;		and [48,50] respectively, where the codes are given below. *)
 ;	(* The leftComment and rightComment are also encoded as tokenType, but
 ;		unlike delimiters, two tokens must be specified per comment symbol
@@ -670,7 +670,7 @@ ReverseCluster
 ;16 (	17 )	18 [	19 ]	20 {	21 }	22 «	23 »	24 +
 ;25 -	26 *	27 ÷	28 ±	29 /	30 \	31 <	32 >	33 =
 ;34 <=	35 ≤	36 >=	37 ≥	38 ==	39 :=	40 ≠	41 <>	42 !=
-;43 !	44 ~	45 ,	46 .	47 “	48 ”	49 ‘	50 ’	51 "
+;43 !	44 ~	45 ,	46 .	47 '	48 '	49 ‘	50 '	51 "
 ;52 '   53 ;    54 %    55 ^    56 _    57 &    58 @    59 |    60 ?
 ;61 π	62 √	63 ∑	64 ∫	65 µ	66 ∏	67 ∞	68 :	69 #
 ;70 $

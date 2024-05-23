@@ -19,7 +19,7 @@
 ;		<12>	 5/12/92	DTY		Add type for Fonts folder.
 ;		<11>	 8/15/91	MH		skip line after change history
 ;		<10>	 8/14/91	JL		changed lower case equ to EQU to match database output.
-;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <8>	  5/3/90	PP		Change kSpoolFolderType to kPrintMonitorDocsFolderType.
 ;		 <5>	 3/20/90	PP		Remove obsolete folder types.
@@ -39,7 +39,7 @@ kDontCreateFolder 		EQU 		0     			; false
 kSystemFolderType 		EQU 		'macs'    		; the system folder
 kDesktopFolderType 		EQU			'desk'    		; the desktop folder; objects in this folder show on the desktop
 kTrashFolderType  		EQU 		'trsh'    		; the trash folder; objects in this folder show up in the trash
-kWhereToEmptyTrashFolderType EQU 	'empt'     		; the “empty trash” folder; Finder starts emptying from here down
+kWhereToEmptyTrashFolderType EQU 	'empt'     		; the 'empty trash' folder; Finder starts emptying from here down
 
 kPrintMonitorDocsFolderType  EQU 	'prnt'    		; Print Monitor documents
 
@@ -50,7 +50,7 @@ kExtensionFolderType 	EQU  		'extn'    		; Finder extensions go here
 kFontsFolderType		EQU			'font'			; Fonts go here.
 
 kPreferencesFolderType	EQU			'pref'    		; preferences for applications go here
-kTemporaryFolderType 	EQU  		'temp'    		; temporary files go here (deleted periodically, but don’t rely on it)
+kTemporaryFolderType 	EQU  		'temp'    		; temporary files go here (deleted periodically, but don't rely on it)
 
   				macro
   				_FindFolder

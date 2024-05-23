@@ -26,10 +26,10 @@
 ;	Terror Change History:
 ;
 ;		 <5>	 5/10/91	SAM		(with Robert and Carl) rewrote FlushItª Deluxe 2.0 (the routine
-;									that flushes the backpatched user code) so that it doesnÕt
+;									that flushes the backpatched user code) so that it doesn't
 ;									assume the two lines that it pushes are in the same page.  It
 ;									now disables IRQs for the duration of the routine and does the
-;									right thing in 8 or 4k page modes.  Oh yeah, now it doesnÕt call
+;									right thing in 8 or 4k page modes.  Oh yeah, now it doesn't call
 ;									EnterSupervisorMode if VM is off (cuz its not implemented if it
 ;									is off).  Whew.
 ;		 <4>	 3/15/91	BG		(with SAM) Modified the conditionalized code to correctly flush

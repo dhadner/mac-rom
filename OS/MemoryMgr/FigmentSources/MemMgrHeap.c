@@ -45,7 +45,7 @@
 		<22>	 5/24/93	JC		Changed XXX to DbgXXX for all debug routines.
 		<21>	 5/19/93	JC		Began changes as requested by the code review. Removed options
 									parameter from AllocateMoreMasters.
-		<20>	 5/18/93	JC		Fixed the “zero k available” bug. Yippee! This fix requires a
+		<20>	 5/18/93	JC		Fixed the 'zero k available' bug. Yippee! This fix requires a
 									new ProcessMgr to work completely.
 		<19>	  5/2/93	JC		removed heapName field. Also added compatiblity flags word in
 									the heap header.

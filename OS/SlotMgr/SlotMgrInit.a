@@ -27,7 +27,7 @@
 ;	   <SM10>	10/14/92	CSS		Change some branch short instructions to branches.
 ;	   <SM9>	09-24-92	jmp		Added a pRAM-based mechanism for skipping BootBug altogether if
 ;									it is installed.
-;	   <SM8>	08-27-92	jmp		Added support for Brigent, Inc.’s BootBug  card.
+;	   <SM8>	08-27-92	jmp		Added support for Brigent, Inc.'s BootBug  card.
 ;	   <SM7>	 6/30/92	kc		Roll in Horror, comments follow:
 ;	                              	• From SlotMgr.a
 ;	    <H5>				djw		Add new selector for DoSecondaryInit.
@@ -45,7 +45,7 @@
 ;		<H5>	02/05/92	jmp		Unfortunately, I put some tables in the middle of this file
 ;									that, in Cyclone, will get bigger.  So, I moved them from the
 ;									middle of the file into the pad space.  Also, I generalized the
-;									routine that decides whether a DeclROM’s PrimaryInit/Driver
+;									routine that decides whether a DeclROM's PrimaryInit/Driver
 ;									should be patched by not stopping once I found the version I was
 ;									looking for (e.g., in case we need to patch out versions 1, 2,
 ;									and 3 of the 8•24 card).
@@ -72,7 +72,7 @@
 ;									sRsrc directories in Slot $0.
 ;	   <SM5>	  5/5/92	JSM		Roll-in changes from Reality:
 ;									<17>	  5/4/92	JSM		The checks for isUniversal in this file should just be forROM.
-;																(Dean really didn’t have to do all that work in <14>).
+;																(Dean really didn't have to do all that work in <14>).
 ;	   <SM4>	 2/21/92	RB		delete rude code which snuck in late at night while no one was
 ;									looking…
 ;	   <SM3>	 2/12/92	RM		Change BRA.S to BRA.L.
@@ -81,7 +81,7 @@
 ;									forROM in diferent places of the same routine. I hate
 ;									them...conditionals.
 ;		<15>	  1/7/92	RB		Rolled in Terror changes.
-;		<14>	 8/30/91	DTY		Define isUniversal here since it’s no longer defined in
+;		<14>	 8/30/91	DTY		Define isUniversal here since it's no longer defined in
 ;									BBSStartup.
 ;		<13>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		<12>	12/10/90	BBM		(dba) Eliminate cutback code now that this is a linked patch.
@@ -113,7 +113,7 @@
 ;									back to initjmptbl to install slot mgr trap if a patch. Moved
 ;									SecondaryInit and GetBoard to SlotMgr.a - added them to jump
 ;									table.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.1>	10/10/89	djw		removed code in initjmptbl which installed the slot mgr trap if
 ;									a patch.
 ;	   <1.0>	 9/18/89	djw		New file combining all slotmgr initialization code for sharing
@@ -423,10 +423,10 @@ StartSDeclMgr
 
 @Continue
 
-;	Determine if there’s a BootBug card installed or not.  If one is installed,
+;	Determine if there's a BootBug card installed or not.  If one is installed,
 ;	execute it first.  Otherwise, just run the normal sequence.
 
-			Clr.b	-(Sp)						; Initialize our “savedSlot” space.
+			Clr.b	-(Sp)						; Initialize our 'savedSlot' space.
 			
 			Clr.b	spSlot(A0)					; Start with Slot $0.
 			Clr.b	spID(A0)					; Begin search with ID 0.
@@ -438,7 +438,7 @@ StartSDeclMgr
 			Move.w	#DrHwBootBug,spDrvrHW(A0)	;			 BootBug.
 			Clr.l	spParamData(A0)				; Clear the flags field.
 			Ori.b	#(1<<fNext),spParamData+3(A0) ; Search for the 1st one.
-			_GetTypeSRsrc						; If we don’t find a BootBug card
+			_GetTypeSRsrc						; If we don't find a BootBug card
 			Bne.s	@DoZeroFirst				;	then just run the normal sequence.
 			Move.b	spSlot(A0),(Sp)				; Remember which slot has BootBug in it.
 			
@@ -446,7 +446,7 @@ StartSDeclMgr
 			Subq	#4,Sp						; Make a pRAM buffer on the stack.
 			Move.l	Sp,A0						; Point to it.
 			Move.l	#$000400FC,D0				; Set up to read 4 bytes starting at $FC.
-			_ReadXPRAM							; Read ’em.
+			_ReadXPRAM							; Read 'em.
 			Move.l	(Sp)+,D0					; Get the result, release buffer.
 			Move.l	(Sp)+,A0					; Restore SpBlockPtr.
 			Cmpi.l	#'Skip',D0					; If the BootBug skip signature is set,
@@ -477,7 +477,7 @@ StartSDeclMgr
 @Skip		Subq.b	#1,D1
 			Bne.s	@Loop1						; Continue for all slots.
 
-			Tst.b	(Sp)+						; Free up “savedSlot” space.
+			Tst.b	(Sp)+						; Free up 'savedSlot' space.
 @Done
 			Add.w	#spBlockSize,Sp				; Free SpBlock.
 			Moveq.l	#noErr,D0					; Return noErr.
@@ -695,7 +695,7 @@ VerifySlot
 @GoodRom	
 VerifySlotPatch
 
-			Tst.b	spSlot(A0)								; If we’re not looking at slot 0, then 
+			Tst.b	spSlot(A0)								; If we're not looking at slot 0, then 
 			Bne		@StdHeader								; 	just assume a standard header.
 			
 			Move.l	siROMAddr(A1),spsPointer(A0)			; Set ptr to top of ROM.
@@ -716,11 +716,11 @@ VerifySlotPatch
 			_sReadStruct									; Read extended part of header.
 			Bne.s	@FallBack								; If failed, just try the standard header.
 			
-			Cmpi.l	#TestPattern,fhXSTstPat(A3)				; If the (extended) test pattern doesn’t exist,
+			Cmpi.l	#TestPattern,fhXSTstPat(A3)				; If the (extended) test pattern doesn't exist,
 			Bne.s	@FallBack								;	just try the standard header.
 			
 			Move.b	fhFormat(A2),D0							; Get the format ID of the header.
-			Cmp.b	fhXSuperInit(A3),D0						; If not using an appropriately ID’d SuperInit,
+			Cmp.b	fhXSuperInit(A3),D0						; If not using an appropriately ID'd SuperInit,
 			Bne.s	@FallBack								;	just try the standard header.
 			
 			Move.b	spSlot(A0),seSlot(A4)					; Copy the slot number.

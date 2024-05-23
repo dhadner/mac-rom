@@ -45,7 +45,7 @@
 ;		 <7>	 2/16/90	SS		Added flags to statements which were changed to support Ericson.
 ;		 <6>	 2/15/90	SS		Conditionalized the include of EgretEqu.a
 ;		 <5>	 2/12/90	MA		Now INCLUDE 'EGRETEqu.a'.
-;		 <4>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”
+;		 <4>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'
 ;		 <3>	  1/4/90	BG		Added an ENDIF to the IF CPU = ... stuff.
 ;		 <2>	  1/4/90	BG		Added a MACHINE MC68040 directive for Eclipse and other -040-
 ;									based machines. Also, converted header to ProjectOr.

@@ -25,10 +25,10 @@
 ;	  <SM10>	01-12-93	jmp		Update from latest HORROR sources and added initial support for
 ;									CSC.
 ;	   <SM9>	11-25-92	jmp		Added a video attributes flag that tells MacsBug that video ram
-;									is not necessarily linear across depths (i.e., so that it’ll
-;									automatically use “big buffer” mode).
+;									is not necessarily linear across depths (i.e., so that it'll
+;									automatically use 'big buffer' mode).
 ;	   <SM8>	10-17-92	jmp		Added support for PDM.
-;	   <SM7>	08-27-92	jmp		Added support for Brigent, Inc.’s BootBug  card.
+;	   <SM7>	08-27-92	jmp		Added support for Brigent, Inc.'s BootBug  card.
 ;	   <SM6>	07-14-92	jmp		(H13,djw) Add sVidAttribute flag to indicate a "built-in"
 ;									display.
 ;									(H12,HJR) Added DartExtVidBoardID.
@@ -47,7 +47,7 @@
 ;		<H5>	11/27/91	jmp		Renamed drHwVailCrnation to drHwSonora and drHwCyclone to
 ;									drHwCivic.
 ;		<H4>	10/29/91	jmp		Renamed Spike33 board ID to Condor.
-;		<H3>	10/28/91	jmp		Sam’s previous check-in didn’t seem to stick, so I’ve once again
+;		<H3>	10/28/91	jmp		Sam's previous check-in didn't seem to stick, so I've once again
 ;									added in the beefed-up OSLstEntry macro.
 ;		<H2>	10/22/91	SAM		Added in the beefed-up (i.e., bi-directional) OSLstEntry macro
 ;									from the MPW 3.2 Assembler equates, bored ID for Spike 33 and
@@ -59,11 +59,11 @@
 ;		___________________________________________________________________
 ;		<11>	  1/7/92	RB		Added 4•8 8•24 card signature.
 ;		<10>	 6/12/91	LN		Removed private interface includes
-;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <8>	11/12/90	JL		A little clean up of project names.
 ;		 <7>	 10/9/90	JAL		Fixed OSLstEntry
-;		 <6>	  7/9/90	STB		Changed type68040 to typ68040 “”
+;		 <6>	  7/9/90	STB		Changed type68040 to typ68040 ''
 ;		 <4>	 3/23/90	CCH		Moved private information to ROMPrivateEqu.a.
 ;		 <3>	  2/9/90	JJ		Added CPU board IDs and video hardware IDs for Erickson, Elsie,
 ;									Waimea, and Eclipse.

@@ -3,7 +3,7 @@
 
 	Contains:	Pascal interfaces to the Text Services Manager
 
-	Written by:	Dean Yu (but only because Chris was in a meeting and Don wasn’t in his office.)
+	Written by:	Dean Yu (but only because Chris was in a meeting and Don wasn't in his office.)
 
 	Copyright:	© 1992 by Apple Computer, Inc., all rights reserved.
 
@@ -169,7 +169,7 @@ CONST
 	tsmTSMDocBusyErr			=	-2506;			{ Document is still active }
 	tsmDocNotActiveErr			=	-2507;			{ Document is not active }
 	tsmNoOpenTSErr				=	-2508;			{ No open text service }
-	tsmCantOpenComponentErr		=	-2509;			{ Can’t open the component }
+	tsmCantOpenComponentErr		=	-2509;			{ Can't open the component }
 	tsmTextServiceNotFoundErr	=	-2510;			{ No text service found }
 	tsmDocumentOpenErr			=	-2511;			{ There are open documents }
 	tsmUseInputWindowErr		=	-2512;			{ Not TSM aware because an input window is being used }

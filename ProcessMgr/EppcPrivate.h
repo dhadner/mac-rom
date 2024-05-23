@@ -9,10 +9,10 @@
 
 	Change History (most recent first):
 	 
-		 <8>	11/25/91	DTY		Take out interface for MoveHLow() since it’s now in
+		 <8>	11/25/91	DTY		Take out interface for MoveHLow() since it's now in
 									MemoryMgrPriv.h.
-		 <7>	11/21/91	DTY		Add interface for MoveHLow here since it’s currently only used
-									by findFreeSessionRecord. We’ll probably want to move it into
+		 <7>	11/21/91	DTY		Add interface for MoveHLow here since it's currently only used
+									by findFreeSessionRecord. We'll probably want to move it into
 									Memory.h someday.
 		 <5>	12/14/90	JWM		moving a bit from eppc.h to eppcPrivate.h. The bit is
 									registerOnNetwork (0x80000000). It is not part of the API.

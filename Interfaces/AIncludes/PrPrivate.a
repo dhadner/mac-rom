@@ -9,7 +9,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

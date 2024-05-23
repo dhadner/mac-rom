@@ -15,7 +15,7 @@
 ;											of blocks on the disk is *exactly* 800. This prevents a small
 ;											EDisk getting formatted as MFS (cuz 800 blocks is an invalid
 ;											EDisk size).
-;		<30>	 8/30/91	DTY		Define has3rdFloppy here since it’s no longer defined in
+;		<30>	 8/30/91	DTY		Define has3rdFloppy here since it's no longer defined in
 ;									BBSStartup.
 ;		<29>	  7/2/91	JSM		Remove obsolete 7.0 related SysVers conditionals.
 ;		<28>	 6/12/91	LN		Removed #includes for private interfaces from public interfaces.
@@ -59,10 +59,10 @@
 ;		 <9>	 6/11/90	DDG		NEEDED FOR SIXPACK: Changing the resource ID of the
 ;									initialization dialog and the formatter back to their old
 ;									values. Also fixed up the last couple of comments so that they
-;									match the projector information. (PS- Phil, you probably don’t
+;									match the projector information. (PS- Phil, you probably don't
 ;									want to use real double quotes...use option-[ and option-shift-[
 ;									instead)
-;		 <8>	 5/30/90	PK		Fix bug when saying “Disk init failed! There are open files…”,
+;		 <8>	 5/30/90	PK		Fix bug when saying 'Disk init failed! There are open files…',
 ;									a value was pushed .W and popped .L, screwing up stack.
 ;		 <7>	 5/22/90	PK		ESC->Cancel, take 2
 ;		 <6>	 5/21/90	PK		Map ESC->Cancel in dialogs.
@@ -240,8 +240,8 @@
 ;	- add countdown of tracks (seconds?) as track is formatted ... do this during seek
 ;	- may want to check dskerr in case some other drive problem caused IOErr
 ;	- allow other type formats (large/small directory, allocation block size).
-;	- check dispatch code for validity. Can’t because don’t know what params to strip.
-;	- don’t assume GetNewDialog succeeds (use new DMgrErr??).
+;	- check dispatch code for validity. Can't because don't know what params to strip.
+;	- don't assume GetNewDialog succeeds (use new DMgrErr??).
 
 ;
 ; <30> has3rdFloppy is false for both System and ROM builds.

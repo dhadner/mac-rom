@@ -15,7 +15,7 @@
 ;		<55>	11/25/91	DTY		Make a new call, GetParallelFCBFromRefNum, and give it selector
 ;									$50.  This eventually calls ParallelFCBFromRefNum, but does some
 ;									sanity checking beforehand.
-;		<54>	 8/30/91	DTY		Define has3rdFloppy here since it’s no longer defined in
+;		<54>	 8/30/91	DTY		Define has3rdFloppy here since it's no longer defined in
 ;									BBSStartup.  Defined to be 0 because has3rdFloppy was 0 for
 ;									System builds before.
 ;		<53>	 6/25/91	BH		fix ClosePatch which was incorrectly pushing kSystemProcess onto
@@ -29,7 +29,7 @@
 ;									wrong value for bHasDesktopMgr for small non-ejectable volumes.
 ;		<50>	 3/27/91	KST		bb, ksTung#16: Fixing a bug in ROM BTDelete which used MOVE.W to
 ;									move a long word.
-;		<49>	 3/19/91	dnf		dba, dty: Make sure the lenient remount check in ROM doesn’t
+;		<49>	 3/19/91	dnf		dba, dty: Make sure the lenient remount check in ROM doesn't
 ;									trigger.
 ;		<48>	 3/17/91	dnf		dba, dty, #84670, #82944, #84977 : use
 ;									CallWithRegistersPreserved in dispatching; save D0 across calls
@@ -42,7 +42,7 @@
 ;									word in TrapAgain in low memory, but before jumping there; this
 ;									is especially important for 68040 processors; we had to fix this
 ;									in the code that re-fires a trap after running out of FCBs, but
-;									we didn’t have to fix it for the Disk Switch Hook, since it
+;									we didn't have to fix it for the Disk Switch Hook, since it
 ;									calls MountVol, which calls BlockMove, which calls CacheFlush
 ;		<44>	 3/11/91	dnf		dba, #84430,#83779: fix the extents truncation patch so that it
 ;									is no longer confused between data and resource forks; this
@@ -75,13 +75,13 @@
 ;									calls. This allows macsbug to use sync calls to implement its
 ;									log and reboot features.
 ;		<33>	 1/21/91	dnf		(ewa) Clear the error code for write-protected remounts.
-;		<32>	 1/20/91	dnf		(Eric Anderson) _Eject and _Offline need to set the “VCB
-;									unmounted OK” bit with a read-modify-write to the MDB.
+;		<32>	 1/20/91	dnf		(Eric Anderson) _Eject and _Offline need to set the 'VCB
+;									unmounted OK' bit with a read-modify-write to the MDB.
 ;		<31>	 1/18/91	dnf		(kst) Fix ROM address for FSQueueSync on the SE.
 ;		<30>	 1/18/91	dnf		(dba) Use a ROMBind for FindDrive since it isn't vectored on the
 ;									Plus and SE. Change _Unmount to make direct calls to FClose and
 ;									TrashVBlocks instead of calling FlushBuffers, which attempts to
-;									set the “VCB unmounted OK” bit with a read-modify-write to the
+;									set the 'VCB unmounted OK' bit with a read-modify-write to the
 ;									MDB. Patch out most of _Offline & _Eject since <29> needs the
 ;									jFClose vector which doesn't exist on the Plus and SE.
 ;		<29>	 1/16/91	dnf		(csd) Change _Offline and _Eject to never close the volume btree
@@ -113,7 +113,7 @@
 ;									logic by grabbing control at FSQueueHook and ExtFSHook.
 ;		<17>	12/13/90	KST		With Bill B.: Adding a come from patch to TruncateFile to fix a
 ;									bug in FClose. See detail in the code.
-;		<16>	 12/6/90	dnf		(dfh) Get rid of obsolete ROM jump table source that didn’t
+;		<16>	 12/6/90	dnf		(dfh) Get rid of obsolete ROM jump table source that didn't
 ;									generate any code anyway. Implement _Close patch so that file
 ;									that were opened in System Mode cannot be closed outside of
 ;									system mode.
@@ -123,7 +123,7 @@
 ;		<14>	 9/25/90	dnf		(dnf/sab) Make sure that the dispatcher preserves the trap word
 ;									in d1. Emulate MakeFSSpec on wPrErr for confused iso-9660 disks.
 ;		<13>	 9/23/90	csd		Changed fsDeferProc to use the right register instead of jumping
-;									to random code which does random things with Darin’s name.
+;									to random code which does random things with Darin's name.
 ;		<12>	 9/22/90	dnf		Clear the fsDeferFlag when the deferred task fires.
 ;		<11>	 9/22/90	csd		(dfh) Fixed a bug in ParallelFCBFromRefnum which implicitly
 ;									expected the high word of D0 to be clear. Fixed the
@@ -441,7 +441,7 @@ lastA60Disp		equ	$6F							; Last entry is $6F, reserved for future use
 		jmp			 	(a2,d2.w)				; Pass control to routine
 
 @CheckLowStuff:
-; ever get the feeling we’ll have another dispatch table soon?
+; ever get the feeling we'll have another dispatch table soon?
 
 		cmp.w			#selectOpenWD, d0		; openWD call?
 		bne.s			@notOpenWD
@@ -981,7 +981,7 @@ fixDiskSwitch	ComeFromPatchProc	_GetOSEvent, FromWaitForDsk,(Plus,SE,II)
 
 ; It's a key down, so munge the message so that the ROM code will accept it.
 				cmp.b	#'0', evtMessage+3(a0)	; does it look like a number?		<11>
-				blt.s	@notKeyDwn				; if less than '0', don’t adjust!	<11>
+				blt.s	@notKeyDwn				; if less than '0', don't adjust!	<11>
 				sub.b	#'0', evtMessage+3(a0)	; convert from ascii
 
 @notKeyDwn
@@ -1112,7 +1112,7 @@ BadNewNam:
 
 ; Here we fix case 3 - SetVolInfo.
 ; Of course, we also patch out the entire SetVolInfo routine, and fix the
-; bugs where we formerly didn’t rename the root directory and allowed a '' name.
+; bugs where we formerly didn't rename the root directory and allowed a '' name.
 
 SetVolInfoPatch	proc
 		jsrROM 	FSQUEUE   			; Wait our turn
@@ -1147,7 +1147,7 @@ SetVolInfoPatch	proc
 
 @badName:
 		moveq.l	#bdNamErr,d0		; get the error code
-		bra		SVIDone				; we are finished, that’s for sure
+		bra		SVIDone				; we are finished, that's for sure
 
 DoneNameCheck:
 ; At this point, d2 is flag on the quality of the name
@@ -1182,7 +1182,7 @@ SetUserFields:
 
 		move.l	d2, d0						; get psyched for _BlockMove
 		move.l	d1, a0						; recover ptr to caller's name
-		addq.w	#1, a0						; skip caller’s length byte
+		addq.w	#1, a0						; skip caller's length byte
 		lea.l	vcbVN(a2), a1				; VCB's copy
 		move.b	d0, (a1)+					; jam our length byte
 		_BlockMove							; change the name
@@ -1235,13 +1235,13 @@ myCMSetUp	PatchProc		jCMSetup,(Plus,SE,II,IIci,Portable)
 *		pp, stb, jv, bb, gs, et al.
 *
 *	High-level _Rename will attempt to adjust the FCB of the object it just renamed if that object is in
-*	the FCB list (meaning that the "file" is open).  Unfortunately, folders don’t have FCB’s.  Actually,
+*	the FCB list (meaning that the "file" is open).  Unfortunately, folders don't have FCB's.  Actually,
 *	ignoring my sarcasm, folders are not supposed to have them, and the unfortunate thing is that _Rename
-*	doesn’t check before trying to update an FCB.  Normally, _Rename would not be able to match a folder
+*	doesn't check before trying to update an FCB.  Normally, _Rename would not be able to match a folder
 *	with an FCB, but there are opportunities where it can fool itself into thinking it has matched.  When
-*	that happens, it alters some poor file’s FCB.  This is bad.  Once the FCB list has been damaged, all
+*	that happens, it alters some poor file's FCB.  This is bad.  Once the FCB list has been damaged, all
 *	sorts of things can go wrong, including the loss of files and folders.  The details are interesting,
-*	but the important thing is to make sure the FCBs don’t get trashed, and that’s what this patch does.
+*	but the important thing is to make sure the FCBs don't get trashed, and that's what this patch does.
 
 			cmpROM	AfterCMGetCNinRename,$10(a6)					; was it ROM Rename?
 			beq.S	@RenameAfterCMGetCN								; not what were looking for
@@ -1289,7 +1289,7 @@ myCMSetUp	PatchProc		jCMSetup,(Plus,SE,II,IIci,Portable)
 			movem.l	(A6)+,D1/D3/A3-A4						; restore regs
 			move.l	(A6)+,-(sp)								; put return address back on stack
 
-; ••••••••••••••••••••••••••••••••••••••• Here’s the fix ••••••••••••••••••••••••••••••••••••••••
+; ••••••••••••••••••••••••••••••••••••••• Here's the fix ••••••••••••••••••••••••••••••••••••••••
 ;	I've got an idea! Why don't we check to see if this is a file or a directory
 			cmpi.b	 #cdrDirRec,cdrType(A1)					; if it's a directory
 			beq		@BugOut									; 	Hey! we shouldn't even be here...
@@ -1448,7 +1448,7 @@ RenameCheckVolNameLength:
 			cmp.b	#vcbMaxNam, (a1)	; max volume name is 27 characters
 			bls.s	@noProblem
 
-; We’ve caught a rename of the root to a name longer than 27 characters.
+; We've caught a rename of the root to a name longer than 27 characters.
 @badName
 			moveq.l	#bdNamErr,d0		; bad name result will fall out of Rename
 			jmp		CMRenameCNExit1
@@ -1464,7 +1464,7 @@ RenameCheckVolNameLength:
 ; CMGetCN into #fnfErr when #dirNFErr is correct.  FndFilName returns #dirNFErr
 ; when any CMGetCN fails while parsing along a path, and #fnfErr when checking
 ; the last leaf in the path.  The bug is that FndFilName sees dirID+single segment
-; pathname inputs as the “last segment” case, and returns #fnfErr if the lookup fails,
+; pathname inputs as the 'last segment' case, and returns #fnfErr if the lookup fails,
 ; even though the dirID could be invalid.
 ;
 ; The solution is to do an extra lookup on failed CMGetCN calls while parsing
@@ -2178,7 +2178,7 @@ DesktopCloseDownProc:	proc
 ;	d1 - size of string allocated on stack														<43>
 
 			moveq.l		#0,d1							; assume no string on stack				<43>
-			move.l		ioNamePtr(a3),d0				; d0 = caller’s name ptr				<43>
+			move.l		ioNamePtr(a3),d0				; d0 = caller's name ptr				<43>
 			beq.s		@noName							; bail on nil							<43>
 			movea.l		d0,a0							; get ready to copy						<43>
 			moveq.l		#0,d0							; clear high bytes						<43>
@@ -2796,7 +2796,7 @@ SyncWait:	move.w	ioResult(a0),d0 		; get the result code into d0
 			lea.l	TrapAgain,a1			; get ready to play assembler
 			move.w	d1,(a1)+				; write in the trap word
 			move.w	#$4E75,(a1)				; follow it with an RTS
-			move.l	jCacheFlush,a1			; get address of the CPU’s cache flusher	<45>
+			move.l	jCacheFlush,a1			; get address of the CPU's cache flusher	<45>
 			jsr		(a1)					; be cool on hoopy cached cpus				<45>
 			jmp		TrapAgain				; Go re-execute the original trap
 
@@ -3795,7 +3795,7 @@ FixFCBSyncOnOpenRF:
 ; The current call is now done.
 CallDone:
 
-; Check to see if there’s another call to execute.
+; Check to see if there's another call to execute.
 		move	sr, -(sp)				; save interrupt state					<27Aug85>
 		ori		#HiIntMask, sr			; only debug interrupts allowed
 		clr.w	FSBusy					; we're not busy anymore
@@ -3830,7 +3830,7 @@ CallDone:
 		bne.s	@Done					; if it was already busy, we can return asynchronously
 		move.w	(sp)+,sr				; restore interrupt state
 
-		lea.l	FSDispatchRequest,a0		; our dispatcher’s entry point						<48>
+		lea.l	FSDispatchRequest,a0		; our dispatcher's entry point						<48>
 		jmp		CallWithRegistersPreserved	; call it 											<48>
 
 @Done:
@@ -4025,7 +4025,7 @@ DontTruncateMultiForks	ComeFromPatchProc	$A0DB,,(Plus,SE,II,Portable,IIci)	;	<11
 			BNE.S	@3						; no									<11Dec90 #17>
 			CMP.L	FCBVPtr(A1,D1),A2		; on the same volume?					<11Dec90 #17>
 			bne.s	@3						; no									<44>
-			move.b	fcbMdRByt(a1,d1.w),d0	; grab this fork’s kind					<44>
+			move.b	fcbMdRByt(a1,d1.w),d0	; grab this fork's kind					<44>
 			eor.b	d4,d0					; see how it compares against ours		<44>
 			btst.l	#fcbRscBit,d0			; are we the same?						<44>
 			beq.s	@7						; if so, then there's another open path	<44>
@@ -5390,7 +5390,7 @@ KillCheckRemountSickerWay	PatchProc	jReadBM,(SE)
 			cmpROM	AfterUpdateFreeInMtCheck,36(a6)		; check to see if this is at the end of MtCheck
 			bneOld
 			leaROM	MtVolOK,a0					; get address for skipping CheckRemount
-			move.l	a0,36(a6)					; return there, so we don’t branch to CheckRemount
+			move.l	a0,36(a6)					; return there, so we don't branch to CheckRemount
 			jmpOld
 
 			EndProc
@@ -5406,7 +5406,7 @@ KillCheckRemountSickestWay	PatchProc	jGetBlock,(Plus)
 			cmpROM	AfterUpdateFreeInMtCheck,60(a6)		; check to see if this is at the end of MtCheck
 			bneOld
 			leaROM	MtVolOK,a0					; get address for skipping CheckRemount
-			move.l	a0,60(a6)					; return there, so we don’t branch to CheckRemount
+			move.l	a0,60(a6)					; return there, so we don't branch to CheckRemount
 			jmpOld
 
 			EndProc

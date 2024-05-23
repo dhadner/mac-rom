@@ -80,7 +80,7 @@
 ;		<36>	 2/11/92	gs		Added gestaltResolveFileIDRefFix to 'bugz' bits, so Queens will
 ;									do the right thing when the fix gets rolled into the system.
 ;		<35>	12/17/91	DTY		Define gestaltResourceOverrides.
-;		<34>	12/12/91	gbm		Rename the MoveHHi bit in 'bugz', because it doesn’t really mean
+;		<34>	12/12/91	gbm		Rename the MoveHHi bit in 'bugz', because it doesn't really mean
 ;									that any more.  Now it means allocPtr patches.
 ;		<33>	12/10/91	gbm		Add two new 'bugz' bits for the 'PACK'(6) fix and the 'WDEF'(0)
 ;									fix.
@@ -112,9 +112,9 @@
 ;		 								Added equates for Jaws, Sonic, SCSC961, SCSI962 and DAFB to
 ;											the list of hardware attributes.
 ;		<20>	10/23/91	csd		Added gestaltVMCursorTaskFix bit so that the 8•24GC software
-;									will know when to stop jamming VM’s global CursorTask vector.
+;									will know when to stop jamming VM's global CursorTask vector.
 ;		<19>	 9/12/91	gbm		Update the gestaltBugFixAttr bits to include some newer ones I
-;									didn’t know about when I did <18>
+;									didn't know about when I did <18>
 ;		<18>	 8/27/91	gbm		Add gestaltBugFixAttr selector(s)
 ;		<17>	 8/22/91	JSM		Clean up header.
 ;		<16>	  8/6/91	KIP		Add machine type values for new CPUs.
@@ -122,7 +122,7 @@
 ;									gestalt interfaces)
 ;		<14>	 6/11/91	gbm		dba: add new Gestalt bit to indicate that the hardware requires
 ;									a RESET when resetting the machine
-;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<12>	 1/18/91	mbs		Add atkv selector to get version number of AppleTalk even if
 ;									AppleTalk is off <mjq>
@@ -200,7 +200,7 @@ gestaltGraysFlicker			Equ		'fstn'		; Returns slot bit-map of screens whose grays
 ;	or other extensions indicate that they have already fixed a bug (so the extension
 ;	will stop trying to fix it).  Yea, I know.  Pretty goofy.
 ;
-;	I’ve taken the liberty of allocating several selectors here, for future expansion.
+;	I've taken the liberty of allocating several selectors here, for future expansion.
 ;----------------------------------------------------------------------------------
 gestaltBugFixAttrs				equ	'bugz'
 
@@ -275,7 +275,7 @@ gestaltAboutThisMacSystemSizeBarFix		equ	31	; <69>	"
 gestaltBugFixAttrsThree			equ	'bugx'
 gestaltPartialResourceRangeCheckFix		equ	0	; <71> System Update 3.0 bug fix
 
-gestaltGraphicsVersion			equ	'grfx'		; <39> Skia’s Gestalt selector
+gestaltGraphicsVersion			equ	'grfx'		; <39> Skia's Gestalt selector
 
 ;;;;;
 ;;; private results for various selectors

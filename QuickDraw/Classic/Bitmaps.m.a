@@ -1,4 +1,4 @@
-;EASE$$$ READ ONLY COPY of file “BITMAPS.m.a”
+;EASE$$$ READ ONLY COPY of file 'BITMAPS.m.a'
 ; 1.2	cv 04/03/1989  Added header patch to PackBits made in PMA207.
 ; The patch was not being called until PMA399 was made to StdBits
 ; for a bug with the Scanner app. PMA399 made a call to PackBits
@@ -6,7 +6,7 @@
 ; 1.1	CCH 11/11/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.
 ; OLD REVISIONS BELOW
-; 1.2	CCH 10/12/1988 Changed “m.GrafType.a” to “GrafType.m.a”.
+; 1.2	CCH 10/12/1988 Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ; 1.1	MSH 5/18/88 Changed inclides to use m.GRAPHTYPES to work under EASE.
 ; 1.0	BBM 2/11/88 Adding file for the first time into EASE…
 ; END EASE MODIFICATION HISTORY 

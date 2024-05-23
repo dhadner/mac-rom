@@ -47,9 +47,9 @@ DockSelect
 			
 @FindStatSelector
 			Addq	#4,A1					; Skip over the previous function result.
-			Move.l	(A1)+,D1				; If we’re at the end of the function table,
+			Move.l	(A1)+,D1				; If we're at the end of the function table,
 			Beq.s	@FindCtlSelector		; 	then check the other one.
-			Cmp.l	D1,D0					; If this isn’t the right selector,
+			Cmp.l	D1,D0					; If this isn't the right selector,
 			Bne.s	@FindStatSelector		;	then keep looking.
 			Move.l	(A1),D1					; Get the function result into D1.
 			
@@ -59,9 +59,9 @@ DockSelect
 			
 @FindCtlSelector
 			Addq	#4,A1					; Skip over the function result/routine offset.
-			Move.l	(A1)+,D1				; If we’re at the end of this table,
+			Move.l	(A1)+,D1				; If we're at the end of this table,
 			Beq.s	@Done					;	then we just leave.
-			Cmp.l	D1,D0					; If this isn’t the right selector,
+			Cmp.l	D1,D0					; If this isn't the right selector,
 			Bne.s	@FindCtlSelector		;	then keep looking.
 			
 			Adda.l	(A1),A1					; Get offset to routine.
@@ -74,7 +74,7 @@ SelectorTable
 ;					--------				---------------
 ;
 			Dc.l	dockSCCPorts,			((1<<dockSCCModemPort)|\			; Modem port is available.
-				   						 	 (0<<dockSCCPrinterPort))			; Printer port isn’t available.
+				   						 	 (0<<dockSCCPrinterPort))			; Printer port isn't available.
 											 
 			Dc.l	dockROMVersion												; Set the ROM…
 			Dc.b	$02,$00,$40,1									; …version number.
@@ -91,9 +91,9 @@ SelectorTable
 			Dc.l	dockSCSIDiskMode,		SDMStatus - * - 4					; Determine status of SCSIDiskMode (SDM).
 			Dc.l	dockNuBusConnectors,	NuBusStuff - * - 4					; Determine whether we should return Slot #0 or not.
 			Dc.l	dockInit,				InitStuff - * - 4					; Perform early/wake initializations. 
-			Dc.l	dockSleepSave,			SleepStuff - * - 4					; Sleep ’em.
-			Dc.l	dockWakeupRestore,		WakeupStuff - * - 4					; Wake ’em.
-			Dc.l	dockFlush,				FlushStuff - * - 4					; Wipe ’em.
+			Dc.l	dockSleepSave,			SleepStuff - * - 4					; Sleep 'em.
+			Dc.l	dockWakeupRestore,		WakeupStuff - * - 4					; Wake 'em.
+			Dc.l	dockFlush,				FlushStuff - * - 4					; Wipe 'em.
 			Dc.l	0,						0									; -- EOT --
 
 ;----------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ DockingStuff
 ;
 ;  Outputs - D0:  The SCC read/write address.
 ;
-;  Note:  We shouldn’t have to deal with the SCC ports in this handler, but
+;  Note:  We shouldn't have to deal with the SCC ports in this handler, but
 ;		  the single-port arbitration stuff relies solely on the Docking
 ;		  Handler.  Strickly speaking, this Docking Handler is only for
 ;		  the built-in external video.  Ugh!
@@ -177,7 +177,7 @@ GetSCCWriteAddr
 ;
 ;  Outputs - D0:  SCSI Disk Mode status
 ;			 
-;  Note:  This probably shouldn’t be here, but it is.  This handler is
+;  Note:  This probably shouldn't be here, but it is.  This handler is
 ;		  supposed to only have to deal with video.  Hack, hack, hack.
 ;			 
 ;----------------------------------------------------------------------------------
@@ -189,15 +189,15 @@ SDMStatus
 		  	Movea.l	VIA,A0					; Point to the VIA.
 			Moveq	#1<<vSDMCable,D1		; Mask off the cable sense bit.
 			And.b	vBufB(A0),D1			; Get it.
-			Btst	#vSDMCable,D1			; If there’s no cable attached,
+			Btst	#vSDMCable,D1			; If there's no cable attached,
 			Bne.s	@Finished				;	then just go on.
-			Addq.b	#(1<<dockSDMCable),D0	; Otherwise, say it’s present.
+			Addq.b	#(1<<dockSDMCable),D0	; Otherwise, say it's present.
 						
 @Finished	Rts
 
 ;----------------------------------------------------------------------------------
 ;
-;  NuBusStuff - routine to do return NuBus “connectors” (status call)
+;  NuBusStuff - routine to do return NuBus 'connectors' (status call)
 ;
 ;  Inputs -  none
 ;
@@ -209,8 +209,8 @@ SDMStatus
 NuBusStuff
 			Moveq	#VidMode,D0					; Say that we want the VidMode byte.
 			Bsr		ReadPMgrPRAM				; Get it.
-			Bne.s	@DoSlot0					; If we’re supposed to return Slot #0, then do so.
-			Moveq	#0,D0						; Otherwise, don’t.
+			Bne.s	@DoSlot0					; If we're supposed to return Slot #0, then do so.
+			Moveq	#0,D0						; Otherwise, don't.
 			Bra.s	@Finished					;
 @DoSlot0	Moveq	#(1<<dockSlot0),D0			; Say we need to redo Slot #0.
 @Finished	Rts
@@ -234,15 +234,15 @@ InitStuff
 			
 			Btst	#dockWorldChanged,D0		; If we got the early wake-up call,
 			Bne.s	@CheckWorld					;	then go check the world.
-			Btst	#dockWakeupInit,D0			; If we’re simply waking up, then
+			Btst	#dockWakeupInit,D0			; If we're simply waking up, then
 			Bne.s	@Done						;	just leave.
 			Bsr		DetectExtDisplay			; Otherwise, go look for an ext. display.
 
 @Done		Moveq	#0,D0						; Say that we were successful.
 			Rts									; And vamoose.
 
-; Generally speaking, the Docking Manager wants to know if “bulk” changes have occurred.  In
-;	our case, bulk changes never occur (that is, the “bar” is permenantly attatched).  So,
+; Generally speaking, the Docking Manager wants to know if 'bulk' changes have occurred.  In
+;	our case, bulk changes never occur (that is, the 'bar' is permenantly attatched).  So,
 ;	we just want to find out if paticular changes have occurred.  Specifically, we want
 ;	to know if the state of the int./ext. video has changed.  And, if so, we report this
 ;	information back to the Docking Manager.
@@ -254,11 +254,11 @@ InitStuff
 			Bsr		DetectExtDisplay			; Go look for an ext. display.
 
 			Lea		ExtVidState,A0				; Point to the ext. save-state variable.
-			Cmp.w	(A0),D0						; If the ext. world hasn’t changed, then
+			Cmp.w	(A0),D0						; If the ext. world hasn't changed, then
 			Beq.s	@ChkInt						;	check the int. world.
 			Bra.s	@ForceInt					; Otherwise, force the DockingMgr to deal w/Slot #0.
 
-; If we got here, then the external display state hasn’t changed.  So, before we simply tell
+; If we got here, then the external display state hasn't changed.  So, before we simply tell
 ;	tell the Docking Manager to do nothing, we check to see if the internal display
 ;	state has changed.  We do this by comparing the state of the lid with the state
 ;	of the built-in internal video.  If the state of the lid matches the state
@@ -305,11 +305,11 @@ InitStuff
 SleepStuff
 
 			Lea		ExtVidState,A0				; Point to the ext. save-state variable.
-			Move.w	#indexedNoConnect,(A0)		; Assume nobody’s home.
+			Move.w	#indexedNoConnect,(A0)		; Assume nobody's home.
 
 			Link	A6,#VidLowPwrFrameSize		; Allocate some local storage on the stack.
 
-; Get a the external driver’s refNum if it’s around.
+; Get a the external driver's refNum if it's around.
 ;
 			Clr.l	-(Sp)						; Make room for docking result.
 			Move.l	#dockDockingSlot,-(Sp)		; Say we want the docking slot number.
@@ -320,7 +320,7 @@ SleepStuff
 			Move.w	#drHwVSC,D0					; Get the drHwID.
 			Swap	D0							; Set up for utility call.
 			Bsr		GetSlotDevRefNum			; If ext. video is not around,
-			Beq.s	@NoExtVid					; 	then don’t call it.
+			Beq.s	@NoExtVid					; 	then don't call it.
 
 ; Call video driver to power down VSC…
 ;
@@ -336,7 +336,7 @@ SleepStuff
 @NoExtVid	Moveq	#-1,D0						; Otherwise, return failure.
 			Bra.s	@Done						; And leave.
 
-@Finished	Moveq	#0,D0						; We didn’t need any special storage.
+@Finished	Moveq	#0,D0						; We didn't need any special storage.
 			Lea		ExtVidState,A0				; Point to the save-state variable.
 			Move.w	csMode(A1),(A0)				; Save the state.
 
@@ -364,18 +364,18 @@ WakeupStuff
 			Beq		@Done						;	then just leave.
 
 			Lea		ExtVidState,A0				; Point to the ext. save-state variable.
-			Cmpi.w	#indexedNoConnect,(A0)		; If the world changed (or nobody’s home),
+			Cmpi.w	#indexedNoConnect,(A0)		; If the world changed (or nobody's home),
 			Beq		@Done						;	then just leave.
 
 			Link	A6,#VidLowPwrFrameSize		; Allocate some local storage on the stack.
 
-; Get a the external driver’s refNum if it’s around.
+; Get a the external driver's refNum if it's around.
 ;
 			Move.w	#drHwVSC,D0					; Get the drHwID for VSC.
 			Swap	D0							; Save it.
 			Move.w	#dockSlotE,D0				; Get the slot number. (We could call the Docking Manager, but why?)
-			Bsr		GetSlotDevRefNum			; If ext. video is not around (shouldn’t happen),
-			Beq.s	@Finished					; 	then don’t call it.
+			Bsr		GetSlotDevRefNum			; If ext. video is not around (shouldn't happen),
+			Beq.s	@Finished					; 	then don't call it.
 
 ; Call video driver to power up VSC…
 ;
@@ -389,21 +389,21 @@ WakeupStuff
 			_Control							; If we failed to wake up,
 			Bne.s	@Finished					;	then just leave.
 
-			Move.w	ioRefNum(A0),D0				; Get the driver’s refNum.
+			Move.w	ioRefNum(A0),D0				; Get the driver's refNum.
 			Movea.l	Devicelist,A2				; Get the DeviceList Handle.
 			Movea.l	(A2),A2						; Make it a pointer.
 			
 @DevLoop	Cmp.w	gdRefNum(A2),D0				; If this is the right gDevice,
 			Beq.s	@SetEm						;	then call SetEntries.
 			Move.l	gdNextGD(A2),D1				; Otherwise, get the next gDevice.
-			Beq.s	@Finished					; If it’s nil, then we’re done.
+			Beq.s	@Finished					; If it's nil, then we're done.
 			Movea.l	D1,A2						; Otherwise, copy the gDevice Handle.
 			Movea.l	(A2),A2						; Make it a pointer.
 			Bra.s	@DevLoop					; Loop until done.
 			
-@SetEm		Movea.l	gdPMap(A2),A2				; Get the gDevice’s pixMap’s…
+@SetEm		Movea.l	gdPMap(A2),A2				; Get the gDevice's pixMap's…
 			Movea.l	(A2),A2						; …current colorTable.
-			Movea.l	pmTable(A2),A2				; (If this were a direct device, we’d punt here.)
+			Movea.l	pmTable(A2),A2				; (If this were a direct device, we'd punt here.)
 			
 			Move.l	A0,D1						; Save the ioPB ptr.
 			Movea.l	A2,A0						; Set up to…
@@ -485,17 +485,17 @@ Delay100		move.w	TimeVIADB,d0
 
 ;---------------------------------------------------------------------
 ; This routine reads the VSC/Jet sense lines.  On entry, A4 should point to the VSC/Jet base address, D6
-;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we’re doing, and
+;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we're doing, and
 ;	the CPU should have been put into 32-bit addressing mode.  On exit, D6 contains the appropriate
 ;	extended sense code.
 ;
 ; Note:	The idea behind the extended-sense-line ($07) algorithm is as follows:  First, drive sense line
-;		“a” and read the values of “b” and “c.”  Next, drive sense line “b” and read the values of “a”
-;		and “c.”  Finally, drive sense line “c” and read the values of “a” and “b.”  In this way, a
+;		'a' and read the values of 'b' and 'c.'  Next, drive sense line 'b' and read the values of 'a'
+;		and 'c.'  Finally, drive sense line 'c' and read the values of 'a' and 'b.'  In this way, a
 ;		six-bit number of the form bc/ac/ab is generated.  The other extended-sense algorithms are
-;		identical to that of $07, except one of the three lines doesn’t need to be driven.  For example,
-;		with $03, “a” doesn’t need to be driven.  With $05, “b” doesn’t need to be driven, and
-;		with $06, “c” doesn’t need to be driven.
+;		identical to that of $07, except one of the three lines doesn't need to be driven.  For example,
+;		with $03, 'a' doesn't need to be driven.  With $05, 'b' doesn't need to be driven, and
+;		with $06, 'c' doesn't need to be driven.
 ;---------------------------------------------------------------------
 
 DoExtendedSense
@@ -560,11 +560,11 @@ DoExtendedSense
 				Movem.l	(Sp)+,A0/D0-D1						; Restore work registers.
 				Rts											; Return to caller.
 
-; In a “classic” video card setup, we’d normally perform the follwing code in the PrimaryInit.
+; In a 'classic' video card setup, we'd normally perform the follwing code in the PrimaryInit.
 ; 	However, because we have a clamshell on Blackbird, we need to know whether or not it will
 ; 	be closed.  If the clamshell is closed, we generally want to keep video turned off on the
 ; 	LCD, but only if some sort of external video is running.  So, we check here to see if
-; 	there’s a display attatched to the external video connector.  If there is a display attached,
+; 	there's a display attatched to the external video connector.  If there is a display attached,
 ; 	then we just leave video power on.  Otherwise, we turn it off, and the hardware attributes
 ; 	then return that no external video is available.
 ;
@@ -591,7 +591,7 @@ DetectExtDisplay
 				Bset	#vidReset,VSC_Test(A4)				; Reset the video subsystem by…
 				Bclr	#vidReset,VSC_Test(A4)				; …toggling the reset bit.
 
-				move.b	#(1<<slotVBL),AIV3SlotEn(a3) 		; Disable built-in (slot E) video’s VBLs.
+				move.b	#(1<<slotVBL),AIV3SlotEn(a3) 		; Disable built-in (slot E) video's VBLs.
 
 				moveq	#2,d0								; default (reset) value
 				move.b	d0,VSC_HFP(a4)						; set horizontal front porch
@@ -637,9 +637,9 @@ DetectExtDisplay
 				
 				Lea		@XT6Table,A1						; Point to the table of extended type-6 codes.
 @XT6Loop		Move.b	(A1)+,D0							; Pick up the next supported extended type-6 code.
-				Bmi.s	@EndExtHR							; If we’re at the end of the list, then just leave.
+				Bmi.s	@EndExtHR							; If we're at the end of the list, then just leave.
 				Move.b	(A1)+,D1							; Pick up the indexed version of the extended code.
-				Cmp.b	D0,D6								; If we didn’t find a match, then
+				Cmp.b	D0,D6								; If we didn't find a match, then
 				Bne.s	@XT6Loop							;	just keep looping.
 				Move.b	D1,D6								; Translate the extended code into its indexed version.
 				Bra		@EndSense							; And move on.
@@ -661,14 +661,14 @@ DetectExtDisplay
 
 				Lea		@XNCTable,A1						; Point to the table of extended no-connect codes.
 @XNCLoop		Move.b	(A1)+,D0							; Pick up the next supported extended no-connnect code.
-				Bmi.s	@EndNoConnect						; If we’re at the end of the list, then just leave.
+				Bmi.s	@EndNoConnect						; If we're at the end of the list, then just leave.
 				Move.b	(A1)+,D1							; Pick up the indexed version of the extended code.
-				Cmp.b	D0,D6								; If we didn’t find a match, then
+				Cmp.b	D0,D6								; If we didn't find a match, then
 				Bne.s	@XNCLoop							;	just keep looping.
 				Move.b	D1,D6								; Translate the extended code into its indexed version.
 				Bra.s	@EndSense							; And move on.
 
-@EndNoConnect	Move.b	#indexedNoConnect,D6				; Say that nothing’s connected.
+@EndNoConnect	Move.b	#indexedNoConnect,D6				; Say that nothing's connected.
 				Bclr	#VidPwrEn,AIV3PwrEn(a3)				; And turn off video power.
 				Bra.s	@EndSense
 
@@ -734,7 +734,7 @@ GetLidState
 ;	Inputs:		D0.w (lo) - slot number to search.
 ;				D0.w (hi) - drHwID of device.
 ;
-;	Outputs:	D0.w (lo) - if non-zero, refNum of device’s driver.	
+;	Outputs:	D0.w (lo) - if non-zero, refNum of device's driver.	
 ;
 ;	Destroys:	A0/D0.
 ;
@@ -761,7 +761,7 @@ GetSlotDevRefNum
 				Bset	#foneslot,spParamData+3(A0)			; Limit search to this slot.
 				_GetTypeSRsrc								; If we found it, then
 				Beq.s	@FoundDevice						;	say so.
-				Moveq	#0,D0								; Otherwise, say the device isn’t loaded.
+				Moveq	#0,D0								; Otherwise, say the device isn't loaded.
 				Bra.s	@Done								;							
 @FoundDevice	Move.w	spRefNum(A0),D0						; Get the refNum into D0.	
 @Done			Adda.w	#SpBlockSize,Sp						; Restore the stack.
@@ -786,7 +786,7 @@ GetSlotDevRefNum
 				
 ReadPMgrPRAM
 				
-				Movea.l	PMgrBase,A0							; Point to the Power Manager’s globals.
+				Movea.l	PMgrBase,A0							; Point to the Power Manager's globals.
 				Add.b	PRAMBase(A0),D0						; Get the absolute PRAM address.
 				Swap	D0									; Save it.
 				Addq	#1,D0								; Say we want one byte.
@@ -810,14 +810,14 @@ ReadPMgrPRAM
 ;
 ;	Destroys:	A0/D0.
 ;
-;	Function:	Writes a byte of PowerMgr PRAM (but doesn’t set the dirty flag).
+;	Function:	Writes a byte of PowerMgr PRAM (but doesn't set the dirty flag).
 ;---------------------------------------------------------------------
 ;
 				With	PmgrRec
 
 WritePMgrPRAM
 				
-				Movea.l	PMgrBase,A0							; Point to the Power Manager’s globals.
+				Movea.l	PMgrBase,A0							; Point to the Power Manager's globals.
 				Add.b	PRAMBase(A0),D0						; Get the absolute PRAM address.
 				Swap	D0									; Save it.
 				Addq	#1,D0								; Say we want one byte.

@@ -52,7 +52,7 @@
 ;									GetFormatOrder with version in this file).
 ;
 ;		<16>	 2/19/91	PKE		smb,#DTS FT: ToggleDate trashes one word past the end of its
-;									“VAR lSecs: LongDateTime” parameter (reported by a developer).
+;									'VAR lSecs: LongDateTime' parameter (reported by a developer).
 ;		<15>	 2/15/91	PKE		JSM,#54736: Redo conditionals to move change <14> to Post 7.0.
 ;									Object compare identical to <13>.
 ;		<14>	 1/28/91	JH		PKE,#54736: Added changes to mirror changes in
@@ -61,10 +61,10 @@
 ;									ValidLong, MatchString over to this file so that String2Date
 ;									could use the new cache. And added slightly tougher requirements
 ;									for date separators.
-;		<13>	12/15/90	PKE		(gbm) Move ‘itlk’ loading from KeyScript into SwapKybd patch.
+;		<13>	12/15/90	PKE		(gbm) Move ‘itlk' loading from KeyScript into SwapKybd patch.
 ;									Fixes bugs with some European keyboards when using Keyboard
 ;									menu, etc.
-;		<12>	12/14/90	PKE		(DC) Don’t install GetOSEvent patch if A/UX is running. A/UX
+;		<12>	12/14/90	PKE		(DC) Don't install GetOSEvent patch if A/UX is running. A/UX
 ;									folks will figure out how to handle the Script Mgr key
 ;									combinations another way. Patch out rest of Script Mgr extension
 ;									to GetOSEvent, and change it to use smgrKeyScriptResult to
@@ -73,7 +73,7 @@
 ;									patch in KeyScript). Patch KeyTrans to skip itlk handling if
 ;									KeyTrans is called with a special KCHR (not the one emKeyCache
 ;									points to). Patch internal SwapKybd routine to force it to load
-;									‘KCHR’ resources from System file.
+;									‘KCHR' resources from System file.
 ;		<11>	 12/5/90	BBM		(JSM) Protect the come-from patches
 ;		<10>	10/30/90	PKE		(stb) Patch out GetOSEvent and change it to permit switching
 ;									keyboards within scripts using key combos defined in 'KSWP'
@@ -81,7 +81,7 @@
 ;		 <9>	  8/7/90	PKE		Just altered the previous comment to say needed for SixPack.
 ;		 <8>	  8/5/90	PKE		NEEDED FOR SIXPACK: Since this patch may now be installed for
 ;									A/UX, we need to branch around the installations in here that
-;									shouldn’t be done for A/UX. Search for <8> to find changes.
+;									shouldn't be done for A/UX. Search for <8> to find changes.
 ;		 <7>	  7/5/90	PKE		NEEDED FOR SIXPACK: Rearrange InitDateCache to fix old problem:
 ;									itl0 and itl1 may be purged before we try to use them. Patch out
 ;									GetScript for 6.x systems to fix its handling of unimplemented
@@ -92,7 +92,7 @@
 ;									save and restore all regs; only needed for 6.x. Changes are
 ;									flagged with <6>. ALSO: Removed some superfluous with/endwith
 ;									pairs.
-;		 <5>	 5/13/90	SMB		Doing an ‘rts’ for NewSwapIcon since now using Keyboard Menu.
+;		 <5>	 5/13/90	SMB		Doing an ‘rts' for NewSwapIcon since now using Keyboard Menu.
 ;									Installing a tail patch to InitMenus to set smgrRect to 0 so
 ;									that keyboard/script toggling in the system menu is no longer
 ;									available.

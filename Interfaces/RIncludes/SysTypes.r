@@ -15,9 +15,9 @@
 														otherwise it does nothing, and corresponding key combination is
 														not stripped from event queue.
 	   <SM2>	 5/17/92	kc		Roll in Horror changes. Comments follow:
-		<H3>	 2/12/92	SWC		Added ‘accl’ definition, which describes mouse/trackball
+		<H3>	 2/12/92	SWC		Added ‘accl' definition, which describes mouse/trackball
 									acceleration curves for new cursor code.
-		<H2>	11/12/91	jmp		Added ‘pslt’ definition and equates from System Disk 7.0.1.
+		<H2>	11/12/91	jmp		Added ‘pslt' definition and equates from System Disk 7.0.1.
 		<24>	10/28/91	SAM/KSM	Rolled in Regatta file.
 	
 	Regatta Change History:
@@ -30,11 +30,11 @@
 									direction) to 'itlc' resource to save user prefs for global
 									states that have some representation (such as TESysJust) outside
 									the SMgrRecord.
-		<22>	 7/30/91	PKE		Fix ‘itl1’ template by adding “align word” between tables in
+		<22>	 7/30/91	PKE		Fix ‘itl1' template by adding 'align word' between tables in
 									extended format.
 		<21>	  1/3/91	JDR		(dba) Encode field of a snd is missing. It is the upper byte of
 									the old baseFrequency INTEGER.
-		<20>	12/15/90	PKE		(csd) Add RotateKybd constant for first field of ‘KSWP’.
+		<20>	12/15/90	PKE		(csd) Add RotateKybd constant for first field of ‘KSWP'.
 		<19>	11/29/90	JDR		<KIP> Found a bug in the snd templete that I created since the
 									Rez syntax is so obvious I'm surprised I didn't notice it
 									before.
@@ -75,7 +75,7 @@
 		 <5>	 3/15/90	JSM		Add 'ppcc', PPC Browser configuration resource.
 		 <4>	  2/1/90			Official MPW version. Blasted the header.
 		 <3>	 1/17/90	PKE		Added field to itlc type for region code (preferred
-		 							verXxx). Changed “Country” to “Region”.
+		 							verXxx). Changed 'Country' to 'Region'.
 		 <2>	 1/17/90	PKE		Added several more verXxx codes. Updated itlc resource
 		 							type to MPW 3.1 level. Updated header to BBS format.
 

@@ -8,7 +8,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		<21>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<21>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<20>	  8/2/90	JSM		Add kDBNullFlag.
 ;		<19>	  7/1/90	JSM		Change typeChar constant from 'char' to 'TEXT'.

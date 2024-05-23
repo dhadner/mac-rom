@@ -27,7 +27,7 @@
 
 		 <5>	10/28/92	DTY		Use Get/Set macros to access ExpandMem.
 		 <4>	  4/1/92	YK		#1023997: InitializeDiskCashe should be a pascal function.
-		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn’t do anything
+		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn't do anything
 									any more.
 		 <2>	  1/3/92	JSM		Roll-in changes from Sakura: Get name of disk cache file from a
 									resource instead of hard-coding it in InitializeDiskCache()
@@ -158,8 +158,8 @@ pascal OSErr InitializeDiskCache( void )
 					{
 						if ((*diskCacheMapHandle)->fMapDirty)
 							// Assume that we got back a reasonably-sized handle from LoadDiskCacheMap.
-							// Fill in values to make this a good, empty map.  It’s entirely likely that
-							// the map is mostly good, but we’ll do the whole job.  This code not entirely
+							// Fill in values to make this a good, empty map.  It's entirely likely that
+							// the map is mostly good, but we'll do the whole job.  This code not entirely
 							// unlike CreateDiskCacheMap in the disk cache builder project.
 						{
 							// Sub-locals
@@ -473,7 +473,7 @@ pascal void DiskCacheShutDownProcedure( void )
 				
 	Warnings:	None
 	
-	Assumes:	This doesn’t get called if this cache block is already in memory.
+	Assumes:	This doesn't get called if this cache block is already in memory.
 	
 	-----------------------------------------------------------------------------------  */
 

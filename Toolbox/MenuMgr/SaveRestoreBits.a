@@ -55,7 +55,7 @@
 ;									port
 ;		 <5>	  6/8/90	dba		always save the rectangle that goes with the bits; also support
 ;									cases where the WMgrPort is not set to local=global; also get
-;									rid of the workaround to the “bug” in NewScreenBuffer since I
+;									rid of the workaround to the 'bug' in NewScreenBuffer since I
 ;									now understand why the call works the way it does (and I fixed
 ;									some bugs in the Classic and Macintosh II versions of it)
 ;		 <4>	 5/31/90	KSM		Since this is really following Pascal calling conventions,
@@ -204,7 +204,7 @@ gDevice				ds.l		1					; the appropriate device
 		bsr			DoNewScreenBuffer1
 		bz.s		GotBuffer						; go if we got the buffer successfully
 
-		moveq		#0,d0							; don’t use temp. memory
+		moveq		#0,d0							; don't use temp. memory
 		bsr			DoNewScreenBuffer1
 		bz.s		GotBuffer						; go if we got the buffer successfully
 
@@ -583,7 +583,7 @@ gDevice				ds.l		1					; the appropriate device
 		bsr.s		DoNewScreenBuffer2
 		bz.s		GotBuffer						; go if we got the buffer successfully
 
-		moveq		#0,d0							; don’t use temp. memory
+		moveq		#0,d0							; don't use temp. memory
 		bsr.s		DoNewScreenBuffer2
 		bz.s		GotBuffer						; go if we got the buffer successfully
 
@@ -694,7 +694,7 @@ buffer				ds.l		1					; buffer to dispose
 		rsrv.l
 		_GetGDevice
 		move.l		(a3),a0
-		move.l		portPixMap(a2),OffscreenBufferRecord.savedPortPixMap(a0)	; save the port’s pixMap
+		move.l		portPixMap(a2),OffscreenBufferRecord.savedPortPixMap(a0)	; save the port's pixMap
 		pop.l		OffscreenBufferRecord.savedGDevice(a0)	; get device to save
 		push.l		OffscreenBufferRecord.bufferGDevice(a0)
 		_SetGDevice									; set to the right device

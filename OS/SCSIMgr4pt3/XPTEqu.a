@@ -16,7 +16,7 @@
 ;	  <SM20>	 1/25/94	DCB		Added space in the C0C globals for our own private deferred task
 ;									queue.
 ;	  <SM19>	 1/14/94	chp		Remove SCSIGlobals equate again. It is defined in SysEqu.a. (See
-;									<SM15>.) Fix “include once” SET variable naming conventions.
+;									<SM15>.) Fix 'include once' SET variable naming conventions.
 ;	   <ML3>	  1/9/94	pdw		Added busyPatchVers field.
 ;	   <ML2>	  1/5/94	pdw		Added SCSIBusy selector and required fields in SCSIGlobals.
 ;	   <MC4>	 11/5/93	pdw		Series of attempts and re-attempts to fix various VM/FileShare

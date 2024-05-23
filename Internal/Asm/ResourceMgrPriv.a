@@ -36,7 +36,7 @@
 ;		 <7>	10/23/91	DTY		Add macros for _GetOverrideMap and _GetMaps, which are new
 ;									selectors off of _ResourceDispatch.
 ;		 <6>	10/15/91	DTY		Define yet another bit, twoDeepBit, which causes one deep calls
-;									to search the next lower map if a resource isn’t found in the
+;									to search the next lower map if a resource isn't found in the
 ;									current map.  This search recurses if the lower map also has
 ;									this bit set.
 ;		 <5>	10/15/91	DTY		Add mapInsertedBit & dontCountOrIndexDuplicatesBit. Resource
@@ -47,7 +47,7 @@
 ;									GetIndResource calls and 2) contiguous maps with this bit set
 ;									are considered one file (one deep calls will use the n-deep
 ;									calls).
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <3>	10/24/90	dba		add new attributes byte
 ;	   <1.1>	 8/30/89	dba		added some missing equates
@@ -58,7 +58,7 @@
 __INCLUDINGRESOURCEMGRPRIV__	SET	1
 
 ;
-; These selectors are for the System’s enjoyment only, and shouldn’t be made public.
+; These selectors are for the System's enjoyment only, and shouldn't be made public.
 ;
 
 selectCloseResFileUnderSystemMap	equ	-4
@@ -308,8 +308,8 @@ rAttr			EQU 	rNameOff+2		; attribute byte (high byte of locn)
 rLocn			EQU 	rAttr			; location of the resource in source file
 
 rHndl			EQU 	rLocn+4 		; handle of the resource
-refID			EQU 	rHndl			; if reference, ID of ref’d resource
-refNameOff		EQU 	refID+2 		; if reference, NameOff of ref’d resource
+refID			EQU 	rHndl			; if reference, ID of ref'd resource
+refNameOff		EQU 	refID+2 		; if reference, NameOff of ref'd resource
 
 reSize			EQU 	rHndl+4 		; resource entry size
 
@@ -374,7 +374,7 @@ lenWdLen        EQU     4               ; a longword is 4 bytes.
 ; Special number for resource overrides																					<SM7> rb
 
 kROMMapRefNum					EQU	1			; 1 has always been the ROM												<SM7> rb
-kFakeResourceOverrideMapRefNum	equ	3			; 3 is not a valid reference number, so it’s safe to use				<SM7> rb
+kFakeResourceOverrideMapRefNum	equ	3			; 3 is not a valid reference number, so it's safe to use				<SM7> rb
 
 
 ;_______________________________________________________________________________

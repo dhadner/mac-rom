@@ -115,7 +115,7 @@ burnInSig12			Equ		'RN12'		; These are the new burn-in signatures.  They
 burnInSig13			Equ		'RN13'		;	define all the Apple-produced displays.
 burnInSig15			Equ		'RN15'		;	We could define similar signatures for
 burnInSig16			Equ		'RN16'		;	things like VGA, NTSC, and PAL, but the
-burnInSig19			Equ		'RN19'		;	factory probably couldn’t use them anyway.
+burnInSig19			Equ		'RN19'		;	factory probably couldn't use them anyway.
 burnInSig21			Equ		'RN21'
 
 ; Timing mode constants for Display Manager MultiMode support
@@ -166,7 +166,7 @@ sleepWakeSig		Equ		'slwk'		; Signature returned in csData by the cscSleepWake st
 ; Slot pRAM
 ;
 ; Slot pRam is used in various ways.  The first two bytes are used by the Slot Manager to record
-; the slot’s boardID.  The remaining bytes are left undefined by the Slot Manager.  Built-in
+; the slot's boardID.  The remaining bytes are left undefined by the Slot Manager.  Built-in
 ; video uses Slot pRam as follows:
 ;
 SP_Params		RECORD	0
@@ -181,7 +181,7 @@ SP_Size				EQU		*
 
 ; Slot pRAM flag bits
 ;
-spSyncOnGreen		Equ		0			; True if we’re supposed to put sync on green.
+spSyncOnGreen		Equ		0			; True if we're supposed to put sync on green.
 spAltSenseEnb		Equ		1			; True if AltSense was used before (for keeping SOG state).
 
 spVRAMBit0			Equ		2			; These two bits are used to encode the amount of…
@@ -199,7 +199,7 @@ spAltSenseDisable	Equ		$80			; Bits used for temporarily disabling the alternate
 				
 				ENDR
 
-; Definition of each of the entries in the ‘scrn’ resource.
+; Definition of each of the entries in the ‘scrn' resource.
 ;
 ScrnRecord		RECORD	0
 srDrvrHW			ds.w	1			; Hardware id of video card.
@@ -208,8 +208,8 @@ srDCtlDevBase		ds.l	1			; DCtlDevBase (baseAddr) from AuxDCE.
 srMode				ds.w	1			; Mode (spID) of depth.
 srFlagMask			ds.w	1			; ????
 srFlags				ds.w	1			; GDevice flags.
-srColorTable		ds.w	1			; RsrcID of desired ‘clut’.
-srGammaTable		ds.w	1			; RsrcID of desicred ‘gama’.
+srColorTable		ds.w	1			; RsrcID of desired ‘clut'.
+srGammaTable		ds.w	1			; RsrcID of desicred ‘gama'.
 srRect				ds.w	4			; GDevice rectangle.
 srCtlCount			ds.w	1			; ????
 ScrnRecSize			EQU		*
@@ -267,13 +267,13 @@ VSCBMask			EQU		%0010							;
 VSCCMask			EQU		%0001							;
 
 ;--------------------------------------------------------------------------------------
-; VSC supports several displays that are in the “extended” sense line range.  Since the raw
+; VSC supports several displays that are in the 'extended' sense line range.  Since the raw
 ; values that come back from doing the extended sense-line algorithm do not map into a nice
-; tablular form like the “normal” sense line codes do, we map the few extended-sense-line displays
+; tablular form like the 'normal' sense line codes do, we map the few extended-sense-line displays
 ; that we support into the bottom of the normal sense line table.
 ;
-; Notes:  The “normal” sense displays fall in the range of 0..7, where 7 means “go try the
-;		  extended sense codes.”  So, we map the extended sense codes from 8 (yeah, we have
+; Notes:  The 'normal' sense displays fall in the range of 0..7, where 7 means 'go try the
+;		  extended sense codes.'  So, we map the extended sense codes from 8 (yeah, we have
 ;		  blank entry).
 ;
 ;		  Radius exploits the fact that the extended sense algorithm is generally only tried
@@ -289,8 +289,8 @@ VSCCMask			EQU		%0001							;
 ;--------------------------------------------------------------------------------------
 
 extended2P			Equ		$35			; Raw Extended Sense for the Two-Page Display.
-extended2PRdRGB		Equ		$31			; Raw Extended Sense for Radius’ Color TPD.
-extended2PRdMono	Equ		$34			; Raw Extended Sense for Radius’ Mono TPD.
+extended2PRdRGB		Equ		$31			; Raw Extended Sense for Radius' Color TPD.
+extended2PRdMono	Equ		$34			; Raw Extended Sense for Radius' Mono TPD.
 
 extendedRGBFP		Equ		$1E			; Raw Extended Sense for the RGB Full-Page Display.
 
@@ -306,7 +306,7 @@ extendedSenseVGA	Equ		$17			; Raw Extended Sense for VGA.
 extendedSenseLP		Equ		$2D			; Raw Extended Sense for GoldFish.
 extendedSenseGF		Equ		$2D			; Raw Extended Sense for GoldFish.
 extendedSensePAL	Equ		$30			; Raw Extended Sense for PAL.
-extendedSense19		Equ		$3A			; Raw Extended Sense for Third-Party 19” Displays.
+extendedSense19		Equ		$3A			; Raw Extended Sense for Third-Party 19' Displays.
 
 indexedSenseRGB2P	Equ		 0			; For switching to 16bpp.
 indexedSenseFP		Equ		 1			; For Mono-Only configs.
@@ -383,7 +383,7 @@ OBM1KRB				Equ	   128			; rowbytes for one-bit mode
 TBM1KRB				Equ	   256			; rowbytes for two-bit mode
 FBM1KRB				Equ	   512			; rowbytes for four-bit mode
 
-; page counts for all (maybe one of these days we’ll support more than one page?)
+; page counts for all (maybe one of these days we'll support more than one page?)
 ;
 OBMPagesHR		EQU			1
 TBMPagesHR		EQU			1
@@ -468,7 +468,7 @@ defmBounds_LGF		EQU		0							; left
 defmBounds_BGF		EQU		624							; bottom
 defmBounds_RGF		EQU		832							; right	
 
-; for 19” displays
+; for 19' displays
 ;
 defmBounds_T1K		EQU		0							; top
 defmBounds_L1K		EQU		0							; left
@@ -663,6 +663,6 @@ sRsrc_Vid_VSC_1K			Equ		$8C				; VESA (1024x768, 60 Hz), 1,2,4
 
 sRsrc_Docking				EQU		$F0				; docking functional sRsrc
 
-sRsrc_VSC_NeverMatch		EQU		$FE				; The “null” VSC sRsrc.
+sRsrc_VSC_NeverMatch		EQU		$FE				; The 'null' VSC sRsrc.
 
 

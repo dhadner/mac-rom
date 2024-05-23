@@ -12,7 +12,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;	  <SM20>	11/10/93	chp		Fix “include once” SET variable naming conventions.
+;	  <SM20>	11/10/93	chp		Fix 'include once' SET variable naming conventions.
 ;	  <SM19>	10/29/93	DCB		<MC> roll-in.
 ;	   <MC2>	10/28/93	pdw		Brought the error codes up to date.
 ;	  <SM18>	10/14/93	pdw		<MC> roll-in.
@@ -332,8 +332,8 @@ scsiTargetModeFlagsMask	equ			$000000FF 		; all of the target mode bits
 scsiNoParityCheck		equ		$0002			; disable parity checking 
 scsiDisableSelectWAtn	equ		$0004			; disable select w/Atn 
 scsiSavePtrOnDisconnect	equ		$0008			; do SAVE_DATA_POINTER when DISCONNECT
-scsiNoBucketIn			equ		$0010			; don’t bit bucket in during this I/O
-scsiNoBucketOut			equ		$0020			; don’t bit bucket out during this I/O
+scsiNoBucketIn			equ		$0010			; don't bit bucket in during this I/O
+scsiNoBucketOut			equ		$0020			; don't bit bucket out during this I/O
 scsiDisableWide			equ		$0040			; disable wide transfer negotiation
 scsiRenegotiateSense	equ		$0080			; renegotiate on autosense
 

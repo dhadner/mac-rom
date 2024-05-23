@@ -17,7 +17,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “UserGroup.h”
+/*EASE$$$ READ ONLY COPY of file 'UserGroup.h'
 ** 1.0	CVC 10/12/1989 Adding Access Control for the first time.
 ** END EASE MODIFICATION HISTORY */
 #ifndef UserGroup_h

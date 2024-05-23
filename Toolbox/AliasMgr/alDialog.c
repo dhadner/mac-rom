@@ -57,7 +57,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “alDialog.c”
+/*EASE$$$ READ ONLY COPY of file 'alDialog.c'
 ** 2.1	prp 12/15/1989 Restore current port correctly.
 ** 2.0	prp 11/27/1989 SetArrowCursor is now a Trap selector routine.
 ** 1.9	prp 11/16/1989 Cancel dialog box uses 'Stop Search' button instead of

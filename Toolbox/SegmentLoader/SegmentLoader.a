@@ -22,7 +22,7 @@
 ;		 <3>	  3/9/92	PN		Adding machine MC68020 directive
 ;		 <2>	  3/6/92	RB		Flush Cache range inside LoadSeg and UnloadSeg instead of just
 ;									invalidating the caches.
-;		 <7>	 9/27/91	JSM		Cleanup header, don’t use hasCQD conditional since all future
+;		 <7>	 9/27/91	JSM		Cleanup header, don't use hasCQD conditional since all future
 ;									ROMs will have color QuickDraw.
 ;		 <6>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		 <5>	 3/12/91	CCH		Removed the cache flush at the beginning of LoadSeg, since we
@@ -33,7 +33,7 @@
 ;									apply to 040s.
 ;		 <3>	 6/22/90	CCH		Added cache push for 68040 machines after jump table is created
 ;									to avoid cache incoherency problems.
-;		 <2>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.7>	 7/12/89	GGD		Added conditional hasCQD around call to PMgrExit, to fix non-CQD
 ;									machines.
 ;	   <1.6>	  7/8/89	BAL		<dvb> Added PMgrExit call to ExitToShell.
@@ -51,7 +51,7 @@
 ;	  <C914>	10/29/87	rwh		Port to Modern Victorian (onMvMac)
 ;	  <C800>	 2/12/87	JTC		Clear (a5) on launch in case someone (like old MacWrites) goes
 ;									snooping for QD globals before InitGraf time. Also, adjust C741
-;									alignment to just AFTER the “above A5” amount has been taken
+;									alignment to just AFTER the 'above A5' amount has been taken
 ;									from SP.
 ;	  <C749>	  2/3/87	bbm		changed the way the 68881 is inited on launch.
 ;	  <C741>	  2/2/87	JTC		Try to longword align the A5 world.
@@ -311,13 +311,13 @@ LoadCode
 
 ; <sm 5>stb  Imported for SuperMario from SegmentLoaderPatches 3/30/92
 ;	Force system code to load as 'scod' resources.  The Process Mgr. is our distinguished first guest
-;	of this mechanism.  If the id is in the reserved range [$BFFF,$BF00] it loads a ‘scod’ instead
-;	of a ‘CODE’.
+;	of this mechanism.  If the id is in the reserved range [$BFFF,$BF00] it loads a ‘scod' instead
+;	of a ‘CODE'.
 			cmp.w	#$BFFF,D0				; Is it in the BFFF - BF00 range reserved for sys code?
 			bgt.s	@normalCODE
 			cmp.w	#$BF00,D0				; is it really in the BFFF - BF00 range?
 			blt.s	@normalCODE
-			move.l	#'scod',-(SP)			; load a system-code (‘scod’) resource
+			move.l	#'scod',-(SP)			; load a system-code (‘scod') resource
 			bra.s	@systemCode
 @normalCODE
 			MOVE.L	#'CODE',-(SP)			; load a regular CODE resource
@@ -394,7 +394,7 @@ DoneUnload
 ; Purpose:	   Strips any garbage off D0 address and sets D0=0 if in app zone.
 ; Aguments:    D0 is the unstripped address on input, stripped or zeroed on output.
 ;				CCR is set according to D0 value.
-;				Special case -- always say “don’t nuke” when SysZone==ApplZone.	<C699>
+;				Special case -- always say 'don't nuke' when SysZone==ApplZone.	<C699>
 ; Registers:   D0.
 ; Called by:   FlushApplVbls, InstallRDrivers.
 ;------------------------------------------------------------------------------
@@ -404,7 +404,7 @@ AppZoneAddr
 			MOVE.L	ApplZone,-(SP)		;get two zone ptrs where we can compare them	<C699>
 			MOVE.L	SysZone,-(SP)		;two zones poised for compare					<C699>
 			CMP.L	(SP)+,(SP)+			;if appl==sys get out with D0!=0				<C699>
-			BEQ.S	@notInApplZone		;don’t nuke sys zone stuff at start time		<C699>
+			BEQ.S	@notInApplZone		;don't nuke sys zone stuff at start time		<C699>
 			CMP.L 	ApplZone,D0 		;<A284> Carry is set if below ApplZone, i.e. SysZone
 			BCS.S 	@notInApplZone		;<A284> in system zone, so leave D1				<C699>
 			CMP.L	BufPtr,D0			;<A284> Carry is clear if above the application space
@@ -669,7 +669,7 @@ SetA5
 vSegStack									 ;											  <28Oct85>
 		  SUB.L 	(A0)+,SP				 ;allocate "above A5" space
 ; Before jamming A5 for the app, chop down to ensure long alignment, leaving either 0	<C800>
-; or 2 dead bytes between the A5 and BufPtr worlds.  After that it’s up to CODE=0 to	<C800>
+; or 2 dead bytes between the A5 and BufPtr worlds.  After that it's up to CODE=0 to	<C800>
 ; to keep things lined up.																<C800>
 			MOVE.L	SP,D0					; get stack where we can trim it			<C800>
 			ANDI.W	#$FFFC,D0				; keep all but low 2 bits					<C800>

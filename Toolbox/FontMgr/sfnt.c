@@ -32,10 +32,10 @@
 		<17>	 8/10/90	MR		Pass nil for textLength parameter to MapString2, checked in
 									other files to their precious little system will BUILD.  Talk
 									about touchy!
-		<16>	 8/10/90	gbm		rolling out Mike’s textLength change, because he hasn’t checked
+		<16>	 8/10/90	gbm		rolling out Mike's textLength change, because he hasn't checked
 									in all the relevant files, and the build is BROKEN!
 		<15>	 8/10/90	MR		Add textLength arg to MapString2
-		<14>	 7/26/90	MR		don’t include ToolUtils.h
+		<14>	 7/26/90	MR		don't include ToolUtils.h
 		<13>	 7/23/90	MR		Change computeindex routines to call functins in MapString.c
 		<12>	 7/18/90	MR		Add SWAPW macro for INTEL
 		<11>	 7/13/90	MR		Lots of Ansi-C stuff, change behavior of ComputeMapping to take
@@ -76,7 +76,7 @@
 	   <1.3>	  6/2/89	CEL		16.16 scaling of metrics, minimum recommended ppem, point size 0
 									bug, correct transformed integralized ppem behavior, pretty much
 									so
-	   <1.2>	 5/26/89	CEL		EASE messed up on “c” comments
+	   <1.2>	 5/26/89	CEL		EASE messed up on 'c' comments
 	  <•1.1>	 5/26/89	CEL		Integrated the new Font Scaler 1.0 into Spline Fonts
 	   <1.0>	 5/25/89	CEL		Integrated 1.0 Font scaler into Bass code for the first time…
 
@@ -87,7 +87,7 @@
  
 #include "setjmp.h"
 
-/** FontScaler’s Includes **/
+/** FontScaler's Includes **/
 #include "FSError.h"
 #include "FSCdefs.h"
 #include "FontMath.h"

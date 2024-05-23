@@ -16,7 +16,7 @@
 	 
 		<13>	10/28/92	DTY		Use new Get/Set macros to access ExpandMem.
 		<12>	 6/22/92	DTY		#1033275 <csd>: In ProcessManagerNewHiHandle, quad align the
-									blocks if we’re running on an 040 machine.  The alignment takes
+									blocks if we're running on an 040 machine.  The alignment takes
 									the block header size into account, then subtracts it since
 									ChipOffRelocFromFree will add the block header size back on, so
 									the fudging is necessary to keep the block aligned properly.
@@ -536,7 +536,7 @@ ProcessMgrHiNewHandle(u_size size, Ptr lockPtr)
 		size = MIN_LOGICAL_SIZE;
 	else {
 		if (CPUFLAG == 4) {													// <12>
-			blockHeaderSize = In32BitMode ? SIZEOF_32BIT_BLOCK_HEADER : SIZEOF_24BIT_BLOCK_HEADER;	// <12> Use the right block header size depending on the memory mode we’re in.
+			blockHeaderSize = In32BitMode ? SIZEOF_32BIT_BLOCK_HEADER : SIZEOF_24BIT_BLOCK_HEADER;	// <12> Use the right block header size depending on the memory mode we're in.
 			size += blockHeaderSize;										// <12> Add in the size of the block header, so that
 			QUAD_ALIGN(size);												// <12> when the size of the block header is added in
 			size -= blockHeaderSize;										// <12> ChipOffRelocFromFree, the block will stay quad aligned.

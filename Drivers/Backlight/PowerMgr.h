@@ -34,9 +34,9 @@
 
 	7.0 Change History:
 
-		 <2>	 8/19/91	JSM		Include public Power.h, remove stuff that’s in Power.h (except
-									for BOnIgnoreModem(), which for some reason isn’t there), remove
-									other stuff that doesn’t appear to be used in the backlight
+		 <2>	 8/19/91	JSM		Include public Power.h, remove stuff that's in Power.h (except
+									for BOnIgnoreModem(), which for some reason isn't there), remove
+									other stuff that doesn't appear to be used in the backlight
 									driver at all. An interesting result of this: all the PowerMgr
 									routines defined here were C functions, when they are actually
 									Pascal functions (as defined in Power.h). This fixed a bug in

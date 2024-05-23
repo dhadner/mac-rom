@@ -1,7 +1,7 @@
 ;
 ;	File:		PatchProtector.a
 ;
-;	Contains:	a patch to SetTrapAddress and GetTrapAddress that “protects” come-from patches
+;	Contains:	a patch to SetTrapAddress and GetTrapAddress that 'protects' come-from patches
 ;
 ;	Written by:	Darin Adler
 ;
@@ -39,8 +39,8 @@
 ;		jmp		OldTrapAddress
 ;
 ;	Get and SetTrapAddress will notice patches that begin with this sequence and treat them as
-;	“come-from” patches. Instead of changing the address of the trap in the trap table, instead
-;	they will change the “old” address in the last come-from patch in the chain.
+;	'come-from' patches. Instead of changing the address of the trap in the trap table, instead
+;	they will change the 'old' address in the last come-from patch in the chain.
 ;
 ;	This patch needs to be installed before any come-from patches are installed. This can be done
 ;	by linking it first in the first 'lpch' to be loaded.
@@ -74,7 +74,7 @@ toolboxBit				equ		10
 
 ; The following patch has to use $A046 as the trap number instead of _GetTrapAddress.
 ; This is because it is installed before these patches modify the behavior of [GS]etTrapAddress
-; to work properly for full trap words. The trap number is thus used as an “old-style” trap number.
+; to work properly for full trap words. The trap number is thus used as an 'old-style' trap number.
 ; $A046 is GetTrapAddress, but $A146 (the value of _GetTrapAddress) is interpreted as $A946.
 
 ProtectGetTrap	patchproc $A046,(Plus,SE,II,Portable,IIci,noPatchProtector)
@@ -100,7 +100,7 @@ OldGetTrapAddress
 
 				endproc
 
-; Since SetTrapAddress looks at the first long word of the previous value of the trap’s address,
+; Since SetTrapAddress looks at the first long word of the previous value of the trap's address,
 ; it can be dangerous to call SetTrapAddress on some random value. Later, a correct SetTrapAddress
 ; might encounter a bus error or address error or some other problem. To avoid this, SetTrapAddress
 ; looks at the first long word of the new trap address *before* setting the address in the trap table
@@ -160,9 +160,9 @@ TrapAddressBits	proc
 ;		ccr		CC if it is not a come-from, CS if it is a come-from
 
 		btst	#TrapAddressOpcode.newBit,d1		; is this N[GS]etTrapAddress?
-		bnz.s	@notFullWord						; yes, don’t handle it
+		bnz.s	@notFullWord						; yes, don't handle it
 		btst	#TrapAddressOpcode.toolboxBit,d1	; is this normal [GS]etTrapAddress?
-		bz.s	@notFullWord						; yes, don’t handle it
+		bz.s	@notFullWord						; yes, don't handle it
 
 @fullWord
 		; adjust the trap bits

@@ -17,7 +17,7 @@
 ;									ModalDialogMenuExtensions.a from this file, ModalDialogMenuSetup
 ;									and MDJGNEFilter are now just MakePatch macros referencing
 ;									routines there. Add MakeInstall of InitDialogMgrGlobals for
-;									TheFuture so we don’t keep our globals in code space.
+;									TheFuture so we don't keep our globals in code space.
 ;		<14>	 2/10/91	KSM		DBA,#80950: Fix to handle graying of Applications Menu properly.
 ;		<13>	 1/21/91	DFH		(KSM) Process Menu is now called Application Menu.
 ;		<12>	 1/18/91	KSM		<RLC> Change include of BalloonPACKEqu to BalloonsPriv.a.

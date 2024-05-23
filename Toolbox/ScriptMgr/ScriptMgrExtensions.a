@@ -892,7 +892,7 @@ EndFixSMgrWorld
 
 ; Now go through all installed & enabled scripts, loading the 'itl2' and		<26>
 ; 'itl4' resource IDs & handles into the system itl cache, and calling the
-; script’s scriptAvail vector if non-zero.
+; script's scriptAvail vector if non-zero.
 ; At this point, a4 still points to ExpandMemRec, a3 points to SMgrRecord.
 
 			with	ScriptRecord
@@ -931,7 +931,7 @@ EndFixSMgrWorld
 			beq.s	@checkRedraw			; if none, finish up this script		<9>
 			move.l	d0,a0					; otherwise…
 			move.w	d6,-(sp)				; …push script code…
-			jsr		(a0)					; …and call script’s Avail routine
+			jsr		(a0)					; …and call script's Avail routine
 
 ; Set smgrBidirect and smgrDoubleByte if appropriate (moved here from above)		<37><9>
 @checkRedraw								;											<9>
@@ -1159,7 +1159,7 @@ AddScriptFonts
 			beq.s	@nextAddFont			; if none, skip to next script
 			move.l	d0,a0					; otherwise…
 			move.w	d1,-(sp)				; …push script code…
-			jsr		(a0)					; …and call script’s AddFonts routine
+			jsr		(a0)					; …and call script's AddFonts routine
 @nextAddFont
 			dbra	d3,@addFontLoop
 
@@ -1260,10 +1260,10 @@ CleanupScriptApp
 			
 ; If app script globals exist, dispose of them
 			move.l	ExpandMem,a0				; get ptr to ExpandMemRec
-			move.l	emScriptAppGlobals(a0),a0	; get handle to app’s script globals
-			move.l	a0,d0						; is it 0 (couldn’t allocate)?
+			move.l	emScriptAppGlobals(a0),a0	; get handle to app's script globals
+			move.l	a0,d0						; is it 0 (couldn't allocate)?
 			beq.s	@csaExit					; if so, nothing to do
-			addq.l	#1,d0						; is it -1 (Process Mgr didn’t set field)?
+			addq.l	#1,d0						; is it -1 (Process Mgr didn't set field)?
 			beq.s	@csaExit					; if so, nothing to do
 			_DisposHandle
 			move.l	ExpandMem,a0			; get ptr to ExpandMemRec				<29>
@@ -1457,10 +1457,10 @@ FindCharInSet
 		movem.l	fcisSaveReg,-(sp)
 
 		moveq	#-1,d7
-		move.l	d7,fcisresult(a6)			; Assume we won’t find anything
+		move.l	d7,fcisresult(a6)			; Assume we won't find anything
 
 		move.l	txtLen(a6),d7				; Get the length of the text to search
-		ble.s	@done						; don’t bother if it’s bogus
+		ble.s	@done						; don't bother if it's bogus
 
 		move.l	charSetPtr(a6),a3			; Get base of string
 		moveq	#0,d6						; Clear high part

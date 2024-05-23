@@ -76,20 +76,20 @@
 ;									layers.
 ;		<24>	 12/3/90	VL		& dba; Fixed PaintWhite bug in ROM (it should test for a word
 ;									instead of a byte).
-;		<23>	 11/8/90	dba		& gbm; move patch that does a system error if we can’t load a
+;		<23>	 11/8/90	dba		& gbm; move patch that does a system error if we can't load a
 ;									WDEF here from PTCH files
 ;		<22>	 10/8/90	dba		move the patch to NewControl to ControlMgrPatches.a
 ;		<21>	 10/2/90	dba		Fix patch to ShowHide so it does a MOVE.B #1 instead of an ST.
 ;		<20>	 9/23/90	dba		Put patches here to make the Macintosh II ROMs call the Palette
 ;									Mgr. again. (This was broken when we did 32-bit QuickDraw as a
 ;									patch for 7.0.) Move the clip calculation in PaintDesk to C so
-;									that we can maintain the DeskPort’s visRgn.
+;									that we can maintain the DeskPort's visRgn.
 ;		<19>	 8/31/90	dba		Get rid of SetLayerLock, and replace it with GetDeskPort. Change
 ;									CurLayer to a new global so we can have a DeskPort global.
 ;		<18>	 8/30/90	dba		Took out obsolete usesPositioning flag. Got rid of the
 ;									SwapParent routine. Got rid of __InitWindows (use __InitLayers
 ;									instead). Deleted unnecessary come-from patch to CheckUpdate.
-;									Put in Chris’ patch to GetAuxWin to call LoadResource on the
+;									Put in Chris' patch to GetAuxWin to call LoadResource on the
 ;									color table handle if it has been purged.
 ;		<17>	 8/16/90	dba		improve the speed of the Layer Manager by calling
 ;									CalcAncestorRgns at the right time instead of at every PaintOne
@@ -97,13 +97,13 @@
 ;		<16>	  8/6/90	csd		Added patches to FindWindow and TrackGoAway to work around a bug
 ;									in Dreams 1.1
 ;		<15>	  8/5/90	DTY		_SetCtlColor totally hoses out if the ControlHandle is NIL.
-;									Rewrite the bugger so if the default ‘cctb’ is changed, call
+;									Rewrite the bugger so if the default ‘cctb' is changed, call
 ;									_PaintOne on the rearmost window with GrayRgn as the clobbered
 ;									region to redraw the controls in all the windows.  Also pulled
 ;									the code that finds the rearmost window out of fixSetWinColor,
 ;									and made it a proc.
-;		<14>	 7/27/90	dba		make InvalRect and ValidRect be faster; also fix a bug in Dean’s
-;									_SetWinColor patch (he’s fixing it and I’m checking in)
+;		<14>	 7/27/90	dba		make InvalRect and ValidRect be faster; also fix a bug in Dean's
+;									_SetWinColor patch (he's fixing it and I'm checking in)
 ;		<13>	 7/25/90	DTY		Added come-from patch to _PaintOne to fix bad clobberedRgn
 ;									passed by _SetWinColor when the WindowPtr passed to _SetWinColor
 ;									is nil.
@@ -123,7 +123,7 @@
 ;		 <4>	  6/8/90	EMT		Fixed a bug in patchFrontWindow. JSRROM PreSkipUnHilite should
 ;									be a JMPROM.
 ;		 <3>	  6/7/90	EMT		Moved Layer Manager patches here.
-;		 <2>	 4/26/90	dba		get rid of the CloseWindow patch since it doesn’t work yet
+;		 <2>	 4/26/90	dba		get rid of the CloseWindow patch since it doesn't work yet
 ;		 <1>	 4/20/90	dba		first checked in
 ;
 ;	To Do:
@@ -244,7 +244,7 @@ PatchTrackGoAwayForDreams	PatchProc	_TrackGoAway
 				move.w	(SP)+, D0				; get integer result
 				move.l	(SP)+, A4				; restore the problem register
 				move.l	(SP)+, A0				; original return address
-				addq	#8, SP					; pop caller’s parameters
+				addq	#8, SP					; pop caller's parameters
 				move.w	D0, (SP)				; give caller the result
 				jmp		(A0)					; return to original caller
 
@@ -271,7 +271,7 @@ PatchFindWindowForDreams	PatchProc	_FindWindow
 				move.w	(SP)+, D0				; get integer result
 				move.l	(SP)+, A4				; restore the problem register
 				move.l	(SP)+, A0				; original return address
-				addq	#8, SP					; pop caller’s parameters
+				addq	#8, SP					; pop caller's parameters
 				move.w	D0, (SP)				; give caller the result
 				jmp		(A0)					; return to original caller
 
@@ -284,8 +284,8 @@ PatchFindWindowForDreams	PatchProc	_FindWindow
 PatchGetAuxWin	PatchProc	_GetAuxWin,(II,IIci)
 				Entry		ReloadColorTableCommon
 
-; The routines that need to get at a window’s color table generally call GetAuxWin first to
-; get the color table handle. That makes this a good place to reload the color table if it’s
+; The routines that need to get at a window's color table generally call GetAuxWin first to
+; get the color table handle. That makes this a good place to reload the color table if it's
 ; been purged.
 
 				subq	#2, SP					; room for a boolean result
@@ -316,8 +316,8 @@ ReloadColorTableCommon
 PatchGetAuxCtl	PatchProc	_GetAuxCtl,(II,IIci)
 				Import		ReloadColorTableCommon
 
-; The routines that need to get at a control’s color table generally call GetAuxCtl first to
-; get the color table handle. That makes this a good place to reload the color table if it’s
+; The routines that need to get at a control's color table generally call GetAuxCtl first to
+; get the color table handle. That makes this a good place to reload the color table if it's
 ; been purged. This routine does exactly the same thing as the GetAuxWin patch above, so we share
 ; code.
 
@@ -333,14 +333,14 @@ PatchGetAuxCtl	PatchProc	_GetAuxCtl,(II,IIci)
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; CloseWindow — fix 32-bit activation bug
 
-	if 0 then ; *** this patch doesn’t work yet
+	if 0 then ; *** this patch doesn't work yet
 
 ; A bug occurs in the IIci ROM under 32-bit mode. The high bit of CurActivate and CurDeactivate
 ; are used as flags to indicate that the events have already been sent. CancelActivate is called by
 ; CloseWindow to get rid of activate and deactivate events that would otherwise happen for windows
 ; that are no longer around. The old 24-bit version masked two pointers with Lo3Bytes when comparing
 ; them. This can cause a (relatively rare) bug where you get an activate or deactivate event for a
-; window that is already closed. *** Should we patch it? I don’t know. ***
+; window that is already closed. *** Should we patch it? I don't know. ***
 
 FixCancelActivate patchproc _CloseWindow,(IIci)
 
@@ -363,10 +363,10 @@ FixCancelActivate patchproc _CloseWindow,(IIci)
 ; If it is, clears that address.  Has the effect of
 ; cancelling pending activate events.  Trashes A0, D0 and D1.
 
-; The original patch worked by clearing CurActivate or CurDeactive. This didn’t work
+; The original patch worked by clearing CurActivate or CurDeactive. This didn't work
 ; because if a window was both CurActivate and CurDeactive, then both are cleared
-; and next GetNextEvent on an activate didn’t set sys<->app bit.
-; Later, we decided that we don’t care about the sys<->app bit, so to make 32-bit
+; and next GetNextEvent on an activate didn't set sys<->app bit.
+; Later, we decided that we don't care about the sys<->app bit, so to make 32-bit
 ; machines work, we patch this so that it clears the low memory once again.
 
 CancelActivate
@@ -398,7 +398,7 @@ CancelActivate
 HideWindowBeforeKillingControls ComeFromPatchProc _KillControls,AfterKillControlsInCloseWindow
 
 		MOVE.L	A3,-(SP)				; push the window
-		CLR.W	-(SP)					; say “Hide”
+		CLR.W	-(SP)					; say 'Hide'
 		_ShowHide						; hide the window
 
 		jmpOld							; rejoin our regularly scheduled KillControls
@@ -503,14 +503,14 @@ CloseWindowDisposePalettes PatchProc _CloseWindow,(II)
 ShowHideActivatePalette PatchProc _ShowHide,(II)
 
 			tst.b	4(sp)						; is this making a window visible?
-			beqOld								; no, don’t bother with the palette
+			beqOld								; no, don't bother with the palette
 			move.l	6(sp),a0					; get the window pointer
 			tst.b	wVisible(a0)				; is the window already visible?
 			bne.s	@done						; yes, no need to do anything at all
 
 			MOVE.L	a0,-(SP)					; push window pointer for ActivatePalette
 			MOVE.L	a0,-(SP)					; push parameters for ShowHide
-			move.b	#1,-(SP)					; we wouldn’t be here if it wasn’t true
+			move.b	#1,-(SP)					; we wouldn't be here if it wasn't true
 			jsrOld								; call ShowHide
 			_ActivatePalette					; activate its palette
 @done
@@ -691,7 +691,7 @@ patchCalcVis	ComeFromPatchProc	_CalcVis,FromBTF1
 ; _SetWinColor calls _PaintOne to redraw the window in with the new colors in the 'wtcb', with the
 ; structRgn of the window as the clobbered region.  If nil was passed in to _SetWinColor to change
 ; the default window color table, _SetWinColor passed structRgn(0) as the clobbered region to
-; _PaintOne which is very bad.  Put a comefrom patch on _PaintOne to see if the we’re coming from
+; _PaintOne which is very bad.  Put a comefrom patch on _PaintOne to see if the we're coming from
 ; _SetWinColor.  If we are, and the windowPtr is nil, change the clobbered region parameter to use
 ; GrayRgn.  The windowPtr parameter is changed to the rearmost visible window, since the windows
 ; need to be redraw with the new colors anyway.
@@ -716,11 +716,11 @@ fixSetWinColor	ComeFromPatchProc	_PaintOne,AfterPaintOneInSetWinColor,(II,IIci)
 
 	IF NOT hasLayerlessAppsINIT THEN
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
-; _SetCtlColor tests the control that was passed to it to see if it’s visible before it calling
-; _Draw1Control. However, it doesn’t check to see if it was passed NIL first.  In these cases,
+; _SetCtlColor tests the control that was passed to it to see if it's visible before it calling
+; _Draw1Control. However, it doesn't check to see if it was passed NIL first.  In these cases,
 ; _SetCtlColor hoses out completely.  Rewrite _SetCtlColor to check for that NIL handle before doing
 ; anything else.  If the handle is NIL, find the rearmost window, and call _PaintOne on it.  (We can
-; save some time if we’re sure that only the frontmost window ever has active controls, in which case,
+; save some time if we're sure that only the frontmost window ever has active controls, in which case,
 ; we only have to re-paint the front window.)  If the handle is kosher, we can go on normally.
 
 fixSetCtlColor	PatchProc	_SetCtlColor,(II,IIci)
@@ -735,7 +735,7 @@ SetCtlColor
 ; Start of fix
 
 				move.l	16(sp),d0			; Get control handle parameter
-				bneROM	SetCtlColorAfterSetGuts	; If it wasn’t nil, go back to ROM
+				bneROM	SetCtlColorAfterSetGuts	; If it wasn't nil, go back to ROM
 
 				bsr		GetRearWindow		; Returns rearmost window in A1
 				move.l	a1,-(sp)			; Paint from the rearmost window on up
@@ -763,7 +763,7 @@ GetRearWindow	PROC
 
 @findNextVisibleWindow
 				move.l	nextWindow(a0),d0		; Get next window
-				bne.s	@findLastWindowLoop		; If there’s a window, branch back
+				bne.s	@findLastWindowLoop		; If there's a window, branch back
 
 @gotLastWindow
 				rts
@@ -1424,7 +1424,7 @@ FasterValidRect
 				moveq	#-1,d0				;flag it as a valid
 				bra.s	IRectCommon
 FasterInvalRect
-				moveq	#0,d0				;flag that it’s an inval
+				moveq	#0,d0				;flag that it's an inval
 IRectCommon
 				move.l	4(sp),a0			;get pointer to rectangle
 				move.l	AlwaysRectRgn,a1	;get handle to region
@@ -1571,7 +1571,7 @@ PenModeInDragTheRgn		ComeFromPatchProc	_PenMode,AfterPenModeInDragTheRgn
 
 ; If SendBehind is actually moving a window to the front, we should paint starting with the window
 ; that ends up behind the window we are moving instead of the window that was behind it before we
-; moved anything. To do this, we get the new “behind” window in A3, and then look through the list.
+; moved anything. To do this, we get the new 'behind' window in A3, and then look through the list.
 ; If we never see that window in A3, then we know we should start painting there, but if we do see
 ; it, then we use the old code which paints from the old front window.
 
@@ -1654,7 +1654,7 @@ CalcUsAndPaintUs
 @doneUnionRgns								;														<39>
 
 				; Now we have a region including all windows that used to cover the window that
-				; moved but don’t cover it any more. By calling PaintOne with this region, we redraw
+				; moved but don't cover it any more. By calling PaintOne with this region, we redraw
 				; only the newly revealed part of the window that moved.
 
 				move.l	a3,-(sp)

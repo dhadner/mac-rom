@@ -11,7 +11,7 @@
 
 		 <8>	 11/3/92	DTY		Script out unnecessary includes.
 		 <7>	 6/10/92	JSM		Moved this file to DialogMgrExtensions.c from DialogMgrPatches.c
-									since it’s used by both the ROM and System, keeping all the old
+									since it's used by both the ROM and System, keeping all the old
 									revisions.
 		 <6>	 3/31/92	KSM		#1021993,<DTY>: Exported CitationsCH (previously StdCitations)
 									call - now returns OSErr (for dispatcher). Created new calls:
@@ -124,7 +124,7 @@ pascal long DepthFirstSubstitution(SSSS *pb, short flags, long startpos, long en
 			if (afterCitePos < 0) break;
 			currpos += afterCitePos;
 			// What if there is a caret at the end of the handle, and a '0' in the next byte in memory?
-			if (endpos-currpos < 2) break;		// Don’t munge past end of string!!!
+			if (endpos-currpos < 2) break;		// Don't munge past end of string!!!
 
 			// Check for a valid char following the caret
 			whichCite = *(*(pb->s)+currpos+1) - '0';

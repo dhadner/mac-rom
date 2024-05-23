@@ -22,7 +22,7 @@
 									Tempest25, and Tempest33.
 	   <LW2>	12/22/92	RMP		Added ICON resource for password dialog.
 	   <SM2>	 3/25/93	RB		Added Robert Polic's password-on-boot icon from Ludwig.
-	   <SM4>	12-02-92	jmp		“Resourceized” as opposed to “Dataized” the 'ppat' (16 & 18)
+	   <SM4>	12-02-92	jmp		'Resourceized' as opposed to 'Dataized' the 'ppat' (16 & 18)
 									resources.
 	   <SM3>	11/20/92	RB		Added resources from the system that era usable from ROM in
 									order to save memory.
@@ -31,7 +31,7 @@
 	   <SM1>	 5/16/92	kc		Rolled in from Horror. Deleted Font resources.
 	   								Note ••• The only resources that are linked in with rom.r
 									are the 'accl' resources. The others need to be added
-		<H5>	 4/13/92	SWC		Added a ‘pslt’ resource for DBLite. It just has an entry for the
+		<H5>	 4/13/92	SWC		Added a ‘pslt' resource for DBLite. It just has an entry for the
 									connector on the back.
 		<H4>	 3/11/92	SWC		Updated the mouse acceleration resources with faster curves for
 									those that don't like a more leisurely mouse.
@@ -49,8 +49,8 @@
 #include "GestaltPriv.r"
 #include "GestaltEqu.h"
 
-#define	oldTemp	 /* The “old” templates provide greater flexibility (less constraint), and we NEED that in some cases.	*/
-				 /* So, let your hair down -- go bungy jumping or something, but don’t baby sit my resource formats!	*/
+#define	oldTemp	 /* The 'old' templates provide greater flexibility (less constraint), and we NEED that in some cases.	*/
+				 /* So, let your hair down -- go bungy jumping or something, but don't baby sit my resource formats!	*/
 
 #include "SysTypes.r"
 #include "Types.r"

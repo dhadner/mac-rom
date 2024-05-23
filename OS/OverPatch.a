@@ -7,8 +7,8 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <4>	 10/1/91	JSM		Don’t use onMvMac conditional, Modern Victorian never existed.
-;		 <3>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		 <4>	 10/1/91	JSM		Don't use onMvMac conditional, Modern Victorian never existed.
+;		 <3>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		 <2>	 8/30/91	JSM		Add a header.
 ;	   <1.1>	 7/25/89	GGD		Added extra padding for MvMac build to adjust for the difference
@@ -91,7 +91,7 @@ OverPatch	PROC	EXPORT
 ;
 ; InitOverPatch -- A quick and dirty way to use up ROM space.  For clut devices, it does
 ;				a nice fade in of the picture by making SetEntries calls to the
-;				video driver.  Don’t look for optimal code here.
+;				video driver.  Don't look for optimal code here.
 ;
 ;				Called from DrawBeepScreen in StartInit.a.
 ;				Expects a standard a5 world set up with QuickDraw globals.
@@ -252,7 +252,7 @@ GetPictureHandle:
 			move.l	(a1),d0							; get size
 			_NewHandle								; allocate it
 			move.l	a0,-(sp)						; save handle
-			beq.s	@NoPicture						; can’t get memory
+			beq.s	@NoPicture						; can't get memory
 			movea.l	(a0),a0							; de-reference handle
 			move.l	(a1)+,d0						; get size, point to data offset
 			adda.w	(a1),a1							; point to data/encoding tables
@@ -337,7 +337,7 @@ FadeInAndRestoreEntries:							; ramp 255 times by adding in the original table 
 			bsr.s	CheckForSmallDACs				; check for workstation and portrait video boards
 													;  to compensate for small DACs
 
-			move.l	(a3),a0							; restuff the csTable field since it’s a dereferenced handle
+			move.l	(a3),a0							; restuff the csTable field since it's a dereferenced handle
 			lea		ctTable(a0),a0
 			lea		ioVQElSize(a6),a1
 			move.l	a0,csTable(a1)

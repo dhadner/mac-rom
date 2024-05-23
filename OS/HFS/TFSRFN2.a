@@ -175,7 +175,7 @@ ClosePatchRegs	reg		a0-a2/d0-d1
 			; *** NOTE: THIS PATCH IS DISABLED ***												; <R58>
 			; This patch was broken in System 7, and fixed with change <53>. The fix			; <R58>
 			; causes some third-party applications (QuicKeys, Retrospect Remote) to stop		; <R58>
-			; working because they are unable to close files. For Cube-E, we’ll re-break this	; <R58>
+			; working because they are unable to close files. For Cube-E, we'll re-break this	; <R58>
 			; patch and revisit the entire issue later.											; <R58>
 																								; <R58>
 			bra.s	DoClosePop					; <58> Disable this patch						; <R58>
@@ -358,7 +358,7 @@ ResetAEOF	;<14Jan86>;TST.B   FlushOnly		   ; Just flushing?
 			BNE.S	@3						; no									<11Dec90 #17>
 			CMP.L	FCBVPtr(A1,D1),A2		; on the same volume?					<11Dec90 #17>
 			bne.s	@3						; no									<44>
-			move.b	fcbMdRByt(a1,d1.w),d0	; grab this fork’s kind					<44>
+			move.b	fcbMdRByt(a1,d1.w),d0	; grab this fork's kind					<44>
 			eor.b	d4,d0					; see how it compares against ours		<44>
 			btst.l	#fcbRscBit,d0			; are we the same?						<44>
 			beq.s	@7						; if so, then there's another open path	<44>

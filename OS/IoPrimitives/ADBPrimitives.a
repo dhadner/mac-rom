@@ -521,7 +521,7 @@ VIAReqDone	MOVE.B	FDBAuFlag(A3),D0		; get the flags
 ;________________________________________________________________________________________
 
 VIADebugPoll
-			JSR		([jCacheFlush])			; Temporary “fix” so that MacsBug works on Q700s. <SM4>
+			JSR		([jCacheFlush])			; Temporary 'fix' so that MacsBug works on Q700s. <SM4>
 EgretDebugPoll
 			MOVEA.L	VIA,A1					; point to the VIA
 		eieioSTP

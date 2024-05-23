@@ -52,11 +52,11 @@
 ;									fact that various CPUs these days don't tie reset to I/O, the
 ;									desktop could sometimes persist thru bootbeep).
 ;	  <SM22>	01-18-93	jmp		Added a TimeMgr-based timeout task that forces the wait-eject
-;									code to terminate (if it isn’t already done) after 2 seconds.
+;									code to terminate (if it isn't already done) after 2 seconds.
 ;									This prevents things like stuck disks, etc…, from hanging the
 ;									restart/shutdown sequence.
-;	  <SM21>	12-17-92	jmp		Removed the Wait500ms routine in favor of “wait for floppy
-;									eject” described in <SM20>.
+;	  <SM21>	12-17-92	jmp		Removed the Wait500ms routine in favor of 'wait for floppy
+;									eject' described in <SM20>.
 ;	  <SM20>	12-16-92	jmp		Added some code that waits until the drive queue has noticed
 ;									that all floppies have been ejected (in DoUnmount) before
 ;									shutting down or restarting.
@@ -133,7 +133,7 @@
 ;											limitations. (BG) Universalized the code that decides whether to 
 ;											enable PowerDownMsgs.
 ;										(jmp) Added an include for 'InternalOnlyEqu.a' for BoxFlags.
-;											Modified the DoDrivers routine to not “kiss” the TIM, TIM-LC,
+;											Modified the DoDrivers routine to not 'kiss' the TIM, TIM-LC,
 ;											Spike, and Eclipse video drivers goodbye. Modified the
 ;											ShutRestart & ShutPower routines to turnoff TIM and TIM-LC video
 ;											after all restart procs have been run.
@@ -146,7 +146,7 @@
 ;		<40>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		<39>	 6/11/91	gbm		dba, dty: change Gestalt call for post-7.0 to check
 ;									hasSoftPowerOff instead of SE/30 machine type; also use new
-;									“needs RESET” selector; and nuke Regatta conditionals
+;									'needs RESET' selector; and nuke Regatta conditionals
 ;		<38>	  4/2/91	dba		use the real _EnterSupervisorMode from Traps.a, instead of
 ;									defining a local constant here
 ;		<37>	  4/2/91	SAM		Changed the Restart code to put the machine back in Supervisor
@@ -172,7 +172,7 @@
 ;									runtime check on HwCfgFlags before calling SwapMMUMode.
 ;		<24>	 7/16/90	BG		Added EclipseNOPs for flakey 040s.
 ;		<23>	 6/25/90	CCH		Added EXPORT of ShutDownDisp.
-;		<22>	 6/22/90	DTY		Fixed includes so ROM builds don’t break.
+;		<22>	 6/22/90	DTY		Fixed includes so ROM builds don't break.
 ;		<21>	 6/21/90	DTY		Moved ShutDownMgrINIT.a InstallProc to end of this file. Moved
 ;									_SDInit code into InstallProc. System versions of ShutDown
 ;									Manager will not have _SDInit as a selector. _SDInit selector
@@ -222,7 +222,7 @@
 ;									on a power off. This means that the machine will do a cold start
 ;									if the user selects 'Shut Down', but will still do a warm start
 ;									if the user selects 'Restart'.
-;		 <4>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <4>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <3>	  1/3/90	CCH		Changed Gestalt equate filename back to GestaltEqu.a.
 ;		 <2>	  1/2/90	CCH		Changed the name of the Gestalt equate file.
 ;	   <3.0>	 11/2/89	dba		exported ShutInit
@@ -245,20 +245,20 @@
 ;									zero out WarmStart during power off to ensure a real cold boot
 ;									next time.
 ;	   <2.1>	 5/23/89	DAF		Hid cursor on powerdown for Aurora
-;	   <2.0>	 5/10/89	CCH		Removed RESET instruction, since either we’re powering down or
+;	   <2.0>	 5/10/89	CCH		Removed RESET instruction, since either we're powering down or
 ;									jumping to ROM, which will do a RESET anyway.
-;	   <1.9>	 4/27/89	CCH		Doesn’t execute a RESET on restart if running out of RAM.
+;	   <1.9>	 4/27/89	CCH		Doesn't execute a RESET on restart if running out of RAM.
 ;	   <1.8>	  3/6/89	GGD		Changed ReStart again, jump to restart routine at ROMBase+$0A,
 ;									instead of fetching the reset PC from the ROM, to allow for the
 ;									case where the reset PC may not point into read ROM space (may
 ;									use zero based space). Added support for RAM based ROM onMacPP,
 ;									to not execute a reset instruction on restart. Included
 ;									HardwareEqu.a for rom header equate.
-;	   <1.7>	 2/21/89	rwh		fix restart - can’t assume RAM present after a reset.
-;	   <1.6>	  2/8/89	MSH		Don’t use the RESET intruction on the portable
+;	   <1.7>	 2/21/89	rwh		fix restart - can't assume RAM present after a reset.
+;	   <1.6>	  2/8/89	MSH		Don't use the RESET intruction on the portable
 ;	   <1.5>	11/21/88	CCH		Changed ForRam equates to ForRom.
 ;	   <1.4>	11/18/88	DHD		Cased out the portable during shutdown we always call _PowerOff
-;	   <1.3>	11/16/88	CCH		Took out include of “nTraps.a”
+;	   <1.3>	11/16/88	CCH		Took out include of 'nTraps.a'
 ;	   <1.2>	11/16/88	DAF		Updated restart for Mac II machines
 ;	   <1.1>	11/10/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
@@ -278,7 +278,7 @@
 ;									under MPW 1.0 - remember Don that is what everybody else uses. I
 ;									copied the equate from MPW 2.0s AIncludes:Traps.a.
 ;	   <DLD>	  4/6/87	DLD		Now	clear the resume proc before putting up the shutdown alert, so
-;									the resume button won’t show.
+;									the resume button won't show.
 ;	   <DLD>	11/19/86	DLD		Fixed a bug in ShutInstall. Was pushing the return address twice.
 ;									Removed push just before RTS.
 ;	   <DLD>	  9/5/86	DLD		changes ForROM
@@ -653,7 +653,7 @@ E_0				Bsr		SHUTDOWNMGRC_2CC90
 
 ;_______________________________________________________________________
 ;
-; ShutPower 2c546 - Do a shutDown and power off the system if possible.  If it’s
+; ShutPower 2c546 - Do a shutDown and power off the system if possible.  If it's
 ;				and older system (no power off ability) then put up an
 ;				alert that the system can go down now.
 ;
@@ -702,10 +702,10 @@ ShutPower
 @noSONIC										; ENDIF											<16>
 
 				bsr		CheckForSoftPowerOff	; does this machine have software power-off?
-				bz.s	@noSoftPowerOff			; no, don’t even try it
+				bz.s	@noSoftPowerOff			; no, don't even try it
 
 				_PowerOff						; turn power off
-												; it’s nice that we fall through if PowerOff does nothing
+												; it's nice that we fall through if PowerOff does nothing
 @noSoftPowerOff
 				_InitCursor
 				moveq	#shutDownAlert,D0
@@ -720,7 +720,7 @@ ShutPower
 ;_______________________________________________________________________
 
 DoSysErrDialog
-				clr.l	ResumeProc				; don’t show resume button
+				clr.l	ResumeProc				; don't show resume button
 				_SysError						; will never return
 
 ;_______________________________________________________________________
@@ -740,7 +740,7 @@ UserChoice
 				bsr		CheckForSoftPowerOff	; does this machine have software power-off?
 				bz.s	@noSoftPowerOff			; no!
 
-				moveq	#0,D5					; Don’t hide cursor/close LCDs.
+				moveq	#0,D5					; Don't hide cursor/close LCDs.
 				bsr		BlankDesktop			; Clear the entire desktop for consistency.
 
 				move.w	#dsShutDownOrRestart,d0	; yes, let the user choose Shut Down or Restart
@@ -800,11 +800,11 @@ CallRoutines
 ;		This differentiates routines that wish to be executed before drivers on restart, but not at all on poweroff
 ;		(as an example).  Before, there was no differentiation between restart and poweroff for routines that were
 ;		to run before drivers close, or before volumes are unmounted.  There are cases when such differentiation
-;		is desired, but was previously impossible.  By removing routines of the “other” type (other being restart on
+;		is desired, but was previously impossible.  By removing routines of the 'other' type (other being restart on
 ;		a poweroff, and vice versa), the only routines left in the queue are those that should be executed.  Routines
-;		that execute on both poweroff and restart are left in the queue.  On a final note, the routines aren’t actually
+;		that execute on both poweroff and restart are left in the queue.  On a final note, the routines aren't actually
 ;		removed from the queue, since the machine will either be powered off or restarted in a few seconds, so it really
-;		doesn’t matter what gets left lying around in memory.  This way, a call to _SDRemove is saved.
+;		doesn't matter what gets left lying around in memory.  This way, a call to _SDRemove is saved.
 ;
 ;		Entry:	D5 - Bit number of shutdown type to remove from queue
 ;		Exit:
@@ -822,12 +822,12 @@ RemoveOtherRoutines
 @ScanLoop
 				move.l	QLink(A2),A3			; get the link to the next
 				move.w	QType(A2),D0			; get the shutdown flags
-				andi.w	#3,d0					; We’re only interested in the poweroff and restart bits
+				andi.w	#3,d0					; We're only interested in the poweroff and restart bits
 				cmp.w	d0,d5					; Is this a type that should be removed?
-				bne.S	@DontRemove				; don’t remove this entry
+				bne.S	@DontRemove				; don't remove this entry
 
 ; now remove the proc from the queue.
-; Since the whole state of the machine is going into la-la land very shortly, there’s no point
+; Since the whole state of the machine is going into la-la land very shortly, there's no point
 ; in actually removing the procedure.  Just zapping the shutdown flags to zero to prevent this
 ; routine from being found again is good enough.												<13>
 
@@ -860,7 +860,7 @@ CallCleanUp
 				move.l	QLink(A2),A3			; get the link to the next
 				move.w	QType(A2),D0			; get the shutdown flags
 				BTst	D5,D0					; want call now?
-				beq.s	@DontCallUs				; don’t call for this kind
+				beq.s	@DontCallUs				; don't call for this kind
 
 ; call the proc, with bit number in D0, in case it cares.
 
@@ -869,7 +869,7 @@ CallCleanUp
 				Jsr		(A0)
 
 ; now remove the proc from the queue.
-; Since the whole state of the machine is going into la-la land very shortly, there’s no point
+; Since the whole state of the machine is going into la-la land very shortly, there's no point
 ; in actually removing the procedure.  Just zapping the shutdown flags to zero to prevent this
 ; routine from being found again is good enough. <13>
 
@@ -995,8 +995,8 @@ DoUnmountCommon
 			add.W	#IOQElSize,SP				; deallocate pBlock
 			
 	; Wait for all floppy drives that have diskettes inserted to eject, or for 2 seconds,
-	; whichever comes first.  (Note:  This should now be “universal,” even
-	; for CPUs that don’t have auto-eject floppy mechanisms.)
+	; whichever comes first.  (Note:  This should now be 'universal,' even
+	; for CPUs that don't have auto-eject floppy mechanisms.)
 
 taskActive	equ		7							; High bit of qType word is active flag.
 
@@ -1006,14 +1006,14 @@ taskActive	equ		7							; High bit of qType word is active flag.
 			move.l	Sp,A0						; Point to the TMTask record.
 			_InsXTime							; Install it.
 			
-			move.l	#2*1000*1000,D0				; We need ~1.5sec, but we’ll say 2sec for safety.
+			move.l	#2*1000*1000,D0				; We need ~1.5sec, but we'll say 2sec for safety.
 			neg.l	D0							; (Negate for µsec timer.)
 			_PrimeTime							; Start the TMTask.
 
 			move.l	DrvQHdr+QHead,D0			; Now, get a pointer to the first drvQElem.
 			beq.s	@TimedOut
 @Repeat		move.l	D0,A1						; Copy the drvQElem pointer into A1.
-			cmpi.w	#-5,dqRefNum(A1)			; If this isn’t a floppy (.Sony) driver drive,
+			cmpi.w	#-5,dqRefNum(A1)			; If this isn't a floppy (.Sony) driver drive,
 			bne.s	@Until						;	then just go on.
 			
 @WaitEject	btst.b	#taskActive,qType(A0)		; If the TMTask has completed,
@@ -1241,11 +1241,11 @@ ZapVCBQueue
 ;
 ;	Blank the whole deskstop. This fills the entire desktop with black.
 ;	It used to be the case that we wanted the screen to go white on
-;	portables, but that causes a really ugly white flash, and it’s
+;	portables, but that causes a really ugly white flash, and it's
 ;	not necessary since portables always (famouse last words) have
 ;	soft power.  Note that this routine is now also called by restart
 ;	instead of only during shutdown.  The reason for this is that
-;	many newer CPUs don’t pass the reset instruction thru the CPU
+;	many newer CPUs don't pass the reset instruction thru the CPU
 ;	to the I/O devices.  As a result, the desktop can persist on many
 ;	displays thru BootBeep until PrimaryInit, which looks bad.
 ;
@@ -1262,7 +1262,7 @@ BlankDesktop
 
 ; Somewhat stolen from StartAlert.a
 
-			TST.B	D5						; If we’re not supposed to hide the cursor,
+			TST.B	D5						; If we're not supposed to hide the cursor,
 			BEQ.S	@SkipHide				;	then just go on.
 			_HideCursor						; Otherwise, hide it.
 @SkipHide
@@ -1281,7 +1281,7 @@ BlankDesktop
 			BigJsr	AllocFakeRgns,A1		; init dummy vis and clip to wide-open			
 			MOVE.L	A6,-(SP)				; push address of grafPort
 			_InitPort						; initialize the port.  This particular case
-											;  doesn’t move memory, even when it calls COPYRGN!
+											;  doesn't move memory, even when it calls COPYRGN!
 			MOVE.L	clipRgn(sp),-(sp)		; region for FillRgn
 
 			MOVE.L  GrafGlobals(A5),A1		; get QuickDraw globals
@@ -1289,10 +1289,10 @@ BlankDesktop
 
 			_FillRgn						; fill, wide region, with wide clip in wide bounded port
 											;  i.e. fill all screens with the appropriate color.
-											;  doesn’t move memory.
+											;  doesn't move memory.
 			ADD.W	#GrafSize+140,SP		; dispose of the port
 			
-			TST.B	D5						; If we’re not supposed to close LCDs,
+			TST.B	D5						; If we're not supposed to close LCDs,
 			BEQ.S	@SkipClose				;	then just go on.
 
 			CLR.B	-(SP)
@@ -1302,7 +1302,7 @@ BlankDesktop
 			BSR		SHUTDOWNMGRC_2D330
 
 			BSR		YetAnother
-			BSR		CloseLCDVideo			; Otherwise, close ’em.
+			BSR		CloseLCDVideo			; Otherwise, close 'em.
 @SkipClose
 
 			MOVE.L	(Sp)+,A5				; Restore A5-world.
@@ -1327,8 +1327,8 @@ CheckForSoftPowerOff
 
 			move.l	#gestaltHardwareAttr,d0		; check for soft power-off hardware				<39>
 			_Gestalt							; Gestalt										<39>
-			move.l	a0,d0						;	It’s not just a good idea.					<39>
-			btst	#gestaltHasSoftPowerOff,d0	;	It’s the law.								<39>
+			move.l	a0,d0						;	It's not just a good idea.					<39>
+			btst	#gestaltHasSoftPowerOff,d0	;	It's the law.								<39>
 
 			rts
 
@@ -1529,7 +1529,7 @@ DoRAMDiskAlert
 			move.l	a2,-(sp)				; save a2
 
 CheckForOptionKey
-			btst.b	#2,KeyMap+7				; don’t do anything if option key is held down
+			btst.b	#2,KeyMap+7				; don't do anything if option key is held down
 			bne		exitFalse
 
 CheckIfRAMDiskExists
@@ -1655,7 +1655,7 @@ ShutDownCancelButton	EQU		2				; dialog item of Cancel button
 			cmpi.w	#ShutDownCancelButton,(sp)+	; hit cancel button?
 			bne.s	exitFalse					; no, hit OK, so continue shutdown
 
-exitTrue	move.w	#true,d0					; don’t continue shutdown
+exitTrue	move.w	#true,d0					; don't continue shutdown
 			bra.s	justExit
 
 exitFalse	move.w	#false,d0					; allow shutdown to continue

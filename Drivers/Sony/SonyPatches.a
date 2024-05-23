@@ -5,7 +5,7 @@
 ;
 ;				A bit of history: Sony reportedly receives 8,000 800K drives/month for
 ;				repair, 7,000 of these have head damage.  By moving heads to the i.d. of
-;				the disk, head damage is vastly reduced (by Sony’s studies).
+;				the disk, head damage is vastly reduced (by Sony's studies).
 ;
 ;				Also, a patch for Format on all Macs. Format used 'DskErr' as a completion flag
 ;				for synchronous calls to DiskSel and Seek, but other drivers might mess
@@ -14,7 +14,7 @@
 ;
 ;				Another problem is that Format saved an error code in DskErr around a call
 ;				to toEmptyPD, then restored from it, but after interrupts were enabled.
-;				EmptyPD doesn’t destroy d0, so restoring isn’t necessary (and bad). This
+;				EmptyPD doesn't destroy d0, so restoring isn't necessary (and bad). This
 ;				is fixed by patching jRdAddr.
 ;
 ;	Written by:	Gary Rensberger
@@ -153,8 +153,8 @@ callOld
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; JControl — patch to make 800K floppy driver seek to track 40 when ejecting
 
-; Seek to track 40 if it’s an Eject call, valid drive, drive installed, not a DCD drive,
-; and there’s a disk in the drive. Then jump back into the ROM to complete the eject.
+; Seek to track 40 if it's an Eject call, valid drive, drive installed, not a DCD drive,
+; and there's a disk in the drive. Then jump back into the ROM to complete the eject.
 
 			ROMs Plus,SE,II,has800KDriver
 
@@ -172,7 +172,7 @@ ControlSeek40OnEject PatchProc JControl
 
 			Entry	pDCDNum
 
-			move.l	a0,d4				; save paramBlockPtr (don’t use stack!)
+			move.l	a0,d4				; save paramBlockPtr (don't use stack!)
 
 			cmpi.w	#7,CSCode(a0)		; check for eject call
 			bne.s	oldEject			; no, do old control call
@@ -190,11 +190,11 @@ pDCDNum equ *+2							; drive number of the DCD drive
 			tst.b	DiskInPlace(a1,d1.w) ; has disk been seen in drive?
 			ble.s	oldEject			; no, skip seek
 
-			jsrROM	RWPowerUp			; make sure the drive’s powered up
+			jsrROM	RWPowerUp			; make sure the drive's powered up
 			moveq	#40,d6				; seek to track 40 to get away from shutter edge
 			jsrROM	Seek
 			bgt.s	oldEject			; (seek was successful)
-			beq.s	reSeek				; (recal’d)
+			beq.s	reSeek				; (recal'd)
 
 			pea		@returnHere
 			move.l	JRecal,-(sp)		; seek failed: recal first
@@ -297,7 +297,7 @@ DiskSelectSyncCallPatch PatchProc JDiskSel
 			moveq	#10,d0				; return addresses should be 10 bytes apart
 			add.l	8(sp),d0			; 3rd level return address + 10
 			sub.l	4(sp),d0			; compare to 2nd level return address
-			bne.s	Done				; no, not the one we’re looking for, exit
+			bne.s	Done				; no, not the one we're looking for, exit
 
 			move.l	4(sp),d0			; yes, get 2nd level address again
 			and.l	Lo3Bytes,d0			; only check 24 bit part of address
@@ -314,7 +314,7 @@ pSyncCallRtnInDiskSel equ *+2
 
 			movea.l	d0,a0				; restore a0
 
-			subq.b	#1,Active(a1)		; signal that RWPowerUp isn’t done yet.
+			subq.b	#1,Active(a1)		; signal that RWPowerUp isn't done yet.
 Done
 			jmpOld						; go back to original jump vector
 
@@ -336,7 +336,7 @@ SeekSyncCallPatch PatchProc JSeek
 			moveq	#10,d0				; return addresses should be 10 bytes apart
 			add.l	4(sp),d0			; 2nd level return address + 10
 			sub.l	(sp),d0				; compare to 1st level return address
-			bne.s	Done				; no, not the one we’re looking for, exit
+			bne.s	Done				; no, not the one we're looking for, exit
 
 			move.l	(sp),d0				; get 2nd level return address
 			and.l	Lo3Bytes,d0			; only check 24 bit part of address
@@ -353,7 +353,7 @@ pSyncCallRtnInSeek equ *+2
 
 			movea.l	d0,a0				; restore a0
 
-			subq.b	#1,Active(a1)		; signal that Seek isn’t done yet.
+			subq.b	#1,Active(a1)		; signal that Seek isn't done yet.
 Done
 			jmpOld						; go back to original jump vector
 
@@ -365,7 +365,7 @@ WaitRtn
 
 
 DoneRtn
-			st		Active(a1)			; we’re finished, set completion bit
+			st		Active(a1)			; we're finished, set completion bit
 			rts
 
 			EndProc
@@ -374,9 +374,9 @@ DoneRtn
 
 
 ;----------------------------------------------------------------------------------
-; Patch RdAddr to fix Format code, so format doesn’t use DskErr lowmem
+; Patch RdAddr to fix Format code, so format doesn't use DskErr lowmem
 ; for saving temporary error results, since an interrupt can get in and
-; clobber this lowmem.  The patch first checks to see if we’re called from
+; clobber this lowmem.  The patch first checks to see if we're called from
 ; format, if so, patches in a new routine to return to on the stack. In either
 ; case, it continues by jumping to what jRdAddr pointed to.
 

@@ -13,8 +13,8 @@
 ;	   <SM4>	  6/1/92	CS		Roll more cyclone stuff in.
 ;	   <SM3>	 5/17/92	kc		Include PowerPrivEqu.a. The powerCntl equ was moved inside the
 ;									pmCommandRec record.
-;		 <8>	  5/1/92	JSM		Get rid of conditionals: don’t use not forROM, this file is only
-;									used in ROM builds, don’t use hasGDU, isUniversal, or onMacXX
+;		 <8>	  5/1/92	JSM		Get rid of conditionals: don't use not forROM, this file is only
+;									used in ROM builds, don't use hasGDU, isUniversal, or onMacXX
 ;									style conditionals, left padForOverPatch conditionals for now.
 ;		 <7>	 1/15/92	KC		Fixed "short branch to the next instruction changed to NOP"
 ;									warning.
@@ -22,7 +22,7 @@
 ;		 <5>	 9/21/90	BG		Removed <4>. 040s are behaving more reliably now.
 ;		 <4>	 7/20/90	BG		Added EclipseNOPs for flakey 040s.
 ;		 <3>	 5/16/90	MSH		Added hasPowerControls to hcmac conditional.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.5>	 9/11/89	jwk		NEEDED FOR F19 - Support for Disc during DMA, Mac SE and Mac
 ;									Plus support
 ;	   <1.4>	 7/24/89	jwk		NEEDED FOR AURORA - Unlink w/ ioQElSize to fix alt. bus call bug

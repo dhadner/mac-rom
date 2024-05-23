@@ -14,7 +14,7 @@
 ;		 <8>	12/26/91	RB		Include PowerPrivEqu.a for PowerMgr definitions.
 ;		 <7>	 8/26/91	JSM		Cleanup header.
 ;		 <6>	 6/12/91	LN		added #include 'SysPrivateEqu.a'
-;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <4>	 7/11/90	gbm		Darin was right, it wasn't a good idea
 ;		 <2>	12/28/89	dba		add nil, false, and true; not necessarily a good idea

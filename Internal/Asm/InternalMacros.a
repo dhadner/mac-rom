@@ -11,12 +11,12 @@
 ;
 ;		 <2>	 3/24/92	PN		<kc> Fix bug in endPreviousWith (changed WithModule to
 ;									endWithModule).
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <5>	 9/25/90	KIP		(really dba) DT.W now works on lists of items
 ;		 <4>	  6/8/90	dba		change so that debug switch defaults to 0
 ;		 <2>	 4/17/90	dba		change nil and false and true to defaults
-;	   <1.1>	11/14/89	dba		fixed Symbol and added scott’s cool ideas from Finder to it
+;	   <1.1>	11/14/89	dba		fixed Symbol and added scott's cool ideas from Finder to it
 ;	   <1.0>	  6/2/89	prp		Initial release. Folder Manager now part of Alias Manager.
 ;				  6/2/89	dba		rolled into system; fixed bug in linkFrame macro
 ;				  5/6/89	dba		new today

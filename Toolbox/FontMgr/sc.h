@@ -30,7 +30,7 @@
 	   <1.5>	  6/2/89	CEL		16.16 scaling of metrics, minimum recommended ppem, point size 0
 									bug, correct transformed integralized ppem behavior, pretty much
 									so
-	   <1.4>	 5/26/89	CEL		EASE messed up on “c” comments
+	   <1.4>	 5/26/89	CEL		EASE messed up on 'c' comments
 	  <•1.3>	 5/26/89	CEL		Integrated the new Font Scaler 1.0 into Spline Fonts
 
 	To Do:
@@ -40,7 +40,7 @@
 ** 3.1	CKL	02/08/1990	Added ANSI-C prototypes.
 */
 
-/*EASE$$$ READ ONLY COPY of file “sc.h”
+/*EASE$$$ READ ONLY COPY of file 'sc.h'
 ** 3.0	sjk 08/28/1989 Cleanup and one transformation bugfix
 ** 2.2	sjk 08/14/1989 1 point contours now OK
 ** 2.1	sjk 08/08/1989 Improved encryption handling
@@ -50,7 +50,7 @@
 ** 1.5	CEL 06/02/1989 16.16 scaling of metrics, minimum recommended ppem,
 **		point size 0 bug, correct transformed integralized ppem behavior,
 **		pretty much so
-** 1.4	CEL 05/26/1989 EASE messed up on “c” comments
+** 1.4	CEL 05/26/1989 EASE messed up on 'c' comments
 **•1.3	CEL 05/26/1989 Integrated the new Font Scaler 1.0 into Spline Fonts
 ** END EASE MODIFICATION HISTORY */
 /*

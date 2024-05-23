@@ -15,7 +15,7 @@
 ;		<20>	 3/17/92	DC		Added include of traps.a so that DoDispatch would be defined.
 ;		<19>	 3/17/92	DC		imported all private definitions from IconUtilsPriv.a except get
 ;									and set icon device and SetLabel.
-;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<17>	 1/17/91	DC		csd - add genericExtensionIconResource (-16415)
 ;		<16>	 1/16/91	JDR		(dba) Renamed spoolFolderIconResource into

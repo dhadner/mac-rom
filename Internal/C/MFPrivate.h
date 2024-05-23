@@ -9,9 +9,9 @@
 
 	Change History (most recent first):
 
-		<25>	 3/30/92	DTY		#1025416,<DDG>: Define Gestalt selector for Skia. We’re putting
-									it here because there’s no GestaltPrivate.h, and Process Manager
-									is the only thing in the System that’s using this selector right
+		<25>	 3/30/92	DTY		#1025416,<DDG>: Define Gestalt selector for Skia. We're putting
+									it here because there's no GestaltPrivate.h, and Process Manager
+									is the only thing in the System that's using this selector right
 									now.
 		<24>	 3/25/92	DTY		#1024114,<pvh>: Add inline for PEntryFromProcessSerialNumber
 		<23>	 1/14/92	YK		Removed obsolete constant for the TSM.

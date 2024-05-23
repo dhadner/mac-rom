@@ -1382,7 +1382,7 @@ enum {
 	mcActionGetPlayRate = 42,				// param is pointer to Fixed
 	mcActionShowBalloon = 43,				// param is a pointer to a boolean. set to false to stop balloon
 	mcActionBadgeClick = 44,				// param is pointer to Boolean. set to false to ignore click
-	mcActionMovieClick = 45,				// param is pointer to event record. change “what” to nullEvt to kill click
+	mcActionMovieClick = 45,				// param is pointer to event record. change 'what' to nullEvt to kill click
 	mcActionSuspend = 46,					// no param
 	mcActionResume = 47						// no param
 };

@@ -160,7 +160,7 @@ enum {
  HiliteMode = 0x938,			/*[GLOBAL VAR]  used for color highlighting*/
  RestProc = 0xA8C,				/*[GLOBAL VAR]  Resume procedure f InitDialogs [pointer]*/
  ROM85 = 0x28E,					/*[GLOBAL VAR]  (word) actually high bit - 0 for ROM vers $75 (sic) and later*/
- ntsc = 0xB3E					/*[GLOBAl VAR]	(byte) Decides fate of menubar’s squareness: 0 for square, non-zero for round.*/
+ ntsc = 0xB3E					/*[GLOBAl VAR]	(byte) Decides fate of menubar's squareness: 0 for square, non-zero for round.*/
 };
 enum {
  ROMMapHndl = 0xB06,			/*[GLOBAL VAR]  (long) handle of ROM resource map*/

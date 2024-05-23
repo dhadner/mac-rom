@@ -19,9 +19,9 @@
 ;									review process… Making the SCSIBusErrHandler a little more
 ;									robust.
 ;		<13>	12/27/91	RB		Rolled in Terror changes.  Cleaned up a bit.
-;		<12>	 10/2/91	JSM		Don’t use any onXXMac conditionals at all, don’t use forROM,
+;		<12>	 10/2/91	JSM		Don't use any onXXMac conditionals at all, don't use forROM,
 ;									isUniversal, or hasPwrControls since they are always true for
-;									this file, don’t check for Cpu ≥ 020 since it always is.
+;									this file, don't check for Cpu ≥ 020 since it always is.
 ;		<11>	 9/16/91	JSM		Cleanup header.
 ;		<10>	 9/21/90	BG		Removed <8>, <9>. 040s are behaving more reliably now.
 ;		 <9>	 7/19/90	BG		Found another place or two where EclipseNOPs were needed.
@@ -33,7 +33,7 @@
 ;									SCSIStat support and variable blind timeouts.
 ;		 <4>	 1/14/90	JWK		Needed for F19 - Added calls to LockMemory and UnlockMemory for
 ;									VM support.
-;		 <3>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <3>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <2>	  1/8/90	JK		Needed for F19: Fixed CD-ROM bug in slow read routines - better
 ;									loss of phase error checking.
 ;	   <1.7>	12/10/89	jwk		NEEDED FOR F19 - Optimized DMA code

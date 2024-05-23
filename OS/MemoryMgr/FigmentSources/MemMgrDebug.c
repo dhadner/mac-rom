@@ -197,7 +197,7 @@ void _HandleBlockCheck(void* block, stdHeap* curHeap)
 	if (!IsPtrBlock(blockHeader))
 		{
 		IfDbgMsg(IsMasterPointer(masterPtr, curHeap) == false, "relative handle does not point to handle", masterPtr);
-		IfDbgMsg(*masterPtr != block, "handle block master ptr doesnÕt point to block", masterPtr);
+		IfDbgMsg(*masterPtr != block, "handle block master ptr doesn't point to block", masterPtr);
 		}
 	IfDbgMsg(blockHeader->heapID != curHeap->heapID, "heapIDs dont match", blockHeader);
 	

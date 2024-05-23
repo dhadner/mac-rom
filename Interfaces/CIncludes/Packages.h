@@ -51,7 +51,7 @@ Created: Tuesday, July 23, 1991 at 6:40 PM
 		 <6>	 5/11/90	PKE		Added verArabic as synonym for verArabia.
 		 <5>	  3/2/90			Official MPW version
 		 <4>	  2/7/90	ngk		Move StandardFile stuff into StandardFile.h. Removed
-									“bigBangEquates” flag, since MPW 3.1 is released
+									'bigBangEquates' flag, since MPW 3.1 is released
 		 <3>	 1/23/90	PKE		Moved IULDateString and IULTimeString interfaces from Script.h
 									to here, where they should have been all along. This requires
 									auto-include of Script.h for definition of LongDateTime. Added
@@ -65,7 +65,7 @@ Created: Tuesday, July 23, 1991 at 6:40 PM
 		 <1>	12/17/89	CCH		Adding for the first time into BBS.
 
 	   <1.6>	10/14/89	ngk		Added NewStandardFile stuff
-	   <1.5>	 10/3/89	PAT		Fixed problem with the “bigBangEquates” flag - changed: #define
+	   <1.5>	 10/3/89	PAT		Fixed problem with the 'bigBangEquates' flag - changed: #define
 									bigbangEquates 1 -> #define bigBangEquates 1
 	   <1.4>	 9/22/89	PKE		Defined more ScriptCode and LangCode values; parenthesized them
 									to avoid problems. Added interface and table selector constants

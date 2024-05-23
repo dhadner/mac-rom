@@ -9,7 +9,7 @@
 #
 #	Change History (most recent first):
 #
-#	  <SM14>	 1/28/94	chp		Roll in salient portions of “makefile” to allow the Itt
+#	  <SM14>	 1/28/94	chp		Roll in salient portions of 'makefile' to allow the Itt
 #									debugging extension to be build entirely within the SuperMario
 #									environment. Add a CleanSCSI target; this is used like Build ROM
 #									Clean, but removes only the SCSIMgr4pt3 object files.

@@ -286,7 +286,7 @@ CLRMASK CLR.L	-(SP)						;ALLOCATE AND CLEAR
 @nextPatRow
 		CMP.L	(A0)+,D1					;is the row non-background?
 		DBEQ	D0,@nextPatRow				;if so, check for more rows
- 		BNE.S	@oldWay						;if not, can’t do fast hiliting <SM4> CSS
+ 		BNE.S	@oldWay						;if not, can't do fast hiliting <SM4> CSS
 		MOVE	#$10,locMode(A6)			;set the mode to the fast hilite variety
 		BRA.S	@newWay						;assume D0 = -1
 @noHilite
@@ -414,13 +414,13 @@ SETMODE MOVE	LOCMODE(A6),D2 				;GET TRANSFER MODE
 		AND 	D2,D0						;GET BOTTOM 2 BITS OF MODE
 		ADD 	D0,D2						;MODIFY MODE FOR INDEX
 		CMP		#8,D2						;pattern?
-		BGE.S	@checkBigPat				;don’t worry about color src blt loops if so
+		BGE.S	@checkBigPat				;don't worry about color src blt loops if so
 		CMP		#4,D2						;xor?
 		BEQ.S	@0							;skip if so
 
 		BTST	#ColorizeInModeCaseBit, XLateFlag(a6)		;colorize?
 ;		tst.w	BGnotWhite(A6)				;backcolor white and forecolor black?
-		BEQ.S	@0							;Yes, don’t use color loops
+		BEQ.S	@0							;Yes, don't use color loops
 		
 		ADD		#$28,D2						;use color loops
 @checkBigPat
@@ -4105,7 +4105,7 @@ rslowHilite
 ;
 ;  MODES 36, 44, 60: SRC less bg --> DST
 
-		IMPORT	rTransparent8	;<sm1>stb This comes from Arith8Blt.a, Andy’s QuickerDraw stuff
+		IMPORT	rTransparent8	;<sm1>stb This comes from Arith8Blt.a, Andy's QuickerDraw stuff
 
 rTransparent
 rTransparentIndexed
@@ -4113,8 +4113,8 @@ rTransparentIndexed
 		BMI.S	@1						;if so, skip									<sm 6/9/92>stb
 		CMP.W	#8,DSTPIX+PIXELSIZE(A6)	;is it 8 bit mode?								<sm 6/9/92>stb
 		BEQ		rTransparent8			;yes, go use quickdraw							<sm 6/9/92>stb
-									; if it is, go use Andy’s QuickerDraw special 8-bit case
-									; which doesn’t have this problem					<sm 6/9/92>stb
+									; if it is, go use Andy's QuickerDraw special 8-bit case
+									; which doesn't have this problem					<sm 6/9/92>stb
 	@1:	LEA		@RealrTransparent,A0; this fixes a bug that the optimization introduced	<sm 6/9/92>stb
 		MOVE.L	A0,ModeCase(A6)		; which was causing the loss of pattern data		<sm 6/9/92>stb
 @RealrTransparent

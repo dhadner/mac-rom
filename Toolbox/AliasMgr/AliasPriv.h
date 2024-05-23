@@ -60,7 +60,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “aliasPriv.h”
+/*EASE$$$ READ ONLY COPY of file 'aliasPriv.h'
 ** 2.3	prp 12/15/1989 Declare AL_validataHandle. Make it compatible for
 **		Lightspeed C.
 ** 2.2	prp 11/30/1989 AplleShare icon ID has changed.
@@ -280,10 +280,10 @@ typedef unsigned char Str127[128],Str8[9];
 /*'STR#'*/
 enum {
 		kBadPswdIdx=1, 				/* 1  "Sorry, your password is incorrect.  Please reenter it." */
-		kUnknownUsrIdx,				/* 2  "The user name “" */
-		kUnknownUsrIdx2,			/* 3  "” is not valid." */
-		kMountVolIdx,				/* 4  "Connect to shared disk “" */
-		kMountVolAsIdx,				/* 5  "” as:" */
+		kUnknownUsrIdx,				/* 2  "The user name '" */
+		kUnknownUsrIdx2,			/* 3  "' is not valid." */
+		kMountVolIdx,				/* 4  "Connect to shared disk '" */
+		kMountVolAsIdx,				/* 5  "' as:" */
 		kAFPServerIdx,				/* 6  "AFPServer" */
 		kNoUserAuthentIdx,			/* 7  "No User Authent" */
 		kUnknownNameIdx				/* 8  "Unknown Name" */

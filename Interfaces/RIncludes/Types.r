@@ -27,7 +27,7 @@
 		<13>	 8/31/90	JT		Added a bit in the MultiFinder SIZE resource that determines
 									whether the inline text services are automatically used when the
 									application uses TextEdit.
-		<12>	 7/17/90	PKE		Deleted ‘kscn’ type (see <1.2>), since it is now superseded by
+		<12>	 7/17/90	PKE		Deleted ‘kscn' type (see <1.2>), since it is now superseded by
 									keyboard icon suite (kcs#, etc. - see <8>).
 		<11>	 6/21/90	DC		Put the align word in DLOG's and WIND's into the IF
 									systemsevenorbetter.  Protected Pict definition with __PICT.R__
@@ -52,10 +52,10 @@
 	   <1.3>	 10/3/89	dba		added 'ics#' template
 	   <1.2>	 9/18/89	PKE		Added type 'kscn' (keyboard/script small icon) as 'SICN'.
 	   <1.1>	 8/30/89	dba		improved Color QuickDraw-related templates so that fields are
-									automatically filled in for values that can’t change in today’s
+									automatically filled in for values that can't change in today's
 									version of CQD; this makes these resource definitions much
 									easier to read; added #defines for ALRT stages and RGB colors;
-									added a trial definition for ppt# that Rez can’t really handle
+									added a trial definition for ppt# that Rez can't really handle
 									yet
 	   <1.0>	 8/21/89	CCH		Checking in from MPW 3.0 RIncludes.
 
@@ -73,9 +73,9 @@
 	10/03/89	- dba:  added 'ics#' template
 	09/18/89	- PKE:  Added type 'kscn' (keyboard/script small icon) as 'SICN'.
 	08/30/89	- dba: improved Color QuickDraw-related templates so that fields are automatically
-						filled in for values that can’t change in today’s version of CQD; this makes these
+						filled in for values that can't change in today's version of CQD; this makes these
 						resource definitions much easier to read; added #defines for ALRT stages and RGB colors;
-						added a trial definition for ppt# that Rez can’t really handle yet
+						added a trial definition for ppt# that Rez can't really handle yet
 	08/21/89	- CCH: Checking in from MPW 3.0 RIncludes.
 
 	03/20/89	- THT: added #ifndef __TYPES.R__
@@ -1159,7 +1159,7 @@ type 'WIND' {
 	};
 	type 'kcs4' as 'ics4';								/* Keyboard 4-bit small color icon <8> */
 
-/* a list of pixpats; Rez can’t yet handle this correctly */
+/* a list of pixpats; Rez can't yet handle this correctly */
 
 	type 'ppt#' {
 			/* PixPat offsets (calculate them some day!?!) */

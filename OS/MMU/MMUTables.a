@@ -21,7 +21,7 @@
 ;									to 255 MB.
 ;	  <SM19>	 3/31/93	chp		Synchronize SuperMario with changes from <LW2>. Also modify
 ;									early universal test for has68kEmulator: the constant for this
-;									test must be modulo 8 and it is the individualÕs responsibility
+;									test must be modulo 8 and it is the individual's responsibility
 ;									to look in the correct byte (TestFor is not available yet).
 ;	  <SM18>	 3/11/93	SAM		Added a flag to bootGlobs that tell this code whether or not to
 ;									steal chunks of RAM for the EDisk.  Added code to check that
@@ -78,7 +78,7 @@
 ;									DecoderKinds record.
 ;	   <SM6>	08/19/92	CSS		BootGlobs was changed to StartGlobals by DTY in Reality and this file
 ;									needs changing, also.
-;	   <SM5>	08/11/92	jmp		Added ReAnimator support for Õ030 machines (taken straight from
+;	   <SM5>	08/11/92	jmp		Added ReAnimator support for '030 machines (taken straight from
 ;									Horror).
 ;	   <SM4>	  8/9/92	CCH		Added ReAnimatorª support for HMMU-based machines, and allow
 ;									Orwell-based machines to have HMMUs.
@@ -103,7 +103,7 @@
 ;	   								<P10> 04/16/92 jmp	Replaced some hard-coded values with defined constants.
 ;									<P9>  04/08/92 jmp	Updated the physMMC table entries to more accurate reflect
 ;														reality (I think).
-;									<P8>  03/22/92 jmp	Removed the ÒisVoidÓ mappings for Slots A&B for MMC in 24-bit
+;									<P8>  03/22/92 jmp	Removed the 'isVoid' mappings for Slots A&B for MMC in 24-bit
 ;														mode.
 ;									<P7>   2/25/92 RMP	Modified the 32-Bit MMC table to map in CIVIC register set and
 ;														VRAM.

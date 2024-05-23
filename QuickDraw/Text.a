@@ -63,7 +63,7 @@
 ;		<20>	 7/20/90	DTY		Bass: The Linked Patch. Large majority of changes are jsrROMs
 ;									for calls to ROM. Also added Gaudi conditional for code that
 ;									compiles when hasSplineFonts is defined, since hasSplineFonts
-;									isn’t defined for System 6 builds.
+;									isn't defined for System 6 builds.
 ;		<19>	 7/17/90	DVB		Add GrayishTextCopy mode to StdText; the slimy version.
 ;	    <18>	 6/25/90	CL		fontPrivate should only be included in this file when it is a
 ;									splinefont build.
@@ -1371,7 +1371,7 @@ noOverFlow									;									<30-CEL/RWB>
 ;
 ;	Modification History
 ; 29Oct86	CRC	Call textMeasProc via TextWidth for the benefit of
-;				Think’s Macintosh Pascal.  (Margie TextEdit used to use
+;				Think's Macintosh Pascal.  (Margie TextEdit used to use
 ;				TextWidth but changed to MeasureText for efficiency;
 ;				Think added styles to TextEdit inside the bottleneck
 ;				procs that no longer got called.  This calls the bottleneck
@@ -1749,7 +1749,7 @@ CharExtra PROC  EXPORT
 
 		MOVE.L	([grafGlobals,A5],thePort),A0 	;get the port
 		TST		PORTBITS+ROWBYTES(A0)			;is it a new port?
-		BPL.S	@noHelp							;no, don’t set up characterExtra
+		BPL.S	@noHelp							;no, don't set up characterExtra
 		SUBQ	#4,SP							;make room for result
 		MOVE.L	8(SP),-(SP)						;pass input parameter
 		MOVE	txSize(A0),D0					;get the text size

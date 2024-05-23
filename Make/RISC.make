@@ -10,12 +10,12 @@
 #	Change History (most recent first):
 #
 #	  <SM76>	 1/31/94	GS		Update Version for TNT D4c1 build.
-#	  <SM75>	 1/10/94	chp		TNT D3C1 build. Simplify the build command for the “Clean”
+#	  <SM75>	 1/10/94	chp		TNT D3C1 build. Simplify the build command for the 'Clean'
 #									target: wildcard substitution is sloppy if there is no match and
 #									seems to result in :Obj:Interface: getting deleted.
 #	  <SM74>	 12/2/93	chp		TNT D2C1 build.
 #	  <SM73>	11/19/93	chp		Add BuildResults Text directories to the Delete list in the
-#									“Clean” target.
+#									'Clean' target.
 #	  <SM72>	11/10/93	fau		Added a 'hasGrandCentral' feature (TNT's Interrupt Controller)
 #									and revved the release to D1C1 for TNT's D1 release.
 #	  <SM71>	 11/9/93	KW		PDM build flags are NO longer always true.  PDM must include
@@ -101,7 +101,7 @@
 #	  <SM21>	 3/24/93	dwc		Disabled hasCAppleTalkInROM to avoid a conflict with ENET.
 #	  <SM19>	 3/22/93	RC		D6E1 version timed
 #	  <SM18>	 3/19/93	CSS		Remove Sadism.rsrc from the build as this stuff is junk.
-#	  <SM17>	 3/16/93	SAM		Removed a “feature” that should never have been in the ROM.
+#	  <SM17>	 3/16/93	SAM		Removed a 'feature' that should never have been in the ROM.
 #	  <SM16>	 3/14/93	RC		Upped rev to D5C2
 #	  <SM15>	 3/11/93	RC		Ready for D5C1 Version of the Risc Rom
 #	  <SM14>	 3/10/93	RC		One last fix to keep Sane happy to the end of the build (I added

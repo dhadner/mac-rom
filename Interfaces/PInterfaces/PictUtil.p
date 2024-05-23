@@ -82,7 +82,7 @@ FontSpec = RECORD
  sysFontID: INTEGER;				{ ID of the same font in the current system file }
  size: ARRAY [0..3] OF LONGINT;		{ bit array of all the sizes found (1..127) (bit 0 means > 127) }
  style: INTEGER;					{ combined style of all occurrances of the font }
- nameOffset: LONGINT;				{ offset into the fontNamesHdl handle for the font’s name }
+ nameOffset: LONGINT;				{ offset into the fontNamesHdl handle for the font's name }
  END;
 
 PictInfoPtr = ^PictInfo;

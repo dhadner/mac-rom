@@ -23,7 +23,7 @@
 ;									it's possible that power could still have been on before going
 ;									to sleep.
 ;	   <H22>	 6/26/92	SWC		Fixed a bug that was trashing a register in the wakeup code.
-;									Sleep/wakeup code now sets/clears ‘active’ to prevent VBLs from
+;									Sleep/wakeup code now sets/clears ‘active' to prevent VBLs from
 ;									running before everything is re-initialized on wakeup.
 ;	   <H15>	 3/18/92	SWC		Changed the chip test patches to use isSWIM>0 to flag that no
 ;									chip is currently connected instead of diddling with the chip
@@ -62,7 +62,7 @@
 ;		 <8>	 4/27/92	JSM		Get rid of conditionals: supportsPWM, supportsDCD, and
 ;									has3rdFloppy are always false, forROM, supportsMFM, forDiskDup,
 ;									isUniversal, hasPowerMgr, and hasPwrControls are always true
-;									(although hasPowerMgr currently isn’t for the ROM, it will be
+;									(although hasPowerMgr currently isn't for the ROM, it will be
 ;									and was always ORed with hasPwrControls here anyway). This file
 ;									now has no conditionals.
 ;		 <7>	12/26/91	RB		Updated to use the new Power Mgr records

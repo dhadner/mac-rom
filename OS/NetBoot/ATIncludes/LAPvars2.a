@@ -21,7 +21,7 @@
 ;
 ;
 
-;EASE$$$ READ ONLY COPY of file “LAPvars2.a”
+;EASE$$$ READ ONLY COPY of file 'LAPvars2.a'
 ; 1.2	jhl 09/08/1989 Phase 2 AppleTalk with final mods and VM rolled in.
 ; 1.1	jhl 08/11/1989 For F19 ROM: Pull Best Router Table vars pointer out of
 ;		code and put into MPP Variables

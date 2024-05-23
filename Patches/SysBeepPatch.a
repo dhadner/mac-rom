@@ -44,8 +44,8 @@
 ;									or if we are playing 'snd ' 1 on a MacPlus or MacSE. Since the
 ;									new sound manager uses timer one, any application that called
 ;									SysBeep and used timer one would die on System 6.0. If a user
-;									chooses simple beep, the sound manager won’t be called on a
-;									MacPlus or MacSE, so the application won’t croak.
+;									chooses simple beep, the sound manager won't be called on a
+;									MacPlus or MacSE, so the application won't croak.
 ;
 ;	To Do:
 ;

@@ -14,7 +14,7 @@
 ;	   <SM2>	  8/3/93	BH		Added VCB flags for use with manually ejectable volumes:
 ;									vcbManEjBit and vcbFlushCritBit.
 ;		<15>	 8/14/91	JL		changed lower case equ to EQU to match database output.
-;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<13>	 1/25/91	stb		JDR: add constants missing in this file
 ;		<12>	 12/5/90	dnf		Change <11> was with dba.

@@ -15,7 +15,7 @@
 ;		<14>	  3/4/91	dba		dty: get rid of SysVers conditionals
 ;		<13>	 1/14/91	stb		& JDR; reword MacsBug installed and Extensions off.
 ;		<12>	12/11/90	stb		tweak message extensions disabled
-;		<11>	  8/6/90	stb		add message for “System x.x needs more memory to start up.” for
+;		<11>	  8/6/90	stb		add message for 'System x.x needs more memory to start up.' for
 ;									7.0 and later
 ;		<10>	  8/1/90	SAM		Reverted MissingPatchMessage to the way it was in rev 7 of this
 ;									file.  See brain-fade.
@@ -23,20 +23,20 @@
 ;		 <8>	 7/30/90	SAM		Reworded MissingPatchMessage.
 ;		 <7>	 7/10/90	BA		Fixed length of dssSwitch button string.  This fixes some bugs
 ;									related to the 24/32 bit mode alert.
-;		 <6>	 5/30/90	dba		capitalize the D in “Extensions Disabled.”; change RAM parity
+;		 <6>	 5/30/90	dba		capitalize the D in 'Extensions Disabled.'; change RAM parity
 ;									message to match the messages in UserAlerts
-;		 <5>	 4/10/90	dba		added message for “Extensions disabled.”; added alert for “need
-;									to write boot blocks, but the disk is write-protected”; got rid
+;		 <5>	 4/10/90	dba		added message for 'Extensions disabled.'; added alert for 'need
+;									to write boot blocks, but the disk is write-protected'; got rid
 ;									of a few alerts for 7.0 that are only used from UserAlerts.a
 ;									since the boot code cleanup makes the loading time consistent
 ;									between different ROMs
 ;		 <4>	 1/30/90	dba		get rid of warnings when assembling; put in fancier messages;
 ;									conditionalize out stuff needed only on systems that do not
 ;									support 32-bit addressing
-;		 <3>	 1/12/90	CCH		added include of “HardwarePrivateEqu.a”
+;		 <3>	 1/12/90	CCH		added include of 'HardwarePrivateEqu.a'
 ;		 <2>	12/28/89	dba		changed from PROC to MAIN so we get dead code stripping
 ;	   <1.4>	10/11/89	dba		changed IDs to conform with UserAlerts; improved icons
-;	   <1.3>	 8/15/89	dba		NEEDED FOR 6.0.4: expunged references to “32-Bit Mode” for the
+;	   <1.3>	 8/15/89	dba		NEEDED FOR 6.0.4: expunged references to '32-Bit Mode' for the
 ;									greater good of humanity
 ;	   <1.2>	 8/11/89	dba		NEEDED FOR 6.0.4: changed text for alerts; improved ShutDown
 ;									code used when ShutDown Manager is not present; added duplicate
@@ -237,7 +237,7 @@ SystemDamagedMessage
 			dc.w	dstSystemDamaged,@end-@rest
 @rest
 			dc.w	94,114
-			DC.B	'The “System” file on this startup disk may be/'
+			DC.B	'The 'System' file on this startup disk may be/'
 			dc.b	'damaged.  The Installer can be used to repair this/'
 			dc.b	'disk.'
 			DC.B	0

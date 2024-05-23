@@ -11,7 +11,7 @@
 #
 #	   <SM5>	12/13/93	PN		Roll in Kaos and Horrors code to support AJ and Malcom machines.
 #	   <SM4>	  9/9/93	pdw		Added slots.a to dependencies.
-#	   <SM3>	08-03-93	jmp		Added various necessary dependencies that weren’t previously
+#	   <SM3>	08-03-93	jmp		Added various necessary dependencies that weren't previously
 #									spelled out.
 #	   <SM2>	  3/4/93	dwc		Added DeclDataPDMMace definition for PDM ENET.
 #		 <1>	 2/21/93	kc		first checked in

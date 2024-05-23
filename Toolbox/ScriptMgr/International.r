@@ -50,14 +50,14 @@
 									conditionals. While I'm at it, remove some ">=$700"
 									conditionals.
 		<15>	 9/15/91	PKE		Oops, fix feature symbols to match latest BBSStartup.
-		<14>	 9/15/91	PKE		Changes for Bruges/Cube-E: Turn off FontForce in default ‘itlc’
-									resource. Fix ‘KSWP’ so arrow keys work on ADB keyboards too
+		<14>	 9/15/91	PKE		Changes for Bruges/Cube-E: Turn off FontForce in default ‘itlc'
+									resource. Fix ‘KSWP' so arrow keys work on ADB keyboards too
 									(Command-leftArrow selects system script, Command-rightArrow
 									selects Roman).
 
-		<13>	 2/26/91	PKE		smb,#perCindyR: Change resource name “US” to “U.S.”.
+		<13>	 2/26/91	PKE		smb,#perCindyR: Change resource name 'US' to 'U.S.'.
 		<12>	 2/21/91	SMB		pke,#smb-2/21/91-1: Added smaller default keyboard icons
-									(‘kcs#’,‘kcs4’,‘kcs8’ with ID -16491).
+									(‘kcs#',‘kcs4',‘kcs8' with ID -16491).
 		<11>	 2/15/91	SMB		pke,#smb-2/15/91-1: Changing US 0 keyboard resources to smaller
 									icons.
 		<10>	  1/7/91	SMB		(JDR) approved the last change!
@@ -67,15 +67,15 @@
 									from the DITL. Updated the DITL and DLOG for About Keyboards
 									dialog.
 		 <8>	12/14/90	PKE		(DC) Change abbreviated day and month strings in 'itl1' to match
-									old 3-char form, so abbreviated dates don’t change on US system.
+									old 3-char form, so abbreviated dates don't change on US system.
 									Complete DITL text that explains switching among keyboards (the
 									Cmd-Opt-space key combo needed to be finalized; other edits).
 		 <7>	12/10/90	PKE		(VL) Add to KSWP resource: Cmd-Opt-space, for rotate to next
 									keyboard in current script.
-		 <6>	10/30/90	SMB		Changed data for US and default kcs’s.
+		 <6>	10/30/90	SMB		Changed data for US and default kcs's.
 		 <5>	  9/1/90	SMB		Added another About Keyboards DITL & DLOG for a system with only
 									1 script. Also modified the other About msg.
-		 <4>	 8/10/90	SMB		Added ‘About Keyboards…’ dialog (DITL & DLOG) and updated help
+		 <4>	 8/10/90	SMB		Added ‘About Keyboards…' dialog (DITL & DLOG) and updated help
 									messages.
 		 <3>	  8/7/90	csd		Fixed problems caused by having double-/ comments in #defines.
 		 <2>	  8/7/90	SMB		Added default keybd symbol and "About Keyboards…" to the
@@ -83,15 +83,15 @@
 									out until later). Added balloon help 'hmnu' resource and indices
 									for new help strings in Keyboard Menu STR# resource.
 		 <1>	 7/23/90	PKE		New today, extracted from Sys.r. Added include of BalloonTypes.r
-		 							since we’ll need it later. Note that real resource attributes are
+		 							since we'll need it later. Note that real resource attributes are
 									still set in Sys.r.
 
 	Relevant comments from Sys.r (marker changed to <xNN>
 
-	   <x163>	 7/17/90	PKE		‘kscn’ resource (see <x9.8>) has been superseded by keyboard icon
-									suite (kcs#, etc. - see <x102>). Changed ‘kscn’ 0 back to ‘SICN’
+	   <x163>	 7/17/90	PKE		‘kscn' resource (see <x9.8>) has been superseded by keyboard icon
+									suite (kcs#, etc. - see <x102>). Changed ‘kscn' 0 back to ‘SICN'
 									0 for backward compatibility.
-	   <x158>	  7/7/90	PKE		Define “sysHeapFromNowOn” symbol to use as heap attribute for
+	   <x158>	  7/7/90	PKE		Define 'sysHeapFromNowOn' symbol to use as heap attribute for
 									resources that did not have sysheap attribute in 6.x, but which
 									should have sysheap attribute set for 7.0 and beyond (Darin gets
 									credit for the symbol name). Use it for itlb, itl0, itl1, itl2,
@@ -103,12 +103,12 @@
 									names, and rearranged sorting order of scripts, languages, and
 									regions.
 	   <x121>	  6/1/90	SMB		Add STR# and default icon suites for Keyboard Menu.
-	   <x117>	 5/29/90	PKE		Added bytes for valid style and alias style to ‘itlb’ type.
-									Added list of additional separators to ‘itl1’. Both changes
+	   <x117>	 5/29/90	PKE		Added bytes for valid style and alias style to ‘itlb' type.
+									Added list of additional separators to ‘itl1'. Both changes
 									match new formats in SysTypes.r.
-	   <x109>	 5/21/90	PKE		Added region code table to ‘itlm’ resource to match new format
+	   <x109>	 5/21/90	PKE		Added region code table to ‘itlm' resource to match new format
 									in SysTypes.r. Updated itlm data to use newer script, lang, and
-									region codes (smTradChinese, etc.). Converted ‘itl1’ resource
+									region codes (smTradChinese, etc.). Converted ‘itl1' resource
 									for 7.0 to new extended form with list of abbreviated day and
 									month names, etc.
 	   <x102>	 5/12/90	SMB		Adding the keyboard small icons (kcs#, kcs4, kcs8) for the US

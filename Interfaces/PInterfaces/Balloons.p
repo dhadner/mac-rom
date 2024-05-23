@@ -12,7 +12,7 @@ Created: Saturday, July 27, 1991 at 8:04 PM
 
 		<20>	 7/30/91	JL		Updated Copyright. Restored Comments. <19> 1/28/91 LN Checked in
 									Database Generated File from DSG.
-		<18>	 1/24/91	stb		RC: remove HMFillCitationString; change all pic’s to pict’s
+		<18>	 1/24/91	stb		RC: remove HMFillCitationString; change all pic's to pict's
 		<17>	12/14/90	dba		<JDR> get rid of RectPtr which is now in Types.p
 		<16>	 9/24/90	RLC		Fix the interface to HMGetIndHelpMsg to pass $1306 as the
 									selector (not $1106) as there are 19 words of parameters (not 17

@@ -12,7 +12,7 @@
 ;		 <2>	  7/4/90	BG		Added EclipseNOPs to deal with flakey 040s.
 ;	   <1.1>	11/11/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
-;	   <1.1>	 5/16/88	BBM		FBcc -> FBccL (new macros that don’t conflict w/ 881) <1.1>
+;	   <1.1>	 5/16/88	BBM		FBcc -> FBccL (new macros that don't conflict w/ 881) <1.1>
 ;	   <1.0>	 2/12/88	BBM		Adding file for the first time into EASE…
 
 ;m1 1

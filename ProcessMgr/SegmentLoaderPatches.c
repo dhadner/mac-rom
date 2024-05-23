@@ -12,7 +12,7 @@
 	Change History (most recent first):
 	 
 		<18>	 5/21/92	gbm		#1030303,<dty>: Start using the new (and improved!) 'SIZE'(1)
-									for launching, if it’s present.
+									for launching, if it's present.
 		<17>	 1/14/92	YK		Take out <15>,<16> since we found a better way.
 		<16>	 1/10/92	YK		Oops, I didn't close the comment.
 		<15>	 1/10/92	YK		Check if the app is the Service Window Manager app (for TSM) in
@@ -119,7 +119,7 @@ SyncSIZEInfo()
 			(**h1).psize = (**h0).psize;
 			if ( (**h1).msize > (**h1).psize )
 				(**h1).msize = (**h1).psize;
-			ChangedResource( (Handle) h1 );		// if this fails, we don’t care...
+			ChangedResource( (Handle) h1 );		// if this fails, we don't care...
 			WriteResource( (Handle) h1 );		// ...the in-memory copy will still be right
 			}
 		}
@@ -140,9 +140,9 @@ GetSizeInfo(swParmPtr pSizeInfo, short firstChoice)
 	SyncSIZEInfo();
 
 	/* First, try the preferred resource ID.  This will either be a 1 for applications or
-	 * a weird negative ID for DAs.  If it’s for a DA and it’s unavailable, give up.  If it’s for
-	 * an application and we’re looking for ID 1 and it’s unavailable, then try ID 0.  If neither
-	 * ID 0 or ID 1 (made by Finder) are present, try one more time for ID -1.  If ID -1 can’t be
+	 * a weird negative ID for DAs.  If it's for a DA and it's unavailable, give up.  If it's for
+	 * an application and we're looking for ID 1 and it's unavailable, then try ID 0.  If neither
+	 * ID 0 or ID 1 (made by Finder) are present, try one more time for ID -1.  If ID -1 can't be
 	 * found, then just give up.
 	*/
 	if ( ((h = Get1Resource('SIZE', firstChoice)) == nil) && (firstChoice == 1) )

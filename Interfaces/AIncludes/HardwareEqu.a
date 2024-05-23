@@ -25,7 +25,7 @@
 ;									HardwarePrivateEqu.a instead.
 ;									****************************************************************
 ;		<15>	 6/12/91	LN		Removed private interface includes
-;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<14>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<13>	 1/16/91	JDR		(dba) Removed the comment about Topanga.
 ;		<12>	11/26/90	gbm		(and bbm) This file is still obsolete. And when we fix all the

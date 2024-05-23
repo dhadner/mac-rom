@@ -15,8 +15,8 @@
 									heap (all the ToolBox init calls are made in the Application
 									Heap). Helps out copy/paste in QuickMail, since TEScrpHandle is
 									in the Application heap.
-		 <6>	  2/4/91	DFH		JWS,WS#DFH-910204a:Fix wording of 'STR ' #-16471 to say ”Apple
-									Menu Items folder” instead of “Apple Menu Folder”.
+		 <6>	  2/4/91	DFH		JWS,WS#DFH-910204a:Fix wording of 'STR ' #-16471 to say 'Apple
+									Menu Items folder' instead of 'Apple Menu Folder'.
 		 <4>	  1/3/91	JDR		(dba) Changing the SIZE resource to use reserved instead of old
 									switcher constants.
 		 <3>	12/14/90	RLC		<jt> Update to J.Trumble's latest strings.

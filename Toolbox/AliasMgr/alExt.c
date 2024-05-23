@@ -164,7 +164,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “alExt.c”
+/*EASE$$$ READ ONLY COPY of file 'alExt.c'
 ** 2.8	prp 12/15/1989 Fix CanonifyFile bug for MFS disks. Make ValidateHandle
 **		calls.
 ** 2.7	prp 11/27/1989 Fix incorrect dirID returned for AbsPath CanonifyFile

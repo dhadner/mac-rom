@@ -40,7 +40,7 @@
 ;		<31>	 6/14/91	JL		Checked in official MPW 3.2ƒ version. Added error constants :
 ;									afpContainsSharedErr - > afpInsideTrashErr (-5033 - -5044) for
 ;									the File System. Updated copyright date.
-;		<30>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<30>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<29>	 1/23/91	JL		Changed all equ to EQU.
 ;		<28>	 1/16/91	JDR		(dba) Moved the Process Mgr error numbers into the Errors
@@ -153,19 +153,19 @@ seNoDB			EQU 		-8        				; no debugger installed to handle debugger command
 ;__________________________________________________
 ; Device Manager errors
 
-controlErr		EQU 		-17       				; driver can’t respond to Control call / Unimplemented control instruction
-statusErr 		EQU 		-18       				; driver can’t respond to Status call
-readErr   		EQU 		-19       				; driver can’t respond to Read call
-writErr   		EQU 		-20       				; driver can’t respond to Write call
-badUnitErr		EQU 		-21       				; driver reference number doesn’t match unit table
+controlErr		EQU 		-17       				; driver can't respond to Control call / Unimplemented control instruction
+statusErr 		EQU 		-18       				; driver can't respond to Status call
+readErr   		EQU 		-19       				; driver can't respond to Read call
+writErr   		EQU 		-20       				; driver can't respond to Write call
+badUnitErr		EQU 		-21       				; driver reference number doesn't match unit table
 unitEmptyErr  	EQU 		-22       				; driver reference number specifies NIL handle in unit table
-openErr   		EQU 		-23       				; requested read/write permission doesn’t match driver’s open permission / Attempt to open RAM serial Driver failed
+openErr   		EQU 		-23       				; requested read/write permission doesn't match driver's open permission / Attempt to open RAM serial Driver failed
 closErr   		EQU 		-24       				; close error
 dRemovErr 		EQU 		-25       				; tried to remove an open driver
-dInstErr  		EQU 		-26       				; DrvrInstall couldn’t find driver in resources
+dInstErr  		EQU 		-26       				; DrvrInstall couldn't find driver in resources
 abortErr  		EQU 		-27       				; I/O request aborted by KillIO / I/O abort error
 iIOAbortErr   	EQU 		-27       				; I/O abort error (Printing Manager)
-notOpenErr		EQU 		-28       				; Couldn’t rd/wr/ctl/sts cause driver not opened
+notOpenErr		EQU 		-28       				; Couldn't rd/wr/ctl/sts cause driver not opened
 unitTblFullErr	EQU 		-29       				; unit table has no more entries
 dceExtErr 		EQU 		-30       				; DCE extension error
 
@@ -185,7 +185,7 @@ bdNamErr  		EQU 		-37       				; bad file name or volume name (perhaps zero len
 fnOpnErr  		EQU 		-38       				; file not open
 eofErr			EQU 		-39       				; logical end-of-file reached during read operation
 posErr			EQU 		-40       				; attempt to position to before start of file (r/w)
-mFulErr   		EQU 		-41       				; memory full (open) or file won’t fit (load)
+mFulErr   		EQU 		-41       				; memory full (open) or file won't fit (load)
 tmfoErr   		EQU 		-42       				; too many files open
 fnfErr			EQU 		-43       				; file not found
 wPrErr			EQU 		-44       				; diskette is write protected
@@ -206,7 +206,7 @@ fsRnErr   		EQU 		-59       				; file system internal error:
 														;	during rename the old entry was deleted but could
 														;	not be restored
 badMDBErr 		EQU 		-60       				; bad master directory block: must reinitialize volume
-wrPermErr 		EQU 		-61       				; Read/write permission doesn’t allow writing
+wrPermErr 		EQU 		-61       				; Read/write permission doesn't allow writing
 
 ; errors introduced with HFS
 
@@ -265,24 +265,24 @@ firstDskErr   	EQU 		-84
 lastDskErr		EQU 		-64
 noDriveErr		EQU 		-64       				; drive not installed
 offLinErr 		EQU 		-65       				; r/w requested for an off-line drive
-noNybErr  		EQU 		-66       				; couldn’t find 5 nybbles in 200 tries
-noAdrMkErr		EQU 		-67       				; couldn’t find valid addr mark
+noNybErr  		EQU 		-66       				; couldn't find 5 nybbles in 200 tries
+noAdrMkErr		EQU 		-67       				; couldn't find valid addr mark
 dataVerErr		EQU 		-68       				; read verify compare failed
-badCksmErr		EQU 		-69       				; addr mark checksum didn’t check
+badCksmErr		EQU 		-69       				; addr mark checksum didn't check
 badBtSlpErr   	EQU 		-70       				; bad addr mark bit slip nibbles
-noDtaMkErr		EQU 		-71       				; couldn’t find a data mark header
+noDtaMkErr		EQU 		-71       				; couldn't find a data mark header
 badDCksum 		EQU 		-72       				; bad data mark checksum
 badDBtSlp 		EQU 		-73       				; bad data mark bit slip nibbles
 wrUnderrun		EQU 		-74       				; write underrun occurred
 cantStepErr   	EQU 		-75       				; step handshake failed
-tk0BadErr 		EQU 		-76       				; track 0 detect doesn’t change
+tk0BadErr 		EQU 		-76       				; track 0 detect doesn't change
 initIWMErr		EQU 		-77       				; unable to initialize IWM
 twoSideErr		EQU 		-78       				; tried to read 2nd side on a 1-sided drive
 spdAdjErr 		EQU 		-79       				; unable to correctly adjust disk speed
 seekErr   		EQU 		-80       				; track number wrong on address mark
 sectNFErr 		EQU 		-81       				; sector number never found on a track
-fmt1Err   		EQU 		-82       				; can’t find sector 0 after track format
-fmt2Err   		EQU 		-83       				; can’t get enough sync
+fmt1Err   		EQU 		-82       				; can't find sector 0 after track format
+fmt2Err   		EQU 		-83       				; can't get enough sync
 verErr			EQU 		-84       				; track failed to verify
 
 ;__________________________________________________
@@ -290,7 +290,7 @@ verErr			EQU 		-84       				; track failed to verify
 
 clkRdErr  		EQU 		-85       				; unable to read same clock value twice
 clkWrErr  		EQU 		-86       				; time written did not verify
-prWrErr   		EQU 		-87       				; parameter ram written didn’t read-verify
+prWrErr   		EQU 		-87       				; parameter ram written didn't read-verify
 prInitErr 		EQU 		-88       				; InitUtil found the parameter ram uninitialized
 
 ;__________________________________________________
@@ -532,7 +532,7 @@ notEnoughMemoryErr	EQU		-620					; insufficient physical memory				<1.4>
 notHeldErr			EQU		-621					; specified range of memory is not held		<1.4>
 cannotMakeContiguousErr EQU	-622					; cannot make specified range contiguous	<1.4>
 notLockedErr		EQU		-623					; specified range of memory is not locked	<1.4>
-interruptsMaskedErr	EQU		-624					; don’t call with interrupts masked			<1.4>
+interruptsMaskedErr	EQU		-624					; don't call with interrupts masked			<1.4>
 cannotDeferErr		EQU		-625					; unable to defer additional functions		<1.4>
 noMMUErr			EQU		-626					; no MMU present
 
@@ -713,7 +713,7 @@ framingErr		EQU 		64
 ; can be a System Error and an OS error with the same number. System Errors are intercepted by
 ; MacsBug or displayed by the System Error Handler, which uses a DSAT resource to determine how to
 ; display them. Some errors are used to put up dialogs with the System Error Handler, rather than to
-; report an error. These are not intercepted by MacsBug. MacsBug’s rule is to stop any system errors
+; report an error. These are not intercepted by MacsBug. MacsBug's rule is to stop any system errors
 ; with positive numbers, except for errors 30 and 42. Older versions of MacsBug (6.2d4 and older)
 ; used a different rule.
 
@@ -746,28 +746,28 @@ dsNoPk5   		EQU 		22        				; package 5 not present
 dsNoPk6   		EQU 		23        				; package 6 not present
 dsNoPk7   		EQU 		24        				; package 7 not present
 dsMemFullErr  	EQU 		25        				; out of memory
-dsBadLaunch   	EQU 		26        				; can’t launch file (CODE 0 missing or ...)
+dsBadLaunch   	EQU 		26        				; can't launch file (CODE 0 missing or ...)
 dsFSErr   		EQU 		27        				; file system map has been trashed
 dsStknHeap		EQU 		28        				; stack has moved into application heap
 negZcbFreeErr 	EQU 		33        				; zcbFree has gone negative
-dsFinderErr   	EQU 		41        				; can’t load the Finder
+dsFinderErr   	EQU 		41        				; can't load the Finder
 dsBadSlotInt  	EQU 		51        				; unserviceable slot interrupt
 dsBadSANEOpcode	EQU 		81        				; bad opcode given to SANE
-dsBadPatchHeader EQU		83						; SetTrapAddress saw the “come-from” header
+dsBadPatchHeader EQU		83						; SetTrapAddress saw the 'come-from' header
 menuPrgErr		EQU 		84        				; a menu was purged while in use
 dsMBarNFnd		EQU 		85        				; could not load MBDF
-dsHMenuFindErr	EQU 		86        				; could not find HMenu’s parent in MenuKey
+dsHMenuFindErr	EQU 		86        				; could not find HMenu's parent in MenuKey
 dsWDEFNotFound	EQU			87						; could not load WDEF
 dsCDEFNotFound	EQU			88						; could not load CDEF
 dsMDEFNotFound	EQU			89						; count not load MDEF
-dsNoFPU		   	EQU 		90       				; an FPU instruction was executed and the machine doesn’t have one
+dsNoFPU		   	EQU 		90       				; an FPU instruction was executed and the machine doesn't have one
 
 ;__________________________________________________
 ; System Errors that should cause MacsBug to stop (0-29, 31-41, 43-16383)
 ;	these look good in the System Error alert because of special templates in the DSAT
 
-dsNoPatch 		EQU 		98        				; can’t load patch for particular model
-dsBadPatch		EQU 		99        				; can’t load patch resource
+dsNoPatch 		EQU 		98        				; can't load patch for particular model
+dsBadPatch		EQU 		99        				; can't load patch resource
 dsParityErr   	EQU 		101       				; memory parity error				<1.5><1.6>
 dsOldSystem   	EQU 		102       				; System is too old for this ROM	<2.0>
 ds32BitMode   	EQU 		103       				; booting in 32-bit on a 24-bit sys <2.0>
@@ -795,9 +795,9 @@ dsSCSIWarn			 EQU	20010					; Portable SCSI adapter warning.					<34>
 ;	since these should not cause MacsBug to stop, they must be in the range (30, 42, 16384-32767)
 ;	negative numbers add to an existing dialog without putting up a whole new dialog
 
-dsMacsBugInstalled 		EQU		-10       			; say “MacsBug Installed”
-dsDisassemblerInstalled	EQU		-11       			; say “Disassembler Installed”
-dsExtensionsDisabled	EQU		-13					; say “Extensions Disabled”
+dsMacsBugInstalled 		EQU		-10       			; say 'MacsBug Installed'
+dsDisassemblerInstalled	EQU		-11       			; say 'Disassembler Installed'
+dsExtensionsDisabled	EQU		-13					; say 'Extensions Disabled'
 
 ;__________________________________________________
 ; System Errors that are used before MacsBug is loaded to put up dialogs
@@ -813,18 +813,18 @@ dsGreeting		EQU 		40        				; welcome to Macintosh greeting
 dsSysErr  		EQU 		32767     				; catch-all error used in DSAT
 
 ;__________________________________________________
-; old names here for compatibility’s sake
+; old names here for compatibility's sake
 
 WDEFNFnd		EQU 		dsWDEFNotFound
 CDEFNFnd		EQU 		dsCDEFNotFound
 
 ;__________________________________________________
-; obsolete System Errors that are no longer used, but I don’t have the guts to remove from this file
+; obsolete System Errors that are no longer used, but I don't have the guts to remove from this file
 
 dsNotThe1 		EQU 		31        				; not the disk I wanted
 dsBadStartupDisk  EQU 		42        				; unable to mount boot volume (sad Mac only)
-dsSystemFileErr   EQU 		43        				; can’t find System file to open (sad Mac only)
-dsHD20Installed   EQU 		-12       				; say “HD20 Startup”
+dsSystemFileErr   EQU 		43        				; can't find System file to open (sad Mac only)
+dsHD20Installed   EQU 		-12       				; say 'HD20 Startup'
 mBarNFnd  		EQU 		-126      				; *** replaced by dsMBarNFnd
 hMenuFindErr  	EQU 		-127      				; *** replaced by dsHMenuFindErr
 
@@ -840,7 +840,7 @@ exUserBreak   	EQU 		-492      				; debugger break; debugger commands on stack
   				ENDIF
 
 ;____________________________________________________________________________________________________
-; obsolete errors that are no longer used, but I don’t have the guts to remove from this file
+; obsolete errors that are no longer used, but I don't have the guts to remove from this file
 
 selectorErr		EQU			paramErr				; bad selector, for selector-based traps
 

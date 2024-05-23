@@ -7,7 +7,7 @@
 		
 	Change History (most recent first):
 
-		<12>	 3/30/92	DTY		What’s Don up to now? 5 broken builds? Because Packages doesn’t
+		<12>	 3/30/92	DTY		What's Don up to now? 5 broken builds? Because Packages doesn't
 									include StandardFile any more, we need to do it ourselves to get
 									DlgHookProcPtr.  Since this is the only thing that was needed
 									out of Packages.p, nail Packages.p to keep build time to a

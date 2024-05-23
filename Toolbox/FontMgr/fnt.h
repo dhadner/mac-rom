@@ -40,7 +40,7 @@
 	   <1.5>	  6/2/89	CEL		16.16 scaling of metrics, minimum recommended ppem, point size 0
 									bug, correct transformed integralized ppem behavior, pretty much
 									so
-	   <1.4>	 5/26/89	CEL		EASE messed up on “c” comments
+	   <1.4>	 5/26/89	CEL		EASE messed up on 'c' comments
 	  <•1.3>	 5/26/89	CEL		Integrated the new Font Scaler 1.0 into Spline Fonts
 
 	To Do:

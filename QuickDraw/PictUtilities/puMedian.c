@@ -119,7 +119,7 @@ void	FillMedianTable( BoxInfo *, ColorSpec *, short );
 /*----------------------------------------------------------------------------------------------------------*/
 
 /*
-|	This routine is called to initialize the median method. It doesn’t really do anything, except tell
+|	This routine is called to initialize the median method. It doesn't really do anything, except tell
 |	the main picture utilities package that it should store the colors in the ExactAnd555 format.
 */
 
@@ -139,7 +139,7 @@ short	*colorBankTypePtr	)
 /*----------------------------------------------------------------------------------------------------------*/
 
 /*
-|	This routine is called to kill the median method. It doesn’t do anything.
+|	This routine is called to kill the median method. It doesn't do anything.
 */
 
 pascal OSErr KillMedianMethod(
@@ -191,8 +191,8 @@ ColorSpec	*resultPtr	)
 
 /*
 |	Allocate two buffers, one to hold a box ID number for each color in the histogram and the second one to hold
-|	the actual box information (component range, etc). Then make “boxInfoPtr” a pointer to the first boxInfo in
-|	the boxInfo buffer. This variable won’t get reset until after the main loop.
+|	the actual box information (component range, etc). Then make 'boxInfoPtr' a pointer to the first boxInfo in
+|	the boxInfo buffer. This variable won't get reset until after the main loop.
 */
 
 	if( error = NewBufferClear( &boxIDBuffer, HistogramTableSize, bufferFixedType ) )
@@ -275,7 +275,7 @@ ColorSpec	*resultPtr	)
 |	going to split the box that we find into two sub-boxes. After we split the box, we loop back and scan thru
 |	all the filled boxes again (this time there is one more filled box than last time. We terminate both loops,
 |	when we have reached the number of colors to fill. Note that since we clipped colorsToFill to the total number
-|	of colors in the histogram, we will never be in a situation where we can’t split a box, but we haven’t used
+|	of colors in the histogram, we will never be in a situation where we can't split a box, but we haven't used
 |	all our colors yet.
 |
 |	Note that we declare a separate block to allow us to registerize some other variables.
@@ -419,7 +419,7 @@ short		dstBox	)
 
 /*
 |	The second box has a count that is equal to one half of the source box. Note that we subtract
-|	the number of colors we removed from the source box’s count to ensure that even if the count is
+|	the number of colors we removed from the source box's count to ensure that even if the count is
 |	odd, we will not lose a color.
 |
 |	We use a separate block in order to get register variables for our two box pointers (srcBoxPtr
@@ -461,7 +461,7 @@ short		dstBox	)
 /*
 |	Here is where we sort the range blocks in order of the spread between the components. Notice that
 |	since we have a RangeInfo structure for each, we only need to swap pointers to swap two elements
-|	in this structure. Also notice that we don’t have to actually swap the pointers, since we know
+|	in this structure. Also notice that we don't have to actually swap the pointers, since we know
 |	the value of at least one of them at all times.
 |
 |	We need a separate code block again so that we can registerize the pointers to each of our range
@@ -565,7 +565,7 @@ exitLoop:
 
 	/*
 	|	This is where we loop thru all the colors in the old range, checking them against either the
-	|	source or destination box structure’s minimums and maximums. Note that boxIDPtr is a pointer
+	|	source or destination box structure's minimums and maximums. Note that boxIDPtr is a pointer
 	|	into the boxID buffer that tells which box each color belongs to. We can increment it by one
 	|	as we move thru the blue component, but before each blue loop, we need to set it up properly.
 	*/

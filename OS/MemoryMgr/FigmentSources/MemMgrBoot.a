@@ -442,7 +442,7 @@ IAZ 		Move.L	A6,-(SP)				;Save A6.
 			; at boot time.  Remove use of antiquated ToMaxLimit.							<C817>
 			Move.l	SP,D1					;current stack									<C817>
 			Sub.L	DefltStack,D1			;enough space for even QD						<C817>
-			Move.L	D1,ApplLimit			;Use stack limit, NOT BufPtr’s					<C778>
+			Move.L	D1,ApplLimit			;Use stack limit, NOT BufPtr's					<C778>
 			Move.L	D1,HiHeapMark			;Start HiHeapMark in sync with					<C778>
 											;ApplLimit in case of glue MaxApplZone<C778>
 
@@ -512,7 +512,7 @@ Fig_VIAZINIT							;<7 BT>
 			JSR 	(A0)
 
 @0			MOVE.W	#-1,WWExist 		; $FF for non-existence (also sets QDExist)
-			ST		FMExist				; $FF for InitFonts hasn’t been called
+			ST		FMExist				; $FF for InitFonts hasn't been called
 ;			 BSET	 #7,DSWndUpdate 	 ; cancel pending PaintBehind
 			CLR.L	MenuList
 ;			Clr.L	LastFOND			;											<06May85>

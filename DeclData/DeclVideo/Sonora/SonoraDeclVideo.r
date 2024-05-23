@@ -12,7 +12,7 @@
 									per Product Marketing's request.
 	  <SM14>	09-23-93	jmp		Commented out the PDM-specific video name directory to eliminate
 									the list of family modes for the RAM allocation stuff (which
-									isn’t happening anyway).
+									isn't happening anyway).
 	  <SM13>	08-06-93	jmp		More completely filled out the timingInfo list.
 	  <SM12>	08-03-93	jmp		Began cleaning up the support for dynamically allocating RAM in
 									PDM for video.
@@ -24,8 +24,8 @@
 									by adding a 1bpp-only mode to all the supported displays, as
 									well as added a new video-name directory as a (hopefully)
 									temporary interface to this feature.
-	   <SM7>	  3/9/93	jmp		Changed the name of the PDM board sRsrc to “AMIC Built-in
-									Video.”
+	   <SM7>	  3/9/93	jmp		Changed the name of the PDM board sRsrc to 'AMIC Built-in
+									Video.'
 	   <SM6>	  3/5/93	CCH		Made some mods to support Mace on Sonora/PDM.
 	   <SM5>	  3/4/93	dwc		Added DeclDataPDMMace definition for PDM ENET.
 	   <SM4>	 11/2/92	kc		Change ObjDir to RsrcDir.
@@ -41,7 +41,7 @@
 
 #include "Types.r"
 
-#define	_NO_SINL_ // Don’t need 'SINL' resource here.
+#define	_NO_SINL_ // Don't need 'SINL' resource here.
 #include "ROMLink.r"
 #undef	_NO_SINL_
 

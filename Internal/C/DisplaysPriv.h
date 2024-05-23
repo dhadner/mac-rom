@@ -348,14 +348,14 @@ struct DisplayManagerGlobalsRec {
 
 // ••• Warning •••
 //
-//	  The BlackBird/Yeager mirroring code currently accesses these globals directly.  So, don’t move them
+//	  The BlackBird/Yeager mirroring code currently accesses these globals directly.  So, don't move them
 //	  without updating that code as well.
 //
 // •••
 //
 	Boolean				fDevicesOverLap,				// If true, *some* gDevices are overlapped (partically or fully).
 						fDevicesMirrored,				// If true, all gDevices are fully overlapped, smallest gDevice determines rectangle for all devices.
-						fMirroringBlocked;				// If true, mirroring has been “artifically” blocked (several 3rd-parties asked for this).
+						fMirroringBlocked;				// If true, mirroring has been 'artifically' blocked (several 3rd-parties asked for this).
 	unsigned char		fUnused1Byte4;					//
 	
 //	

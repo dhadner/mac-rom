@@ -163,7 +163,7 @@ typedef struct  {
 	ushort		senseWaiting;	// Total number of parmeter blocks waiting for autosense
 	SCSIInstr 	senseTIB[2];	// The TIB for autosense ($a * 2 = $14)
 
-	void		(*MakeCallback)();	// pointer to the XPT layer’s MakeCallback routine
+	void		(*MakeCallback)();	// pointer to the XPT layer's MakeCallback routine
 	Boolean		defaultDisc;	// true if we should default to disconnect allowed
 	uchar		hostID;			// Macintosh's (initiator's) SCSI ID on this bus
 	char		unusedC8;

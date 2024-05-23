@@ -30,8 +30,8 @@
 ;									Sound Manager equates. From FLUSH to DMAFLUSH.
 ;		<P7>	  4/2/92	mal		Added ifdef to ensure we only included once per asm.
 ;		<P6>	  4/2/92	mal		Updated PSCIntTbl to real lowmem location.
-;		<P5>	 2/28/92	chp		Modified structure of PSCIntTbl and changed “IRE” references to
-;									“IER” (interrupt enable register) for consistency with
+;		<P5>	 2/28/92	chp		Modified structure of PSCIntTbl and changed 'IRE' references to
+;									'IER' (interrupt enable register) for consistency with
 ;									documentation and other parts of the source.
 ;		<P4>	 2/21/92	mal		Removed sound equates.
 ;		<P3>	 2/14/92	mal		Removed use of PSCBase, all registers defined as offsets.
@@ -261,8 +261,8 @@ SCCATXhndlr		ds.l	1			; SCCATX DMA int. handler
 SCCATXparm		ds.l	1
 
 ; For Sound compatibility with older systems, the Level 5 DSP Interrupt handler
-; installs a “deferred” handler/parm here.  PSCServiceInt will run this handler
-; if one exists and it’s about to RTE to level 0 or 1.
+; installs a 'deferred' handler/parm here.  PSCServiceInt will run this handler
+; if one exists and it's about to RTE to level 0 or 1.
 ;
 DSPL2hndlr  	ds.l 		1	 	; ptr to head of queue
 DSPL2parm 		ds.l 		1	 	; ptr to tail of queue

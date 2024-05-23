@@ -74,15 +74,15 @@ Radar bug: #1024114
 
 > Release notes for this change:
 
-Application Assassin doesn’t work in Cube-E because it relied on hard coded offsets to Process
+Application Assassin doesn't work in Cube-E because it relied on hard coded offsets to Process
 Manager globals.  Too bad these globals moved in Cube-E.  Since the Assassin is in the Finder in
 Cube-E, provide an interface to get to these globals so that the Finder and the Process Manager
-aren’t TOO incestuous.  Added PEntryFromProcessSerialNumber, which is selector $4F off of
+aren't TOO incestuous.  Added PEntryFromProcessSerialNumber, which is selector $4F off of
 _OSDispatch.
 
 > What was tested:
 
-There’s an internal routine, PEntryFromPSN which does exactly what we want.  We made a copy
+There's an internal routine, PEntryFromPSN which does exactly what we want.  We made a copy
 of this routine and gave it a public private interface.  Changed a call to PEntryFromPSN to call the
 new routine and watched it go through the dispatcher and return the same result as the original
 routine.
@@ -123,7 +123,7 @@ Radar bug: #1025416
 
 > Release notes for this change:
 
-On each Process Manager context switch, call Skia to tell it to switch it’s globals as well.
+On each Process Manager context switch, call Skia to tell it to switch it's globals as well.
 
 
 > What was tested:
@@ -144,7 +144,7 @@ Radar bug: #1019369
 > Release notes for this change:
 
 Also bugs 1015630 & 1015640.  Instead of having each DA lock and unlock the keyboard, let DA
-Handler do it for them.  Now, each DA sets the keyboard to the desired state in it’s open call, and
+Handler do it for them.  Now, each DA sets the keyboard to the desired state in it's open call, and
 DA Handler will set and restore this state for each DA.
 
 > What was tested:
@@ -167,7 +167,7 @@ If the an input method opens a floating window in the context of a TSM unaware a
 
 > What was tested:
 
-Built the system.  Ran Kadokawa (inline aware test app) and clicked on Akiko’s buttons.  This formerly would bus error.  Doesn’t crash anymore.
+Built the system.  Ran Kadokawa (inline aware test app) and clicked on Akiko's buttons.  This formerly would bus error.  Doesn't crash anymore.
 
 ----------------------------------------------------------•----------------------------------------------------------
 4/25/92 2:56:52 PM
@@ -185,7 +185,7 @@ Radar bug: #1027486
 > Release notes for this change:
 
 When a modal dialog is the front window, most of the applications cannot handle the
-update event for another window properly.  In particular, if the ‘About Keyboards…’
+update event for another window properly.  In particular, if the ‘About Keyboards…'
 dialog is the front, nobody can handle it.  This means that every GetNextEvent call
 returns an update event until the modal dialog is dimissed.  This causes many problems…
 In the previous implementation, even TSM windows cannot receive update events in this
@@ -211,7 +211,7 @@ Pass mouse down events to the front application when the front app is inline awa
 
 > What was tested:
 
-Launch an inline aware app, then click Akiko’s palette.  The event was sent to the front
+Launch an inline aware app, then click Akiko's palette.  The event was sent to the front
 app, instead of swm driver as expected.
 ----------------------------------------------------------•----------------------------------------------------------
 5/11/92 11:31:30 AM
@@ -360,7 +360,7 @@ Radar bug: #1032359
 > Release notes for this change:
 
 68040 memory manager (Terror ROM) has been patched to quadword align all blocks.  The
-ProcessMgr has to do this in it’s blocks too so that it’s consistent and also remove the
+ProcessMgr has to do this in it's blocks too so that it's consistent and also remove the
 possibility of physical size of the block being > 16 bytes beyond logical end of block.
 This was creating problems in 24 bit mode where some blocks were getting way too big
 because of mixed alignment.
@@ -381,15 +381,15 @@ Radar bug: #1033306
 
 > Release notes for this change:
 
-A Single Click occasionally acts like ‘Double Click’ in floating windows.
+A Single Click occasionally acts like ‘Double Click' in floating windows.
 This is because that the imLayerMouseDown function does not remove the mouse down event
 from the event queue if the event was found by OSEventAvail in fg_resched.
 Change imLayerMouseDown and fg_resched to remove the mouse down event for a floating
-window whenever it’s found.
+window whenever it's found.
 
 > What was tested:
 
-Click Akiko’s pallet.  It no longer posts an character.
+Click Akiko's pallet.  It no longer posts an character.
 ----------------------------------------------------------•----------------------------------------------------------
 6/22/92 7:56:12 PM
 
@@ -414,18 +414,18 @@ Radar bug: #1033275
 > Release notes for this change:
 
 The Terror Memory Manager wants to keep memory blocks 16-byte aligned for speed.
-However, the Process Manager doesn’t do this as it’s creating application heaps, and
+However, the Process Manager doesn't do this as it's creating application heaps, and
 allocation temporary memory.  The original change was made in a routine that assumed
 that the needed size would never be larger than the size of the free block that the
 memory was being chipped off of.  When the change did the quad alignment, it broke this
 assumption.  This winds up trashing the Process Manager heap.  Moved the quad alignment
 out one level.  In this routine, there is code which aligns memory blocks on long word
-boundaries.  The quad alignment code was added here, and quad alignment is done if we’re
+boundaries.  The quad alignment code was added here, and quad alignment is done if we're
 running on an 040 machine, and does the old longword alignment in other cases.
 
 > What was tested:
 
-Excel, TeachText, etc. don’t crash on a Quadra any more if the preferred memory size is
+Excel, TeachText, etc. don't crash on a Quadra any more if the preferred memory size is
 set to be larger than available memory.
 ----------------------------------------------------------•----------------------------------------------------------
 7/8/92 1:56:52 AM
@@ -446,7 +446,7 @@ Radar bug: #1035120
 
 > Release notes for this change:
 
-Fix the resource manager so it wouldn’t cause problems for the font manager when
+Fix the resource manager so it wouldn't cause problems for the font manager when
 disposing or releasing a resource being referred to in the LastFOND global.  If the file
 containing the FOND was closed, or the resource released, then a dangling handle would be
 left in LastFOND.  A patch to ReleaseResource now clears LastFOND if the resource being
@@ -455,7 +455,7 @@ the file being closed contains any fonts (FONT, NFNT, and FOND).
 
 > What was tested:
 
-Run the crashing case from 1035120 and verify that it doesn’t crash any more.  Also, pop
+Run the crashing case from 1035120 and verify that it doesn't crash any more.  Also, pop
 into the debugger and watch the patches zero the low memory global when appropriate.
 ----------------------------------------------------------•----------------------------------------------------------
 7/20/92 8:22:15 PM
@@ -471,17 +471,17 @@ Radar bug: #1033230
 MouseDown event for the TSM aware application is posted to the PseudoEvent queue (and the
 original even is changed to a NULL event). This MouseDown event should have higher
 precedence than the UpdateEvent when GetNextEvent() is called (IM I-245). There was a bug
-in our patch to the Process Manager which didn’t check the PseudoEvent queue when an
+in our patch to the Process Manager which didn't check the PseudoEvent queue when an
 UpdateEvent is been generated. And therefore in this particular case, GetNextEvent() only
 returns NULL event and UpdateEvent to the ModalDialog. Because there is no MouseDown
-event been sent to the input method, Akiko’s floating window cannot be dragged.
+event been sent to the input method, Akiko's floating window cannot be dragged.
 You may ask why it works without TSMTE. The answer is when a MouseDown event happens and
 the application is not TSM aware, that MouseDown event gets send to the SWM driver
 directly thru the _Control call.
 
 > What was tested:
 
-Tested with Kadokawa and we can drag Akiko’s window now. However, we would like this
+Tested with Kadokawa and we can drag Akiko's window now. However, we would like this
 change gets more test support from SQE to make sure it is perfect.
 ----------------------------------------------------------•----------------------------------------------------------
 7/27/92 5:05:57 PM
@@ -496,13 +496,13 @@ Radar bug: #1037295
 
 In the previous change, retVal would be set to the result from GetNextPseudoEvent.  If
 there is no pseudoevent, the pending update event is never processed.  This causes modal
-dialogs to come up blank.  Don’t set retVal to be the result of GetNextPseudoEvent so
+dialogs to come up blank.  Don't set retVal to be the result of GetNextPseudoEvent so
 that updates will be processed if there are no pseudo events.
 
 > What was tested:
 
 A reproducable case was found with the Curare application when trying to save a file.
-The “Are you sure you want to replace” subdialog from Standard File would come up blank.
+The 'Are you sure you want to replace' subdialog from Standard File would come up blank.
 With this change, this modal dialog is always drawn correctly.
 ----------------------------------------------------------•----------------------------------------------------------
 8/13/92 12:31:33 PM
@@ -517,10 +517,10 @@ Radar bug: #1039646
 
 PhotoShop would crash if you opened a TSM floating window.  The problem was the the
 changes in event_common to support floating windows just ignored activate events, since
-activate events don’t make sense in terms of floating windows.  That meant that activate
+activate events don't make sense in terms of floating windows.  That meant that activate
 events for floating system windows were mistakenly passed to applications.  This
-apparently didn’t matter much for must apps, but PhotoShop graps a code block out of the
-window’s refcon and tries to jump to it.  Since the refcon of a system floater is
+apparently didn't matter much for must apps, but PhotoShop graps a code block out of the
+window's refcon and tries to jump to it.  Since the refcon of a system floater is
 something very different from a ptr to a block of code, PhotoShop would crash.
 
 This was fixed by changing event_common so that it pays attention to activate events
@@ -634,7 +634,7 @@ Radar bug:
 
 > Release notes for this change:
 
-Change the funky MODSQUAD conditional to be #ifdef’s like everything else.
+Change the funky MODSQUAD conditional to be #ifdef's like everything else.
 
 > What was tested:
 
@@ -688,11 +688,11 @@ Radar bug:
 
 > Release notes for this change:
 
-Change some BlockMoves to BlockMoveData, so the caches don’t get flushed.
+Change some BlockMoves to BlockMoveData, so the caches don't get flushed.
 
 > What was tested:
 
 Built a new Process Manager and booted with it.  On systems with BlockMoveData,
-BlockMoveData is used, and the caches aren’t flushed.  On systems without BlockMoveData,
+BlockMoveData is used, and the caches aren't flushed.  On systems without BlockMoveData,
 the old BlockMove is used.
 ----------------------------------------------------------•----------------------------------------------------------

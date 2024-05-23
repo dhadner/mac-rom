@@ -212,7 +212,7 @@ size				equ		*
 ;
 ;	Function:	Removes any previously registered Grand Central interrupt handler
 ;				by replacing it with the spurious interrupt vector and zeroing
-;				the handlerÕs reference constant.
+;				the handler's reference constant.
 ;
 ;	Inputs:		D0.L	interrupt flag specifying interrupt source for handler
 ;

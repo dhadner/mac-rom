@@ -14,7 +14,7 @@
 ;
 ;	   <SM6>	  2/1/94	SWC		Changed the entry code for setting up the drawing environment to
 ;									only do that for calls that will actually be doing some drawing.
-;									This is to prevent the situation where a ‘clut’ resource is
+;									This is to prevent the situation where a ‘clut' resource is
 ;									continuously being loaded (by GetCTable) and unloaded (by
 ;									DisposeCTable) when all that's being done is hit testing, region
 ;									calculations, etc. This fixes a problem when running Microsoft
@@ -79,8 +79,8 @@
 ;		<21>	 9/20/90	VL		Reverted changes to Hilite255 in <14>. Use the variation code (>
 ;									1) for the Hilite255 (which draws a gray border around the
 ;									erased scroll bar area).
-;		<20>	 9/16/90	csd		If the control is not being drawn to the screen, don’t use
-;									DeviceLoop, and don’t switch to the WMgrCPort.
+;		<20>	 9/16/90	csd		If the control is not being drawn to the screen, don't use
+;									DeviceLoop, and don't switch to the WMgrCPort.
 ;		<19>	 9/15/90	VL		Switch to sysZone before FillRect so that the pixpat created
 ;									will be persistent.
 ;		<18>	 9/15/90	VL		Twitched the colors one more time for HI.
@@ -99,7 +99,7 @@
 ;									offscreen to avoid flickering.
 ;		<11>	  8/9/90	VL		Did some smart drawing to reduce flickering.
 ;		<10>	  8/7/90	DTY		Tweaked the colors a bit so the scroll bars look more like
-;									Pauline’s drawings.
+;									Pauline's drawings.
 ;		 <9>	  8/6/90	VL		Another rewrite for color/shaded scroll bars
 ;									(drawing to WMgrCPort, tinged symbols, pix pattern ....)
 ;		 <8>	 7/20/90	gbm		get rid of an Asm warning
@@ -110,7 +110,7 @@
 ;									removed the new messages for the 32-bit clean control manager
 ;									from the 6.x portion of the file. Finally, changed the version
 ;									number of the system seven CDEF.
-;		 <5>	 4/19/90	csd		initialize tempPixels(A6) to nil so that HUnlock doesn’t blow
+;		 <5>	 4/19/90	csd		initialize tempPixels(A6) to nil so that HUnlock doesn't blow
 ;									up; renumbered owned resources to be in the correct range.
 ;		 <4>	 4/13/90	csd		Disabled (temporarily) the color interface by requiring 33
 ;									bits/pixel in CheckAvailableColors.
@@ -282,8 +282,8 @@ cRtDisabledArrow	equ 	11
 cVThumbPat			equ		12
 cHThumbPat			equ		13
 
-; fakeDeviceFlags is used when we bypass DeviceLoop and draw the control directly, and we’re
-; on a machine that doesn’t have Color QuickDraw.
+; fakeDeviceFlags is used when we bypass DeviceLoop and draw the control directly, and we're
+; on a machine that doesn't have Color QuickDraw.
 
 fakeDeviceFlags		equ		$A801
 
@@ -472,9 +472,9 @@ DrawSBar
 		; multiple monitors. If we are not drawing to the screen, then _DeviceLoop
 		; could do the wrong thing--just draw the control directly.
 
-			move.l	(A5), A0			; point to QuickDraw’s globals
+			move.l	(A5), A0			; point to QuickDraw's globals
 			move.l	thePort(A0), A1		; get a pointer to the current port					<35>
-			lea		portBits(A1), A0	; point to “bitmap” in the port						<35>
+			lea		portBits(A1), A0	; point to 'bitmap' in the port						<35>
 			tst.w	rowBytes(A0)		; is this a color port?
 			bpl.s	@bitmap
 			move.l	baseAddr(A0), A0	; pixmap handle
@@ -484,7 +484,7 @@ DrawSBar
 			bne.s	@notOnScreen		; yes, so it is not a screen no matter what he says	<35>
 
 			move.l	ScrnBase, D0		; get base address of screen
-			cmp.l	baseAddr(A0), D0	; is it the same as thePort’s ?
+			cmp.l	baseAddr(A0), D0	; is it the same as thePort's ?
 			beq.s	@drawToScreen		; if yes, then use DeviceLoop to draw to the screen
 @notOnScreen
 
@@ -515,14 +515,14 @@ DrawSBar
 			move.l	(SP), D0			; get the region handle
 			move.l	D0, controlRgn(A6)	; save it for disposal
 			move.l	(A3), A0			; point to control
-			pea		contrlRect(A0)		; push control’s rect
-			_RectRgn					; make a region of the control’s rect
+			pea		contrlRect(A0)		; push control's rect
+			_RectRgn					; make a region of the control's rect
 
 			st.b	onScreen(a6)		; we are drawing to the screen						<35>
 
 			move.l	controlRgn(A6), -(SP)
 			pea		CDefDrawControl		; address of devloop drawing proc
-			move.l	#-1, -(SP)			; flag that we’re drawing to the screen
+			move.l	#-1, -(SP)			; flag that we're drawing to the screen
 			clr.l	-(SP)				; no unusual activities
 			_DeviceLoop
 
@@ -540,7 +540,7 @@ CDefDrawControl
 			bsr		CheckAvailableColors	; see if we have enough colors and see whether
 											;  we have an old-style grafport on color device
 			tst.l	userData(SP)			; are we drawing to the screen?
-			bz.s	@dontChangePorts		; if not, don’t switch to the WMgrCPort
+			bz.s	@dontChangePorts		; if not, don't switch to the WMgrCPort
 			bsr		SetupWMgrCPort			; see whether we need to use the WMgrCPort. If we
 											;	do, set it up.
 @dontChangePorts
@@ -758,7 +758,7 @@ DrawControlExit
 ; all done drawing the scroll bar
 
 			tst.l	userData(SP)			; are we drawing to the screen?
-			bz.s	@dontRestorePort		; if not, we didn’t switch to the WMgrCPort
+			bz.s	@dontRestorePort		; if not, we didn't switch to the WMgrCPort
 			bsr		RestoreOldPort
 @dontRestorePort
 			move.l	(SP)+, A0			; return address
@@ -794,8 +794,8 @@ DrawArrowBox
 			
 @notHighlighted
 			move.w	D0, D1				; Save gadget resource ID
-			tst.b	shaded(a6)			; If we’re drawing in black and white, then
-			bz.s	@bwScrollBar		; it doesn’t matter if we’re disabled or not.
+			tst.b	shaded(a6)			; If we're drawing in black and white, then
+			bz.s	@bwScrollBar		; it doesn't matter if we're disabled or not.
 			
 			bsr.s	IsDisabled			; If disabled & drawing in colour,						<SM6>
 			bnz.s	@notDisabled		; use black and white arrows to draw.
@@ -815,7 +815,7 @@ DrawArrowBox
 ;
 
 @bwScrollBar
-			clr.w	shaded(A6)			; pretend we don’t have color
+			clr.w	shaded(A6)			; pretend we don't have color
 			exg		d0,d1				; Save a branch by doing this exchange
 			move.w	#kHollowRightArrow,d1
 			sub.w	d0,d1				; Change resource ID into bitmap index
@@ -823,7 +823,7 @@ DrawArrowBox
 			move.w	d1,d0
 @drawArrow
 			bsr		SetupColorPict		; prepare the picture
-			move.w	(SP)+,shaded(A6)	; restore ‘use color’ flag
+			move.w	(SP)+,shaded(A6)	; restore ‘use color' flag
 			bra		PlotSymbol			; Go plot the arrow
 
 ; Utility ShouldIDraw -- to test when to skip drawing a part of the scrollBar.
@@ -1303,7 +1303,7 @@ ThumbSBar
 
 ;----------------------------------------------------------------------------
 ;
-; These routines are the heart of the WDEF’s ability to draw the right thing
+; These routines are the heart of the WDEF's ability to draw the right thing
 ; on the right device based on the depth of the device. There are three kinds
 ; of window color types we can draw:
 ;
@@ -1354,7 +1354,7 @@ CheckAvailableColors
 ; This routine is called just as we enter the _DeviceLoop drawing proc, after
 ; the current depth has been stored in curDepth(A6). If the depth is 8 bits
 ; per pixel or greater, and the wctb for this window is the default, then
-; we’re going to draw the System 7 three-d windows instead (threeDWind gets
+; we're going to draw the System 7 three-d windows instead (threeDWind gets
 ; set to TRUE). Otherwise, threeDWind gets set to FALSE.
 ;----------------------------------------------------------------------------
 			movem.l	D3-D4/A2, -(SP)					; these should be saved
@@ -1388,10 +1388,10 @@ CheckAvailableColors
 			rts
 
 CheckShadesAvailable
-			move.w	(A2), D3						; get next ‘light’ color
+			move.w	(A2), D3						; get next ‘light' color
 			move.l	#'csd ', D4						; an unlikely pixel value
 @rampLoop
-			cmp		(A2), D3						; get the next shade’s light color
+			cmp		(A2), D3						; get the next shade's light color
 			bne.s	@exit							; if new, reinit for new ramp
 			move.l	A2, A0							; point to shade entry
 			bsr		SetupRatioColor					; get shade in tempRGB
@@ -1401,7 +1401,7 @@ CheckShadesAvailable
 			move.l	(SP)+, D0						; get the pixel index
 			cmp.l	D0, D4							; is it the same as last time?
 			beq.s	@failure						; if so, not enough colors
-			move.l	D0, D4							; update ‘last’ shade index
+			move.l	D0, D4							; update ‘last' shade index
 			addq.l	#6, A2							; point to next shade
 			bra.s	@rampLoop						; and test it
 @failure
@@ -1467,12 +1467,12 @@ SetupWMgrCPort
 			clr.l	-(SP)					;
 			_NewRgn							; Allocate new region
 			move.l	(SP),wMgrCPortClipRgn(A6)
-			_GetClip						; save WMgrPort’s clipRgn
+			_GetClip						; save WMgrPort's clipRgn
 
 			move.l	tempRgn(a6),-(sp)		; pea old-style clip region (for DisposRgn)
 			move.l	(sp),-(sp)				; (for SetClip)
 
-			_SetClip						; Clip to the window’s clipRgn
+			_SetClip						; Clip to the window's clipRgn
 			_DisposRgn						; Get rid of tempRgn
 
 @dontDrawToWMgrCPort
@@ -1648,7 +1648,7 @@ SetupColorPict
 			move.w	#MapTrue,RomMapInsert				;									<SM2> rb
 			_GetResource								; look in ROM first					<SM2> rb
 			move.l	(SP)+, A0							; pixels handle
-			_HLock										; don’t want it to move
+			_HLock										; don't want it to move
 			move.l	A0, tempPixels(A6)					; save for dispose
 			move.l	(A0), A2							; point to pixels info
 			move.l	workPixmap(A6), A1					; get pixmap handle

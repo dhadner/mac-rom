@@ -11,7 +11,7 @@
 
 	Change History (most recent first):
 	
-	  <SMG2>	 9/29/93	chp		Fix “include once” SET variable naming conventions.
+	  <SMG2>	 9/29/93	chp		Fix 'include once' SET variable naming conventions.
 	   <SM6>	10/14/93	pdw		<MC> roll-in.
 	   <SM5>	 9/12/93	pdw		Changed name of EnqueueHead to CEnqueueHead to avoid conflict
 									with newly added ROM OS routine.

@@ -11,7 +11,7 @@
 
 	   <SM2>	12/13/93	chp		Add TStat encodings.
 		 <1>	11/10/93	fau		first checked in
-	  <SMG3>	10/26/93	chp		Checking in the first “complete” version.
+	  <SMG3>	10/26/93	chp		Checking in the first 'complete' version.
 	  <SMG2>	 9/29/93	chp		Add channel control bits and channel commands. Prepare for
 									littleEndian support by default.
 

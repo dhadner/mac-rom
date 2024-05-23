@@ -8,7 +8,7 @@
 	Change History (most recent first):
 
 		 <5>	10/22/91	RB		Add support for sfnt-embedded-bitmaps
-		 <4>	 5/23/91	dba		get rid of extraneous equates that don’t quite work
+		 <4>	 5/23/91	dba		get rid of extraneous equates that don't quite work
 		 <3>	12/20/90	MR		Correct INTEL definition of tag_FontProgram. [rb]
 		 <2>	12/11/90	MR		Add trademark selector to naming table list. [rb]
 		<10>	  8/8/90	JT		Fixed spelling of SFNT_ENUMS semaphore at the top of the file.
@@ -16,10 +16,10 @@
 		 <9>	 7/18/90	MR		Fixed INTEL version of tag_GlyphData
 		 <8>	 7/16/90	MR		Conditionalize redefinition of script codes
 		 <7>	 7/13/90	MR		Conditionalize enums to allow for byte-reversal on INTEL chips
-		 <6>	 6/30/90	MR		Remove tag reference to ‘mvt ’ and ‘cryp’
+		 <6>	 6/30/90	MR		Remove tag reference to ‘mvt ' and ‘cryp'
 		 <4>	 6/26/90	MR		Add all script codes, with SM naming conventions
 		 <3>	 6/20/90	MR		Change tag enums to #defines to be ansi-correct
-		 <2>	  6/1/90	MR		Add postscript name to sfnt_NameIndex and ‘post’ to tags.
+		 <2>	  6/1/90	MR		Add postscript name to sfnt_NameIndex and ‘post' to tags.
 	To Do:
 */
 

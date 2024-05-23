@@ -48,7 +48,7 @@
 									returned names for GetVolName and GetFileName to 255 chars. In
 									ValidateHandle, test for filename and volume name length is now
 									correct. In GetCatINfo, set versNum to 0 to keep MFS happy.
-		<29>	11/29/90	PP		(prp/ich) In Filename “EqualString” comparisons, do not ignore
+		<29>	11/29/90	PP		(prp/ich) In Filename 'EqualString' comparisons, do not ignore
 									diacritical marks in the name.  Get in sync with VolumeMount
 									equates in Files.h
 		<28>	11/14/90	PP		(PP/ich) In CheckIfAnyMatchesCriterion, the name check should be
@@ -472,7 +472,7 @@ pascal void AL_displayAlert(short strIdx)	//I	index into STR# resource
 	if (thisCPBPtr->hFileInfo.ioFDirIndex == 0 && dir == kVolRootDirID &&
 		nam != NULL && (Length(nam) >= (sizeof(Str27)-1)) && (*(nam+1) != kChrSeparator)) {
 
-		thisCPBPtr->hFileInfo.ioNamePtr = NULL;			// don’t use name pointer at all
+		thisCPBPtr->hFileInfo.ioNamePtr = NULL;			// don't use name pointer at all
 		thisCPBPtr->hFileInfo.ioDirID = kRootDirID;		// look for the root dirID
 		thisCPBPtr->hFileInfo.ioFDirIndex = -1;			// -1 index indicates dirID mode
 

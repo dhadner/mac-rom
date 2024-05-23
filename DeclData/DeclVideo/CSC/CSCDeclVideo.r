@@ -23,7 +23,7 @@
 
 #include "Types.r"
 
-#define	_NO_SINL_ // Don’t need 'SINL' resource here.
+#define	_NO_SINL_ // Don't need 'SINL' resource here.
 #include "ROMLink.r"
 #undef	_NO_SINL_
 
@@ -372,7 +372,7 @@ resource 'list' (6000, "_VidParmDir_CSC") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [Sharp]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [Sharp]
 //
 resource 'node' (6004,"_sVidParams_CSC_C_S_TFT_399") {{
 	blocksize{};
@@ -413,7 +413,7 @@ resource 'node' (6006,"_sVidParams_CSC_C_S_TFT_480") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [Sharp]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [Sharp]
 //
 resource 'node' (6008,"_sVidParams_CSC_C_S_TFT_399a") {{
 	blocksize{};
@@ -474,7 +474,7 @@ resource 'node' (6020,"_sVidParams_CSC_C_D_STN_480") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [NEC]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [NEC]
 //
 resource 'node' (6030,"_sVidParams_CSC_C_S_TFT_399b") {{
 	blocksize{};
@@ -515,7 +515,7 @@ resource 'node' (6040,"_sVidParams_CSC_C_S_TFT_480b") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [Hosiden]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [Hosiden]
 //
 resource 'node' (6050,"_sVidParams_CSC_C_S_TFT_399c") {{
 	blocksize{};
@@ -556,7 +556,7 @@ resource 'node' (6060,"_sVidParams_CSC_C_S_TFT_480c") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [Toshiba]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [Toshiba]
 //
 resource 'node' (6070,"_sVidParams_CSC_C_S_TFT_399d") {{
 	blocksize{};
@@ -675,7 +675,7 @@ resource 'node' (6130,"_sVidParams_CSC_G_S_TFT_480") {{
 }};
 
 //
-// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for “Thousands” (CSC) [Sharp-Yeager]
+// Color, TFT, Single-Drive, 640x480 Panel in 640x399 mode for 'Thousands' (CSC) [Sharp-Yeager]
 //
 resource 'node' (6140,"_sVidParams_CSC_C_S_TFT_399y") {{
 	blocksize{};

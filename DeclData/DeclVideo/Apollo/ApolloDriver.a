@@ -15,22 +15,22 @@
 ;		 <1>	 10/6/92	GDW		New location for ROMLink tool.
 ;		 <1>	 3/30/92	JSM		first checked in
 ;		 <6>	 5/22/91	jmp		Code Review changes:  For consistency, did a StripAddress on
-;									VidOpen’s copy of the privates; eliminated the redundant clears
+;									VidOpen's copy of the privates; eliminated the redundant clears
 ;									and checks for the the driver copy of the fixed-entry clut; and
-;									replaced #0’s with #noErr’s where appropriate.
-;		 <5>	 5/15/91	jmp		SetInterrupt wasn’t checking the input value correctly -- it was
+;									replaced #0's with #noErr's where appropriate.
+;		 <5>	 5/15/91	jmp		SetInterrupt wasn't checking the input value correctly -- it was
 ;									doing a csMode(A3) instead of csMode(A2).  So, it would either
 ;									enable (0) or disable (1), depending on whether csMode(A3) was
 ;									non-zero or not.  Also, GetInterrupt returned -1.w (instead of
 ;									1.b) for disabled, so some test tools were confused; so, I now
 ;									just return 1.b when interrupts are disabled.
-;		 <4>	 5/10/91	jmp		Fixed a bug in GetInterrupt where I wasn’t returning the
+;		 <4>	 5/10/91	jmp		Fixed a bug in GetInterrupt where I wasn't returning the
 ;									interrupt status, but instead was writing into my private
 ;									storage!  Fixed the error-handling code in VidOpen.  Fixed a bug
 ;									in GetEntries where A0 was not loaded properly.  Made GetEntries
 ;									32-bit clean.  GetEntries was trashing A1, so async calls were
 ;									failing (i.e., jumping thru IODone requires A1 to be pointing to
-;									the AuxDCE).  Indexed GetEntries didn’t work at all because I
+;									the AuxDCE).  Indexed GetEntries didn't work at all because I
 ;									was checking for indexed via A3 instead of A2!  Made the Control
 ;									& Status dispatchers 32-bit clean.  SaveMode was never being
 ;									setup!  Code review changes:  Eliminated SetEntries &
@@ -174,15 +174,15 @@ ApolloVidOpen
 				Move.b	dCtlSlotID(A1),spID(A0)		; Get the spID of video sRsrc.
 				Clr.b	spExtDev(A0)				;
 				_sRsrcInfo							; Try to get the spsPointer.
-				Bne.s	@OpError3					; We’re dead if this fails.
+				Bne.s	@OpError3					; We're dead if this fails.
 				
 				Move.b	#firstVidMode,spID(A0)		; Look for our mode entry.
-				_sFindStruct						; If we don’t find it, then
-				Bne.s	@OpError3					;	we’re dead.
+				_sFindStruct						; If we don't find it, then
+				Bne.s	@OpError3					;	we're dead.
 				
 				Move.b	#mTable,spID(A0)			; Get our fixed-entry CLUT.
-				 _sGetBlock							; If we don’t get it, then
-				Bne.s	@OpError3					;	we’re dead.
+				 _sGetBlock							; If we don't get it, then
+				Bne.s	@OpError3					;	we're dead.
 				
 				Move.l	spResult(A0),A0				; Get ptr to fixed-entry CLUT
 				Move.w	ctSize(A0),saveNumFixedEntries(A3)	; Save the number of entries.
@@ -193,7 +193,7 @@ ApolloVidOpen
 				
 				EndWith
 			
-; There’s only one vidMode, so save it now because SetMode doesn’t need to.
+; There's only one vidMode, so save it now because SetMode doesn't need to.
 ;
 				Move.w	#firstVidMode,saveMode(A3)	
 
@@ -321,7 +321,7 @@ ApolloSetVidMode
 ApolloSetEntries
 ;---------------------------------------------------------------------
 ;
-;	Since Apollo has no color table, there’s nothing do here.  Return a ctl
+;	Since Apollo has no color table, there's nothing do here.  Return a ctl
 ;	bad result (but do it up above in the control dispatcher, since it
 ;	saves a few bytes.
 ;
@@ -404,7 +404,7 @@ ApolloSetInterrupt
 				Bra		ApolloCtlGood					;   otherwise, return noError.
 
 ; The following two routines are used by SetInterrupt as well as by Open/Close.  So,
-;	their names don’t have @’s in front of them, and they return via Rts instructions.
+;	their names don't have @'s in front of them, and they return via Rts instructions.
 ;
 ApolloDisableVGuts
 		
@@ -414,7 +414,7 @@ ApolloDisableVGuts
 				Moveq	#7,D0							; Get mask into D0.
 				And.b	(Sp),D0							; Get the current interrupt level.
 				Subq.b	#2,D0							; If interrupt level ≥ 2,
-				Bge.s	@Ok								; 	then don’t change.
+				Bge.s	@Ok								; 	then don't change.
 				Ori.w	#$0200,Sr						; Otherwise, raise it above level 2,
 				Andi.w	#$FAFF,Sr						;	and make it level 2.
 @Ok
@@ -455,7 +455,7 @@ ApolloEnableVGuts
 ApolloSetDefaultMode
 ;---------------------------------------------------------------------
 ;
-;	Since Apollo only has one video sRsrc and it’s already set, just return
+;	Since Apollo only has one video sRsrc and it's already set, just return
 ;	a ctl bad result (but do it up above in the control dispatcher, since
 ;	it saves a few bytes.
 ;
@@ -588,16 +588,16 @@ ApolloGetEntries
 ;		Inputs : A2 = pointer to csParams
 ;				 A3 = pointer to privates
 ;
-;	For Apollo the color table is fixed.  So, we’ll always return good values
+;	For Apollo the color table is fixed.  So, we'll always return good values
 ;	as long as there is a reasonable looking color table around.
 ;
-;	Idea:	If we’re in indexed mode, we’ll cycle thru the input
-;			table.  While doing this, we’ll ignore all entries
+;	Idea:	If we're in indexed mode, we'll cycle thru the input
+;			table.  While doing this, we'll ignore all entries
 ;			whose value fields are out of range.  For entries
-;			whose value field are in range, we’ll return the
+;			whose value field are in range, we'll return the
 ;			appropriate rgb fields.
 ;
-;			If we’re in sequential mode, we just need to write out
+;			If we're in sequential mode, we just need to write out
 ;			the number of entries we know about.
 ;
 ;---------------------------------------------------------------------
@@ -615,7 +615,7 @@ ApolloGetEntries
 				Move.w	saveNumFixedEntries(A3),D3		; Get number of entries to check against.
 				
 				Move.w	csCount(A2),D4					; Get the number of entries to set,
-				Bmi.s	@GEErr							; 	and hike if it’s out of range.
+				Bmi.s	@GEErr							; 	and hike if it's out of range.
 				Cmp.w	D3,D4							; If D4-D3 > 0 (count > # of entries),
 				Bhi.s	@GEErr							;	then hike.
 				Move.w	D4,D2							; Otherwise, copy the count.
@@ -628,8 +628,8 @@ ApolloGetEntries
 				Add.w	csStart(A2),D2					;	csStart thru csCount entries.
 
 ; The following code is BAD, BAD, BAD!  We should build our own table here so
-;	as to NOT mess up the user’s data.  But all the previous Apple video drivers
-;	have done the same thing, so we’ll continue the trend for now.
+;	as to NOT mess up the user's data.  But all the previous Apple video drivers
+;	have done the same thing, so we'll continue the trend for now.
 
 @TableLoop		Move.w	D2,value(A0,D1*colorSpecSize)	; Write the index into the table.
 				Subq	#1,D2							; Decrement index.

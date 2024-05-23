@@ -18,12 +18,12 @@
 									left it, and on a suspend, set it to the original state.
 		<13>	 3/23/92	JSM		OSEvents.h is obsolete, use Events.h.
 		<12>	  1/9/92	DTY		In CleanupAndExit, check to see if there are any more desk
-									accessories running. If there aren’t, unload the DAHandler
-									segment. ThereAreMoreDeskAccessories ripped off from scott’s 7
+									accessories running. If there aren't, unload the DAHandler
+									segment. ThereAreMoreDeskAccessories ripped off from scott's 7
 									Up code.  Also unload Init and %A5Init in main() after DAHandler
 									is done with them.
 		<11>	 11/1/91	DTY		TOPMAPHANDLE should be set to the top system override map in
-									SetupMenus so DA’s can enjoy overridden system resources too.
+									SetupMenus so DA's can enjoy overridden system resources too.
 									Also, use the generic desk accessory icon if the desk accessory
 									is in a system override map.
 		<10>	  4/4/91	DFH		VL, WS#DFH-910404a : Fixed CloseDACleanupAndExit to be more
@@ -389,7 +389,7 @@ main(void)
 	/* Get the sucker open */
 	OpenTheDeskAccessory();
 
-	// <12> Now that DAHandler is up and running, it’s Init and %A5Init segments can be
+	// <12> Now that DAHandler is up and running, it's Init and %A5Init segments can be
 	//		unloaded.
 	
 	UnloadSeg((Ptr) StartupCode);			// <12> Unload Init

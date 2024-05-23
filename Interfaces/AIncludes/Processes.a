@@ -15,7 +15,7 @@
 ;									- evtBlkSize is in SysEqu.a: must be included.
 ;		<22>	  2/1/91	DFH		stb,WS#DFH-910131c:Removed Process Mgr defined AppleEvent codes.
 ;									They belong in {AIncludes}AppleEvents.a, which does not exist.
-;		<21>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<21>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<20>	 1/16/91	JDR		(dba) Moved the Process Mgr error numbers into the Errors
 ;									interface file. Including SysEqu.a for the evtBlkSize.

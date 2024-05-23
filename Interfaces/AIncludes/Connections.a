@@ -18,7 +18,7 @@
 ;									the conditional wrappers to conform to standards
 ;		 <9>	 6/18/91	BH		fix equate for cmIORecVersion
 ;		 <8>	 6/18/91	BH		move 1.1 stuff here
-;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <6>	 1/14/91	CP		Added cmStatusReserved0 bit to the flags field <BBH>
 ;		 <5>	  6/4/90	BBH		moved stuff to ConnectionsExtensions.a

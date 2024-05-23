@@ -21,7 +21,7 @@
 ;		<H2>	12/21/91 	jmp		(BG,Z3) Added fix for busy status from drive while spinning up.
 ;		<Z2>	10/2/90 	CCH		Added a cache flush after SCSI reads during boot.
 ;	   <SM1>	 5/22/92	CS		Cyclone (Pandora) roll in.
-;		 <9>	  5/1/92	JSM		Don’t use onMacXX style conditionals. This file now has no
+;		 <9>	  5/1/92	JSM		Don't use onMacXX style conditionals. This file now has no
 ;									conditionals.
 ;		 <8>	12/27/91	RB		Changed the flush cache code for 040's so it calls CacheFlush
 ;		 <7>	 9/16/91	JSM		Cleanup header.

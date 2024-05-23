@@ -89,7 +89,7 @@
 									c_RegisterDisposeProc API for ProcessMgr.
 	   <111>	 5/19/93	JC		Began changes as requested by the code review. Removed options
 									parameter from AllocateMoreMasters.
-	   <110>	 5/18/93	JC		Fixed the “zero k available” bug. Yippee! This fix requires a
+	   <110>	 5/18/93	JC		Fixed the 'zero k available' bug. Yippee! This fix requires a
 									new ProcessMgr to work completely. Also fixed Jim Gochees
 									problem one more time in MakeSpaceLow.
 	   <109>	 5/14/93	JC		Finish adding support for GZRootHnd, GZRootPtr, and GZMoveHnd.

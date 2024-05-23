@@ -1,4 +1,4 @@
-/*EASE$$$ READ ONLY COPY of file “task.h”
+/*EASE$$$ READ ONLY COPY of file 'task.h'
 ** 1.2	CCH 11/ 9/1988 Fixed header.
 ** 1.1	CCH 11/ 9/1988 Fixed headers and removed projector resource.
 ** 1.0	CCH 11/ 9/1988 Adding to EASE.

@@ -17,7 +17,7 @@
 ;	   <SM2>	 5/17/92	kc		Add get sGetSRTEntry vector number.
 ;		 <5>	  1/7/92	RB		Added a couple of records structures used to identify faulty
 ;									drivers in Apple display cards.
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 1/17/90	djw		Add new slotmgr private selector GetBoard
 ;	   <1.9>	 6/30/89	djw		removed pSlotStatus.

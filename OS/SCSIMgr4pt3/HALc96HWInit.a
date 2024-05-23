@@ -13,7 +13,7 @@
 ;									timeout values for MacRISC-style CPUs.
 ;	  <SM30>	11/22/93	pdw		Rolling in from <MCxx>.
 ;	   <MC6>	 11/8/93	pdw		Added support for new Cold Fusions with old parts!
-;	  <SM29>	11/19/93	chp		Don’t call ClearSCSIIRQ for level-sensitive HBAs.
+;	  <SM29>	11/19/93	chp		Don't call ClearSCSIIRQ for level-sensitive HBAs.
 ;	  <SMG2>	 9/29/93	chp		Add a test and call to initialize Grand Central DMA hardware.
 ;	  <SM27>	 11/7/93	pdw		Got rid of forPDMProto around DoWeHaveAMIC3B to help (but not
 ;									solve) build Bob's build problems.
@@ -298,7 +298,7 @@ AsmInit53c9xHW	PROC	EXPORT
 			nop
 			move.b	rINT(a3), d0				; read again just in case there was a stacked int
 
-			cmp.b	#LEVEL, intSensSCSI(A5)		; can’t really clear LEVEL-sensitive IRQ
+			cmp.b	#LEVEL, intSensSCSI(A5)		; can't really clear LEVEL-sensitive IRQ
 			beq.b	@1
 			ClearSCSIIRQ
 @1

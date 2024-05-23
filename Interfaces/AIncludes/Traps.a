@@ -101,7 +101,7 @@
 ;		<61>	  2/5/91	stb		dnf,dnf003: set the HFS bit (10 in the trap word) for all HFS
 ;									calls which have a dirID (CatSearch, Get|SetForeignPrivs) and
 ;									whose macros are currently wrong; privatize SaveRestoreBits.
-;		<60>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<60>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<59>	 1/23/91	JL		fixed DebugUtil macros. They weren't using the correct name for
 ;									the selector.
@@ -310,12 +310,12 @@ newHFS			EQU 		$200
 ;						DC.W	$AFFF				; No opword is defined for $AFFF yet
 ;
 ;	WARNING:
-;				Note: If you do not specify “ParamWords”, it assumes that:
+;				Note: If you do not specify 'ParamWords', it assumes that:
 ;					The routine you are dispatching to is a procedure
 ;						--- AND ---
 ;					If you are using the DispatchHelper macro, you must insure
 ;					that this routine __NEVER__ goes away.
-;					(The helper will assume that this “procedure” returns an OSErr
+;					(The helper will assume that this 'procedure' returns an OSErr
 ;					and will mess up your stack for you, free of charge).
 
 		MACRO
@@ -325,7 +325,7 @@ newHFS			EQU 		$200
 
 			&selectorNum: seta &eval(&selector)
 			if (&selectorNum > 127) OR (&selectorNum < -128) then
-				aerror &CONCAT('Selector number for ', &TrapRef, ' “',&selector, '” is outside the range -128 to 127')
+				aerror &CONCAT('Selector number for ', &TrapRef, ' '',&selector, '' is outside the range -128 to 127')
 				exitm
 			endif
 
@@ -335,7 +335,7 @@ newHFS			EQU 		$200
 				&paramCount: seta &eval(&paramWords)
 			endif
 			if (&paramCount < 0) OR (&paramCount > 255) then
-				aerror &CONCAT('Parameter words for ', &trapRef, ' “',&paramWords, '” is outside the range 0-255')
+				aerror &CONCAT('Parameter words for ', &trapRef, ' '',&paramWords, '' is outside the range 0-255')
 				exitm
 			endif
 

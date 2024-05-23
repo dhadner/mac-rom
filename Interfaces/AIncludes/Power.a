@@ -10,7 +10,7 @@
 ;		 <7>	  7/1/92	DCL		This file is the replacement for the now obsolete PowerEqu.a.
 ;									Changed the 'including' name to match the new file name.
 ;	   <SM2>	 5/17/92	kc		Roll in changes from Horror.
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <5>	 1/22/91	MSH		MSH: Removed Power Manager parameter block definition. Moved
 ;									command equates to Power.a.

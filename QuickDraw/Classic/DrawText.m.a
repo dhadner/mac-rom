@@ -21,7 +21,7 @@
 ;	  <•1.2>	  5/1/89	cel		Rolled in Bass…
 ;	   <1.1>	11/11/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
-;	   <1.2>	10/12/88	CCH		Changed “m.GrafType.a” to “GrafType.m.a”.
+;	   <1.2>	10/12/88	CCH		Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ;	   <1.1>	 5/18/88	MSH		Changed inclides to use m.GRAPHTYPES to work under EASE.
 ;	   <1.0>	 2/11/88	BBM		Adding file for the first time into EASE…
 ;		<.3>	7/01/87		CRC		Allow for fonts with strikes greater than 128K

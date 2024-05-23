@@ -19,8 +19,8 @@
 ;									<12> 10/23/92	pvh		Reset d1 from d2 for byte copies less than 12 bytes (veryShort
 ;															needs it)
 ;									<11> 10/15/92	DTY		Use D2 for the 12 byte or less check so we can preserve the trap
-;															word in D1, which is now checked to see if we’re doing
-;															BlockMove, or BlockMoveData. BlockMoveData, which doesn’t flush
+;															word in D1, which is now checked to see if we're doing
+;															BlockMove, or BlockMoveData. BlockMoveData, which doesn't flush
 ;															the cache, is signaled by having bit 9 (the immediate bit) set
 ;															in the trap word.
 ;	   <SM2>	10/16/92	RB		Removed the jCacheFlush call from the 68040 BlockMove, that code
@@ -142,7 +142,7 @@
 ;					in conditionals for NuMac. <1.4>
 ;<C668/22jan87> bbm made the code which flushed the cache a external vector.
 ;<C690/24jan87> JTC Improvements for 020.  With new longword alignment in 020
-;	memory managers, it’s worthwhile to take advantage of the fastest possible
+;	memory managers, it's worthwhile to take advantage of the fastest possible
 ;	move, an unrolled dbra loop of MOVE.Ls.  We arbitrarily choose 16 moves,
 ;	since the dbra overhead looks like 6 cycles based on work with Ron H.
 ;	The 16 cases of interest are moves from (4N+K) to (4M+J) where M and
@@ -448,7 +448,7 @@ veryShort	tst.l	d0					; check byte count							<8> rb
 ;  Inputs:		A0 - source address
 ;				A1 - destination address
 ;				D0 - byte count
-;				D1 - trap word: Don’t flush the cache if immediate bit is set.
+;				D1 - trap word: Don't flush the cache if immediate bit is set.
 ;  Outputs:		D0 - error code (noErr)
 ;  Destroys:	A0, A1, D1, D2
 ;
@@ -470,7 +470,7 @@ BlockMove68040							; ENTER HERE
 
 CopyInc68040
 			btst	#noQueueBit,d1		; <11> Check to see if the immediate bit is set.
-			bnz.s	@checkAlignment		; <11> If it’s set, don’t flush the cache on exit
+			bnz.s	@checkAlignment		; <11> If it's set, don't flush the cache on exit
 
 			move.l	d0,-(sp)			; Count parameter for FlushCRange
 			move.l	a1,-(sp)			; Address parameter for FlushCRange

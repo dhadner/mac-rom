@@ -14,7 +14,7 @@
 ;									QuickDraw. This "patch" roll-in was not nessesary.
 ;	   <SM2>	 6/11/92	stb		<sm 6/9/92>stb Synch with QDciPatchROM.a; added comments to
 ;									StdRect, PushVerb.  Added _GetStreamMode calls to PushVerb.
-;		 <5>	 8/22/91	JSM		Don’t use FALSE as a label.
+;		 <5>	 8/22/91	JSM		Don't use FALSE as a label.
 ;		 <4>	11/26/90	SMC		Fixed validation of penmode on calls to stretchbits.  With BAL.
 ;		 <3>	10/31/90	SMC		Fixed alpha channel bugs with BAL.
 ;		 <2>	 7/24/90	gbm		fix a couple of bogoid definitions

@@ -3,7 +3,7 @@
 
 	Contains:	Rez template for PICT resources.
 
-	Written by:	Dean & Mitch. (We didn’t really write this, but we got to change this line, so
+	Written by:	Dean & Mitch. (We didn't really write this, but we got to change this line, so
 				we put our names here.)
 
 	Copyright:	© 1986-1992 by Apple Computer, Inc., all rights reserved.
@@ -27,7 +27,7 @@
 				12/03/87	THT		created
 
 	To Do:
-		Change the #define for oldPICTCompatible to false and make everyone update their PICT 2 so they don’t
+		Change the #define for oldPICTCompatible to false and make everyone update their PICT 2 so they don't
 		break with the new template.
 */
 
@@ -53,7 +53,7 @@ type 'PICT' {
 						case ClipRgn:
 							key byte = $01;
 	ClipRgnStart:			integer = (ClipRgnEnd[$$ArrayIndex(OpCodes)] - ClipRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(ClipRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	ClipRgnEnd:
 						case BkPat:
@@ -374,31 +374,31 @@ type 'PICT' {
 						case FrameRgn:
 							key byte = $80;
 	FrameRgnStart:			integer = (FrameRgnEnd[$$ArrayIndex(OpCodes)] - FrameRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(FrameRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	FrameRgnEnd:
 						case PaintRgn:
 							key byte = $81;
 	PaintRgnStart:			integer = (PaintRgnEnd[$$ArrayIndex(OpCodes)] - PaintRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(PaintRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	PaintRgnEnd:
 						case EraseRgn:
 							key byte = $82;
 	EraseRgnStart:			integer = (EraseRgnEnd[$$ArrayIndex(OpCodes)] - EraseRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(EraseRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	EraseRgnEnd:
 						case InvertRgn:
 							key byte = $83;
 	InvertRgnStart:			integer = (InvertRgnEnd[$$ArrayIndex(OpCodes)] - InvertRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(InvertRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	InvertRgnEnd:
 						case FillRgn:
 							key byte = $84;
 	FillRgnStart:			integer = (FillRgnEnd[$$ArrayIndex(OpCodes)] - FillRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(FillRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	FillRgnEnd:
 						case FrameSameRgn:
@@ -441,7 +441,7 @@ type 'PICT' {
 										patCopy, patOr, patXor, patBic,
 										notPatCopy, notPatOr, notPatXor, notPatBic;
 	BitsRgnStart:			integer = (BitsRgnEnd[$$ArrayIndex(OpCodes)] - BitsRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(BitsRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	BitsRgnEnd:
 							hex string [($$BitField(BitsRgnBounds[$$ArrayIndex(OpCodes)],32,16)
@@ -474,7 +474,7 @@ type 'PICT' {
 										patCopy, patOr, patXor, patBic,
 										notPatCopy, notPatOr, notPatXor, notPatBic;
 	PackBitsRgnStart:		integer = (PackBitsRgnEnd[$$ArrayIndex(OpCodes)] - PackBitsRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(PackBitsRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	PackBitsRgnEnd:			hex string [$$PackedSize(PackBitsRgnEnd[$$ArrayIndex(OpCodes)],
 										$$Word(PackBitsRgnRowBytes[$$ArrayIndex(OpCodes)]),
@@ -502,7 +502,7 @@ type 'PICT' {
 						case Clip:
 							key integer = $0001;
 	ClipStart:				integer = (ClipEnd[$$ArrayIndex(OpCodes)] - ClipStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(ClipStart[$$ArrayIndex(OpCodes)]) - 10];
 	ClipEnd:
 						case BkPat:
@@ -1189,49 +1189,49 @@ type 'PICT' {
 						case FrameRgn:
 							key integer = $0080;
 	FrameRgnStart2:			integer = (FrameRgnEnd2[$$ArrayIndex(OpCodes)] - FrameRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(FrameRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	FrameRgnEnd2:
 						case PaintRgn:
 							key integer = $0081;
 	PaintRgnStart2:			integer = (PaintRgnEnd2[$$ArrayIndex(OpCodes)] - PaintRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(PaintRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	PaintRgnEnd2:
 						case EraseRgn:
 							key integer = $0082;
 	EraseRgnStart2:			integer = (EraseRgnEnd2[$$ArrayIndex(OpCodes)] - EraseRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(EraseRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	EraseRgnEnd2:
 						case InvertRgn:
 							key integer = $0083;
 	InvertRgnStart2:		integer = (InvertRgnEnd2[$$ArrayIndex(OpCodes)] - InvertRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(InvertRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	InvertRgnEnd2:
 						case FillRgn:
 							key integer = $0084;
 	FillRgnStart2:			integer = (FillRgnEnd2[$$ArrayIndex(OpCodes)] - FillRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(FillRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	FillRgnEnd2:
 						case AppleReserved0085:
 							key integer = $0085;
 	AppleReserved0085Start:integer = (AppleReserved0085End[$$ArrayIndex(OpCodes)] - AppleReserved0085Start[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(AppleReserved0085Start[$$ArrayIndex(OpCodes)]) - 10];
 	AppleReserved0085End:
 						case AppleReserved0086:
 							key integer = $0086;
 	AppleReserved0086Start:	integer = (AppleReserved0086End[$$ArrayIndex(OpCodes)] - AppleReserved0086Start[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(AppleReserved0086Start[$$ArrayIndex(OpCodes)]) - 10];
 	AppleReserved0086End:
 						case AppleReserved0087:
 							key integer = $0087;
 	AppleReserved0087Start:	integer = (AppleReserved0087End[$$ArrayIndex(OpCodes)] - AppleReserved0087Start[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(AppleReserved0087Start[$$ArrayIndex(OpCodes)]) - 10];
 	AppleReserved0087End:
 						case FrameSameRgn:
@@ -1336,7 +1336,7 @@ type 'PICT' {
 										blend = 32, addPin, addOver, subPin,
 										adMax = 37, subOver, adMin;
 	BitsRgnStart2:			integer = (BitsRgnEnd2[$$ArrayIndex(OpCodes)] - BitsRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(BitsRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	BitsRgnEnd2:			hex string [$$PackedSize(BitsRgnEnd2[$$ArrayIndex(OpCodes)],
 										$$BitField(BitsRgnpMapRowBytes[$$ArrayIndex(OpCodes)],0,13),
@@ -1451,7 +1451,7 @@ type 'PICT' {
 										blend = 32, addPin, addOver, subPin,
 										adMax = 37, subOver, adMin;
 	PackBitsRgnStart2:		integer = (PackBitsRgnEnd2[$$ArrayIndex(OpCodes)] - PackBitsRgnStart2[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;				/* region’s enclosing rect */
+							Rect;				/* region's enclosing rect */
 							hex string [$$Word(PackBitsRgnStart2[$$ArrayIndex(OpCodes)]) - 10];
 	PackBitsRgnEnd2:		hex string [$$PackedSize(PackBitsRgnEnd2[$$ArrayIndex(OpCodes)],
 										$$BitField(PackBitsRgnpMapRowBytes[$$ArrayIndex(OpCodes)],0,13),
@@ -1538,7 +1538,7 @@ type 'PICT' {
 										blend = 32, addPin, addOver, subPin,
 										adMax = 37, subOver, adMin;
 	DirectBitsMaskRgnStart:	integer = (DirectBitsMaskRgnEnd[$$ArrayIndex(OpCodes)] - DirectBitsMaskRgnStart[$$ArrayIndex(OpCodes)]) >> 3;
-							Rect;													/* region’s enclosing rect */
+							Rect;													/* region's enclosing rect */
 							hex string [$$Word(DirectBitsMaskRgnStart[$$ArrayIndex(OpCodes)]) - 10];
 	DirectBitsMaskRgnEnd:
 	DirectBitsRgnBits:		hex string [$$BitField(DirectBitsRgnpMapRowBytes[$$ArrayIndex(OpCodes)],0,13) *

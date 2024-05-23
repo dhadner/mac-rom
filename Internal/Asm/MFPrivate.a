@@ -21,7 +21,7 @@
 ;		<19>	 8/22/91	JSM		Clean up header.
 ;		<18>	 2/21/91	DFH		dba,#82504, #82681, #83168, #83182, #83207: Added
 ;									SysZoneFloatSizes.
-;		<17>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<17>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<16>	 1/28/91	DFH		JSM,#81425:Add EnableSwitching and DisableSwitching macros.
 ;		<15>	 1/21/91	DFH		(KSM) Removed Process Menu IDs, since they are now in

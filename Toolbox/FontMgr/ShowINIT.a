@@ -9,8 +9,8 @@
 ;	Modified: 6/15/87 PM	- Changed to standard (Pascal) calling conventions.
 ;		  6/20/87 PM	- Fixed color & Finder bug on Mac II.
 ;		  6/22/87 DBA	- Improved handling of QuickDraw.
-;		  6/29/87 DBA	- Used scratch8 to avoid conflict with “Easy Access”.
-;		  6/30/87 DBA	- Changed to a 4-byte scheme with “checksum”.
+;		  6/29/87 DBA	- Used scratch8 to avoid conflict with 'Easy Access'.
+;		  6/30/87 DBA	- Changed to a 4-byte scheme with 'checksum'.
 ;		  6/30/87 PFS	- Separated into ShowINIT and InnerShowINIT.
 ;		  7/1/87  DBA	- Fixed stack bug and switched to CurApName+.
 ;		  7/2/87  PM	- Added check for old signature in ApplScratch for
@@ -21,7 +21,7 @@
 ;				   word on stack (reported by D. Dunham). 
 ;		  7/21/87 PM	- Due to popular demand, InitGraf is no longer being called.
 ;				   This avoids the gamma correction problem with Startupscreens
-;				   getting  “washed out” by ShowINIT though someone else is still
+;				   getting  'washed out' by ShowINIT though someone else is still
 ;				   bound to call InitGraf sooner or later (i.e. InitWindows).
 ;		  7/29/87 PM	- Put InitGraf back in; this is required (reported by C. Derossi
 ;				   at Apple Tech Support).  Took out GetPort/SetPort.
@@ -215,7 +215,7 @@ INITCleanup:	PROC	EXPORT
 		move.w	#defaultMoveX,d1	; default
 NotDefault:
 		add.w	d1,d0			; increment icon position
-		move.w	d0,myH			;  and save in ‘global’
+		move.w	d0,myH			;  and save in ‘global'
 		rol.w	#1,d0			; recompute checksum
 		eor.w	#checksumConst,d0
 		move.w	d0,myCheck		;  and save it

@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <4>	  6/2/92	JSM		Move AliasMgrInstall to AliasMgr.a since it's used by both the
-;									ROM and System builds, and patch files shouldn’t be used in the
+;									ROM and System builds, and patch files shouldn't be used in the
 ;									ROM build. This file now just does a MakePatch and is needed
 ;									only by the System build.
 ;		 <3>	 8/30/90	PP		gestaltFolderMgrAttr is gestaltFindFolderAttr.
@@ -33,8 +33,8 @@
 ;===============================================================================
 ;
 ;	Install ALIAS as the Alias Manager trap.  Link this in after AliasMgr.a so
-;	this will happen after the Alias Manager’s InstallProc is executed, although
-;	this isn’t strictly necessary.
+;	this will happen after the Alias Manager's InstallProc is executed, although
+;	this isn't strictly necessary.
 ;
 ;===============================================================================
 

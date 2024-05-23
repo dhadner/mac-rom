@@ -149,7 +149,7 @@
 ;                                   Note: should be build-time selectable (currently set to non-HW vbl)
 ;	  <SM14>	 8/26/92	kc		Fix compiler warning.
 ;	  <SM13>	 8/24/92	PN		Take out checkEVT1 code
-;	  <SM12>	 8/17/92	CCH		Changed “TestFor” of OrwellExists to OrwellDecoder.
+;	  <SM12>	 8/17/92	CCH		Changed 'TestFor' of OrwellExists to OrwellDecoder.
 ;		<H7>	  8/4/92	SWC		Increased the floppy eject delay in PowerOff from 0.5 seconds to
 ;									1.5 seconds to support the slower drives used in the PowerBooks.
 ;									With the shorter delay, the disk was ejected correctly, but the
@@ -201,7 +201,7 @@
 ;									instances of two RTS instructions in a row, but I left these
 ;									alone to make comparing objects easier until we merge in new ROM
 ;									sources.
-;		<16>	 10/1/91	JSM		Don’t use hasADB conditional, all future ROMs will support ADB.
+;		<16>	 10/1/91	JSM		Don't use hasADB conditional, all future ROMs will support ADB.
 ;		<15>	 8/30/91	JSM		Cleanup header.
 ;		<14>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		<13>	 9/14/90	MSH		Power off feature changed on TIM, requiring a new call to the
@@ -225,7 +225,7 @@
 ;		 <4>	 2/14/90	GA		Added PowerOff support for Egret. It issues a Power off command
 ;									to Egret to turn off Erickson...
 ;		 <3>	 2/12/90	BG		Added interrupt handling for Eclipse.
-;		 <2>	 1/11/90	CCH		Adding include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Adding include of 'HardwarePrivateEqu.a'.
 ;	   <3.2>	11/28/89	SWC		Removed OssADB interrupt handling code.
 ;	   <3.1>	11/19/89	GGD		NEEDED FOR ZONE-5. Fixed the Level 1 OSS interrupt handler to
 ;									check the OSS mask before calling the SWIM IOP interrupt handler

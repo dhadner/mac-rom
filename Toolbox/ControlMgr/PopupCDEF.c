@@ -409,7 +409,7 @@ pascal long REALPOPUP(short theVar, ControlHandle hControl, short msg, long theP
 
 	// <31> The following line is used to restore the state of public.mHandle so that public.mHandle can
 	//		become purgeable again. (maybe)
-	//	we inserted the menu in the list on entry, and now we’re taking it out again
+	//	we inserted the menu in the list on entry, and now we're taking it out again
 	if ((msg != initCntl) && (msg !=dispCntl)) {
 		if (!dataP->preinstalled) {
 			DeleteMenu( dataP->public.mID );
@@ -520,7 +520,7 @@ void DoInit(ControlHandle hControl, short theVar)
 
 	controlP->contrlAction = (ProcPtr) (-1);				// handle own autotrack
 	if (!dataP->preinstalled) {								// take this back out of the menu list when 		<gbm>
-		DeleteMenu(dataP->public.mID);						// we’re done, but only if we put it in there 		<gbm>
+		DeleteMenu(dataP->public.mID);						// we're done, but only if we put it in there 		<gbm>
 		HSetState((Handle) dataP->public.mHandle, menuSavedState);		// Restore the state			<34>
 	}
 	goto exit;
@@ -1670,7 +1670,7 @@ char GetIntlTokenChar(short whichToken, short whichScript, char defaultChar)
 	Handle	itl4H;
 	long	offset, len;
 
-	// Look up the untoken table -- bail if we can’t get it
+	// Look up the untoken table -- bail if we can't get it
 	IUGetItlTable(whichScript, iuUnTokenTable, &itl4H, &offset, &len);
 	if (itl4H && (offset > 0) && (len >= 0))
 	{

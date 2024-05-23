@@ -169,7 +169,7 @@ SyncWait:	move.w	ioResult(a0),d0 		; get the result code into d0
 			lea.l	TrapAgain,a1			; get ready to play assembler
 			move.w	d1,(a1)+				; write in the trap word
 			move.w	#$4E75,(a1)				; follow it with an RTS
-			move.l	jCacheFlush,a1			; get address of the CPU’s cache flusher	<45>
+			move.l	jCacheFlush,a1			; get address of the CPU's cache flusher	<45>
 			jsr		(a1)					; be cool on hoopy cached cpus				<45>
 			jmp		TrapAgain				; Go re-execute the original trap
 
@@ -1365,7 +1365,7 @@ FixFCBSyncOnOpenRF:
 ; The current call is now done.
 CallDone:
 
-; Check to see if there’s another call to execute.
+; Check to see if there's another call to execute.
 		move	sr, -(sp)				; save interrupt state					<27Aug85>
 		ori		#HiIntMask, sr			; only debug interrupts allowed
 		clr.w	FSBusy					; we're not busy anymore
@@ -1400,7 +1400,7 @@ CallDone:
 		bne.s	@Done					; if it was already busy, we can return asynchronously
 		move.w	(sp)+,sr				; restore interrupt state
 
-		lea.l	FSDispatchRequest,a0		; our dispatcher’s entry point						<48>
+		lea.l	FSDispatchRequest,a0		; our dispatcher's entry point						<48>
 		jmp		CallWithRegistersPreserved	; call it 											<48>
 
 @Done:

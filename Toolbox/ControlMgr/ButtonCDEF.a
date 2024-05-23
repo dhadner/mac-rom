@@ -49,13 +49,13 @@
 ;	   <1.0>	 2/12/88	BBM		Adding file for the first time into EASE…
 ;	  <C948>	 11/8/87	DAF		Updated romres sources from system disk sources
 ;	SMAB156>	 3/30/87	DAF		Tested ROM version before using teSysJust.
-;	  <C818>	 2/14/87	DAF		Converted nuMac PaintRoundRgn to be unified with other Macs’
+;	  <C818>	 2/14/87	DAF		Converted nuMac PaintRoundRgn to be unified with other Macs'
 ;									Erase stopped setting backColor when drawing text.
 ;	  <C700>	 1/26/87	DAF		Universal version of ButtonCDEF.a (version 10)
 ;	  <C637>	 1/14/87	DAF		Changed textMode back to srcOR from srcCopy (sigh...)
-;	  <C560>	12/21/86	DAF		Added Mark Davis’ code to allow reversed checkmarks for intl
+;	  <C560>	12/21/86	DAF		Added Mark Davis' code to allow reversed checkmarks for intl
 ;	  <C424>	11/18/86	DAF		converted a BSET/BCLR to an HLock/HUnlock, in CalcPBut
-;	  <C407>	11/16/86	DAF		changed textMode (again) to srcCopy, as per Cary’s
+;	  <C407>	11/16/86	DAF		changed textMode (again) to srcCopy, as per Cary's
 ;									recommendation
 ;	  <C203>	 10/8/86	DAF		updated color support on nuMac for RGBColors changed textMode to
 ;									srcOr.
@@ -82,7 +82,7 @@
 ;				10/17/82	AJH		Made controlProcs preserve A1
 ;				10/10/82	AJH		Converted for QuickDraw Trap Interface
 ;				 10/5/82	AJH		Fixed checkBox flashing, added code saving optimizations
-;				 10/3/82	AJH		Fixed bug in scrollBar positioning -- wasn’t ctl relative
+;				 10/3/82	AJH		Fixed bug in scrollBar positioning -- wasn't ctl relative
 ;				 9/29/82	AJH		Added CheckBox control definition procedure
 ;				 8/29/82	AJH		Added "255" hiliting,
 ;				 8/25/82	AJH		Fixed corner-clobber bug in pushButProc
@@ -118,8 +118,8 @@ IndicatorRect	EQU  -30
 AuxCtlHndl		EQU	 -34				;handle of auxCtl ColorTable	<C59/30Jun86> DAF
 AuxCtlPtr		EQU	 -38				;ptr to auxCtl ColorTable		<C59/30Jun86> DAF
 ContentRGB		EQU	 -44				;window content color			<C59/30Jun86> DAF
-SavFgCol		EQU	 -50				;window port’s RGBFgColor		<Cxxx/06Oct86> DAF
-SavBkCol		EQU	 -56				;window port’s RGBBkColor		<Cxxx/06Oct86> DAF
+SavFgCol		EQU	 -50				;window port's RGBFgColor		<Cxxx/06Oct86> DAF
+SavBkCol		EQU	 -56				;window port's RGBBkColor		<Cxxx/06Oct86> DAF
 useGrayText		EQU	 -58
 FrameSize		EQU	 -58
 
@@ -140,7 +140,7 @@ FrameSize		EQU	 -58
 ; buttons only handle messages 0,1,2,10,11												<1.2>
 ;
 			CMP.W 	#calcCtlMsg,12(A6)	; inspect message value							<1.2>
-			BLS.S	@MsgOK				; if <2, it’s OK								<1.2>
+			BLS.S	@MsgOK				; if <2, it's OK								<1.2>
 			CMP.W	#calcWholeCtlMsg,12(A6)	;											<1.2>
 			BEQ.S	@MsgOK				; 10 is OK too									<1.2>
 			CMP.W	#calcThumbCtlMsg,12(A6)	;											<1.2>
@@ -161,7 +161,7 @@ FrameSize		EQU	 -58
 			SLS		IsColor(A6)			; set boolean depending on color or B&W system
 			BHI		@BWSys				; no, this system has B&W QD <SM2> CSS 
 
-; save the current port’s colors and textMode						<C59/30Jun86> DAF
+; save the current port's colors and textMode						<C59/30Jun86> DAF
 
 			MOVE.L	GrafGlobals(A5),A0	; get pointer to grafGlobals	<C407/16Nov86> DAF
 			MOVE.L	thePort(A0),A0		; get pointer to thePort		<C407/16Nov86> DAF
@@ -183,10 +183,10 @@ FrameSize		EQU	 -58
 			MOVE.L	CtlHndl(A6),-(SP)	; push the control handle
 			PEA		6(SP)				; push a pointer to placeholder
 			_GetAuxCtl					; get its auxRec
-			ADDQ	#2,SP				; don’t need boolean result
+			ADDQ	#2,SP				; don't need boolean result
 			MOVE.L	(SP)+,A0			; get auxCtl handle
 			MOVE.L	(A0),A0				; a pointer to the auxCtlRec
-			MOVE.L	acCTable(A0),A0		; get colortable’s handle		<1.3>
+			MOVE.L	acCTable(A0),A0		; get colortable's handle		<1.3>
 			MOVE.L	A0,AuxCtlHndl(A6)	; save the handle
 			_HLock						; lock the handle
 			MOVE.L	(A0),AuxCtlPtr(A6)	; save a pointer
@@ -241,7 +241,7 @@ FrameSize		EQU	 -58
 ;
 msgAdjust	EQU		calcWholeCtlMsg-calcCtlMsg-1 ; So that 10 becomes 3, 11 becomes 4	<1.2>
 			CMP.W	#calcCtlMsg, D0		; Does message need adjusting?					<1.2>
-			BLS		@LoMsg				; Don’t adjust if not.							<1.2>
+			BLS		@LoMsg				; Don't adjust if not.							<1.2>
 			SUBQ.W	#msgAdjust, D0		; Adjust message for address calculation		<1.2>
 @LoMsg
 			ADD 	D0,D0				; double for word index
@@ -272,7 +272,7 @@ msgAdjust	EQU		calcWholeCtlMsg-calcCtlMsg-1 ; So that 10 becomes 3, 11 becomes 4
 			PEA 	SavePen(A6) 		; push savePenState
 			_SetPenState				; restore original pen state
 ;
-; we’re done -- restore registers and return to caller
+; we're done -- restore registers and return to caller
 ;
 DoneP1
 			MOVEM.L (SP)+,D3-D7/A1-A4	; restore work registers
@@ -296,7 +296,7 @@ ButStub 	RTS
 ; SetUpColor takes a window part identifier in D0, finds the corresponding
 ;	part in the AuxWinTable (the part code is in the .value field) and returns
 ;	a pointer to its RGB on the stack.  If the requested part is not found,
-;	the first color table element is used (I’d use frameColor, but that might
+;	the first color table element is used (I'd use frameColor, but that might
 ;	not be there!).  Trashes A0/D0.
 
 SetUpColor
@@ -312,7 +312,7 @@ LegalIndex
 			MOVEQ	#0,D1				; OK, use the first one
 FoundIt
 			LEA		CTTable+rgb(A0,D1),A0 ; get the address of the color to use
-			MOVE.L	A0,D0				; we’ll need A0 in a second
+			MOVE.L	A0,D0				; we'll need A0 in a second
 			MOVE.L	(SP)+,D1			; restore the register
 			MOVE.L	(SP)+,A0			; get the return address
 			MOVE.L	D0,-(SP)			; push the rgb addr on the stack
@@ -324,7 +324,7 @@ FoundIt
 ;
 DrawPBut
 			TST.B	ContrlVis(A0)		; is it visible?
-			BEQ.S	ButStub 			; if not, we’re done
+			BEQ.S	ButStub 			; if not, we're done
 ;
 ; calculate roundness as function of rectangle size
 ;
@@ -368,7 +368,7 @@ DrawPBut
 			TST.B	D6					; is it a pushButton?
 			BEQ.S	EraseCBound 		; push buttons are always erased
 			TST.B	D3					; draw all?
-			BNE.S	SkipCErase			; if not, don’t bother to erase
+			BNE.S	SkipCErase			; if not, don't bother to erase
 ;
 EraseCBound
 			MOVE.L	A4,-(SP)			; push rect
@@ -385,11 +385,11 @@ SkipCErase	MOVE.L	GrafGlobals(A5),A0	; get GrafGlobals base
 			MOVE.W	txSize(A0),-(SP)	; remember the size
 
 			SUBQ	#8,D7				; was code 8 or greater?
-			BGE.S	@gotFont			; if so, use window’s font
+			BGE.S	@gotFont			; if so, use window's font
 
 			CLR.L	txFont(A0)			; force system font, normal face
 			MOVE.W	SysFontSize,D0		; get default size					<EHB 26Aug85>
-			BNZ.S	@gotSize			; => it’s 0!                        <EHB 26Aug85>
+			BNZ.S	@gotSize			; => it's 0!                        <EHB 26Aug85>
 			MOVE.B	FMDefaultSize,D0	; get default size					<EHB 26Aug85>
 @gotSize
 			MOVE.W	D0,txSize(A0)		; set size of font					<EHB 26Aug85>
@@ -428,7 +428,7 @@ SkipCErase	MOVE.L	GrafGlobals(A5),A0	; get GrafGlobals base
 			MOVE.B	(A2),D7 			; get string length into D7 			<EHB 20-May-85>
 			BEQ 	NoTitle 			; quick check for nothing				<EHB 20-May-85>
 
-; now count the number of lines in the title.  Lines are separated by CR’s
+; now count the number of lines in the title.  Lines are separated by CR's
 
 			MOVEQ	#0,D4				; save number of lines in D4			<EHB 20-May-85>
 @2
@@ -469,10 +469,10 @@ DoNextLine
 			ADDQ.B	#2,D0				; bump past length (or CR)				<EHB 20-May-85>
 			MOVE.W	D0,-(SP)			; push true offset into string			<EHB 20-May-85>
 			MOVE.W	D3,-(SP)			; push number of bytes					<EHB 20-May-85>
-			_TextWidth					; get the string’s width                <EHB 20-May-85>
+			_TextWidth					; get the string's width                <EHB 20-May-85>
 			MOVE.W	(SP)+,D0			; and save result in D0 				<EHB 20-May-85>
 
-; if it’s a checkbox, don’t center it, just move to right a little
+; if it's a checkbox, don't center it, just move to right a little
 
 			TST.B	D6					; is it a check box?
 			BEQ.S	ElCentro			; => no, go center the string			<EHB 20-May-85>
@@ -485,7 +485,7 @@ DoNextLine
 RightBox
 			MOVE.W	right(A4),D1		; get the right edge					<MED 27-Aug-86>
 			SUB.W	left(A4),D1			; get the width							<MED 27-Aug-86>
-			SUB.W	D0,D1				; subtract string’s width				<MED 27-Aug-86>
+			SUB.W	D0,D1				; subtract string's width				<MED 27-Aug-86>
 			sub.w	#18,d1				; subtract room for box					<MED 27-Aug-86>
 			ADD.W	left(A4),D1			; and add into left						<MED 27-Aug-86>
 			BRA.S	DrawBTitle			; back to common code					<MED 27-Aug-86>
@@ -500,7 +500,7 @@ ElCentro
 
 			MOVE.W	right(A4),D1		; get the right edge
 			SUB.W	left(A4),D1 		; get the width
-			SUB.W	D0,D1				; subtract string’s width
+			SUB.W	D0,D1				; subtract string's width
 			ASR.W	#1,D1				; get centering offset
 			ADD.W	left(A4),D1 		; and add into left
 
@@ -630,7 +630,7 @@ NoTitle
 ;
 			MOVE.L	(A3),A0 			; get control pointer
 			MOVE.B	ContrlHilite(A0),D0 ; is it hilited?
-			BEQ.S	DoneDrwBut			; if not, we’re done
+			BEQ.S	DoneDrwBut			; if not, we're done
 ;
 			TST.B	useGrayText(A6)		; did we use GrayText?
 			BNE.S	@Common6			; yes, skip SpecialHilite since GrayText represents hilite state already
@@ -645,7 +645,7 @@ NoTitle
 @Common6
 
 ;
-; restore original clipping region and we’re done
+; restore original clipping region and we're done
 ;
 DoneDrwBut
 			_PenNormal					; set the pen back to normal
@@ -736,7 +736,7 @@ DisableText
 
 			RTS
 
-; RoundCalc calculates the rounding factor in D4 based on the control’s rect
+; RoundCalc calculates the rounding factor in D4 based on the control's rect
 
 RoundCalc
 			TST.B 	D6					; is it a checkBox?
@@ -765,14 +765,14 @@ HitPBut
 			PEA 	ContrlRect(A0)		; push address of rect
 			_PtInRect					; in the rectangle?
 			TST.B	(SP)+				; examine result
-			BEQ.S	@1					; if not, we’re done
+			BEQ.S	@1					; if not, we're done
 
 			ADDQ.B	#1,D4				; 254 hiliting? 	<EHB 16-May-85>
 			BEQ.S	Return254			; => say it is so	<EHB 16-May-85>
 
 			MOVE	#inButton,22(A6)	; return that it was
 			TST.B 	D6					; a checkBox?
-			BEQ.S	@1					; if not, we’re done
+			BEQ.S	@1					; if not, we're done
 			ADDQ	#1,22(A6)			; if so, flag it
 @1			RTS
 
@@ -858,7 +858,7 @@ PlotCheck
 RightBoxTitle
 	        MOVE    Right(A4),D1		; get left edge of boundsRect           <MED 27-Aug-86>
 	        subq    #2,D1				; indent 2 pixels                       <MED 27-Aug-86>
-	        MOVE    D1,Right(SP)		; that’s the left of the checkRect      <MED 27-Aug-86>
+	        MOVE    D1,Right(SP)		; that's the left of the checkRect      <MED 27-Aug-86>
 	        sub     #12,D1				; compute right edge                    <MED 27-Aug-86>
 	        MOVE    D1,Left(SP)			; update the right edge                 <MED 27-Aug-86>
 	        bra.s   EraseCheck			; continue                              <MED 27-Aug-86>
@@ -866,7 +866,7 @@ RightBoxTitle
 LeftBoxTitle
 			MOVE	Left(A4),D1 		; get left edge of boundsRect			<EHB 20-May-85>
 			ADDQ	#2,D1				; indent 2 pixels						<EHB 20-May-85>
-			MOVE	D1,Left(SP) 		; that’s the left of the checkRect      <EHB 20-May-85>
+			MOVE	D1,Left(SP) 		; that's the left of the checkRect      <EHB 20-May-85>
 			ADD 	#12,D1				; compute right edge					<EHB 20-May-85>
 			MOVE	D1,Right(SP)		; update the right edge 				<EHB 20-May-85>
 
@@ -910,10 +910,10 @@ FrameCheck
 @2
 			_PenNormal
 ;
-; now we can draw the check if we’re supposed to
+; now we can draw the check if we're supposed to
 ;
 			LSR 	#1,D5				; check out the low bit of D5
-			BCC.S	DonePCheck			; if its off, we’re done
+			BCC.S	DonePCheck			; if its off, we're done
 ;
 			CMP.W	#2,D6				; test for radio button
 			BEQ.S	DrawRButton 		; if its a radio button, go do it

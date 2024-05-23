@@ -13,17 +13,17 @@
 ;		<28>	  7/9/92	DTY		This file got corrupted somehow. Fix it back up from version
 ;									<26> and redo last change.
 ;		<27>	  7/9/92	DTY		#1035445: Increased partial zone size to 10K.
-;		<26>	  7/4/92	DTY		#1034875 <csd>: Define 5K size of base system’s partial font
+;		<26>	  7/4/92	DTY		#1034875 <csd>: Define 5K size of base system's partial font
 ;									zone here.
 ;		<25>	  5/4/92	DTY		There really was a good reason for me to stick fondCache in the
-;									middle of SplineKey, honest! But since I don’t remember what it
-;									is, I’m moving it to the end of the structure to keep existing
+;									middle of SplineKey, honest! But since I don't remember what it
+;									is, I'm moving it to the end of the structure to keep existing
 ;									offsets the same.
 ;		<24>	  3/9/92	DTY		Add macros for new selectors for InitializePartialFonts and
 ;									InitializeDiskCache.
 ;		<23>	 1/22/92	DTY		Take the synFOND field out of the synthetic strike table
-;									structure. We’re gauranteeing unique font IDs, so this extra
-;									differentiation won’t be necessary.
+;									structure. We're gauranteeing unique font IDs, so this extra
+;									differentiation won't be necessary.
 ;		<22>	11/15/91	DTY		Remember which resource map a font was loaded from.  Added the
 ;									synFOND field to the synEntry record.  (If it turns out the
 ;									developers are looking at these records, this information will
@@ -37,7 +37,7 @@
 ;									and doublebyte support. Added KeepSplineOnDisk field to
 ;									width table structure.
 ;		<19>	 8/22/91	JSM		Clean up header.
-;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<18>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<17>	  1/9/91	RB		(CEL/PKE/GM/DA) Added in safeCount variable to splineKey globals
 ;									to fix the long string bug caused in stdtxmeas overflow.
@@ -69,7 +69,7 @@
 ;									area.
 ;		 <4>	 4/10/90	CL		Added support for double byte codes. Worked on disk caching.
 ;		 <3>	 3/20/90	CL		support for tag format
-;		 <2>	 2/27/90	CL		 suppport for DrText’s optimizations
+;		 <2>	 2/27/90	CL		 suppport for DrText's optimizations
 ;	   <1.9>	11/14/89	CEL		Adding Device left side bearing.
 ;	   <1.8>	 9/15/89	CEL		Added flag to turn on debugging from macsbug.
 ;	   <1.7>	 8/28/89	CEL		Updated splinekey to match c defines.

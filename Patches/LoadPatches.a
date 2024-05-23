@@ -26,7 +26,7 @@
 ;		<10>	  5/1/90	BBM		enable linked patches on 6.0 class machines
 ;		 <9>	 4/10/90	dba		7.0 version writes the correct boot blocks and restarts
 ;		 <8>	 3/23/90	dba		dispose of our selves (a waste of system heap space)
-;		 <7>	 3/23/90	dba		fix so we don’t call EraseMyIcon on the SE
+;		 <7>	 3/23/90	dba		fix so we don't call EraseMyIcon on the SE
 ;		 <6>	 3/22/90	HJR		Fix 6.0 build by adding MinSysExtra & SysPatch.
 ;		 <5>	 3/22/90	dba		change name of LoadPatch to LoadLinkedPatches
 ;		 <4>	 3/21/90	dba		take out the lingering Debugger statement
@@ -53,9 +53,9 @@
 ;	  <S115>	 3/19/87	JTC		Ensure sufficient sys heap space before loading patches, using
 ;									SizeResource to figure the local min. Then guarantee MinSysExtra
 ;									space after loading last one. Code borrowed from INIT=31.
-;	  <S109>	 3/18/87	bbm		Added the code for ‘PTCH $FFFF’. This enables general patches
-;									for all machines before the patches are read in by ‘PTCH 0’ and
-;									general patches after the patches are read in by ‘PTCH $FFFF’.
+;	  <S109>	 3/18/87	bbm		Added the code for ‘PTCH $FFFF'. This enables general patches
+;									for all machines before the patches are read in by ‘PTCH 0' and
+;									general patches after the patches are read in by ‘PTCH $FFFF'.
 ;	  <S108>	 3/17/87	bbm		For system heaps larger than 58k, rom69patch needed to move the
 ;									boot code (the boot code is loaded in at $10000). Since the boot
 ;									code has moved, the return address on the stack should be
@@ -94,7 +94,7 @@ SystemFileDataFork main
 			lea		-ioHVQElSize(sp),sp	; make room for parameter block on the stack
 			move.l	sp,a0				; point to the parameter block
 
-			clr.l	ioFileName(a0)		; we don’t want the disk’s name
+			clr.l	ioFileName(a0)		; we don't want the disk's name
 			clr.w	ioVolIndex(a0)		; tell it to use a vRefNum
 			clr.w	ioVRefNum(a0)		; boot volume is the default volume
 			_HGetVInfo					; get the driver refNum and the drive number
@@ -105,7 +105,7 @@ SystemFileDataFork main
 			move.w	ioVDRefNum(a0),ioRefNum(a0)		; get the driver refNum
 			move.l	d1,a1				; get the resource in an address register
 			move.l	(a1),a1				; and dereferenced
-			move.l	a1,ioBuffer(a0)		; and now it’s the buffer we write from
+			move.l	a1,ioBuffer(a0)		; and now it's the buffer we write from
 			move.l	#bootBlocksSize,ioReqCount(a0)	; write the whole boot blocks
 			move.w	#fsFromStart,ioPosMode(a0)		; right at the start of the disk
 			clr.l	ioPosOffset(a0)
@@ -133,7 +133,7 @@ Copyright
 			dc.b	'© 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991 Apple Computer Inc.',13
 			dc.b	'All Rights Reserved.',13
 			dc.b	13
-			dc.b	'Help! Help! We’re being held prisoner in a system software factory!',13
+			dc.b	'Help! Help! We're being held prisoner in a system software factory!',13
 			dc.b	13
 			dc.b	'The Blue Meanies',13
 			dc.b	13

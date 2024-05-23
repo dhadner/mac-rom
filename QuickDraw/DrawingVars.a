@@ -47,7 +47,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “drawingvars.a”
+;EASE$$$ READ ONLY COPY of file 'drawingvars.a'
 ;•1.4	BAL 07/14/1989 For Aurora: Final CQD
 ; 1.3	BAL 06/30/1989 Added some stack frame vars for future use
 ;•1.2	BAL 05/29/1989 Blasting in 32-Bit QuickDraw version 1.0 Final

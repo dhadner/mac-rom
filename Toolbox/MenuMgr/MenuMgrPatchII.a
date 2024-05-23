@@ -19,7 +19,7 @@
 ;									ROMIIxx).
 ;		 <7>	 9/28/90	KSM		<dba> Guarantee A5 world for calls into MDEFs.
 ;		 <6>	 9/15/90	KSM		Patch InsMenuItem to fix a PixelPaint bug!!*!
-;		 <5>	 7/26/90	KSM		fix Darin’s stupid STRING ASIS bug
+;		 <5>	 7/26/90	KSM		fix Darin's stupid STRING ASIS bug
 ;		 <4>	 7/23/90	dba		convert this into a linked patch
 ;		 <3>	 7/11/90	gbm		fix name conflict
 ;		 <2>	 4/11/90	KSM		Almost completely patched out InsertMenu.
@@ -507,14 +507,14 @@ DrawFirstMenu
 												;   menuIndex in D5, and ptr in A0
 				move.l	MenuDefHandle(a0),d0	; <10> Get handle to 'MDEF'
 				leaROM	ROMNullMDEFProc,a0		; <10> Get an empty 'MDEF' that just returns in case the menu has no 'MDEF'
-				bz.s	@gotMDEFPointer			; <10> If no 'MDEF' handle, don’t try to get the handle’s state
+				bz.s	@gotMDEFPointer			; <10> If no 'MDEF' handle, don't try to get the handle's state
 
-; Save the 'MDEF' handle’s state before locking it.
+; Save the 'MDEF' handle's state before locking it.
 
 				move.l	d0,a0					; <10>
 				move.l	a0,-(sp)				; <10>
 				_LoadResource					; <10> Make sure the 'MDEF' is loaded
-				_HGetState						; <10> Get the handle’s state
+				_HGetState						; <10> Get the handle's state
 				move.w	d0,-(sp)				; <10> Save the state
 				_HLock							; <10> Lock the handle down
 				move.l	(a0),a0					; <10> Get the pointer to the 'MDEF'
@@ -528,7 +528,7 @@ DrawFirstMenu
 
 				jsrROM	GetMenuPtr				; <10> Get pointer to the menu
 				move.l	MenuDefHandle(a0),d0	; <10> Get handle to MDEF
-				bz.s	@saveBitsBehindMenu		; <10> If no 'MDEF', don’t restore the handle state
+				bz.s	@saveBitsBehindMenu		; <10> If no 'MDEF', don't restore the handle state
 				
 ; Restore the 'MDEF' handle state
 
@@ -1244,7 +1244,7 @@ ROMDoneInsert		ROMBind	(II,$10BC8)
 				move.l	(a0),a0					; get ptr to menu block
 				MOVE	menuID(a0), d1			; get menuId of menu to be installed
 				JSRROM	ROMGETINDEX				; is it already in the list?
-				BNE		@DONEINSERT				; don’t insert same one twice
+				BNE		@DONEINSERT				; don't insert same one twice
 
 				move.w	16(SP),d1				; get beforeID
 				JSRROM	ROMGETINDEX				; get index into menuList of beforeID menu
@@ -1266,7 +1266,7 @@ ROMDoneInsert		ROMBind	(II,$10BC8)
 				moveq	#0, d1					; clear d1 (for GetHIndex call)
 				move	menuID(a0), d1			; get menuId of menu to be installed
 				JSRROM	ROMIIGetHIndex			; is it already in the list?
-				bne.s	@DoneInsert				; don’t insert same one twice
+				bne.s	@DoneInsert				; don't insert same one twice
 
 				addq	#6, lastHMenu(a3)		; bump total of HMenus
 				move.l	MinusOne, d1			; set up for GetHIndex call
@@ -1298,7 +1298,7 @@ ROMDoneInsert		ROMBind	(II,$10BC8)
 				clr.l	-(SP)					; no target string
 				clr.l	-(SP)					; len1 = 0 ===> want an insert
 				move.l	a0, -(SP)				; push replacement string
-				move.l	#6, -(SP)				; and it’s length
+				move.l	#6, -(SP)				; and it's length
 				_Munger							; oooohhh -- aaaahhh -- do it baby
 				addq	#4, SP					; ignore dem results
 
@@ -1766,7 +1766,7 @@ paramSize	EQU		18
 				addq	#4,sp					; get rid of the return address
 				jsrOld							; call LoadResource
 
-				_HLock							; lock it the gentleman’s way
+				_HLock							; lock it the gentleman's way
 				MOVE.L	(A0),A0					; handle -> pointer
 
 				MOVEM.L	A1/A5, -(SP)			; Save some registers

@@ -19,7 +19,7 @@
 ;														the rectangle that QuickDraw draws text into. When QuickDraw
 ;														goes to underline the text, it draws a line the width of this
 ;														rectangle, which is wider than the width of the text, because of
-;														this extra slop. Added a check to not add this slop if we’re not
+;														this extra slop. Added a check to not add this slop if we're not
 ;														drawing with a double byte TrueType font. This returns the code
 ;														path to what it was under 7.0, while leaving the code path there
 ;														for double byte TrueType fonts.
@@ -30,14 +30,14 @@
 ;									<74> 4/24/92 DTY	Case Obj still sucks. Put the spline font conditionals back in
 ;														until I can get this stupid case sensitivity stuff worked out so
 ;														the ROM keeps building.
-;									<73> 4/24/92 DTY	Don’t INCLUDE anything except for SysPrivateEqu.a and
+;									<73> 4/24/92 DTY	Don't INCLUDE anything except for SysPrivateEqu.a and
 ;														LinkedPatchMacros.a for ROM builds, since this file is included
 ;														into CQD.a.
 ;									<72> 4/24/92 DTY	Remove all Spline_Fonts conditionals.
 ;	   <SM2>	 4/16/92	PN		Include the right files for ROM build, BigJSR. Eliminated
 ;									has_color condition and 68000 condition (SuperMario will always
 ;									run with colorQD and >68000)
-;		<71>	 9/27/91	JSM		Don’t define hasDoubleByte for ROM builds.
+;		<71>	 9/27/91	JSM		Don't define hasDoubleByte for ROM builds.
 ;		<70>	 9/25/91	jlf		Rolled in Pacific TrueType modifications and removed
 ;									DOUBLE_BYTE conditional code. New doublebyte code is
 ;									bracketed with hasDoubleByte conditional.
@@ -56,7 +56,7 @@
 ;									original. Setting to NOT HAS_COLOR instead of NOT NOT_68000.
 ;									This will fix the Mac32 build.
 ;		<63>	 1/16/91	gbm		(csd) Fix total screwup by Chaz and KON.  Checking in files that
-;									will NOT assemble is a heinous crime.  Do it again, and it’s off
+;									will NOT assemble is a heinous crime.  Do it again, and it's off
 ;									to Saudi Arabia...
 ;		<62>	 1/16/91	CL		(KON)Moving call to getmasktable from the inner blit loop to the
 ;									set up instead. Setting it up on the stack.
@@ -111,7 +111,7 @@
 ;									again.
 ;		<41>	 8/18/90	RB		Many sizes don't render to the screen
 ;		<40>	 8/17/90	gbm		fix a warning about branching to the next instruction
-;		<39>	 8/16/90	CL		Color Fonts just didn’t work! First of all the Font DA/Mover
+;		<39>	 8/16/90	CL		Color Fonts just didn't work! First of all the Font DA/Mover
 ;									never moved 'fctb's. Voila, no color. DrText assumed a 1 bit
 ;									font to create the mask but could get a 2, 4, or 8 bit font.
 ;									This created a bad mask. When shrinking the bits from a greater
@@ -119,7 +119,7 @@
 ;									and we are shrinking, we use the Dither mode which looks pretty
 ;									darn good.
 ;		<38>	 8/15/90	BG		Found another place for an EclipseNOP.
-;		<37>	 7/31/90	PKE		(really CL on PKE’s machine) Needed to scale D3 value of the
+;		<37>	 7/31/90	PKE		(really CL on PKE's machine) Needed to scale D3 value of the
 ;									char code when the glyph does not exist.  This caused an address
 ;									error.
 ;		<36>	 7/30/90	CL		Somehow the descent kerning adjustment code got deleted… So I am
@@ -130,7 +130,7 @@
 ;		<33>	 7/20/90	BG		Found another place that an EclipseNOP was needed.
 ;		<32>	 7/20/90	DTY		Bass: The Linked Patch. Changed loads of junk to make Bass work
 ;									as a linked patch. Added conditional black and white procedure
-;									names, since we’re effectively carrying around two copies of
+;									names, since we're effectively carrying around two copies of
 ;									DrawText in Bass, and we need to keep the procedure names
 ;									unique. Also added check for Bass_Init for code that gets
 ;									compiled when hasSplineFonts is true, since hasSplineFonts is
@@ -193,7 +193,7 @@
 ;									specified in the grafPort. This is the same treatment that Color
 ;									QuickDraw normally gives the chExtra value. Note that two values
 ;									are added together before the scaling occurs.
-;		<18>	 5/31/90	CL		Fixing QDDone parameters so the good’ol GC card works properly.
+;		<18>	 5/31/90	CL		Fixing QDDone parameters so the good'ol GC card works properly.
 ;		<17>	 5/30/90	JT		For old grafPorts use the pnLocFixed value from the QuickDraw
 ;									globals to created a fixed-point pen location. Added the
 ;									penLocFixed local to record the value and restore it across
@@ -286,7 +286,7 @@
 ;									port cases
 ;				 1/12/87	CRC		rewrote recursive part to avoid reallocating stack frame each
 ;									time through
-;				  1/6/87	CRC		only change the source pixmap’s color table if the source is not
+;				  1/6/87	CRC		only change the source pixmap's color table if the source is not
 ;									1 deep
 ;				  1/3/87	CRC		pass color param to stretch, estimate stack usage better, new
 ;									outline/shadow allow initial left kerning, better right hand
@@ -401,8 +401,8 @@ hasFullKerning		EQU		1
 ;  DRAWS CHARACTERS INTO THE CURRENT PORT'S BITMAP.
 ;  THE FONT AND ATTRIBUTES ARE GIVEN IN THE CURRENT PORT'S CHARSTYLE.
 ;
-;	DrText will handle both bitmap ‘FONT’s, ‘NFNT’s and new spline font
-;	‘sfnt’s.
+;	DrText will handle both bitmap ‘FONT's, ‘NFNT's and new spline font
+;	‘sfnt's.
 ;
 ;————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -850,7 +850,7 @@ STKOK
 	
 	if (hasDoubleByte) then
 		tst.l	encodingTable(a6)			; <SM4> CSS <76> Is this a double byte font?
-		bz.s	@getFirstAndLastCharacters	; <SM4> CSS <76> If not, don’t add these overhang values
+		bz.s	@getFirstAndLastCharacters	; <SM4> CSS <76> If not, don't add these overhang values
 		move.w	rOverHMax(a2),d0			; get right overhang value
 		add.w	rightItalic(a2),d0			; add in possible italic overhang
 		move.w	d0,rExtraHang(a6)			; initialize total right overhang
@@ -978,7 +978,7 @@ STKOK
 		MOVE.B	D3,maskFont(A6)				;0 if mask bit clear, no mask font, or incoming 1 deep
 		MOVE.B	D3,textCopyMode(A6)			;set up bit insert/extract flag
 		BTST	#5,D0						;arithmetic mode?
-		BEQ.S	@doneMode					;if not, don’t map if dest. is 1 bit deep
+		BEQ.S	@doneMode					;if not, don't map if dest. is 1 bit deep
 		CMP		#1,dstPix+pixelSize(A6)		;1 bit deep destination?
 		BNE.S	@doneMode					;if not, arithmetic mode is OK
 		LEA		ArithMode,A0				;get mode map
@@ -1051,7 +1051,7 @@ STKOK
 		move.l	d0,characterExtra(a6)			; store scaled character extra.
 
 		TST		PORTBITS+ROWBYTES(A3)			; is it a new port?
-		BPL.S	@useOld1						; no -> don’t set up fraction
+		BPL.S	@useOld1						; no -> don't set up fraction
 		MOVE	pnLocHFrac(A3),D2				; set up with proper fraction
 		MOVE	D2,penLocHFrac(A6)				; save for later as well for recursive drawing
 
@@ -1137,7 +1137,7 @@ STKOK
 		add.w	d1,pnLocFixed(a0)			; add width fraction to location fraction.
 	ENDIF
 		TST		PORTBITS+ROWBYTES(A3)		; is it a new port?
-		BPL.S	@useOld						; no, don’t bother with fraction
+		BPL.S	@useOld						; no, don't bother with fraction
 		ADD		D1,pnLocHFrac(A3)
 @useOld
 		;—————————————————————————————
@@ -2377,7 +2377,7 @@ overLong2
 		MOVE.W	A4, D5						;# of src bytes
 		ADD.W	D7,A0						;advance to the next dest row
 		DBRA	D3,@mid
-		ADD.W	D6,D7						;re-adjust the rowbytes to it’s original value
+		ADD.W	D6,D7						;re-adjust the rowbytes to it's original value
 		SWAP	D6							;Restore # of chars
 		RTS
 ;————————————————————————————————————————————————————————————————————————————————————————————————
@@ -3123,7 +3123,7 @@ goBitSetUp
 		MOVE.L	A0,maskBitsPtr(A6)			;pass mask to stretch bits
 @skipMask
 		BTST	#5,D0						;arithmetic mode?
-		BEQ.S	@skipArith					;if not, don’t map if dest. is 1 bit deep
+		BEQ.S	@skipArith					;if not, don't map if dest. is 1 bit deep
 		CMP		#1,dstPix+pixelSize(A6)		;1 bit deep destination?
 		BNE.S	@multideep					;if not, arithmetic mode is OK
 		LEA		ArithMode,A0				;get mode map
@@ -3221,7 +3221,7 @@ goBitSetUp
 		move.l	d0,characterExtra(a6)			; store scaled character extra.
 
 		TST		PORTBITS+ROWBYTES(A3)			; is it a new port?
-		BPL.S	@useOld							; no -> don’t set up fraction
+		BPL.S	@useOld							; no -> don't set up fraction
 		MOVE	pnLocHFrac(A3),D2				; set up with proper fraction
 		MOVE	D2,penLocHFrac(A6)				; save for later as well for recursive drawing
 
@@ -3365,7 +3365,7 @@ NOSTRCH
 		add.w	d1,pnLocFixed(a0)			; add width fraction to location fraction.
 	ENDIF
 		TST		PORTBITS+ROWBYTES(A3)		; is it a new port?
-		BPL.S	@useOld						; no, don’t bother with fraction
+		BPL.S	@useOld						; no, don't bother with fraction
 		ADD		D1,pnLocHFrac(A3)
 @useOld
 		;—————————————————————————————
@@ -3983,7 +3983,7 @@ secondHalf
 		MOVE	stackOffset(A6),D6			;2 if stack was not aligned, otherwise, 0
 		MOVE	count(A6,D6),D7				;number of characters drawn last
 		MOVE	charsRemain(A6),D0			;how many characters remain?
-		CMP		D0,D7						;don’t try to draw more than worked last
+		CMP		D0,D7						;don't try to draw more than worked last
 		BLE.S	@ok
 		MOVE	D0,count(A6,D6) 			;draw what remains for the second half
 @ok
@@ -4856,13 +4856,13 @@ leftOnePix
 @nxtPixel
 		BFEXTU	(A4){D5:D1},D4				;pick up a source pixel
 		CMP		D4,D0						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D4,(A5){D6:D1}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D1,D5						;move to next source pixel
 		ADD		D1,D6						;move to next destination pixel
 		SUB		D1,D3						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA.S	checkLong
 
@@ -4874,13 +4874,13 @@ midOnePix
 @nxtPixel
 		BFEXTU	(A4){D5:D3},D4				;pick up a source pixel
 		CMP		D4,D1						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D4,(A5){D6:D3}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D3,D5						;move to next source pixel
 		ADD		D3,D6						;move to next destination pixel
 		SUB		D3,D0						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA		midChkLong
 
@@ -4891,13 +4891,13 @@ rightOnePix
 @nxtPixel
 		BFEXTU	(A4){D1:D5},D0				;pick up a source pixel
 		CMP		D0,D3						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D0,(A5){D6:D5}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D5,D1						;move to next source pixel
 		ADD		D5,D6						;move to next destination pixel
 		SUB		D5,D4						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA		nextRow
 
@@ -5585,7 +5585,7 @@ NOSHAD
 		_StretchBits 						;TRANSFER BUFFER TO SCREEN
 
 ;——————————————————————————————————————————————————————————————————————————————————————————————————————
-;		We are done so let’s cleanup…
+;		We are done so let's cleanup…
 ;——————————————————————————————————————————————————————————————————————————————————————————————————————
 GOHOME
 		MOVE.L	saveStk(A6),SP				;throw away the buffers

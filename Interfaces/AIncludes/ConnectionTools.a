@@ -18,7 +18,7 @@
 ;		 <8>	 8/27/91	CH		Updated interface header information & made consistent.
 ;		 <7>	 6/24/91	BH		change conditional wrapper to conform
 ;		 <6>	 6/18/91	BH		move 1.1 stuff here
-;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <4>	11/27/90	kaz		Moving CM Extensions tool messages to
 ;									Internal:ConnectionsExtensions.a

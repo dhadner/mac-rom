@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <4>	 6/24/91	BH		changed to conform to standard conditional wrapper
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 10/2/90	kaz		Support for Icon Suites: deviceIcon is now a handle to a
 ;									CRMIconRecord;  bumped up record version #. <jng>

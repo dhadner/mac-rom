@@ -73,7 +73,7 @@
 ;	To Do:
 ;__________________________________________________________________________________________________
 
-;EASE$$$ READ ONLY COPY of file “gdevice.a”
+;EASE$$$ READ ONLY COPY of file 'gdevice.a'
 ; 2.6	BAL 09/25/1989 Defered InitGDevices paletteMgr notify until after the GDRect is valid.
 ;•2.5	BAL 07/14/1989 For Aurora: Final CQD
 ; 2.4	DAF 07/13/1989 FOR AURORA BUILD - Two fixes: 1) corrected startup gamma
@@ -223,7 +223,7 @@ NOMEM	MOVE.L	A2,-(SP)					; push grafDevice
 ;	Ever since the first Edition of Cards & Drivers, the video driver call SetGray has been
 ;	documented.  This routine takes a byte (0=color, non-zero=gray), and tells the video
 ;	driver to put itself into luminence mapping mode (gray) or not.  This call has been
-;	defined as “optional,” so some video drivers may exclude it.  Nevertheless, by using
+;	defined as 'optional,' so some video drivers may exclude it.  Nevertheless, by using
 ;	this call we can make a fairly intelligent guess as to whether to leave a multibit
 ;	GDevice mono or not.  Indeed, if we attempt to call SetGray(0), and we get back a non-zero,
 ;	value, then we should leave the GDevice mono.  All Apple video drivers have done this with

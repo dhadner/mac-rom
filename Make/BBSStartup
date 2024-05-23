@@ -118,7 +118,7 @@
 		If	`Exists "{MPW}ToolServer"`
 			Execute "{MPW}ToolServer"   			∂
 				||	Begin
-						Alert "I couldn’t launch tool server."
+						Alert "I couldn't launch tool server."
 						Exit 0
 					End
 			ToolServer		'"{MPW}MPW Shell"'
@@ -128,7 +128,7 @@
 	Else
 		ToolServer 'Nothing' ∑ Dev:Null  			∂
 			||	Begin
-					Alert "I couldn’t locate your tool server."
+					Alert "I couldn't locate your tool server."
 					Exit 0
 				End
 	End

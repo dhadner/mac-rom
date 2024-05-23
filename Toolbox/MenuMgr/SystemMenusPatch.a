@@ -86,7 +86,7 @@ GetMenuBarDoesNotReturnSystemMenus PatchProc _GetMenuBar,(Plus,SE,II,Portable,II
 
 				MOVE.L	(A0),A1				; Get copymenulist ptr
 				moveq	#0,d1				; clear out high word								<10>
-				MOVE.W	lastMenu(A1),D1		; Offset to last menu (could be zero but we’ve chkd that)
+				MOVE.W	lastMenu(A1),D1		; Offset to last menu (could be zero but we've chkd that)
 				ADDQ.W	#6,D1				; Offset past last menu entry
 				SUB.W	d3,D1				; D1 = Offset to last menu - Offset to 1st sysmenu
 											; (i.e., # bytes for system menus)
@@ -259,7 +259,7 @@ FindFirstSystemMenu6BO
 				; Falling out of loop, D0=0 and 1st is system menu
 @bumpAndExit
 				ADDQ	#6, D0					; Bump D0 to point to next entry
-				BRA.S	@done					; And we’re outa here
+				BRA.S	@done					; And we're outa here
 @pastSysMenus
 				CMP.W	lastMenu(A0), D0		; were there any system menus at all?
 				BLT.S	@bumpAndExit			; D0 moved, so we found at least 1 system menu
@@ -281,7 +281,7 @@ Find6BOFromID
 				MOVEM.L	F6B0SaveReg, -(SP)		; Save our regs
 				MOVE.L	MenuList, A0			; Get the current menulist
 				MOVE.L	(A0), A0				; dereference
-				MOVE.W	D0, D1					; Save the item we’re looking for
+				MOVE.W	D0, D1					; Save the item we're looking for
 				MOVEQ	#0, D0					; Clear high word
 				MOVE.W	lastMenu(A0), D0		; Get the last menu offset
 				BEQ.S	@done					; If there are none, done

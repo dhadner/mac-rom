@@ -31,7 +31,7 @@
 									field to disable buttons, 2) allow / in pop up menu names, 3) be sure
 									to set canceled field of reply record.  In optionDialog, set up
 									dialog flags, as per new StdFilterProc.
-		<30>	 8/13/90	dba		fix Nick’s typo
+		<30>	 8/13/90	dba		fix Nick's typo
 		<29>	 8/13/90	ngk		Fix bug in optionsFilter, deferencing NIL.
 		<28>	  8/8/90	ngk		Fix getting string for name of desktop
 		<27>	  8/6/90	ngk		dir bit is 4 not 3.

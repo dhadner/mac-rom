@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <8>	 4/30/92	JSM		ScriptMgrDispatch.a and ScriptMgrKeyGetSet.a now compiled
-;									separately for ROM builds, don’t include them here, get rid of
+;									separately for ROM builds, don't include them here, get rid of
 ;									conditionals: smgrUseStdExit is always true. This file has no
 ;									more conditionals.
 ;		 <7>	 5/24/90	PKE		Reorganized files: Moved ScriptUtil dispatcher and FontScript,

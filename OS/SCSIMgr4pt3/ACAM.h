@@ -631,8 +631,8 @@ enum
 #define	scsiNoParityCheck			0x0002	// disable parity checking 
 #define	scsiDisableSelectWAtn		0x0004	// disable select w/Atn 
 #define	scsiSavePtrOnDisconnect		0x0008	// do SaveDataPointer upon Disconnect msg
-#define	scsiNoBucketIn				0x0010	// donÕt bit bucket in during this I/O
-#define	scsiNoBucketOut				0x0020	// donÕt bit bucket out during this I/O
+#define	scsiNoBucketIn				0x0010	// don't bit bucket in during this I/O
+#define	scsiNoBucketOut				0x0020	// don't bit bucket out during this I/O
 #define	scsiDisableWide				0x0040	// disable wide transfer negotiation
 #define	scsiInitiateWide			0x0080	// initiate wide transfer negotiation
 #define	scsiRenegotiateSense		0x0100	// renegotiate sync/wide before issuing autosense
@@ -745,7 +745,7 @@ typedef struct {			// directions are for SCSIRegisterBus call ( -> parm, <- resu
 	void		(*XPT_ISR)();		// <- ptr to the XPT ISR
 	void		(*EnteringSIM)();	// <- ptr to the EnteringSIM routine
 	void		(*ExitingSIM)();	// <- ptr to the ExitingSIM routine
-	void		(*MakeCallback)();	// <- pointer to the XPT layerÕs MakeCallback routine
+	void		(*MakeCallback)();	// <- pointer to the XPT layer's MakeCallback routine
 	ushort		busID;				// <- bus number for the registered bus
 	ushort		simInfoUnused3;		// <- 
 	long		simInfoUnused4;		// <- 

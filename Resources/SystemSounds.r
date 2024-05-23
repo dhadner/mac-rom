@@ -8,7 +8,7 @@
 	Change History (most recent first):
 
 		 <4>	 7/10/91	JSM		Remove pre-7.0 sounds.
-		 <3>	 3/28/91	DTY		Change the name of “Xylophone” to “Sosumi”.
+		 <3>	 3/28/91	DTY		Change the name of 'Xylophone' to 'Sosumi'.
 		 <2>	 2/15/91	csd		dty,#nobug:Added the System 7 sounds.
 
 */

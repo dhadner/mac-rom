@@ -18,22 +18,22 @@
 ;									TFBDepVideoEqu.a where the TFBResetReg offset was incorrect (+3
 ;									instead of -3).
 ;		 <6>	 3/22/91	jmp		Rolling the current TERROR ROM version of the  TFBDriver into
-;									Reality due to a “screen tearing” problem occurring at
+;									Reality due to a 'screen tearing' problem occurring at
 ;									SetEntries time.  I introduced this problem when I was altering
-;									the TFBDriver for ’040 machines.  Checked in with GM’s approval.
+;									the TFBDriver for '040 machines.  Checked in with GM's approval.
 ;		 <3>	 2/10/91	jmp		Rolled back to the original Reality sources (except for the
 ;									byte-smearing an TERROR-ROM support additions) because of a
-;									“screen tearing” problem introduced by my screwing around with
+;									'screen tearing' problem introduced by my screwing around with
 ;									WaitVSync.  Oops.
 ;		 <2>	  1/6/91	jmp		Cleaned up conditional assembly stuff (for ease of putting back
 ;									into Reality).
 ;		 <1>	11/19/90	jmp		Checking into TERROR ROM build for the first time.
 ;		 <5>	 11/5/90	jmp		Renamed DepVideoEqu.a to TFBDepVideoEqu.a; had to change INCLUDE
 ;									name.
-;		 <4>	 11/2/90	jmp		Most of the changes I made have been fixes for the TFB’s
+;		 <4>	 11/2/90	jmp		Most of the changes I made have been fixes for the TFB's
 ;									reliance on byte-smearing, which, of course, doesn't work on
-;									MC60840 machines. Specifically, I changed the Move.l’s in the
-;									WaitVSync routine to Move.b’s. I changed the Move.l in
+;									MC60840 machines. Specifically, I changed the Move.l's in the
+;									WaitVSync routine to Move.b's. I changed the Move.l in
 ;									TFBSetDepth to Move.b. I simplified the GrayTable routine (i.e.,
 ;									used a bigger DBra rather than 3 Moves per iteration). I removed
 ;									the redundant interrupt-handling code that was occurring both
@@ -44,7 +44,7 @@
 ;	   <1.7>	11/27/89	DAF		FOR 6.0.5: Fixed the major bug I created in 1.6. I allowed the
 ;									bit depth rather than the mode spID to get passed to GrayPage.
 ;									This is pretty deadly. This fix corrects the 1.6 bug AND the
-;									original bug report - that is, you don’t need to pass the mode
+;									original bug report - that is, you don't need to pass the mode
 ;									spID to the GrayScreen control call. Updated version, too
 ;	   <1.6>	11/13/89	DAF		For 6.0.5 and greater builds - Corrected some minor TFB driver
 ;									bugs. Corrected GrayPage to use mode and page from registers
@@ -194,7 +194,7 @@ VidDrvr		DC.W	$4C00						; ctl,status,needsLock			<C497>
 			STRING	Pascal
 VideoTitle	DC.B	'.Display_Video_Apple_TFB'	;								<PB237/15Sep87> DAF
 			STRING	ASIS
-			ALIGN								; make sure we’re aligned		<C843>
+			ALIGN								; make sure we're aligned		<C843>
 			DC.W	CurTFBDrvrVersion			; from TFBDepVideoEqu.a			<jmp, 10/16/90>
 
 ;
@@ -248,7 +248,7 @@ VideoOpen	MOVE.L	A1,A3						;A3 <- DCE pointer
 			_SIntInstall						;and do install
 			BNE.S	OpError2
 
-; SO DRIVER DOESN’T CARRY REDUNDANT GAMMA TABLE, INITIALIZE DRIVER WITH LINEAR GAMMA TABLE.
+; SO DRIVER DOESN'T CARRY REDUNDANT GAMMA TABLE, INITIALIZE DRIVER WITH LINEAR GAMMA TABLE.
 ; Values in the gamma table are no longer inverted in place so that GetGamma will work correctly <1.1>
 
 			MOVEQ	#0,D0						; clear high word
@@ -303,7 +303,7 @@ OpError2	MOVE.L	saveSQElPtr(A1),A0			; get the slot queue block			<1.3>
 			_DisposPtr							; release the slot queue block		<1.3>
 OpError1	MOVE.L	dCtlStorage(A3),A0			; get the private storage ptr		<1.1>
 			_DisposHandle						; release the private storage		<1.1>
-OpError		MOVE.L	#OpenErr,D0					; say can’t open driver		<C715>
+OpError		MOVE.L	#OpenErr,D0					; say can't open driver		<C715>
 			BRA.S	EndOpen
 
 
@@ -311,7 +311,7 @@ OpError		MOVE.L	#OpenErr,D0					; say can’t open driver		<C715>
 
 **********************************************************************
 *
-* VideoClose releases the device’s private storage.
+* VideoClose releases the device's private storage.
 *
 *
 * Entry:	A0 = param block pointer
@@ -362,9 +362,9 @@ VideoClose
 *   Entry: 	A0 		= param block pointer
 *			A1 		= DCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= scratch (doesn’t need to be preserved)
+*			A3 		= scratch (doesn't need to be preserved)
 *			A4		= scratch (must be preserved)
-*			D0-D3 	= scratch (don’t need to be preserved)
+*			D0-D3 	= scratch (don't need to be preserved)
 *
 *	Exit:	D0	  	= error code
 *
@@ -392,7 +392,7 @@ CtlJumpTbl	DC.W	VidReset-CtlJumpTbl			;$00 => VidReset
 			DC.W	SetInterrupt-CtlJumpTbl		;$07 => SetInterrupt					<S306/22Nov87> DAF
 
 SENoMem		ADDQ	#4,SP						; fix up the stack						<S190> DAF
-CtlBad		MOVEQ	#controlErr,D0				; else say we don’t do this one
+CtlBad		MOVEQ	#controlErr,D0				; else say we don't do this one
 			BRA.S	CtlDone						; and return
 
 CtlGood		MOVEQ	#noErr,D0					; return no error
@@ -482,7 +482,7 @@ GrayTable										; new routine <C827>
 			BSR		WaitVSync					; wait for next blanking period
 
 			MOVE.L	dCtlStorage(A1),A0			; get handle to private storage
-			MOVE.L	(A0),A0						; get pointer to storage (it’s locked!)
+			MOVE.L	(A0),A0						; get pointer to storage (it's locked!)
 			MOVE.L	GammaPtr(A0),A0				; get pointer to gamma data structure
 			MOVE	GFormulaSize(A0),D0			; get the size of formula data
 			LEA		GFormulaData(A0),A0			; point to formula data
@@ -542,7 +542,7 @@ SetEntries
 
 			MOVEM.L	A5-A6/D5-D7,-(SP)			; save registers for gamma (A4/D4 saved by VideoCtl) <C522> DAF
 			MOVE.L	dCtlStorage(A1),A0			; get handle to private storage				<C522> DAF
-			MOVE.L	(A0),A0						; get pointer to storage (it’s locked!)		<C522> DAF
+			MOVE.L	(A0),A0						; get pointer to storage (it's locked!)		<C522> DAF
 			MOVE	GFLAGS(A0),D5				; KEEP FLAGS WORD IN D5
 			MOVE.L	GammaPtr(A0),A0				; get pointer to gamma data structure		<C522> DAF
 			MOVE.W	GFormulaSize(A0),D0			; get the size of formula data				<C522> DAF
@@ -550,7 +550,7 @@ SetEntries
 			ADD		D0,A4						; red correction table starts here			<C522> DAF
 			MOVE.L	A4,A5						; get default pointer to green data			<C522> DAF
 			MOVE.L	A4,A6						; get default pointer to blue data			<C522> DAF
-			CMP		#1,GChanCnt(A0)				; if only only one table, we’re set			<C522> DAF
+			CMP		#1,GChanCnt(A0)				; if only only one table, we're set			<C522> DAF
 			BEQ.S	OneTbl						; => just one table							<C522> DAF
 
 			MOVE	GDataCnt(A0),D0				; get # entries in table					<C522> DAF
@@ -628,7 +628,7 @@ NoSequence
 			MOVE.L	D3,D4						; GET BLUE IN D4.W
 			SWAP	D3							; GET GREEN IN D3.W
 			TST		D5							; TEST FLAGS WORD
-			BPL.S	@NOGRAY						; =>DON’T DO LUMINANCE MAPPING
+			BPL.S	@NOGRAY						; =>DON'T DO LUMINANCE MAPPING
 
 			MULU	#$4CCC,D2					; MULTIPLY BY WEIGHT FOR RED
 			MULU	#$970A,D3					; MULTIPLY BY WEIGHT FOR GREEN
@@ -703,7 +703,7 @@ StkOk		MOVE.L	D1,-(SP)					; save original stack on stack
 			BGT.S	NoMore						; => oops, table is full
 
 			TST		D5							; TEST FLAGS WORD
-			BPL.S	@NOGRAY						; =>DON’T DO LUMINANCE MAPPING
+			BPL.S	@NOGRAY						; =>DON'T DO LUMINANCE MAPPING
 
 			MOVE.L	(A0)+,D2					; GET RED IN D2.W
 			MOVE.W	(A0)+,D3					; GET GREEN IN D3.W
@@ -828,7 +828,7 @@ SetGamma										; <C522/15Dec86> DAF
 			BEQ.S	@SizeOK							; => yes, data size ok
 			BGT.S	@GetNew							; => new one is bigger, save old one
 @NewSize	_DisposPtr								; if new one smaller, dispose old one
-			CLR.L	GammaPtr(A3)					; flag it’s been disposed
+			CLR.L	GammaPtr(A3)					; flag it's been disposed
 
 @GetNew		MOVE	#256,D0							; get number of entries
 			MULU	GChanCnt(A1),D0					; multiply by number of tables
@@ -1023,8 +1023,8 @@ EnableThem
 *   Entry: 	A0 		= param block
 *			A1 		= DCE pointer
 *	Uses:	A2		= cs parameters (ie. A2 <- csParam(A0))  (must be preserved)
-*			A3 		= scratch (doesn’t need to be preserved)
-*			D0-D3 	= scratch (don’t need to be preserved)
+*			A3 		= scratch (doesn't need to be preserved)
+*			D0-D3 	= scratch (don't need to be preserved)
 *
 *	Exit:	D0	  	= error code
 *
@@ -1052,7 +1052,7 @@ StatJumpTbl	DC.W	StatBad-StatJumpTbl			;$00 => Error
 			DC.W	GetInterrupt-StatJumpTbl	;$07 => GetInterrupt
 			DC.W	GetGamma-StatJumpTbl		;$08 => GetGamma
 
-StatBad		MOVEQ	#statusErr,D0				; else say we don’t do this one
+StatBad		MOVEQ	#statusErr,D0				; else say we don't do this one
 			BRA.S	StatDone					; and return
 
 StatGood	MOVEQ	#noErr,D0					; return no error
@@ -1195,7 +1195,7 @@ GetPageBase
 			MULU	4(A0,D1*8),D0				; calc page * rowBytes				<EHB12/16>
 			MULU	6(A0,D1*8),D0				; calc page * rowBytes * height		<EHB12/16>
 			MOVEQ	#defmBaseOffset,D1			; add offset for TFB				<EHB12/16>
-			ADD.L	D1,D0						; which doesn’t use first long		<EHB12/16>
+			ADD.L	D1,D0						; which doesn't use first long		<EHB12/16>
 			ADD.L	dCtlDevBase(A1),D0			; add base address for card			<EHB12/17>
 			MOVE.L	D0,csBaseAddr(A2)			; return the base address			<EHB12/16>
 
@@ -1453,7 +1453,7 @@ TFBSetDepth
 ; Preserves all registers
 ;---------------------------------------------------------------------
 
-; since we can’t read the mode from the control registers, save copies
+; since we can't read the mode from the control registers, save copies
 
 			MOVEM.L	D0-D2/A0-A1,-(SP)		;save all regs				<EHB12/16>
 
@@ -1506,7 +1506,7 @@ TFBSetPage
 ;			A3 = dCtlStorage pointer
 ;
 ;  The base of a page is at dCtlDevBase + 4 + (page * RowBytes * height)
-;  The 4 is because we don’t use the first long in the TFB to avoid
+;  The 4 is because we don't use the first long in the TFB to avoid
 ;  negative addressing problems.
 ;
 ;  All registers are preserved.
@@ -1520,10 +1520,10 @@ TFBSetPage
 			MULU	4(A0,D1*8),D0				; calc page * rowBytes				<EHB12/16>
 			MULU	6(A0,D1*8),D0				; calc page * rowBytes * height		<EHB12/16>
 			MOVEQ	#defmBaseOffset,D1			; add offset for TFB				<EHB12/16>
-			ADD.L	D1,D0						; which doesn’t use first long		<EHB12/16>
+			ADD.L	D1,D0						; which doesn't use first long		<EHB12/16>
 			MOVE.L	D0,D1						; save offset to page in bytes		<EHB12/16>
 			MOVE.L	dCtlDevBase(A1),A0			; get base for device				<EHB12/16>
-			ADD.L	A0,D0						; add the slot’s base address		<EHB12/16>
+			ADD.L	A0,D0						; add the slot's base address		<EHB12/16>
 			MOVE.L	D0,saveBaseAddr(A3)			; save the base address				<EHB12/16>
 
 ;  Now set the hardware by writing the offset in longs to the proper registers.
@@ -1551,14 +1551,14 @@ GrayScreen
 ;+++		<1.6/DAF>		MOVE	csMode(A2),D1				; get the mode						<EHB12/17>
 
 			MOVE	saveMode(A3),D1				; get mode ID from driver privates rather		<1.7>
-												;   than csBlock, so you don’t need to pass
+												;   than csBlock, so you don't need to pass
 												;	this to Control_GrayPage
 
 			SUB		#OneBitMode,D1				; make it 0 based					<EHB12/17>
 			CMP.W	#3,D1						; if 8-bit req, test for RAM		<C804/13Feb87> DAF
 			BNE.S	@1							; 1,2,4 bit requests are always OK	<C804/13Feb87> DAF
 			TST.B	VRAM256K(A3)				; is there enough RAM?				<C804/13Feb87> DAF
-			BNE.S	GSDone						; if TRUE, then don’t do anything	<C804/13Feb87> DAF
+			BNE.S	GSDone						; if TRUE, then don't do anything	<C804/13Feb87> DAF
 @1			LEA		ModeTbl,A1					; point to tables					<EHB12/16>
 			MOVE.L	0(A1,D1*8),D0				; D0 = the proper pattern			<EHB12/16>
 			MOVE	4(A1,D1*8),D4				; D4 = rowbytes for the screen		<EHB12/16>

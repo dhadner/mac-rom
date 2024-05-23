@@ -14,7 +14,7 @@
 ;		 <2>	 2/13/92	RLM		Patch roll-in
 ;		 <3>	 12/4/91	csd		#1016448: Added support for Scruffy. Changed the patch to
 ;									InitApplZone which calls FlushApplNM when Scruffy is running
-;									because Scruffy’s version of InitApplZone already calls
+;									because Scruffy's version of InitApplZone already calls
 ;									FlushApplNM.
 ;		 <2>	 9/21/90	VL		Added patches to patch out routines in ci and portable ROMs for
 ;									Notification Manager.
@@ -74,7 +74,7 @@ InstallNMInitApplZone	PatchProc	$A02C,(Plus,SE,II)
 			IMPORT	FLUSHAPPLNM
 
 			cmp.l	#$00002000, SysZone		; is Scruffy installed?					<3>
-			beq.s	@hasCleanMemoryManager	; if so, don’t need to call FlushApplNM	<3>
+			beq.s	@hasCleanMemoryManager	; if so, don't need to call FlushApplNM	<3>
 			jsr		FLUSHAPPLNM
 @hasCleanMemoryManager						;										<3>
 			jmpOld						; Jump to original _InitApplZone
@@ -95,7 +95,7 @@ InstallNMGNEFilter	PatchProc	JGNEFilter,(Plus,SE,II)
 			tst.l	(sp)				; Check to see if there is one
 			bne.s	@toOldFilter
 			
-			add.w	#4,sp				; If no more filters, remove the “address” we just pushed on
+			add.w	#4,sp				; If no more filters, remove the 'address' we just pushed on
 @toOldFilter
 			rts							; Return to caller, or go to next filter
 			ENDPROC

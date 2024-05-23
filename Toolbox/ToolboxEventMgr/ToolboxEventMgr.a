@@ -513,16 +513,16 @@ DoneGNE
 ; be sure to set the port to the WMgrPort for the journalling driver
 
 				TST.W	WWExist			; see if the window mgr and QD exist			<4>
-				bne.s	NeverMind		; if window mgr isn’t there, don’t call GetMouse<4>
+				bne.s	NeverMind		; if window mgr isn't there, don't call GetMouse<4>
 
-; Window Manager exists.  Set the port to the Window Manager’s port before calling _GetMouse
+; Window Manager exists.  Set the port to the Window Manager's port before calling _GetMouse
 
 				sub.w	#4,sp			; room for the result							<4>
 				move.l	sp,-(sp)		; push address of var param result				<4>
 				_GetPort				; Save the current port on the stack			<4>
 		
 				move.l	WMgrPort,-(sp)	;												<4>
-				_SetPort				; Set the port to the Window Manager’s port		<4>
+				_SetPort				; Set the port to the Window Manager's port		<4>
 
 				PEA 	TempRect		;we don't care about it so stuff it here
 				_GetMouse				;read the mouse so it will be journalled

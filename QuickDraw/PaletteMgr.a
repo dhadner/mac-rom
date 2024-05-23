@@ -15,7 +15,7 @@
 ;									need to take them out until FlushFonts really flushes ALL the
 ;									fonts (for all processes)...
 ;	  <SM10>	10-19-93	jmp		Removed the ctSeed whacking (Kon explained the error of my
-;									ways).  We’ll have to come up with some other method to fix
+;									ways).  We'll have to come up with some other method to fix
 ;									dimming.
 ;	   <SM9>	 9/20/93	SAH		Fixed a bug in ActivatePalette where it would always mark black
 ;									or white tolerant entries as handled. It really needed to make
@@ -59,8 +59,8 @@
 ;									CheckColors
 ;		<38>	10/24/90	DC		VL - Fix CheckColors to use bit 2 of the value field as an
 ;									inhibit bit instead of an enable bit
-;		<37>	10/12/90	jmp		I put SetDepth back the way it was; it still doesn’t work right,
-;									but I don’t have time to mess with it now. Will look into it
+;		<37>	10/12/90	jmp		I put SetDepth back the way it was; it still doesn't work right,
+;									but I don't have time to mess with it now. Will look into it
 ;									later. Basic problem: thePort is trashed. Bumped version back to
 ;									2.0.2.
 ;		<36>	10/10/90	jmp		Changed SetDepth call to match Monitors; also, updated

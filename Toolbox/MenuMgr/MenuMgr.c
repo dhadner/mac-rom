@@ -12,10 +12,10 @@
 		<14>	 11/3/92	DTY		Strip out unnecessary includes.
 		<13>	 5/29/92	DCL		Included TextUtils.h. NBreakTablePtr moved there for the New
 									Inside Mac.
-		<12>	 4/22/92	DTY		#1024445,<KSM>: If at first you don’t succeed… The last change
-									wasn’t doing what we wanted it to do.  Move the line from the
+		<12>	 4/22/92	DTY		#1024445,<KSM>: If at first you don't succeed… The last change
+									wasn't doing what we wanted it to do.  Move the line from the
 									last checkin up a line so that the script code will be forced to
-									smRoman a little earlier if we’re trying to insert 'FONT' 0.
+									smRoman a little earlier if we're trying to insert 'FONT' 0.
 		<11>	  4/1/92	KSM		#1024445,<DTY>: Fix case where a Chicago 'FONT' (family id = 0)
 									maps to the current system script instead of Roman.
 		<10>	 3/30/92	DC		#1025860,<KSM>: Fix IDToScriptCode. Boundary case would cause ID
@@ -76,20 +76,20 @@ short FindInsertIPt(StringPtr rsrcName, short rsrcScript, MenuHandle theMenu, sh
 	short		i;
 
 	HLock((Handle)theMenu);									// we can point into it
-	SetResLoad(true);										// Let Int’l rsrcs load for IUTextOrderSys
+	SetResLoad(true);										// Let Int'l rsrcs load for IUTextOrderSys
 
 	itemRecPtr = (**theMenu).menuData;						// Make pointer to menu title
 	itemRecPtr += *itemRecPtr + 1;							// Skip over title
 	for (i=afterItem-1;i >= 0; --i)							// Point to item 'afterItem'
-		if (*itemRecPtr)									// Check to see we haven’t run off end
+		if (*itemRecPtr)									// Check to see we haven't run off end
 			itemRecPtr += (*itemRecPtr + 5);
 		else break;
 
-	// Do compares across only the items we’ve added to this menu
+	// Do compares across only the items we've added to this menu
 	for (; *itemRecPtr && (addedResources--); itemRecPtr += (*itemRecPtr + 5))
 	{
 		short cmpResult;
-		// Do the Int’l correct compare.  Must use iuSystemScript and not zero as compare scripts.
+		// Do the Int'l correct compare.  Must use iuSystemScript and not zero as compare scripts.
 		// Note that if the itmCmd field is $1c then the itmIcon field contains the script code.
 		cmpResult = IUTextOrderSys(
 			rsrcName+1, itemRecPtr+1, *rsrcName, *itemRecPtr,							// Strings
@@ -196,7 +196,7 @@ pascal void __InsertIntlResMenu(MenuHandle theMenu,
 			item = FindInsertIPt(rsrcName, rsrcScript, theMenu, afterItem, addedResources);
 			if (item >= 0)	// negative means duplicate, skip this item
 			{
-				InsMenuItem(theMenu, "\p ", item);						// <7> Create an empty menu item after “item”.
+				InsMenuItem(theMenu, "\p ", item);						// <7> Create an empty menu item after 'item'.
 				SetItem(theMenu, item + 1, rsrcName);					// <7> Now fill the new item with the resource name.
 				// Only set the script code if fontFondFlag
 				// and non-system font script to optimize menu drawing speed over this routine

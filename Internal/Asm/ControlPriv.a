@@ -12,7 +12,7 @@
 ;		 <5>	 6/30/92	JSM		Add ScrollSpeedGlobals record for ROM builds and future System
 ;									builds.
 ;		 <4>	 8/21/91	JSM		Clean up header.
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	 1/13/91	VL		Fixed up comments in <1>. No code change.
 ;		 <1>	 1/13/91	VL		<jsm> Added a new message to CDEF 1.

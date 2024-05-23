@@ -63,7 +63,7 @@ SplashScreen		MAIN	EXPORT
 			move.w	#SplashAlert,-(sp)			; push our alert ID
 			clr.l	-(sp)						; no ProcPtr
 			_Alert						; put up the alert
-			addq.w	#2, sp						; we don’t care about the result
+			addq.w	#2, sp						; we don't care about the result
 			move.b	saveQDExists(a6),QDExist	; restore state of QDExist flag
 			move.l	saveA5(a6),a5				; restore host A5
 

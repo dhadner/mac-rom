@@ -15,7 +15,7 @@
 									to nil so that the Font Manager will fill it in again later with
 									another 'FOND' handle.
 		 <7>	 6/10/92	DTY		Remove structures definitions for TypeEntry and RefEntry, now
-									that they’re both defined in ResourceMgrPriv.h.
+									that they're both defined in ResourceMgrPriv.h.
 		 <6>	 3/23/92	JSM		OSEvents.h is obsolete, use Events.h.
 		 <5>	 11/1/91	DTY		Change ClearSharingBits to check to see if the map handle is not
 									a system override map as well as the system resource map.
@@ -278,7 +278,7 @@ c_releaseresource(Handle resHdl)
 				/* Deregister Apple menu */
 				RemoveFromAppleMenuList(resHdl);
 
-				// See if we’re releasing LastFOND.
+				// See if we're releasing LastFOND.
 			   
 				if (resHdl == LASTFOND)								// <8>
 					LASTFOND = nil;									// <8>

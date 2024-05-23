@@ -27,11 +27,11 @@
 ;	=============== Terror History ========================
 ;
 ;		 <4>	 6/17/91	jmp		Eliminated support for PAL displays & encoder boxes since the
-;									versions of the 4•8 & 8•24 cards that we’re patching out don’t
+;									versions of the 4•8 & 8•24 cards that we're patching out don't
 ;									have the sRsrcs.
 ;		 <3>	  4/4/91	jmp		Cleaned up the conditional assembly stuff (i.e., started using
 ;									ForRom instead of PadForOverPatch).
-;		 <2>	 2/25/91	jmp		Rolled in Casey’s latest changes.
+;		 <2>	 2/25/91	jmp		Rolled in Casey's latest changes.
 ;		 <1>	01/06/90	jmp		Checked into TERROR ROM for the first time.
 ;		 <0>	11/19/90	jmp		Formatted for use with TERROR ROM (as opposed to a
 ;									declaration ROM).

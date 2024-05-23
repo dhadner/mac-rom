@@ -620,7 +620,7 @@ DoPut
 			move.l		scrapSize,d0		; resize handle to last good size, to delete last 'next entry' <SM2> <PN>
 			_SetHandleSize					; <SM2> <PN>
 			move.w		(sp)+,d0			; return with original error code <SM2> <PN>
-			addq		#4,sp					; <SM4+> Pop DoPut caller’s return address
+			addq		#4,sp					; <SM4+> Pop DoPut caller's return address
 			bra			err12Exit				; <SM4+> And exit immediately.
 			
 @exitDoPut
@@ -642,7 +642,7 @@ putDisk
 			move.l		scrapSize,ioMix(a0)	; resize file to last good size, to delete last 'next entry' <SM2> <PN>
 			_SetEOF							; <SM2> <PN>
 			move.w		(sp)+,d0			; return with original error code <SM2> <PN>
-			addq		#4,sp					; <SM4+> Pop PutDisk caller’s return address
+			addq		#4,sp					; <SM4+> Pop PutDisk caller's return address
 			bra			err12Exit				; <SM4+> And exit immediately
 
 @exitPutDisk		

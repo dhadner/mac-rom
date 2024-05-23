@@ -27,7 +27,7 @@
 ;									now also matches the name used in the C and Pascal interfaces.
 ;		<13>	 8/14/91	JL		Fixed the casing of the selector values so we can use this file
 ;									with CASE ON.
-;		<12>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<12>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<11>	  1/2/91	PKE		(bbm) Updated comments and rearranged a few constants to match
 ;									latest Inside Mac summary.

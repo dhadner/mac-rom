@@ -103,9 +103,9 @@ enum {
 // csDisplayType values in VDDisplayConnectInfo
 //
 enum {
-	kUnknownConnect = 1,						// Not sure how we’ll use this, but seems like a good idea.
-	kPanelConnect = 2,							// For use with fixed-in-place LCD (TFT, aka “Active Matrix”) panels.
-	kPanelTFTConnect = 2,						// Alias for kPanelConnect (because some ROM have already GM’d that way).
+	kUnknownConnect = 1,						// Not sure how we'll use this, but seems like a good idea.
+	kPanelConnect = 2,							// For use with fixed-in-place LCD (TFT, aka 'Active Matrix') panels.
+	kPanelTFTConnect = 2,						// Alias for kPanelConnect (because some ROM have already GM'd that way).
 	kFixedModeCRTConnect = 3,					//  For use with fixed-mode (i.e., very limited range) displays.
 	kMultiModeCRT1Connect = 4,					// 320x200 maybe, 12" maybe, 13" (default), 16" certain, 19" maybe, 21" maybe
 	kMultiModeCRT2Connect = 5,					// 320x200 maybe, 12" maybe, 13" certain, 16" (default), 19" certain, 21" maybe
@@ -117,7 +117,7 @@ enum {
 	kNTSCConnect = 11,							// NTSC ST (default), FF, STconv, FFconv
 	kPALConnect = 12,							// PAL ST (default), FF, STconv, FFconv
 	kHRConnect = 13,							// 640x400 (to get 8bpp in 256K case) and 640x480 (these two only)
-	kPanelFSTNConnect = 14						// For use with fixed-in-place LCD FSTN (aka “Supertwist”) panels.
+	kPanelFSTNConnect = 14						// For use with fixed-in-place LCD FSTN (aka 'Supertwist') panels.
 	
 };
 

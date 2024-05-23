@@ -46,7 +46,7 @@
 ;		 <5>	 9/19/90	BG		Removed <4>. 040s are behaving more reliably now.
 ;		 <4>	 7/20/90	BG		Added EclipseNOPs to handle flakey 040s.
 ;		 <3>	 2/19/90	BG		Add Eclipse VIA2 support to SlotMgr.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.4>	  8/7/89	GGD		Roll in patch to change SIntInstall to handle equal priorities
 ;									the same as the Mac II, Most recently installed is run sooner.
 ;	   <1.3>	 4/16/89	GGD		Completely re-written and faster, uses new internal data

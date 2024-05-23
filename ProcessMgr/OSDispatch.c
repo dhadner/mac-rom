@@ -11,7 +11,7 @@
 	 
 		<18>	  9/4/92	DRF		#1041525,<EA> Changed SameProcess() to handle the case where
 									there is no current process.
-		<17>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<17>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<16>	 8/26/92	DTY		Roll in latest changes for A/UX.
 		<15>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature. Conditionally
@@ -24,7 +24,7 @@
 									identical to the PEntryFromPSN routine in Processes.c, except
 									that this follows Pascal calling conventions and is accessed as
 									a selector off of OSDispatch. Cube-E Finder needs this routine
-									so that it doesn’t have to rely on hard coded offsets into
+									so that it doesn't have to rely on hard coded offsets into
 									Process Manager globals for the application assassin code. The
 									ultimate solution would be to move the assassin into Launch and
 									remove this selector.
@@ -33,7 +33,7 @@
 		 <9>	 10/9/91	DTY		Add #include "OSDispatchPrivate.h" for new definition of
 									FindAppLayer(). The build was broken because FindAppLayer() was
 									changed to FindAppBaseLayer(), and FindAppLayer() became a macro
-									which called the new name. This file wasn’t updated to reflect
+									which called the new name. This file wasn't updated to reflect
 									the new scheme of things.
 		 <8>	 1/14/91	DFH		Fix checkin comment.
 		 <7>	 1/14/91	DFH		(dba) Make system mode per process.
@@ -643,7 +643,7 @@ c_newdesktoplayerowner(LayerPtr *ppNewLayer)
 	}
 
 // <12> PEntryFromProcessSerialNumber.  Locate existing process having given ProcessSerialNumber.
-//		This routine is a duplicate of PEntryFromPSN in Processes.c so that the Cube-E Finder doesn’t
+//		This routine is a duplicate of PEntryFromPSN in Processes.c so that the Cube-E Finder doesn't
 //		have hard coded offsets to Process Manager globals to do the application
 //		assassin stuff.  In the long run, we should get rid of this routine, and
 //		implement the assassin as a new launch flag.

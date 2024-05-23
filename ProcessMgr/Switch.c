@@ -11,17 +11,17 @@
 	 
 		<22>	10/28/92	DTY		Use new Get/Set macros to access ExpandMem.
 		<21>	10/27/92	DTY		Change BlockMoves to BlockMoveData.
-		<20>	 9/11/92	DRF		Take out “while(FSBUSY);” in “TheFuture” to allow for faster
+		<20>	 9/11/92	DRF		Take out 'while(FSBUSY);' in 'TheFuture' to allow for faster
 									switching.
 		<19>	 8/26/92	DTY		Roll in latest changes for A/UX.
-		<18>	 3/30/92	DTY		#1025416,<DDG>: Tell Skia to switch it’s globals on a context
+		<18>	 3/30/92	DTY		#1025416,<DDG>: Tell Skia to switch it's globals on a context
 									switch.
 		<17>	 3/23/92	JSM		OSEvents.h is obsolete, use Events.h.
 		<16>	 2/18/92	DTY		#1021226: Switch emMessageManagerGlobals again.
 		<15>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
 		<14>	 9/22/91	DTY		Change PsychoticFarmerAndLater to PsychoticFarmerOrLater.
-		<13>	 9/13/91	DTY		Conditionalise previous change so it doesn’t get built for
-									CubeE. (It’ll get built for PsychoticFarmerAndLater.)
+		<13>	 9/13/91	DTY		Conditionalise previous change so it doesn't get built for
+									CubeE. (It'll get built for PsychoticFarmerAndLater.)
 		<12>	  6/4/91	DFH		Switch emMessageManagerGlobals.
 		<11>	 1/28/91	DFH		JSM,#81425:Include MFPrivate.h, since that's where
 									DisableSwitching and EnableSwitching are now.
@@ -30,7 +30,7 @@
 		 <9>	 1/15/91	DFH		(VL) Conditionalize out the AUX switch prototypes.
 		 <8>	 1/14/91	DFH		(JDR) Conditionalize out AUX support.
 		 <6>	12/19/90	gbm		(dba) Fix off-by-one bug in an A/UX change. Also kill VBLs
-		 							whose queue entries are in an application’s heap as well
+		 							whose queue entries are in an application's heap as well
 									as those whose task pointers are.
 		 <5>	 12/5/90	DFH		Integrated AUX support.
 		 <4>	 11/6/90	DFH		Renamed emAppleEventsGlobal to emAppleEvents.

@@ -48,7 +48,7 @@
 	   		 						<3> 3/30/92	DTY	#1025684: Make InitializePartialFonts take a Size parameter so
 													that the caller can specify how large to make the partial font
 													sub-zone.
-		 							<2> 3/27/92	DTY	#1024868: Take out calls to assertion routines since they don’t
+		 							<2> 3/27/92	DTY	#1024868: Take out calls to assertion routines since they don't
 													do anything anymore, and the assertion messages are wasting
 													memory.
 		<SM2>	 4/17/92	PN		Change InitZone to InitZoneGlue to do ROM build with Bass fonts
@@ -333,7 +333,7 @@ pascal OSErr InitializePartialFonts( Size partialFontZoneSize )
 		Size									existingPartialFontZoneSize;
 		FragmentTableCacheStructureHandle		fragmentTableCache;
 		
-	// <7> Check to see if a partial font zone already exists.  If one does, and it’s larger
+	// <7> Check to see if a partial font zone already exists.  If one does, and it's larger
 	//		than the size that is being requested, return immediately and keep using the old
 	//		one.  If the existing zone is smaller than the requested size, blow it away
 	//		and create a new one.
@@ -341,7 +341,7 @@ pascal OSErr InitializePartialFonts( Size partialFontZoneSize )
 	if ( partialFontZone != nil ) {
 		existingPartialFontZoneSize = GetPtrSize(partialFontZone);				// <7> Get the size of the existing partial font zone
 		if (existingPartialFontZoneSize >= partialFontZoneSize)					// <7> Is the existing one larger than the requested one?
-			return (noErr);														// <7> Yeah.  Go ahead and use what’s there
+			return (noErr);														// <7> Yeah.  Go ahead and use what's there
 
 		DisposPtr(partialFontZone);												// <7> Otherwise, blow it away.
 		(*splineKey)->fPartialFontZone = nil;									// <7> Remove the reference to the old zone in case the new one fails to allocate

@@ -9,12 +9,12 @@
 #
 #	Change History (most recent first):
 #
-#	  <SM39>	  2/1/94	chp		Simplify the build command for the “Clean” target: wildcard
+#	  <SM39>	  2/1/94	chp		Simplify the build command for the 'Clean' target: wildcard
 #									substitution is sloppy if there is no match and seems to result
 #									in :Obj:Interface: getting deleted.
 #	  <SM38>	 12/2/93	rab		Changed ROMVersion to $0006…
 #	  <SM37>	11/19/93	chp		Add BuildResults Text directories to the Delete list in the
-#									“Clean” target.
+#									'Clean' target.
 #	  <SM36>	 11/9/93	rab		Changed ROMVersion to $0005 for the new Universal release.
 #	  <SM35>	 11/8/93	SAM		Enabled hasROMGibbly for the "universal" build.
 #	  <SM34>	 9/25/93	SAM		Removed hasHMC (PDM's memory controller) from the "universal"

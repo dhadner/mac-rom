@@ -37,7 +37,7 @@
 ;    works with cooperating ShowINITs
 ;  - draw from  ICN#/icl4/icl8  combos, now the standard for icons; the best
 ;    source is choosen according to main screen pixel depth and available resources
-;  - does NOT support the ‘old’ cicn  resources
+;  - does NOT support the ‘old' cicn  resources
 ;  - displays a nice empty square if no valid ICN# is present (new feature)
 ;  - has been rewritten for extreme compactness: shrinked from 964 to 500 bytes,
 ;    while lot of error prevention and checking was added.
@@ -73,8 +73,8 @@
 ; 6/15/87    PM   - Changed to standard (Pascal) calling conventions.
 ; 6/20/87    PM   - Fixed color & Finder bug on Mac II.
 ; 6/22/87    DBA  - Improved handling of QuickDraw.
-; 6/29/87    DBA  - Used scratch8 to avoid conflict with “Easy Access”.
-; 6/30/87    DBA  - Changed to a 4-byte scheme with “checksum”.
+; 6/29/87    DBA  - Used scratch8 to avoid conflict with 'Easy Access'.
+; 6/30/87    DBA  - Changed to a 4-byte scheme with 'checksum'.
 ; 6/30/87    PFS  - Separated into ShowINIT and InnerShowINIT.
 ; 7/1/87     DBA  - Fixed stack bug and switched to CurApName.
 ; 7/2/87     PM   - Added check for old signature in ApplScratch for backword compatibility
@@ -85,7 +85,7 @@
 ;                   (reported by D. Dunham).
 ; 7/21/87    PM   - Due to popular demand, InitGraf is no longer being called.
 ;                   This avoids the gamma correction problem with Startupscreens getting
-;                   “washed out” by ShowINIT, though someone else is still bound to call
+;                   'washed out' by ShowINIT, though someone else is still bound to call
 ;                   InitGraf sooner or later (i.e. InitWindows).
 ; 7/29/87    PM   - Put InitGraf back in; this is required (reported by C. Derossi at Apple
 ;                   Tech Support).
@@ -97,7 +97,7 @@
 ;                 - Removed support for old signature.
 ; 11/25/89   PM   - Added Y dimension support, icl4/8 support to get rid of 'obsolete' cicns.
 ; 3/27/90    AMR  - 'cicn's were not being drawn in their native size
-; 11/30/91   FRG  - Started from source found on ‘Lord of the Files’, dev. CD Vol VII.
+; 11/30/91   FRG  - Started from source found on ‘Lord of the Files', dev. CD Vol VII.
 ;                 - Removed cicn support - these are obsolete and may cause palette problems
 ;                 - Introduced a right margin (causes wraparound sooner on a few sreens).
 ;                 - Simplified A5 world allocation; all variables now A5-based
@@ -122,7 +122,7 @@
 ;                   the right resource and colors; however, there are quite a few visual
 ;                   glitches with old INITs, when drawing past the first line. Many keep drawing
 ;                   on the bottom line; some will allow only two or three lines.
-;                   All in all, the method implemented seems to be the ‘official’ one, and
+;                   All in all, the method implemented seems to be the ‘official' one, and
 ;                   reasonably compatible with what's around.
 ;                 - AppleLink relase.
 ; 12/21/92	  - Call LoadResource after GetResource <rb>
@@ -438,7 +438,7 @@ ShowINITxBit	SUBQ.L	#4,A7
 		_RGetResource				; hopefully can't fail on a color machine
 		MOVE.L	(A3),D4		;pmTable	; keep the original color map around
 		MOVE.L	(A7)+,(A3)+	;pmTable	; stuff the ROM clut
-		CLR.L	(A3)		;pmReserved	; ‘must be set to 0 for future compatibility’
+		CLR.L	(A3)		;pmReserved	; ‘must be set to 0 for future compatibility'
 ; now do the much awaited drawing
 		_CopyMask				; do the drawing
 ; cleanly dispose the PixMap

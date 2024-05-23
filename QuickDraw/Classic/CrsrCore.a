@@ -77,7 +77,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “crsrcore.a”
+;EASE$$$ READ ONLY COPY of file 'crsrcore.a'
 ; 1.8	MSH 11/01/1989 Rolling HcMac fiction changes in.  Pmgr equates now in record format and IdleUpdate
 ; trap replaces equivalent idle update code.
 ; 1.7	SES 08/22/1989  Removed include nEqu.d.
@@ -948,7 +948,7 @@ AbslYl
 MagDone	ASR.W	#1,D3
 		ADD.W	D2,D3
 
-		BNE.S		DoComp				; Zero magnitude … don’t compute	<c856/26May87>
+		BNE.S		DoComp				; Zero magnitude … don't compute	<c856/26May87>
 		MOVE.W		#1,adbCount(A0)		; No hits							<c856/26May87>
 		CLR.W		Error(A0)			; No errors							<c856/26May87>
 		BRA			DoPin				; Update the cursor					<c856/26May87>
@@ -965,7 +965,7 @@ CountOK
 ;
 		MOVE.W	D4,D2					; Get Count
 		SUB.W	#1,D2					; Index into JTab
-		ASL.W	#1,D2					; REQUIRES BRA.S’s IN JUMP TABLES
+		ASL.W	#1,D2					; REQUIRES BRA.S's IN JUMP TABLES
 		JMP	JTab(PC,D2.W)				; Jump to the right code per Count
 ;
 JTab	BRA.S	E1						; Count = 1

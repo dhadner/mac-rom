@@ -74,7 +74,7 @@
 ;									etPtrSize and StackSpace to avoid name conflict with the glue.
 ;	  <SM10>	  5/7/92	stb		Added purge proc in InitZone for the TrueType disk cache (from
 ;									DiskCachePatches.a). Moved some "other mgr" cleanup code around
-;									so it’s all grouped nicely.
+;									so it's all grouped nicely.
 ;	   <SM9>	 4/22/92	TN		Clean up BracketSetAppBaseWithInitApplZones, roll in
 ;									AllowNILDisposePtr, ResrvMemGrowSystemHeap,
 ;									NewPtrGrowSystemHeapCleanly MoveHHiPatch from MemoryMgrPatches.a
@@ -106,7 +106,7 @@
 ;
 ;	Modification history from Heap32.a below:
 ;
-;		<15>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		<15>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		<14>	 9/16/91	JSM		Cleanup header.
 ;		<13>	 6/12/91	LN		removed #include 'HardwareEqu.a'
@@ -118,7 +118,7 @@
 ;									current application stack.
 ;		<11>	 7/30/90	BG		Removed CPU = 040 conditional in preparation to move from Mac040
 ;									to Mac32 build.
-;		<10>	 7/17/90	dba		change names of GetHandleSize and StripAddress so they don’t
+;		<10>	 7/17/90	dba		change names of GetHandleSize and StripAddress so they don't
 ;									conflict with glue
 ;		 <9>	 3/22/90	MSH		New PRAM routines in clock.a require a small change to the
 ;									caller.
@@ -127,7 +127,7 @@
 ;									RH040BusErrHandler, and modified RecoverHandle to use the 040
 ;									bus error handler when necessary.
 ;		 <6>	 1/18/90	DVB		Include PalettePriv.a
-;		 <5>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <5>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <4>	 1/11/90	MSH		StkSpacePatch - Because some apps jam ApplLimit directly, it is
 ;									possible for HiHeapMark>ApplLimit which should never be. This
 ;									fix will jam ApplLimit into HiHeapMark if this is the case.
@@ -182,7 +182,7 @@
 ;									of the Pascal glue in the world that implements MaxApplZone sans
 ;									trap; that code will grow the zone without changing HHM, causing
 ;									many deaths to old apps. So we pin things at ApplLimit, even
-;									though that’s pessimistic. Also, add simple bus error handler to
+;									though that's pessimistic. Also, add simple bus error handler to
 ;									RecoverHandle, to jam ROMBase as bogus relative handle.
 ;	  <C765>	  2/5/87	JTC		Yet another HiHeapMark (HackHeapMark?) to accommodate the
 ;									nonstandard mem config at boot time. Until now, HHM was set to
@@ -195,11 +195,11 @@
 ;									higher if a strange zone is built above HiHeapMark, and the
 ;									HeapGuts GrowZone can set it if ApplZone is grown beyond
 ;									HiHeapMark.
-;	  <C741>	  2/2/87	JTC		Undo C587 above, since we’re using the more conservative
+;	  <C741>	  2/2/87	JTC		Undo C587 above, since we're using the more conservative
 ;									approach of running with the stack mid-zone. Change to HeapGuts
 ;									only.
-;	  <C731>	  2/1/87	JTC		Fix MaxApplZone to jam HiHeapMark, in case it’s out of sync with
-;									ApplLimit due to app’s jamming latter without calling SetApplLimit.
+;	  <C731>	  2/1/87	JTC		Fix MaxApplZone to jam HiHeapMark, in case it's out of sync with
+;									ApplLimit due to app's jamming latter without calling SetApplLimit.
 ;	  <C681>	 1/24/87	JTC		Move init code from Launch to InitApplZone. When 64K ROM patches
 ;									were rolled into Heap, IAZ (the old InitApplZone) was kept
 ;									separate from InitApplZone (the patch stuff, which called IAZ to
@@ -238,10 +238,10 @@
 ;									routine ActualS in HeapGuts.a, where the rounding to a multiple
 ;									of 4 is done.
 ;	  <A305>	10/30/86	JTC		Roll in Mac+ patch to RecoverHandle to use the more reasonable
-;									of SysZone and ApplZone as “TheZone” when incoming TheZone is
+;									of SysZone and ApplZone as 'TheZone' when incoming TheZone is
 ;									one of Sys or Appl. Since RecoverHandle is strange, passing a
 ;									pointer to a handle-related routine, the cleanest way is to
-;									customize a MMRHPrologue, “RH” as in RecoverHandle, of course,
+;									customize a MMRHPrologue, 'RH' as in RecoverHandle, of course,
 ;									to do the A6 fixing. The only change to the code here in Heap is
 ;									to JSR to MMRHPrologue rather than MMPrologue. MMRHPrologue has
 ;									several extra lines to choose A6 wisely.
@@ -258,7 +258,7 @@
 ;									pointer block, to ensure that all following blocks are longword
 ;									aligned. Code in InitZone ensures that the heap limit is on a
 ;									long boundary.
-;									Once the zone is aligned, it’s up to internal code to keep
+;									Once the zone is aligned, it's up to internal code to keep
 ;									allocations properly aligned.  Internal routine ActualS is the key.
 ;									It now rounds up to the nearest multiple of 4 (not 2, as before);
 ;									the slop is picked up by internal routine SetLogSize as usual.
@@ -882,7 +882,7 @@ IAZ 		Move.L	A6,-(SP)				;Save A6.
 			; at boot time.  Remove use of antiquated ToMaxLimit.							<C817>
 			Move.l	SP,D1					;current stack									<C817>
 			Sub.L	DefltStack,D1			;enough space for even QD						<C817>
-			Move.L	D1,ApplLimit			;Use stack limit, NOT BufPtr’s					<C778>
+			Move.L	D1,ApplLimit			;Use stack limit, NOT BufPtr's					<C778>
 			Move.L	D1,HiHeapMark			;Start HiHeapMark in sync with					<C778>
 											;ApplLimit in case of glue MaxApplZone<C778>
 
@@ -953,7 +953,7 @@ vIAZInit
 			JSR 	(A0)
 
 @0			MOVE.W	#-1,WWExist 		; $FF for non-existence (also sets QDExist)
-			ST		FMExist				; $FF for InitFonts hasn’t been called
+			ST		FMExist				; $FF for InitFonts hasn't been called
 ;			 BSET	 #7,DSWndUpdate 	 ; cancel pending PaintBehind
 			CLR.L	MenuList
 ;			Clr.L	LastFOND			;											<06May85>
@@ -1705,7 +1705,7 @@ vFreeMem										;										<v1.1>
 ;
 ; Notes:
 ; NewPtr calls ResrvMem again while doing the StdGZProc.  We want it to call the user gzproc, so
-; it’s important that ResrvMem return an error when it’s reentered.  That’s why we have a semaphore.
+; it's important that ResrvMem return an error when it's reentered.  That's why we have a semaphore.
 ;
 ; See also:  NewPtr
 ;
@@ -1722,7 +1722,7 @@ ResrvMem
 				movem.l	d0-d1,-(sp)			; save how much was asked for
 				jsr		GetTheMem			; go get it
 				tst.w	d0					; test for os error
-				beq.s	@leaveNowPopEm		; if zero, space was reserved and we’re done
+				beq.s	@leaveNowPopEm		; if zero, space was reserved and we're done
 		
 ;				move.l	4(sp),d1			; restore the trap word our caller used					<5>
 				btst	#tSysOrCurZone,d1	; is this a _Resrvmem ,SYS?
@@ -1733,9 +1733,9 @@ ResrvMem
 
 @yupItsTheSystemHeap
 				move.l	(sp),d0				; restore the amount being requested					<5>
-				_NewPtr	,SYS				; force open a slot, even though it’s probably at the top of the heap
+				_NewPtr	,SYS				; force open a slot, even though it's probably at the top of the heap
 											; 	because we just made the heap grow.
-				bne		@leaveNowPopEm		; leave if we couldn’t get any space
+				bne		@leaveNowPopEm		; leave if we couldn't get any space
 		
 				_DisposPtr					; ok, we got it.  now free it
 				movem.l	(sp),d0-d1			; ask ResrvMem again for this much.  It will do a better job now that
@@ -2108,7 +2108,7 @@ v32MaxApplZone							; 32 bit version of MaxApplZone			<v1.1>
 ; the heap.  This stems from the fact the routine which reserves the block (MkPtrSpace) only grows ApplZone.
 ; This proc calls NewPtr, then checks to see whether the heap grew.  If it did, this throws away the
 ; newly allocated block and calls NewPtr again.  This gives MkPtrSpace the chance to allocate space
-; down low because now there’s room to put relocatable blocks (the space the heap growing gave us).
+; down low because now there's room to put relocatable blocks (the space the heap growing gave us).
 ; 
 ; See also:  ResrvMemGrowSystemHeap
 ; 
@@ -2199,7 +2199,7 @@ NPNoMem
 DisposePtr
 				move.l	a0,d0					; be cool when a NIL ptr comes through	<sm9>stb
 				bne.w	@NonNIL					; not nil, so call the real thing		<sm9>stb
-				move.w	d0,MemErr				; return no error even though it’s not a ptr stb
+				move.w	d0,MemErr				; return no error even though it's not a ptr stb
 				rts								; 										<sm9>stb
 				
 @NonNIL			MOVE.L	#jDisposePtr,-(SP)		; get offset to routine					<v1.9>
@@ -2571,7 +2571,7 @@ vHandleZone										; 24/32 bit version of HandleZone		<v1.1>
 ; Given a ptr to an alleged handle data block, returns the handle.  Because of
 ; 64K ROM permissiveness, no error can be returned in D0, just in MemErr.
 ; Uses own exit sequence to MMNoErrEpilogue and stuffs MemErr on its own.						<25Apr85>
-; To effect patch from Mac+, special MMRHPrologue (“RH” as in RecoverHandle)					<A305>
+; To effect patch from Mac+, special MMRHPrologue ('RH' as in RecoverHandle)					<A305>
 ; is used to ensure the the more reasonable of SysZone and ApplZone is used for A6
 ; when incoming TheZone is one of Sys or Appl.
 ; Put a bus error handler on the fetch of the relative handle, pinning to						<C778>

@@ -77,7 +77,7 @@
 ;	   <SM3>	  6/4/92	KW		(jmp,P7) Added support for Civic2:  32bpp and Convolution for
 ;									NTSC/PAL FF/ST.  Also, slightly optimized & improved the
 ;									soon-to-obsolete Civic vs. Civic2 checking code.  (Note:  PAL
-;									convolution doesn’t seem to work, so I just commented it out of
+;									convolution doesn't seem to work, so I just commented it out of
 ;									the PAL family mode tables, but everything is there for it to be
 ;									added back in.)
 ;									(fau,P6) Added a new pCivicIIRegTable that has the extra bit
@@ -137,8 +137,8 @@ Return				Ds.l	1								; Return address.
 A6Link				Ds.l	1								; Saved A6.
 spBlk				Ds		SPBlock							; SpBlock for generic use.
 sPRAMBlk			Ds.b	SizeSPRAMRec					; sPRAMRec for generic use.
-civicBaseAddr		Ds.l	1								; Pointer to Civic’s base address.
-ymcaBaseAddr		Ds.l	1								; Pointer to MMC’s base address.
+civicBaseAddr		Ds.l	1								; Pointer to Civic's base address.
+ymcaBaseAddr		Ds.l	1								; Pointer to MMC's base address.
 vRAMBaseAddr		Ds.l	1								; Pointer to base of vRAM.
 vidParamsPtr		Ds.l	1								; Pointer to video parameters.
 configParamsPtr		Ds.l	1								; Pointer to config parameters.
@@ -205,7 +205,7 @@ pGetCivicReg
 @GetCWidth		Move.w	width(A0,D0),D1						; Get the register width
 				Move.w	offset(A0,D0),D0					; Get the register offset.
 				
-				Move.l	civicBaseAddr(A6),A0				; Point A0 at Civic’s base address.
+				Move.l	civicBaseAddr(A6),A0				; Point A0 at Civic's base address.
 				Adda.w	D0,A0								; Point to the desired register.
 
 				Rts
@@ -246,12 +246,12 @@ pWriteCivic
 ;
 ;	This routine complements the WriteCivic routine.  It takes as
 ;		input the Civic register to read and how wide the
-;		register is.  It returns the register’s value.
+;		register is.  It returns the register's value.
 ;
 ;	Note:	Civic Registers are ONLY accessible in 32-bit addressing
 ;			mode.
 ;
-;	<- D0:  The Civic register’s data.
+;	<- D0:  The Civic register's data.
 ;	-> D1:	The width (1 to 12 bits) of the Civic regiser/data.
 ;	-> A0:	Pointer to base address of the Civic register to write.
 ;
@@ -279,11 +279,11 @@ pReadCivic
 ;
 ;	PruneList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are pruned.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -292,12 +292,12 @@ pReadCivic
 				WITH	SpBlock
 
 CPIPruneList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-				Cmp.b	(Sp),D0								; If it’s the keeper,
-				Beq.s	@Until								;	then don’t prune it.
+				Cmp.b	(Sp),D0								; If it's the keeper,
+				Beq.s	@Until								;	then don't prune it.
 				Move.b	D0,spID(A0)							; Otherwise, prune it.
 				_sDeleteSRTRec
 @Until			Dbra	D1,@Repeat							; Loop until done.
@@ -311,11 +311,11 @@ CPIPruneList
 ;
 ;	BuildFamilyList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are inserted back in as disabled.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -324,16 +324,16 @@ CPIPruneList
 				WITH	SpBlock,CivicFrame
 
 CPIBuildFamilyList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-@ChkIt			Cmp.b	(Sp),D0								; If it’s the keeper,
+@ChkIt			Cmp.b	(Sp),D0								; If it's the keeper,
 				Beq.s	@Until								;	then leave it alone.
 				Move.b	D0,spID(A0)							; Otherwise, load that sRsrc ID.
-				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it’s in ROM.
+				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it's in ROM.
 				Move.l	#1,spParamData(A0)					; Say that we want it disabled.
-				Clr.w	spRefNum(A0)						; Say that there’s no driver yet.
+				Clr.w	spRefNum(A0)						; Say that there's no driver yet.
 				_InsertSRTRec								; Do it!
 @Until			Dbra	D1,@Repeat							; Loop until done.
 
@@ -343,16 +343,16 @@ CPIBuildFamilyList
 				ENDWITH
 
 ; This subroutine reads the Civic sense lines.  On entry, D6 should contain $03, $05, $06, or $07 to
-;	indicate the type of extended sense we’re doing, and the CPU should have been put into 32-bit addressing
+;	indicate the type of extended sense we're doing, and the CPU should have been put into 32-bit addressing
 ;	mode.  On exit, D6 contains the appropriate extended sense code.
 ;
 ; Note:	The idea behind the extended-sense-line ($07) algorithm is as follows:  First, drive sense line
-;		“a” and read the values of “b” and “c.”  Next, drive sense line “b” and read the values of “a”
-;		and “c.”  Finally, drive sense line “c” and read the values of “a” and “b.”  In this way, a
+;		'a' and read the values of 'b' and 'c.'  Next, drive sense line 'b' and read the values of 'a'
+;		and 'c.'  Finally, drive sense line 'c' and read the values of 'a' and 'b.'  In this way, a
 ;		six-bit number of the form bc/ac/ab is generated.  The other extended-sense algorithms are
-;		identical to that of $07, except one of the three lines doesn’t need to be driven.  For example,
-;		with $03, “a” doesn’t need to be driven.  With $05, “b” doesn’t need to be driven, and
-;		with $06, “c” doesn’t need to be driven.
+;		identical to that of $07, except one of the three lines doesn't need to be driven.  For example,
+;		with $03, 'a' doesn't need to be driven.  With $05, 'b' doesn't need to be driven, and
+;		with $06, 'c' doesn't need to be driven.
 ;
 
 				WITH	CivicRecord	
@@ -473,10 +473,10 @@ IsItPUMA													;										<LW11> #PUMA
 BeginCivicInit
 
 ;
-; Set up initial “vendor” status.
+; Set up initial 'vendor' status.
 ;
 				Link	A6,#CFSize						; Allocate stack space for locals.
-				Move.w	#seSuccess,seStatus(A0)			; Just say that we’re okay.
+				Move.w	#seSuccess,seStatus(A0)			; Just say that we're okay.
 
 ;
 ; Perform some generic initializations.
@@ -494,7 +494,7 @@ BeginCivicInit
 				Lea		spBlk(A6),A0					; Point A0 at our local SpBlock.
 				Lea		sPRAMBlk(A6),A2					; Get a pointer to our local sPRAMBlock.
 				Move.l	A2,spResult(A0)					; Put our pointer in the SpBlock.
-				_sReadPRAMRec							; Read Slot $0’s pRAM.
+				_sReadPRAMRec							; Read Slot $0's pRAM.
 				
 				Move.l	A4,A3							; Copy the ProductInfo pointer.
 				Adda.l	VideoInfoPtr(A3),A3				; Point to the VideoInfo record.
@@ -522,7 +522,7 @@ BeginCivicInit
 				ENDWITH
 
 ;
-; Here’s where we actually get Civic built-in video going.  This includes setting up the functional
+; Here's where we actually get Civic built-in video going.  This includes setting up the functional
 ;	sRsrcs, as well as initializing the Civic hardware and getting a stable raster for the
 ;	type of display connected.
 ;
@@ -540,8 +540,8 @@ CivicVideoInit
 				Move.l	A4,A3								; Copy the ProductInfo ptr.
 				Move.b	ProductKind(A3),boxFlag(A6)			; Save this machine's boxflag
 				Adda.l	DecoderInfoPtr(A3),A3				; Point to the base address table.
-				Move.l	CivicAddr(A3),civicBaseAddr(A6)		; Save Civic’s base address.
-				Move.l	DecoderAddr(A3),ymcaBaseAddr(A6)	; Save MMC/YMCA’s base address.
+				Move.l	CivicAddr(A3),civicBaseAddr(A6)		; Save Civic's base address.
+				Move.l	DecoderAddr(A3),ymcaBaseAddr(A6)	; Save MMC/YMCA's base address.
 				
 				Move.l	A4,A3								; Copy the ProductInfo ptr.
 				Adda.l	VideoInfoPtr(A3),A3					; Point to the VideoInfo record.
@@ -549,7 +549,7 @@ CivicVideoInit
 				
 				ENDWITH
 				
-				Move.l	civicBaseAddr(A6),A0				; Point A0 at Civic’s base address.
+				Move.l	civicBaseAddr(A6),A0				; Point A0 at Civic's base address.
 
 ; Disable Civic interrupts.
 ;
@@ -590,7 +590,7 @@ CivicVideoInit
 				pWrite_Civic #1,#BusSize					; Set up for 64-bit wide bus.
 				
 				pWrite_Civic #1,#HHLTB						; Disable the test registers.
-				pWrite_Civic #1,#HLDB						;	(Why wasn’t this just done
+				pWrite_Civic #1,#HLDB						;	(Why wasn't this just done
 				pWrite_Civic #1,#VLDB						;	 in hardware?)
 				pWrite_Civic #1,#VHLTB						;
 				
@@ -607,10 +607,10 @@ CivicVideoInit
 				Move.l	#'Nano',(A0)						; Write something out there.
 				Nop											; (This space is non-serial.)
 				Move.l	#-1,4(A0)							; Clear those data lines.
-				Nop											; (It’s still non-serial.)
+				Nop											; (It's still non-serial.)
 
 				Cmp.l	#'Nano',(A0)						; If there are really 2Megs of vRAM
-				Beq.s	@EndSize							;	then we’re done.
+				Beq.s	@EndSize							;	then we're done.
 
 				pWrite_Civic #0,#VRAMSize					; Otherwise, set up for 1Meg.
 				Subq	#1,D4								;
@@ -618,7 +618,7 @@ CivicVideoInit
 @EndSize
 
 ; Sense the type of display to drive.  When done, D6 contains the indexed code specifying which
-;	display type we’re supposed to set up for.
+;	display type we're supposed to set up for.
 ;
 
 				CivicResetSenseLines						; Reset the actual senselines themselves.
@@ -642,7 +642,7 @@ CivicVideoInit
 
 @Extended2P
 @ExtendedRGBFP
-				Bra		@EndSense							; We’ll support these later.
+				Bra		@EndSense							; We'll support these later.
 
 ; • Check for Extended type-6 (HR)...
 ;
@@ -651,12 +651,12 @@ CivicVideoInit
 				Cmpi.b	#extendedHR,D6						; If there really is only a type-6 display,
 				Beq.s	@EndHR								;	then just go on.
 				
-				Cmpi.b	#extendedHR,D6						; If there isn’t a multiscan-sensed display,
+				Cmpi.b	#extendedHR,D6						; If there isn't a multiscan-sensed display,
 				Bne.s	@EndHR								;	then just go on.
-				Move.b	#indexedSenseMSB1,D6				; Otherwise, say it’s a multiscan.
+				Move.b	#indexedSenseMSB1,D6				; Otherwise, say it's a multiscan.
 				Bra		@EndSense							; Vamoose.
 
-@EndHR			Move.b	#indexedSenseHR,D6					; Just say we’ve got a type-6 for now.
+@EndHR			Move.b	#indexedSenseHR,D6					; Just say we've got a type-6 for now.
 
 				With	SP_Params
 				
@@ -679,11 +679,11 @@ CivicVideoInit
 
 				Lea		@XNCTable,A1						; Point to the table of extended no-connect codes.
 @XNCLoop		Move.b	(A1)+,D0							; Pick up the next supported extended no-connnect code.
-				Bmi.s	@EndNoConnect						; If we’re at the end of the list, then just leave.
+				Bmi.s	@EndNoConnect						; If we're at the end of the list, then just leave.
 				
 				Move.b	(A1)+,D1							; Pick up the indexed version of the extended code.
 
-				Cmp.b	D0,D6								; If we didn’t find a match, then
+				Cmp.b	D0,D6								; If we didn't find a match, then
 				Bne.s	@XNCLoop							;	just keep looping
 				
 				Move.b	D1,D6								; Translate the extended code into its indexed version.
@@ -697,12 +697,12 @@ CivicVideoInit
 				Dc.b	extendedSense19,indexedSense19
 				Dc.b	-1,-1
 
-@EndNoConnect	Move.b	#indexedNoConnect,D6				; We don’t recognize the code, so say nothing’s connected.
+@EndNoConnect	Move.b	#indexedNoConnect,D6				; We don't recognize the code, so say nothing's connected.
 
 
-; When no monitor that we recognize is connected, we first want to check to see if we’re at the
-;	factory.  If we are, then the last 4-bytes of pRAM will contain 'RNIN'. If we aren’t
-;	at the factory and we don’t recognize the no-connect code, then we set up to delete
+; When no monitor that we recognize is connected, we first want to check to see if we're at the
+;	factory.  If we are, then the last 4-bytes of pRAM will contain 'RNIN'. If we aren't
+;	at the factory and we don't recognize the no-connect code, then we set up to delete
 ;	all the video data structures and to turn built-in video off.
 ;
 ; Actually, we first want to check to see if the spCompOut bit of the PRAM flags is set.  If so,
@@ -734,7 +734,7 @@ CivicVideoInit
 				
 				Cmp.l	#burnInSig,D0						; If we are at the factory, then
 				Beq.s	@DoHR								;	just pretend an HR is attached.
-				Bra.s	@EndSense							; Otherwise, nothing’s connected.
+				Bra.s	@EndSense							; Otherwise, nothing's connected.
 				
 @DoHR			Move.b	#indexedSenseHR,D6					; Say an HR display is attached.
 
@@ -760,7 +760,7 @@ CivicVideoInit
 				
 				ENDWITH
 
-; Initialize built-in video’s pRAM.
+; Initialize built-in video's pRAM.
 ;
 @InitPRAM			
 				WITH	SP_Params
@@ -779,7 +779,7 @@ CivicVideoInit
 ;																										<LW12>
 				WITH	CVRAMConfigRec,CivicConfigRec		;											<LW12>
 															;											<LW12>
-				Move.l	configParamsPtr(A6),A1				; Point to this config’s parameters.		<LW12>
+				Move.l	configParamsPtr(A6),A1				; Point to this config's parameters.		<LW12>
 				Adda.w	#CConfigHdrSize,A1					; Skip past the header.						<LW12>
 				Move.w	#CVRAMConfigSize,D0					; Get the size of the vRAM entries.			<LW12>
 				Mulu	D4,D0								; Multiply by the right entry.				<LW12>
@@ -789,14 +789,14 @@ CivicVideoInit
 															;											<LW12>
 				ENDWITH										;											<LW12>
 @DoFamily													; Otherwise, make sure we are part of the family.	<LW12>
-				Move.l	configParamsPtr(A6),A1				; Point back to this config’s parameters.	<LW12>
+				Move.l	configParamsPtr(A6),A1				; Point back to this config's parameters.	<LW12>
 				Adda.w	D0,A1								; Point to the table of supported families.	<LW12>
 				Move.b	SP_LastConfig(A2),D0				; Get the sRsrcID of the keeper into D0.	<LW12>
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”			<LW12>						
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'			<LW12>						
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.		<LW12>
 															;											<LW12>
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.							<LW12>
-@ChkIt			Cmp.b	(Sp),D0								; If it’s the keeper,						<LW12>
+@ChkIt			Cmp.b	(Sp),D0								; If it's the keeper,						<LW12>
 				Beq.s	@FoundIt							;	then leave it alone.					<LW12>
 				Dbra	D1,@Repeat							; Loop until done.							<LW12>
 				Move.b	#0,SP_DfltConfig(A2)				; Make sure we don't compare				<LW12>
@@ -813,15 +813,15 @@ CivicVideoInit
 				Move.b	D7,SP_Depth(A2)						; Set the default depth for this configuration.
 
 @WritePRAM		Move.l	A2,spsPointer(A0)						; Set up the pRAM parameter block.
-				_sPutPRAMRec								; Write out Slot $0’s pRAM.
+				_sPutPRAMRec								; Write out Slot $0's pRAM.
 				
 				Move.b	SP_LastConfig(A2),D5				; Get the right (family member) sRsrc into D5. 	
 				
 				
 				ENDWITH
 
-; First, prune all of the video sResources except for the selected one.  If there are no families, then we’re done.
-;	Otherwise, we re-insert all the members of the selected configuration’s family as disabled.
+; First, prune all of the video sResources except for the selected one.  If there are no families, then we're done.
+;	Otherwise, we re-insert all the members of the selected configuration's family as disabled.
 ;
 				WITH	CVRAMConfigRec,CivicConfigRec
 
@@ -829,15 +829,15 @@ CivicVideoInit
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr.s	CPIPruneList						; Call our pruning utility.
 				
-				Move.l	configParamsPtr(A6),A1				; Point to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point to this config's parameters.
 				Adda.w	#CConfigHdrSize,A1					; Skip past the header.
 				Move.w	#CVRAMConfigSize,D0					; Get the size of the vRAM entries.
 				Mulu	D4,D0								; Multiply by the right entry.
 				Adda.l	D0,A1								; Skip to the right vRAM entry.
-				Move.w	familiesOffset(A1),D0				; If there aren’t any families,
+				Move.w	familiesOffset(A1),D0				; If there aren't any families,
 				Beq.s	@EndConfig							;	then just go on.
 				
-				Move.l	configParamsPtr(A6),A1				; Point back to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point back to this config's parameters.
 				Adda.w	D0,A1								; Point to the table of supported families.
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr.s	CPIBuildFamilyList					; Call our family-building utility.
@@ -871,7 +871,7 @@ InitCivicHW
 				Move.b	#sVidParmDir,spID(A0)				; Look for the video parameters directory.
 				_sFindStruct
 				
-				Move.b	D5,spID(A0)							; Look in the directory for this config’s params.
+				Move.b	D5,spID(A0)							; Look in the directory for this config's params.
 				_sGetBlock
 				
 				Move.l	spResult(A0),A2						; Get a pointer to the vidParams.
@@ -890,7 +890,7 @@ InitCivicHW
 				Move.l	civicBaseAddr(A6),A0				; Point to the base of Civic.
 				Move.l	#1,Civic_SyncClr(A0)				; Disable Sync outputs.
 				
-				Btst	#fCivicVidIn,cvpFlags(A2)			; If we can’t do video-in in this configuration,
+				Btst	#fCivicVidIn,cvpFlags(A2)			; If we can't do video-in in this configuration,
 				Beq.s	@SetupScanCtl						; 	then just go on.
 				pWrite_Civic #0,#BusSize					; Otherwise, set up the bus for both video-in & graphics.
 				
@@ -1063,7 +1063,7 @@ InitCivicHW
 				Move.l	#OneBitGray,D2						; Set the 1bpp gray pattern.
 				
 				Move.w	cvpRowWords(A2),D0					; Get the number of longwords/row.
-				Tst.b	cvpScanCtl(A2)						; If we’re on an interlaced display
+				Tst.b	cvpScanCtl(A2)						; If we're on an interlaced display
 				Bne.s	@Interlace							;	then adjust accordingly.
 				Lsl.w	#3,D0								; Normalize for progressive displays.
 				Bra.s	@SizeIt								; (Skip interlace here.)

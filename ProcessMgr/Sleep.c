@@ -11,7 +11,7 @@
 	 
 		 <5>	 3/23/92	JSM		OSEvents.h is obsolete, use Events.h.
 		 <4>	 3/16/92	YK		(for TSM) In clkint, If a physical event is not for the front
-									app, don’t switch to the front app.
+									app, don't switch to the front app.
 		 <2>	11/27/90	DFH		Removed unneeded parameter from cpu_resched.
 		 <0>	 3/13/86	ELR		New Today.
 

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rom", "Rom\Rom.vcxproj", "{4E112616-08F0-4A0C-8091-7D2C5D0652A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{D4B9DAFF-6023-46EC-A5DD-642D2FCA431C}"
+	ProjectSection(SolutionItems) = preProject
+		Applications\a68.bat = Applications\a68.bat
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Debug|x64.ActiveCfg = Debug|x64
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Debug|x64.Build.0 = Debug|x64
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Debug|x86.ActiveCfg = Debug|Win32
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Debug|x86.Build.0 = Debug|Win32
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Release|x64.ActiveCfg = Release|x64
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Release|x64.Build.0 = Release|x64
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Release|x86.ActiveCfg = Release|Win32
+		{4E112616-08F0-4A0C-8091-7D2C5D0652A0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05D7D7C3-721C-4F41-A691-22BD385F6668}
+	EndGlobalSection
+EndGlobal

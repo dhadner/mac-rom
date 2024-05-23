@@ -260,8 +260,8 @@ DoBitMappedData
 
 @doLastRun
 				move.w	d2, d4						; load up number of words to move
-				beq.s	DoDanglingByte				; there aren’t any more words, just think about a last byte
-				moveq	#0, d2						; and make sure we don’t do this again...
+				beq.s	DoDanglingByte				; there aren't any more words, just think about a last byte
+				moveq	#0, d2						; and make sure we don't do this again...
 				move.b	(a0)+, d3					; get mask for this run
 				bra.s	@lastEntry					; enter through bottom of dbra, 'cause the count is 1 based
 

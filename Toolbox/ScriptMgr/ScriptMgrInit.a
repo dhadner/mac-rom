@@ -86,9 +86,9 @@
 ;									(currently private) routines RealScript, Font2RealScript,
 ;									SCLwrString (needed for bugs #1013149, #1012949). Clean up some
 ;									conditionals, remove code that is conditionalized out.
-;		<20>	 1/14/91	PKE		(stb) Expand dispatch table for Kevin’s new private routine
+;		<20>	 1/14/91	PKE		(stb) Expand dispatch table for Kevin's new private routine
 ;									FindCharInSet, needed for Dialog Mgr and Finder.
-;		<19>	12/14/90	PKE		(DC) Don’t install GetOSEvent patch if A/UX running. Don’t
+;		<19>	12/14/90	PKE		(DC) Don't install GetOSEvent patch if A/UX running. Don't
 ;									install InitApplZone patch on 7.0 (no longer needed).
 ;		<18>	12/10/90	PKE		(VL) Expand dispatch table for new private routine
 ;									ReInitScripts, needed for network booting.
@@ -97,7 +97,7 @@
 ;		<16>	 7/23/90	PKE		For 7.0, move romanDispTable (table of offsets used to
 ;									initialize Roman dispatch table) here, so it gets cut back. Use
 ;									smgrSixPack instead of $606.
-;		<15>	 7/20/90	PKE		For 7.0, FixSMgrWorld code is moved into ptch 27, so don’t
+;		<15>	 7/20/90	PKE		For 7.0, FixSMgrWorld code is moved into ptch 27, so don't
 ;									initialize its vector here.
 ;		<14>	 7/11/90	PKE		Expand dispatch table for new internal routine _IsCmdChar.
 ;		<13>	 6/13/90	PKE		Expand dispatch table for new internal routine
@@ -115,7 +115,7 @@
 ;		 <8>	 3/27/90	PKE		Use new conditional flags for gestaltScriptMgr.
 ;		 <7>	 3/20/90	EMT		Removed unnecessary ROM85 references and oldMacTweek code.
 ;		 <6>	 3/19/90	PKE		Use new smgrUseDispTablePtr conditional.
-;		 <5>	 2/22/90	PKE		Moved FixSpExtra to ptch 27, so don’t initialize sVectFixSpExtra
+;		 <5>	 2/22/90	PKE		Moved FixSpExtra to ptch 27, so don't initialize sVectFixSpExtra
 ;									here anymore (see <3>).
 ;		 <4>	 1/30/90	PKE		NEEDED FOR 6.0.5: Changed conditionals so ROM and System 7 bug
 ;									fix also goes in System 6.0.5 - high byte of smgrGenFlags should
@@ -229,7 +229,7 @@
 ;				  2/5/88	med		Reordered init code slightly/ for testing, expand expandmem if
 ;									too small
 ;				  2/4/88	med		Remove Launch offset, add InitResources and InitApplZone offsets
-;				  2/4/88	med		If the Script Manager is already active, don’t install
+;				  2/4/88	med		If the Script Manager is already active, don't install
 ;				12/17/87	med		Add lwrString
 ;				12/17/87	med		Allow os traps in patchloop
 ;				11/24/87	med		Added syserr if can't get pointer in system heap.

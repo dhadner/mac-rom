@@ -180,7 +180,7 @@
 ;		<22>	12/29/91	RB		Added Terror changes.
 ;		<21>	 9/16/91	JSM		Cleanup header.
 ;		<20>	 6/12/91	LN		removed #include 'HardwareEqu.a'
-;		<19>	  3/5/91	dba		put in an align directive so that we don’t get a warning
+;		<19>	  3/5/91	dba		put in an align directive so that we don't get a warning
 ;		<18>	  3/5/91	PN		Fix the warning by putting the END statement at the end
 ;		<17>	 9/24/90	GMR		Added special case to JAWS merge code to deal with 2 meg bank A,
 ;									0 meg bank B and vice versa when the 2 meg is in a single chunk
@@ -209,7 +209,7 @@
 ;		 <5>	 2/21/90	BG		The Orwell configuration code needed a small bit of tweaking.
 ;		 <4>	 2/16/90	BG		Added code to initialize Orwell bank addresses to the known
 ;									default power-on state.
-;		 <3>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <3>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <2.9>	 10/9/89	GMR		NEEDED FOR ZONE5: Return bit mask for bad byte lanes, supporting
 ;									up to 8 banks of 4 byte lanes each. Initialize FMC to put bank B
 ;									on 64 Meg boundary.

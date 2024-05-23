@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 	 
-		<33>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<33>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<32>	 8/26/92	DTY		Roll in latest changes for A/UX.
 		<31>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature. Conditionally
@@ -409,8 +409,8 @@ label_PRRUN:
 						//		However, if GetNextPsuedoEvent returns false, the Process Manager changes the event from
 						//		an update event to a null event, causing the update event to never be processed, and thus
 						//		causing modal dialogs to come up blank.
-						//		If GetNextPseudoEvent returns false, return the original update event.  Because we know we’ll
-						//		have an update event at this point, retVal will always be true, so we don’t need to assign
+						//		If GetNextPseudoEvent returns false, return the original update event.  Because we know we'll
+						//		have an update event at this point, retVal will always be true, so we don't need to assign
 						//		the result of GetNextPseudoEvent to it.  (If GetNextPseudoEvent returns true, retVal is already
 						//		true.  If GetNextPseudoEvent returns false, retVal should still remain true so that the update
 						//		event will get passed back to the caller.)

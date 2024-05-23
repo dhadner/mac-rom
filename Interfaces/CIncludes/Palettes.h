@@ -15,7 +15,7 @@ Created: Tuesday, January 8, 1991 at 9:43 AM
 		<11>	 9/17/91	MH		change inline value in GetGray from 0x1219 to 0x0C19 which is
 									correct
 		<10>	 1/30/91	JL		checked in database generated file from DSG.
-		 <9>	 1/25/91	stb		JDR: add const where pointers aren’t VARs.
+		 <9>	 1/25/91	stb		JDR: add const where pointers aren't VARs.
 		 <8>	  1/9/91	dvb		Change return type of HasDepth to short.
 		 <7>	12/13/90	dvb		Make .h and .p and .a files consistent.
 		 <6>	 11/7/90	JL		Added pmInhibit equates.  Changes all #defines to anonymous

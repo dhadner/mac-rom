@@ -28,7 +28,7 @@
 		
 									Regatta Change History:
 
-									 <9>	 8/19/91	SAM		“unused” and unused local var in Prime.
+									 <9>	 8/19/91	SAM		'unused' and unused local var in Prime.
 									 <8>	 8/19/91	SAM		(ag) Removed async bit clear
 									 <7>	  8/8/91	SAM		(ag) fixed backlight driver to handle new box flags.
 									 <6>     7/30/91	SAM		(ag) fixed low power dimming code in software only controls.

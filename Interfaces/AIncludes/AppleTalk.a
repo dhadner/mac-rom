@@ -15,7 +15,7 @@
 ;		<10>	 6/14/91	JL		Equated clientName and xppSubCode to $1C insteead of csCode
 ;									because csCode is in SysEqu.a which would have to be included.
 ;									Also substitued $1C for csParam which is also in SysEqu.a.
-;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase
 ;		 <8>	 1/19/91	mbs		(jg) Remove lots of private stuff that should not be released
 ;									with MPW.  Update for Inside Mac Volume 6.

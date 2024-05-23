@@ -2,7 +2,7 @@
 ;	File:		ProcessManagerSegmentTweaks.a
 ;
 ;	Contains:	Code to do smarter loading of Process Manager segments to reduce
-;				system heap fragmentation.  Based on Greg’s 7 Up code.
+;				system heap fragmentation.  Based on Greg's 7 Up code.
 ;
 ;	Written by:	Dean Yu
 ;
@@ -12,7 +12,7 @@
 ;
 ;		 <1>	12/16/91	DTY		first checked in
 ;
-;	To do:		Take decompression slop into account (this doesn’t happen yet, but it might)
+;	To do:		Take decompression slop into account (this doesn't happen yet, but it might)
 ;				
 
 				load	'StandardEqu.d'
@@ -20,9 +20,9 @@
 				
 ;
 ; Loading these segments lower in the system heap helps reduce fragmentation of the
-; system heap.  Preloading resources from the System file doesn’t work because they
+; system heap.  Preloading resources from the System file doesn't work because they
 ; come in before the decompression hooks are installed.  For each Process Manager
-; segment in our list, find out it’s size, reserve enough space for it, and load
+; segment in our list, find out it's size, reserve enough space for it, and load
 ; it low in the heap.
 ;
 
@@ -39,8 +39,8 @@ LoadProcessManagerSegmentsLowerInSysHeap	InstallProc	(Plus,SE,II,IIci,Portable)
 				lea		ProcessManagerSegmentTable,a4	; Table of Process Manager segments to load low
 @loadLoop
 				move.w	(a4)+,d7				; Get the segment number
-				bz.s	@doneWithSegments		; Did ’em all
-				sf		ResLoad					; Don’t load in resources
+				bz.s	@doneWithSegments		; Did 'em all
+				sf		ResLoad					; Don't load in resources
 				subq	#8,sp					; Space for _SizeResource result too
 				move.l	#kProcessManagerSegmentType,-(sp)
 				move.w	d7,-(sp)
@@ -53,7 +53,7 @@ LoadProcessManagerSegmentsLowerInSysHeap	InstallProc	(Plus,SE,II,IIci,Portable)
 				move.l	#kProcessManagerSegmentType,-(sp)
 				move.w	d7,-(sp)
 				_Get1Resource					; Load it in
-				addq	#4,sp					; We don’t really care about the resource
+				addq	#4,sp					; We don't really care about the resource
 				bra.s	@loadLoop
 				
 @doneWithSegments

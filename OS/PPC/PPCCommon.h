@@ -8,7 +8,7 @@
 	   <SM5>	  3/9/93	PN		Remove ReQueueInformPB,Insert, Push,InitQueue, TraverseQueue
 									which is no longer used
 		<44>	 4/14/92	BBM		<JSM>: Remove unfinished PPC code that is under the contitional
-									“TheFutute”, and remove the conditional “CubeE” since that is
+									'TheFutute', and remove the conditional 'CubeE' since that is
 									reality. Remove conditionals, since all they do is confuse.
 		<43>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
 		<42>	 9/29/91	DTY		Conditionalize <38> thru <41> out of the CubeE build.

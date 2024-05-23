@@ -21,9 +21,9 @@ Created: Saturday, July 27, 1991 at 4:28 PM
 									SlotMgr which must be in 24 bit mode sometimes.
 									Update from Reality:
 									<21>	10/16/92	DTY		Add BlockMoveData.
-		<20>	  7/8/92	DTY		Make GetHandleSize call the glue again because it’s documented
+		<20>	  7/8/92	DTY		Make GetHandleSize call the glue again because it's documented
 									as returning 0 to a high level language if an error occured.
-		<19>	  7/8/92	DTY		Take out the last change for now. We’ll put it back in after
+		<19>	  7/8/92	DTY		Take out the last change for now. We'll put it back in after
 									Cube-E is done.
 		<18>	  7/6/92	DTY		Make GetPtrSize an inline.
 		<17>	 6/11/92	DTY		Change GetHandleSize into an inline.
@@ -54,7 +54,7 @@ Created: Saturday, July 27, 1991 at 4:28 PM
 
 // NOTE!!!!!!!!!!!
 //
-// Don’t change GetHandleSize and GetPtrSize into inlines.  They are documented as returning
+// Don't change GetHandleSize and GetPtrSize into inlines.  They are documented as returning
 // 0 in case of an error in Inside Mac, but the traps actually return an error code in D0.
 // The glue sets D0 to 0 if an error occured.
 

@@ -27,11 +27,11 @@
 									old layer back.
 		<78>	  4/4/92	csd		#1017165,<BBM>: In HMShowWindowPartBalloon, set the port to the
 									BalloonWindow before calling ReplaceText since ReplaceText uses
-									the current port’s font and script information.
+									the current port's font and script information.
 		<77>	 3/23/92	JSM		OSEvents.p is obsolete, use Events.p.
 		<76>	11/21/91	csd		#83334: Used a single string with ReplaceText instead a two
 									strings with Concat to build "This window belongs to the
-									application “xxx”. To make this window active, click in it."
+									application 'xxx'. To make this window active, click in it."
 		<75>	 11/3/91	KSM		In theFuture, we should not arbitrarily limit the size of
 									balloons (per Randy).
 		<74>	  4/1/91	RLC		vl, #85955- FIx bug that wasn't respecting current process when
@@ -3358,7 +3358,7 @@ FUNCTION  __HMScanTemplateItems(whichID,whichResFile: INTEGER; whichType: ResTyp
 																		pt,@altRect,theProc,variant,aHelpMsg);
 								
 								if result = noErr then
-									with itemRect do	{ correct the dialog item's “hot” rect [<59> always add in altRect params] }
+									with itemRect do	{ correct the dialog item's 'hot' rect [<59> always add in altRect params] }
 										begin
 											left	:= left		+ altRect.left;
 											top		:= top		+ altRect.top;

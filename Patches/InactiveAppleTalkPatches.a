@@ -31,7 +31,7 @@ ApplyOpenPatchIfAppleTalkIsInactive	InstallProc	(Plus,SE,Portable,II,IIci)
 			Import	UndefineGestaltAppleTalkSelector
 			
 			move.l	ExpandMem,a0					;
-			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; If AppleTalk is active, don’t patch _Open
+			tst.w	ExpandMemRec.emAppleTalkInactiveOnBoot(a0)	; If AppleTalk is active, don't patch _Open
 			bz.s	@exit							; AppleTalk is active.  Bail out.
 
 ; AppleTalk is inactive.  Apply the patch to _Open that prevents AppleTalk drivers
@@ -76,7 +76,7 @@ PatchStart
 			moveq	#0,d6
 			move.b	(a3)+,d6				; Save length of driver name
 			cmp.b	#'.',(a3)				; Driver names always being with a period.
-			bne.s	@callOldOpen			; If it’s not a driver that’s being opened, let it through.
+			bne.s	@callOldOpen			; If it's not a driver that's being opened, let it through.
 			
 			lea		DriversOfInterest,a4	; Get table of drivers not to open.
 			moveq	#0,d7					; Used for length of driver name in table
@@ -91,7 +91,7 @@ PatchStart
 			move.w	d7,d0					; Length of second string
 			_CmpString						; Are they equal?
 			tst.l	d0
-			beq.s	@dontLetThisDriverOpen	; If equal, don’t let it open.
+			beq.s	@dontLetThisDriverOpen	; If equal, don't let it open.
 			add.l	d7,a4					; Point to next driver name in table.
 			bra.s	@checkDriverNameLoop	; And check it out.
 			

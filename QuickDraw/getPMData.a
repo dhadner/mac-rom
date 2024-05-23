@@ -15,7 +15,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “GetPMData.a”
+;EASE$$$ READ ONLY COPY of file 'GetPMData.a'
 ; 1.0	KON 11/15/1989 Broken out of pictures.a
 ; END EASE MODIFICATION HISTORY 
 
@@ -279,7 +279,7 @@ MORE5	CMP		#250,D5							;IS ROWBYTES > 250?
 @2		MOVE.L 	A3,-(SP)						;PUSH DST ADDR
 		MOVE	D0,-(SP)						;PUSH BYTECOUNT
 		JSR 	GetPicData						;GET PACKED DATA
-	if TheFuture then							; Don’t build until TheFuture is here <5>
+	if TheFuture then							; Don't build until TheFuture is here <5>
 		cmp.w	#AbortPicPlayBackErr,qdErr		;abort if our special error <4>
 		beq.s	done
 	endif										; <5>

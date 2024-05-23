@@ -7,7 +7,7 @@
 ;
 ;		 <6>	  7/1/92	DCL		This file is the replacement for the now obsolete TimeEqu.a.
 ;									Changed the 'including' name to match the new file name.
-;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <5>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 

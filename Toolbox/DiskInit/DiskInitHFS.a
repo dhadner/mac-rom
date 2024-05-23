@@ -11,7 +11,7 @@
 ;
 ;		 <6>	 2/10/92	JSM		Moved this file to DiskInit folder, keeping all the old
 ;									revisions.
-;		 <5>	 8/30/91	DTY		Define has3rdFloppy here since it’s no longer defined in
+;		 <5>	 8/30/91	DTY		Define has3rdFloppy here since it's no longer defined in
 ;									BBSStartup.
 ;		 <4>	 6/12/91	LN		Removed #includes for private interfaces from public interfaces.
 ;									Changed #include 'HardwareEqu.a' to 'HardwarePrivateEqu.a'

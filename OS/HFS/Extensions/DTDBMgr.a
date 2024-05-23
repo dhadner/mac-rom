@@ -27,7 +27,7 @@
 ;		<29>	 3/20/91	dnf		sad, #DTGetInfoConsumesGranite: Fix DTGetInfo so that the
 ;									AddFileSizes routine that it calls actually works. It is good to
 ;									know that someone is now actually using this call.
-;		<28>	 3/19/91	dnf		dba, #dnf: Don’t clobber Z bit when restoring return addresses
+;		<28>	 3/19/91	dnf		dba, #dnf: Don't clobber Z bit when restoring return addresses
 ;									from the a6 stack.
 ;		<27>	 3/17/91	dnf		ppd, #dnf-0013: Use the result code from ioResult(a0) instead of
 ;									from d0 to be extra-clean on async calls.
@@ -41,7 +41,7 @@
 ;									nobody on the hook has rejected the unmount. Also put in tweak
 ;									for brc #81858 (replace #fnfErr with #afpItemNotFound)
 ;		<24>	 1/22/91	dnf		(ppd, tgh) Force DTOpenInform, DTGetPath and DTCloseDown to be
-;									synchronous. Don’t use MakePBLookAsync anymore.
+;									synchronous. Don't use MakePBLookAsync anymore.
 ;		<23>	 1/17/91	dnf		(pwd) Make sure that FindDTFiles has the volume info before it
 ;									tries to decide if the volume is locked or not.
 ;		<22>	12/21/90	dnf		(dfh) Move substitution of volume name + shadow for the standard
@@ -61,12 +61,12 @@
 ;									a lame attempt to update the key descriptor.
 ;		<19>	 12/5/90	dnf		(with dba) Have RemoveAPPL look at AppSpec.parID instead of
 ;									ioDirID from the DTParamBlock. Have AddAPPL do this too.
-;		<18>	 12/5/90	dnf		(with dba) Fixed three places where we didn’t move the return
+;		<18>	 12/5/90	dnf		(with dba) Fixed three places where we didn't move the return
 ;									address to the a6 stack before calling potentially async
 ;									routines. Expand the size of a volume name storage to 32 bytes,
 ;									since it is really the root directory name, and is not
 ;									necessarily 28 bytes or smaller. Started work on Preferences
-;									folder support, but it is still IF’d out for this check-in.
+;									folder support, but it is still IF'd out for this check-in.
 ;		<17>	 9/25/90	dnf		(dnf/pwd) Set up FSVars.dtOwnCall to point to each parameter
 ;									block used by the desktop manager so that FileShare can allow
 ;									these calls to pass unmolested.
@@ -79,8 +79,8 @@
 ;									of a (special) key descriptor.
 ;		<14>	 7/30/90	dnf		Change all bsr and jsr instructions that point at Rom bind
 ;									symbols into jsrRom macros.
-;		<13>	  6/2/90	gbm		Fix Dave’s eensy weensy little mistake of CHECKING IN x xxxx xx
-;									xxxx’x xxxxxxxxx!!!! (Appropriate slime deleted anyway. <dnf 15>)
+;		<13>	  6/2/90	gbm		Fix Dave's eensy weensy little mistake of CHECKING IN x xxxx xx
+;									xxxx'x xxxxxxxxx!!!! (Appropriate slime deleted anyway. <dnf 15>)
 ;		<12>	  6/2/90	dnf		Make DTDeleteAPPL move the next-newest app to the front of the
 ;									list
 ;		<11>	 5/15/90	dnf		Make sure that StandardLocals always returns an even-sized
@@ -284,7 +284,7 @@ DesktopCloseDownProc Proc Export
 ;	d1 - size of string allocated on stack														<43>
 
 			moveq.l		#0,d1							; assume no string on stack				<43>
-			move.l		ioNamePtr(a3),d0				; d0 = caller’s name ptr				<43>
+			move.l		ioNamePtr(a3),d0				; d0 = caller's name ptr				<43>
 			beq.s		@noName							; bail on nil							<43>
 			movea.l		d0,a0							; get ready to copy						<43>
 			moveq.l		#0,d0							; clear high bytes						<43>
@@ -1656,7 +1656,7 @@ RealOpenDT:			proc export
 ; <21> If the files just got created, try to allocate a contiguous clump just for performance.
 ;
 	tst.b		existsFlag(a6)					; are we brand new?
-	bne.s		@alreadyExisted					; no, don’t allocate a clump
+	bne.s		@alreadyExisted					; no, don't allocate a clump
 	lea.l		bigPB(a6), a0					; a0 = ptr(param block)						<22>
 	move.l		DTDBQElt.DFClumpSize(a3), ioReqCount(a0)	; d1 = the data file's clump size
 	go_Allocate 								; request the additional space

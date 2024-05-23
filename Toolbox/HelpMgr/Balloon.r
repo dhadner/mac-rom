@@ -15,8 +15,8 @@
 									Balloon.r. (Only 1 default message for the floating window).
 		<53>	 5/14/92	KST		#1027497 <JH>: #1025797,#1027497: Added default resources so
 									that Balloon help can work when mouse is over a floating window.
-		<52>	11/21/91	csd		#83334: Merged "This window belongs to the application “" with
-									"”. To make this window active, click in it." into one string
+		<52>	11/21/91	csd		#83334: Merged "This window belongs to the application '" with
+									"'. To make this window active, click in it." into one string
 									for easier localization.
 		<51>	 2/26/91	RLC		ngk: Roll in new strings from final edit. (Approved by GO5)
 		<50>	  2/8/91	dba		dty: trim about 11K off of the help pictures, without affecting
@@ -202,7 +202,7 @@ resource 'STR#' (kHMHelpID, sysheap, purgeable) {
 		"Turns Balloon help off.";
 
 	/* [147] Window Parts, Title bar (system), Normal */
-		"Title bar\n\nThis is the window’s title bar.  To move the window, position "
+		"Title bar\n\nThis is the window's title bar.  To move the window, position "
 		"the pointer in the title bar and drag the window.";
 
 	/* [153] Window Parts, Resize box, Normal */
@@ -229,13 +229,13 @@ resource 'STR#' (kHMHelpID, sysheap, purgeable) {
 	/* [151] Window Parts, Scroll bar (inactive), Normal */
 		"Scroll bar\n\nUse the scroll bar to see items that are out of view.  This "
 		"scroll bar is not available because this window contains no items above or "
-		"below the window’s borders.";
+		"below the window's borders.";
 
 	/* [95] Window Parts, Window Parts, inactive window belonging to active app, Normal */
 		"This is an inactive window.  To make this window active, click in it.";
 
 	/* [154] Window Parts, window belonging to inactive app, Normal */			/* <52> */
-		"This window belongs to the application “^0”.  To make this window "	/* <52> */
+		"This window belongs to the application '^0'.  To make this window "	/* <52> */
 		"active, click in it.";													/* <52> */
 
 		"";	/* reserved */		/* <52> */
@@ -769,7 +769,7 @@ data 'ICN#' (kHMHelpID, purgeable) {
 	$"A020 3048 D020 604A 9020 604D 1020 0049"            /* † 0H– `Jê `M. .I */
 	$"11E0 6041 1220 6041 1270 0081 1289 FF01"            /* ..`A. `A.p.Å.â.. */
 	$"128A 2801 128C 2801 1288 2801 1280 2801"            /* .ä(..å(..à(..Ä(. */
-	$"1280 2809 927F C80D D200 080A A200 0808"            /* .Ä(∆í.»¬“...¢... */
+	$"1280 2809 927F C80D D200 080A A200 0808"            /* .Ä(∆í.»¬'...¢... */
 	$"8207 C808 8200 0808 8200 0808 8200 0808"            /* Ç.».Ç...Ç...Ç... */
 	$"81FF F008 81FF F008 8000 0008 7FFF FFF0"            /* Å...Å...Ä....... */
 	$"7FFF FFF0 FFFF FFF8 FFFF FFF8 FFFF FFF8"            /* ................ */
@@ -784,7 +784,7 @@ data 'ICN#' (kHMHelpID, purgeable) {
 
 data 'ics#' (kHMHelpID, purgeable) {
 	$"FFFE 8002 87F2 89CA 894A C8CB 4889 4889"            /* ..Ä.á.â âJ»ÀHâHâ */
-	$"55F1 5341 D243 9042 9042 9042 8F82 FFFE"            /* U.SA“CêBêBêBèÇ.. */
+	$"55F1 5341 D243 9042 9042 9042 8F82 FFFE"            /* U.SA'CêBêBêBèÇ.. */
 	$"FFFE FFFE FFFE FFFE FFFE FFFF 7FFF 7FFF"            /* ................ */
 	$"7FFF 7FFF FFFF FFFE FFFE FFFE FFFE FFFE"            /* ................ */
 };

@@ -10,7 +10,7 @@
 ;		 <8>	  7/1/92	DCL		Obsoleted Graf3DEqu.a which now includes this file.
 ;		 <7>	 8/15/91	MH		re-format Import declarations and Pascal function prototype
 ;									comments
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 
 ;

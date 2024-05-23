@@ -23,7 +23,7 @@
 ;	  <SM26>	  9/1/93	chp		DMADispatch is no more. This eliminates the _DMAIntInstall and
 ;									frees up selector 11. All clients have been modified to use more
 ;									efficient inline code instead.
-;	  <SM25>	 8/19/93	chp		Fix the dispatcher so it won’t barf on a selector of 13. (BHI ->
+;	  <SM25>	 8/19/93	chp		Fix the dispatcher so it won't barf on a selector of 13. (BHI ->
 ;									BHS)
 ;	  <SM24>	  8/4/93	GMR		<RC> Added code to SlotBlockXferCtl to support block transfers
 ;									for BART machines (PDM,CF).
@@ -134,7 +134,7 @@
 ;									accelerators for 68000 CPUs because a selector number is not put
 ;									in place for these machines. What winds up happening is on
 ;									accelerated 68000s, every selector returns an error because
-;									_HWPriv thinks it’s an invalid selector. Add a new InstallProc
+;									_HWPriv thinks it's an invalid selector. Add a new InstallProc
 ;									which initializes the valid selector range for the Plus, SE, and
 ;									Portable ROMs if CPUFlag is a 68020 or 68030.
 ;		<28>	 1/24/92	KC		Fix bug introduced in last revision (replace missing semicolon).
@@ -153,7 +153,7 @@
 ;									(it even works and doesnt change the System build code - rah).
 ;									Everything changed in this rev is enclosed in forROM
 ;									conditionals.
-;		<22>	10/29/91	SAM		Removed the ‘stupid conditionals’ again.  Sorry about that Jeff.
+;		<22>	10/29/91	SAM		Removed the ‘stupid conditionals' again.  Sorry about that Jeff.
 ;		<21>	10/28/91	SAM/KSM	Rolled in Regatta file. Undid Changes <17>-<20>.
 ;
 ;	7.0.1 Change History:
@@ -182,9 +182,9 @@
 ;	7.0 Change History:
 ;
 ;		<20>	10/18/91	JSM		Get rid of all the stupid conditionals.
-;		<19>	 9/30/91	JSM		Cleanup header, don’t use is32BitClean conditional - all future
+;		<19>	 9/30/91	JSM		Cleanup header, don't use is32BitClean conditional - all future
 ;									ROMs will be.
-;		<18>	 8/30/91	DTY		Define isUniversal here since it’s no longer an available
+;		<18>	 8/30/91	DTY		Define isUniversal here since it's no longer an available
 ;									feature in BBSStartup.
 ;		<17>	 6/12/91	LN		removed #include 'HardwareEqu.a'
 ;		<16>	 3/11/91	gbm		stb, bbm: Take out the bogus GetPhysical patch, in preparation
@@ -200,7 +200,7 @@
 ;		<11>	 8/22/90	SAM		Adding fixes to GetPhysical so it works correctly with the
 ;									8•24•GC.
 ;		<10>	 8/21/90	csd		Changed the condition for the MemoryDispatch patch so that it
-;									doesn’t install where MemoryDispatch is not implemented. (Elsie)
+;									doesn't install where MemoryDispatch is not implemented. (Elsie)
 ;		 <9>	 7/30/90	BG		Fixed 040 CACR-related problems.
 ;		 <8>	 7/24/90	EMT		NEEDED FOR SIXPACK: Fixed 68000 code and eliminated unecessary
 ;									table.
@@ -216,7 +216,7 @@
 ;									mode. Also added some NOPs for flaky 68040's.
 ;		 <3>	 2/18/90	BG		Added 040 versions of the machine-dependent routines for
 ;									manipulating the I&D caches.
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <2.1>	 7/16/89	CSL		cleaned up lockMemoryCont, GetPhysical, Translate.
 ;	   <2.0>	 6/30/89	CSL		disable data cache and increment LockMemCt when LockMemory and
 ;									LockMemoryContiguous is performed successfully, increment
@@ -344,8 +344,8 @@ LastVec
 			ALIGN	8
 HWPrivSwitch
 			cmpi.w	#(LastVec-Vects)/HwVecSize,d0	; check if selector in range
-			bcc.s	ReturnErr						; abort if it’s not a valid selector
-			move.w	Vects(d0*HwVecSize),d0			; get offset to selector’s routine
+			bcc.s	ReturnErr						; abort if it's not a valid selector
+			move.w	Vects(d0*HwVecSize),d0			; get offset to selector's routine
 			jmp		Vects(d0)						; go to the routine
 
 			ENDPROC
@@ -676,7 +676,7 @@ MakeSomethingWriteThrough	PROC	EXPORT
 ;
 ;	Everything above was HwPriv. Everything below is MemoryDispatch.
 ;
-;	It’s not exactly clear why all this got thrown into one file.
+;	It's not exactly clear why all this got thrown into one file.
 ;
 ;====================================================================================================
 

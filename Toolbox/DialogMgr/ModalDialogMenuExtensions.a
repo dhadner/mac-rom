@@ -12,14 +12,14 @@
 ;
 ;		 <6>	12/17/92	JSM		Remove TheFuture conditionals.
 ;		 <5>	 12/9/92	DTY		GetIsDialogState and SetIsDialogState are never used, so get rid
-;									of them.  (Just so Jeff can’t do it.)
+;									of them.  (Just so Jeff can't do it.)
 ;		 <4>	 6/10/92	JSM		Need to include DialogsPriv.a for ROM and future System builds.
 ;		 <3>	 6/10/92	JSM		Only include LinkedPatchMacros.a for non-ROM builds, add some
 ;									more comments about why we can use peaOld here.
 ;		 <2>	 6/10/92	JSM		Moved some routines here from ModalDialogMenuPatches.a to factor
 ;									out common code in both the ROM and the System. Added
 ;									InitDialogMgrGlobals for ROM builds and future System builds so
-;									we don’t have to keep our globals in code space, and change the
+;									we don't have to keep our globals in code space, and change the
 ;									Set/GetXXXRoutines to use ExpandMem for the ROM and the future.
 ;									Changed MDJGNEFilter for ROM builds so it does the right thing.
 ;		 <1>	 6/10/92	JSM		first checked in
@@ -95,7 +95,7 @@ SetupApplicationMenu
 ; for the System.
 ;
 ; The ROM and System versions are packaged slightly differently.  The ROM version just calls
-; NMGNEFilter after it’s done, whereas the System calls through to whatever the old filter
+; NMGNEFilter after it's done, whereas the System calls through to whatever the old filter
 ; was at patch time.
 ;
 
@@ -123,11 +123,11 @@ MDJGNEFilter	Proc 	Export
 												; note: we can use peaOld here because
 												; the System references us with a MakePatch,
 												; if it jumped to MDJGNEFilter from a patch
-												; instead then peaOld wouldn’t work
+												; instead then peaOld wouldn't work
 
 				tst.l	(sp)					; check if there was one
 				bnz.s	@done					; yes, go do it
-				addq.l	#4,sp					; no filter, don’t call
+				addq.l	#4,sp					; no filter, don't call
 		ENDIF									; forROM
 
 @done
@@ -156,7 +156,7 @@ InitDialogMgrGlobals		Proc	Export
 		move.l	A0,ExpandMemRec.emDialogGlobals(A1)	; store vars Pointer in ExpandMem
 		
 ; initialize varibles
-; no need to set the ones that are 0, NewPtr did that above, but I’ll leave them here for clarity
+; no need to set the ones that are 0, NewPtr did that above, but I'll leave them here for clarity
 
 ;		move.w	#0, AnalyzedWindowState(A0)			; used in Set/GetAnalyzedWindowState proc
 		move.l	#1, AnalyzedWindow(A0)				; used in Set/GetAnalyzedWindow proc

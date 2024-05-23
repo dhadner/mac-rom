@@ -3,7 +3,7 @@
 ;
 ;	Contains:	Equates for video drivers as defined in CARDS & DRIVERS.
 ;
-;	Written by:	Dave Fung, but he’ll deny it.
+;	Written by:	Dave Fung, but he'll deny it.
 ;
 ;	Copyright:	© 1990, 1992-1993 by Apple Computer, Inc., all rights reserved.
 ;
@@ -14,7 +14,7 @@
 ;	   <SM7>	08-06-93	jmp		Added more csDisplayTypes.
 ;	   <SM6>	 6/25/93	IH		Update kHasSerialSense to kHasDirectConnect
 ;		 <5>	  6/1/93	IH		Add VDSwitchInfo
-;	   <SM4>	04-07-93	jmp		Added the csc id’s of one of the new driver calls for supporting
+;	   <SM4>	04-07-93	jmp		Added the csc id's of one of the new driver calls for supporting
 ;									the Display Manager.
 ;	   <SM3>	  4/6/93	fau		Synchronized with Ludwig.
 ;	   <LW3>	  4/5/93	fau		Removed the now-private codes for Cyclone's video-in driver, as
@@ -34,14 +34,14 @@
 ;		<17>	 6/14/91	JL		Checked in official MPW 3.2ƒ version. Temporarily lost comment
 ;									about sGammaDir and sRsrcVidNames - will be restored. Didn't
 ;									publish comment about commented out mTable.
-;		<16>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<16>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<15>	 7/18/90	jmp		Removed the cscVidInit equate and changed cscVidKillIO to
 ;									cscKillIO.
 ;		<14>	 7/11/90	jmp		Added mode equates for video cards NOT having contiguous (i.e.,
 ;									1, 2, 4, 8 [, 16, 32]) modes.
-;		<13>	 7/11/90	jmp		Added comment about some equates here; cleaned up <12>’s
-;									comment, removed goofy “to do.”
+;		<13>	 7/11/90	jmp		Added comment about some equates here; cleaned up <12>'s
+;									comment, removed goofy 'to do.'
 ;		<12>	 6/27/90	jmp		Added equate names from 2nd Ed. of CARDS & DRIVERS.
 ;
 ;	To Do:
@@ -129,10 +129,10 @@ kAllModesValid		EQU			0						; All modes not trimmed by primary init are know to
 kAllModesSafe		EQU			1						; All modes not trimmed by primary init are know to be good
 kReportsTagging		EQU			2						; To identify smart monitors we must be able to detect tagged displays
 kHasDirectConnect	EQU			3						; True implies that serial data link is active through sense lines
-kIsMonoDev			Equ			4						; Says whether there’s an RGB (0) or Monochrome (1) connection.
+kIsMonoDev			Equ			4						; Says whether there's an RGB (0) or Monochrome (1) connection.
 														;	Note:  The kIsMonoDev bit is backwards from gdDevType bit because
-														;		   we’ve already shipped some color LCD products that way,
-														;		   and we’d really like to default to RGB (i.e., three guns),
+														;		   we've already shipped some color LCD products that way,
+														;		   and we'd really like to default to RGB (i.e., three guns),
 														;		   and zero is a good default value.
 ;
 ; csConnectFlag values in VDTimingInfo
@@ -142,9 +142,9 @@ kModeSafe			Equ			1						; Says that this mode is safe.
 
 ; csDisplayType values in VDDisplayConnectInfo
 
-kUnknownConnect			EQU			1					; Not sure how we’ll use this, but seems like a good idea.
+kUnknownConnect			EQU			1					; Not sure how we'll use this, but seems like a good idea.
 kPanelConnect			EQU			2					; For use with fixed-in-place LCD panels.
-kPanelTFTConnect		Equ			2					; Alias for kPanelConnect (because some ROM have already GM’d that way).
+kPanelTFTConnect		Equ			2					; Alias for kPanelConnect (because some ROM have already GM'd that way).
 kFixedModeCRTConnect	EQU			3					; For use with fixed-mode (i.e., very limited range) displays.
 kMultiModeCRT1Connect	EQU			4					; 320x200 maybe, 12" maybe, 13" (default), 16" certain, 19" maybe, 21" maybe
 kMultiModeCRT2Connect	EQU			5					; 320x200 maybe, 12" maybe, 13" certain, 16" (default), 19" certain, 21" maybe
@@ -156,7 +156,7 @@ kVGAConnect				Equ			10					; 640x480 VGA default -- question everything else
 kNTSCConnect			Equ			11					; NTSC ST (default), FF, STconv, FFconv
 kPALConnect				Equ			12					; PAL ST (default), FF, STconv, FFconv
 kHRConnect				Equ			13					; 640x400 (to get 8bpp in 256K case) and 640x480 (these two only)
-kPanelFSTNConnect		Equ			14					; For use with fixed-in-place LCD FSTN (aka “Supertwist”) panels.
+kPanelFSTNConnect		Equ			14					; For use with fixed-in-place LCD FSTN (aka 'Supertwist') panels.
 
 ;
 ; Control Codes

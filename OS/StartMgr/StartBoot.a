@@ -125,12 +125,12 @@
 ;									• Pre-SuperMario Comments Follow •
 ;		 <8>	 1/20/92	PN		Roll-in linkedpatches into MenuMgr.a
 ;		 <7>	  1/7/92	PN		Call AliasMgr installation routines
-;		 <6>	 10/1/91	JSM		Don’t use hasADB conditional, all future ROMs will support ADB.
-;		 <5>	 9/27/91	JSM		Don’t use hasCQD conditional, all future ROMs will have color
+;		 <6>	 10/1/91	JSM		Don't use hasADB conditional, all future ROMs will support ADB.
+;		 <5>	 9/27/91	JSM		Don't use hasCQD conditional, all future ROMs will have color
 ;									QuickDraw.
 ;		 <4>	 9/16/91	JSM		Cleanup header.
 ;		 <3>	 6/12/91	LN		removed #include 'HardwareEqu.a'
-;		 <2>	 1/11/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/11/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <2.1>	 9/18/89	djw		Changed secondary_init from a trap to a subroutine call
 ;	   <2.0>	 8/22/89	SES		Removed references to nFiles. Changed include DeclRomEqu.a to
 ;									RomEqu.a. Changed include xFixMath.a to FixMath.a and added equ
@@ -317,7 +317,7 @@ TheBoot
 
 
 ;------------------------------------------------------------------------------------------------
-;	Install vector for the “FPU not installed” dialog box if we don’t have an
+;	Install vector for the 'FPU not installed' dialog box if we don't have an
 ;	FPU or an MMU.
 
 	IF 0 THEN										; <SM48>
@@ -441,7 +441,7 @@ NewFLineRoutine
 			move.l	8+2(sp),a0						;get the address of the instruction word that caused	<SM21>
 			move.w	(a0),d0							;..this exception. Then copy the word into DO			<SM21>
 			and.w	#%0000111000000000,d0			;get just the co-processor ID from the instruction		<SM21>
-			cmp.w	#%0000001000000000,d0			;if it’s not one, then it isn’t a FPU instruction		<SM21>
+			cmp.w	#%0000001000000000,d0			;if it's not one, then it isn't a FPU instruction		<SM21>
 			bne.s	stackError						;..so return thru the old FPU replacement routine		<SM21>
 			lea		continue,a0						;change the saved return address to our continuation	<SM21>
 			move.l	a0,8+2(sp)						;..point and return out of exception mode.				<SM21>

@@ -80,7 +80,7 @@
 ;		 <7>	  2/6/90	KST		Adding a new call, BTUpdateKD.
 ;		 <6>	  2/4/90	DNF		Add include of FileMgrPrivate.a
 ;		 <5>	 1/22/90	KST		Added 3 access control calls and removed using Hfs70Equ.a
-;		 <3>	12/21/89	BBM		bug in script put Ô#Õ instead of Ô;Õ in comments
+;		 <3>	12/21/89	BBM		bug in script put Ô#' instead of Ô;' in comments
 ;		 <2>	12/19/89	KST		Change DTKeyCmp routine to use the correct key length.
 ;	   <3.1>	 12/8/89	KST		Take out debugger code.
 ;	   <3.0>	 12/8/89	KST		Added special key comparison routine for handling DTDBMgr B*Tree

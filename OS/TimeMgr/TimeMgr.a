@@ -13,11 +13,11 @@
 ;	   <SM4>	11/12/92	PN		Get rid of ≥ 020 conditionals for ROM builds
 ;        <3>     9/10/92    AEK     Roll in new _microseconds and PrimeTime fix from Quicktime 
 ;                                   code for _microseconds was already there, so just remove old one
-;		 <2>	 3/27/92	JSM		Merge in Philip’s change: Export Labels for Patch roll-in.
+;		 <2>	 3/27/92	JSM		Merge in Philip's change: Export Labels for Patch roll-in.
 ;		 <1>						• Pre-SuperMario comments follow •
 ;		 <9>	 2/12/92	JSM		Moved this file to TimeMgr folder, keeping all the old
 ;									revisions.
-;		 <8>	11/16/91	DTY		Checked in Wayne Meretzky’s new version of __MicroSeconds,
+;		 <8>	11/16/91	DTY		Checked in Wayne Meretzky's new version of __MicroSeconds,
 ;									conditionalized for TheFuture.
 ;		 <7>	  9/9/91	JSM		Cleanup header.
 ;		 <6>	 9/22/90	dba		Break some routines into separate PROCs so they can be cut back
@@ -32,7 +32,7 @@
 ;									timing. Deleted some Eclipse NOPs which would not be assembled
 ;									for 68040s
 ;		 <3>	 6/20/90	CCH		Added some NOPs for flaky 68040's.
-;		 <2>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <2>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;	   <1.4>	11/13/89	MSH		Pmgr equates now in record format.
 ;	   <1.3>	 2/23/89	GGD		Stored the underflow retry adjustment constant in RAM to allow
 ;									better patching flexability. On systems with PowerManagers,

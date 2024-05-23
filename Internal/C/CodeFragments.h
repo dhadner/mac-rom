@@ -67,7 +67,7 @@ typedef unsigned long LogicalAddress;     // the type used for addresses in addr
 typedef unsigned long TVersionNum;	/* Version number */
 
 
-typedef long FragContextID;               // ID’s to identify the app, agent, task or team
+typedef long FragContextID;               // ID's to identify the app, agent, task or team
                                           //   to which a module should attached
 typedef LogicalAddress FragConnectionID;  // the value interpreted only by the Frag
 typedef unsigned long Mask;               // for flags
@@ -289,7 +289,7 @@ enum {
    fragHadSoftUnresolveds,    // loaded fragment has acceptable unresolveds
    fragNoMem,                 // out of memory for interal bookkeeping
    fragNoAddrSpace,           // out of memory in user's address space for loadable section
-   fragNoContextIDs,          // no more context id’s
+   fragNoContextIDs,          // no more context id's
    fragObjectInitSeqErr,      // order error during user initialization function invocation
    fragImportTooOld,          // import library was too old and therefore incompatible
    fragImportTooNew,          // import library was too new and therefore incompatible

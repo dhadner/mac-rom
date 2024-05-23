@@ -32,7 +32,7 @@ Radar bug: #1024282
 A Process Manager segment was being loaded high in the system heap, causing fragmentation.  It
 was loaded high because the linked patch blocks were in the way at boot time.  We tried to alleviate
 this by moving these blocks high in the heap, but that stopped working.  Now we load these segments
-in ‘PTCH’ 0, which is run before linked patches, so we don’t have to worry about the strange
+in ‘PTCH' 0, which is run before linked patches, so we don't have to worry about the strange
 memory setup at linked patch time.
 
 > What was tested:
@@ -51,7 +51,7 @@ Radar bug: #1024666
 
 > Release notes for this change:
 
-Made Linked patches more memory friendly so that we can boot in low memory conditions. The ‘lpch’ resources are moved above the boot globals (MemTop/2 + 1k) during the linkpatch loading. After this time MemTop is reset and the copied resources disappear.
+Made Linked patches more memory friendly so that we can boot in low memory conditions. The ‘lpch' resources are moved above the boot globals (MemTop/2 + 1k) during the linkpatch loading. After this time MemTop is reset and the copied resources disappear.
 
 > What was tested:
 
@@ -74,7 +74,7 @@ up and added judicious comments that Fred was too whipped to add because his rid
 
 > What was tested:
 
-Kenny’s TSM INIT was crashing because of this bug.  With this fix, his INIT boots successfully.  Also
+Kenny's TSM INIT was crashing because of this bug.  With this fix, his INIT boots successfully.  Also
 stepped through the system boot to make sure all the linked patches got copied to the right place,
 and MemTop was being restored afterwards.
 
@@ -91,15 +91,15 @@ Radar bug: #1026928
 > Release notes for this change:
 
 Changed linked patch loader so that it will be able to get linked patch resources out of ROM.  Before
-loading each ‘lpch’ resource, see if CurMap is 1.  If it is, set ROMMapInsert to true to get the
+loading each ‘lpch' resource, see if CurMap is 1.  If it is, set ROMMapInsert to true to get the
 resource from ROM.  ROM Gibblies will know to set CurMap to 1 before calling the linked patch
 loader.
 
 > What was tested:
 
 Changed CurMap to 1, and watched linked patch loader set ROMMapInsert to true before getting an
-‘lpch’ resource.  Of course, since there are no linked patches in ROM on a IIci, the machine bombed
-very shortly afterwards.  But that wasn’t the point of this change.
+‘lpch' resource.  Of course, since there are no linked patches in ROM on a IIci, the machine bombed
+very shortly afterwards.  But that wasn't the point of this change.
 
 ----------------------------------------------------------•----------------------------------------------------------
 4/30/92 2:50:28 PM
@@ -137,13 +137,13 @@ Change <58> sets ROMMapInsert to true if CurMap is 1 so that linked patches in R
 be possible.  However, the if the Resource Manager sees 1 in CurMap, and that
 ROMMapInsert was true, it will reset CurMap to be SysMap when leaving the Resource
 Manager call.  This makes subsequent checks of CurMap invalid.  Instead of doing this,
-save CurMap in a register before getting any ‘lpch’ resources, and compare that against 1
+save CurMap in a register before getting any ‘lpch' resources, and compare that against 1
 to determine if ROMMapInsert needs to be set before getting a linked patch resource.
 
 > What was tested:
 
 Slammed 1 into CurMap, and watched the code that loads all linked patch resources try to
-get them from ROM instead of from the system file.  Of course, it didn’t find any, and
+get them from ROM instead of from the system file.  Of course, it didn't find any, and
 crashed, but it was looking in ROM all the time which was the whole point of this
 exercise.
 ----------------------------------------------------------•----------------------------------------------------------

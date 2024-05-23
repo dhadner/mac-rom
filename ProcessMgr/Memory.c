@@ -10,7 +10,7 @@
 	Change History (most recent first):
 	 
 		<12>	10/28/92	DTY		Use new Get/Set macros to access ExpandMem.
-		<11>	 3/11/92	DTY		7 Up’s patch to GMBlk doesn’t respect the slop space in the
+		<11>	 3/11/92	DTY		7 Up's patch to GMBlk doesn't respect the slop space in the
 									system heap, so that the death notice session record will always
 									be allocated. We do and we need to stop.
 		<10>	11/22/91	DTY		Check allocateGMBlkInSysHeap in GMBlk before trying to allocate
@@ -168,10 +168,10 @@ GMBlk(u_size logicalSize, OSErr *error)
 	{
 	Handle	aHdl;
 
-	// <11> If allocateGMBlkInSysHeap is set, it means that an application is quitting, and we’re trying to allocate
+	// <11> If allocateGMBlkInSysHeap is set, it means that an application is quitting, and we're trying to allocate
 	//		a session record for the appDiedEvent.  In this case, always create this session record, even if it means
 	//		taking the system heap down below the gauranteed minimum free space.  To save some
-	//		code, we’re going to do this with a skanky goto.  This saves two tests of allocateGMBlkInSysHeap.
+	//		code, we're going to do this with a skanky goto.  This saves two tests of allocateGMBlkInSysHeap.
 		
 
 	if (allocateGMBlkInSysHeap)													// <11>

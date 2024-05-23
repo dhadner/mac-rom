@@ -48,8 +48,8 @@
 ; 06 Sep 90 SMcD Dec2Num now sets env before calling user's handler <SMcD 06sep90>
 ; 29 Sep 90 SMcD Missed a case in the "13 May 90" changes <9/29/90-SMcD>
 ; 30 Sep 90 SMcD Goes final for Terror alpha.
-;  2 Dec 90 KLH corrected ‘tst.w d2’ to ‘tst.w d4’ in DivWS <2dec90-KLH>
-; 25 Jan 91 KLH corrected test of NoRound’s unused env bit ‘0080’ to bpl.s from beq.s
+;  2 Dec 90 KLH corrected ‘tst.w d2' to ‘tst.w d4' in DivWS <2dec90-KLH>
+; 25 Jan 91 KLH corrected test of NoRound's unused env bit ‘0080' to bpl.s from beq.s
 ;
 ;-----------------------------------------------------------
 

@@ -9,7 +9,7 @@
 ;									Changed the 'including' name to match the new file name.
 ;		 <8>	11/27/91	MH		Add include of traps.a for _SCSIDispatch trap definition
 ;		 <7>	11/27/91	MH		Remove unsupported NewSCSI trap macros and selectors
-;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <6>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <5>	11/12/90	JL		Added scsiInstall equate
 ;

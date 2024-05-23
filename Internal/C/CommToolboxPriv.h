@@ -30,8 +30,8 @@
 									Term, FT, or Conn Mgrs; renamed reserved to appList to CTBBlock;
 									added bitfields for initialized mgrs; added prototypes for
 									handling the app list; fixed spelling of some messages. <jng>
-		<21>	 9/10/90	gbm		don’t you just hate it when boneheads check in files that they
-									obviously haven’t compiled... I do :)
+		<21>	 9/10/90	gbm		don't you just hate it when boneheads check in files that they
+									obviously haven't compiled... I do :)
 		<20>	 9/10/90	JNG		Have ResFileRec contain canonical form of file name; Add in new
 									resources for choose
 		<19>	 8/23/90	kaz		Added GetMemErr(), GetResErr() macros.

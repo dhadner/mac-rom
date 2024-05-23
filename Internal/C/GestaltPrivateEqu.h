@@ -129,7 +129,7 @@ typedef struct GestaltGlobals *GestaltGlobalsPtr;
 #define gestaltLongHandle	'tabl'			/* returns handle to proc table */
 #define gestaltATalkVersion	'atkv'			/* Returns 4-byte AppleTalk version even if AppleTalk is off. */
 #define gestaltAtlkIntLevel	'aint'			/* Returns desired AppleTalk interrupt mask level in a long */
-#define gestaltGraphicsVersion	'grfx'		/* Skia’s Gestalt selector */
+#define gestaltGraphicsVersion	'grfx'		/* Skia's Gestalt selector */
 
 //----------------------------------------------------------------------------------
 //	gestaltBugFixAttrs
@@ -140,7 +140,7 @@ typedef struct GestaltGlobals *GestaltGlobalsPtr;
 //	or other extensions indicate that they have already fixed a bug (so the extension
 //	will stop trying to fix it).  Yea, I know.  Pretty goofy. -gbm
 //
-//	I’ve taken the liberty of allocating several selectors here, for future expansion.
+//	I've taken the liberty of allocating several selectors here, for future expansion.
 //----------------------------------------------------------------------------------
 enum {
 	gestaltBugFixAttrs = 'bugz',

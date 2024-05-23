@@ -27,10 +27,10 @@
 									Speech Mgr specific.
 		 <4>	10/28/92	TIM		Put badPhonemeText error code back into API.
 		 <3>	 9/15/92	TIM		Removed badStructLen, unimplMsg, badSelector, badParmVal error
-									return. Added “voiceNotFound” error return. Added length param
-									to GetVoiceDescription. Prefixed some constants with “k” to
+									return. Added 'voiceNotFound' error return. Added length param
+									to GetVoiceDescription. Prefixed some constants with 'k' to
 									conform to Apple naming conventions.
-		 <2>	 7/23/92	TIM		Switch resource and file type defines over to the “official”
+		 <2>	 7/23/92	TIM		Switch resource and file type defines over to the 'official'
 									ones from Brian McGhie.
 		 <1>	 7/6/92		TIM		Add support for Voice management routines
 		 <0>	 6/24/92	TIM		Bring interfaces up to date with 1.0a7 spec
@@ -171,7 +171,7 @@ struct SpeechErrorInfo {
 typedef struct SpeechErrorInfo SpeechErrorInfo;
 
 struct SpeechVersionInfo {
-	OSType		synthType;			/* always ‘ttsc’ 					*/
+	OSType		synthType;			/* always ‘ttsc' 					*/
 	OSType		synthSubType;		/* synth flavor 					*/
 	OSType		synthManufacturer;	/* synth creator ID 				*/
 	long		synthFlags;			/* synth feature flags 				*/
@@ -201,8 +201,8 @@ struct SpeechXtndData {
 typedef struct SpeechXtndData SpeechXtndData;
 
 struct DelimiterInfo {
-	Byte	startDelimiter[2];		/* defaults to “[[“ 	*/
-	Byte	endDelimiter[2];		/* defaults to “]]“ 	*/
+	Byte	startDelimiter[2];		/* defaults to '[[' 	*/
+	Byte	endDelimiter[2];		/* defaults to ']]' 	*/
 };
 typedef struct DelimiterInfo DelimiterInfo;
 

@@ -35,7 +35,7 @@
 									entries for it.
 	   <LW3>	 2/16/93	fau		Changed the name of the HRNTSC names to 512x384/640x480/768x576.
 	  <SM14>	01-12-93	jmp		Added initial support for CSC.
-	  <SM13>	01-11-93	jmp		Compacted the DBLite/Dart video data to now match what’s in
+	  <SM13>	01-11-93	jmp		Compacted the DBLite/Dart video data to now match what's in
 									HORROR.
 	  <SM12>	01-07-93	jmp		Added a VideoNames directory for V8-based built-in video.
 	  <SM11>	12/23/92	RC		Added support for running Smurf on Wombat (boxRiscWombat)
@@ -112,7 +112,7 @@
 //                                   dynamic desktop. RSN...
 //      <SM8>     6/18/92    KW      (jmp,H41) Eliminated yet even more of the old DAFBVidParams
 //                                   fields.
-//                                   (jmp,H39) Tweaked the 15.6672 MHz Omega-2’s P value from
+//                                   (jmp,H39) Tweaked the 15.6672 MHz Omega-2's P value from
 //                                   previous check-in.
 //                                   (jmp,H38) Updated the SonoraVidParams for the Omega-2.
 //                                   (fau,P26) Added video-in configurations for Vesuvio, Kong,
@@ -127,15 +127,15 @@
 //                                   and Dartanian. (BG,H34) Changed various Wombat-style BoxFlag
 //                                   references to their new, more descriptive names. (jmp,H33)
 //                                   Eliminated support for the no-vRAM case in V8-based systems.
-//                                   (jmp,H32) Changed the “sRsrcZydecoDir” name to the more generic
-//                                   “sRsrcBFBasedDir” (BF=BoxFlag) name. (jmp,H31) Changed the
+//                                   (jmp,H32) Changed the 'sRsrcZydecoDir' name to the more generic
+//                                   'sRsrcBFBasedDir' (BF=BoxFlag) name. (jmp,H31) Changed the
 //                                   hard-coded values in my last check-in into equates. (jmp,H30)
 //                                   Added real MinorBaseOffsets for the V8-based sResources.
 //                                   (jmp,H29) Just added the SecondaryInit entry to Wombat board
-//                                   sRsrc. (jmp,H28) Took a lot of “air” out of this file by
+//                                   sRsrc. (jmp,H28) Took a lot of 'air' out of this file by
 //                                   combining lots of tables that are exactly the same except for
 //                                   their names. Also, conditionally dropped support for Apollo,
-//                                   since this ROM can’t do it anyway. Conditionally removed the
+//                                   since this ROM can't do it anyway. Conditionally removed the
 //                                   checksumming. (jmp,H26) Did a couple of things for the
 //                                   Sonora-based CPUs: 1) Added a 640x400 mode for the HiRes
 //                                   display, and 2) fixed a problem in the GoldFish 256K of vRAM
@@ -156,7 +156,7 @@
 //                                   added boxDBLite16 and boxDBLite20 to the lists.
 //      <H24>      3/6/92    SWC     Added DockingEqu.a to the INCLUDEs list.
 //      <H23>    02/19/92    jmp     Changed all the Condor references to Wombat.
-//      <H22>    01/30/92    jmp     Fixed a couple of typo’s I introduced in <H19>.
+//      <H22>    01/30/92    jmp     Fixed a couple of typo's I introduced in <H19>.
 //      <H21>    01/29/92    jmp     (jmp,Z27) Added two new INCLUDES for GestaltEqu.a and
 //                                   GestaltPrivateEqu.a for the SecondaryInit System fixes.
 //      <H20>    01/27/92    jmp     (BG,Z26)  Added an INCLUDE for IOPrimitiveEqu.a for
@@ -186,7 +186,7 @@
 //       <H9>    11/25/91    jmp     Moved the DAFB vidParams from the functional sRrsrcs to the
 //                                   board sRsrcs -- this significantly reduced the size of this
 //                                   file!
-//       <H8>    11/12/91    jmp     Added the “Mac Std Gamma” table to the VGA and SVGA sRsrcs as
+//       <H8>    11/12/91    jmp     Added the 'Mac Std Gamma' table to the VGA and SVGA sRsrcs as
 //                                   requested by MacDTS.
 //       <H7>    11/05/91    jmp     Added preliminary support for 19" Displays for DAFB-based CPUs.
 //       <H6>    11/01/91    jmp     We now have two DBLite functional sRsrcs.  One is for the
@@ -218,16 +218,16 @@
 //       <21>    12/17/91    jmp     Updated the Kong/Vesuvio, GoldFish, SuperVGA, and PAL
 //                                   non-convolved tables so that all depths within each
 //                                   configuration share a common base address.  Also, tweaked the
-//                                   19” Display parameters to generate a 60.2 KHz clock rather than
+//                                   19' Display parameters to generate a 60.2 KHz clock rather than
 //                                   a 59.9 KHz clock.
-//       <20>    11/11/91    jmp     Added the “Mac Std Gamma” table to the VGA and SVGA sRsrcs as
+//       <20>    11/11/91    jmp     Added the 'Mac Std Gamma' table to the VGA and SVGA sRsrcs as
 //                                   requested by MacDTS.
-//       <19>    11/05/91    jmp     Added preliminary support for 19” Displays for DAFB-based CPUs.
+//       <19>    11/05/91    jmp     Added preliminary support for 19' Displays for DAFB-based CPUs.
 //       <18>    10/31/91    jmp     Marketing (Ross Ely) finally admitted that defaulting to the
 //                                   6500°K gamma table for Vesuvio & GoldFish was a bad idea, so I
 //                                   am now defaulting to the 9300°K gamma table on those displays.
 //                                   Yeah!
-//       <17>    10/03/91    jmp     Added a SecondaryInit off the Zydeco board sRsrc.  We’re doing
+//       <17>    10/03/91    jmp     Added a SecondaryInit off the Zydeco board sRsrc.  We're doing
 //                                   this to fix any Zydeco-specific System Disk Regatta-related
 //                                   problems.
 //       <16>    09/13/91    jmp     Added support for 16pp on Rubik displays when only 512K of vRAM
@@ -237,7 +237,7 @@
 //       <13>     8/21/91    jmp     Changed all the Eclipse33 references to Zydeco.
 //       <12>     8/20/91    jmp     Just updated the supported CPU code name list.
 //       <11>      8/9/91    jmp     Added support to fix a problem with NTSC & PAL family modes
-//                                   where changing the amount of vRAM didn’t cause DAFB’s part of
+//                                   where changing the amount of vRAM didn't cause DAFB's part of
 //                                   PrimaryInit to re-validate the SP_LastConfig pRAM byte.
 //       <10>      8/7/91    jmp     Added 16bpp support for all applicable DAFB displays.
 //        <9>     7/29/91    jmp     Added the Eclipse33 (Zydeco) & TIM-LC board sRsrcs.
@@ -254,12 +254,12 @@
 //                                   the same as GoldFish.
 //        <4>     6/10/91    jmp     Had to change the clock parameters for HR & GoldFish on Spike &
 //                                   Eclipse PVT units to eliminate possible jitter.
-//        <3>      6/4/91    jmp     Made the RGB Portrait name more generic, sinc Apple doesn’t
+//        <3>      6/4/91    jmp     Made the RGB Portrait name more generic, sinc Apple doesn't
 //                                   manufacture one, and pointed the RGB Portrait gamma directory to
 //                                   the HR gamma directory instead of the one used by Vesuvio &
 //                                   GoldFish.
 //        <2>     5/22/91    jmp     Corrected the flags in the DB-Lite functional sRsrc to reflect
-//                                   the fact that DB-Lite’s frame buffer is 32-bit addressed.
+//                                   the fact that DB-Lite's frame buffer is 32-bit addressed.
 //                                   Updated the Apollo, Tim, and DB-Lite functional sRsrcs to
 //                                   contain the fOpenAtStart flag.  Added the ROM (surface mount)
 //                                   part numbers for Spike & Eclipse.  Eliminated the hardware IDs
@@ -273,19 +273,19 @@
 //                                   just RBV.
 //       <29>     5/15/91    jmp     Added DB-Lite support.  Also, removed the multi-bit icons and
 //                                   added a new icon for TIM (also used by DB-Lite for now).
-//       <28>     5/10/91    jmp     Added the 4•8/8•24’s Vesuvio & GoldFish (calibrated) gamma
+//       <28>     5/10/91    jmp     Added the 4•8/8•24's Vesuvio & GoldFish (calibrated) gamma
 //                                   tables.  Added all the appropriate data to support SuperVGA.
 //       <27>     4/26/91    jmp     Updated the PAL convolved baseAddr.
 //       <26>     4/25/91    jmp     Added a preliminary (i.e., un-calibrated) alternate gamma table
 //                                   for Vesuvio & GoldFish.  This gamma table is for the the
-//                                   “natural” 9300°K heat point of those displays.
+//                                   'natural' 9300°K heat point of those displays.
 //       <25>     4/23/91    jmp     Eliminated duplicate NTSC parameters.
 //       <24>     4/19/91    jmp     Cleaned up the NTSC & PAL parameters; several modes were
-//                                   “fuzzy.”  Put a 1bpp icon in the board sResource for Eclipse,
+//                                   'fuzzy.'  Put a 1bpp icon in the board sResource for Eclipse,
 //                                   Spike, TIM, and Apollo.  Put in an icon suite for Eclipse &
 //                                   Spike, but am not currently pointing at it.  Eliminated gamma
-//                                   tables for NTSC, PAL, and VGA because we don’t know what kind of
-//                                   displays users’ will be hooking up.  Pointed Vesuvio & GoldFish
+//                                   tables for NTSC, PAL, and VGA because we don't know what kind of
+//                                   displays users' will be hooking up.  Pointed Vesuvio & GoldFish
 //                                   at the same (yet uncalibrated) gamma table being used by version
 //                                   1.2d1 of the 8•24 card.  Finally, moved PrimaryInit to the end
 //                                   of the file so that code-common data (i.e., data shared among
@@ -295,13 +295,13 @@
 //       <22>     4/15/91    djw     Add spId for functional video sRsrc's video attibutes (a data
 //                                   field) for Tim.
 //       <20>      4/4/91    jmp     Updated various string names to be consistent across all uses
-//                                   (e.g., made all references to “HiRes” look like “Hi-Res”).
+//                                   (e.g., made all references to 'HiRes' look like 'Hi-Res').
 //       <19>      4/1/91    jmp     Forgot to mention two other things in previous check-in: 1)
 //                                   Removed support for DAFB 1, and 2) Added R-G-B 6500 & 9300 gamma
 //                                   tables for Vesuvio and GoldFish.
-//       <18>      4/1/91    jmp     Changed the Monitors cdev name of VGA from “VGA Display” to “VGA
-//                                   640x480” for consistency with NTSC & PAL.  That is, we only use
-//                                   the term “Display” for monitors we know about; the NTSC, PAL and
+//       <18>      4/1/91    jmp     Changed the Monitors cdev name of VGA from 'VGA Display' to 'VGA
+//                                   640x480' for consistency with NTSC & PAL.  That is, we only use
+//                                   the term 'Display' for monitors we know about; the NTSC, PAL and
 //                                   VGA modes specify industry standards rather than particular
 //                                   display types.  Also, added an R-G-B 2.2 (D65) gamma table for
 //                                   interlaced displays; 2.2 is the common value used for NTSC gamma
@@ -317,8 +317,8 @@
 //                                   512K of vRam.  Had to add new mVidParams for PAL convolved modes
 //                                   due to the change in rowbytes for the non-convolved modes.
 //                                   Added a vidName directory for TIM and Apollo.
-//       <15>      3/4/91    jmp     Fixed problems (bad entries) in Rubik’s inverse gamma table.
-//                                   Fixed problems (bad entries) in HR’s inverse gamma table.
+//       <15>      3/4/91    jmp     Fixed problems (bad entries) in Rubik's inverse gamma table.
+//                                   Fixed problems (bad entries) in HR's inverse gamma table.
 //                                   Reduced video refresh counts by -1 across the board.  Needed to
 //                                   make real entries for RGB2P and RGBFP (for gamma correction).
 //                                   Used same gamma table for VGA as Rubik (due to similarity in
@@ -329,12 +329,12 @@
 //                                   file.  Added support for CPU and Video icons.  The gamma tables
 //                                   for RubikRBV & RubikACDC were identical, so I eliminated one of
 //                                   them.  Updated the GS video params to reflect the fact that
-//                                   Rubik 1bpp has a 1pixel wide “border” at the top (bottom doesn’t
+//                                   Rubik 1bpp has a 1pixel wide 'border' at the top (bottom doesn't
 //                                   matter since it will be drawn offscreen).  Added inverse gamma
 //                                   tables.  The 32bpp screen clearing params for GoldFish were
 //                                   incorrect.  The 8bpp screen clearing params for the two-page
 //                                   display were incorrect.
-//       <13>     2/15/91    jmp     Updated NTSC & PAL data to fix “darkening” problem in the
+//       <13>     2/15/91    jmp     Updated NTSC & PAL data to fix 'darkening' problem in the
 //                                   full-frame convolved modes. Added support for doing only 4/8bpp
 //                                   in NTSC & PAL convolved modes. This has been conditionalized
 //                                   with CurDAFBDrvrVersion. Needed to INCLUDE
@@ -342,14 +342,14 @@
 //                                   operation.
 //       <12>     2/12/91    jmp     Updated NTSC & PAL data for 4/8bpp convolved (for both FF & ST
 //                                   modes).  Added defmBaseOffset to screen clear params.  Added in
-//                                   “Misc” params to video params for ChkMode (in DAFBDriver.a).
+//                                   'Misc' params to video params for ChkMode (in DAFBDriver.a).
 //                                   Fixed the gType id for the Rubik Gamma Table.  And updated the
-//                                   GoldFish’s clock parameters to match the Portrait’s as per Larry
-//                                   Forsblad’s latest spec.
+//                                   GoldFish's clock parameters to match the Portrait's as per Larry
+//                                   Forsblad's latest spec.
 //       <11>      2/3/91    jmp     Added PAL video and Slot Manager data; commented out 32bpp
 //                                   params. Added in NTSC and PAL ST defmBaseOffsets. Added family
 //                                   names NTSC and PAL video families, as well as video names for
-//                                   each kind of supported display. Added ’040 CPU family sRsrc. And
+//                                   each kind of supported display. Added '040 CPU family sRsrc. And
 //                                   fixed the ordering of the DoubleExposure sRsrc.
 //       <10>     1/31/91    JK      Added INCLUDE of SonicEqu.a for Sonic initialization.
 //        <9>     1/30/91    jmp     Several fixes:  Fixed rowbytes (in mVidParams) in 32bpp mode for
@@ -443,8 +443,8 @@
 //                identical to V8.
 //       MSC    - the LCD display control for DB-Lite machines.
 //       GSC    - the LCD grayscale controller for DB-Lites and Dartanians.
-//       Sonora - kitchen-sink ASIC that is RBV-like in it’s programability (or lack there of), but video
-//                is just one of it’s subfunctions.
+//       Sonora - kitchen-sink ASIC that is RBV-like in it's programability (or lack there of), but video
+//                is just one of it's subfunctions.
 //       Civic  - highly-programmable video controller in the Cyclone CPU(s), similar functionality
 //                to that of DAFB, except that it also supports video-in.
 //       Sebastian
@@ -787,7 +787,7 @@ resource 'boar' (150, "_sRsrc_TNT") {{
 //
 //           sRsrc_Board Lists
 //
-//           These board sResources contain the “card” name seen by the  
+//           These board sResources contain the 'card' name seen by the  
 //               Monitors cdev.
 //           Another important part of the board sRsrc is the PrimaryInit code.
 //               This universal section of code performs all necessary sRsrc 
@@ -1106,7 +1106,7 @@ resource 'vmna' (485, "_sName_512x384") 	{152, " 512 x 384"};
 resource 'vmna' (495, "_sName_640x480") 	{154, " 640 x 480"};
 resource 'vmna' (500, "_sName_768x576") 	{155, " 768 x 576"};
 
-// We’ve got the room, so what the heck:  Let’s put video name directories in for TIMs, Apollos, DB-Lites!
+// We've got the room, so what the heck:  Let's put video name directories in for TIMs, Apollos, DB-Lites!
 //
 resource 'vdir' (505, "_TIMVidNameDir") {{
   sRsrc_Vid_Tim_LCD, l{"_sName_LCD"}; 
@@ -1156,7 +1156,7 @@ resource 'node' (575, "_sRsrc_CPUMacIIci") {{
 }};
 
 resource 'srsc' (575, "_sRsrc_CPUMac030") {{
-  sRsrcType,        l{"_CPUMacIIci"};					// ’030 Class Machines (plus MacII & LC).
+  sRsrcType,        l{"_CPUMacIIci"};					// '030 Class Machines (plus MacII & LC).
   sRsrcName,        l{"_CPUMacIIciName"}; 
   MajRAMSp,         l{"_MajRAMSp"}; 
   MinROMSp,         l{"_MinROMSp"}; 
@@ -1164,7 +1164,7 @@ resource 'srsc' (575, "_sRsrc_CPUMac030") {{
 
                     
 resource 'srsc' (578, "_sRsrc_CPUMacO40") {{
-  sRsrcType,        l{"_CPUMacO40"};					// ’040 Class Machines.
+  sRsrcType,        l{"_CPUMacO40"};					// '040 Class Machines.
   sRsrcName,        l{"_CPUMac040Name"}; 
   MajRAMSp,         l{"_MajRAMSp"}; 
   MinROMSp,         l{"_MinROMSp"}; 
@@ -2985,8 +2985,8 @@ resource 'cstr' (1691, "_SCSITransName")   {"IntelligentBus_Transport_Apple"};
 //-------------------------------------------------------------
 
 // The current implementation of the Monitors cdev (i.e., versions 4.x - 7.0) lamely looks at the board
-// sRsrc for its icon.  And, for 7.0, Monitors’ current icon-plotting mechanism isn’t very studly.  So,
-// I have come up with in interrim solution:  For now I’ll only include 1-bit icons at the CPU (board sResource)
+// sRsrc for its icon.  And, for 7.0, Monitors' current icon-plotting mechanism isn't very studly.  So,
+// I have come up with in interrim solution:  For now I'll only include 1-bit icons at the CPU (board sResource)
 // level.
 //
 

@@ -27,8 +27,8 @@ extern "C" {
 int unmangle(char *dst, char *src, int limit);
 	/*
 	This function unmangles C++ mangled symbols (i.e. a symbol with a type signature).  The
-  mangled C string is passed in “src” and the unmangled C string is returned in “dst”.  Up
-  to “limit” characters (not including terminating null) may be retured in “dst”.
+  mangled C string is passed in 'src' and the unmangled C string is returned in 'dst'.  Up
+  to 'limit' characters (not including terminating null) may be retured in 'dst'.
  
   The function returns,
  
@@ -42,8 +42,8 @@ int unmangle(char *dst, char *src, int limit);
 pascal int Unmangle(char *dst, char *src, int limit);
 	/*
 	This function unmangles C++ mangled symbols (i.e. a symbol with a type signature).  The
-	mangled Pascal string is passed in “src” and the unmangled Pascal string is returned in
-	“dst”.  Up to “limit” characters may be retured in “dst”.
+	mangled Pascal string is passed in 'src' and the unmangled Pascal string is returned in
+	'dst'.  Up to 'limit' characters may be retured in 'dst'.
 	
 	The function returns,
 	

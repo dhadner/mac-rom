@@ -8405,10 +8405,10 @@ ptchTextBox
 			Link		A6,#0
 			MoveM.L 	D2-D7/A2-A4,-(SP)		; save StdRegs on stack
 
-			Tst.W		TBJust(A6)				; “left” justified?					<C971/RWW110987>
+			Tst.W		TBJust(A6)				; 'left' justified?					<C971/RWW110987>
 			Bne.S		@05						; no => skip this					<C971/RWW110987>
 
-			Move.W		TESysJust,TBJust(A6)	; he meant, “default justification”	<C971/RWW110987>
+			Move.W		TESysJust,TBJust(A6)	; he meant, 'default justification'	<C971/RWW110987>
 			
 @05			jmpROM		RONInTextBox
 			ENDPROC

@@ -16,7 +16,7 @@
 									them from this file.
 		 <2>	12/14/90	dba		<JDR> get rid of redundant RectPtr declaration, now in Types.p
 		 <1>	 10/6/90	jmp		Name change from VideoExtensionIIci.p to
-									BuiltInVideoExtension.p.  That’s all!
+									BuiltInVideoExtension.p.  That's all!
 		<11>	 10/6/90	jmp		Cleaned up changes I made on 10/2/90 -- no functionality
 									changes; changed name of file from VideoExtensionIIci.p to
 									BuiltInVideoExtension.p to reflect that it is used for more than
@@ -35,10 +35,10 @@
 									time).
 		 <8>	 9/29/90	jmp		NEEDED FOR 7.0:  For version 4.4b2 of Monitors and later, this
 									extension now always comes up; changing memory allocation for
-									RBV is no longer considered an “expert” feature -- especially
+									RBV is no longer considered an 'expert' feature -- especially
 									with the memory constraints imposed by System 7.0.  This
 									extension works on 6.0.x Systems as well.
-		 <7>	 8/23/90	jmp		Added MPW3.0 conditional for C2PStr. I’m not sure which MPW
+		 <7>	 8/23/90	jmp		Added MPW3.0 conditional for C2PStr. I'm not sure which MPW
 									objects SixPack or 7.0 are built with; I use MPW 3.2 myself.
 		 <6>	 8/18/90	jmp		NEEDED FOR SIXPACK:  Cleaned up changes that were made on July
 									3rd -- Get1Resource vs GetResource problem.  Also, replaced the
@@ -105,7 +105,7 @@ CONST
 	fourItem		= 3;
 	sixteenItem		= 4;
 	twoFiftySixItem	= 5;
-	rect1Item		= 6;	{the various rectangles for max depths -- there’s got to be}
+	rect1Item		= 6;	{the various rectangles for max depths -- there's got to be}
 	rect2Item		= 7;	{	a better way!}
 	rect3Item		= 8;
 	titleItem		= 9;
@@ -133,7 +133,7 @@ CONST
 	numShow			= 2;		{localID to localID+numShow are the cards on which we should be}
 								{visible; i.e. we won't show up ever on an Elsie or Eclipse.}
 
-	errorValue		= 1;		{returned in monitorValue when the extension can’t be started up}
+	errorValue		= 1;		{returned in monitorValue when the extension can't be started up}
 
 TYPE
 	LongPtr = ^LONGINT;
@@ -154,7 +154,7 @@ TYPE
 
 	{
 		August 15, 1990 jmp mod -- added this definition for ease of use with PBStatus,
-		which is replacing the calls to WeirdStatus.  (I.e., There’s nothing weird
+		which is replacing the calls to WeirdStatus.  (I.e., There's nothing weird
 		about _Status except in the high-level glue, and who needs it anyway.)
 	}
 	VideoParamBlock = RECORD
@@ -345,7 +345,7 @@ END;
 
 {---------------------------------------------------------------------------------
  ID2Item converts a family member id into the control item in the dialog.
- There’s got to be a better way to do this!
+ There's got to be a better way to do this!
 }
 FUNCTION ID2Item(id: SignedByte): INTEGER;
 VAR
@@ -367,7 +367,7 @@ END;
 
 {---------------------------------------------------------------------------------
  Item2ID converts a control item into the family member id.
- There’s got to be a better way to do this.
+ There's got to be a better way to do this.
 }
 FUNCTION Item2ID(Item: INTEGER; oldID: SignedByte): SignedByte;
 VAR
@@ -444,7 +444,7 @@ BEGIN
 END;
 
 {---------------------------------------------------------------------------------
- GetRefNum returns a slot number’s driver refNum.
+ GetRefNum returns a slot number's driver refNum.
 }
 FUNCTION GetRefNum(Slot: INTEGER): INTEGER;
 VAR
@@ -493,7 +493,7 @@ END;
 
 {---------------------------------------------------------------------------------
  GetMemoryUsed determines the amount of memory used by video for a particular max
- depth.  There’s got to be a better way to do this!
+ depth.  There's got to be a better way to do this!
 }
 FUNCTION GetMemoryUsed(item: INTEGER; slot: INTEGER): LONGINT;
 VAR
@@ -753,9 +753,9 @@ BEGIN
 	MyAlert := NoteAlert(alertID, filterProc);
 
 	{
-	  If I don’t do the following, then the Monitors window doesn’t get updated properly
+	  If I don't do the following, then the Monitors window doesn't get updated properly
 	  under System 7.0.  I should probably clip around the area where the NoteAlert
-	  came up, but I’m hoping that this code can be dumped. -- jmp
+	  came up, but I'm hoping that this code can be dumped. -- jmp
 	 }
 	GetPort(savedPort);
 	SetPort(mWindow);
@@ -813,7 +813,7 @@ BEGIN
 	localID := baseID + $10;
 
 	{
-		We’ll determine dynamically whether storage needs to be thrown away
+		We'll determine dynamically whether storage needs to be thrown away
 		this time or not.
 	}
 	disposeStorage := FALSE;
@@ -939,10 +939,10 @@ BEGIN
 	END;
 
 	{
-		Common area for disposing of storage for “superUser” vs. “normalUser” flag.  Note
+		Common area for disposing of storage for 'superUser' vs. 'normalUser' flag.  Note
 		that if disposeStorage is TRUE at start, the monitorValue being set to errorValue
-		is the right thing to do.  Also, since the okMsg and cancelMsg are “then end,” setting
-		monitorValue to an errorValue doesn’t matter.
+		is the right thing to do.  Also, since the okMsg and cancelMsg are 'then end,' setting
+		monitorValue to an errorValue doesn't matter.
 	}
 	IF disposeStorage THEN
 		BEGIN

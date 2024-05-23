@@ -20,7 +20,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “rgnop.a”
+;EASE$$$ READ ONLY COPY of file 'rgnop.a'
 ;•1.6	BAL 07/14/1989 For Aurora: Final CQD
 ; 1.5	BAL 06/30/1989 Bumped interrupt stack space up to 1600 bytes
 ;•1.4	BAL 05/29/1989 Blasting in 32-Bit QuickDraw version 1.0 Final

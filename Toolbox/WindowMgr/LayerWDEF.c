@@ -24,8 +24,8 @@
 pascal long
 LayerProc(short, LayerPeek layer, short message, long parameter)
 {
-	/* Since we only pass the layerStrucRgn along, weÕll do something very sick.
-	 * WeÕll keep it in a long local variable, so the compiler will use a data register.
+	/* Since we only pass the layerStrucRgn along, we'll do something very sick.
+	 * We'll keep it in a long local variable, so the compiler will use a data register.
 	 */
 	register long layerStrucRgnLong = (long) layer->strucRgn;
 	#define layerStrucRgn ((RgnHandle) layerStrucRgnLong)

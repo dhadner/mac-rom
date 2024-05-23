@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 
-		 <4>	 3/16/92	YK		Conditionalize some lines by ‘rez’ variable since DoubleTalk.r
+		 <4>	 3/16/92	YK		Conditionalize some lines by ‘rez' variable since DoubleTalk.r
 									now needs to include this file. System build will not be
 									affected by this change.
 		 <3>	  1/8/92	JSM		Add some comments, remove kDiskCacheFileName,

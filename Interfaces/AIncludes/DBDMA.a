@@ -14,7 +14,7 @@
 ;									However, WAIT may soon be obsolete anyway.
 ;	   <SM2>	12/13/93	chp		Add TStat encodings.
 ;	   <SM1>	11/10/93	fau		first checked in
-;	  <SMG2>	10/26/93	chp		Checking in the first “complete” version. Some macros changed
+;	  <SMG2>	10/26/93	chp		Checking in the first 'complete' version. Some macros changed
 ;									for compatibility with C equivalents.
 ;
 ;

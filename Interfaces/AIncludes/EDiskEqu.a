@@ -12,7 +12,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <5>	 8/14/91	JL		changed lower case equ to EQU to match database output.
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 ;	To Do:

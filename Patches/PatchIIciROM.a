@@ -71,13 +71,13 @@
 ;									range check of possible pseudo-commands.
 ;		 <1>	 5/15/91	SAM		Split off from 7.0 GM sources. Added code to use PACK 4 & 5 from
 ;									disk on IIciROM machines that are not TERROR A7 or newer.  Do
-;									not save Gestalt’s old Logical mem size across PtchInst 5
+;									not save Gestalt's old Logical mem size across PtchInst 5
 ;									(which is Gestalt) cuz the old number is wrong.
 ;	7.0 Change History:
 ;
-;	   <143>	 9/18/91	JSM		Cleanup header, don’t include InternalOnlyEqu.a (already in dump
+;	   <143>	 9/18/91	JSM		Cleanup header, don't include InternalOnlyEqu.a (already in dump
 ;									file).
-;	   <142>	 8/30/91	DTY		Define isUniversal here since it’s no longer defined in
+;	   <142>	 8/30/91	DTY		Define isUniversal here since it's no longer defined in
 ;									BBSStartup.  This file used to use {Defs32}, so isUniversal is
 ;									defined to be 1.
 ;	   <141>	 6/12/91	LN		added #include 'ROMPrivateEqu.a'
@@ -89,7 +89,7 @@
 ;									code had a bad branch and the IOP timer never got kickstarted.
 ;	   <137>	  4/5/91	eh		Fix to Serial driver SerSetbuf call. Missed one place in <135>
 ;									that sign extended a register.
-;	   <136>	 3/28/91	SAM		As per Darin’s request, I have added a TestFor	SCSI96_1Exists
+;	   <136>	 3/28/91	SAM		As per Darin's request, I have added a TestFor	SCSI96_1Exists
 ;									before the Quantum 7.9 ROM fix from the Regatta deltas (without
 ;									forRegattaCPUs).
 ;	   <135>	 3/17/91	eh		Serial driver status calls 9 and $8000 now return hardcoded
@@ -181,7 +181,7 @@
 ;									they are now linked patches
 ;		<97>	 8/17/90	gbm		start loading soundmgr patch 23 on erickson and elsie, cause
 ;									BigBang don't work otherwise
-;		<96>	 8/14/90	DTY		Removed TextEditPatchIIciROM since it’s a linked patch now. (For
+;		<96>	 8/14/90	DTY		Removed TextEditPatchIIciROM since it's a linked patch now. (For
 ;									real this time.) Also deleted an INIT 18 patch for Darin.
 ;		<95>	 8/13/90	JWK		NEEDED FOR SIXPACK: Added NuBus and Serial Gestalt selectors.
 ;		<94>	 8/11/90	PKE		NEEDED FOR SIXPACK: Fixed bug in previous revision - (per KIP)
@@ -211,7 +211,7 @@
 ;		<85>	 7/20/90	CSL		Needed for SIXPACK: Totally replaced Memory manager routine
 ;									a32SetSize, patch <68> only replaced part of a32SetSize and is
 ;									not sufficient.
-;		<84>	 7/20/90	DTY		Removed Bass patches since it’s a linked patch now.
+;		<84>	 7/20/90	DTY		Removed Bass patches since it's a linked patch now.
 ;		<83>	 7/20/90	gbm		Get rid of some warnings
 ;		<82>	 7/19/90	CCH		NEEDED FOR SIXPACK: Removed HwPriv patch since it is now a
 ;									linked patch.
@@ -241,7 +241,7 @@
 ;		<67>	 6/12/90	JSM		Remove PtchInst 33 since PPC Toolbox is a linked patch now.
 ;		<66>	  6/7/90	EMT		Remove PtchInst 17 since Layer Manager is a linked patch now.
 ;		<65>	  6/7/90	VL		Remove PtchInst 28 since HelpMgr is a linked patch now.
-;		<64>	 5/31/90	DDG		Adding a special system error for machines that don’t have an
+;		<64>	 5/31/90	DDG		Adding a special system error for machines that don't have an
 ;									FPU.
 ;		<63>	 5/31/90	DDG		Added the extFS patch from the PatchIIROM.a file. This will fix
 ;									a strange bug where the wrong error code is being returned from
@@ -283,7 +283,7 @@
 ;		<44>	  3/1/90	GMR		Fixed bug in Gestalt parity check for Zone-5, where longword was
 ;									not being written back with good parity after each SIMM check.
 ;		<43>	 2/28/90	GMR		Added include of EgretEqu.a to fix system disk build.
-;		<42>	 2/28/90	PKE		For 7.0, moved Script Mgr ROM patches into ‘ptch’ 39: patches to
+;		<42>	 2/28/90	PKE		For 7.0, moved Script Mgr ROM patches into ‘ptch' 39: patches to
 ;									_Pack6 and _GetIndADB, fixes to String2Date/InitDateCache,
 ;									installation of some new vectors, and the change to SwapIcon.
 ;									For all of these except the SwapIcon change, the code is still
@@ -339,7 +339,7 @@
 ;									TEStylNew	patch and included TextEditPriv.a.
 ;		<15>	 1/16/90	CCH		NEEDED FOR 6.0.5:  Turn off cache when checking RPU for parity.
 ;		<14>	 1/16/90	KON		NEEDED FOR 6.0.5: Added ptch 26
-;		<13>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		<13>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		<12>	 1/11/90	PKE		Initialize Script Manager's new sVectFixSpExtra vector.
 ;		<11>	 1/11/90	DVB		Remove _Zaplinks macro.
 ;		<10>	  1/8/90	CCH		Added gestaltMiscAttr selector.
@@ -523,9 +523,9 @@
 ;	   <3.1>	  8/8/89	smb		NEEDED FOR 6.0.4: Reverted TEFindWord patch since the previous
 ;									patch introduces an uglier bug that won't be fixed now. Also
 ;									added gestalt function for TE.
-;	  <•3.0>	  8/8/89	dba		Reality’s hard disk was full! Try submitting again.
+;	  <•3.0>	  8/8/89	dba		Reality's hard disk was full! Try submitting again.
 ;	   <3.0>	  8/8/89	dba		NEEDED FOR 6.0.4: added Menu Manager patches; InitProcMenu patch
-;									because it simply didn’t work; MenuSelect patch to reinstate
+;									because it simply didn't work; MenuSelect patch to reinstate
 ;									WaitMouseUp check
 ;	   <2.9>	  8/8/89	PKE		NEEDED FOR 6.0.4: In gestaltScriptMgr function, if gestalt
 ;									selector is undefined, just leave gestalt result alone.
@@ -2089,7 +2089,7 @@ secondHalf
 		MOVE	stackOffset(A6),D6			;2 if stack was not aligned, otherwise, 0
 		MOVE	count(A6,D6),D7				;number of characters drawn last
 		MOVE	charsRemain(A6),D0			;how many characters remain?
-		CMP		D0,D7						;don’t try to draw more than worked last
+		CMP		D0,D7						;don't try to draw more than worked last
 		BLE.S	@ok
 		MOVE	D0,count(A6,D6) 			;draw what remains for the second half
 @ok
@@ -2544,13 +2544,13 @@ leftOnePix
 @nxtPixel
 		BFEXTU	(A4){D5:D1},D4				;pick up a source pixel
 		CMP		D4,D0						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D4,(A5){D6:D1}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D1,D5						;move to next source pixel
 		ADD		D1,D6						;move to next destination pixel
 		SUB		D1,D3						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA.S	checkLong
 
@@ -2562,13 +2562,13 @@ midOnePix
 @nxtPixel
 		BFEXTU	(A4){D5:D3},D4				;pick up a source pixel
 		CMP		D4,D1						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D4,(A5){D6:D3}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D3,D5						;move to next source pixel
 		ADD		D3,D6						;move to next destination pixel
 		SUB		D3,D0						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA		midChkLong
 
@@ -2579,13 +2579,13 @@ rightOnePix
 @nxtPixel
 		BFEXTU	(A4){D1:D5},D0				;pick up a source pixel
 		CMP		D0,D3						;is it the same as the back color?
-		BEQ.S	@skipInsert					;if so, don’t add to destination
+		BEQ.S	@skipInsert					;if so, don't add to destination
 		BFINS	D0,(A5){D6:D5}				;if not, copy it to the destination
 @skipInsert
 		ADD.L	D5,D1						;move to next source pixel
 		ADD		D5,D6						;move to next destination pixel
 		SUB		D5,D4						;decrement count
-		BGT.S	@nxtPixel					;do until we’re done
+		BGT.S	@nxtPixel					;do until we're done
 		MOVEM.L	(SP)+,D1/D3-D6				;restore bkCol, left & right widths, src & dest offsets
 		BRA		nextRow
 
@@ -3101,7 +3101,7 @@ SelectFrame		EQU		tRect1					; number of bytes to save
 				clr.w	-(sp)					; push zero for this
 				_WaitMouseUp					; is the mouse still down?
 				tst.b	(sp)+					; examine result
-				beq.s	DoneMenuSelect			; if not still down, don’t bother
+				beq.s	DoneMenuSelect			; if not still down, don't bother
 				jmpROM	ROMContinueMenuSelect	; continue in ROM
 DoneMenuSelect	jmpROM	ROMDoneMenuSelect		; continue in ROM
 
@@ -7429,7 +7429,7 @@ NewFLineRoutine		PROC	EXPORT
 					move.l	8+2(sp),a0					;get the address of the instruction word that caused
 					move.w	(a0),d0						;..this exception. Then copy the word into DO
 					and.w	#%0000111000000000,d0		;get just the co-processor ID from the instruction
-					cmp.w	#%0000001000000000,d0		;if it’s not one, then it isn’t a FPU instruction
+					cmp.w	#%0000001000000000,d0		;if it's not one, then it isn't a FPU instruction
 					bne.s	stackError					;..so return thru the old FPU replacement routine
 					lea		continue,a0					;change the saved return address to our continuation
 					move.l	a0,8+2(sp)					;..point and return out of exception mode.
@@ -8097,14 +8097,14 @@ FixStripAddress
 ;	The GestaltFuction.a file is used to build a ptch for machines without
 ;	Gestalt in ROM, but it also contains fixes and improvements that are not
 ;	in the ci ROMs OR in the GestaltPatches.a file...  The changes are not
-;	trivial, so we’re punting and loading the Gestalt ptch on ci ROMs, too...
+;	trivial, so we're punting and loading the Gestalt ptch on ci ROMs, too...
 ;
 ;	Before we do, though, we throw away any storage that Gestalt has allocated.
 ;
 			
 			
 			move.l	ExpandMem,A1
-			move.l	ExpandMemRec.emGestalt(A1),A0		; Get the ROM Gestalt’s Storage pointer
+			move.l	ExpandMemRec.emGestalt(A1),A0		; Get the ROM Gestalt's Storage pointer
 			move.l	A0,-(SP)							; Save the Ptr on the Stack
 			move.l	(A0),-(SP)							; Save Gestalt's Selector table handle
 			
@@ -8666,7 +8666,7 @@ FixQDColors										;								<4.7>
 			InstOSTp	NewRelString,$50
 
 ;____________________________________________________________________________	DDG <58>
-;	Install vector for the “FPU not installed” dialog box if we don’t have an
+;	Install vector for the 'FPU not installed' dialog box if we don't have an
 ;	FPU or an MMU
 
 					move.l	#gestaltFPUType,d0			;do we have an FPU ?

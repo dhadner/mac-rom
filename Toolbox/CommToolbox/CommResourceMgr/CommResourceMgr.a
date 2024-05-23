@@ -16,7 +16,7 @@
 ;									deleted the code that was compiled under the "CubeE"
 ;									conditional.
 ;		<10>	 10/4/91	JSM		Change PsychoticFarmerOrLater conditionals to TheFuture.
-;		 <9>	 10/2/91	DTY		Conditionalise <6> through <8> so they don’t get built for
+;		 <9>	 10/2/91	DTY		Conditionalise <6> through <8> so they don't get built for
 ;									CubeE.
 ;		 <8>	  7/9/91	BH		added __CRMGetToolNamedResource
 ;		 <7>	  7/3/91	BH		added entry for CRMParseCAPSResource

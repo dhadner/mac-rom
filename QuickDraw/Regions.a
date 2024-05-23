@@ -12,7 +12,7 @@
 ;									StdRgn, MapRgn
 ;	   <SM2>	 5/21/92	kc		Change the name of QuickDraws wrapper for NewHandle to
 ;									NewHandleWrapper to avoid name conflict with the glue.
-;		<10>	 8/22/91	JSM		Don’t use TRUE and FALSE as labels.
+;		<10>	 8/22/91	JSM		Don't use TRUE and FALSE as labels.
 ;		 <9>	 7/23/91	KON		Fix 32-bit clean crimes in BitMapRgn.
 ;		 <8>	10/30/90	KON		Forgot to make all the changes before checking in; This updates
 ;									to the current version on the ci in QDciPatch. [SMC]

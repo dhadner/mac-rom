@@ -37,14 +37,14 @@
 ;		<10>	 4/27/92	JSM		Get rid of conditionals: supportsPWM, supportsDCD, and
 ;									has3rdFloppy are always false, forROM, supportsMFM, forDiskDup,
 ;									isUniversal, hasPowerMgr, and hasPwrControls are always true
-;									(although hasPowerMgr currently isn’t for the ROM, it will be
+;									(although hasPowerMgr currently isn't for the ROM, it will be
 ;									and was always ORed with hasPwrControls here anyway). Nuke a lot
 ;									of stuff that was specifically for older ROMs, including support
 ;									for unreleased machines like the Four Square and some Aurora
 ;									style products. This file now has no conditionals.
 ;		 <9>	 3/24/92	JSM		Nuke more code names: boxAuroraCX25 is boxMacIIci, boxF19 is
 ;									boxMacIIfx.
-;		 <8>	 10/1/91	JSM		Don’t use onMvMac conditional, Modern Victorian never existed.
+;		 <8>	 10/1/91	JSM		Don't use onMvMac conditional, Modern Victorian never existed.
 ;		 <7>	 1/21/91	SWC		Fixed a conditional in the IconLookup list that was causing
 ;									undefined references (IIsi and LC) for a NuMac build.
 ;		 <6>	 9/25/90	SAM		Changed boxElsie/Erickson to boxMacLC/IIsi.

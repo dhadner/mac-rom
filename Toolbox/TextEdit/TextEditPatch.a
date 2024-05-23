@@ -10,7 +10,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <8>	 4/27/92	DTY		Get rid of hasSplineFonts conditionals.
-;		 <7>	 8/30/91	DTY		Define hasCQD here since it’s no longer an available feature in
+;		 <7>	 8/30/91	DTY		Define hasCQD here since it's no longer an available feature in
 ;									BBSStartup. This keeps TextEdit.a happy.
 ;		 <6>	 1/14/91	SMB		(jdt) Added include file, fontPrivate.a.
 ;		 <5>	 8/14/90	DTY		Changed into a linked patch.
@@ -52,8 +52,8 @@ Scripts604 	EQU 		0
 
 ;
 ; <7>	When hasCQD was defined in {AvailableFeatures} in BBSStartup, it was defined
-;	to be 0 for System builds, it’s kept that way for future System builds.  This
-;	file probably won’t be used in ROM builds, but in case it ever is, hasCQD
+;	to be 0 for System builds, it's kept that way for future System builds.  This
+;	file probably won't be used in ROM builds, but in case it ever is, hasCQD
 ;	is defined to be true for those builds.
 ;
 

@@ -88,8 +88,8 @@
 ;				12/16/85	EHB		Bad exit in ListHilite (special StdExit for internal routines)
 ;				12/11/85	EHB		Added checking for defproc not found (just skips call to
 ;									defproc); Fixed DelRow/Col update bug when all rows/columns
-;									deleted; Do update after justRect,moveRect in DelExit; Don’t
-;									inval cells that aren’t visible (intersect with rview); SetHilite
+;									deleted; Do update after justRect,moveRect in DelExit; Don't
+;									inval cells that aren't visible (intersect with rview); SetHilite
 ;									was calling DrawControl when control invisible; Intensive
 ;									scramble testing done; Removed bogus size checking code in
 ;									setCell/addtocell; changed all #lock/#unlock to _Lock/_Unlock
@@ -184,8 +184,8 @@ ListStart
 
 ; StdEntry locks down the handle, and saves it A4.	The dereferenced handle is saved
 ; in A3.  It then puts 2nd param in D7 (which is usually a cell).  Watch out for strange
-; references to D7 in routines that don’t have c passed to them.  Finally it saves the
-; current port and gets into the list’s port.
+; references to D7 in routines that don't have c passed to them.  Finally it saves the
+; current port and gets into the list's port.
 
 ; Stack Frame used by almost all routines.	SavePort is set up by StdEntry. GoodCell thru
 ; index are set up by MyFind.  R is a temporary rect.  VisBounds is set by the routine
@@ -263,11 +263,11 @@ GetVisBounds
 			MOVE.L		dataBounds(A3),visBounds(A6)		; assume that the visible
 			MOVE.L		dataBounds+4(A3),visBounds+4(A6)	; bounds is the same as data
 
-			BTST		#LHBadFit,ListFlags(A3) 			; if cells don’t fit exactly
+			BTST		#LHBadFit,ListFlags(A3) 			; if cells don't fit exactly
 			BEQ.S		@1									; then add one
 			ADD.W		#1,visBounds+right(A6)				; to right
 @1
-			BTST		#LVBadFit,ListFlags(A3) 			; if cells don’t fit exactly
+			BTST		#LVBadFit,ListFlags(A3) 			; if cells don't fit exactly
 			BEQ.S		@2									; then add one
 			ADD.W		#1,visBounds+bottom(A6) 			; to bottom
 @2
@@ -329,7 +329,7 @@ SetHilite										; called when data or window changes
 
 SetAScroll
 			MOVE.L		A0,D7					; test handle
-			BEQ.S		@done					; can’t get a handle on it
+			BEQ.S		@done					; can't get a handle on it
 
 			moveq		#0,d6
 			MOVE.W		visBounds(A6,D4.W),D6 	; get min for later
@@ -349,7 +349,7 @@ SetAScroll
 			cmp.w		d6,d5					; is max > min?												<12>
 			sle.b		d0						; no, unhilite control (if not already so)					<12>
 			tst.b		LActive(a3) 			; are we active?											<11>
-			bne.s		@active					; => yes, don’t use 254 hiliting							<11>
+			bne.s		@active					; => yes, don't use 254 hiliting							<11>
 			move.b		#254,d0					; => no, use 254 hiliting									<11>
 @active
 
@@ -359,23 +359,23 @@ SetAScroll
 
 			cmp.w		contrlMin(a0),d6		; is the minimum different?
 			bne.s		@doSetMinimum
-			moveq		#-1,d6					; don’t set minimum
+			moveq		#-1,d6					; don't set minimum
 @doSetMinimum
 
 			cmp.w		contrlMax(a0),d5		; is the maximum different?
 			bne.s		@doSetMaximum
-			moveq		#-1,d5					; don’t set minimum
+			moveq		#-1,d5					; don't set minimum
 @doSetMaximum
 
 			cmp.w		contrlValue(a0),d3		; is the value different?
 			bne.s		@doSetValue
-			moveq		#-1,d3					; don’t set value
+			moveq		#-1,d3					; don't set value
 @doSetValue
 
 			move.b		contrlHilite(a0),d1 	; get the current hilite value
 			bz.s		@hilite 				; if there is nothing hilited, we can do the hilite
 			cmp.b		#254,d1 				; is it a 254 or 255?										<11>
-			blo.s		@noHilite				; no, don’t do hilite while scrolling
+			blo.s		@noHilite				; no, don't do hilite while scrolling
 @hilite
 			cmp.b		d0,d1					; any change to hilite?
 			beq.s		@noHilite
@@ -459,15 +459,15 @@ DrawScrollBar
 			RTS
 
 ;-----------------------
-; MyShowControl is the same as ShowControl, except that it also validates the control’s
+; MyShowControl is the same as ShowControl, except that it also validates the control's
 ; rectangle. It should only be called for rectangular controls (here used only for scroll bars).
-; A more advanced version could be written that uses the control’s region.
+; A more advanced version could be written that uses the control's region.
 
 MyShowControl
 			move.l		4(sp),a1				; get the control handle
 			move.l		(a1),a0					; dereference and point to the control record
 
-			lea 		contrlRect+8(a0),a0		; point after the control’s rectangle
+			lea 		contrlRect+8(a0),a0		; point after the control's rectangle
 			move.l		-(a0),-(sp)				; push the rectangle on the stack
 			move.l		-(a0),-(sp)
 
@@ -523,7 +523,7 @@ MyValidRect
 ;
 ;			PROCEDURE ListAutoScroll( h: ListHandle );
 ;								  8
-; Scroll the topmost selection to the top left of the screen iff it isn’t
+; Scroll the topmost selection to the top left of the screen iff it isn't
 ; visible.	If no selections, or that selection is visible, do nothing.
 ;
 ;----------------------------------------------------------------------
@@ -547,7 +547,7 @@ ListAutoScroll
 ; is it visible?
 
 			BSR.S		IsCellVisible			; is cell visible?					<10Dec85>
-			BNE.S		@done					; => yes, don’t scroll
+			BNE.S		@done					; => yes, don't scroll
 
 ; else scroll the selected cell to the upper left of the visible
 
@@ -612,7 +612,7 @@ ListClick
 			BNE 		clickCont				; if <> 0 then hit control
 
 ClickArea
-; Immediately discard if the initial point isn’t in the view rect
+; Immediately discard if the initial point isn't in the view rect
 ;			 IF PtInRect( pt, rView ) THEN BEGIN
 
 			SUBQ		#2,SP
@@ -634,7 +634,7 @@ clickWait
 ; call the clikProc if there is one (current mouse point is in mouseLoc)
 
 			MOVE.L		lClikLoop(A3),D0		; get the click proc
-			BEQ.S		@noClickProc			; => there isn’t one
+			BEQ.S		@noClickProc			; => there isn't one
 			MOVE.L		D0,A0					; get the proc
 			JSR 		(A0)					; and call it
 			BEQ 		clickExit				; => user said to abort!
@@ -646,7 +646,7 @@ clickWait
 
 			MOVEQ		#0,D2					; horizontal delta := 0
 			BTST		#lDoHAutoscroll,listFlags(A3) ; horizontal auto-scrolling?
-			BEQ			@noHAutoScroll			; no, don’t do any horizontal auto-scrolling
+			BEQ			@noHAutoScroll			; no, don't do any horizontal auto-scrolling
 
 			CMP.W		rView+left(A3),D0		; is pt.h <= rView.left
 			BGT.S		@4						; and
@@ -670,7 +670,7 @@ clickWait
 
 			MOVEQ		#0,D1					; vertical delta := 0
 			BTST		#lDoVAutoscroll,listFlags(A3) ; vertical auto-scrolling?
-			BEQ			@noVAutoScroll			; no, don’t do any vertical auto-scrolling
+			BEQ			@noVAutoScroll			; no, don't do any vertical auto-scrolling
 
 			CMP.W		rView+top(A3),D0		; is pt.v <= rView.top
 			BGT.S		@6						; and
@@ -780,15 +780,15 @@ clickWait
 ; nothing in modifier byte.  Initialize according to which it is
 
 ChkKeys
-			BCLR		#7,12(A6)				; test and say it’s not the first time
-			BEQ 		CallRtn 				; => doesn’t feel like the first time
+			BCLR		#7,12(A6)				; test and say it's not the first time
+			BEQ 		CallRtn 				; => doesn't feel like the first time
 
 			CMP.L		lastClick(A3),D3		; are we in the same cell as before?
 			SEQ 		18(A6)					; assume double click if so
 			MOVE.L		D3,lastClick(A3)		; save new click
 
 ; set low modifier byte to $FF if cell not selected, $00 if selected.  This is later
-; used if whatever we’re doing is affected by state of first cell.
+; used if whatever we're doing is affected by state of first cell.
 
 			MOVEM.L 	D3/D7,-(SP) 			; save new and old cells
 			MOVE.L		D3,D7					; get new cell in D7
@@ -803,7 +803,7 @@ ChkKeys
 
 ; test for double click.  If the mouse is in the same cell as the last click, the elapsed interval
 ; is within doubleTime and the mouse is within a few pixels of clikLoc, then return true.
-; If an app doesn’t want to get two double clicks from a triple click, then it must tweek clikTime
+; If an app doesn't want to get two double clicks from a triple click, then it must tweek clikTime
 ; upon receiving a double click.
 
 			SUBQ		#4,SP					; make room for result
@@ -847,8 +847,8 @@ DoSelect
 CmdClick
 			BSET		#LUseSense,14(A6)		; use sense flag we just set up
 Cmd2Click
-			BSET		#LNoExtend,14(A6)		; don’t extend current selection
-			BSET		#LNoRect,14(A6) 		; don’t drag out a rect
+			BSET		#LNoExtend,14(A6)		; don't extend current selection
+			BSET		#LNoRect,14(A6) 		; don't drag out a rect
 			MOVE.L		D3,D6					; set anchor to new cell
 			BRA 		TryDisJoint 			; => use ShiftDown, check for deselect all
 
@@ -917,12 +917,12 @@ GotNoMods
 OneClick
 			LEA 		NoMods,A2				; a simple click on a selected cell does nothing
 			TST.B		13(A6)					; was it already selected?
-			BEQ.S		CallRtn 				; => yes, it’s a no-op for double clicking
+			BEQ.S		CallRtn 				; => yes, it's a no-op for double clicking
 			MOVE.L		A2,-(SP)				; use NoMods as routine
 			BRA.S		ClearAll				; => and deselect everything
 
 DoExtend
-			BSET		#LNoExtend,14(A6)		; don’t want to extend current rect
+			BSET		#LNoExtend,14(A6)		; don't want to extend current rect
 			BTST		#LNoRect,14(A6) 		; should we drag out a rect?
 			BEQ.S		ShiftClick				; => yes, use shift code
 			BCLR		#LUseSense,14(A6)		; else use command code
@@ -975,7 +975,7 @@ clickCont
 			CMP.W		#254,D6
 			BGE.S		@2
 
-; it’s an indicator!
+; it's an indicator!
 
 			SUBQ		#2,SP
 			MOVE.L		D7,-(SP)
@@ -1086,7 +1086,7 @@ GetBounds
 ; if LExtendDrag then anchor was set to newclick (D6=D3)
 ; if LUseSense then use 13(A6) to determine select on/off
 ; if LNoRect then set new anchor point each time through the loop
-;				  and we don’t want to deselect behind us, so ignore old rect
+;				  and we don't want to deselect behind us, so ignore old rect
 
 ShiftDown
 			MOVEM.L 	D3/A2,-(SP) 			; self preservation
@@ -1123,7 +1123,7 @@ ShiftDown
 
 			MOVE.B		(SP)+,D0				; get result
 			BNE.S		@11 					; => always do points in rect
-			BTST		#LNoRect,14(A6) 		; if this bit set, don’t off outsiders
+			BTST		#LNoRect,14(A6) 		; if this bit set, don't off outsiders
 			BNE.S		@12 					; => skip the selection
 			BTST		#LNoExtend,14(A6)		; like it says above
 			BNE.S		@12
@@ -1288,15 +1288,15 @@ DDraw1
 			BSR 		MyFind					; validate the cell
 			BEQ.S		DoDrExit				; skip if bad cell
 
-			SUBQ		#4,SP					; save the current clip’n reg’n
+			SUBQ		#4,SP					; save the current clip'n reg'n
 			_NewRgn 							; get a new region
 			MOVE.L		(SP),-(SP)				; and save it on the stack
 			_GetClip							; set it to the current clip
 
-			PEA 		r(A6)					; get the cell’s rect into r
+			PEA 		r(A6)					; get the cell's rect into r
 			MOVE.L		D7,-(SP)				; pass the cell
 			MOVE.L		A4,-(SP)
-			_LRect								; get the cell’s rect
+			_LRect								; get the cell's rect
 
 			SUBQ		#2,SP					; room for result
 			PEA 		rView(A3)				; get intersection of rView
@@ -1315,7 +1315,7 @@ DDraw1
 			MOVE.L		(SP),-(SP)				; and save in clip rgn
 			_SectRgn
 
-; call the defproc’s routine to draw/hilite the cell
+; call the defproc's routine to draw/hilite the cell
 
 			BSR.S		GetTheListProc			; what it says, but into A0
 			BEQ.S		DoneDraw				; => oh no! no defproc
@@ -1328,7 +1328,7 @@ DDraw1
 			AND.B		LActive(A3),D0			; and in active byte
 
 			MOVE.B		D0,-(SP)				; pass select boolean
-			PEA 		r(A6)					; and here is the cell’s rect
+			PEA 		r(A6)					; and here is the cell's rect
 			MOVE.L		D7,-(SP)				; here is the cell
 			MOVE.W		offset(A6),-(SP)		; this is the offset into the data
 			MOVE.W		len(A6),-(SP)			; and this is how long the data is
@@ -1350,7 +1350,7 @@ DoDrExit
 
 GetTheListProc
 			MOVE.L		ListDefHandle(A3),D0	; get the handle
-			BEQ.S		@done					; => didn’t get one
+			BEQ.S		@done					; => didn't get one
 
 ; Some programmers are pretty slimy and load an LDEF that is empty.  They then					<LW3> fau
 ; stuff some code into it.  However, since HLOCK does not flush the cache anymore,				<LW3> fau
@@ -1405,7 +1405,7 @@ LCS1
 
 ;------------
 ; SetVisible is a utility used to set the visible rect based on the
-; cellsize and the list’s window (rView).  It also sets flags that
+; cellsize and the list's window (rView).  It also sets flags that
 ; indicate whether the cells fit exactly into the window.
 
 ; A trick is used to index into ListFlags using D3.  The bit positions
@@ -1451,7 +1451,7 @@ CellCommon
 ; ListSize sets the viewRect to the specified rect, and sets flags that
 ; determine whether or not cells fit exactly into the view.  If not, then
 ; a flag is set that indicates that scrolling must be extended by one cell
-; in the direction(s) that doesn’t fit.  It also updates the scroll bars
+; in the direction(s) that doesn't fit.  It also updates the scroll bars
 ; to fit within their new confines.
 ;
 ;-----------------------------------------------------------------------------
@@ -1489,7 +1489,7 @@ ListSize
 			PEA 		rView(A3)				; else invalidate entire view
 			_InvalRect
 
-; now slide original rView to it’s JustRected position for validation
+; now slide original rView to it's JustRected position for validation
 
 			BSR 		GetOffset				; get offset between r and visible
 			MOVE.L		SP,-(SP)				; push pointer to old rView (saved on stack)
@@ -1549,11 +1549,11 @@ SetScRect
 			MOVE.L		rView+4(A3),-(SP)		; push botRight of r
 			MOVE.L		rView(A3),-(SP) 		; and topLeft too
 			MOVE.L		SP,A2					; pass pointer to rect in A2
-			BSR 		GetScSize				; get scroll’s rect (uses D0) into A2
+			BSR 		GetScSize				; get scroll's rect (uses D0) into A2
 			TST.L		D4						; is control valid?
 			BNE.S		@haveControl			; => yes, move the control
 
-; the control’s not valid. Erase the rect if there is a grow box
+; the control's not valid. Erase the rect if there is a grow box
 
 @noControl
 			BTST		#LHasGrow,ListFlags(A3) ; is there a grow box?
@@ -1581,7 +1581,7 @@ SetScRect
 @done
 
 			MOVE.L		A2,-(SP)				; validate the rect
-			bsr.s		MyValidRect				; so it doesn’t get drawn again
+			bsr.s		MyValidRect				; so it doesn't get drawn again
 			ADDQ		#8,SP					; and strip the rect
 			RTS
 
@@ -1625,7 +1625,7 @@ NLBounds	EQU 		NLcSize+4
 NLview		EQU 		NLBounds+4
 NLResult	EQU 		NLview+4
 
-ListNew 										; don’t use StdEntry because no handles yet
+ListNew 										; don't use StdEntry because no handles yet
 			LINK		A6,#stdFrame			; standard frame
 			MOVEM.L 	ListMgrSavedRegisters,-(SP)
 			CLR.L		NLResult(A6)			; assume some error
@@ -1662,7 +1662,7 @@ ListNew 										; don’t use StdEntry because no handles yet
 
 ; set up the default list fields
 ; the user can replace any of these settings after doing the ListNew, or by
-; letting the defProc’s Init function do it.
+; letting the defProc's Init function do it.
 
 ; Set viewRect, in global coordinates, to the values passed in r.
 
@@ -1750,9 +1750,9 @@ ListNew 										; don’t use StdEntry because no handles yet
 ; set up a handle for the data
 
 			MOVEQ		#0,D0					; get a handle for data
-			_NewHandle	clear					; make sure they’re 0 length
+			_NewHandle	clear					; make sure they're 0 length
 			MOVE.L		A0,D0					; test result
-			BEQ.S		NewExit 				; => couldn’t get memory
+			BEQ.S		NewExit 				; => couldn't get memory
 			MOVE.L		A0,cells(A3)			; save handle
 
 ; initialize the list defProc handle
@@ -1771,7 +1771,7 @@ ListNew 										; don’t use StdEntry because no handles yet
 ; Do it last so it can muck with all our other Init defaults.
 
 			BSR 		GetTheListProc			; get listproc and lock down
-			BEQ.S		@noLDEF					; => oops, we didn’t get it
+			BEQ.S		@noLDEF					; => oops, we didn't get it
 			MOVE.W		#LInitMsg,-(SP) 		; do init call to defproc
 
 			MOVE.L		#0,-(SP)				; this results in an EVEN address
@@ -1820,7 +1820,7 @@ ScrollNew
 ;------------
 ; GetScSize is a utility that is used
 ; by ScrollNew and ListSize to calculate the size of the scroll bar
-; based on the list’s rect.
+; based on the list's rect.
 ; A pointer to a temp rect containing the current rView is in A2.
 ; The index D0 is used to access either vertical (D0=0) or
 ; horizontal elements (D0=2).
@@ -1875,7 +1875,7 @@ ListDispose
 
 			MOVE.L		A4,A0					; crumple up the list
 			_DisposHandle						; and file it away
-			move.l		#0,a4					; put a NIL in the handle so we don’t crash on unlock
+			move.l		#0,a4					; put a NIL in the handle so we don't crash on unlock
 
 			BRA 		Std4Exit
 
@@ -1950,7 +1950,7 @@ LAC1
 			BRA.S		@7						; check bounds and go
 @4
 			TST.W		D6						; if columns, then get c.h
-			BNE.S		@5						; => it’s rows, have c.h
+			BNE.S		@5						; => it's rows, have c.h
 			SWAP		D7
 @5
 			BSR 		CellToIndex 			; cell in D7 -> index in D3
@@ -1969,7 +1969,7 @@ LAC1
 
 ; set the new offsets to the first pre-existing offset to the right (-> 0 length)
 
-			MOVE.L		A3,A0					; make sure new cells aren’t selected
+			MOVE.L		A3,A0					; make sure new cells aren't selected
 			EXT.L		D3
 			ADD.L		D3,A0					; get pointer to first new cell
 			MOVE.W		14(A6),D0				; get count
@@ -1984,7 +1984,7 @@ LAC1
 			BPL.S		@3
 
 			TST.W		D6						; if columns, then get c.v
-			BNE.S		@6						; => it’s rows, use c.h
+			BNE.S		@6						; => it's rows, use c.h
 			SWAP		D7						; do next c.v
 @6
 			ADD.W		#1,D7
@@ -2035,7 +2035,7 @@ HomeVisible
 ; Function	ListDelColumn ( count, colNum: INTEGER; h: ListHandle );
 ;							  14	  12			8
 ; ListDelColumn deletes count columns, starting at colNum.	If colNum is not within
-; dataBounds, it does nothing.	If there aren’t the specified number of columns to the
+; dataBounds, it does nothing.	If there aren't the specified number of columns to the
 ; right of colnum, then only existing columns are deleted.	DataBounds is updated.
 ; See comments for ListAddColumn
 ;
@@ -2045,7 +2045,7 @@ HomeVisible
 
 ListDelRow
 			BSR 		StdEntry				; save standard stuff
-			MOVEQ		#h,D6					; say we’re doing rows
+			MOVEQ		#h,D6					; say we're doing rows
 			BRA.S		LDC1					; and use (un)common code
 
 ListDelColumn
@@ -2090,7 +2090,7 @@ DelSome 	CMP.W		D2,D7					; if (colNum >= left) AND (colNum < right)
 			MOVE.W		D7,D3					; get first column to delete
 			ADD.W		D0,D3					; get proposed right column
 			CMP.W		D1,D3					; how does it compare to databounds.right?
-			BLE.S		@0						; it’s just fine
+			BLE.S		@0						; it's just fine
 			SUB.W		D7,D1					; else calculate number of columns to our right
 			MOVE.W		D1,14(A6)				; and save new value in frame
 
@@ -2114,7 +2114,7 @@ ClrLoop
 			BNE.S		DelNext 				; => no, got c.h
 			SWAP		D7						; get c.h into low word
 
-; first get rid of the cell’s data
+; first get rid of the cell's data
 
 DelNext 	MOVE.L		D7,-(SP)				; this is the cell
 			MOVE.L		A4,-(SP)				; and this is the list
@@ -2165,7 +2165,7 @@ DelExit
 ; redraw any portions of the array that have changed.  Finally it calls SetHilite to
 ; update the scroll bars.
 
-; If the flag noDraw is set then don’t do this stuff
+; If the flag noDraw is set then don't do this stuff
 
 			BTST		#noDraw,ListFlags(A3)	; should we do update?
 			BNE.S		Del2Exit				; => no
@@ -2205,7 +2205,7 @@ DelExit
 			MOVE.L		A2,-(SP)				; push the rect
 			_RectRgn							; make the rect a region (leave on stack)
 
-; If there aren’t enough rows/columns to fill the screen, then we need to erase the
+; If there aren't enough rows/columns to fill the screen, then we need to erase the
 ; rightmost/bottom row/column.	It is more general to erase update region within ListUpdate,
 ; but then erases get done twice for everything (eraseRect done in drawProc too).
 
@@ -2244,13 +2244,13 @@ FlushRecord
 ; the coordinates of the entire row identified by c.v are returned.
 ;
 ; StdEntry puts c in D7; list pointer in A3; list handle in A4
-; NOTE: don’t bounds check c because delExit, above, wants coordinates of out of bounds cells.
+; NOTE: don't bounds check c because delExit, above, wants coordinates of out of bounds cells.
 ;-------------------------------------------------------------------------------------
 
 ListRect
 			BSR 		StdEntry				; *** what if c out of bounds??
 			MOVE.L		16(A6),A1				; get r into A1
-			MOVE.L		rView(A3),(A1)			; get topLeft of list’s rect
+			MOVE.L		rView(A3),(A1)			; get topLeft of list's rect
 
 			SWAP		D7						; get c.v in low word
 			MOVE.W		D7,D0					; r.top := r.top+(c.v-visible.top)*cellsize.v
@@ -2301,7 +2301,7 @@ ListScroll
 			_OffsetRect
 
 			BSR.S		JustRect				; align the rect for optimal display
-			BNE.S		@3						; => no movement. Don’t flicker
+			BNE.S		@3						; => no movement. Don't flicker
 			ST			D0						; we want an update
 			BSR.S		MoveRect				; else update display
 
@@ -2449,7 +2449,7 @@ ListUpdate
 			MOVE.L		12(A6),-(SP)			; and update Region
 			_RectInRgn							; is the rect in the region?
 			TST.B		(SP)+					; check el resulto
-			BEQ.S		@3						; => no, don’t draw
+			BEQ.S		@3						; => no, don't draw
 
 			BSR 		DoDraw					; go draw the cell
 @3
@@ -2464,7 +2464,7 @@ ListUpdate
 
 			BSR 		DrawScrollBars
 @done
-			BRA 		Std8Exit				; and exit using commoner’s code
+			BRA 		Std8Exit				; and exit using commoner's code
 
 ;-----------------------------------------------------------------------------
 ; Selection handling routines
@@ -2508,7 +2508,7 @@ DrawASel
 			PEA 		r(A6)					; get rect into r
 			MOVE.L		D7,-(SP)				; get rect we just drew
 			MOVE.L		A4,-(SP)
-			_LRect								; get cell’s rect into r
+			_LRect								; get cell's rect into r
 
 			SUBQ		#2,SP					; room for result
 			PEA 		rView(A3)				; get intersection of rView
@@ -2519,7 +2519,7 @@ DrawASel
 			BEQ.S		@nothingDrawn			; => no, nothing to validate
 
 			PEA 		r(A6)					; get rect into r
-			bsr.s		MyValidRect				; validate rectangle so we don’t draw twice
+			bsr.s		MyValidRect				; validate rectangle so we don't draw twice
 @nothingDrawn
 
 			RTS 								; and return
@@ -2556,7 +2556,7 @@ HiliteSel
 ;							   16			 12 	  8
 ; If SetIt is true, then select the cell and redraw if necessary.
 ; If SetIt is false,then deselect the cell and redraw if necessary.
-; If the noDraw bit in ListFlags is set, then don’t draw.
+; If the noDraw bit in ListFlags is set, then don't draw.
 ;
 ;-------------------------------------------------------------------------------
 
@@ -2568,20 +2568,20 @@ ListSetSelect
 			BTST		#LNoNilHilite,selFlags(A3)	; should we select empty cells?
 			BEQ.S		@0						; => yes, select anything
 			TST.W		len(A6) 				; is it empty?
-			BEQ.S		@3						; => yes, don’t select
+			BEQ.S		@3						; => yes, don't select
 @0
 			BSR 		CellToIndex 			; get index into D3 (cell in D7)
 			TST.B		16(A6)					; select or deselect cell?
 			BNE.S		@1						; => select the cell
 			BCLR		#7,cellArray(A3,D3) 	; test and deselect
-			BEQ.S		@3						; => don’t need to draw
+			BEQ.S		@3						; => don't need to draw
 			BRA.S		@2						; => else redraw the cell
 @1
 			BSET		#7,cellArray(A3,D3) 	; test and select
-			BNE.S		@3						; => don’t need to redraw
+			BNE.S		@3						; => don't need to redraw
 @2
 			BTST		#noDraw,ListFlags(A3)	; is drawing on?
-			BNE.S		@3						; => no, don’t invert
+			BNE.S		@3						; => no, don't invert
 			BSR.S		HiliteSel				; else hilite the cell
 @3
 			BRA 		Std10Exit				; strip off 10 bytes and go
@@ -2719,7 +2719,7 @@ Std16Exit
 ;------------
 ; MyFind -- This routine is used internally to validate the cell that is in D7.
 ;			It assumes that StdEntry has already been called to set things up.
-;			GoodCell indicates the cell’s validity; len, offset and index are set.
+;			GoodCell indicates the cell's validity; len, offset and index are set.
 
 MyFind
 			MOVEM.L 	D1-D7/A1-A4,-(SP)		; save em all
@@ -2727,8 +2727,8 @@ MyFind
 			MOVE.W		D6,len(A6)				; return length of chosen cell
 			MOVE.W		D5,offset(A6)			; return offset to chosen cell
 			MOVE.W		D3,index(A6)			; set index of cell
-			MOVE.B		D4,goodCell(A6) 		; set cc’s
-			MOVEM.L 	(SP)+,D1-D7/A1-A4		; and fix ’em up
+			MOVE.B		D4,goodCell(A6) 		; set cc's
+			MOVEM.L 	(SP)+,D1-D7/A1-A4		; and fix 'em up
 			RTS
 
 ;------------
@@ -2809,7 +2809,7 @@ IndexToCell
 ListClrCell
 
 ; pull off return address, our params, push on p and l for SetCell, put ours back
-; note: lock state of pack is in D1, don’t use D1
+; note: lock state of pack is in D1, don't use D1
 
 			MOVEM.L 	(SP)+,D0/D2/A0			; get RTS, handle, cell
 			CLR.L		-(SP)					; push p = NIL
@@ -2839,7 +2839,7 @@ ListSetCell
 ; *** need to verify that data will fit?
 
 			SUBQ		#4,SP					; munge out the field
-			MOVE.L		cells(A3),-(SP) 		; here’s the data handle
+			MOVE.L		cells(A3),-(SP) 		; here's the data handle
 			MOVE.W		offset(A6),-(SP)		; pass offset
 			CLR.W		-(SP)					; which must be long
 			CLR.L		-(SP)
@@ -2992,7 +2992,7 @@ ListSearch
 LookAtNext
 			BSR 		MiniFind				; index in D3 -> D5 = offset, D6 = len
 
-			MOVE.L		D3,-(SP)				; because Jerome doesn’t want to save it
+			MOVE.L		D3,-(SP)				; because Jerome doesn't want to save it
 			SUBQ		#2,SP					; make room for integer result
 			MOVE.L		cells(A3),A0			; get handle to data
 			MOVE.L		(A0),A0 				; get pointer to data
@@ -3004,10 +3004,10 @@ LookAtNext
 
 			MOVE.L		16(A6),D2				; get routine and test
 			BEQ.S		@1						; => no routine
-			MOVE.L		D2,A0					; call user’s routine
+			MOVE.L		D2,A0					; call user's routine
 			JSR 		(A0)					; with same params as IUMagIDString
 
-; NOTE: We count on the user’s preserving the standard registers (D3-D7,A2-A7) !
+; NOTE: We count on the user's preserving the standard registers (D3-D7,A2-A7) !
 
 			BRA.S		@2
 @1

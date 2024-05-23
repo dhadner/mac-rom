@@ -21,7 +21,7 @@
 ;									called, ever.  This is bad.)
 ;		 <3>	 7/17/91	SAM		Making the PutterKbd fix not run under A/UX.
 ;		 <2>	  6/30/91	SAM		Moved to its own file.  Boot time linked patch that sends
-;									Talk R3 commands to the connected keyboard to wake up a “Putter” 
+;									Talk R3 commands to the connected keyboard to wake up a 'Putter' 
 ;									ISO keyboard if it is there & asleep.
 ;		 <1>	  6/30/91	SAM		First checked in..
 ;

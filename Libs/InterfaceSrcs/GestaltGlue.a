@@ -13,7 +13,7 @@
 ;	Change History (most recent first):
 ;
 ;		 <8>	 6/12/91	LN		added #include 'SysPrivateEqu.a'
-;		 <7>	 1/14/91	SAM		Updated ‘mach’ glue so that it works on Mac Plus and SEs.
+;		 <7>	 1/14/91	SAM		Updated ‘mach' glue so that it works on Mac Plus and SEs.
 ;		 <6>	 6/15/90	CCH		Took out unconditional branch left over from testing.
 ;		 <5>	 6/13/90	CCH		Added glue for gestaltLogicalRAM and gestaltPhysicalRAM
 ;									selectors.

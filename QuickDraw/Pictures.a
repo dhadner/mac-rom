@@ -411,7 +411,7 @@ NXTCHNK	MOVE	D6,D0							;ASSUME SIZE >= 256
 		MOVE	D7,D0							;ELSE SKIP REMAINING BYTES
 SIZEOK	MOVE.L	SP,-(SP)						;PUSH BUFFER POINTER
 		MOVE	D0,-(SP)						;PUSH BYTECOUNT
-	if TheFuture then							; Don’t put into a specific system version <43>
+	if TheFuture then							; Don't put into a specific system version <43>
 		cmp.w	#AbortPicPlayBackErr,qdErr		;abort if our special error	<42>
 		beq.s	Done
 	endif										; <43>

@@ -21,7 +21,7 @@
 ;	   <SM2>	  4/2/92	PN		Roll in patchGetResource from WindowMgrPatches.a into
 ;									GetNewwindow
 ;		 <5>	 2/10/92	JSM		Moved this file to GetMgr folder, keeping all the old revisions.
-;		 <4>	 9/27/91	JSM		Cleanup header, don’t use hasCQD conditional since all future
+;		 <4>	 9/27/91	JSM		Cleanup header, don't use hasCQD conditional since all future
 ;									ROMs will have color QuickDraw.
 ;		 <3>	 5/21/91	gbm		Nail a couple of warnings
 ;		 <2>	 1/19/90	DVB		Include PalettePriv.a

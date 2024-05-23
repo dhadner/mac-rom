@@ -10,8 +10,8 @@
 ;	Change History (most recent first):
 ;
 ;		 <4>	 1/16/91	stb		& gbm; preserve d1-d2/a1 like all good Resource Mgr calls should
-;		 <3>	 4/23/90	dba		don’t change CurMap to SysMap before doing the GetString; this
-;									fixes some problems with PrintMonitor, and doesn’t hurt
+;		 <3>	 4/23/90	dba		don't change CurMap to SysMap before doing the GetString; this
+;									fixes some problems with PrintMonitor, and doesn't hurt
 ;									anything, since no one except PrintMonitor and the System is
 ;									supposed to have an STR -8192
 ;		 <1>	  4/6/90	NB		Added a call to PrLoadDriver. This replaces all the driver
@@ -33,7 +33,7 @@
 OpenResFile PatchProc _OpenResFile, (Plus,SE,II,Portable,IIci)
 
 	move.b	ResLoad,-(sp)			; save the old value for whether to load resources
-	sf		ResLoad					; don’t load the resource
+	sf		ResLoad					; don't load the resource
 
 	subq	#4,sp					; make room for resource handle
 	move.w	#$E000,-(sp)			; get that resource handle
@@ -50,7 +50,7 @@ OpenResFile PatchProc _OpenResFile, (Plus,SE,II,Portable,IIci)
 	cmp.l	4(sp), d0				; check and see if it is the printer name
 	bne.s	NotForPrinting			; nope, it is not the printer driver
 
-	movem.l	d1-d2/a1,-(sp)			; Resource Mgr calls shouldn’t touch these					<4>
+	movem.l	d1-d2/a1,-(sp)			; Resource Mgr calls shouldn't touch these					<4>
 	_PrLoadDriver					; function result is in D0
 	movem.l	(sp)+,d1-d2/a1			; restore registers											<4>
 	move.w	D0, ResErr				; copy the error result into ResErr

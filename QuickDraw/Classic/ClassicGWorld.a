@@ -31,12 +31,12 @@
 ;		 <9>	 6/19/90	JSM		Make sure _OSDispatch is implemented in NewHandleCommaTemp
 ;									before calling it.
 ;		 <8>	  6/8/90	dba		fix bug in buffer size for NewScreenBuffer case; must calculate
-;									buffer based on actual alignment since we don’t get the extra 31
+;									buffer based on actual alignment since we don't get the extra 31
 ;									bits of slop
 ;		 <7>	 4/26/90	csd		link and save registers for NewScreenBuffer and
 ;									NewTempScreenBuffer before trashing D5, D6, and D7 and falling
 ;									into NewGWBuffer.
-;		 <6>	 4/11/90	dba		fix bug where NewScreenBuffer doesn’t return an error code
+;		 <6>	 4/11/90	dba		fix bug where NewScreenBuffer doesn't return an error code
 ;		 <5>	  4/7/90	KON		Fix bug in depth 0 gWorlds, fix disposing of gWorlds.
 ;		 <4>	  4/4/90	KON		get rid of short branches between modules (not supported by
 ;									linked patches)
@@ -141,7 +141,7 @@ QDExtDispatcher PROC EXPORT
 ;----------------------------------------------------------------------------
 
 		cmp.w	#23,d0				; if unsigned d0 > max selector,
-		bhi.s	exit				; don’t do anything
+		bhi.s	exit				; don't do anything
 		lsl.w	#2,d0				; turn into jump table offset
 		jmp		dispatchTable(d0.w)	; jump in jump table
 
@@ -411,7 +411,7 @@ disposOffscreenHandles
 		beq.s	goHome						; if nil, don't do anything
 		move.l	d7,a0						; if not nil, check if the port has been opened
 		move	portBits+rowBytes(a0),d0	; get rowBytes
-		bz.s	@noClose					; if 0, don’t close port
+		bz.s	@noClose					; if 0, don't close port
 		move.l	(a0),-(sp)					; push pointer to port
 		_ClosePort							; close it down
 @noClose
@@ -899,7 +899,7 @@ realignPixels
 		move.l	a1,portBits+baseAddr(a3)	; jam it in the portBits
 		move.l	a1,baseAddr(a4)				; jam it in the pixmap
 
-; Save the port, set it to no port, so we don’t get StdBits
+; Save the port, set it to no port, so we don't get StdBits
 
 		move.l	GrafGlobals(a5),a0			; get the port
 		move.l	thePort(a0),d4				; save for later
@@ -925,12 +925,12 @@ realignPixels
 		move.l	d3,baseAddr(a4)				; jam it in the pixmap
 		move.l	d3,portBits+baseAddr(a3)	; jam it in the portBits, just in case it is locked
 
-; Update the port’s portBits.bounds to the newBounds with alignment (in pixMap.bounds)
+; Update the port's portBits.bounds to the newBounds with alignment (in pixMap.bounds)
 
 		move.l	bounds+topLeft(a4),portBits+bounds+topLeft(a3)
 		move.l	bounds+botRight(a4),portBits+bounds+botRight(a3)
 
-; Update the port’s portRect to the newBounds without alignment
+; Update the port's portRect to the newBounds without alignment
 
 		move.l	newBounds+topLeft(a6),portRect+topLeft(a3)	; copy newBounds to portRect
 		move.l	newBounds+botRight(a6),portRect+botRight(a3)
@@ -1347,7 +1347,7 @@ offscreenGWorld	equ		offscreenDevice-4	; LONG, offscreen graphics world
 
 ;----------------------------------------------------------------------------
 
-		clr.l	offscreenDevice(sp)			; we don’t have gDevices!
+		clr.l	offscreenDevice(sp)			; we don't have gDevices!
 
 		rtd_a0	paramSize					; get rid of parameters and return to caller
 
@@ -1422,7 +1422,7 @@ pm				equ		result-4			; LONG, handle to pixmap
 
 		move.b	#true,result(sp)			; set result to true
 
-; Check that PixMap’s version is pmVersionUnlocked.
+; Check that PixMap's version is pmVersionUnlocked.
 ; If it's not pmVersionUnlocked, don't do anything and return true
 
 		move.l	pm(sp),a1					; get handle to pixmap
@@ -1499,8 +1499,8 @@ pm				equ		paramSize+4-4		; LONG, handle to pixmap
 
 ;----------------------------------------------------------------------------
 
-; Check that PixMap’s version is pmVersionLocked.
-; If it's not pmVersionLocked, don’t do anything.
+; Check that PixMap's version is pmVersionLocked.
+; If it's not pmVersionLocked, don't do anything.
 
 		move.l	pm(sp),a1					; get handle to pixmap
 		move.l	(a1),a1						; get pointer to pixmap
@@ -1722,18 +1722,18 @@ PixelsHandleHelper
 ;
 ;	In:
 ;		(sp)	return address
-;		4(sp)	caller’s caller
+;		4(sp)	caller's caller
 ;		8(sp)	GWPixMapHandle
 ;
 ;	Out:
 ;		CC		Z if the pixels are not in a handle, NZ if there is a handle
 ;		a0		handle to pixels (or NIL, if not in a handle)
-;		a1		caller’s caller (return with a jmp (a1))
+;		a1		caller's caller (return with a jmp (a1))
 ;
 ;	Trashes d0-d2/a0-a1
 
 		move.l	(sp)+,d1					; keep return address for a rainy day
-		move.l	(sp)+,d2					; keep caller’s caller
+		move.l	(sp)+,d2					; keep caller's caller
 		move.l	(sp)+,d0					; and a start with the pixmap handle
 		bz.s	@nothing					; we found nothing at all
 		move.l	d0,a1
@@ -1745,7 +1745,7 @@ PixelsHandleHelper
 		cmp.w	#pmVersionUnlocked,d0		; is gwPMVersion an unlocked handle?
 		beq.s	@gotHandle					; yes, baseAddr is a handle
 		cmp.w	#pmVersionLocked,d0			; is gwPMVersion an locked handle?
-		bne.s	@nothing					; no, don’t do anything
+		bne.s	@nothing					; no, don't do anything
 @gotPointer
 		_RecoverHandle						; get the handle
 @gotHandle
@@ -2021,7 +2021,7 @@ computeAlignment
 
 ; Convert localRect to local coordinates (topLeft = 0, 0)											<10>
 
-		tst.w	d7							; don’t convert bounds to local if depth is specified
+		tst.w	d7							; don't convert bounds to local if depth is specified
 		bnz.s	@noLocalizing
 
 		move.w	left(a2),d0					; compute boundsRect->right - boundsRect->left			<10>
@@ -2038,7 +2038,7 @@ computeAlignment
 		move.l	topLeft(a2),pixmapBounds+topLeft(a6)	; pixmapBounds.top = localRect.top
 		move.l	botRight(a2),pixmapBounds+botRight(a6)	; bottom and right coordinates unchanged
 
-		tst.w	d7							; don’t align if depth is specified
+		tst.w	d7							; don't align if depth is specified
 		bnz.s	@noAligning
 
 		and.w	#~$1F,pixmapBounds+left(a6)	; align the buffer
@@ -2088,7 +2088,7 @@ allocateBuffer
 		_NewHandleCommaTemp					; allocate in MF heap
 		bra.s	@joinUs
 @useCurHeap
-		_NewHandle							; allocate offscreen buffer (don’t initialize it)			<07Jul89> JCM
+		_NewHandle							; allocate offscreen buffer (don't initialize it)			<07Jul89> JCM
 @joinUs
 		bne.s	reportError					; if Memory Manager error, report it and quit				<07Jul89> JCM
 

@@ -62,7 +62,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “graftypes.m.a”
+;EASE$$$ READ ONLY COPY of file 'graftypes.m.a'
 ; 1.5	KON 12/05/1989 PMVersion needs to be cleaned up for B&W and Color QD compatability
 ; 1.4	KON 12/04/1989 Added relevent stuff from ColorEqu.a.  Now DrawPicture32Patch.a includes this file.
 ; 1.3	KON 11/07/1989   Added support for font name/ID binding

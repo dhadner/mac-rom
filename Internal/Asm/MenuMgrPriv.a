@@ -19,7 +19,7 @@
 ;		<10>	 3/29/91	JSM		dba, #84426: Add MenuBarGlobalInvalidBit and
 ;									MenuBarGlobalInvalidByte.
 ;		 <9>	  2/5/91	stb		gs: move in SaveBits, RestoreBits, DiscardBits
-;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	 1/21/91	DFH		(ksm) Changing kProcessMenuID to kApplicationMenuID.
 ;		 <6>	11/26/90	KSM		(dba)Make the MenuBarInvalidBit a switched value.

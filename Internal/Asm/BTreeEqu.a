@@ -12,7 +12,7 @@
 ;		<15>	 10/7/92	gs		Add btTooManyNodesErr (-430) for OCE folks to get around DIVU
 ;									"bug".
 ;		<14>	 8/21/91	JSM		Clean up header.
-;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<13>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<12>	  1/4/91	KST		With dnf: Took out the definition of 'kdDTString' and changed
 ;									the type number to 'kdReserved'.

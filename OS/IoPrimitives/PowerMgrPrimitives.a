@@ -1296,10 +1296,10 @@ CheckClamshell
 			BNE.S	@Exit							;			bail
 			
 			MOVE.B	PmgrFlags(A2),-(SP)				;		ELSE  save PmgrFlags
-			BSET	#AvoidNetDiag,PmgrFlags(A2)		;  and set the ‘no AppleTalk dialogs’ flag
+			BSET	#AvoidNetDiag,PmgrFlags(A2)		;  and set the ‘no AppleTalk dialogs' flag
 			MOVEQ	#SleepNow,D0					; force a sleep
 			_Sleep
-			BTST	#AvoidNetDiag,(SP)+				; was the ‘no AppleTalk dialogs’ flag set before?
+			BTST	#AvoidNetDiag,(SP)+				; was the ‘no AppleTalk dialogs' flag set before?
 			BEQ.S	@NoDialog						; -> no, leave it alone
 			BSET	#AvoidNetDiag,PmgrFlags(A2)		; yes, restore it
 @NoDialog	MOVE.L	Ticks,LastAct(A2)				; waking updates last activity
@@ -3451,7 +3451,7 @@ SoundPowerDown										;
 ;	_Sleep routine to save the video registers						(A1 = return address)
 ;————————————————————————————————————————————————————————————————————————————————————————
 
-SaveLCD		Moveq	#0,D1							; Say we’re about to sleep.
+SaveLCD		Moveq	#0,D1							; Say we're about to sleep.
 			Bsr		SaveRestoreLCD					; Go save the world.
 			Jmp		(A1)							; Vamoose.
 
@@ -3632,7 +3632,7 @@ RestoreFPU
 ;————————————————————————————————————————————————————————————————————————————————————————
 
 RestoreLCD	
-			MOVEQ	#1,D1							; Say we’re about to sleep.
+			MOVEQ	#1,D1							; Say we're about to sleep.
 			BSR		SaveRestoreLCD					; Go save the world.
 			JMP		(A1)							; Vamoose.
 
@@ -3836,7 +3836,7 @@ SaveRestoreLCD
 			
 			Suba.w	#SpBlockSize,Sp					; Allocate an SpBlock on the stack.
 			Movea.l	Sp,A0							; Point to it with A0.
-			Clr.b	spSlot(A0)						; We’re only looking in Slot $0 here.
+			Clr.b	spSlot(A0)						; We're only looking in Slot $0 here.
 			Clr.b	spID(A0)						; Begin at sRsrcID 0.
 			Clr.b	spExtDev(A0)					; No external device.
 			Clr.b	spTBMask(A0)					; No mask in search.
@@ -3846,9 +3846,9 @@ SaveRestoreLCD
 			Move.w	D0,spDrvrHw(A0)					;		    <DrHwID>.
 			Clr.l	spParamData(A0)					; Look only for enabled sRsrcs.
 			Bset	#foneslot,spParamData+3(A0)		; Limit search to this slot only.
-			_GetTypeSRsrc							; If we didn’t find the target,
+			_GetTypeSRsrc							; If we didn't find the target,
 			Bne.s	@Cleanup						;	then just leave.
-			Move.w	spRefNum(A0),D0					; If there’s no driver, then
+			Move.w	spRefNum(A0),D0					; If there's no driver, then
 			Beq.s	@Cleanup						;	just go on.
 			
 			Suba.w	#ioQElSize,Sp					; Allocate ioCore pBlock.
@@ -3906,7 +3906,7 @@ ScreenWakeInitRegs	REG		D1-D2/A0-A4
 			MOVE.W	#cscPowerSelect,csCode(A3)		; cscPowerSelect
 
 			MOVE.L	DeviceList,D1					; If the DeviceList is empty,
-			BEQ.S	@ScreenWakeInitDone				; 	then we can’t do anything!
+			BEQ.S	@ScreenWakeInitDone				; 	then we can't do anything!
 			MOVEQ	#0,D2							; Initialize PowerSelect supported flag			
 
 @ScreenWakeInitLp									; DO {
@@ -3960,7 +3960,7 @@ VidLowPwrSelectRegs	REG		D1-D2/A0-A4
 			MOVE.W	#cscPowerSelect,csCode(A3)		; cscPowerSelect
 
 			MOVE.L	DeviceList,D1					; If the DeviceList is empty,
-			Beq.s	@VidLowPwrSelectDone			; 	then we can’t do anything!
+			Beq.s	@VidLowPwrSelectDone			; 	then we can't do anything!
 			MOVEQ	#0,D2							; Initialize PowerSelect supported flag			
 			
 			TST.L	D0								; IF PowerDown THEN
@@ -4012,7 +4012,7 @@ VidLowPwrSelectRegs	REG		D1-D2/A0-A4
 ; Set up IOPB for control call
 
 @VidPowerDown
-			Moveq	#0,D2							; Assume that we’re not hiding the cursor.
+			Moveq	#0,D2							; Assume that we're not hiding the cursor.
 			MOVEA.L	A3,A0							; 	A0 := IOPB
 
 @PwrDowngDevLoop									; DO {
@@ -4048,7 +4048,7 @@ VidLowPwrSelectRegs	REG		D1-D2/A0-A4
 			Bne.s	@NoDriver						; don't hide cursor if failed
 			Ori.w	#-1,D2							; otherwise, flag that we can hide the cursor
 
-@NoDriver	Tst.l	D2								; If we shouldn’t hide the cursor,
+@NoDriver	Tst.l	D2								; If we shouldn't hide the cursor,
 			Beq.s	@VidLowPwrSelectDone			;	then just go on.
 			_HideCursor								; Otherwise, hide it.
 			BRA.S	@VidLowPwrSelectDone			; And go on.
@@ -4069,7 +4069,7 @@ KeyStoneDrvrName	Dc.b	'.Display_Video_Apple_ViSC' ; Name of Dart-class version o
 ; Inputs:	D0.l	-	refNum of a video driver
 ;			A0.l	-	pointer to video driver control/status IOPB for cscPowerSelect
 ;
-; Outputs:	D0.w	-	if non-zero, is video driver’s refNum and PowerSelect is
+; Outputs:	D0.w	-	if non-zero, is video driver's refNum and PowerSelect is
 ;						supported by the video driver.
 ;			
 ; Trashes:	D0
@@ -4086,7 +4086,7 @@ PowerSelectSupported
 			Move.w	D0,-(Sp)						; Save the refNum for later.
 			Beq		@ExitNow						; If nil, then just leave.
 			
-; Get the video driver’s name…
+; Get the video driver's name…
 ;
 			Movem.l	A0-A1/D7,-(Sp)					; Save some work registers.
 			
@@ -4101,8 +4101,8 @@ PowerSelectSupported
 					
 			Move.w	dCtlFlags(A0),D0				; Get the device flags.
 			Movea.l	dCtlDriver(A0),A0				; Get the driver.
-			Btst	#dRAMBased,D0					; If it’s not in RAM, then
-			Beq.s	@GetName						;	it’s already a pointer.
+			Btst	#dRAMBased,D0					; If it's not in RAM, then
+			Beq.s	@GetName						;	it's already a pointer.
 			Movea.l	(A0),A0							; Otherwise, get pointer to driver.
 @GetName	Lea		drvrName(A0),A0					; Point to the driver name.
 			Move.l	A0,D7							; Save it for later.
@@ -4112,7 +4112,7 @@ PowerSelectSupported
 			Moveq	#0,D0							; Clear both halves of D0.l.
 			Move.b	(A0)+,D0						; Get the length of the driver name.
 			Swap	D0								; Save it.
-			Lea		VSCDrvrName,A1					; Point to the Mini/Duo Dock Video Driver’s name.
+			Lea		VSCDrvrName,A1					; Point to the Mini/Duo Dock Video Driver's name.
 			Move.b	(A1)+,D0						; Get the length of the driver name.
 			_CmpString								; Compare the two names.
 			Tst.w	D0								; If they match, 
@@ -4120,7 +4120,7 @@ PowerSelectSupported
 			
 ; Check for the Dart-class version of the VSC Video Driver.
 ;
-			Movea.l	D7,A0							; Re-point to the driver we’re checking.
+			Movea.l	D7,A0							; Re-point to the driver we're checking.
 			Moveq	#0,D0							; Clear both halves of D0.
 			Move.b	(A0)+,D0						; Get the length of the driver name.
 			Swap	D0								; Save it.
@@ -4584,7 +4584,7 @@ MultiScaledBatteryInfo
 ;
 ;				voltage = ((power/100) + 5.12) volts
 ;
-;			For a ‘power’ range of 0 to 255, we get a voltage range of 5.12 to 7.67 volts.
+;			For a ‘power' range of 0 to 255, we get a voltage range of 5.12 to 7.67 volts.
 ;————————————————————————————————————————————————————————————————————————————————————————
 
 LeadAbsoluteBatteryVoltage

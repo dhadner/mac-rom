@@ -58,9 +58,9 @@ spBlk			Ds		SPBlock								; SpBlock for generic use.
 sPRAMBlk		Ds.b	SizeSPRAMRec						; sPRAMRec for generic use.
 configParamsPtr	Ds.l	1									; Pointer to configruation parameters.
 vidParamsPtr	Ds.l	1									; Pointer to video parameters.
-mscBaseAddr		Ds.l	1									; Don’t want to look up MSC’s address more than once.
+mscBaseAddr		Ds.l	1									; Don't want to look up MSC's address more than once.
 prodID			Ds.b	1									; For easily distinguishing between products.
-disableLCD		Ds.b	1									; When true, we’re shutting the LCD down.
+disableLCD		Ds.b	1									; When true, we're shutting the LCD down.
 CSCFSize		Equ		*
 				Endr
 
@@ -104,11 +104,11 @@ CSCCnfgTblSize	Equ		(8*CSCCnfgRec.CSCCnfgRecSize)		; 0..7 (8) Panel IDs per tabl
 ;
 ;	PruneList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are pruned.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -117,12 +117,12 @@ CSCCnfgTblSize	Equ		(8*CSCCnfgRec.CSCCnfgRecSize)		; 0..7 (8) Panel IDs per tabl
 				With	SpBlock
 
 CSCPruneList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-				Cmp.b	(Sp),D0								; If it’s the keeper,
-				Beq.s	@Until								;	then don’t prune it.
+				Cmp.b	(Sp),D0								; If it's the keeper,
+				Beq.s	@Until								;	then don't prune it.
 				Move.b	D0,spID(A0)							; Otherwise, prune it.
 				_sDeleteSRTRec
 @Until			Dbra	D1,@Repeat							; Loop until done.
@@ -136,11 +136,11 @@ CSCPruneList
 ;
 ;	BuildFamilyList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are inserted back in as disabled.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -149,16 +149,16 @@ CSCPruneList
 				With	SpBlock
 
 CSCBuildFamilyList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-				Cmp.b	(Sp),D0								; If it’s the keeper,
+				Cmp.b	(Sp),D0								; If it's the keeper,
 				Beq.s	@Until								;	then leave it alone.
 				Move.b	D0,spID(A0)							; Otherwise, load that sRsrc ID.
-				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it’s in ROM.
+				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it's in ROM.
 				Move.l	#1,spParamData(A0)					; Say that we want it disabled.
-				Clr.w	spRefNum(A0)						; Say that there’s no driver yet.
+				Clr.w	spRefNum(A0)						; Say that there's no driver yet.
 				_InsertSRTRec								; Do it!
 @Until			Dbra	D1,@Repeat							; Loop until done.
 
@@ -176,10 +176,10 @@ CSCBuildFamilyList
 BeginCSCInit
 
 ;
-; Set up initial “vendor” status.
+; Set up initial 'vendor' status.
 ;
 				Link	A6,#CSCFSize						; Allocate stack space for locals.
-				Move.w	#seSuccess,seStatus(A0)				; Just say that we’re okay.
+				Move.w	#seSuccess,seStatus(A0)				; Just say that we're okay.
 				
 ;
 ; Perform some generic initializations.
@@ -197,7 +197,7 @@ BeginCSCInit
 				Lea		spBlk(A6),A0						; Point A0 at our local SpBlock.
 				Lea		sPRAMBlk(A6),A2						; Get a pointer to our local SPRAMBlock.
 				Move.l	A2,spResult(A0)						; Put our pointer in the SpBlock.
-				_sReadPRAMRec								; Read Slot $0’s pRAM.
+				_sReadPRAMRec								; Read Slot $0's pRAM.
 				
 				Move.l	A4,A3								; Copy the ProductInfo pointer.
 				Adda.l	VideoInfoPtr(A3),A3					; Point to the VideoInfo record.
@@ -222,7 +222,7 @@ BeginCSCInit
 				Bsr.s	CSCPruneList						; Call our pruning utility.
 
 ;
-; Set up the right CPU sResource.  We only recognize ’030 and ’040 CPUs; all others
+; Set up the right CPU sResource.  We only recognize '030 and '040 CPUs; all others
 ;	are ignored (i.e., the CPU sResources are all deleted in that case).
 ;
 
@@ -230,8 +230,8 @@ BeginCSCInit
 				
 				Lea			@CPUTable,A1				; Get pointer to the table of valid CPU types.
 @CPULoop		Move.b		(A1)+,D0					; Pick up the next CPU type.
-				Beq.s		@EndPruneCPUSRsrcs			; If we’re done, leave.
-				Move.b		(A1)+,spID(A0)				; Assume we won’t find a match.
+				Beq.s		@EndPruneCPUSRsrcs			; If we're done, leave.
+				Move.b		(A1)+,spID(A0)				; Assume we won't find a match.
 				Cmp.b		D0,D1						; But, if they do match,
 				Beq.s		@SkipDelete					;	then just go on.
 				_sDeleteSRTRec							; Otherwise, delete non-matching CPU sRsrc type.
@@ -244,15 +244,15 @@ BeginCSCInit
 @EndPruneCPUSRsrcs
 
 ;
-; Here’s where we actually get the CSC video going, or we decide whether to just shut
-;	things down.  We’ll end up shutting things down if we either don’t recognize the
+; Here's where we actually get the CSC video going, or we decide whether to just shut
+;	things down.  We'll end up shutting things down if we either don't recognize the
 ;	type of LCD attached (which is highly unlikely, since the LCDs are built-in), or
 ;	the LCD is currently in an unuseable state.  For example, Escher could be
-;	docked into a Gemini or an Atlantis, or, in Blackbird’s case, the lid could
+;	docked into a Gemini or an Atlantis, or, in Blackbird's case, the lid could
 ;	just be closed.
 ;
 CSCVideoInit
-				Clr.l	vidParamsPtr(A6)					; Don’t try to throw away non-existent storage.
+				Clr.l	vidParamsPtr(A6)					; Don't try to throw away non-existent storage.
 
 ; Get some useful values up front.
 ;
@@ -262,12 +262,12 @@ CSCVideoInit
 				
 ; First, disable the video interrupts sources as well as the power planes.
 ;
-				TestFor	MSCChipBit							; If we don’t have an MSC,
+				TestFor	MSCChipBit							; If we don't have an MSC,
 				Beq.s	@NoMSC								;	then just go on.
 				
 				Movea.l	A4,A2								; Copy the ProductInfo pointer.
 				Adda.l	ProductInfo.DecoderInfoPtr(A2),A2	; Point to the BaseAddr table.
-				Movea.l	DecoderInfo.RBVAddr(A2),A2			; Point to the MSC’s base address.
+				Movea.l	DecoderInfo.RBVAddr(A2),A2			; Point to the MSC's base address.
 				Move.l	A2,mscBaseAddr(A6)					; Save it for later.
 				Move.b	#(0<<ifIRQ)|(1<<RvIRQ0En),MSCSlotIER(A2) ; Disable CSC interrupts.
 				Bclr	#MSCLCDReset,MSCClkCntl(A2)			; Turn off CSC clock input…
@@ -279,7 +279,7 @@ CSCVideoInit
 
 ; Size the amount of VRAM.  When done, D4 is set to one of {0,1}, where 0=512K,1=1024K.
 ;	(Note:  CSC supports a variety of VRAM types and configuration.  At the moment,
-;	 though, we’ll just simply say there’s 512K.)
+;	 though, we'll just simply say there's 512K.)
 ;
 ;
 				With	CSCProdCnfgRec
@@ -296,7 +296,7 @@ CSCVideoInit
 				Move.b	refreshRate(A1),CSCRefreshRate(A3)	; Set up the refresh rate.
 				Move.b	vramControl(A1),CSCVRAMControl(A3)	; Interface the VRAM correctly to the CPU.
 				
-				Moveq	#0,D4								; Just say there’s 512K of VRAM for now.
+				Moveq	#0,D4								; Just say there's 512K of VRAM for now.
 
 				Endwith
 				
@@ -306,7 +306,7 @@ CSCVideoInit
 				Moveq	#0,D6								; Initialize the senseline register.
 				Move.b	#tristateCSC,CSCPanelIDControl(A3)	; Make the senselines inputs.
 				_CSCMinDelay								; Wait a moment.
-				Move.b	CSCPanelID(A3),D6					; Read ’em.
+				Move.b	CSCPanelID(A3),D6					; Read 'em.
 				
 ; Pick up the favored configuration based on the amount of VRAM and the type of display sensed or assumed.
 ;
@@ -332,7 +332,7 @@ CSCVideoInit
 				Move.b	modeID(A1),D7						; Get the default mode (depth).
 				Move.b	sRsrcID(A1),D5						; Get the default sRsrcID.
 				
-				Cmp.b	#sRsrc_CSC_NeverMatch,D5			; If we’ve come up with an unknown configuration,			<K18>
+				Cmp.b	#sRsrc_CSC_NeverMatch,D5			; If we've come up with an unknown configuration,			<K18>
 				Beq.s	@NoAdjustBoxflag					;	then skip boxflag adjustment.							<K18>
 				Move.b	boxID(A1),BoxFlag					; Set the BoxFlag value based on the PanelID.
 @NoAdjustBoxflag				
@@ -390,7 +390,7 @@ CSCVideoInit
 
 				ENDWITH
 			
-; Initialize built-in video’s pRAM.
+; Initialize built-in video's pRAM.
 ;
 				With	SP_Params
 @InitPRAM			
@@ -414,15 +414,15 @@ CSCVideoInit
 
 @WritePRAM		Lea		spBlk(A6),A0						; Point to the slot param block.
 				Move.l	A2,spsPointer(A0)					; Set up the pRAM parameter block.
-				_sPutPRAMRec								; Write out Slot $0’s pRAM.
+				_sPutPRAMRec								; Write out Slot $0's pRAM.
 				
 				Move.b	SP_LastConfig(A2),D5				; Get the right (family member) sRsrc into D5. 				
 				
 				Endwith
 
-; First, prune all of the video sResources except for the selected one.  If there are no families, then we’re done.
-;	Otherwise, we’re either done (because we’ve come up with an unknown configuration), or we re-insert all the members
-;	of the selected configuration’s family as disabled.
+; First, prune all of the video sResources except for the selected one.  If there are no families, then we're done.
+;	Otherwise, we're either done (because we've come up with an unknown configuration), or we re-insert all the members
+;	of the selected configuration's family as disabled.
 ;
 				With	CSCVRAMCnfgRec,CSCCnfgRec
 @SetConfig
@@ -431,18 +431,18 @@ CSCVideoInit
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr		CSCPruneList						; Call our pruning utility.
 				
-				Cmp.b	#sRsrc_CSC_NeverMatch,D5			; If we’ve come up with an unknown configuration,
-				Beq		CSCExit								;	then we’re now done.
+				Cmp.b	#sRsrc_CSC_NeverMatch,D5			; If we've come up with an unknown configuration,
+				Beq		CSCExit								;	then we're now done.
 
-				Move.l	configParamsPtr(A6),A1				; Point to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point to this config's parameters.
 				Adda.w	#CSCCnfgHdrSize,A1					; Skip past the header.
 				Move.w	#CSCVRAMCnfgSize,D0					; Get the size of the VRAM entries.
 				Mulu	D4,D0								; Multiply by the right entry.
 				Adda.w	D0,A1								; Skip to the right VRAM entry.
-				Move.w	familiesOffset(A1),D0				; If there aren’t any families,
+				Move.w	familiesOffset(A1),D0				; If there aren't any families,
 				Beq.s	@EndConfig							;	then just go on.
 				
-				Move.l	configParamsPtr(A6),A1				; Point back to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point back to this config's parameters.
 				Adda.w	D0,A1								; Point to the table of supported families.
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr		CSCBuildFamilyList					; Call our family-building utility.
@@ -466,7 +466,7 @@ CSCVideoInit
 				Move.b	#sVidParmDir,spID(A0)				; Look for the video parameters directory.
 				_sFindStruct
 				
-				Move.b	D5,spID(A0)							; Look in the directory for this config’s params.
+				Move.b	D5,spID(A0)							; Look in the directory for this config's params.
 				_sGetBlock
 				
 				Move.l	spResult(A0),A1						; Get a pointer to the vidParams.
@@ -496,7 +496,7 @@ CSCVideoInit
 				Clr.b	CSCDisplayDataForm(A3)				; Set the panel into 1-bpp mode.
 				Clr.b	CSCGTweak(A3)						; Clear the GTweak register.
 				
-				Cmpi.b	#sRsrc_Vid_CSC_G_D_STN_400,D5		; If we’re on a fixed panel,
+				Cmpi.b	#sRsrc_Vid_CSC_G_D_STN_400,D5		; If we're on a fixed panel,
 				Beq.s	@STNTweak							; 	then just go gray the screen.
 				Cmpi.b	#sRsrc_Vid_CSC_G_D_STN_400y,D5		;
 				Beq.s	@STNTweak							; 
@@ -547,7 +547,7 @@ CSCVideoInit
 				Not.l	D2									; Invert the pattern for the next row.
 				Dbra	D3,@NxtRow							; Repeat for each row.
 				
-				Cmpi.w	#(defmBounds_BLCD-1)-1,D0			; If we’re not doing the 16bpp “400-line” panel,
+				Cmpi.w	#(defmBounds_BLCD-1)-1,D0			; If we're not doing the 16bpp '400-line' panel,
 				Bne.s	@SwapBack							;	then just go on.
 				
 				Moveq	#IndexedBlack,D2					; Set up to write out black to the bottom-most line.
@@ -565,15 +565,15 @@ CSCVideoInit
 				Endwith
 				
 ; Now that the CSC is set up (i.e., either fully programmed for the attached LCD, or is
-;	completely shutdown), we need to make sure that the panel’s backlighting is
+;	completely shutdown), we need to make sure that the panel's backlighting is
 ;	appropriately set up.
 ;
 CSCExit
-				TestFor	MSCChipBit							; If we don’t have an MSC,
+				TestFor	MSCChipBit							; If we don't have an MSC,
 				Beq.s	@NoMSC								;	then just go on.
 				
 				Movea.l	mscBaseAddr(A6),A0					; Get the MSC base address.
-				Tst.b	disableLCD(A6)						; If we’ll be using the LCD screen,
+				Tst.b	disableLCD(A6)						; If we'll be using the LCD screen,
 				Beq.s	@UseLCD1							; 	then just go on.
 				Bclr	#MSCLCDReset,MSCClkCntl(A0)			; Otherwise, turn off CSC clock input.
 				Bra.s	@Dont								; And keep the CSC interrupts off.
@@ -581,10 +581,10 @@ CSCExit
 @UseLCD1		Move.b	#(1<<ifIRQ)|(1<<RvIRQ0En),MSCSlotIER(A0) ; Allow CSC interrupts to occur.
 @Dont
 
-@NoMSC			Moveq	#screenOn-256,D0					; Assume we’ll be using the LCD.
+@NoMSC			Moveq	#screenOn-256,D0					; Assume we'll be using the LCD.
 				Tst.b	disableLCD(A6)						; If we are, then
 				Beq.s	@UseLCD2							;	just go on.
-				Moveq	#screenOff,D0						; Otherwise, say that we’re shutting it down.
+				Moveq	#screenOff,D0						; Otherwise, say that we're shutting it down.
 @UseLCD2
 				Move.b	D0,-(Sp)							; Put the on/off switch into the buffer.
 				Move.l	Sp,-(Sp)							; pmRBuffer

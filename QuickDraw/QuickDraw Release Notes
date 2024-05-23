@@ -128,7 +128,7 @@ Underlining TrueType characters would overrun the width of the string due to som
 added for double byte TrueType support.  This new code adds some slop to the rectangle
 that QuickDraw draws text into.  When QuickDraw goes to underline the text, it draws a
 line the width of this rectangle, which is wider than the width of the text, because of
-this extra slop.  Added a check to not add this slop if we’re not drawing with a double
+this extra slop.  Added a check to not add this slop if we're not drawing with a double
 byte TrueType font.  This returns the code path to what it was under 7.0, while leaving
 the code path there for double byte TrueType fonts.
 
@@ -136,7 +136,7 @@ the code path there for double byte TrueType fonts.
 > What was tested:
 
 Verified that underlining single byte fonts like Symbol works properly.  Also verified
-that italicized text is still drawn properly and not chopped off because we’re not adding
+that italicized text is still drawn properly and not chopped off because we're not adding
 this slop.
 
 ----------------------------------------------------------•----------------------------------------------------------

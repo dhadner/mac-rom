@@ -6,7 +6,7 @@
 ;
 ;	Change History (most recent first):
 ;
-;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <7>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	  1/4/90	JSM		Change some variable names in response to suggestions from
 ;									documentation.

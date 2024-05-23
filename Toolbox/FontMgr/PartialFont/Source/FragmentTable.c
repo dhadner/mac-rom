@@ -10,7 +10,7 @@
 	Change History (most recent first):
 
 		 <2>	 3/27/92	DTY		#1024868: Remove inclusion of Assertion.h, since this file
-									doesn’t make any of those calls.
+									doesn't make any of those calls.
 
 		System 6.1.0 Changes:
 		

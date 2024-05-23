@@ -20,7 +20,7 @@
 ;									Help resources for the floating window. Balloon help now works
 ;									when mouse is over a floating window.
 ;		<71>	  4/6/91	DTY		csd, #86370: IsMouseInMenuBar popped off the incorrect number of
-;									bytes from the stack if it couldn’t get the 'MBDF' resource,
+;									bytes from the stack if it couldn't get the 'MBDF' resource,
 ;									which would happen if MenuList was nil. Check to make sure that
 ;									MenuList contains a real handle before trying to get the 'MBDF',
 ;									and pop off the correct number of bytes if this fails anyway.
@@ -134,7 +134,7 @@
 ;									variant.
 ;	   <35+>	 6/15/90	RLC		Allow enabled items to get normal hmnu msg in ModalDialogMenu
 ;									state.
-;	   <34+>	 6/14/90	RLC		Add support for “Balloons On” balloon, fix window move bug.
+;	   <34+>	 6/14/90	RLC		Add support for 'Balloons On' balloon, fix window move bug.
 ;		<34>	  6/8/90	KSM		Update for new IsFrontWindowModal.
 ;		<33>	  6/7/90	RLC		Add Kevin's ModalDialogMenus private selector.
 ;	   <31+>	  6/5/90	RLC		Fix a potential front window bug

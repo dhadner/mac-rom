@@ -126,7 +126,7 @@ pictHandle		DS.L	1			; handle to copy of PICT resource
 ;
 			MOVE.W	selector(A6),D0
 			CMP.W 	#dispCtlMsg,D0		; inspect message value							<1.2>
-			BLS.S	@MsgOK				; if < 4, it’s OK								<1.2>
+			BLS.S	@MsgOK				; if < 4, it's OK								<1.2>
 			CMP.W	#calcWholeCtlMsg,D0	;												<1.2>
 			BEQ.S	@MsgOK				; 10 is OK too									<1.2>
 			CMP.W	#calcThumbCtlMsg,D0	;												<1.2>
@@ -166,7 +166,7 @@ pictHandle		DS.L	1			; handle to copy of PICT resource
 ; case out on the message number
 ;
 			CMP.W	#dispCtlMsg, D0						; Does message need adjusting?					<1.2>
-			BLS.S	@loMsg								; Don’t adjust if not.							<1.2>
+			BLS.S	@loMsg								; Don't adjust if not.							<1.2>
 			SUBQ.W	#calcWholeCtlMsg-dispCtlMsg-1, D0	; Adjust message for address calculation		<1.2>
 @loMsg
 			ADD 	D0,D0				; double for word index
@@ -175,7 +175,7 @@ pictHandle		DS.L	1			; handle to copy of PICT resource
 			JSR 	(A1)				; dispatch to appropriate routine
 			
 ;
-; we’re done -- restore registers and return to caller
+; we're done -- restore registers and return to caller
 ;
 @done
 			MOVEM.L (SP)+,D3-D7/A1-A4	; restore work registers
@@ -361,7 +361,7 @@ GetColor
 ;
 DrawPBut
 			tst.b	contrlVis(A0)		; is it visible?
-			beq		@done	 			; if not, we’re done
+			beq		@done	 			; if not, we're done
 			
 ;
 ; save the penState and set it our way
@@ -373,7 +373,7 @@ DrawPBut
 			tst.b	d6
 			beq		@noColor			; no, this system has B&W QD
 
-; save the current port’s colors 			
+; save the current port's colors 			
 
 			PEA		savedFgColor(A6)	; save foreColor
 			_GetForeColor				;
@@ -388,10 +388,10 @@ DrawPBut
 			MOVE.L	theControl(A6),-(SP)	; push the control handle
 			PEA		6(SP)				; push a pointer to placeholder
 			_GetAuxCtl					; get its auxRec
-			ADDQ	#2,SP				; don’t need boolean result
+			ADDQ	#2,SP				; don't need boolean result
 			MOVE.L	(SP)+,A0			; get auxCtl handle
 			MOVE.L	(A0),A0				; a pointer to the auxCtlRec
-			MOVE.L	acCTable(A0),A0		; get colortable’s handle		
+			MOVE.L	acCTable(A0),A0		; get colortable's handle		
 			move.l	(A0),a1				; set up a1 to point to auxCntrlRec
 
 			moveq	#cFrameColor,d0		; get frame color for this control
@@ -602,7 +602,7 @@ DrawPBut
 
 
 ;
-; RoundCalc calculates the rounding factor in D4 based on the control’s rect
+; RoundCalc calculates the rounding factor in D4 based on the control's rect
 ;
 RoundCalc
 			moveq	#0,d4
@@ -627,7 +627,7 @@ HitPBut		tst.b	isDimmed(a6)		; is button dimmed ?
 			pea 	theControlRect(A6)	; push address of rect
 			_PtInRect					; in the rectangle?
 			tst.b	(SP)+				; examine result
-			beq.s	@done				; if not, we’re done
+			beq.s	@done				; if not, we're done
 			move.w	#inButton,result+2(A6); return that it was
 @done		rts
 

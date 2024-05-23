@@ -17,7 +17,7 @@
 	To Do:
 */
 
-/*EASE$$$ READ ONLY COPY of file “PPCNbp.c”
+/*EASE$$$ READ ONLY COPY of file 'PPCNbp.c'
 ** 1.0	CVC 09/18/1989 Adding PPC toolbox for the first time.
 ** END EASE MODIFICATION HISTORY */
 /*

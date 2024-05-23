@@ -80,7 +80,7 @@
 
 #include "Types.r"
 
-#define	_NO_SINL_ // Don’t need 'SINL' resource here.
+#define	_NO_SINL_ // Don't need 'SINL' resource here.
 #include "ROMLink.r"
 #undef	_NO_SINL_
 

@@ -17,7 +17,7 @@
 ;	   <SM9>	  9/1/93	SKH		Rolled in from Horror.  The old supermario copy of PowerMgr was
 ;									hopelessly out of date, this is an almost straight copy of the Horror
 ;									version.
-;	   <H97>	 6/24/93	SWC		Clear the ‘disable hard disk spindown’ flag before calling the
+;	   <H97>	 6/24/93	SWC		Clear the ‘disable hard disk spindown' flag before calling the
 ;									spindown routine so that the hard disk really does get turned
 ;									off.
 ;	   <H96>	 6/22/93	SWC		Fixed a bug that causes a crash when getting ADB packets (when a
@@ -28,8 +28,8 @@
 ;	   <H94>	 6/16/93	SWC		The polarity of the hasInternalModem bit in the modem info
 ;									selector was backwards, mainly because the PRAM bit,
 ;									UseIntrnlModem, is set to 1 when using an EXTERNAL modem. Added
-;									a ‘wakeup on ring’ bit to the modem info selector. Added a new
-;									selector to set/clear the ‘wakeup on ring’ bit. Changed the
+;									a ‘wakeup on ring' bit to the modem info selector. Added a new
+;									selector to set/clear the ‘wakeup on ring' bit. Changed the
 ;									default SCSI Disk Mode address from 1 to 2 so it doesn't
 ;									conflict with the ID of a built-in hard disk in a DuoDock.
 ;	   <H93>	  6/2/93	SWC		Rolled in the modem type entry in the PowerDispatch hook from
@@ -4031,17 +4031,17 @@ SelectAtlkPort								;														<H67>
 			SUBQ.W	#4,SP
 			PEA		'lmgr'					;  theType
 			CLR.W	-(SP)					;  theID
-			_GetResource					; try to load the ‘lmgr’
+			_GetResource					; try to load the ‘lmgr'
 			MOVE.L	(SP)+,D0				; did we get it
 			BEQ.S	@NoLmgr					; -> no, just exit
-			MOVEA.L	D0,A0					; get the handle to the ‘lmgr’
+			MOVEA.L	D0,A0					; get the handle to the ‘lmgr'
 			MOVE.L	A0,-(SP)				;  and push a copy for ReleaseResource
 
 			CLR.L	-(SP)					;  param1 (none)
 			CLR.L	-(SP)					;  param2 (none)
 			PEA		6						;  selector
 			MOVEA.L	(A0),A0
-			JSR		2(A0)					; call the ‘lmgr’ to switch the ‘atlk’ if necessary
+			JSR		2(A0)					; call the ‘lmgr' to switch the ‘atlk' if necessary
 			LEA		12(SP),SP				; (toss parameters, C style)
 
 			_ReleaseResource				; all done, so unload the resource
@@ -5404,7 +5404,7 @@ HardDiskQRemove
 ; Trashes:	A0
 ;
 ; Function:	Disables or enables auto sleep by incrementing or decrementing the auto sleep
-;			semaphone.  Note that since the semaphore supports multiple ‘levels’, if it's
+;			semaphone.  Note that since the semaphore supports multiple ‘levels', if it's
 ;			been disabled n times in a row, it needs to be enabled n times before auto
 ;			sleep will really be enabled.
 ;________________________________________________________________________________________
@@ -5413,12 +5413,12 @@ AutoSleepControl
 			SWAP	D0							; get the flag										<H85>
 			TST.W	D0							; enable or disable?								<H85>
 			BEQ.S	@disable					; -> disable										<H85>
-			SUBQ.B	#1,AutoSlpDisable(A2)		; ‘pop’ a level towards sleep enabled				<H85>
+			SUBQ.B	#1,AutoSlpDisable(A2)		; ‘pop' a level towards sleep enabled				<H85>
 			BGE.S	@done						; -> haven't rolled over							<H85>
 			CLR.B	AutoSlpDisable(A2)			; pin the semaphore a zero							<H85>
 			BRA.S	@done						;													<H85>
 
-@disable	ADDQ.B	#1,AutoSlpDisable(A2)		; set the semaphore to >0 (‘push’ a level)			<H85>
+@disable	ADDQ.B	#1,AutoSlpDisable(A2)		; set the semaphore to >0 (‘push' a level)			<H85>
 			BHI.S	@done						; -> we're done if it's still >0					<H85>
 			SUBQ.B	#1,AutoSlpDisable(A2)		; it rolled over, so make it >0 again				<H85>
 @done		MOVEQ	#0,D0						;													<H85>
@@ -5470,7 +5470,7 @@ GetIntModemInfo
 			ROR.B	#ModemInstalled-hasInternalModem,D0	;											<H94>
 												;  and shift them into position						<H83>
 			BCLR	#8-(ModemInstalled-hasInternalModem)+RingWakeEnable,D0	;						<H94>
-			BEQ.S	@NoWake						; -> the ‘wakeup on ring’ bit isn't set				<H94>
+			BEQ.S	@NoWake						; -> the ‘wakeup on ring' bit isn't set				<H94>
 			ADDQ.B	#1<<intModemRingWakeEnb,D0	; set the bit in the output							<H94>
 @NoWake		OR.B	D1,D0						; combine all the bits so far						<H83>
 
@@ -5504,16 +5504,16 @@ GetIntModemInfo
 
 SetIntModemState
 			SWAP	D0							; get the flags
-			BTST	#intModemRingWakeEnb,D0		; do we need to update ‘wakeup on ring’?
+			BTST	#intModemRingWakeEnb,D0		; do we need to update ‘wakeup on ring'?
 			BEQ.S	@NoWake						; -> nope
 			LoadTbl	PrimInfoTblPtr,A2,A0
-			MOVE.L	PrimPubFeatures(A0),D1		; does this machine support ‘wakeup on ring’?
+			MOVE.L	PrimPubFeatures(A0),D1		; does this machine support ‘wakeup on ring'?
 			BTST	#canWakeupOnRing,D1
 			BEQ.S	@NoWake						; -> no, skip it
 
 			MOVE.W	D0,-(SP)					; save the flags
 			SMI		D0							; $FF=enabled, $00=disabled
-			MOVEQ	#1<<RingWakeEnable,D1		; mask off the ‘wakeup on ring’ bit
+			MOVEQ	#1<<RingWakeEnable,D1		; mask off the ‘wakeup on ring' bit
 			AND.L	D0,D1
 
 			CLR.W	-(SP)						; allocate a buffer for the result
@@ -5524,7 +5524,7 @@ SetIntModemState
 			MOVEA.L	SP,A0						; point to the parameter block
 			_PMgrOp								; get the modem info
 
-			ANDI.B	#~(1<<RingWakeEnable),pmRBuffer+4(SP)	; mask out the ‘wakeup on ring’ bit
+			ANDI.B	#~(1<<RingWakeEnable),pmRBuffer+4(SP)	; mask out the ‘wakeup on ring' bit
 			OR.B	D1,pmRBuffer+4(SP)			;  and OR in the new value
 			MOVE.W	#modemSet,pmCommand(SP)
 			_PMgrOp								; write it back out
@@ -5886,7 +5886,7 @@ SetWakeupTimer
 			TST.B	4(A1)						; is the timer to be disabled?						<H95>
 			BNE.S	@Done						; -> nope, all done
 
-			MOVE.W	#$82,pmCommand(A0)			; send a ‘disable wakeup timer’ command				<H95>
+			MOVE.W	#$82,pmCommand(A0)			; send a ‘disable wakeup timer' command				<H95>
 			CLR.W	pmLength(A0)				;													<H95>
 			_PMgrOp								;													<H95>
 
@@ -6050,14 +6050,14 @@ LCDScreenChk
 			Bne.s	@NoCQD					;	then just leave.
 			Tst.l	DeviceList				; If the DeviceList is empty,
 			Beq.s	@NoDevices				;	then just leave.
-			Move.l	MainDevice,D0			; If there isn’t a MainDevice,
+			Move.l	MainDevice,D0			; If there isn't a MainDevice,
 			Beq.s	@NoDevices				;	then just leave.
 			
 			Move.l	D0,A0					; Get the Handle to the MainDevice.
 			Move.l	(A0),A0					; Make it a pointer.
 			Moveq	#0,D0					; Prepare D0 for unsigned .w references.
-			Move.w	gdRefNum(A0),D0			; If there’s no driver, then
-			Beq.s	@NoDevices				;	we can’t do anything here.
+			Move.w	gdRefNum(A0),D0			; If there's no driver, then
+			Beq.s	@NoDevices				;	we can't do anything here.
 			
 			Not.w	D0						; Convert the refNum into…
 			Lsl.w	#2,D0					;	…a UTable index.
@@ -6070,12 +6070,12 @@ LCDScreenChk
 			Move.l	Sp,A0					; Point to it with A0.
 			Move.b	dCtlSlot(A1),spSlot(A0)	; Get the slot number.
 			Move.b	dCtlSlotID(A1),spID(A0)	; Get the spID of the video sRsrc.
-			Clr.b	spExtDev(A0)			; Don’t ask why, just clear this guy.
+			Clr.b	spExtDev(A0)			; Don't ask why, just clear this guy.
 			_sRsrcInfo						; Get the spsPointer.
 			Bne.s	@AssumeCRT				; If failed, just quit.
 			
 			Move.b	#sVidAttributes,spID(A0); Say to get the video sRsrc attributes.
-			_sReadWord						; Get ’em.
+			_sReadWord						; Get 'em.
 			Bne.s	@AssumeCRT				; If failed, just quit.
 
 			Moveq	#1<<fLCDScreen,D0		; Mask off the LCD bit in the sRsrc attributes.
@@ -6146,7 +6146,7 @@ SetDimTimeout
 ; Trashes:	A0
 ;
 ; Function:	Disables or enables auto sleep by incrementing or decrementing the auto sleep
-;			semaphone.  Note that since the semaphore supports multiple ‘levels’, if it's
+;			semaphone.  Note that since the semaphore supports multiple ‘levels', if it's
 ;			been disabled n times in a row, it needs to be enabled n times before auto
 ;			sleep will really be enabled.
 ;________________________________________________________________________________________
@@ -6154,12 +6154,12 @@ DimControl
 			SWAP	D0							; get the flag
 			TST.W	D0							; enable or disable?
 			BEQ.S	@disable					; -> disable
-			SUBQ.B	#1,DimmingDisable(A2)		; ‘pop’ a level towards sleep enabled
+			SUBQ.B	#1,DimmingDisable(A2)		; ‘pop' a level towards sleep enabled
 			BGE.S	@done						; -> haven't rolled over
 			CLR.B	DimmingDisable(A2)			; pin the semaphore a zero
 			BRA.S	@done						;
 
-@disable	ADDQ.B	#1,DimmingDisable(A2)		; set the semaphore to >0 (‘push’ a level)
+@disable	ADDQ.B	#1,DimmingDisable(A2)		; set the semaphore to >0 (‘push' a level)
 			BHI.S	@done						; -> we're done if it's still >0
 			SUBQ.B	#1,DimmingDisable(A2)		; it rolled over, so make it >0 again
 @done		MOVEQ	#0,D0						;

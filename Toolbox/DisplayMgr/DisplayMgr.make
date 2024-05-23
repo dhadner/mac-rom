@@ -12,7 +12,7 @@
 #	  <SM10>	10/10/93	RC		Fixed a directory problem with this make file
 #	   <SM9>	10/10/93	IH		Sync with Excelsior.
 #		 <8>	 9/10/93	IH		Add DisplayManager.c dependency.
-#	   <SM7>	08-17-93	jmp		Oops… in SuperMario we have “ObjDir”s not “Objects”.
+#	   <SM7>	08-17-93	jmp		Oops… in SuperMario we have 'ObjDir's not 'Objects'.
 #	   <SM6>	08-17-93	jmp		Updated a few of the dependency lists.
 #		 <5>	  8/4/93	IH		#1101633,1098397,1101795,1101636,1102280 <KON>: Fix checkin 4 to
 #									really have what it says it has (I checked it in by accident

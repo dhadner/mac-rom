@@ -24,7 +24,7 @@
 ;	   <1.9>	 6/14/89	SWC		Played with the DeadMac code to take out the machine-based
 ;									conditionals.
 ;	   <1.8>	 6/13/89	DAF		Moved DeadMacTL calculation inline.
-;	   <1.5>	 6/13/89	DAF		Fixed CritErr to find boot card’s 1-bit video mode.
+;	   <1.5>	 6/13/89	DAF		Fixed CritErr to find boot card's 1-bit video mode.
 ;	   <1.7>	 6/13/89	GGD		Added hasMMU conditionals around the _SwapMmuMode's in previous
 ;									change so that the 16 bit machines will work again. Added
 ;									conditionals in DeadMac to only do long word moves if Cpu ≥ 020,
@@ -152,7 +152,7 @@ CritErr		MOVEM.L A0-A7/D0-D7,SERegs			; save all regs for debug					<26Aug85>
 			MOVE.W	#CatDisplay,spCategory(A0)	; look for this slot's card
 			MOVE.W	#TypVideo,spCType(A0)
 			MOVE.W	#DrSwApple,spDrvrSW(A0)
-			MOVE.B	#1,spTBMask(A0)				; mark spDrvrHw field as don’t care
+			MOVE.B	#1,spTBMask(A0)				; mark spDrvrHw field as don't care
 			_sNextTypesRsrc						; get the spsPointer
 			BNE.S	@OhOh1						; if error, then don't display anything
 			

@@ -20,7 +20,7 @@
 ;		<11>	 8/27/91	CH		Updated interface header for consistency.
 ;		<10>	 6/25/91	JNG		Move Dialog manipulation calls to ToolEqu.a
 ;		 <9>	 6/24/91	BH		change conditional wrapper to conform to standards
-;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <8>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <7>	 1/25/91	stb		.
 ;		 <6>	 9/15/90	PWD		Added _StandardNBP in prep for renaming _NuLookup. <kaz> <crz>

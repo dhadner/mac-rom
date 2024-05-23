@@ -22,7 +22,7 @@
 ;									file could be copied into SuperMario.
 ;		 <6>	 4/27/92	JSM		Get rid of conditionals: hasPowerMgr, hasPwrControls,
 ;									supportsMFM, and isUniversal are always true (although
-;									hasPowerMgr currently isn’t for the ROM, it will be and was
+;									hasPowerMgr currently isn't for the ROM, it will be and was
 ;									always ORed with hasPwrControls here anyway). This file now has
 ;									no conditionals.
 ;		 <5>	 1/21/91	SWC		Cleaned up the header comments.

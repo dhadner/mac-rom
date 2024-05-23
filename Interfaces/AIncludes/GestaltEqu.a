@@ -85,7 +85,7 @@
 ;		<39>	 6/26/91	BH		added gestaltCRMPersistentFix constant
 ;		<38>	  2/7/91	KON		CEL: BRC# Gang of 5: Remove equate for gestaltOriginalQD1.
 ;		<37>	  2/4/91	gbm		JDR, #gbm-0003: Add the gestaltQuickdrawFeatures selector
-;		<36>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<36>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<35>	 1/15/91	gbm		(bbm) Add new hardware attribute, gestaltHasSoftPowerOff
 ;		<34>	12/14/90	JDR		(KIP) adding Gestalt selector gestaltHasSoundInputDevice and

@@ -11,7 +11,7 @@
 
 		<23>	 11/3/92	DTY		Strip out unnecessary includes.
 		<22>	 6/10/92	JSM		Moved this file to ModalDialogMenuExtensions.c from
-									ModalDialogMenuPatches.c since it’s used by both the ROM and
+									ModalDialogMenuPatches.c since it's used by both the ROM and
 									System, keeping all the old revisions.
 		<21>	 5/29/92	DCL		Included TextUtils.p. EqualString was moved for the New Inside
 									Mac.
@@ -72,7 +72,7 @@
 	Modal Dialog Menu Access
 	Theory of Operation (Volume 1, Chapter 1, section 1)
 
-	The state of the world is “normal.”
+	The state of the world is 'normal.'
 	STATE TRANSITION TABLE
 
 	State	Event		Event		Event		MenuSelect	FlushEvents		SysBeep
@@ -428,7 +428,7 @@ void EnableTheEditMenu()
 					if (cmdChar == 'V')				// We found cmd-V! This is Edit menu
 						(**menu).enableFlags |= flagsToSet;		// So, set the flags
 					}
-				 return;							// Once we find cmd-X, don’t look any more
+				 return;							// Once we find cmd-X, don't look any more
 				}
 			}
 		}
@@ -510,7 +510,7 @@ pascal TAnalyzedWindowState ActiveWindowNeedsHelp(void)
 				long appleMenuFlags = GetMenuFlags(appleMenu);
 				if (appleMenu && (appleMenuFlags & 1) && (appleMenuFlags & 2))
 					{
-					// the application doesn’t handle menus, we will
+					// the application doesn't handle menus, we will
 					if (ThereIsAnActiveEditTextFieldInThisWindow(active))
 						SetAnalyzedWindowState(kHandleMenusEditMenuEnabled);
 					else
@@ -641,9 +641,9 @@ long GetMenuFlags(MenuHandle menu)
 				++stateEntry;
 				}
 			}
-		return (**menu).enableFlags; // didn’t find a saved state, so return the flags from the menu
+		return (**menu).enableFlags; // didn't find a saved state, so return the flags from the menu
 		}
-	return 0; // didn’t find a menu, so return nothing enabled
+	return 0; // didn't find a menu, so return nothing enabled
 	}
 
 MenuHandle FindAppleMenu(void)

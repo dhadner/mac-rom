@@ -98,8 +98,8 @@ Created: Saturday, July 27, 1991 at 6:16 PM
 									"struct" from FindScriptRun
 		<35>	 1/28/91	PKE		bbm: Add constants for use with CharType and Transliterate on
 									Chinese and Korean systems.
-		<34>	 1/10/91	PKE		(csd) Change names for “ring” and “breve” constants (too
-									ambiguous) to “ringMark” and “breveMark”.
+		<34>	 1/10/91	PKE		(csd) Change names for 'ring' and 'breve' constants (too
+									ambiguous) to 'ringMark' and 'breveMark'.
 		<33>	  1/2/91	PKE		(bbm) Updated comments and rearranged a few constants to match
 									latest Inside Mac summary. Added tokenCaret as correct spelling
 									for tokenCarat.
@@ -110,7 +110,7 @@ Created: Saturday, July 27, 1991 at 6:16 PM
 		<28>	 11/7/90	JL		Changed all #defines to anonymous enums
 		<27>	 11/4/90	dba		use constStr255Parameter
 		<26>	10/30/90	dba		make smaller version of low-memory access routines
-		<25>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1’ field to ‘format’, since that
+		<25>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1' field to ‘format', since that
 									is how we now use it.
 		<24>	 9/10/90	PKE		Add smCurrentScript constant. Add more FIS constants from Joel
 									Cannon.
@@ -177,8 +177,8 @@ Created: Saturday, July 27, 1991 at 6:16 PM
 									Corrected smFISClassXXX constants. Removed 7.0
 									conditionalization in itlcRecord, and renamed the now-shortened
 									reserved area from itlcReserved2 to itlcReserved3. Gave new name
-									‘NItl4Rec’ to the extended version of Itl4Rec, and
-									unconditionalized the old versions so they don’t change. Added
+									‘NItl4Rec' to the extended version of Itl4Rec, and
+									unconditionalized the old versions so they don't change. Added
 									corresponding NItl4Ptr and NItl4Handle. Removed all conditionals
 									on bigBangEquates except implementation change for UprText; need
 									to fix this by renaming the new one (also change trap opword).

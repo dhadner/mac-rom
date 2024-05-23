@@ -48,7 +48,7 @@ OSErr _FSSpecFromResource( Handle h, FSSpec *fileSpec )
 	if (fref < 0) return ResError();
 
 	if (fref == 0)										// <6> Convert a reference number
-		fref = *(short *)SysMap;						// <6> of 0 to the system files’ refNum.
+		fref = *(short *)SysMap;						// <6> of 0 to the system files' refNum.
 
 	anFCB.ioCompletion = 0;
 	anFCB.ioVRefNum = 0;

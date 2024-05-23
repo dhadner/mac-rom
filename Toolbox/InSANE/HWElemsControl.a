@@ -40,8 +40,8 @@
 ;;	01 Oct 90   made MAIN & END conditional assembly for ROM & INIT ... ali
 ;;	01 Oct 90   chnaged the label STICKMAP to STICKYMAP2 to avoid
 ;;		collision with pack 4's STICKYMAP ... ali
-;;	05 Oct 90   merged SMcDÕs conditional assembly scheme for
-;;		ÔMAIN ... ENDÕ pair
+;;	05 Oct 90   merged SMcD's conditional assembly scheme for
+;;		ÔMAIN ... END' pair
 ;;	05 Apr 91	for financial functions only, a jump over the first argument
 ;;		fetch was added.  thanks to jon okada for patiently single 
 ;;		stepping to find the problem. ... ali

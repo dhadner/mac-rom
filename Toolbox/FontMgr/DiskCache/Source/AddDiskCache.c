@@ -9,7 +9,7 @@
 
 	Change History (most recent first):
 
-		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn’t do anything
+		 <3>	 3/27/92	DTY		#1024868: Remove calls to Assert since it doesn't do anything
 									any more.
 		 <2>	  1/3/92	JSM		Roll-in changes from Sakura: Add code to (a) minimize the window
 									of opportunity for losing the integrity of the font cache file,
@@ -266,7 +266,7 @@ OSErr PurgeDiskCaches( DiskCacheOffset spaceNeeded, DiskCacheMapStructureHandle 
 	Purpose:	Allocate a buffer that can be used to compress the font cache file. This
 				routine normally gets called in total deep shit situations (see the
 				CompressDiskCacheFile routine below).  The block allocated here uses up
-				all available space in the “other” zone, but that’s ok since we’re modal
+				all available space in the 'other' zone, but that's ok since we're modal
 				until our caller disposes of this block.
 				
 				bufferSizePointer is assigned the largest contiguous block size of the
@@ -279,7 +279,7 @@ OSErr PurgeDiskCaches( DiskCacheOffset spaceNeeded, DiskCacheMapStructureHandle 
 				bufferZone is assigned the opposite heap.
 				
 				The routine will fail if kMinimumDiskCacheBufferSize bytes cannot be allocated.
-				Less than this and a compression will take so long that it’s not worth doing.
+				Less than this and a compression will take so long that it's not worth doing.
 				
 	Warnings:	Memory cannot be allocated in the current zone (we may have been called from
 				the memory manager through a purge procedure).
@@ -316,11 +316,11 @@ OSErr AllocateLockedBufferForCompression( Size* bufferSizePointer, Handle* buffe
 	SetZone( *bufferZonePointer );
 	*bufferSizePointer = CompactMem( maxSize );
 	
-	if (kMinimumDiskCacheBufferSize <= *bufferSizePointer) //there’s enough for a buffer
+	if (kMinimumDiskCacheBufferSize <= *bufferSizePointer) //there's enough for a buffer
 	{	
 		*bufferHandlePointer = NewHandle( *bufferSizePointer );
 		
-		//Since we’ve been so careful to ensure that we allocate only what we know we can get,
+		//Since we've been so careful to ensure that we allocate only what we know we can get,
 		//there is no good reason to expect that an error could occur.
 		//One exception might be a patch to NewHandle which causes heap movement or allocation.
 		if ( (error = MemError( )) == noErr ) {
@@ -486,7 +486,7 @@ OSErr CompressDiskCacheFile( DiskCacheMapStructureHandle diskCacheMapHandle )
 		error = MarkMapDirty( kMapDirty, diskCacheMapHandle );
 		
 		error = AllocateLockedBufferForCompression( &bufferSize, &bufferHandle, &bufferZone );
-		if ( error == noErr ) {//got the buffer, so let’s move blocks around
+		if ( error == noErr ) {//got the buffer, so let's move blocks around
 		
 			fileRefNum = (*diskCacheMapHandle)->fFileRefNum;			
 
@@ -497,7 +497,7 @@ OSErr CompressDiskCacheFile( DiskCacheMapStructureHandle diskCacheMapHandle )
 									  bufferSize, bufferHandle );
 			if ( error == noErr ) {//move the rest of the blocks
 			
-				//update the first block’s base address
+				//update the first block's base address
 				cachePointer->fLogicalOffset = (*diskCacheMapHandle)->fDiskCacheMapSize;
 				
 				while ( (error == noErr) && (cachePointer->fNextOffsetIndex != kDiskCacheNotFound) ) {
@@ -617,13 +617,13 @@ OSErr MakeSpaceInDiskCache( DiskCacheIndex* cacheIndexPointer,
 	
 		cacheIndex = (*diskCacheMapHandle)->fFirstOffsetIndex;
 		cacheEntryPointer = &(*diskCacheMapHandle)->fDiskCache[cacheIndex];
-		while ( (*cacheIndexPointer == kDiskCacheNotFound) 							//haven’t found a big enough hole yet
+		while ( (*cacheIndexPointer == kDiskCacheNotFound) 							//haven't found a big enough hole yet
 				&& (cacheEntryPointer->fNextOffsetIndex != kDiskCacheNotFound) )	//not at end of list
 		{
 		
 			GetCacheExpansionInformation( &expansionSize, logicalOffsetPointer, &nextCacheOffset, cacheIndex, 
 										  diskCacheMapHandle );
-			if ( sizeRequested <= expansionSize )	//there’s room, so we’ve found it and we’re done
+			if ( sizeRequested <= expansionSize )	//there's room, so we've found it and we're done
 			{
 				*cacheIndexPointer = cacheEntryPointer->fNextOffsetIndex;
 			
@@ -636,7 +636,7 @@ OSErr MakeSpaceInDiskCache( DiskCacheIndex* cacheIndexPointer,
 		}
 	}
 	
-	if ( *cacheIndexPointer == kDiskCacheNotFound ) {	//didn’t find a suitable hole,
+	if ( *cacheIndexPointer == kDiskCacheNotFound ) {	//didn't find a suitable hole,
 														//but is there room at the end?
 		//cacheIndex==kDiskCacheNotFound
 		GetCacheExpansionInformation( &expansionSize, logicalOffsetPointer, &nextCacheOffset, 

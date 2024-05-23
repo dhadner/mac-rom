@@ -128,7 +128,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “ColorMgr.a”
+;EASE$$$ READ ONLY COPY of file 'ColorMgr.a'
 ;•2.3	BAL 07/14/1989 For Aurora: Final CQD
 ; 2.2	BAL 06/30/1989 GetCTable will not modify 2 bit CLUT if hilite color is a gray. ∂
 ;Changed MakeITable to use MFTemp memory if allocation of its work buffer in the app heap fails.∂
@@ -413,7 +413,7 @@ VARSIZE		EQU		QHandle
 AdjZone
 
 ; this is where the patch used to move.w #8080 to force the call to DisposeTempBuffer,	<sm 6/9/92>stb 
-; but now, having had the opportunity to fix the code elsewhere, we don’t have to be	<sm 6/9/92>stb 
+; but now, having had the opportunity to fix the code elsewhere, we don't have to be	<sm 6/9/92>stb 
 ; so tricky, and we can go back to the normal way of doing things.						<sm 6/9/92>stb 
 
 		move.w		#0,isTmpHandle(a6)	;assume handles are not in temp memory	<28Feb90 KON>

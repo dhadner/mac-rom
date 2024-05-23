@@ -14,7 +14,7 @@
 ;									NewGDevice can handle mono-only displays correctly.
 ;	  <SM26>	 10/6/93	RC		Took out PDM EVT1 support from DoSonoraExtendedSense
 ;	  <SM25>	09-23-93	jmp		Commented out the RAM allocation family modes for PDM (since
-;									we’re not doing the RAM allocation stuff).
+;									we're not doing the RAM allocation stuff).
 ;	  <SM24>	08-16-93	jmp		Now always write out the RAM/VRAM bits.
 ;	  <SM23>	08-03-93	jmp		Began cleaning up the support for dynamically allocating RAM in
 ;									PDM for video, as well as added initial support for the three
@@ -29,7 +29,7 @@
 ;									greater units.  The old support for EVT1 units is also there
 ;									until EVT3
 ;	  <SM17>	 4/16/93	dwc		Mask and clear MACE and DMA ENET interrupts.
-;	  <SM16>	04-07-93	jmp		Fixed problem where I was ALWAYS forcing the “default” bit depth
+;	  <SM16>	04-07-93	jmp		Fixed problem where I was ALWAYS forcing the 'default' bit depth
 ;									instead of using what the user set in Monitors.
 ;	  <SM15>	04-07-93	jmp		Added initial low-level support for the Display Manager.  Still
 ;									need to do depth validation (as opposed to just defaulting to a
@@ -52,8 +52,8 @@
 ;	   <SM5>	 11/5/92	SWC		Changed VideoEqu.a->Video.a and ShutdownEqu.a->Shutdown.a.
 ;	   <SM4>	10/20/92	CCH		Conditionalized out an instruction that keeps PDM video from
 ;									coming up.
-;	   <SM3>	10/17/92	jmp		Added initial support for PDM’s (broken) bring-up hardware.
-;	   <SM2>	10/13/92	jmp		(jmp,H20) Even though it’s not technically necessary for Sonora
+;	   <SM3>	10/17/92	jmp		Added initial support for PDM's (broken) bring-up hardware.
+;	   <SM2>	10/13/92	jmp		(jmp,H20) Even though it's not technically necessary for Sonora
 ;									(Vail), I went ahead and tri-stated the senselines just prior to
 ;									the first read.  For PDM (whose video I/O is almost identical to
 ;									that of Sonora), this is necessary.
@@ -92,14 +92,14 @@
 ;		<H8>	 2/14/92	JC		Add support for Sonic Ethernet with Rev 1 Sonora parts
 ;		<H7>	02/04/92	jmp		Removed some extraneous Endwith statements.
 ;		<H6>	01/27/92	jmp		Changed the no-connect path so that it no longer supports the
-;									alternate sense byte.  Now, only type-6’s trigger it.  Also,
+;									alternate sense byte.  Now, only type-6's trigger it.  Also,
 ;									fixed a problem I introduced in <H5> where I would cause
 ;									Vail/Carnation to hang if nothing was plugged into built-in
 ;									video.
-;		<H5>	01/22/92	jmp		Updated the original “No Connect” code to take full advantage of
+;		<H5>	01/22/92	jmp		Updated the original 'No Connect' code to take full advantage of
 ;									the newly-defined extended sense codes.  Changed the name from
-;									“NoConnect” to “AltSense.”
-;		<H4>	 1/14/92	jmp		Fixed a problem where I wasn’t setting up A3 correctly if Slot
+;									'NoConnect' to 'AltSense.'
+;		<H4>	 1/14/92	jmp		Fixed a problem where I wasn't setting up A3 correctly if Slot
 ;									pRAM was already setup.
 ;		<H3>	01/11/92	jmp		Eliminated several BoxFlag dependencies.
 ;		<H2>	12/19/91	jmp		Added the initial support for Rubik-560 mode for Sonora.
@@ -191,11 +191,11 @@ SConfigRecSize	Equ		*
 ;
 ;	PruneList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are pruned.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -204,12 +204,12 @@ SConfigRecSize	Equ		*
 				With	SpBlock
 
 SPIPruneList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-				Cmp.b	(Sp),D0								; If it’s the keeper,
-				Beq.s	@Until								;	then don’t prune it.
+				Cmp.b	(Sp),D0								; If it's the keeper,
+				Beq.s	@Until								;	then don't prune it.
 				Move.b	D0,spID(A0)							; Otherwise, prune it.
 				_sDeleteSRTRec
 @Until			Dbra	D1,@Repeat							; Loop until done.
@@ -223,11 +223,11 @@ SPIPruneList
 ;
 ;	BuildFamilyList
 ;
-;	Loops thru a table of sRsrcIDs comparing the “keeper” with each
-;		of the entries in the table.  Those IDs that don’t match
+;	Loops thru a table of sRsrcIDs comparing the 'keeper' with each
+;		of the entries in the table.  Those IDs that don't match
 ;		the keeper are inserted back in as disabled.
 ;
-;	->	D0:	sRsrcID of the “keeper”
+;	->	D0:	sRsrcID of the 'keeper'
 ;	->	A0:	pointer to appropriately filled-out SpBlock
 ;	->	A1:	pointer to list of sRsrcIDs
 ;
@@ -236,16 +236,16 @@ SPIPruneList
 				With	SpBlock
 
 SPIBuildFamilyList
-				Move.b	D0,-(Sp)							; Remember the ID of the “keeper.”							
+				Move.b	D0,-(Sp)							; Remember the ID of the 'keeper.'							
 				Move.w	(A1)+,D1							; Get the zero-based counter into D1.
 
 @Repeat			Move.b	(A1)+,D0							; Get an sRsrc ID.
-				Cmp.b	(Sp),D0								; If it’s the keeper,
+				Cmp.b	(Sp),D0								; If it's the keeper,
 				Beq.s	@Until								;	then leave it alone.
 				Move.b	D0,spID(A0)							; Otherwise, load that sRsrc ID.
-				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it’s in ROM.
+				Clr.l	spsPointer(A0)						; Tell the Slot Manager that it's in ROM.
 				Move.l	#1,spParamData(A0)					; Say that we want it disabled.
-				Clr.w	spRefNum(A0)						; Say that there’s no driver yet.
+				Clr.w	spRefNum(A0)						; Say that there's no driver yet.
 				_InsertSRTRec								; Do it!
 @Until			Dbra	D1,@Repeat							; Loop until done.
 
@@ -255,17 +255,17 @@ SPIBuildFamilyList
 				EndWith
 
 ; This subroutine reads the Sonora sense lines.  On entry, A2 should point to the Sonora base address, D6
-;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we’re doing, and
+;	should contain $03, $05, $06, or $07 to indicate the type of extended sense we're doing, and
 ;	the CPU should have been put into 32-bit addressing mode.  On exit, D6 contains the appropriate
 ;	extended sense code.
 ;
 ; Note:	The idea behind the extended-sense-line ($07) algorithm is as follows:  First, drive sense line
-;		“a” and read the values of “b” and “c.”  Next, drive sense line “b” and read the values of “a”
-;		and “c.”  Finally, drive sense line “c” and read the values of “a” and “b.”  In this way, a
+;		'a' and read the values of 'b' and 'c.'  Next, drive sense line 'b' and read the values of 'a'
+;		and 'c.'  Finally, drive sense line 'c' and read the values of 'a' and 'b.'  In this way, a
 ;		six-bit number of the form bc/ac/ab is generated.  The other extended-sense algorithms are
-;		identical to that of $07, except one of the three lines doesn’t need to be driven.  For example,
-;		with $03, “a” doesn’t need to be driven.  With $05, “b” doesn’t need to be driven, and
-;		with $06, “c” doesn’t need to be driven.
+;		identical to that of $07, except one of the three lines doesn't need to be driven.  For example,
+;		with $03, 'a' doesn't need to be driven.  With $05, 'b' doesn't need to be driven, and
+;		with $06, 'c' doesn't need to be driven.
 ;
 
 DoSonoraExtendedSense
@@ -353,15 +353,15 @@ DoSonoraExtendedSense
 
 				With	SonoraFrame,EgretPB
 DoOmega
-				Tst.b	hasExternDotClk(A6)					; If we don’t need to set up the dot-clock ourselves,
+				Tst.b	hasExternDotClk(A6)					; If we don't need to set up the dot-clock ourselves,
 				Beq.s	@Done								;	then just skip this code.
 				
 				Ori.b	#sndSonoraReverseDFAC,D0			; Make sure the sound part of DFAC is correct.
 
 				Lea		egretBlk(A6),A0						; Point to the Egret param block.
-				Move.w	#(PseudoPkt<<8)+WrDFAC,pbCmdType(A0) ; Say that we’re writing DFAC.
+				Move.w	#(PseudoPkt<<8)+WrDFAC,pbCmdType(A0) ; Say that we're writing DFAC.
 				Move.l	D0,pbParam(A0)						; Put out the DFAC data.
-				Move.w	#4,pbByteCnt(A0)					; We’re sending 4 bytes.
+				Move.w	#4,pbByteCnt(A0)					; We're sending 4 bytes.
 				Clr.w	pbResult(A0)						; Clear the result word.
 				Clr.l	pbCompletion(A0)					; No completion routines here.
 				_EgretDispatch
@@ -379,10 +379,10 @@ DoOmega
 BeginSonoraInit
 
 ;
-; Set up initial “vendor” status.
+; Set up initial 'vendor' status.
 ;
 				Link	A6,#SFSize							; Allocate stack space for locals.
-				Move.w	#seSuccess,seStatus(A0)				; Just say that we’re okay.
+				Move.w	#seSuccess,seStatus(A0)				; Just say that we're okay.
 				
 ;
 ; Perform some generic initializations.
@@ -400,7 +400,7 @@ BeginSonoraInit
 				Lea		spBlk(A6),A0						; Point A0 at our local SpBlock.
 				Lea		sPRAMBlk(A6),A2						; Get a pointer to our local SPRAMBlock.
 				Move.l	A2,spResult(A0)						; Put our pointer in the SpBlock.
-				_sReadPRAMRec								; Read Slot $0’s pRAM.
+				_sReadPRAMRec								; Read Slot $0's pRAM.
 				
 				Move.l	A4,A3								; Copy the ProductInfo pointer.
 				Adda.l	VideoInfoPtr(A3),A3					; Point to the VideoInfo record.
@@ -424,15 +424,15 @@ BeginSonoraInit
 				Bsr		SPIPruneList						; Call our pruning utility.
 				
 ;
-; Set up the right CPU sResource.  We only recognize ’020, ’030, and ’040 CPUs (or emulators); all others
+; Set up the right CPU sResource.  We only recognize '020, '030, and '040 CPUs (or emulators); all others
 ;	are ignored (i.e., the CPU sResources are all deleted in that case).
 ;
 				Move.b	CPUFlag,D1							; Get the CPUFlag (680x0-flag) for compares.
 				
 				Lea		@CPUTable,A1						; Get pointer to the table of valid CPU types.
 @CPULoop		Move.b	(A1)+,D0							; Pick up the next CPU type.
-				Beq.s	@EndPruneCPUSRsrcs					; If we’re done, leave.
-				Move.b	(A1)+,spID(A0)						; Assume we won’t find a match.
+				Beq.s	@EndPruneCPUSRsrcs					; If we're done, leave.
+				Move.b	(A1)+,spID(A0)						; Assume we won't find a match.
 				Cmp.b	D0,D1								; But, if they do match,
 				Beq.s	@SkipDelete							;	then just go on.
 				_sDeleteSRTRec								; Otherwise, delete non-matching CPU sRsrc type.
@@ -445,17 +445,17 @@ BeginSonoraInit
 
 @EndPruneCPUSRsrcs
 				
-; Set various feature flags for use later.  (Note:  For now this is pretty lame code; we’ll
-;	make it “smarter” later.)
+; Set various feature flags for use later.  (Note:  For now this is pretty lame code; we'll
+;	make it 'smarter' later.)
 ;
-				Cmp.b	#sRsrc_BdVail,BoardSRsrcID(A3)		; If we’re not on a Sonora,
+				Cmp.b	#sRsrc_BdVail,BoardSRsrcID(A3)		; If we're not on a Sonora,
 				Bne.s	@MustBePDM							;	then we must be a PDM for now.
 				
 				St		hasVRAM(A6)							; Sonora CPUs have real vRAM.
 				St		hasExternDotClk(A6)					; Sonora CPUs have Omegas.
 				Bra.s	@EndFeatureSetup
 				
-@MustBePDM		Sf		hasVRAM(A6)							; PDMs don’t have vRAM.
+@MustBePDM		Sf		hasVRAM(A6)							; PDMs don't have vRAM.
 				Sf		hasExternDotClk(A6)					; PDMs set up the dot-clock automatically.
 
 @EndFeatureSetup
@@ -562,7 +562,7 @@ MACERESET	EQU		0				; software reset
 ;
 
 ;
-; Here’s where we actually get the Sonora video going.  This includes setting up the functional
+; Here's where we actually get the Sonora video going.  This includes setting up the functional
 ;	sRsrcs, as well as initializing the Sonora hardware and getting a stable raster for the
 ;	type of display connected.
 ;
@@ -581,18 +581,18 @@ SonoraVideoInit
 				Adda.l	#SonoraVIA2Base,A2					; Point to the interrupt register space.
 				Move.l	A2,vidVIA2Ptr(A6)					; Save it for later.
 				
-				Move.b	#(1<<SonoraVBLIRQEn),SonoraSlotIER(A2) ; Disable built-in video’s VBLs.
+				Move.b	#(1<<SonoraVBLIRQEn),SonoraSlotIER(A2) ; Disable built-in video's VBLs.
 				
 ; Size the amount of VRAM.  When done, D4 is set to one of {0,1,2}, where 0=256K,1=512K,2=768K.
 ;	Note:  Although 1024K is theoretically possible in a Sonora system, it is not useable.  So,
 ;	we just say 768K is available (i.e., D4=2), even though we set up the hardware for 1024K
-;	if it’s there (so that the vRAM memory controller works correctly).
+;	if it's there (so that the vRAM memory controller works correctly).
 ;
 ; For PDM...
 ;
 				Moveq	#0,D4								; Init the VRAM size register.
 				
-				Tst.b	hasVRAM(A6)							; If this CPU doesn’t have vRAM, then
+				Tst.b	hasVRAM(A6)							; If this CPU doesn't have vRAM, then
 				Beq		@EndSize1							;	skip the VRAM sizing stuff.
 				
 @TestVRAM		Move.l	A4,A1								; Copy the ProductInfo pointer.
@@ -611,7 +611,7 @@ SonoraVideoInit
 				Cmp.l	#'256K',SonoraWrap(A1)				; If we got our signature back,
 				Adda.l	#k256KvRAM*2,A1						; (Point to longword 0 in physbank 2.)
 				Beq.s	@256K								; 	it wrapped, so go on.
-				Addq	#1,D4								; Otherwise, we’ve got 512K on-board.
+				Addq	#1,D4								; Otherwise, we've got 512K on-board.
 				Bra.s	@512Kb
 
 @256K			Move.l	#'512?',(A1)						; Write signature to longword 0 in physbank 2.
@@ -619,18 +619,18 @@ SonoraVideoInit
 				Add.l	#4,(Sp)
 
 				Cmp.l	#'512?',(A1)						; If we got our signature back,
-				Beq.s	@512Ka								;	we’ve got expansion vRAM.
-				Move.b	#Sonora256K,SonoraVRAMSize(A2)		; Otherwise, there’s only 256K out there.
+				Beq.s	@512Ka								;	we've got expansion vRAM.
+				Move.b	#Sonora256K,SonoraVRAMSize(A2)		; Otherwise, there's only 256K out there.
 				Bra.s	@EndSize
 				
-@512Ka			Addq	#1,D4								; Say there’s at least 512K out there.
+@512Ka			Addq	#1,D4								; Say there's at least 512K out there.
 				Cmp.l	#'512?',SonoraWrap(A1)				; If we got our signature back,
 				Beq.s	@Set512Ka							;	it wrapped, so set 512K.
-				Move.b	#Sonora768Ka,SonoraVRAMSize(A2)		; Otherwise, there’s 768K out there.
-				Addq	#1,D4								; Say there’s 768K out there.
+				Move.b	#Sonora768Ka,SonoraVRAMSize(A2)		; Otherwise, there's 768K out there.
+				Addq	#1,D4								; Say there's 768K out there.
 				Bra.s	@EndSize
 				
-@Set512Ka		Move.b	#Sonora512Ka,SonoraVRAMSize(A2)		; Say that there’s 512K out there.
+@Set512Ka		Move.b	#Sonora512Ka,SonoraVRAMSize(A2)		; Say that there's 512K out there.
 				Bra.s	@EndSize
 
 @512Kb			Move.l	#'768?',(A1)						; Write signature to longword 0 in physbank 2.
@@ -638,16 +638,16 @@ SonoraVideoInit
 				Add.l	#4,(Sp)
 
 				Cmp.l	#'768?',(A1)						; If we got our signature back,
-				Beq.s	@768Kb								;	we’ve got expansion vRAM.
-				Move.b	#Sonora512Kb,SonoraVRAMSize(A2)		; Otherwise, there’s only 512K out there.
+				Beq.s	@768Kb								;	we've got expansion vRAM.
+				Move.b	#Sonora512Kb,SonoraVRAMSize(A2)		; Otherwise, there's only 512K out there.
 				Bra.s	@EndSize
 				
-@768Kb			Addq	#1,D4								; Say there’s 768K out there.
+@768Kb			Addq	#1,D4								; Say there's 768K out there.
 				Cmp.l	#'768?',SonoraWrap(A1)				; If we got our signature back,
 				Beq.s	@Set768Kb							;	it wrapped, so set 768K.
-				Bra.s	@EndSize							; Otherwise, there’s 1024K out there.	
+				Bra.s	@EndSize							; Otherwise, there's 1024K out there.	
 				
-@Set768Kb		Move.b	#Sonora768Kb,SonoraVRAMSize(A2)		; Say that there’s 768K out there.
+@Set768Kb		Move.b	#Sonora768Kb,SonoraVRAMSize(A2)		; Say that there's 768K out there.
 
 @EndSize		_SwapMMUMode								; Flip back to previous addressing mode.
 @EndSize1
@@ -661,7 +661,7 @@ SonoraVideoInit
 				Move.l	A2,vidControlPtr(A6)				; Save it for later.
 
 				Bclr	#SonoraVidBlnkBit,SonoraVdModeReg(A2) ; Turn off video blanking so that we can read the senselines.
-				Move.l	#ndpHR,D0							; Set up to turn on Omega (we’ll just use 30.24 MHz).
+				Move.l	#ndpHR,D0							; Set up to turn on Omega (we'll just use 30.24 MHz).
 				Bsr.s	DoOMega								; Turn on Omega (so that we can read the senselines).
 
 				Moveq	#0,D6								; Clear our senseline variable.
@@ -688,9 +688,9 @@ SonoraVideoInit
 				
 				Lea		@XT6Table,A1						; Point to the table of extended type-6 codes.
 @XT6Loop		Move.b	(A1)+,D0							; Pick up the next supported extended type-6 code.
-				Bmi.s	@EndExtHR							; If we’re at the end of the list, then just leave.
+				Bmi.s	@EndExtHR							; If we're at the end of the list, then just leave.
 				Move.b	(A1)+,D1							; Pick up the indexed version of the extended code.
-				Cmp.b	D0,D6								; If we didn’t find a match, then
+				Cmp.b	D0,D6								; If we didn't find a match, then
 				Bne.s	@XT6Loop							;	just keep looping.
 				Move.b	D1,D6								; Translate the extended code into its indexed version.
 				Bra		@EndSense							; And move on.
@@ -721,11 +721,11 @@ SonoraVideoInit
 
 				Lea		@XNCTable,A1						; Point to the table of extended no-connect codes.
 @XNCLoop		Move.b	(A1)+,D0							; Pick up the next supported extended no-connnect code.
-				Bmi.s	@EndNoConnect						; If we’re at the end of the list, then just leave.
+				Bmi.s	@EndNoConnect						; If we're at the end of the list, then just leave.
 				
 				Move.b	(A1)+,D1							; Pick up the indexed version of the extended code.
 
-				Cmp.b	D0,D6								; If we didn’t find a match, then
+				Cmp.b	D0,D6								; If we didn't find a match, then
 				Bne.s	@XNCLoop							;	just keep looping.
 				
 				Move.b	D1,D6								; Translate the extended code into its indexed version.
@@ -740,18 +740,18 @@ SonoraVideoInit
 				Dc.b	extendedMSB3,indexedSenseMSB3
 				Dc.b	-1,-1
 
-@EndNoConnect	Move.b	#indexedNoConnect,D6				; We don’t recognize the code, so say nothing’s connected.
+@EndNoConnect	Move.b	#indexedNoConnect,D6				; We don't recognize the code, so say nothing's connected.
 
-; When no monitor is connected, we first want to check to see if we’re at the factory
+; When no monitor is connected, we first want to check to see if we're at the factory
 ;	If we are, then the last 4-bytes of pRAM will contain a special signature.  If
-;	we aren’t at the factory and we don’t recognize the no-connect code, then we
+;	we aren't at the factory and we don't recognize the no-connect code, then we
 ;	set up to delete all the video data structures and to turn built-in video off.
 ;
 ; Note:  On Systems with no real VRAM, we just skip this code because no RAM will
 ;	have been allocated for video in this case.  Will this be a problem for the
 ;	factory?
 ;
-				Tst.b	hasVRAM(A6)							; If we don’t have VRAM, then
+				Tst.b	hasVRAM(A6)							; If we don't have VRAM, then
 				Beq		@EndSense							;	just go on. 
 				
 				With	SP_Params
@@ -768,11 +768,11 @@ SonoraVideoInit
 
 				Lea		@NCTable,A1							; Point to the table of no-connect signatures.
 @NCLoop			Move.l	(A1)+,D1							; Pick up the next supported code.
-				Beq.s	@EndSense							; If we’re at the end of the list, then just leave.
+				Beq.s	@EndSense							; If we're at the end of the list, then just leave.
 				
 				Move.l	(A1)+,D2							; Pick up the indexed version of the no-connect signature.
 				
-				Cmp.l	D0,D1								; If we didn’t find a match, then
+				Cmp.l	D0,D1								; If we didn't find a match, then
 				Bne.s	@NCLoop								;	just keep looping.
 
 				Move.b	D2,D6								; Translate the no-connect signature into an index.
@@ -795,7 +795,7 @@ SonoraVideoInit
 ;
 				With	SVRAMConfigRec,SonoraConfigRec
 @GetConfig
-				Tst.b	hasVRAM(A6)							; If we don’t have VRAM,
+				Tst.b	hasVRAM(A6)							; If we don't have VRAM,
 				Beq.s	@NoVRAM								;	then say so.
 				Lea		SonoraConfigTable,A1				; Point to the Sonora configuration table.
 				Bra.s	@Config								; Go on.
@@ -814,7 +814,7 @@ SonoraVideoInit
 				
 				Endwith
 
-; Initialize built-in video’s pRAM.
+; Initialize built-in video's pRAM.
 ;
 				With	SP_Params
 
@@ -843,15 +843,15 @@ InitPRAM
 				Move.b	D7,SP_Depth(A2)						; Set the default depth for this configuration.
 
 @WritePRAM		Move.l	A2,spsPointer(A0)					; Set up the pRAM parameter block.
-				_sPutPRAMRec								; Write out Slot $0’s pRAM.
+				_sPutPRAMRec								; Write out Slot $0's pRAM.
 				
 				Move.b	SP_LastConfig(A2),D5				; Get the right (family member) sRsrc into D5. 				
 				
 				Endwith
 
-; First, prune all of the video sResources except for the selected one.  If there are no families, then we’re done.
-;	Otherwise, we’re either done (because we’ve come up with an unknow configuration), or we re-insert all the members
-;	of the selected configuration’s family as disabled.
+; First, prune all of the video sResources except for the selected one.  If there are no families, then we're done.
+;	Otherwise, we're either done (because we've come up with an unknow configuration), or we re-insert all the members
+;	of the selected configuration's family as disabled.
 ;
 				With	SVRAMConfigRec,SonoraConfigRec
 
@@ -859,18 +859,18 @@ InitPRAM
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr		SPIPruneList						; Call our pruning utility.
 				
-				Cmp.b	#sRsrc_Sonora_NeverMatch,D5			; If we’ve come up with an unknown configuration,
-				Beq		SonoraExit							;	then we’re now done.
+				Cmp.b	#sRsrc_Sonora_NeverMatch,D5			; If we've come up with an unknown configuration,
+				Beq		SonoraExit							;	then we're now done.
 				
-				Move.l	configParamsPtr(A6),A1				; Point to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point to this config's parameters.
 				Adda.w	#SConfigHdrSize,A1					; Skip past the header.
 				Move.w	#SVRAMConfigSize,D0					; Get the size of the vRAM entries.
 				Mulu	D4,D0								; Multiply by the right entry.
 				Adda.l	D0,A1								; Skip to the right vRAM entry.
-				Move.w	familiesOffset(A1),D0				; If there aren’t any families,
+				Move.w	familiesOffset(A1),D0				; If there aren't any families,
 				Beq.s	@EndConfig							;	then just go on.
 				
-				Move.l	configParamsPtr(A6),A1				; Point back to this config’s parameters.
+				Move.l	configParamsPtr(A6),A1				; Point back to this config's parameters.
 				Adda.w	D0,A1								; Point to the table of supported families.
 				Move.b	D5,D0								; Get the sRsrcID of the keeper into D0.
 				Bsr		SPIBuildFamilyList					; Call our family-building utility.
@@ -897,7 +897,7 @@ InitSonoraHW
 				Move.b	#sVidParmDir,spID(A0)				; Look for the video parameters directory.
 				_sFindStruct
 				
-				Move.b	D5,spID(A0)							; Look in the directory for this config’s params.
+				Move.b	D5,spID(A0)							; Look in the directory for this config's params.
 				_sGetBlock
 				
 				Move.l	spResult(A0),A1						; Get a pointer to the vidParams.
@@ -907,15 +907,15 @@ InitSonoraHW
 ;
 				With	EgretPB,SonoraOmega
 				
-				Tst.b	hasExternDotClk(A6)					; If we don’t need to set up the dot-clock ourselves,
+				Tst.b	hasExternDotClk(A6)					; If we don't need to set up the dot-clock ourselves,
 				Beq.s	@EndOmegaSetup						;	then just go on.
 				
 				Move.l	A1,A0								; Copy the vidParams ptr.
 
 				Move.l	vidVIA2Ptr(A6),A2					; Point to the VIA2.
 				Move.b	SonoraVRAMSize(A2),D0				; Pick up the VRAM Sizing parameters.
-				Cmp.b	#Sonora512Kb,D0						; If we’ve got 512K on the motherboard
-				Beq.s	@Omega2								;	then we’ve got a new Omega.
+				Cmp.b	#Sonora512Kb,D0						; If we've got 512K on the motherboard
+				Beq.s	@Omega2								;	then we've got a new Omega.
 				Cmp.b	#Sonora768Kb,D0						;
 				Bne.s	@SetOmega							;
 				
@@ -975,12 +975,12 @@ InitSonoraHW
 				Move.w	svpNumRows(A1),D3					; Get the number of rows.
 				Move.l	#OneBitGray,D2						; Set the 1bpp gray pattern.
 				
-				Moveq	#1,D0								; Assume that we’re not doing Rubik-560.
-				Cmp.b	#sRsrc_Vid_Sonora_GS560a,D5			; If we’re doing Rubik-560a,
+				Moveq	#1,D0								; Assume that we're not doing Rubik-560.
+				Cmp.b	#sRsrc_Vid_Sonora_GS560a,D5			; If we're doing Rubik-560a,
 				Beq.s	@Flag560							;	then say so.
-				Cmp.b	#sRsrc_Vid_Sonora_GS560b,D5			; If we’re not doing Rubik-560b,
+				Cmp.b	#sRsrc_Vid_Sonora_GS560b,D5			; If we're not doing Rubik-560b,
 				Bne.s	@NxtRow								;	then just go on
-@Flag560		Moveq	#0,D0								; Flag that we’re doing Rubik-560.
+@Flag560		Moveq	#0,D0								; Flag that we're doing Rubik-560.
 
 @NxtRow			Move.w	svp1bppRowLongs(A1),D1				; Get the number of longwords/row.
 @NxtLong		Move.l	D2,(A2)+							; Write out gray to the frame buffer…

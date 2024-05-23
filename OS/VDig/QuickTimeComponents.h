@@ -147,9 +147,9 @@ enum {
  matrixErr = -2203	,				/* bad matrix, digitizer did nothing */
  notExactMatrix = -2204	,		/* warning of bad matrix, digitizer did its best */
  noMoreKeyColors = -2205,			/* all key indexes in use */
- notExactSize = -2206	,			/* Can’t do exact size requested */
- badDepth = -2207,					/* Can’t digitize into this depth */
- noDMA = -2208	,					/* Can’t do DMA digitizing ( i.e. can't go to requested dest) */
+ notExactSize = -2206	,			/* Can't do exact size requested */
+ badDepth = -2207,					/* Can't digitize into this depth */
+ noDMA = -2208	,					/* Can't do DMA digitizing ( i.e. can't go to requested dest) */
  badCallOrder = -2209,			/* Usually due to a status call being called prior to being setup first */
 
 

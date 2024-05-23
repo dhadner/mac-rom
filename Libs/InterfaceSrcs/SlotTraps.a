@@ -195,7 +195,7 @@ OpenSlot		PROC	EXPORT
 				BNE.S	@1
 				_Open immed
 				BrA.S	@2
-@1				_Open async,immed		;no reason they can’t be async.
+@1				_Open async,immed		;no reason they can't be async.
 @2				Move.W	D0,(SP) 		;save result
 				Jmp 	(A1)			;return to caller
 

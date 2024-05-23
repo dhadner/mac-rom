@@ -150,7 +150,7 @@ dockSDMExists		EQU		0					;	SCSI Disk Mode is supported by this bar
 dockSDMCable		EQU		1					;	special cable is attached
 
 dockNuBusConnectors	EQU		'sltc'				; bitmap of external NuBus connectors on this bar
-dockSlot0			Equ		 0					;	╥slot╙ 0 -- used to add/remove internal video if necessary
+dockSlot0			Equ		 0					;	'slot' 0 -- used to add/remove internal video if necessary
 dockSlot9			EQU		9					;   slot 9
 dockSlotA			EQU		10					;   slot A
 dockSlotB			EQU		11					;   slot B
@@ -258,8 +258,8 @@ dockSleepSave		EQU		'slep'				; saves state of bar's hardware before going to sl
 dockWakeupRestore	EQU		'wake'				; restores the state of the bar's hardware upon wakeup
 												;	params=pointer to block containing state (disposed by handler)
 
-dockFlush			Equ		'wipe'				; called after Docking Manager is done ╥waking up╙ a device; allows handler
-												;	to ╥wipe╙ itself clean, so to speak  (status call)
+dockFlush			Equ		'wipe'				; called after Docking Manager is done 'waking up' a device; allows handler
+												;	to 'wipe' itself clean, so to speak  (status call)
 
 ;еееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее
 ;

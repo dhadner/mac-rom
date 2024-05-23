@@ -184,12 +184,12 @@
 ;										
 ;									-	Made lots of changes to UpdateResFile to reflect the use of override maps.
 ;										
-;									-	Check to see if we’re updating the system file, or just another file.  If we’re updating the
-;										system file, then make sure we update all the font files too.  If it’s just a generic resource map,
-;										update just it’s override maps and the file itself.
+;									-	Check to see if we're updating the system file, or just another file.  If we're updating the
+;										system file, then make sure we update all the font files too.  If it's just a generic resource map,
+;										update just it's override maps and the file itself.
 ;										
 ;									-	from DTY->
-;										Note:  I know that explicitly updating an override map of the system won’t update the
+;										Note:  I know that explicitly updating an override map of the system won't update the
 ;										font files.  I think this is the right behaviour, since anyone that is referencing
 ;										the override map explicitly probably has something specific in mind.
 ; 										
@@ -313,7 +313,7 @@
 ;									teresfileDirIDExit from ResourceMgrExtensions.a
 ;	   <SM8>	 4/18/92	kc		Fix bug in GetIndResource. (Change TST.L to TST.W)
 ;	   <SM7>	 4/14/92	stb		Add the comments I so conveniently forgot to add…
-;	   <SM6>	 4/14/92	stb		remove the ‘scod’ patch on GetResource. Roll in decompression
+;	   <SM6>	 4/14/92	stb		remove the ‘scod' patch on GetResource. Roll in decompression
 ;									patches.
 ;		 <5>	 3/11/92	stb		fix GetIndResource and Get1IxResource so the result gets cleared
 ;									BEFORE bailing out if the index was bogus.  Flush 'FOND' candidate
@@ -325,7 +325,7 @@
 ;									map handle. Removed obsolete (conditionalized out) code in
 ;									ORFCommon.
 ;		<12>	 2/14/92	stb		remove support for ignored resources (conditional: hasResIgnored)
-;	    <11>	 2/14/92	stb		roll in fix to RmveName so that a name doesn’t get removed if it
+;	    <11>	 2/14/92	stb		roll in fix to RmveName so that a name doesn't get removed if it
 ;									is in use by any other resource.  This seems odd, but files like
 ;									this exist, and we want them to work.
 ;		<10>	 1/20/92	PN		Roll in the linkedpatch from segmentloaderpatches.a to force
@@ -1272,7 +1272,7 @@ ROZInit 								; new routine									<27aug85> BBM  <1.5>
 
 		MOVE.W	d6,D0					; get the size of the map						<1.5>
 		_NewHandle						; get map in ROZ.  (If failure, system dead.)
-		_HLock							; it’s always there, so lock it					<C169>
+		_HLock							; it's always there, so lock it					<C169>
 		MOVE.L	A0,RomMapHndl			; Save this handle.
 		MOVE.L	(Sp)+,theZone			; restore current zone
 		RTS
@@ -1356,7 +1356,7 @@ nochange								;												<2>
 		andi.b	#7,d0					;     make index correct (index is now 7-0)
 		btst.b	d0,(a0)					; check if this resource should be included
 
-		add		d2,a2					; point at link to next entry (no cc’s set)
+		add		d2,a2					; point at link to next entry (no cc's set)
 		beq.s	@bypass					; this resource not in current combo, so skip
 
 		;add this resource
@@ -1441,7 +1441,7 @@ CountCombos								; new routine									<1.5>
 		addq	#1,d0					; add one to the count of the resources
 		add		d2,a2					; jump past the combo bit field
 		move.b	RNmOff(a2),d3			; get the name size (only get one byte!)
-		bmi.s	@resourceNotNamed		; don’t add the name size if not named			<13> stb
+		bmi.s	@resourceNotNamed		; don't add the name size if not named			<13> stb
 		add.l	d3,d1					; add into total name size					<3>	<13> stb
 @resourceNotNamed						;												<13> stb
 		move.l	(a2),a2					; offset to next resource header
@@ -1949,7 +1949,7 @@ RsrcZoneInit
 				CMP.L	A0,D6							; <32> Compare against lower bound of System zone
 				BGT.S	@clearReference					; <32> If d6 > a0, handle is not in heap, so clear it
 				CMP.L	A0,D7							; <32> Compare resource against upper limit of System zone
-				BGT.S	@entryInSysHeap					; <32> If d7 > a0, handle is in System heap, so don’t clear the reference out.
+				BGT.S	@entryInSysHeap					; <32> If d7 > a0, handle is in System heap, so don't clear the reference out.
 @clearReference
 				CLR.L	RHndl(A2)						; Forget the disposed handle in app. heap. 
 @entryInSysHeap		
@@ -2022,7 +2022,7 @@ ORFCommon								; rewritten for OpenRFPerm						<05sep85> BBM
 		move.b	ResLoad,-(sp)			; save the old value for whether to load resources
 
 		move.w	ResourceMgrStack.OverrideSysMap(a6),CurMap			; get the resource from the system file
-		sf		ResLoad					; don’t load the resource
+		sf		ResLoad					; don't load the resource
 
 		subq	#4,sp					; make room for resource handle
 		move.w	#$E000,-(sp)			; get that resource handle
@@ -2045,7 +2045,7 @@ ORFCommon								; rewritten for OpenRFPerm						<05sep85> BBM
 		; Note that we can get here if there is a STR $E000 that has not yet been
 		; loaded and the file name pointer in A1 is NIL! This is not a problem,
 		; since a NIL file name pointer is illegal anyway, and changing the vRefNum
-		; in the parameter block for OpenRF shouldn’t have any effect.
+		; in the parameter block for OpenRF shouldn't have any effect.
 
 		move.w	BootDrive,ioVRefNum(a0)	; always open the printer driver on the boot drive
 @notPrint
@@ -2233,7 +2233,7 @@ HOpenResFile
 OpenResFile
 ;•••• Fix for the old AppleTalk ImageWriter and LQ AppleTalk  ImageWriter until these drivers are fixed <SM35>
 	move.b	ResLoad,-(sp)			; save the old value for whether to load resources <SM35>
-	sf		ResLoad					; don’t load the resource <SM35>
+	sf		ResLoad					; don't load the resource <SM35>
 
 	subq	#4,sp					; make room for resource handle <SM35>
 	move.w	#$E000,-(sp)			; get that resource handle <SM35>
@@ -2250,7 +2250,7 @@ OpenResFile
 	cmp.l	4(sp), d0				; check and see if it is the printer name <SM35>
 	bne.s	NotForPrinting			; nope, it is not the printer driver <SM35>
 
-	movem.l	d1-d2/a1,-(sp)			; Resource Mgr calls shouldn’t touch these	<SM35>
+	movem.l	d1-d2/a1,-(sp)			; Resource Mgr calls shouldn't touch these	<SM35>
 	move.l	#$D8000000,-(SP)		; PrLoadDriver <SM35>
 	_PrGlue							; Call PrGlue <SM53> CSS
 	movem.l	(sp)+,d1-d2/a1			; restore registers	<SM35>										<4>
@@ -2586,26 +2586,26 @@ UpdateResFile
 				
 		subq	#4,sp
 		move.l	a4,-(sp)
-		_GetOverrideMap										; See if there’s an override map for this file
+		_GetOverrideMap										; See if there's an override map for this file
 		move.l	(sp)+,a3									; Get the map
 
-; Check to see if we’re updating the system file, or just another file.  If we’re updating the
-; system file, then make sure we update all the font files too.  If it’s just a generic resource map,
-; update just it’s override maps and the file itself.
+; Check to see if we're updating the system file, or just another file.  If we're updating the
+; system file, then make sure we update all the font files too.  If it's just a generic resource map,
+; update just it's override maps and the file itself.
 ;
-; Note:  I know that explicitly updating an override map of the system won’t update the
+; Note:  I know that explicitly updating an override map of the system won't update the
 ; font files.  I think this is the right behaviour, since anyone that is referencing
 ; the override map explicitly probably has something specific in mind.
 
-		cmp.l	SysMap(a6),a4			; If we’re updating the system file, then update the font files too
-		bne.s	@notUpdatingSystemFile	; This is done by setting a4 to nil, so that the loop won’t end until
+		cmp.l	SysMap(a6),a4			; If we're updating the system file, then update the font files too
+		bne.s	@notUpdatingSystemFile	; This is done by setting a4 to nil, so that the loop won't end until
  		moveq	#0,a4					;  the end of the chain is reached
 		bra.s	@updateOverrideMaps
 			
-		; It’s not the system file.
+		; It's not the system file.
 				
 @notUpdatingSystemFile
-		cmp.l	a3,a4						; If the file didn’t have any override maps
+		cmp.l	a3,a4						; If the file didn't have any override maps
 		beq.s	@exit						; Just update the original.
 				
 ; Update any changed override maps for this file.
@@ -3170,11 +3170,11 @@ ClsRFile
 		BSR 	StdMapEntry 			; Link A6, save regs, get map, exit if none
 
 		; Check preventFileFromBeingClosedBit in the resource map.  If
-		; this bit is set, don’t allow this file to be closed.
+		; this bit is set, don't allow this file to be closed.
 
 		move.l	(a4),a1												; Pointer to resource map
 		btst	#preventFileFromBeingClosedBit,mInMemoryAttr(a1)	; Can this file be closed?
-		bnz		@leaveWithoutClosing								; No.  Don’t close it.
+		bnz		@leaveWithoutClosing								; No.  Don't close it.
 
 @doClose
 		BSR		CheckAndFlushFontCache								; If we are closing a file w/ fonts we should invalidate the cache
@@ -3800,7 +3800,7 @@ NextMap
 		beq.s	@3									; <41> No.  don't check the 2 deep bit.
 
 
-; The requested resource wasn’t found in the map in A4.  Check if the twoDeepBit is set on this
+; The requested resource wasn't found in the map in A4.  Check if the twoDeepBit is set on this
 ; map, and if it is, search the next map down.
 
 		move.l	(a4),a3								; Try the next map, but only if this map has twoDeep set.
@@ -4107,12 +4107,12 @@ vRMgrStdEntry							; Def to build dispatch entry					<1.2> BBM
 		move.l	a4,-(sp)						; <23> Find override map for current resource map
 		_GetOverrideMap							; Get an override map for it
 		move.l	(sp)+,d0						; Get override map (it may be the map itself)
-		bz.s	@getSystemMap					; Assume no override map if this map wasn’t found
+		bz.s	@getSystemMap					; Assume no override map if this map wasn't found
 
 		cmp.l	a4,d0							; did we get an override map?
 		beq.s	@getSystemMap					; no they're the same…
 		
-; We’ve got an override map for the current resource map.  Set the override map to be the
+; We've got an override map for the current resource map.  Set the override map to be the
 ; current map for the duration of this Resource Manager call.
 
 		move.l	d0,a1
@@ -4138,7 +4138,7 @@ vRMgrStdEntry							; Def to build dispatch entry					<1.2> BBM
 		move.l	a4,-(sp)						; <23> Find override map for current resource map
 		_GetOverrideMap							; Get an override map for it
 		move.l	(sp)+,d0						; Get override map (it may be the map itself)
-		bz.s	@noOverrideMap					; Assume no override map if this map wasn’t found
+		bz.s	@noOverrideMap					; Assume no override map if this map wasn't found
 
 		move.l	d0,OverrideSysMapHndl(a6)		; save the handle
 		move.l	d0,a1
@@ -4614,7 +4614,7 @@ vCheckLoad										; Def to build dispatch entry
 				bclr	#kDeanBit,kBrianBits			; A master pointer has already been allocated
 				bra.s	@goLoadTheResource
 @setDeanBit
-				bset	#kDeanBit,kBrianBits			; We’ll be loading the resource right now
+				bset	#kDeanBit,kBrianBits			; We'll be loading the resource right now
 @goLoadTheResource
 
 
@@ -4715,7 +4715,7 @@ DeCompressor
 				move.l	a4,a1									;get a handle to the first file to look in
 @tryMap
 				move.l	a1,d0									;are we done?
-				bz		ErrorExit								;yes, we looked and didn’t find anything
+				bz		ErrorExit								;yes, we looked and didn't find anything
 
 				move.l	(a1),a0									;get map pointer
 				btst	#decompressionPasswordBit,mInMemoryAttr(a0)
@@ -4727,8 +4727,8 @@ DeCompressor
 				move.l	ResErrProc,-(sp)						;remember the ResErrProc		<15>
 
 				move.w	mRefNum(a0),CurMap						;get resource from this file
-				clr.w	ROMMapInsert							;don’t even think about ROM map	<15>
-				clr.l	ResErrProc								;and don’t call the app.		<15>
+				clr.w	ROMMapInsert							;don't even think about ROM map	<15>
+				clr.l	ResErrProc								;and don't call the app.		<15>
 
 				SubQ	#4,SP
 				Move.L	#DeCompressDefType,-(SP)				;'dcmp'
@@ -4820,7 +4820,7 @@ HaveSizeAndOffset
 				BZ.S	@GotHandle				;did it get allocated without an error?
 ;		Break	'Error from _ReallocHandle'
 				Move.W	D1,ResErr
-				Suba.l	A5, A5					; return NIL since we don’t have enough memory					<10>
+				Suba.l	A5, A5					; return NIL since we don't have enough memory					<10>
 				Bra 	ExitCLPastHSetState		;exit if an error happened. Skip HSetState						<10>
 @GotHandle
 
@@ -4872,7 +4872,7 @@ HaveSizeAndOffset
 				Move.L	D0,D1					;save var table size.
 				_NewHandle						;get the table.  Used to be a _NewPtr, but that moves the Realloc'ed handle
 				Bne 	ErrorExitBlowoffHandle	;blow off the handle and return a nil handle
-				_HLock							;don’t let it move
+				_HLock							;don't let it move
 				Move.L	A0,D6					;save var table ptr.
 
 ; Finally we are ready to decompress the data in the clone into our larger handle.
@@ -5097,7 +5097,7 @@ EndLoad
 ; Calls:		NONE
 ;
 ; Function: 	Set purgeable, lock, and resource bits in master pointer.  D0 is
-;				trashed, high 3 bits of “master pointer” are set.		<C169>
+;				trashed, high 3 bits of 'master pointer' are set.		<C169>
 ;_______________________________________________________________________________
 
 SetPL
@@ -5730,7 +5730,7 @@ CG1		BSR		SetFileIO				; Set up the file frame							<9> rb
 				 						; and set it back.	was it successful?
 ; Roll in ValidateFileSizeInCheckGrow from ResourceMgrExtensions.a  <SM9><PN>
 		TST.B	(A1)					; get new size of file set up by CheckGrow (a1 points to ioLEOF inside param block)
-										; note: 16 meg = $01000000, so if any bits are set in first byte it’s >= 16 meg
+										; note: 16 meg = $01000000, so if any bits are set in first byte it's >= 16 meg
 		BNE		CheckGrowErr			; it's ≥ 16Meg so return an error SM9><PN>
 		_SetEOF							; set it back
 CG9										;												<9> rb
@@ -5922,7 +5922,7 @@ DetachResource
 		BTST	#ResChanged, RAttr(A2)	; is it marked to be written? 
 		BNE.S	@5						; if so, can't detach!                          <03apr85> BBM
 
-		MOVEA.L	A1,A0					; Gentleman’s way to say “not an rsrc”			<C169>
+		MOVEA.L	A1,A0					; Gentleman's way to say 'not an rsrc'			<C169>
 		_HClrRBit						;												<C169>
 		BRA.S	RelExit 				; Common exit code								<12aug85> BBM
 
@@ -5953,7 +5953,7 @@ ChangedResource
 		MOVEA.L	A1,A0					; Save state of lock/purge/res bits in D7		<C169>
 		_HGetState						; D0 <- LPR bits								<C169>
 		MOVE.B	D0,D7					;												<C169>
-		_HNoPurge						; don’t allow purge here (CheckGrow)			<C169>
+		_HNoPurge						; don't allow purge here (CheckGrow)			<C169>
 		BTST	#ResProtected, RAttr(A2); Is it protected? (also checks if ROM) 
 		BNE.S	@5						; if so, don't allow change.                    <16apr85> BBM
 		BSR		CheckGrow				; Can it grow resource file + map?
@@ -6080,11 +6080,11 @@ HomeResFile
 RPHook
 		move.l	4(sp),-(sp)
 		jsr		DiskCachePurgeProcedure	; Give TrueType a crack at flushing this block	<sm10>stb
-										;  to disk if it’s a font cache block			<sm10>stb
+										;  to disk if it's a font cache block			<sm10>stb
 		MOVE.L	(SP)+, A1				; Get the return address in A1
 		MOVE.L	(SP)+, A0				; and the handle in A0.
 		_HGetState						; D0 <- Lock/Purge/Res bits						<C169>
-		BTST	#Resource,D0			; NE => it’s indeed a rsrc						<C169>
+		BTST	#Resource,D0			; NE => it's indeed a rsrc						<C169>
 		BEQ.S	@1						; If not resource, just return,
 		MOVE.L	A0, -(SP)				; otherwise push the handle
 		_WriteResource					; Attempt a write (ResChanged checked)
@@ -6101,7 +6101,7 @@ SetResPurge
 		lea		DiskCachePurgeProcedure,a1	; the TrueType purge procedure				<sm10>stb
 		BRA.S	@continue
 
-@install	; installing.  Put the resource mgr purge proc into the zone’s purgeProc
+@install	; installing.  Put the resource mgr purge proc into the zone's purgeProc
 		lea		RPHook,a1				;												<sm10>stb
 
 @continue
@@ -6855,8 +6855,8 @@ ShiftBlock
 ;
 ; Function: 	Given an offset to a name in the namelist, return non-zero if
 ;				any resource other than the resource of interest uses the same name
-;				offset.  While this shouldn’t ever be the case, such files do exist,
-;				and we’ll make them work.
+;				offset.  While this shouldn't ever be the case, such files do exist,
+;				and we'll make them work.
 ;_______________________________________________________________________________
 
 NameUsedByOthers
@@ -6909,7 +6909,7 @@ RmveName
 		
 		MOVE.L	D2,D0					; offset into namelist									<11> stb
 		BSR.S	NameUsedByOthers		; Is anyone else is using this instance of the name?	<11>
-		BNE.S	@9						; It’s in use.  Don’t remove the name					<11>
+		BNE.S	@9						; It's in use.  Don't remove the name					<11>
 
 		MOVE.L	(A4),A0 				; Dereference map handle
 		MOVE.L	A0,A1					; Copy ptr to A1
@@ -7055,9 +7055,9 @@ RsrcMapEntry							;												<21aug85> BBM
 grStFr		equ		$0E					; size of the stack frame. (see note above)
 
 rGetResource
-			clr.b	ROMMapInsert		; make sure we don’t use rom map
+			clr.b	ROMMapInsert		; make sure we don't use rom map
 			bsr.s	@getrsrc			;
-			bne.s	@exit				; if handle is not zero, then we don’t check rom
+			bne.s	@exit				; if handle is not zero, then we don't check rom
 
 			st.b	ROMMapInsert		; else make sure we use rom map
 			bsr.s	@getrsrc			;
@@ -7074,13 +7074,13 @@ rGetResource
 			move.w	grStFr+2(sp),-(sp)	; push ID again
 			_GetResource				;
 			move.l	(sp)+,grStFr(sp)	; push the handle we got back into the area
-										; the user saved for the handle and set cc’s
+										; the user saved for the handle and set cc's
 			rts							;
 
 
 
 
-;=== Here’s some new stuff as of 3/11/92 ================================================
+;=== Here's some new stuff as of 3/11/92 ================================================
 ;_______________________________________________________________________________
 ; CacheResource builds the list of resources that are actually counted or indexed.  Calls
 ; to _AddResource and _RmveResource will flush this cache.  The cache contents look like
@@ -7120,13 +7120,13 @@ CacheResource
 				move.w	#kCacheHasOverridesMask,d3				; <35> Set to a known value, since Pascal would have put a 1 in emScanOverrideMaps, whereas C would have put in -1, and who knows what Asm would have done…
 @overridingNotOn
 				move.l	ExpandMemRec.emResourceCache(a0),d0	; Get cached resource from expanded low mem
-				beq.s	@setupCache						; Cache doesn’t exist.  Go build it
+				beq.s	@setupCache						; Cache doesn't exist.  Go build it
 				move.l	d0,a0
 				
 ;
 ; <7> See if the deepness of the cache matches that of ResOneDeep.  If not, force the
 ;		cache to be rebuilt.
-; <34> Also make sure that ROMMapInsert hasn’t changed since the cache was formed.
+; <34> Also make sure that ROMMapInsert hasn't changed since the cache was formed.
 ;
 
 				move.l	(a0),a0
@@ -7149,7 +7149,7 @@ CacheResource
 @mapMatches
 				move.l	d0,a0							; Get handle
 				_GetHandleSize
-				sub.l	#kCacheHeaderSize,d0			; Don’t count header information
+				sub.l	#kCacheHeaderSize,d0			; Don't count header information
 				asr.l	#3,d0							; <31> Figure out how many things can fit in the existing handle
 				move.l	d0,d6							; Save this count
 				move.l	a0,a3
@@ -7245,7 +7245,7 @@ CacheResource
 ;
 
 				bsr		IsDuplicate						; See if this ID was already used
-				bne.s	@dontAddToCache					; If it is, don’t add it to the cache.
+				bne.s	@dontAddToCache					; If it is, don't add it to the cache.
 				
 ;
 ; Add this resource to the cache.  Remember the file reference number of the map it
@@ -7254,17 +7254,17 @@ CacheResource
 
 @addToCache
 				subq	#1,d6							; Adding another entry
-				bge.s	@doAdd							; If there’s still space left in the cache, add the entry
+				bge.s	@doAdd							; If there's still space left in the cache, add the entry
 				
 ;
-; Out of space in the cache.  Double it’s size.
+; Out of space in the cache.  Double it's size.
 ;
 
 				move.l	(a3),a1
 				sub.l	a1,a0							; Compute current byte offset into cache
 				exg		a3,a0							; Get handle
 				_GetHandleSize
-				sub.l	#kCacheHeaderSize,d0			; Don’t count header info for size calculations
+				sub.l	#kCacheHeaderSize,d0			; Don't count header info for size calculations
 				move.l	d0,d6							; Need to recalc number of available entries in a sec
 				asl.l	#1,d0							; Double the size of the cache
 				add.l	#kCacheHeaderSize,d0			; And some space for the header
@@ -7273,7 +7273,7 @@ CacheResource
 				asr.l	#3,d6							; <31> Divide by 8 to get count from size
 				subq	#1,d6							; One entry will be used up right away.
 				move.l	(a0),a1							; Get pointer in case it moved
-				add.l	a1,a3							; Add pointer to offset that’s saved in A3
+				add.l	a1,a3							; Add pointer to offset that's saved in A3
 				exg		a3,a0							; And swap the handle and the pointer
 @doAdd
 				addq	#1,d5							; Increment the count
@@ -7292,7 +7292,7 @@ CacheResource
 				beq.s	@endOfChain							; <41> No.  don't check the 2 deep bit.
 		
 		
-		; The requested resource wasn’t found in the map in A4.  Check if the twoDeepBit is set on this
+		; The requested resource wasn't found in the map in A4.  Check if the twoDeepBit is set on this
 		; map, and if it is, search the next map down.
 		
 				move.l	(a4),a1								; Try the next map, but only if this map has twoDeep set.
@@ -7316,7 +7316,7 @@ CacheResource
 
 IsDuplicate
 				
-				moveq	#1,d0							; Assume it’s a duplicate
+				moveq	#1,d0							; Assume it's a duplicate
 				move.w	rID(a2),d1						; Keep ID in a register
 				movem.l	a0/d2,-(sp)						; Save A0 & D2
 				move.w	d5,d2							; Make a copy of the current count
@@ -7329,20 +7329,20 @@ IsDuplicate
 				
 ; <31> To make the case where a resource is in the System, an application, but not a
 ;		Gibbly work, check to see if the resource map of the cached entry is an override
-;		map for the resource map of the resource we’re thinking about putting in the
+;		map for the resource map of the resource we're thinking about putting in the
 ;		cache.  The handle to the second resource map is in A4, and the handle to the
 ;		first resource map is in the cache.  Call the new routine, DoesCachedMapOverrideCurrentMap,
 ;		to make this determination.  We might want to make this a selector off of
 ;		_ResourceDispatch one day if this type of thing needs to be determined a lot.
 ;
 ; <47> DoesCachedMapOverrideCurrentMap used to scan the resource chain for duplicates
-;		until it finds a map that doesn’t have any override attributes set.  The theory
+;		until it finds a map that doesn't have any override attributes set.  The theory
 ;		was that a string of resource maps with override attributes set are associated
 ;		with each other, like Gibblies and the System, or the System and font files.
 ;		This test was too generic, and fails in the case where an application has an
 ;		override map, and the map below the application is a Gibbly or the System.
 ;		In this case, resources in the System and the application override that have
-;		the same type and ID are considered duplicates of each other, which isn’t right.
+;		the same type and ID are considered duplicates of each other, which isn't right.
 ;		Now, just look at the two deep bit on resource maps to determine if one is
 ;		associated with another.
 ;
@@ -7399,17 +7399,17 @@ A6Link			ds.l	1
 				move.w	bitsToTest(a6),d1				; <45>
 @compareMap
 				cmp.l	a0,a1							; Do the maps match?
-				beq.s	@gotMatch						; Yes.  We’ve got an override case
+				beq.s	@gotMatch						; Yes.  We've got an override case
 				
-; OK, I lied in all the comments up to now.  Testing just the overrideNextMap bit isn’t enough,
+; OK, I lied in all the comments up to now.  Testing just the overrideNextMap bit isn't enough,
 ; because font resources in the Fonts folder would get counted more than once.  To get
 ; around this, if ANY override bit is set, look at the next map down.
 
 				move.l	(a1),a1
 				move.b	mInMemoryAttr(a1),d0			; Get override bits
 				and.b	d1,d0							; Mask off everything but the bits of interest
-				bz.s	@noMatch						; No it’s not, and we should stop looking now, too.
-				move.l	mNext(a1),d0					; It’s an override map.  Get the next map, if there is one.
+				bz.s	@noMatch						; No it's not, and we should stop looking now, too.
+				move.l	mNext(a1),d0					; It's an override map.  Get the next map, if there is one.
 				bz.s	@noMatch						; No more maps.
 				move.l	d0,a1
 				bra.s	@compareMap
@@ -7422,7 +7422,7 @@ A6Link			ds.l	1
 @gotMatch
 				movem.l	(sp)+,d1/a0/a1					; <46> Restore used registers
 				unlk	a6
-				move.l	(sp)+,d0						; I saved A0 for a reason, so I can’t use it here…
+				move.l	(sp)+,d0						; I saved A0 for a reason, so I can't use it here…
 				add.w	#paramSize,sp					; Pop off the parameters
 				move.l	d0,-(sp)
 				rts
@@ -7494,10 +7494,10 @@ FlushChangedFONDs
 			movem.l	a0-a1/d0-d1,-(sp)
 			
 			cmp.l	#'FOND',TType(a2)		; Check are we messing w/ a 'FOND' Resource
-			bne.s	@notFONDResource		; It’s not a FOND
+			bne.s	@notFONDResource		; It's not a FOND
 			
 ;
-; It’s a 'FOND'.  If the candidate lists have this 'FOND' cached,
+; It's a 'FOND'.  If the candidate lists have this 'FOND' cached,
 ; invalidate it.
 ;
 
@@ -7540,7 +7540,7 @@ CheckCandidate
 			moveq	#-1,d1							; Assume handle is not disposed
 			move.w	(a1),d0							; Fetch the font family number
 			cmp.w	RID(a2),d0					; Compare it against the resource ID of the changed 'FOND'
-			bne.s	@notSameFamily					; Don’t invalidate if not the right ID
+			bne.s	@notSameFamily					; Don't invalidate if not the right ID
 			_DisposeHandle							; If ID matches, dispose the handle
 			moveq	#0,d1							; Mark as handle was disposed
 @notSameFamily
@@ -7572,7 +7572,7 @@ UpdateOverriddenChangedBits
 			
 ; See if this is an override map
 
-			btst	#overrideNextMapBit,d0					; We’ve still got our override attributes in D0
+			btst	#overrideNextMapBit,d0					; We've still got our override attributes in D0
 			bz.s	@notAnOverrideMap						; This is an override map, but it might be a font file
 
 ; This is an override map.  Find the map it overrides.
@@ -7588,7 +7588,7 @@ UpdateOverriddenChangedBits
 			move.l	a4,-(sp)
 			_IsThisASystemResourceMap						; See if this is a font file
 			tst.b	(sp)+									; Well is it?
-			bz.s	@exit									; If it’s not, then we don’t know why this map has override bits on it.  Just call AddResource, and don’t set the mapChanged bit anywhere else.
+			bz.s	@exit									; If it's not, then we don't know why this map has override bits on it.  Just call AddResource, and don't set the mapChanged bit anywhere else.
 			move.l	SysMapHndl,a4							; If it is, set the mapChanged bit of the system map
 
 @setMapChangedOnOverrideMap
@@ -7614,10 +7614,10 @@ FindOverriddenMap
 				move.l	d0,a1
 				move.l	(a1),a0
 				btst	#overrideNextMapBit,mInMemoryAttr(a0)	; This bit says whether or not this is an override map
-				bz.s	@foundOverriddenMap						; If the bit isn’t set, then we’ve got the overridden map
+				bz.s	@foundOverriddenMap						; If the bit isn't set, then we've got the overridden map
 				move.l	mNext(a0),d0							; Otherwise, look at the next map down
 				bnz.s	@findOverriddenMapLoop
-				move.l	d0,a1									; If we didn’t find the overridden map before reaching the end of the chain, return nil.
+				move.l	d0,a1									; If we didn't find the overridden map before reaching the end of the chain, return nil.
 @foundOverriddenMap
 				move.l	a1,4(sp)								; Return result on the stack
 				rts
@@ -7638,7 +7638,7 @@ FlushResourceCache
 				move.l	ExpandMem,a0
 				clr.w	ExpandMemRec.emLastMapOverridden(a0)	; And force an override synchronization next time <SM51> CSS
 				move.l	ExpandMemRec.emResourceCache(a0),d0		; Get resource cache handle
-				beq.s	@noExpandMem							; Doesn’t exist
+				beq.s	@noExpandMem							; Doesn't exist
 				clr.l	ExpandMemRec.emResourceCache(a0)		; Zero it out
 				move.l	d0,a0
 				_DisposeHandle									; Get rid of the cache

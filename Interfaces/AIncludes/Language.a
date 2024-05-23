@@ -20,7 +20,7 @@
 ;									preferred synonym for langLappish, based on some naming info we
 ;									have from the Norwegian consulate. (per PKE)
 ;		 <4>	  7/1/92	DCL		Obsoleted LanguageEqu.a which now includes this file.
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <2>	  1/2/91	PKE		(bbm) Updated comments and rearranged a few constants to match
 ;									latest Inside Mac summary.

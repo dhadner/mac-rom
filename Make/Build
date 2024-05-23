@@ -114,7 +114,7 @@
 		End
 		If "{1}" =~ /"-ao"/					# AOpts
 			If {#} < 2
-				Alert "You must specify <options> with the “-ao” option."
+				Alert "You must specify <options> with the '-ao' option."
 				Exit 1
 			End
 			Set AOpts "{AOpts} {2}"
@@ -122,7 +122,7 @@
 		End
 		If "{1}" =~ /"-co"/					# COpts
 			If {#} < 2
-				Alert "You must specify <options> with the “-co” option."
+				Alert "You must specify <options> with the '-co' option."
 				Exit 1
 			End
 			Set COpts "{COpts} {2}"
@@ -130,7 +130,7 @@
 		End
 		If "{1}" =~ /"-po"/					# POpts
 			If {#} < 2
-				Alert "You must specify <options> with the “-po” option."
+				Alert "You must specify <options> with the '-po' option."
 				Exit 1
 			End
 			Set POpts "{POpts} {2}"
@@ -138,7 +138,7 @@
 		End
 		If "{1}" =~ /"-lo"/					# LOpts
 			If {#} < 2
-				Alert "You must specify <options> with the “-lo” option."
+				Alert "You must specify <options> with the '-lo' option."
 				Exit 1
 			End
 			Set LOpts "{LOpts} {2}"
@@ -146,7 +146,7 @@
 		End
 		If "{1}" =~ /"-mo"/					# MOpts
 			If {#} < 2
-				Alert "You must specify <options> with the “-mo” option."
+				Alert "You must specify <options> with the '-mo' option."
 				Exit 1
 			End
 			Set MOpts "{MOpts} {2}"
@@ -154,7 +154,7 @@
 		End
 		If "{1}" =~ /"-d"/					# Defines
 			If {#} < 2
-				Alert "You must specify <equates> with the “-d” option."
+				Alert "You must specify <equates> with the '-d' option."
 				Exit 1
 			End
 			Set Overrides "{Overrides} {2}"
@@ -190,7 +190,7 @@
 		End
 		If "{1}" =~ /"-src"/				# Directory
 			If {#} < 2
-				Alert "You must specify <dir> with the “-src” option."
+				Alert "You must specify <dir> with the '-src' option."
 				Exit 1
 			End
 			Set Sources "{2}"
@@ -203,7 +203,7 @@
 		End
 		If "{1}" =~ /"-warnings"/			# Warnings
 			If {#} < 2
-				Alert "You must specify <level> with the “-warnings” option."
+				Alert "You must specify <level> with the '-warnings' option."
 				Exit 1
 			End
 			If "{2}" =~ /off/
@@ -281,7 +281,7 @@
 			Set MakeOut		"{Sources}BuildResults:dbLite:Text:MakeOut"
 			
 		Else
-			Alert "Error: Unknown build “{Build}”"
+			Alert "Error: Unknown build '{Build}'"
 			Exit 1			
 		End
 

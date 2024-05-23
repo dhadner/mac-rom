@@ -8,15 +8,15 @@
 ;	Change History (most recent first):
 ;
 ;	   <SM2>	 5/20/92	stb		Change an include to :Internal:Decompression.a. I did this once
-;									before, but I don’t know where it went.
+;									before, but I don't know where it went.
 ;		<26>	 1/19/92	DTY		Check if AppleTalk is inactive. If it is, set
 ;									emAppleTalkInactiveOnBoot to true, to let other things later on
 ;									in the boot process and the Chooser know that network code
-;									shouldn’t be loaded.
+;									shouldn't be loaded.
 ;		<25>	12/18/91	DTY		Clear only the decompressPasswordBit in the memory attributes
 ;									instead of the entire byte.
 ;		<24>	10/15/91	DTY		Set to twoDeepBit to cause one deep calls on the System file to
-;									look further down the chain for resources.  Don’t set the
+;									look further down the chain for resources.  Don't set the
 ;									overrideNextMapBit (formerly the mapInsertedBit) for the System
 ;									file.
 ;		<23>	10/15/91	DTY		Set the mapInsertedBit and dontCountOrIndexDuplicatesBit for the
@@ -69,7 +69,7 @@
 ;	   <1.6>	 8/28/89	SMB		NEEDED FOR 604 Scripts: Must increase ExpandMem for TE vectors
 ;									for Mac Portable for 6.0.4 Script System Builds. Removed load of
 ;									nEqu.d.
-;	   <1.5>	 8/11/89	dba		NEEDED FOR 6.0.4: improved the check for “too new” ROMs by
+;	   <1.5>	 8/11/89	dba		NEEDED FOR 6.0.4: improved the check for 'too new' ROMs by
 ;									checking ROM85 before looking at BoxFlag; left check in for 7.0
 ;									on the assumption that there will be ROMs too new for us even
 ;									then
@@ -335,8 +335,8 @@ SkipHeader
 ; ----------------------------------------------------------------------------
 ; In order to map the old international keyboard correctly, we use the
 ; following translation table to map key codes to virtual key codes. This
-; is not necessary on an old domestic keyboard as the key codes “just happen
-; to match” the virtual key codes.
+; is not necessary on an old domestic keyboard as the key codes 'just happen
+; to match' the virtual key codes.
 ; ----------------------------------------------------------------------------
 
 keyTable
@@ -561,7 +561,7 @@ RAMSysInit	PROC	EXPORT
 @ErrorXit	_SysError					; <24Aug89smb>
 
 @MakeExpandMem
-			clr.l	ExpandMem			; aka ‘BasicGlob’
+			clr.l	ExpandMem			; aka ‘BasicGlob'
 			move.l	#emRecSize,d0		; size of extension to old low-mem
 			_NewPtr sys,clear			; get a blob of extension memory
 			bne.s	@noSpandex			; if no mem, leave null in global ptr
@@ -586,7 +586,7 @@ RAMSysInit	PROC	EXPORT
 			move.b	SPConfig,d0				; <26> Get serial port configuration
 			and.b	#$0f,d0					; <26> Mask off Port B bits
 			cmp.b	#useATalk,d0			; <26> Configured for AppleTalk?
-			beq.s	@appleTalkIsActive		; <26> Yes.  Don’t set emAppleTalkInactiveOnBoot
+			beq.s	@appleTalkIsActive		; <26> Yes.  Don't set emAppleTalkInactiveOnBoot
 
 			with	ExpandMemRec
 			move.l	ExpandMem,a0						; <26>
@@ -657,7 +657,7 @@ RAMSysInit	PROC	EXPORT
 			lea 	KeyHook,a0				; load entry point.
 			move.l	a0,Key1Trans			; install the Key1Trans hook.
 			move.l	a0,Key2Trans			; install the Key2Trans hook.
-			bra.s	@doneInit				; we’re done.
+			bra.s	@doneInit				; we're done.
 
 @badError
 ; A serious error occurred somewhere. Do that crazy system bomb thing.
@@ -671,7 +671,7 @@ RAMSysInit	PROC	EXPORT
 ; Hopefully, when no one uses Key1Trans and Key2Trans, we can put this
 ; and the above mess back into ROM75Fix where it belongs
 			IMPORT	KeyTrans
-			PEA 	KeyTrans				; Assume we don’t.
+			PEA 	KeyTrans				; Assume we don't.
 
 			GetTrapA0	$A89F				; Get unimplemented trap
 			MOVE.L	A0,D1					; Save its address
@@ -680,7 +680,7 @@ RAMSysInit	PROC	EXPORT
 			BNE.S	@1						; No, so it must exist
 
 			SetTrap KeyTrans,$A9C3			; KeyTrans patch.
-			LEA 	RAMSysInit,A0			; Don’t cut it back.
+			LEA 	RAMSysInit,A0			; Don't cut it back.
 			MOVE.L	A0,(SP)
 
 @1
@@ -721,7 +721,7 @@ SetupResourceFileAttributes
 			move.l	SysMapHndl,a0			;get the system map
 			move.l	(a0),a0
 			bset	#decompressionPasswordBit,mInMemoryAttr(a0)			; allow dcmps here
-			bset	#dontCountOrIndexDuplicatesBit,mInMemoryAttr(a0)	; <23> Don’t count duplicate resources in the System file
+			bset	#dontCountOrIndexDuplicatesBit,mInMemoryAttr(a0)	; <23> Don't count duplicate resources in the System file
 			bset	#twoDeepBit,mInMemoryAttr(a0)						; <24> One deep calls on the System file will search two (or more) maps.
 
 ;#####################################################################################

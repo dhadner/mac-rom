@@ -19,7 +19,7 @@
 ;									which has the many horror changes.
 ;
 ;	   <H57>	  6/2/93	SWC		Added a modem type vector to the modem primitive table.
-;	   <H56>	05-31-93	jmp		Added yet-another-field to the PmgrRec called “fadeVars” -- it
+;	   <H56>	05-31-93	jmp		Added yet-another-field to the PmgrRec called 'fadeVars' -- it
 ;									will be used to fade screens (usually CRT) during dimming.
 ;	   <H55>	 5/31/93	RLE		change set/getmachineid to set/getmachineattr (this way PG&E
 ;									won't need to be updated for each and every new machine)
@@ -64,7 +64,7 @@
 ;	   <H35>	  7/9/92	ag		Adding vector location in PmgrPrimInfoRec for modem primitives
 ;									subtable.
 ;	   <H34>	  7/7/92	ag		Adding vector location for softshutdown routine.
-;	   <H33>	 6/24/92	SWC		Changed the ‘clamshellShutdown’ bit to ‘ignoreClamshell’ since
+;	   <H33>	 6/24/92	SWC		Changed the ‘clamshellShutdown' bit to ‘ignoreClamshell' since
 ;									it turned out that there were lots of problems associated with
 ;									trying to shutdown (gracefully) when the clamshell was closed.
 ;									The default state of the bit will now put the system to sleep as

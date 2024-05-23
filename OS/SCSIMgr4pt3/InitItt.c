@@ -266,7 +266,7 @@ InitItt()
 	hwDescPtr = (HBADesc_53c9x *) NewPtrSysClear( sizeof(HBADesc_53c9x));		//&&&& NewPtrSysClear
 
 	if (hwDescPtr==0) {
-		IfDebugStr("\pCan’t allocate hwDesc");
+		IfDebugStr("\pCan't allocate hwDesc");
 		UnblockInterrupts( oldSR); 		//<- <- <- <- <- <- 
 		return (-1);
 	}	
@@ -404,8 +404,8 @@ InitItt()
 	case kTNT:
 		// SCSI96_1 is by convention the internal bus (53CF96)
 		// This bus is known in the Grand Central literature as SCSI1.
-		hwDescPtr-> pdmaAddr = (Ptr)0x5FFF8001;				// ain’t no such thing
-		hwDescPtr-> pdmaNonSerlzdAddr = (Ptr)0x5FFF8001;	// ain’t no such thing
+		hwDescPtr-> pdmaAddr = (Ptr)0x5FFF8001;				// ain't no such thing
+		hwDescPtr-> pdmaNonSerlzdAddr = (Ptr)0x5FFF8001;	// ain't no such thing
 		hwDescPtr-> dreqAddr = (Ptr)0xF301A000;				// in Generic Board Register (Proto2)
 		hwDescPtr-> intEnableSCSIAddr = (Ptr)0xF3000024;	// 32-bit access only!
 		hwDescPtr-> intFlagSCSIAddr = (Ptr)0xF300002C;		// 32-bit access only!
@@ -489,8 +489,8 @@ InitItt()
 		case kTNT:
 			// SCSI96_2 is by convention the external bus (CURIO 53C94 cell)
 			// This bus is known in the Grand Central literature as SCSI0.
-			hwDescPtr-> pdmaAddr = (Ptr)0x5FFF8001;				// ain’t no such thing
-			hwDescPtr-> pdmaNonSerlzdAddr = (Ptr)0x5FFF8001;	// ain’t no such thing
+			hwDescPtr-> pdmaAddr = (Ptr)0x5FFF8001;				// ain't no such thing
+			hwDescPtr-> pdmaNonSerlzdAddr = (Ptr)0x5FFF8001;	// ain't no such thing
 			hwDescPtr-> dreqAddr = (Ptr)0xF301A000;				// in Generic Board Register (Proto2)
 			hwDescPtr-> intEnableSCSIAddr = (Ptr)0xF3000024;	// 32-bit access only!
 			hwDescPtr-> intFlagSCSIAddr = (Ptr)0xF300002C;		// 32-bit access only!

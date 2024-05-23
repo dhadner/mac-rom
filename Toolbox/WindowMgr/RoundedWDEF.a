@@ -45,7 +45,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “RoundedWDEF.a”
+;EASE$$$ READ ONLY COPY of file 'RoundedWDEF.a'
 ; 1.2	SES 08/22/1989  Removed references to nFiles.  Updated equates accordingly.
 ; 1.1	CCH 11/11/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.

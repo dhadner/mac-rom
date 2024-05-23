@@ -52,12 +52,12 @@
 //                                   VIA 1 list. <P11> 03/04/92 jmp Updated the comments and changed
 //                                   the names of some of the Civic-related equates. <P10> 02/28/92
 //                                   jmp (ejb) Turned off the DSP frame-interrupt enable bit so that
-//                                   DSP driver doesn’t suffer frame overrun when it trys to boot the
+//                                   DSP driver doesn't suffer frame overrun when it trys to boot the
 //                                   DSP. <P9> 02/20/92 jmp (JC,H14) Define PatchFlags in unused by
 //                                   of ROM header ($0014). Define PatchBits based on available
 //                                   features in BBSStartup. Include support for Horror based and
 //                                   Pandora (Cyclone) based ROMs. <P8> 2/19/92 chp (jmp,H13) Put a
-//                                   “hasSonora1” conditional around the Sonora video control
+//                                   'hasSonora1' conditional around the Sonora video control
 //                                   register base address to reflect impending hardware changes to
 //                                   Sonora. <P7> 02/07/92 jmp (HJR,H12) Added new Niagra Equates.
 //                                   (SWC,H11) One more go-round on MSC configuration: RAM bank 1
@@ -125,14 +125,14 @@
 //        <1>      8/8/91    SAM     Split off from 7.0 GM sources.
 //
 //
-//       <32>     10/1/91    JSM     Don’t use eclipseDebug.
-//       <31>     8/30/91    DTY     Complicate matters so onMac32 stuff doesn’t get defined for
-//                                   onMac, onMacPP, or onMacHc. (Since these aren’t defined in
+//       <32>     10/1/91    JSM     Don't use eclipseDebug.
+//       <31>     8/30/91    DTY     Complicate matters so onMac32 stuff doesn't get defined for
+//                                   onMac, onMacPP, or onMacHc. (Since these aren't defined in
 //                                   BBSStartup anymore, this is necessary.)
 //       <30>     8/22/91    JSM     Clean up header.
 //       <29>     7/24/91    MH      Added conditional wrapper(s) to prevent duplication of public
 //                                   interface declarations: TimeSCSIDB
-//       <28>     1/30/91    gbm     sab, #38: Change the ‘already including this file’ variable to
+//       <28>     1/30/91    gbm     sab, #38: Change the ‘already including this file' variable to
 //                                   all uppercase (for security reasons)
 //       <27>    11/26/90    gbm     (and bbm) On 7.0 (and other places eventually) HiIntMask will be
 //                                   $0700 instead of $0300 all the time, not just when on a
@@ -173,7 +173,7 @@
 //        <4>     1/30/90    BG      Added Eclipse-specific hardware constant definitions.
 //        <3>     1/18/90    SWC     Updating FMCInit and FMCRPUInit with the final values.
 //        <2>     1/12/90    CCH     Added missing ENDIF.
-//        <1>     1/11/90    CCH     Moved in private equates from “HardwareEqu.a”.
+//        <1>     1/11/90    CCH     Moved in private equates from 'HardwareEqu.a'.
 //
 //   NOTE:
 //
@@ -1108,7 +1108,7 @@
 // GSC register definitions (offsets from VDACAddr in ProductInfo) ($50F2 0000)                  <H5> jmp 
 //----------
 #define GSCDeviceID              $00                     // Device revision register; read only.
-#define GSCPanelID               $01                     // “Senseline” read/write register.
+#define GSCPanelID               $01                     // 'Senseline' read/write register.
 #define GSCPanelControl          $02                     // Switches r/w sense of PanelID reg.
 #define GSCPanelSetup            $03                     // Panel intialization register.
 #define GSCGrayScale             $04                     // The depth-switching register.
@@ -1119,7 +1119,7 @@
 #define GSCBlankShade            $09                     // Shade of gray for depth switches.
 #define GSCPanelSkew             $0A                     // Who knows?
 
-#define GSCDiag0                 $1D                     // Undocumented “diagnostic” registers.
+#define GSCDiag0                 $1D                     // Undocumented 'diagnostic' registers.
 #define GSCDiag1                 $1E
 #define GSCDiag2                 $1F
 
@@ -1224,7 +1224,7 @@
 #define Civic_VBLEnb             $110                    // Enables VBL interrupt.
 #define Civic_VBLClr             $120                    // Clear VBL interrupt.
 
-#define Civic_Enable             $004                    // Enables Civic’s timing generator (Casio).
+#define Civic_Enable             $004                    // Enables Civic's timing generator (Casio).
 #define Civic_Reset              $10C                    // Resets Casio.
 
 #define Civic_VDCInt             $008                    // Read-only VDC flag register.

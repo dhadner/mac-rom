@@ -11,7 +11,7 @@
 	 
 		<25>	10/20/92	DRF		Moved MODSQUAD globals to end of globals in an attempt to
 									minimize the a5 world differences when they are compiled-in.
-		<24>	 8/26/92	DTY		Change ModSquad’s funky conditional to use #ifdefs like everyone
+		<24>	 8/26/92	DTY		Change ModSquad's funky conditional to use #ifdefs like everyone
 									else.
 		<23>	 8/17/92	hjcr	Adding support for OCE's "defer drag" feature. Conditionally
 									compiled under MODSQUAD

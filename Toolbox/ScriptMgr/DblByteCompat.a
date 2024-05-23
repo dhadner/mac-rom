@@ -194,8 +194,8 @@ GetKanjiUserIDIntf Proc Export
 	bne.s	@noNew							; yes -> skip activate.
 	
 	;now get the boot drive so input method can find its dictionaries
-	lea.l	envRec(a6),a0					; get system folder's “volRefNum”.
-	moveq.l	#1,d0							; actually, it’s WDRefNum.
+	lea.l	envRec(a6),a0					; get system folder's 'volRefNum'.
+	moveq.l	#1,d0							; actually, it's WDRefNum.
 	_SysEnvirons							; this is calling OpenWD to get it.
 	move.w	SysEnvRec.sysVRefNum(a0),intfVol(a3)	; set new volume refnum.
 	clr.w	FISError(a4)					; clear the error value.

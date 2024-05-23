@@ -59,19 +59,19 @@
 ;									to 32 instead of 7. Parentheses have been added to override the
 ;									precedence.
 ;		<37>	 8/14/91	JL		Took ':' off of field names in the TogglePB record.
-;		<36>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<36>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<35>	 1/28/91	PKE		bbm: Add constants for use with CharType and Transliterate on
 ;									Chinese and Korean systems.
-;		<34>	 1/10/91	PKE		(csd) Change names for “ring” and “breve” constants (too
-;									ambiguous) to “ringMark” and “breveMark”.
+;		<34>	 1/10/91	PKE		(csd) Change names for 'ring' and 'breve' constants (too
+;									ambiguous) to 'ringMark' and 'breveMark'.
 ;		<33>	  1/2/91	PKE		(bbm) Updated comments and rearranged a few constants to match
 ;									latest Inside Mac summary. Added tokenCaret as correct spelling
 ;									for tokenCarat.
 ;		<32>	12/15/90	PKE		(KSM) Update some new constants used with 2-byte script systems.
 ;		<31>	12/14/90	SMB		(csd) I forgot the approval signature for the previous change.
 ;		<30>	12/14/90	SMB		Moving KeyScript verb, smKeyModalDialog, to ScriptPriv.a.
-;		<29>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1’ field to ‘format’, since that
+;		<29>	 9/16/90	PKE		In NItl4Rec, rename ‘resHeader1' field to ‘format', since that
 ;									is how we now use it.
 ;		<28>	 9/15/90	SMB		(PKE) Added itl2FormatOffset constant: offset to format word in
 ;									itl2 header. Defined format code, hdrExtensionsExist, indicating
@@ -156,9 +156,9 @@
 ;									conditionalization in itlcRecord, and renamed the now-shortened
 ;									reserved area from itlcReserved2 to itlcReserved3. Removed
 ;									DateTimeRec (conditionalized out anyway). Gave new names
-;									‘IUNSortFrame’ and ‘nItl4Rec’ to the extended versions of
+;									‘IUNSortFrame' and ‘nItl4Rec' to the extended versions of
 ;									IUSortFrame and Itl4Rec, and unconditionalized the old versions
-;									so they don’t change. Removed all bigBangEquates conditionals.
+;									so they don't change. Removed all bigBangEquates conditionals.
 ;		 <4>	 1/17/90	PKE		Added itlcRegionCode field to itlcRecord. Fixed some tabs and
 ;									comments.
 ;		 <3>	 1/17/90	PKE		Added new constants: smCyrillic as synonym for smRussian, new
@@ -695,10 +695,10 @@ acuteUprO 		EQU 		$EE       				; Ó
 circumflexUprO	EQU 		$EF       				; Ô
 appleLogo 		EQU 		$F0       				; 
 graveUprO 		EQU 		$F1       				; Ò
-acuteUprU 		EQU 		$F2       				; Ú
-circumflexUprU	EQU 		$F3       				; Û
+acuteUprU 		EQU 		$F2       				; '
+circumflexUprU	EQU 		$F3       				; '
 graveUprU 		EQU 		$F4       				; Ù
-dotlessLwrI   	EQU 		$F5       				; ı
+dotlessLwrI   	EQU 		$F5       				; '
 circumflex		EQU 		$F6       				; ˆ
 tilde 			EQU 		$F7       				; ˜
 macron			EQU 		$F8       				; ¯

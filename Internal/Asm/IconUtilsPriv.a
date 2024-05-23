@@ -22,7 +22,7 @@
 ;		<10>	 2/25/91	DC		KSM-changed pascal-type comments for _PlotIconHandle macro for
 ;									PlotCIconHand(… to PlotIconHandle(… (no bug number but only a
 ;									comment change)
-;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <9>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <8>	  1/7/91	JDR		(dba) Removing private Icon Utilities routines from the public
 ;									interfaces and adding them here.

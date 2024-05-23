@@ -31,7 +31,7 @@ patchVarSize	equ	*
 			ENDR
 			
 ;
-;	To reduce the amount of memory that’s used we attempt to remove this patch from _InitFonts
+;	To reduce the amount of memory that's used we attempt to remove this patch from _InitFonts
 ;	at the end of the patch.  If we determine that someone else patched _InitFonts before we
 ;	got called (unlikely, but it could happen), the following bra.s instruction is changed to
 ;	a jmp, and we reduce the size of our memory block down to 6 bytes, just enough to hold the
@@ -46,21 +46,21 @@ startInitFontsPatch
 
 ;
 ;	This code should only be run if the switch launch is coming from Finder 6.x  Check the code
-;	at the return address on the stack to make sure it’s 6.x code.  If it isn’t, generate a
+;	at the return address on the stack to make sure it's 6.x code.  If it isn't, generate a
 ;	dsOldSystem System Error.  If it is Finder 6.x, add 4 bytes to the return address, since we
 ;	want to bypass the Finder changing the value in BootDrive, since we closed the System 7 System
 ;	file, and re-opened the old System file, so everything is the way it was before Finder started
-;	switch launch, except Finder doesn’t know that, so we have to fool it.
+;	switch launch, except Finder doesn't know that, so we have to fool it.
 ;
 ;	(SP) (Before) --->	31C3 0210		move.w	d3,BootDrive
 ;	(SP) (After)  --->	508f			addq.l	#8,sp
 ;
 		move.l	(sp),a0					; Get the return address, and check the next instruction
-		cmpi.l	#$31c30210,(a0)+		; to make sure it’s a move.w D3,BootDrive
+		cmpi.l	#$31c30210,(a0)+		; to make sure it's a move.w D3,BootDrive
 		bne.s	FinderTooOld			; If not, force a System Error.
 		move.l	a0,(sp)					; Put our modified return address back on the stack
 										
-;	If we’re here, then we should close the System 7 System file, and re-open the System 6
+;	If we're here, then we should close the System 7 System file, and re-open the System 6
 ;	System file, and re-initialise the system resource map.
 										
 		clr.w	-(sp)
@@ -79,8 +79,8 @@ startInitFontsPatch
 		_SetVol
 
 ;
-;	_InitResources returns the reference number of the System file on the stack, but since there’s a nice big
-;	parameter block already there, there’s no REAL reason to allocate a word for the reference number, since
+;	_InitResources returns the reference number of the System file on the stack, but since there's a nice big
+;	parameter block already there, there's no REAL reason to allocate a word for the reference number, since
 ;	the next call to _SetVol will reset that word anyway.
 ;	
 
@@ -91,7 +91,7 @@ startInitFontsPatch
 		_SetVol
 
 		add.w	#ioFQElSize,sp			; Get rid of our parameter block
-		unlk	a6						; We don’t need our stack frame any more
+		unlk	a6						; We don't need our stack frame any more
 ;
 ;	Remove this patch
 ;
@@ -101,16 +101,16 @@ startInitFontsPatch
 		move.l	a0,d0
 		_StripAddress					; Clean this guy off
 		move.l	d0,a0					; Save it
-		lea		InitFontsPtch,a1		; Get InitFontsPtch’s entry point
+		lea		InitFontsPtch,a1		; Get InitFontsPtch's entry point
 		move.l	a1,d0
 		_StripAddress					; Cleanse ourselves of dirty bits
 
 		exg		a0,d0					; Ensure that entry point of InitFontsPtch is in A0 for _RecoverHandle later
-		cmp.l	d0,a0					; Make sure we’re the most recent patch on _InitFonts
+		cmp.l	d0,a0					; Make sure we're the most recent patch on _InitFonts
 		bne.s	gotPatched				; If not, we do some fancy byte saving
 		
 		_RecoverHandle ,SYS
-		_DisposHandle					; Free up the memory we’re using
+		_DisposHandle					; Free up the memory we're using
 		
 		move.w	#kInitFontsTrap,d0
 		move.l	oldInitFont,a0
@@ -118,12 +118,12 @@ startInitFontsPatch
 		jmp		(a0)					; Continue with _InitFonts
 
 ;
-;	There’s a patch in front of us on _InitFont, so we can’t remove ourselves,
-;	but we can reduce the space we’re taking up to 6 bytes:
+;	There's a patch in front of us on _InitFont, so we can't remove ourselves,
+;	but we can reduce the space we're taking up to 6 bytes:
 ;	Since the address of the next _InitFonts routine is stored in bytes 2 thru 5 of this patch,
 ;	the preceding two byte bra.s instruction can be changed to a jmp, which would then use
 ;	oldInitFonts as the effective address to jump to.  So, when this patch gets called again, 
-;	it will jump straight to the next _InitFonts patch/routine, since InitFontsPtch has done it’s
+;	it will jump straight to the next _InitFonts patch/routine, since InitFontsPtch has done it's
 ;	job.
 
 gotPatched
@@ -134,11 +134,11 @@ gotPatched
 		_SetHandleSize					; Reduce our memory block down to size of jump.
 										; This needs to be changed to something safer, because the Memory Manager
 										; may move a block into this space when the patch gets cut back, and we
-										; wouldn’t be here any more.
+										; wouldn't be here any more.
 		bra.s	InitFontsPtch			; Since this is a jump now, we can just branch back to it to call the next routine
 		
 ;
-;	InitFontsPtch checks specifically for code in Finder 6.x.  Anything else isn’t handled, and
+;	InitFontsPtch checks specifically for code in Finder 6.x.  Anything else isn't handled, and
 ;	will generate a dsOldSystem system error.
 ;
 

@@ -10,13 +10,13 @@
 ;	Change History (most recent first):
 ;
 ;		 <1>	10/14/91	JSM		first checked in
-;	   <1.0>	11/16/89	CCH		Adding from “LM Equates.a”
+;	   <1.0>	11/16/89	CCH		Adding from 'LM Equates.a'
 ;	   <1.0>	11/16/89	WTO		Initial checkin.
 ;
 ;
 
-;EASE$$$ READ ONLY COPY of file “LMEquates.a”
-; 1.0	CCH 11/16/1989 Adding from “LM Equates.a”
+;EASE$$$ READ ONLY COPY of file 'LMEquates.a'
+; 1.0	CCH 11/16/1989 Adding from 'LM Equates.a'
 ; END EASE MODIFICATION HISTORY 
 ; 1.0	WTO 11/16/1989 Initial checkin.
 ; END EASE MODIFICATION HISTORY 

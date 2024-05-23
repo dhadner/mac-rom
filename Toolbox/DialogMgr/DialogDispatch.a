@@ -45,7 +45,7 @@
 ;		 <5>	  7/2/90	KSM		Add interface to the new standard filter proc.
 ;		 <4>	  6/8/90	KSM		Fix stack frame for IsFrontWindowModal.
 ;		 <3>	  6/8/90	KSM		Add Is[Front]WindowModal calls.
-;		 <2>	  6/7/90	KSM		Check in ate my “load 'StandardEqu.d'”.
+;		 <2>	  6/7/90	KSM		Check in ate my 'load 'StandardEqu.d''.
 ;		 <1>	  6/7/90	KSM		First checked in.
 ;		 <0>	  6/7/90	KSM		New today.
 ;
@@ -213,7 +213,7 @@ rName			ds.b		256					; resName
 				bne.s	@returnWithNoErr
 
 
-; The variant is dBoxProc or movableDBoxProc, but of which WDEF?  Let’s find out…
+; The variant is dBoxProc or movableDBoxProc, but of which WDEF?  Let's find out…
 ;
 @wasPossiblyModal
 
@@ -864,7 +864,7 @@ event			ds.l		1				; the event record to check
 				beq.s		ReturnTrue		; if so then this is a cancel key
 				move.w		evtMeta(a0),d0
 				btst		#cmdKey,d0		; is command key down?
-				beq.s		ReturnFalse		; if not, then can’t be command period and can’t be cancel
+				beq.s		ReturnFalse		; if not, then can't be command period and can't be cancel
 
 				subq		#2,sp
 				push.l		a0				; keyEvent: EventRecord
@@ -931,7 +931,7 @@ GotUserCanceled
 				moveq.l	#userEventsMask,d0	; tell it which events to get
 				_GetOSEvent
 				tst.b	d0
-				bne.s	Done				; no event, so the world doesn’t make sense, get out though
+				bne.s	Done				; no event, so the world doesn't make sense, get out though
 				bsr.s	EventIsUserCanceled	; is it the user canceled event we found earlier?
 				beq.s	@loop				; no, continue looping and trying to get it
 

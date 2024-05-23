@@ -251,7 +251,7 @@ resource 'STR#' (rPublisherOptionsStrings, purgeable) { {
 
 
 
-// “Remove Section” dialog: keep bounds within main dialog to allow updates
+// 'Remove Section' dialog: keep bounds within main dialog to allow updates
 resource 'DLOG' (rRemoveYesNoDialog, purgeable)
 	{ {0, 0, 80, 200}, dBoxProc, invisible, noGoAway, 0, rRemoveYesNoDialog, "", centerParentWindow };
 resource 'DITL' (rRemoveYesNoDialog, purgeable)
@@ -263,7 +263,7 @@ resource 'DITL' (rRemoveYesNoDialog, purgeable)
 
 
 
-// “Open Publisher Error” dialog: keep bounds within main dialog to allow updates
+// 'Open Publisher Error' dialog: keep bounds within main dialog to allow updates
 resource 'DLOG' (rOpenPublisherErrorDialog, purgeable)
 	{ {0, 0, 120, 290}, dBoxProc, invisible, noGoAway, 0, rOpenPublisherErrorDialog, "", centerParentWindow };
 resource 'DITL' (rOpenPublisherErrorDialog, purgeable)
@@ -274,7 +274,7 @@ resource 'DITL' (rOpenPublisherErrorDialog, purgeable)
 	} };
 
 
-// “Reconnect Error” dialog: keep bounds within main dialog to allow updates
+// 'Reconnect Error' dialog: keep bounds within main dialog to allow updates
 resource 'DLOG' (rReconnectErrorDialog, purgeable)
 	{ {0, 0, 110, 280}, dBoxProc, invisible, noGoAway, 0, rReconnectErrorDialog, "", centerParentWindow };
 resource 'DITL' (rReconnectErrorDialog, purgeable)

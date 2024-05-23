@@ -172,7 +172,7 @@ enum {
    fragHadSoftUnresolveds      = -2808,   // loaded fragment has acceptable unresolveds
    fragNoMem                   = -2809,   // out of memory for interal bookkeeping
    fragNoAddrSpace             = -2810,   // out of memory in user's address space for loadable section
-   fragNoContextIDs            = -2811,   // no more context id’s
+   fragNoContextIDs            = -2811,   // no more context id's
    fragObjectInitSeqErr        = -2812,   // order error during user initialization function invocation
    fragImportTooOld            = -2813,   // import library was too old and therefore incompatible
    fragImportTooNew            = -2814,   // import library was too new and therefore incompatible

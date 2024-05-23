@@ -22,7 +22,7 @@
 ;	   <H19>	 7/17/92	SWC		Updated PG&E code to revision a7.00.
 ;	   <H18>	  7/8/92	SWC		Updated PG&E code to revision a6.11.  Changed the way we
 ;									determine which image to load to be table driven instead of
-;									using a string of TestFor’s.
+;									using a string of TestFor's.
 ;	   <H17>	  7/6/92	SWC		Updated PG&E code to revision a6.08.
 ;	   <H16>	 6/24/92	SWC		Updated PG&E code to revision a6.01.
 ;	   <H15>	  6/5/92	SWC		Updated PG&E code to revision a5.00.

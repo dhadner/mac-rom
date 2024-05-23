@@ -16,8 +16,8 @@
 ;									picsize but don't update picIndex.
 ;		<34>	  2/3/92	KON		Fix problem with GetForeColor trashing memory on classicQD
 ;									machines.
-;		<33>	 8/30/91	DTY		Define onMac to keep GrafTypes.m.a happy.  (It’s not a feature
-;									in BBSStartup any more which is why it’s defined here.)  Also
+;		<33>	 8/30/91	DTY		Define onMac to keep GrafTypes.m.a happy.  (It's not a feature
+;									in BBSStartup any more which is why it's defined here.)  Also
 ;									define hasCQD to be false.  (This is a patchfile for black and
 ;									white machines, after all…)
 ;		<32>	 8/23/91	JSM		Remove benign redefinition of TRUE and FALSE, which are now
@@ -2109,7 +2109,7 @@ PatchShowCursor PROC EXPORT
 		ADDQ	#1,CRSRSTATE					;CURSOR HIDDEN ONE LESS DEEP
 		BLT.S	DoneHide						;QUIT IF STILL HIDDEN
 		clr.b	CrsrObscure						;unobscure if level goes +
-		subq	#1,CrsrState					; setup for ROM’s ADDQ #1			<21>
+		subq	#1,CrsrState					; setup for ROM's ADDQ #1			<21>
 		jmpOld									; call the ROM (or other patcher)	<21>
 DoneHide
 		jmpROM	ROMShowCrsr

@@ -3,7 +3,7 @@
 ;
 ;	Contains:	Menu Manager for MacIntosh User Interface ToolBox
 ;
-;				This file contains the MacIntosh menu manager, which is based on Bill Atkinson’s
+;				This file contains the MacIntosh menu manager, which is based on Bill Atkinson's
 ;				Lisa menu manager.
 ;
 ;	Written by:	Andy Hertzfeld
@@ -44,13 +44,13 @@
 ;									<30>	  6/1/92	DTY		Remove InsrtResMenu from this file. Always use the one from
 ;																MenuMgr.c.  Make GetIndex an Exported procedure so that it can
 ;																be used from MenuDispatch.a in the ROM build.
-;									<29>	 5/24/92	JSM		Don’t use forTesting (always false), TearOffMenus (always
+;									<29>	 5/24/92	JSM		Don't use forTesting (always false), TearOffMenus (always
 ;																false), or ScriptMgrKeyboardMenu (always true) conditionals.
 ;									<28>	 5/14/92	KSM		#1028474,<DCC>: Speed up MenuKey by not upper-casing the command
-;																key character for a menu item when there isn’t one (ASCII NULL).
+;																key character for a menu item when there isn't one (ASCII NULL).
 ;									<27>	 5/14/92	KSM		#1029927,<DCC>: Roll back to version <19> (what an unbelievable
 ;																mess!).
-;	  <SM10>	 5/27/92	JSM		Changes from Reality: Don’t use forTesting (always false) or
+;	  <SM10>	 5/27/92	JSM		Changes from Reality: Don't use forTesting (always false) or
 ;									TearOffMenus (always false). NOTE: Before this file is rolled
 ;									back into Reality, someone needs to put back in all the forROM
 ;									and hasCQD conditionals Philip deleted. This file •is• used in
@@ -78,9 +78,9 @@
 ;									PatchInsertMenu in SystemMenuPatch.a
 ;		 <>							• HMClearMenuBarPatch still needs to be rolled in •
 ;		 <1>						• Pre-SuperMario comments follow •
-;		<26>	 1/25/92	csd		In order to let Cube-E go alpha, I’m reversing the change to
+;		<26>	 1/25/92	csd		In order to let Cube-E go alpha, I'm reversing the change to
 ;									GetMenuBar that was made in <22> (the change history says it was
-;									made in <24>) since it doesn’t work.
+;									made in <24>) since it doesn't work.
 ;		<25>	 1/21/92	PN		Get rid of duplicate EQU in MenuMgr.a
 ;									(CmdChar,MenuResult,mItemResult,searchMenu HorRMenus,KeyFrame)
 ;		<24>	 1/21/92	PN		Rolled in SetMenuBarAddsSystemMenus from SystemMenusPatch.a
@@ -108,7 +108,7 @@
 ;		<16>	  7/9/91	JSM		Remove obsolete 7.0 related SysVers conditionals.
 ;		<15>	 3/31/91	dba		gbm, csd: change DisposeMenu so it handles properly the case
 ;									when a resource-based menu has been purged
-;		<12>	  3/6/91	gbm		dba: Take out change <11>, because Philip didn’t understand that
+;		<12>	  3/6/91	gbm		dba: Take out change <11>, because Philip didn't understand that
 ;									this would break the system build.
 ;		<11>	  3/5/91	PN		Fix the warning by putting back the END statement at the end
 ;		<10>	12/14/90	KSM		<dba>Fix bug in MenuKey where it is BTSTing a register for each
@@ -117,11 +117,11 @@
 ;		 <9>	 9/28/90	KSM		<dba>Guarantee A5 world for calls into MDEFs.
 ;		 <8>	 9/15/90	KSM		Patch InsMenuItem to fix a PixelPaint bug!!*!
 ;		 <7>	 7/30/90	KSM		On the first day Ed was gone, we found a bug he created in
-;									version 2. An arbitrary line in “MenuChanged” was commented out.
-;		 <6>	 7/26/90	KSM		fix Darin’s stupid STRING ASIS bug
-;		 <5>	 7/23/90	dba		change name of GetItemStyle so it doesn’t conflict with glue
+;									version 2. An arbitrary line in 'MenuChanged' was commented out.
+;		 <6>	 7/26/90	KSM		fix Darin's stupid STRING ASIS bug
+;		 <5>	 7/23/90	dba		change name of GetItemStyle so it doesn't conflict with glue
 ;		 <4>	 5/13/90	SMB		Removed SMgr patches in InitMenus and DrawMenuBar if not
-;									‘ForROM’ since adding the Keyboard Menu. Will not patch out the
+;									‘ForROM' since adding the Keyboard Menu. Will not patch out the
 ;									ROM version of InitMenus since its call to SMgrCalcRect is
 ;									harmless. However, am patching the SMgr's SwapIcon routine
 ;									(called by DrawMenuBar) to do nothing. Need ScriptPriv.a all the
@@ -157,16 +157,16 @@
 ;	   <1.4>	 4/29/89	KSM		Updated comments for 1.3
 ;	   <1.3>	 4/25/89	KSM		Fixed GetMenuBar bug <BRC#41545> to check for NIL MenuList and
 ;									returns NIL instead of crashing. This problem exists because
-;									MultiFinder "faceless" applications don’t call
+;									MultiFinder "faceless" applications don't call
 ;									InitWindows/InitMenus, but they do call SystemTask or
 ;									WaitNextEvent which allows drivers to run. Drivers (like Deneba
-;									Software’s Spelling Coach) which call GetMenuBar when the
+;									Software's Spelling Coach) which call GetMenuBar when the
 ;									Backgrounder is running - CRASH.
 ;									Also Fixed DelMCEntries bug <BRC#40826> to correctly delete
 ;									the entries in the table correctly (not just 1st one). Also
 ;									keeps it from running rampant thru memory if next to last was
 ;									deleted.
-;	   <1.2>	 2/20/89	rwh		re-spelled conditional in comment, won’t show up in searches.
+;	   <1.2>	 2/20/89	rwh		re-spelled conditional in comment, won't show up in searches.
 ;	   <1.1>	11/10/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
 ;	   <1.5>	 11/2/88	GGD		Got rid of machine specific conditionals in favor of feature
@@ -183,7 +183,7 @@
 ;	PMAB539>	 7/19/88	EMT		PopUpMenuSelect will now call CalcMenuSize when it invalidates
 ;									sizes.
 ;	 <PP467>	 4/18/88	DHD		Fix InsertMenu patch to compare with -1 instead of checking
-;									negative for BeforeID’s throughout the code. This was already
+;									negative for BeforeID's throughout the code. This was already
 ;									done for the first test, but subsequent ones were missed. See
 ;									PMAB214.
 ;	  <•1.1>	 3/22/88	EMT		Roll in menu manager patches from 6.0 system.
@@ -192,13 +192,13 @@
 ;	PMAB364>	 1/23/88	EMT		Fix Pop-up menus to come up on any screen
 ;	PMAB303>	11/21/87	EMT		Use ROM override to install MBDF from S297 instead of
 ;									MBDFPatchHndl.
-;	PMAB282>	 9/20/87	FJL		Don’t let DelMenuItem fool with EnableBits when item > 31.
+;	PMAB282>	 9/20/87	FJL		Don't let DelMenuItem fool with EnableBits when item > 31.
 ;	PMAB280>	 9/18/87	FJL		Set MBarEnable around SystemMenu call only if MBar not already
 ;									owned by DA.
 ;	PMAB280>	 9/18/87	FJL		Removed some overzealous lines added in PMAB255
-;	PMAB255>	  9/1/87	FJL		Call HiliteMenu around DrawMenuBar so don’t leave any bits
+;	PMAB255>	  9/1/87	FJL		Call HiliteMenu around DrawMenuBar so don't leave any bits
 ;									behind dangling.
-;	PMAB255>	 8/31/87	FJL		Don’t insert enable bit if item is > 31
+;	PMAB255>	 8/31/87	FJL		Don't insert enable bit if item is > 31
 ;	PMAB233>	  8/7/87	FJL		HiliteMenu must do nothing if MBarHeight <= 3.
 ;	PMAB214>	 7/20/87	FJL		InsertMenu inserts in HMenuList if (beforeID == -1) rather than
 ;									(<= -1)
@@ -214,7 +214,7 @@
 ;	  <C826>	 2/17/87	FJL		Fixed FlashMenuBar to pass MenuList offset to mbarproc rather
 ;									than menuID.
 ;	  <C808>	 2/13/87	FJL		Changed AddResMenu to call IUMagString. To do so needed to lock
-;									the menuHandle. This causes problems with Munger since it can’t
+;									the menuHandle. This causes problems with Munger since it can't
 ;									relocate the locked block. Therefore only lock the handle around
 ;									the IUMagString call.
 ;	  <C466>	 12/2/86	FJL		EnableItem and DisableItem now ignore items > 31.
@@ -236,7 +236,7 @@
 ;									error. Problem when moved mouse out of menu bar quickly, fixed
 ;									with change in MenuSelect. Scrolling menus were drawing outside
 ;									of their region, so set ClipRect in DrawTheMenu. Changed
-;									InitMenus so doesn’t realloc menu struct if global menuList is
+;									InitMenus so doesn't realloc menu struct if global menuList is
 ;									not NIL (this allows InitWindows to call InitMenus to get
 ;									MBarHeight without reallocing space when user calls InitMenus).
 ;									Fix to _HiliteMenu -- when HiliteMenu was called with a
@@ -284,7 +284,7 @@
 ;									called before drawing.
 ;				  3/5/85	EHB		Call CalcMenuSize, if necessary, before drawing
 ;				  3/5/85	EHB		In AddResMenu, preserve state of resLoad
-;				 1/24/85	EHB		In SetItemProperty, don’t CalcMenuSize if item = check mark
+;				 1/24/85	EHB		In SetItemProperty, don't CalcMenuSize if item = check mark
 ;				 1/24/85	EHB		Preserved the clip region in FlashMenuBar
 ;				 1/24/85	EHB		Tweaked DrawTheMenu to not save the menu bar
 ;				 1/24/85	EHB		Reset alarm parity in DrawMenuBar
@@ -292,13 +292,13 @@
 ;				 8/27/83	AJH		saved a little code in CalcMenuSize (use common subroutine)
 ;				 8/27/83	AJH		Made it include "SysErr"
 ;				 8/27/83	AJH		handled out of memory case in SaveBits by deep-shitting
-;				 8/23/83	BLH		(with LAK) Fixed bug in GetMHandle (didn’t return result!)
+;				 8/23/83	BLH		(with LAK) Fixed bug in GetMHandle (didn't return result!)
 ;				 8/19/83	AJH		Moved loc of menu flash bits.
 ;				 8/13/83	SC		The code scrunch-a-matic pass... Made NoIndex fall into GotIndex
 ;									Moved getIndex, invertTitle.  Added utility GetNInvert.  Made
 ;									saveBits inline.
 ;				  8/9/83	AJH		Made it reference "WmgrGray"
-;				 6/30/83	AJH		fixed bug in InsrtResMenu when there’s none of that type
+;				 6/30/83	AJH		fixed bug in InsrtResMenu when there's none of that type
 ;				 6/15/83	AJH		Added InsrtResMenu
 ;				 6/14/83	AJH		made SetItem call CalcMenuSize
 ;				 5/18/83	AJH		fixed GetMHandle bug
@@ -336,7 +336,7 @@
 ;				  9/7/82	AJH		Added "DrawMBar" entry point
 ;				  9/7/82	AJH		Made DrawMBar a separate routine to save code
 ;				 8/22/82	AJH		Got rid of menu manager dependency on icon manager
-;				  8/2/82	AJH		Converted for new memory manager; no more oh’s!
+;				  8/2/82	AJH		Converted for new memory manager; no more oh's!
 ;				 7/24/82	AJH		Fixed left corner problem in DrawMenuBar
 ;				 6/29/82	AJH		New today.
 ;
@@ -397,11 +397,11 @@ GetParamRamData	PROC	ENTRY
 @SetLowMem		move.l	mbSaveLoc, a0			; see if need to set defaults
 				move.l	(a0), a0				; dereference
 				tst.b	mbMenuDelay(a0)
-				bne.s	@1						; not zero --> don’t set default
+				bne.s	@1						; not zero --> don't set default
 				addi.b	#8, mbMenuDelay(a0)		; default == 8 Ticks (tried and true by FJL)
 
 @1				tst.b	mbMenuDrag(a0)
-				bne.s	@GetParmDone			; not zero --> don’t set default
+				bne.s	@GetParmDone			; not zero --> don't set default
 				addi.b	#60, mbMenuDrag(a0)		; default == 1 second (no reason not to be huge
 												;	default value because of way dragging works)
 @GetParmDone
@@ -470,7 +470,7 @@ IMCommon										; D0 contains resID now.				<PMAB568 07Sep88 EMT> <2.4>
 				move.l	d0,a0					; get the menu list; it already exists		<2.5>
 				move.l	(a0),a0					; dereference the menu list					<2.5>
 				move.w	d1,mbResID(a0)			; store MBDF ID								<2.5>
-				bra.s	IMDone					; now, we’re done							<2.5>
+				bra.s	IMDone					; now, we're done							<2.5>
 
 CreateMenuList
 
@@ -508,7 +508,7 @@ IMDone
 
 				RTS								; <SM13> this was mistakenly deleted at some point
 
-; InitMList alloc’s a menuList with no menus and no hierarchical menus					<FJL C222>
+; InitMList alloc's a menuList with no menus and no hierarchical menus					<FJL C222>
 				ENTRY	InitMList
 InitMList
 				moveq	#mctEntrySize, d0		; allocate one record in the color tbl	<FJL C408>
@@ -605,7 +605,7 @@ GetMenuRgn		Proc	Export
 ; Utility GetMenuRgn -- returns the region occupied by the MenuBar.
 ;
 				Move.l	(Sp)+,D0				; Save the return address.
-				Move.l	(Sp)+,D1				; Get the caller’s RgnHandle.
+				Move.l	(Sp)+,D1				; Get the caller's RgnHandle.
 				Move.l	D0,-(Sp)				; Restore return address.
 				Moveq	#12,D0					; Call MBarProc to return RgnHandle.
 				Import	CallMBarProc
@@ -632,7 +632,7 @@ CallMBarProc
 ;	mbResID: comes from menuList
 ;	mbVariant: the low 3 bits of mbResID are the variant
 ;
-;	Note that we store the MBDF’s Hndl in low memory location MBDFHndl but this is for
+;	Note that we store the MBDF's Hndl in low memory location MBDFHndl but this is for
 ;	convenience only.  We do not count on its being there between calls to this utility.
 ;
 ;-------------------------------------------------------------------------------------------
@@ -705,7 +705,7 @@ DELETEMENU		PROC	EXPORT
 
 				IMPORT	GetIndex
 				BSR		GETINDEX				; get the index into D0
-				beq.s	TwoBytExit				; didn’t find either, so nada to delete		<FJL C222>
+				beq.s	TwoBytExit				; didn't find either, so nada to delete		<FJL C222>
 
 @FoundMenu
 				IMPORT	GetA1List
@@ -760,7 +760,7 @@ GetHIndex		PROC	ENTRY
 ;
 ;	GetHIndex is similar to GetIndex but it looks thru the hierarchical menu list for a	<FJL C222>
 ;	menu of the given menuID.  The menuID is passed in D1 and the index is returned in	<FJL C222>
-;	D0.  If the menuID can’t be found, D0 returns zero.  If D1 = $FFFFFFFF then D0 returns <FJL C222>
+;	D0.  If the menuID can't be found, D0 returns zero.  If D1 = $FFFFFFFF then D0 returns <FJL C222>
 ;	the index to the HMenu header info.  The z-flag can be used to determine if one was <FJL C222>
 ;	found.
 ;
@@ -844,9 +844,9 @@ INSERTMENU		PROC	EXPORT
 ;	PROCEDURE InsertMenu(menu: menuInfoHandle; beforeId: INTEGER);
 ;
 ;		insert a menu into the menuList.  beforeID is the menuID of the menu
-;	that the new menu should be inserted before.  If beforeID can’t be found,
+;	that the new menu should be inserted before.  If beforeID can't be found,
 ;	the new menu is inserted at the end of the list.  If the menu is already
-;	in the list, don’t insert it
+;	in the list, don't insert it
 ;
 ;	If beforeID = -1 then insert menu at front of HMenuList						<FJL C222>
 ;	Used < 0 as the criteria for inserting in HMenus, changed to = -1			<FJL 8May87>
@@ -963,7 +963,7 @@ OldInsertMenu
 				MOVE	menuID(a0), d1			; get menuId of menu to be installed
 				IMPORT	GetIndex
 				BSR		GETINDEX				; is it already in the list?
-				BNE		@DONEINSERT				; don’t insert same one twice
+				BNE		@DONEINSERT				; don't insert same one twice
 
 				move.w	16(SP),d1				; get beforeID
 				BSR		GETINDEX				; get index into menuList of beforeID menu
@@ -987,7 +987,7 @@ OldInsertMenu
 				move	menuID(a0), d1			; get menuId of menu to be installed
 				IMPORT	GetHIndex
 				bsr		GetHIndex				; is it already in the list?
-				bne.s	@DoneInsert				; don’t insert same one twice
+				bne.s	@DoneInsert				; don't insert same one twice
 
 				addq	#6, lastHMenu(a3)		; bump total of HMenus
 				move.l	MinusOne, d1			; set up for GetHIndex call
@@ -1024,7 +1024,7 @@ OldInsertMenu
 				clr.l	-(SP)					; no target string
 				clr.l	-(SP)					; len1 = 0 ===> want an insert
 				move.l	a0, -(SP)				; push replacement string
-				move.l	#6, -(SP)				; and it’s length
+				move.l	#6, -(SP)				; and it's length
 				_Munger							; oooohhh -- aaaahhh -- do it baby
 				addq	#4, SP					; ignore dem results
 
@@ -1059,12 +1059,12 @@ DRAWMENUBAR		PROC	EXPORT
 ;
 ;	PROCEDURE DrawMenuBar -- draw the current menuList on the menuBar
 ;
-;	Call HiliteMenu around DrawMenuBar so that don’t have dangling bits behind all around <FJL PMAB255>
+;	Call HiliteMenu around DrawMenuBar so that don't have dangling bits behind all around <FJL PMAB255>
 ; 	Clear the low memory bits whenever we draw the menu bar.
 
 ; <SM17> CSS
 ;Roll in SynchKeyboardMenuState —	Make sure the keyboard menu state corresponds to the
-;							application’s desired setting (enable/disable) in the
+;							application's desired setting (enable/disable) in the
 ;							application-specific global flag, scriptDisableKybds
 ; from MenuMgrPatch.a, this patch says that it shouldn't be rolled in because the
 ; it should be in the process manager.  Well, for 7.1 it is not in the process manager,
@@ -1125,7 +1125,7 @@ FlashMenuBar	PROC	EXPORT
 				move	4(SP), d1				; get menuID of new selection		<FJL C826>
 				IMPORT	GetIndex
 				bsr		GetIndex				; convert ID to offset in menuList	<FJL C826>
-				beq.s	@FlashExit				; couldn’t find in list, so exit	<FJL C826>
+				beq.s	@FlashExit				; couldn't find in list, so exit	<FJL C826>
 				IMPORT	TurnIndexOff
 				bsr		TurnIndexOff			; MenuList offset is in D0				<FJL C826>
 				clr		theMenu					; clear low-mem theMenu to show no menu hilited
@@ -1144,7 +1144,7 @@ FlashMenuBar	PROC	EXPORT
 
 TurnIndexOff	PROC	ENTRY
 ;--------------------------------------------------------------------------------------------
-; TurnIndexOff and TurnIndexOn take a menuIndex in D0 and set it’s hilite state
+; TurnIndexOff and TurnIndexOn take a menuIndex in D0 and set it's hilite state
 ;	to the appropriate level.  These calls replace InvertTitle.
 ;
 ; On Entry:		D0		Offset into MenuList of menu to be hilited/unhilited
@@ -1171,7 +1171,7 @@ HILITEMENU		PROC	EXPORT
 ;	PROCEDURE HiliteMenu(menuID: INTEGER);	-- hilite the title of the menu with the
 ;	specified menuID.  Since only one menu can be hilited at a time, unhilite any other one
 ;
-; if MBarHeight <= 3 then don’t hilite.  Otherwise MBarProc will save off a VERY LARGE
+; if MBarHeight <= 3 then don't hilite.  Otherwise MBarProc will save off a VERY LARGE
 ; handle for the bits behind the menu title.
  
 ; HiliteMenu draw menu bar if invalid
@@ -1198,7 +1198,7 @@ menuID			ds.w		1					; the menuID <SM5> <PN>
 ; first, turn off the current hilited title if present
 
 @HeightOK		MOVE.W	theMenu,D1				; get the currently hilited menu
-				BEQ.S	HLOn					; if theMenu is 0, then don’t unhilite	<DAF 20Aug86>
+				BEQ.S	HLOn					; if theMenu is 0, then don't unhilite	<DAF 20Aug86>
 				CMP.W	(SP),D1					; is this the currently hilited menu	<DAF 20Aug86>
 				BEQ.S	HLDone					; already hilited, so skip				<DAF 20Aug86>
 
@@ -1227,8 +1227,8 @@ HLOn
 HLDone				
 				MOVE.W	(SP)+,theMenu			; update theMenu					<FJL C175>
 				bra		Done
-; don’t store the menuID if we couldn’t find the index.  No index means the			<FJL C175>
-; menuID doesn’t exist on the menu bar, and storing a non-existent menuID			<FJL C175>
+; don't store the menuID if we couldn't find the index.  No index means the			<FJL C175>
+; menuID doesn't exist on the menu bar, and storing a non-existent menuID			<FJL C175>
 ; in theMenu global causes the next HiliteMenu(0) to flip the bar (ugh-ly).			<FJL C175>
 HLNone						; get the return address			<FJL C175>
 				addq.l	#2, SP					; throw away the parameter			<FJL C175>
@@ -1254,7 +1254,7 @@ ENABLEITEM		PROC	EXPORT
 				ENTRY	EnableCom
 ENABLECOM
 
-				MOVE.L	D1,MENUENABLE(A0)		; update the menu’s flags
+				MOVE.L	D1,MENUENABLE(A0)		; update the menu's flags
 
 				ENTRY	EnableDone
 EnableDone
@@ -1490,7 +1490,7 @@ OrigninalMenuSelect
 				CLR.W	-(SP)					;push zero for this
 				_WaitMouseUp					;is the mouse still down?
 				TST.B	(SP)+					;examine result
-				BEQ		DONEMSELECT				;if not still down, don’t bother
+				BEQ		DONEMSELECT				;if not still down, don't bother
 
 ; need to set the port here else ClipRects do not work
 
@@ -1535,7 +1535,7 @@ OrigninalMenuSelect
 ;------------------------------------------------
 ;	Menu Select Loop
 ;------------------------------------------------
-;	Call the mBar defProc’s hit routine to see where the mouse is.
+;	Call the mBar defProc's hit routine to see where the mouse is.
 ;	Major revisions for hierarchical menus.											<FJL C222>
 
 MSLoop
@@ -1571,7 +1571,7 @@ ChgMenu			cmp		d5, d4					; menuIndex = oldMenuIndex ?
 
 
 SameMenu		tst		d5						; examine menu index
-				beq.s	NextMouse				; don’t choose an item unless there’s one down
+				beq.s	NextMouse				; don't choose an item unless there's one down
 				IMPORT	ResetRectScrollData
 				bsr		ResetRectScrollData		; before choosing item be sure menuRect(a6) is
 												;	correct as are scrolling globals
@@ -1599,7 +1599,7 @@ MUpEntryPt
 				MOVE.L	(SP)+,D3				;keep mouse point in D3
 
 
-; The mouse button is still down.  We’ve read the mouse position already,
+; The mouse button is still down.  We've read the mouse position already,
 ; so call the user hook (if its installed) and loop.
 
 				MOVE.L	MENUHOOK,D0
@@ -1642,11 +1642,11 @@ MUpEntryPt
 ; if no item selected, then no menu either
 ;
 NOFLASH			TST		ITEMRESULT(A6)			; was an item selected?
-				BNE.S	@SetTheMenu				; if so, we’re cool
+				BNE.S	@SetTheMenu				; if so, we're cool
 				CLR.W	FUNCRESULT(A6)			; otherwise, no menu was either
 
 				MOVE	firstMenuID(a6),D0		; better make sure no menu hilited in menu bar
-				BEQ.S	@SetTheMenu				; if it’s zero, then we can skip unhiliting it
+				BEQ.S	@SetTheMenu				; if it's zero, then we can skip unhiliting it
 				move	d5, d0					; set up for TurnIndexOff
 				;*** WRONG WRONG WRONG; the only reason this works is that the MBDF ignores the index
 				;*** this value is always wrong once a hierarchical menu has been tracked
@@ -1657,7 +1657,7 @@ NOFLASH			TST		ITEMRESULT(A6)			; was an item selected?
 @SetTheMenu		MOVE	firstMenuID(a6),TheMenu	;remember menuID of hilited menu
 
 ;+++			tst		funcResult(a6)			; is it a system menu?
-												; Can’t just use funcResult(a6) since could<FJL 09Mar87>
+												; Can't just use funcResult(a6) since could<FJL 09Mar87>
 												;	be a HMenu associated with the desk acc<FJL 09Mar87>
 				tst		TheMenu					; Is it a system menu?							<FJL 09Mar87>
 				BMI.s	DoSysMenu				; if < 0 then handle it
@@ -1695,7 +1695,7 @@ DONEMSELECT
 ;
 ; handle system menus
 ;
-; HMenus cause problems here.  Since the menu ID (funcResult) is not = to the DA’s	<FJL 09Mar87>
+; HMenus cause problems here.  Since the menu ID (funcResult) is not = to the DA's	<FJL 09Mar87>
 ; menu ID, SystemMenu will never find the DA in the DA list.  To force it to pass
 ; the HMenu ID we can set MBarEnable temporarily.
 ;
@@ -1705,19 +1705,19 @@ DONEMSELECT
 ;
 DoSysMenu
 				tst.w	MBarEnable				; who owns menu bar?
-				bmi.s	@1						; desk acc ==> we’re cool
+				bmi.s	@1						; desk acc ==> we're cool
 
-				move	TheMenu, MBarEnable		; set MBarEnable with DA’s ID
+				move	TheMenu, MBarEnable		; set MBarEnable with DA's ID
 				move.l	FuncResult(a6),-(SP)	; push the result
 				_SystemMenu						; invoke desk manager
-				clr.l	FuncResult(a6)			; pretend we didn’t get anything
+				clr.l	FuncResult(a6)			; pretend we didn't get anything
 												; NOTE: clears funcResult AND itemResult !!!
 				clr.w	MBarEnable				; clear MBarEnable
 				bra.s	@Done
 
 @1				move.l	FuncResult(a6),-(SP)	; push the result
 				_SystemMenu						; invoke desk manager
-				clr.l	FuncResult(a6)			; pretend we didn’t get anything
+				clr.l	FuncResult(a6)			; pretend we didn't get anything
 												; NOTE: clears funcResult AND itemResult !!!
 @Done			BRA.S	DoneMS					;let common code finish up
 
@@ -1774,7 +1774,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 				subq	#2, SP					; leave room for result
 				_WaitMouseUp					; is the mouse still down?
 				tst.b	(SP)+					; examine result
-				beq		@EndPopUpMS				; if not StillDown, don’t bother
+				beq		@EndPopUpMS				; if not StillDown, don't bother
 
 ; need to set the port here else ClipRects do not work
 
@@ -1822,7 +1822,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 				IMPORT	GetHIndex
 				bsr		GetHIndex				; convert ID to index
 				move	d0, d4					; save index in D4						<PMAB364	23Jan88	EMT>
-				beq		@EndPopUpMS				; zero index ==> couldn’t find it (shouldn’t happen)
+				beq		@EndPopUpMS				; zero index ==> couldn't find it (shouldn't happen)
 
 ; Alter WMgr portRect to point to the rect of the device the cursor is on
 				MOVE.L	CrsrDevice, A1			; Get the cursor GDevice				<PMAB364	23Jan88	EMT>
@@ -1852,7 +1852,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 				tst.l	d0						; where is the hit?
 				bmi.s	@SameMenu				; branch if its not in a title or any menu
 
-												; else it’s in a menu
+												; else it's in a menu
 				move	d0, d5					; move result to D5
 				bsr		GetMenuPtr				; get the menuData handle
 				move	menuID(a0),funcResult(a6) ;return which Menu the mouse is currently in
@@ -1869,7 +1869,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 
 
 @SameMenu		tst		d5						; examine menu index
-				beq.s	@NextMouse				; don’t choose an item unless there’s one down
+				beq.s	@NextMouse				; don't choose an item unless there's one down
 				IMPORT	ResetRectScrollData
 				bsr		ResetRectScrollData		; before choosing item be sure menuRect(a6) is
 												;	correct as are scrolling globals
@@ -1891,7 +1891,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 				move.l	(SP)+,d3				; keep mouse point in D3
 
 
-; The mouse button is still down.  We’ve read the mouse position already,
+; The mouse button is still down.  We've read the mouse position already,
 ; so call the user hook (if its installed) and loop.
 
 				move.l	MenuHook, d0
@@ -1917,7 +1917,7 @@ PopUpMenuSelect	PROC	EXPORT					;;<FJL C844>
 												; GetItemRecord call)
 				move	ItemResult(a6), d0
 				IMPORT	GetItemRecord
-				bsr		GetItemRecord			; on return a1 points to item’s property bytes
+				bsr		GetItemRecord			; on return a1 points to item's property bytes
 				beq.s	@FlashIt				; if z-flag set then item not found			<PMAB568	07Sep88	EMT>
 				cmpi.b	#HMenuCmd, itemCmd(a1)	; does this item have a hierarchical menu?
 				bne.s	@FlashIt				; no ==> branch and flash
@@ -1988,7 +1988,7 @@ DirtyMenuSize									;							<EHB 5-Mar-85>
 ;		Utility -- DirtyMenuSize
 ;-----------------------------------------------
 ;
-; Utility DirtyMenuSize(menuHandle) -- Say that the menu’s size is no longer valid by
+; Utility DirtyMenuSize(menuHandle) -- Say that the menu's size is no longer valid by
 ; setting the width and height to -1.
 				MOVE.L	4(SP),A0				; get menuHandle
 				MOVE.L	(A0),A0					; get menuPointer
@@ -1999,7 +1999,7 @@ DirtyMenuSize									;							<EHB 5-Mar-85>
 				ENDPROC
 
 CALCMENUSIZE	PROC	EXPORT
-;	PROCEDURE CalcMenuSize(menuHandle) -- scan the menuData of a menu and set the menu’s
+;	PROCEDURE CalcMenuSize(menuHandle) -- scan the menuData of a menu and set the menu's
 ;	width and heigth fields accordingly, by invoking the menu definition proc
 				SUBQ.L	#4, SP					;										<PMAB364	23Jan88	EMT>
 				MOVE.L	SP, -(SP)				;										<PMAB364	23Jan88	EMT>
@@ -2056,7 +2056,7 @@ ResetRectScrollData	PROC	ENTRY
 ;------------------------------------------------
 ;
 ;	The mouse is in a menu or title.  If the last time thru MSLoop a HMenu was
-;	brought up, then menuRect(a6) will have the HMenu’s rect and not the rect
+;	brought up, then menuRect(a6) will have the HMenu's rect and not the rect
 ;	the mouse is currently in, so ask the MBarProc to give us the rect the
 ;	mouse is in.  Next ask the mbarproc to restore the scrolling globals
 ;	topMenuItem, atMenuBottom for the menu the mouse is in.
@@ -2104,10 +2104,10 @@ MenuChanged		PROC	ENTRY
 				IMPORT	GetA0List
 				bsr		GetA0List				; get menuList ptr into a0
 				cmp		lastMenu(a0), d5		; is the new menu in regular menuList?
-				bgt.s	@EndMenuChg				; no, its a HMenu that’s already down:
-												; so... 1) don’t restore any menus
-												;		2) don’t pull a new one down
-												;		3) don’t call MBarHook
+				bgt.s	@EndMenuChg				; no, its a HMenu that's already down:
+												; so... 1) don't restore any menus
+												;		2) don't pull a new one down
+												;		3) don't call MBarHook
 ;
 ; if we got to here ==> mouse in the title of a NEW 'regular' menu, so restore all
 ; of the menus that are currently showing on the screen
@@ -2143,10 +2143,10 @@ MenuChanged		PROC	ENTRY
 				BSR		TurnIndexOn				; hilite the menu bar
 
 				MOVE.L	MBarHook,D0				;<SM13> is MBarHook installed?
-				BEQ.S	@DoTheDraw				;too bad, he’s not
+				BEQ.S	@DoTheDraw				;too bad, he's not
 
 ;
-; ask the mbarproc for the menu’s rectangle since MBarHook needs it.  Remember that MBarHook
+; ask the mbarproc for the menu's rectangle since MBarHook needs it.  Remember that MBarHook
 ; is only called before regular menus go up, never HMenus.
 ;
 				moveq	#9, d0					; rect message is #9
@@ -2182,7 +2182,7 @@ ChooseItem		PROC	ENTRY
 ;	Utility -- ChooseItem
 ;-----------------------------------------------
 ;
-				PEA		MENURECT(A6)			;don’t let menuProc write outside of rect
+				PEA		MENURECT(A6)			;don't let menuProc write outside of rect
 				_ClipRect						;clip to menuRect
 				BSR		GETMENUPTR				;get handle to menu in A1
 ;
@@ -2211,9 +2211,9 @@ CheckHItem		PROC	ENTRY
 ; Check if itemResult(a6) has a hierarchical menu, and if so update various stackframe	<FJL C222>
 ; structures.  If user has delayed in item long enough then put up the hier menu.		<FJL C222>
 ;
-;	On Entry:	A1		ptr to item’s property bytes
+;	On Entry:	A1		ptr to item's property bytes
 ;
-; If no item selected then reset stackframe data and leave, but DON’T restore any HMenus
+; If no item selected then reset stackframe data and leave, but DON'T restore any HMenus
 ; that might be up.  (If no item selected then mouse is in the menu bar or outside all menus)
 ;
 				bsr		GetMenuPtr				; get ptr to menuInfo into a0 from index in d5
@@ -2225,7 +2225,7 @@ CheckHItem		PROC	ENTRY
 ; restore any HMenus up to the menu the mouse pt is in
 ;
 				IMPORT	GetItemRecord
-				bsr		GetItemRecord			; ptr to item’s record returned in a0
+				bsr		GetItemRecord			; ptr to item's record returned in a0
 												;				its properties in a1
 				cmpi.b	#HMenuCmd, itemCmd(a1)	; does it have a hierarchical menu?
 				bne.s	@NotHItem				; no, then leave
@@ -2253,7 +2253,7 @@ CheckHItem		PROC	ENTRY
 				blt.s	@EndChkHItem			; no, so continue
 ;
 ; N ticks have passed with mouse in same item that has hierarchical menu, so bring
-; the dang thing up.  A1 has ptr to item’s properties.
+; the dang thing up.  A1 has ptr to item's properties.
 ;
 				moveq	#0, d1					; clear out d1 for GetHIndex
 				move.b	itemMark(a1), d1		; set up for GetHIndex -- move HMenu ID into d1
@@ -2329,21 +2329,21 @@ CheckDragging	PROC	ENTRY
 				cmp		NewHMenuOffset(a6), d0	; is the hit in the newly drawn HMenu?
 				beq		@DoneDragging			; yes, so no more dragging needed
 
-; not in new HMenu, so see if it is still in the item’s rect
+; not in new HMenu, so see if it is still in the item's rect
 				subq	#2, SP					; save space for PtInRect result
 				subq	#4, SP					; space for GetMouse result
 				move.l	SP, -(SP)				; temp mouse buffer on stack
 				_GetMouse						; point is on the stack
 				move.l	(SP), d3				; store pt in d3 and leave on stack for PtInRect
 
-; The mouse button is still down.  We’ve read the mouse position already,
+; The mouse button is still down.  We've read the mouse position already,
 ; so call the user hook (if its installed) and loop.
 				MOVE.L	MENUHOOK,D0				;										<PMAB568	07Sep88	EMT>
 				BEQ.S	@NoMHook				;										<PMAB568	07Sep88	EMT>
 				MOVE.L	D0,A0					;										<PMAB568	07Sep88	EMT>
 				JSR		(A0)					;										<PMAB568	07Sep88	EMT>
 @NoMHook										;										<PMAB568	07Sep88	EMT>
-				move.l	mbSaveLoc, a0			; get item’s rect from mbSaveLoc
+				move.l	mbSaveLoc, a0			; get item's rect from mbSaveLoc
 				move.l	(a0), a0				; dereference
 				pea		mbItemRect(a0)			; push rect
 				_PtInRect
@@ -2374,7 +2374,7 @@ CheckDragging	PROC	ENTRY
 				move	Right(a0), d4			; store top, right in d4
 				move	Right(a0), d5			; store bottom, right in d5
 
-												; reset MenuDrag as of when mouse left the item’s rect
+												; reset MenuDrag as of when mouse left the item's rect
 @1
 				IMPORT	SetTickCounters
 				bsr		SetTickCounters
@@ -2403,19 +2403,19 @@ CheckDragging	PROC	ENTRY
 				_GetMouse						; point is on the stack
 				move.l	(SP), d6				; store pt in d6 and leave on stack for PtInRect
 
-; The mouse button is still down.  We’ve read the mouse position already,
+; The mouse button is still down.  We've read the mouse position already,
 ; so call the user hook (if its installed) and loop.
 				MOVE.L	MENUHOOK,D0				;										<PMAB568	07Sep88	EMT>
 				BEQ.S	@NoMHook2				;										<PMAB568	07Sep88	EMT>
 				MOVE.L	D0,A0					;										<PMAB568	07Sep88	EMT>
 				JSR		(A0)					;										<PMAB568	07Sep88	EMT>
 @NoMHook2										;										<PMAB568	07Sep88	EMT>
-				move.l	mbSaveLoc, a0			; get item’s rect from mbSaveLoc
+				move.l	mbSaveLoc, a0			; get item's rect from mbSaveLoc
 				move.l	(a0), a0				; dereference
 				pea		mbItemRect(a0)			; push rect
 				_PtInRect
 				move.b	(SP)+, d0				; get boolean result
-				bne.s	@InRectLoop				; BACK IN ITEM’S RECT, WAIT FOR IT TO LEAVE AGAIN!!!
+				bne.s	@InRectLoop				; BACK IN ITEM'S RECT, WAIT FOR IT TO LEAVE AGAIN!!!
 
 ; call the mbarproc to see if mouse has entered the new HMenu
 				moveq	#1, d0					; hit message is #1
@@ -2437,7 +2437,7 @@ CheckDragging	PROC	ENTRY
 ;		\	|
 ;			\D5
 ;
-; first check whether menu’s direction was right or left or previous menu
+; first check whether menu's direction was right or left or previous menu
 @ChkToRight
 
 				cmp		d3, d4					; if horizontal of D4 < D3 then menu to left
@@ -2541,13 +2541,13 @@ RestoreSomeBits	PROC	ENTRY
 ;-----------------------------------------------
 ;	RestoreSomeBits loops thru each menu up on the screen looking to see if it should
 ;	be restored, and if it should be, restoring it.  The condition for restoration is
-;	if the mouse pt is in the current menu then don’t restore it.
+;	if the mouse pt is in the current menu then don't restore it.
 ;
 				move.l	(a4), a0				; get ptr to temp storage
 				move	msLastMenu(a6), d0		; get offset to last menu on screen
 				beq.s	@RSBNone				; if no menus then exit (should never happen but...)
 				cmp		-4(a0, d0), d5			; is the 'last' menu the one the mouse is in?
-				beq.s	@RSBNone				; yes, so don’t restore any, and don’t redraw menu
+				beq.s	@RSBNone				; yes, so don't restore any, and don't redraw menu
 
 @RSBLoop		move.l	(a4), a0				; get ptr to temp storage
 				move	msLastMenu(a6), d0		; get offset to last menu on screen
@@ -2566,7 +2566,7 @@ RestoreSomeBits	PROC	ENTRY
 ;				with the item that was selected in the menu before the HMenu was
 ;				brought up will cause both old and new items to be redrawn.
 				tst		msLastMenu(a6)			; any menus left up ?
-				beq.s	@RSBNone				; no, so don’t choose anything
+				beq.s	@RSBNone				; no, so don't choose anything
 				IMPORT	ChooseItem
 				bsr		ChooseItem				; tell MDEF to choose after redraw
 @RSBNone		RTS
@@ -2616,7 +2616,7 @@ DrawFirstMenu	PROC	ENTRY
 				move.l	a1,-(SP)				; push menu handle
 				pea		menuRect(a6)			; push menuRect pointer
 				move.l	msTopLeft(a6), -(SP)	; push left and top at same time
-				pea		PopUpItem(a6)			; push the item’s address
+				pea		PopUpItem(a6)			; push the item's address
 				IMPORT	CallMDefProc
 				BSR		CallMDefProc			; Call the menu definition proc			<PMAB364	23Jan88	EMT>
 
@@ -2712,7 +2712,7 @@ CallDrawMDEF	PROC	ENTRY
 ;				_SectRect
 ;				addq	#2, SP					; ignore result
 ;
-;				PEA		tRect1(a6)				;don’t let menuProc write outside of rect	<FJL C175>
+;				PEA		tRect1(a6)				;don't let menuProc write outside of rect	<FJL C175>
 				PEA		menuRect(A6)			; Just use menuRect now.					<PMAB364	23Jan88	EMT>
 				_ClipRect						;clip to menuRect							<FJL C175>
 
@@ -2772,14 +2772,14 @@ paramSize	EQU		18
 				bhi.s		@RealMDEF			; no, don't flush the cache						<LW4> fau
 				jsr			([jCacheFlush])		; else, flush the caches.						<LW4> fau
 @RealMDEF										;												<LW4> fau
-				_HLock							; lock it the gentleman’s way		<C169>
+				_HLock							; lock it the gentleman's way		<C169>
 				MOVE.L	(A0),A0					; handle -> pointer
 
 				MOVE.L	CurrentA5, A5			; fix up his A5 world
 				JSR		(A0)					; call it
 
 				MOVE.L	D3, A0					; get the MDEF handle
-				_HUnlock						; unlock the gentleman’s way		<C169>
+				_HUnlock						; unlock the gentleman's way		<C169>
 
 @NoMenuDef
 				MOVEM.L	(SP)+, D3/A5			; Restore some registers
@@ -2791,7 +2791,7 @@ paramSize	EQU		18
 
 CALLCHOOSE		PROC	EXPORT
 ;
-;	CallChoose is a utility procedure to call a menu’s menuProc to select an item
+;	CallChoose is a utility procedure to call a menu's menuProc to select an item
 ;
 				MOVE	#MCHOOSEMSG,-(SP)		;the message is choose
 				BSR		GETMENUPTR				;get handle to menu specified by D5
@@ -2823,7 +2823,7 @@ FLASHFEEDBACK	PROC	ENTRY
 				MOVE	MENUFLASH,D4			;get menu flash count
 				BEQ.S	FLASHDONE				;if zero, no flashing at all
 				MOVE	ITEMRESULT(A6),TOOLSCRATCH ;was anything selected?
-				BEQ.S	FLASHDONE				;if not, don’t give feedback
+				BEQ.S	FLASHDONE				;if not, don't give feedback
 
 				PEA		MENURECT(A6)			;clip to the menu
 				_ClipRect
@@ -2855,7 +2855,7 @@ FULLCLIP		PROC	EXPORT
 ;
 ; Note: It is not really necessary to set clip full open here because the mbarproc is
 ;		called after this to restore the menu, and it sets the clip full open.  But
-;		because it is so close to ROM build we won’t take it out. <FJL 8Feb87>
+;		because it is so close to ROM build we won't take it out. <FJL 8Feb87>
 ;
 				MOVE.L	GrafGlobals(A5), A0		;										<PMAB364	23Jan88	EMT>
 				MOVE.L	wideOpen(A0), -(SP)		; set the clip to wide open				<PMAB364	23Jan88	EMT>
@@ -2911,7 +2911,7 @@ GetMenuBar		PROC	EXPORT
 
 				MOVE.L	(A0),A1				; Get copymenulist ptr
 				moveq	#0,d1				; clear out high word								<10>
-				MOVE.W	lastMenu(A1),D1		; Offset to last menu (could be zero but we’ve chkd that)
+				MOVE.W	lastMenu(A1),D1		; Offset to last menu (could be zero but we've chkd that)
 				ADDQ.W	#6,D1				; Offset past last menu entry
 				SUB.W	d3,D1				; D1 = Offset to last menu - Offset to 1st sysmenu
 											; (i.e., # bytes for system menus)
@@ -3068,7 +3068,7 @@ DispMCInfo		PROC	EXPORT					; <FJL C408>
 ; PROCEDURE DispMCInfo(menuCTblHandle) -- dispose of the dynamic storage used by the
 ; menu color table
 				MOVE.L	4(SP),A0				; get menu color table Handle
-				_DisposHandle					; it’s not a resource, so just toss it
+				_DisposHandle					; it's not a resource, so just toss it
 				move.l	(SP)+, (SP)				; strip parameter
 
 				RTS
@@ -3092,7 +3092,7 @@ CNOMARK			MOVE	#NOMARK,4(SP)			;unCheck it
 GETITEMMARK		PROC	EXPORT
 ;
 ; PROCEDURE GetItemMark(menuHandle,itemNumber,VAR markChar)	-- get the current value of
-; an item’s markfield.  Use GetItemProperty.
+; an item's markfield.  Use GetItemProperty.
 ;
 				MOVEQ	#ITEMMARK,D2				;set up property selector
 				IMPORT	GetItemProperty
@@ -3102,7 +3102,7 @@ GETITEMMARK		PROC	EXPORT
 GETITEMICON		PROC	EXPORT
 ;
 ; PROCEDURE GetItemIcon(menuHandle,itemNumber,VAR iconChar)	-- get the current value of
-; an item’s icon field.  Use GetItemProperty.
+; an item's icon field.  Use GetItemProperty.
 ;
 				MOVEQ	#ITEMICON,D2			;set up property selector
 				IMPORT	GetItemProperty
@@ -3112,7 +3112,7 @@ GETITEMICON		PROC	EXPORT
 GETITEMCMD		PROC	EXPORT					;<FJL C844>
 ;
 ; PROCEDURE GetItemCmd(menuHandle,itemNumber,VAR cmdChar)	-- get the current value of	<FJL C844>
-; an item’s cmd field.  Use GetItemProperty.  Needed for hierarchical menus.
+; an item's cmd field.  Use GetItemProperty.  Needed for hierarchical menus.
 ;
 				MOVEQ	#ITEMCMD,D2				;set up property selector
 				IMPORT	GetItemProperty
@@ -3122,7 +3122,7 @@ GETITEMCMD		PROC	EXPORT					;<FJL C844>
 __GETITEMSTYLE	PROC	EXPORT
 ;
 ; PROCEDURE GetItemStyle(menuHandle,itemNumber,VAR styleChar)	-- get the current value of
-; an item’s style field.  Use GetItemProperty.
+; an item's style field.  Use GetItemProperty.
 ;
 				MOVEQ	#ITEMSTYLE,D2			;set up property selector
 				IMPORT	GetItemProperty
@@ -3132,7 +3132,7 @@ __GETITEMSTYLE	PROC	EXPORT
 SETITEMMARK		PROC	EXPORT
 ;
 ; PROCEDURE SetItemMark(menuHandle,itemNumber,markChar) -- set the current value of an
-; item’s mark field.  Use SetItemProperty.
+; item's mark field.  Use SetItemProperty.
 ;
 				MOVEQ	#ITEMMARK,D2			;set up property selector
 				IMPORT	SetItemProperty
@@ -3142,7 +3142,7 @@ SETITEMMARK		PROC	EXPORT
 SETITEMICON		PROC	EXPORT
 ;
 ; PROCEDURE SetItemIcon(menuHandle,itemNumber, iconChar)	-- set the current value of
-; an item’s icon field.  Use SetItemProperty.
+; an item's icon field.  Use SetItemProperty.
 ;
 				MOVEQ	#ITEMICON,D2			;set up property selector
 				IMPORT	SetItemProperty
@@ -3152,7 +3152,7 @@ SETITEMICON		PROC	EXPORT
 SETITEMCMD		PROC	EXPORT					;<FJL C844>
 ;
 ; PROCEDURE SetItemCmd(menuHandle,itemNumber, cmdChar)	-- set the current value of		<FJL C844>
-; an item’s cmd field.  Use SetItemProperty.  Needed for hierarchical menus.
+; an item's cmd field.  Use SetItemProperty.  Needed for hierarchical menus.
 ;
 				MOVEQ	#ITEMCMD,D2				;set up property selector
 				IMPORT	SetItemProperty
@@ -3162,7 +3162,7 @@ SETITEMCMD		PROC	EXPORT					;<FJL C844>
 SETITEMSTYLE	PROC	EXPORT
 ;
 ; PROCEDURE SetItemStyle(menuHandle,itemNumber,styleChar)	-- set the current value of
-; an item’s style field.  Use SetItemProperty.
+; an item's style field.  Use SetItemProperty.
 ;
 				MOVEQ	#ITEMSTYLE,D2			;set up property selector
 				IMPORT	SetItemProperty
@@ -3184,7 +3184,7 @@ GETITEMPROPERTY	PROC	ENTRY
 				MOVE.L	4(SP),A0				;get result pointer
 				CLR.B	(A0)					;assume result of zero			<EHB 6-Sep-85>
 				MOVE.L	A1,D0					;did we find the item?
-				BEQ.S	TENBYTEXIT				;if not, we’re done
+				BEQ.S	TENBYTEXIT				;if not, we're done
 
 				MOVE.B	0(A1,D2),1(A0)			;move the requested property byte
 				ENTRY	TenBytExit
@@ -3209,7 +3209,7 @@ SETITEMPROPERTY	PROC	ENTRY
 				MOVE.B	5(SP),0(A1,D2)			;move in the property byte
 
 				SUBQ	#ItemMark,D2			; is it the check mark?			<EHB 1/24/85>
-				BEQ.S	TwoParmExit				; yes, don’t recalculate		<EHB 1/24/85>
+				BEQ.S	TwoParmExit				; yes, don't recalculate		<EHB 1/24/85>
 
 				MOVE.L	8(SP),-(SP)				;push the menuHandle
 				IMPORT	DirtyMenuSize
@@ -3226,11 +3226,11 @@ GETITEMRECORD	PROC	ENTRY
 ;	GetItemRecord is the main utility used for accessing the menu item data structure.
 ;	It has a register interface to save code.  On entry, A0 points to a menuInfo block,
 ;	while D0 has the item number of interest.  On exit, A0 points to the item string
-;	of interest while A1 points to that item’s attribute byte list.  If the item can’t
+;	of interest while A1 points to that item's attribute byte list.  If the item can't
 ;	be found, A0 and A1 both return NIL and the z-flag is set.
 ;
 				TST		D0						; make sure item number is valid
-				BLE.S	NOITEM					; => invalid, don’t bother
+				BLE.S	NOITEM					; => invalid, don't bother
 
 DOITEM			MOVEQ	#0,D1					; clear D1 for byte arithmetic
 				LEA		MENUDATA(A0),A1			; get menuData ptr
@@ -3239,7 +3239,7 @@ DOITEM			MOVEQ	#0,D1					; clear D1 for byte arithmetic
 ;
 ; here is the item search loop.  A1 points to the beginning of the next item.
 ;
-GETILOOP		SUBQ	#1,D0					; is this the one we’re looking for?
+GETILOOP		SUBQ	#1,D0					; is this the one we're looking for?
 				BEQ.S	GOTITEM					; if so, we got it
 				MOVE.B	(A1),D1					; get length of current item			<EHB 8-May-85>
 				BEQ.S	NOITEM					; length zero marks end of list
@@ -3248,7 +3248,7 @@ GETILOOP		SUBQ	#1,D0					; is this the one we’re looking for?
 				ADD		D1,A1					; bump to next item
 				BRA.S	GETILOOP				; loop till done
 ;
-;	the item couldn’t be found so return NIL
+;	the item couldn't be found so return NIL
 ;	put string pointer into D1 in case we want to find end byte
 ;
 NOITEM
@@ -3261,7 +3261,7 @@ NOITEM
 ; we found the item so return a pointer to it in A0 and a pointer to the item properties in A1
 ;
 GOTITEM			TST.B	(A1)					;is this the NIL item?
-				BEQ.S	NOITEM					;if so, we really didn’t get one
+				BEQ.S	NOITEM					;if so, we really didn't get one
 
 				MOVE.L	A1,A0					;A0 points to item string
 				MOVE.B	(A1)+,D1				;get length
@@ -3277,7 +3277,7 @@ GetMCEntry		PROC	EXPORT					; <FJL C408>
 ;------------------------------------------------------------------------------------
 ; FUNCTION GetMCEntry(ID, Item : integer) : CMenuStruct --
 ;	Find a color table entry for the given ID/Item combination.  Return an index into
-;	the color table, or a zero if the entry wasn’t found.
+;	the color table, or a zero if the entry wasn't found.
 ;
 				move.l	d2, -(sp)				; save work register
 
@@ -3290,7 +3290,7 @@ GetMCEntry		PROC	EXPORT					; <FJL C408>
 
 				IMPORT	FindCEntry
 				bsr		FindCEntry				; do the search
-				beq.s	@NotFound				; oops couldn’t find it
+				beq.s	@NotFound				; oops couldn't find it
 
 				lea		(a0,d2), a0				; get the table entry address in a0
 				move.l	a0, 12(sp)				; return it as the result
@@ -3331,7 +3331,7 @@ DelMCEntries	PROC	EXPORT
 				move.l	(a0), a0				; dereference					<KSM BRC40826>
 				IMPORT	FindCEntry
 				bsr		FindCEntry; find the entry
-				beq.s	@DoneDelete				; z-flag set ==> couldn’t find it
+				beq.s	@DoneDelete				; z-flag set ==> couldn't find it
 
 ; we have a match on both ID and Item so delete it using Munger
 
@@ -3347,7 +3347,7 @@ DelMCEntries	PROC	EXPORT
 				_Munger
 				addq	#4, SP					; ignore the result
 
-; 				Don’t need to bump D2 because munger moved data down to where D2 points	<KSM BRC40826>
+; 				Don't need to bump D2 because munger moved data down to where D2 points	<KSM BRC40826>
 ;				addi	#mctEntrySize, d2		; start looking at next table entry		<KSM BRC40826>
 				cmpi	#mctAllItems, d3		; is the Item = "all items" flag?
 				beq.s	@DeleteLoop				; yes, so loop
@@ -3373,7 +3373,7 @@ FindCEntry		PROC	ENTRY
 ;
 ;	1) If it finds the entry the z-flag will not be set and
 ;		it returns an index into the table in d2.
-;	2) If it doesn’t find the entry the z-flag will be set,
+;	2) If it doesn't find the entry the z-flag will be set,
 ;		and d2 will be the offset to the end of the table.
 ;
 ;	On Entry:	A0		ptr		pointer to color table
@@ -3399,12 +3399,12 @@ FindCEntry		PROC	ENTRY
 				cmp		mctItem(a0,d2), d0		; do we have a match with the Item?
 				beq.s	@DoneFind				; yes, so branch and try some more
 
-; didn’t find it so try the next item
+; didn't find it so try the next item
 
 @CheckNextID	addi	#mctEntrySize, d2		; offset to next color table entry
 				bra		FindCEntry				; and loop
 
-@DoneFind		cmpi	#mctLastIDIndic, mctID(a0, d2)	; set z-flag if didn’t find the entry
+@DoneFind		cmpi	#mctLastIDIndic, mctID(a0, d2)	; set z-flag if didn't find the entry
 				rts										;	(check if at last entry flag)
 				ENDPROC
 
@@ -3416,7 +3416,7 @@ SetMCEntries	PROC	EXPORT					; <FJL C408>
 ;------------------------------------------------------------------------------------
 ; PROCEDURE SetMCEntries(numEntries: integer; colorEntries: CMenuStruct) --
 ;	Enter all of the given color entries in the menu color table.  If an entry
-;	exists it will be replaced, if it’s new it will be added.
+;	exists it will be replaced, if it's new it will be added.
 ;
 				movem.l	d2-d3, -(sp)			; save work register
 				move	16(sp), d3				; get numEntries
@@ -3424,7 +3424,7 @@ SetMCEntries	PROC	EXPORT					; <FJL C408>
 				mulu	#mctEntrySize, d3		; start at last entry
 
 ; reuse the following code to reset registers that may have been trashed by Munger
-; it’s just as easy to reset these each time thru, shouldn’t be a speed hit
+; it's just as easy to reset these each time thru, shouldn't be a speed hit
 
 @FindItLoop		move.l	12(sp), a1				; get ptr to colorEntries
 
@@ -3438,7 +3438,7 @@ SetMCEntries	PROC	EXPORT					; <FJL C408>
 				clr.l	d2						; d2 = 0 ===> start at top of table
 				IMPORT	FindCEntry
 				bsr		FindCEntry
-				beq.s	@InsertEntry			; couldn’t find it so insert it
+				beq.s	@InsertEntry			; couldn't find it so insert it
 
 ; found it in the table, so change the entry in place (table offset was returned in d2)
 ; store RGB1, 2, 3 and 4
@@ -3454,12 +3454,12 @@ SetMCEntries	PROC	EXPORT					; <FJL C408>
 ;+++				move	mctRGB2+4(a1,d3), mctRGB2+4(a0,d2)
 ;+++				move.l	mctRGB3(a1,d3), mctRGB3(a0,d2)		; store RGB3
 ;+++				move	mctRGB3+4(a1,d3), mctRGB3+4(a0,d2)
-;+++				move.l	mctRGB4(a1,d3), mctRGB4(a0,d2)		; store background color, don’t worry
+;+++				move.l	mctRGB4(a1,d3), mctRGB4(a0,d2)		; store background color, don't worry
 ;+++				move	mctRGB4+4(a1,d3), mctRGB4+4(a0,d2)	;	if this is wrong here, since we
 															;	will make a sanity check later
 				bra.s	@DoNextEntry			; loop to the next entry
 
-; didn’t find entry so insert it at the end of the table, this is good because this forces the
+; didn't find entry so insert it at the end of the table, this is good because this forces the
 ; first entry to always be the menubar entry (if there is one) and since that is the most
 ; frequently accessed entry it is best to have it in the front.
 
@@ -3469,7 +3469,7 @@ SetMCEntries	PROC	EXPORT					; <FJL C408>
 				clr.l	-(sp)					; no target string
 				clr.l	-(sp)					; len1 = 0 ===> want to insert
 				pea		(a1,d3)					; push ptr to insertion string
-				move.l	#mctEntrySize, -(sp)	; and it’s length
+				move.l	#mctEntrySize, -(sp)	; and it's length
 				_Munger
 				addq	#4, sp					; ignore the result
 
@@ -3492,14 +3492,14 @@ ClearSanityChks	PROC	ENTRY
 ;		Cruise thru the color table, and clear the mctSanityChk
 ;	field for every entry.  Later we will set this field as
 ;	we update entries during the sanity chk.  Ones that
-;	weren’t checked were missed, and will be handled in a
+;	weren't checked were missed, and will be handled in a
 ;	second pass where default colors will be entered.
 				move.l	MenuCInfo, a0			; get color table handle
 				move.l	(a0), a0				; dereference
 				clr		d2						; start at top of table
 
 @ClearLoop		cmpi	#mctLastIDIndic, mctID(a0,d2)	; are we at the last entry?
-				beq.s	@ClearDone				; yes, so we’re done
+				beq.s	@ClearDone				; yes, so we're done
 				clr		mctReserved(a0,d2)		; no, so clear the sanity check field						<1.9>
 				addi	#mctEntrySize, d2		; bump index to next entry
 				bra.s	@ClearLoop				; and loop
@@ -3517,7 +3517,7 @@ MenuCTblSanityChk	PROC	ENTRY
 ;	2) Item != 0 ==> not title, so store menu background color in mctRGB4 slot
 ;
 CkMBColor		EQU		-6						; RGB for menu bar
-CkBackColor		EQU		CkMBColor - 6			; RGB for current ID’s background color
+CkBackColor		EQU		CkMBColor - 6			; RGB for current ID's background color
 CkIDSave		EQU		CkBackColor - 2			; save d2 as we loop thru Items for an ID
 CkFrame			EQU		CkIDSave				; size of stackframe
 
@@ -3540,7 +3540,7 @@ CkFrame			EQU		CkIDSave				; size of stackframe
 				bsr		FindCEntry
 				bne.s	@GotMBColor				; found it so get color
 
-; didn’t find menu bar entry, so use default menubar color -- white
+; didn't find menu bar entry, so use default menubar color -- white
 
 				moveq	#-1, d0
 				move.l	d0, CkMBColor(a6)		; set RG
@@ -3565,7 +3565,7 @@ CkFrame			EQU		CkIDSave				; size of stackframe
 				bsr		FindCEntry				; look for the next title entry in the table
 				beq.s	@SecondPass				; z-flag set means we hit the end of the table
 
-				move	d2, CkIDSave(a6)		; save d2 since we’ll want to start there next time
+				move	d2, CkIDSave(a6)		; save d2 since we'll want to start there next time
 				addi	#mctEntrySize, CkIDSave(a6)	; actually want to start at NEXT entry!
 				addq	#1, mctReserved(a0,d2)	; set sanity check field									<1.9>
 
@@ -3594,7 +3594,7 @@ CkFrame			EQU		CkIDSave				; size of stackframe
 @NextItemSetUp	addi	#mctEntrySize, d2		; start next Item search at NEXT table entry
 				bra.s	@ItemLoop
 
-; 3) It’s possible that there are Items in the table that have no title entry -- these
+; 3) It's possible that there are Items in the table that have no title entry -- these
 ; items would have zero in the SanityCheck field.  So for every entry with SanityCheck = 0
 ; set the background color to the menu bar default, or white if there is no default.
 
@@ -3605,7 +3605,7 @@ CkFrame			EQU		CkIDSave				; size of stackframe
 				bsr		FindCEntry
 				bne.s	@GotMBColor2			; found it so get color
 
-; didn’t find menu bar entry, so use default background color -- white
+; didn't find menu bar entry, so use default background color -- white
 
 				moveq	#-1, d0
 				move.l	d0, CkBackColor(a6)		; set RG
@@ -3619,7 +3619,7 @@ CkFrame			EQU		CkIDSave				; size of stackframe
 
 @2				clr		d2						; start search at beginning of color table
 @SecondPassLoop
-				bsr.s	FindSanityChks			; get the next one that wasn’t set
+				bsr.s	FindSanityChks			; get the next one that wasn't set
 				beq.s	@SanityDone				; z-flag set means end of table, so done
 
 ; found one, so set its background color
@@ -3640,7 +3640,7 @@ FindSanityChks
 ;		Cruise thru the color table, and find the next
 ;	entry whose SanityCheck field in zero.
 				cmpi	#mctLastIDIndic, mctID(a0,d2)	; are we at the last entry?
-				beq.s	@FindDone				; yes, so we’re done
+				beq.s	@FindDone				; yes, so we're done
 				tst		mctReserved(a0,d2)		; is the sanity field set?									<1.9>
 				beq.s	@FoundEntry				; nope, so branch
 				addi	#mctEntrySize, d2		; yes, so bump index to next entry
@@ -3752,10 +3752,10 @@ EnabledKeyItemLoop								; <10> Loops to here when item in D3 > 31
 				BEQ.S	NEXTBAR					;if not, this menu is exhausted
 
 				MOVE.B	ItemCmd(A1),D0			;get the command char
-				BEQ.S	KEYNEXTITEM				; don’t upshift if there is no cmd-key
+				BEQ.S	KEYNEXTITEM				; don't upshift if there is no cmd-key
 				BSR.S	UpChar					; upshift it in D0					<EHB 11-Apr-85>
 
-;NOTE:		We’ve reserved the values $1B thru $1F in cmdItem as having meanings other than	<FJL C222>
+;NOTE:		We've reserved the values $1B thru $1F in cmdItem as having meanings other than	<FJL C222>
 ;		than that of a command key.
 ;		Value:	$1B	(HMenuCmd)			-	item has hierarchical menu
 ;												(menuID of HMenu is in itemMark field)
@@ -3772,7 +3772,7 @@ EnabledKeyItemLoop								; <10> Loops to here when item in D3 > 31
 												; $1B and $1F so skip comparison	<FJL C222>
 
 @DoCompare		CMP.B	D0,D4					;do they match?
-				BEQ.S	GOTMKEY					;if they do, we’ve found it!
+				BEQ.S	GOTMKEY					;if they do, we've found it!
 
 KEYNEXTITEM		ADDQ	#1,D3					;bump to next item
 				CMPI.W	#31,D3					;<10> items > 31 are always enabled
@@ -3791,7 +3791,7 @@ NEXTBAR			subq	#6, d5					; bump to next item
 				IMPORT	GetHA0List
 				bsr		GetHA0List				; get HMenuList ptr in A0
 				move	lastHMenu(a0), d5		; get #HMenus
-				beq.s	KeyNotFound				; none, so don’t check ’em
+				beq.s	KeyNotFound				; none, so don't check 'em
 
 												; yes there are menus so check them backwards
 				move.l	MinusOne, d1			; set up for GetHIndex call
@@ -3822,7 +3822,7 @@ GOTMKEY			BSR		GETMENUPTR				;get pointer to correct menuID
 
 				clr		HorRMenus(a6)			; init HorRMenus(a6) to HMenus			<FJL C222>
 				moveq	#8, d4					; d4 is recursive test counter
-				bsr.s	FindParentMenu			; no, so find the HMenu’s parent		<FJL C222>
+				bsr.s	FindParentMenu			; no, so find the HMenu's parent		<FJL C222>
 
 @HiliteMBar		MOVE	searchMenu(a6),-(SP)	;push menuID as parameter				<FJL C222>
 				_HiliteMenu						;hilite it
@@ -3833,14 +3833,14 @@ GOTMKEY			BSR		GETMENUPTR				;get pointer to correct menuID
 				BMI.S	@DeskMKey				;if so, handle it
 
 ;+++				move.l	menuResult(a6), d0		; if theMenu negative?
-												; Can’t just use menuResult(a6) since could<FJL 09Mar87>
+												; Can't just use menuResult(a6) since could<FJL 09Mar87>
 												; be a HMenu associated with the desk acc<FJL 09Mar87>
 				tst		TheMenu					; Is it a system menu?							<FJL 09Mar87>
-				BPL.S	MKEYDONE				;if not, we’re done
+				BPL.S	MKEYDONE				;if not, we're done
 ;
 ; the menu belonged to a desk ornament so tell the desk manager about it
 ;
-; HMenus cause problems here.  Since the menu ID (funcResult) is not = to the DA’s	<FJL 09Mar87>
+; HMenus cause problems here.  Since the menu ID (funcResult) is not = to the DA's	<FJL 09Mar87>
 ; menu ID, SystemMenu will never find the DA in the DA list.  To force it to pass
 ; the HMenu ID we can set MBarEnable temporarily.
 ;
@@ -3850,19 +3850,19 @@ GOTMKEY			BSR		GETMENUPTR				;get pointer to correct menuID
 ;
 @DeskMKey
 				tst.w	MBarEnable				; who owns menu bar?
-				bmi.s	@1						; desk acc ==> we’re cool
+				bmi.s	@1						; desk acc ==> we're cool
 
-				move	TheMenu, MBarEnable		; set MBarEnable with DA’s ID
+				move	TheMenu, MBarEnable		; set MBarEnable with DA's ID
 				move.l	menuResult(a6),-(sp)	; push the result
 				_SystemMenu						; invoke desk manager
-				clr.l	menuResult(a6)			; pretend we didn’t get anything
+				clr.l	menuResult(a6)			; pretend we didn't get anything
 												; NOTE: clears funcResult AND itemResult !!!
 				clr.w	MBarEnable				; clear MBarEnable
 				bra.s	MKeyDone
 
 @1				move.l	menuResult(a6),-(sp)	; push the result
 				_SystemMenu						; invoke desk manager
-				clr.l	menuResult(a6)			; pretend we didn’t get anything
+				clr.l	menuResult(a6)			; pretend we didn't get anything
 												; NOTE: clears funcResult AND itemResult !!!
 				BRA.S	MKEYDONE				;all done
 
@@ -3873,8 +3873,8 @@ FindParentMenu
 ;
 ; We have a hierarchical menu, so we need to find its regular menu "parent" and hilite it.
 ; It could be several levels of hierarchy deep, so look thru the HMenus until
-; we don’t find it, then look thru the regular menus to get the parent.  This code
-; doesn’t allow recursively defined menus, it stops looking after 8 menus (I didn’t want
+; we don't find it, then look thru the regular menus to get the parent.  This code
+; doesn't allow recursively defined menus, it stops looking after 8 menus (I didn't want
 ; to test the boundary condition of whether it is 5 or 6 or 7 that should stop at with
 ; five levels of hierarchy, so just made it 8 to be safe).
 ;
@@ -3926,7 +3926,7 @@ FindParentMenu
 				cmp		d6, d5					; at end of list?
 				bgt.s	@MenuLoop				; no, so try the next menu
 ;
-; if we’re here then have exhausted HMenuList without finding a parent, so we now search
+; if we're here then have exhausted HMenuList without finding a parent, so we now search
 ; the regular menu list to find the oldest ancestor of the HMenu being returned as the result.
 ;
 				tst		HorRMenus(a6)			; HorRMenus = 0 means just finished checking
@@ -4017,7 +4017,7 @@ NEWMENU			PROC	EXPORT
 				ADDQ	#MenuDefHandle,A1		;bump to defHandle
 				MOVE.L	A0,(A1)+				;install menuProc
 
-				MOVE.L	MinusOne,(A1)+			;everything’s enabled to start
+				MOVE.L	MinusOne,(A1)+			;everything's enabled to start
 ;
 ; move in the title string
 
@@ -4222,7 +4222,7 @@ NSLOOP			CMP.B	0(A0,D1),D0				;is it one of the special ones?
 @loop
 				DBRA	D1,NSLOOP
 ;
-; it wasn’t in the exception table so it must be a normal character.  Just append it
+; it wasn't in the exception table so it must be a normal character.  Just append it
 ; to the item buffer.
 ;
 MultiChar										;										<PMAB568	07Sep88		EMT>
@@ -4265,7 +4265,7 @@ CLOSEITEM
 ; On entry, the item insertion index is in D6
 ;
 				MOVE	ITEMCOUNT(A6),D0		;get the # of characters in buffer
-				BEQ.S	CLOSEDONE				;if none, we’re done
+				BEQ.S	CLOSEDONE				;if none, we're done
 				IMPORT	InsertTheItem
 				BSR		InsertTheItem			; put the new item into the menu		<EHB 8-May-85>
 				IMPORT	InitItem
@@ -4299,7 +4299,7 @@ InsertTheItem	PROC	ENTRY					;										<EHB 8-May-85>
 				MOVE.W	D5,D0					; get insertion index
 				MOVE.L	(A3),A0					; get menu pointer
 				IMPORT	GetItemRecord
-				BSR		GetItemRecord			; point to item’s string
+				BSR		GetItemRecord			; point to item's string
 				BEQ.S	@1						; => out of range. End pointer in D1
 				MOVE.L	A0,D1					; else get pointer in D1
 
@@ -4307,7 +4307,7 @@ InsertTheItem	PROC	ENTRY					;										<EHB 8-May-85>
 
 				MOVE.L	(A3),A0					; get menu list pointer
 				IMPORT	InsertEnableBit
-				BSR		InsertEnableBit			; insert bit in pos’n in D5
+				BSR		InsertEnableBit			; insert bit in pos'n in D5
 @1
 				LEA		ITEMBUFFER(A6),A0		; point to string data
 				MOVE.L	A0,A2					; save insertion string in A2
@@ -4326,7 +4326,7 @@ InsertTheItem	PROC	ENTRY					;										<EHB 8-May-85>
 				MOVE.L	D1,A1					; get address of data
 				SUB.L	(A3),A1					; get offset into menu list
 
-				SUBQ	#4,SP					; we’re here to get results
+				SUBQ	#4,SP					; we're here to get results
 				MOVE.L	A3,-(SP)				; push handle to menu list
 				MOVE.L	A1,-(SP)				; push offset into menu list
 				CLR.L	-(SP)					; no source string
@@ -4338,7 +4338,7 @@ InsertTheItem	PROC	ENTRY					;										<EHB 8-May-85>
 				ADDQ	#4,SP					; ignore results
 
 				TST.B	ITEMFLAGS(A6)			; was it disabled?
-				BEQ.S	InsertDone				; => no, don’t need to disable
+				BEQ.S	InsertDone				; => no, don't need to disable
 				MOVE.L	A3,-(SP)				; push menu handle
 				MOVE.W	D5,-(SP)				; and item number
 				BSR		DisableItem				; and disable it
@@ -4351,7 +4351,7 @@ InsertEnableBit	PROC	ENTRY
 ; Index is in D5, menulist pointer is in A0.
 ; Trashes D0,D2.
 ;
-;DONE: don’t do this if D5 > 31 otherwise we wind up screwing up the rotation.
+;DONE: don't do this if D5 > 31 otherwise we wind up screwing up the rotation.
 ;		Recall that all items > 31 are always enabled
 				cmp		#31, d5				; is the item > 31 ?					<FJL PMAB255>
 				bhi.s	@DoneInsert			; yes, so leave without updating flags	<FJL PMAB255>
@@ -4382,7 +4382,7 @@ GETMHANDLE		PROC	EXPORT
 
 				IMPORT	GetIndex
 				BSR		GETINDEX				; get menuIndex
-				beq.s	@1						; branch if couldn’t find it at all <FJL C222>
+				beq.s	@1						; branch if couldn't find it at all <FJL C222>
 
 @GotRMenu		MOVE	D5,-(SP)				;preserve D5
 				MOVE	D0,D5					;get menuIndex in D5
@@ -4400,7 +4400,7 @@ DELMENUITEM		PROC	EXPORT					;										<EHB 15-Apr-85>
 				MOVE.L	(SP),-(SP)				; old RTS -> phony newItem
 				MOVEM.L D3-D4/A2-A4,-(SP)		; save work registers
 
-; begin by removing item’s entry in menu color table									<FJL C408>
+; begin by removing item's entry in menu color table									<FJL C408>
 
 				MOVE.L	30(SP),A3				; get menu handle						<FJL C408>
 				MOVE.L	(A3),A0					; get menu ptr							<FJL C408>
@@ -4414,7 +4414,7 @@ DELMENUITEM		PROC	EXPORT					;										<EHB 15-Apr-85>
 				MOVE.L	(A3),A0					; get menu for GetItemRecord
 				MOVE.W	28(SP),D0				; get item for GetItemRecord
 
-; need to delete the item’s enable bit from MenuEnable
+; need to delete the item's enable bit from MenuEnable
 
 				Cmpi.W	#31, D0					; item number > 31 ?				<FJL PMAB282>
 				Bhi.S	@1						; yes -> skip enable bits stuff		<FJL PMAB282>
@@ -4453,7 +4453,7 @@ SETITEM			PROC	EXPORT
 				MOVE.L	(A3),A0					;get menu ptr in A0
 				IMPORT	GetItemRecord
 				BSR		GETITEMRECORD			;find our entry
-				BEQ.S	SETIDONE				;if not, we’re done
+				BEQ.S	SETIDONE				;if not, we're done
 
 				MOVEQ	#1,D4					; get 1 for length byte
 				MOVEQ	#1,D2					; get 1 for length byte
@@ -4534,7 +4534,7 @@ CountMLoop
 				BSR		GetItemRecord		;look it up
 				BNE.S	CountMLoop			;if we got it, bump count and try again
 
-; we couldn’t get the item in D2, so D2 must have the number of items + 1
+; we couldn't get the item in D2, so D2 must have the number of items + 1
 
 				SUBQ	#1,D2				;get number of items
 				MOVE.W	D2,8(SP)			;return it as the result
@@ -4568,7 +4568,7 @@ PlotIcon		PROC	EXPORT
 				MOVE.L	A1,-(SP)				;source bitMap is iconBitMap
 				MOVE.L	GrafGLOBALS(A5),A0		;get lisaGraf global baseaddress
 				MOVE.L	THEPORT(A0),A0			;get thePort
-				PEA		PORTBITS(A0)			;that’s the destination bitmap
+				PEA		PORTBITS(A0)			;that's the destination bitmap
 
 				PEA		BOUNDS(A1)				;boundsRect of bitmap is source
 				MOVE.L	D1,-(SP)				;theRect is the destination

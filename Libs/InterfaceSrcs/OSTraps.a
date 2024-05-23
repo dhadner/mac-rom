@@ -1325,7 +1325,7 @@ AddDrive		PROC  EXPORT
 
 ;FUNCTION FSOpen(fileName: Str255; versNum: SignedByte; vRefNum: INTEGER; VAR refNum: INTEGER): OSErr;
 
-;Always try to use OpenDF (which does not open drivers) first. If it doesn’t work, then do a
+;Always try to use OpenDF (which does not open drivers) first. If it doesn't work, then do a
 ;normal Open (this is for old systems that do not implement OpenDF).
 
 FSOpen	FUNC  EXPORT

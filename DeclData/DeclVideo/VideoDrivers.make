@@ -11,9 +11,9 @@
 #
 #	   <SM7>	11/10/93	fau		Update from SuperMunggio <SMG2>.
 #	  <SMG2>	10/27/93	fau		Added support for the ATI card on TNT.
-#	   <SM6>	09-23-93	jmp		Added GestaltEqu.a to Sonora’s dependency list.
+#	   <SM6>	09-23-93	jmp		Added GestaltEqu.a to Sonora's dependency list.
 #	   <SM5>	  9/9/93	pdw		Added slots.a to dependencies.
-#	   <SM4>	08-03-93	jmp		Added various necessary dependencies that weren’t previously
+#	   <SM4>	08-03-93	jmp		Added various necessary dependencies that weren't previously
 #									spelled out.
 #	   <SM3>	 6/14/93	kc		Roll in Ludwig.
 #	   <LW5>	 5/19/93	fau		Added CivicPict2 to the DeclVideo.rsrc and made Rez use a -t and

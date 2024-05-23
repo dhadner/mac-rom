@@ -1531,7 +1531,7 @@ DumpAbort
 			tst.b	vSR(a1)					; discard the byte
 			nop
 		eieioSTP
- 			btst.b	#TReq,vBufB(a1)			; check for last byte
+			btst.b	#TReq,vBufB(a1)			; check for last byte
 		eieioSTP
 			bne.s	DumpDone				; Clock Tick Packets only 2 bytes
 		eieioSTP

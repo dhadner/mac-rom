@@ -43,7 +43,7 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file Òfasttraps.aÓ
+;EASE$$$ READ ONLY COPY of file 'fasttraps.a'
 ; 1.3	SES 08/22/1989  Added contents of Multifinder.a to bottom of this file in attempt to
 ;		rid the world of nFiles.
 ; 1.2	BAL 06/30/1989 Cleared runBuf(a6) before calling getSeek
@@ -3652,7 +3652,7 @@ _LayerDispatch	OPWORD		$A829
 			; Check the selector for validity
 			&selectorNum: seta &eval(&selector)
 			if (&selectorNum > 127) OR (&selectorNum < -128) then
-				aerror &CONCAT('Selector number for ', &TrapRef, ' Ò',&selector, 'Ó is outside the range -128 to 127')
+				aerror &CONCAT('Selector number for ', &TrapRef, ' '',&selector, '' is outside the range -128 to 127')
 				exitm
 			endif
 
@@ -3662,7 +3662,7 @@ _LayerDispatch	OPWORD		$A829
 				&paramCount: seta &eval(&paramWords)
 			endif
 			if (&paramCount < 0) OR (&paramCount > 255) then
-				aerror &CONCAT('Parameter words for ', &TrapRef, ' Ò',&paramWords, 'Ó is outside the range 0-255')
+				aerror &CONCAT('Parameter words for ', &TrapRef, ' '',&paramWords, '' is outside the range 0-255')
 				exitm
 			endif
 

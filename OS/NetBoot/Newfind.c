@@ -1,4 +1,4 @@
-/*EASE$$$ READ ONLY COPY of file “newfind.c”
+/*EASE$$$ READ ONLY COPY of file 'newfind.c'
 ** 1.0	PWD 10/30/1989 Adding to EASE
 ** END EASE MODIFICATION HISTORY */
 struct	addrblock	find_server(	struct	AddrBlock	hint,	/* last server we booted */

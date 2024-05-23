@@ -27,7 +27,7 @@
 									c_GetSpecificHighLevelEvent during the error path for the second
 									copyMsg.
 		<22>	 3/26/91	DTY		Having been thoroughly chastised by Jay for touching the source
-									code without him standing next to me, I’m about to risk his
+									code without him standing next to me, I'm about to risk his
 									wrath again to make things the way they were in version <20>.
 		<21>	 3/25/91	DTY		JDR, #85618: The Gang of Five relegated this bug to Post 7.0, so
 									it needed to be rolled out.  The other change, JWM-001, was left
@@ -128,7 +128,7 @@
 									DFH •6	Request from DTS to place TICKS in the when field of the event when
 									the message arrives.  This is now done in KnockKnock when a read completes.
 									DFH •7	BRC # 78336–HighLevel event posted shortly before an application quits
-									does not get delivered to its target.  This ‘bug’ needs fixing.  It is 
+									does not get delivered to its target.  This ‘bug' needs fixing.  It is 
 									due to closing the ppc port of an application during _ExitToShell.  This
 									close causes all outstanding i/o for a port to go to completion.  Any
 									post an application did between his last _WaitNextEvent and _ExitToShell
@@ -168,7 +168,7 @@
 									messages.
 									•2 	you can now post messages of minimum unsigned long through
 									maximum unsigned long, if you have the memory.
-									•3	In previous releases, when you didn’t accept a message fully
+									•3	In previous releases, when you didn't accept a message fully
 									an incorrect return message receipt was return to the sender.
 									This is now fixed and works as documented.
 									•4	In previous releases three memory allocations and two memory
@@ -177,17 +177,17 @@
 									•5	In previous releases, if the first PPCRead failed, the
 									connection would go dormant.  In this release if the first
 									PPCRead fails for reasons other than sessionClosedErr or
-									noSessionErr, the connection is broken and the target’s session
+									noSessionErr, the connection is broken and the target's session
 									table entry is updated to reflect the connection was explicitly
 									broken.  If the reason was sessionClosedErr or noSessionErr, the
-									target’s connection table entry is updated to reflect the
+									target's connection table entry is updated to reflect the
 									connection was broken by the other end.  Both these states are
-									seen from the programmer’s view as sessionClosedErr if he tries
+									seen from the programmer's view as sessionClosedErr if he tries
 									to post using for him what is a valid connection.  He must
 									repost his message to establish a new connection with his
 									target.
 									•6	In previous releases, if the second PPCRead failed, the
-									connection was broken and the target’s session table entry is
+									connection was broken and the target's session table entry is
 									updated as in •4.  However in the second read there are two
 									different classes of errors – memory errors and PPCToolbox
 									errors.  In this release, memory errors cause the system to
@@ -2019,7 +2019,7 @@ findFreeSessionRecord(void)
 	}
 #endif
 
-#if CubeE											// <24> The “fixed” version from 7-Up
+#if CubeE											// <24> The 'fixed' version from 7-Up
 cTableEntryPtr
 findFreeSessionRecord(void)
 	{

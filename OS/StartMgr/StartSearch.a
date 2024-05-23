@@ -1023,7 +1023,7 @@ Ck4SupportsPartition
 			move.w	D4, ioRefNum(A0)				; pass driver refNum
 			move.w	#statusGetDCE, csCode(A0)		; (Device Mgr call, not driver)
 			_Status
-			movea.l	csParam(A0), A0					; get DCE handle (doesn’t touch CCR)
+			movea.l	csParam(A0), A0					; get DCE handle (doesn't touch CCR)
 			bmi		@notSupported  					; no such Driver (i.e. DCE not installed)
 
 ;

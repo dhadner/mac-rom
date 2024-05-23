@@ -25,8 +25,8 @@
 ;																System build.  Moved extra stuff that was in the internal
 ;																version of SonyEqu.a into this file, so we can get rid of the
 ;																internal version.
-;		 <4>	 10/1/91	JSM		Don’t use onMvMac conditional, Modern Victorian never existed.
-;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 10/1/91	JSM		Don't use onMvMac conditional, Modern Victorian never existed.
+;		 <3>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;
 

@@ -10,7 +10,7 @@
 ;
 ;		 <6>	 8/22/91	JSM		Clean up header.
 ;		 <5>	 6/18/91	JL		Changing FinderInterface.a to Finder.a
-;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <3>	 1/19/91	PP		(ngk) Move container alias type definitions to
 ;									FinderInterface.a.

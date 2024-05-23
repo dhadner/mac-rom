@@ -12,7 +12,7 @@
 ;		 <2>	  4/5/90	KON		Add visRgnChanged call. For color machines it's in QDUtil.a.
 ;	   <1.1>	11/11/88	CCH		Fixed Header.
 ;	   <1.0>	 11/9/88	CCH		Adding to EASE.
-;	   <1.3>	10/12/88	CCH		Changed “m.GrafType.a” to “GrafType.m.a”.
+;	   <1.3>	10/12/88	CCH		Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ;	   <1.2>	 5/18/88	BBM		Really fixed include statement
 ;	   <1.1>	 5/18/88	MSH		Changed inclides to use m.GRAPHTYPES to work under EASE.
 ;	   <1.0>	 2/11/88	BBM		Adding file for the first time into EASE…
@@ -20,11 +20,11 @@
 ;	To Do:
 ;
 
-;EASE$$$ READ ONLY COPY of file “UTIL.m.a”
+;EASE$$$ READ ONLY COPY of file 'UTIL.m.a'
 ; 1.1	CCH 11/11/1988 Fixed Header.
 ; 1.0	CCH 11/ 9/1988 Adding to EASE.
 ; OLD REVISIONS BELOW
-; 1.3	CCH 10/12/1988 Changed “m.GrafType.a” to “GrafType.m.a”.
+; 1.3	CCH 10/12/1988 Changed 'm.GrafType.a' to 'GrafType.m.a'.
 ; 1.2	BBM 5/18/88 Really fixed include statement
 ; 1.1	MSH 5/18/88 Changed inclides to use m.GRAPHTYPES to work under EASE.
 ; 1.0	BBM 2/11/88 Adding file for the first time into EASE…

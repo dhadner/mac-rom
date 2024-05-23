@@ -11,12 +11,12 @@
 ;									• Pre-SuperMario comments follow •
 ;		<13>	 9/13/91	JSM		Cleanup header.
 ;		<12>	 3/11/91	dnf		dba, #83780: Remove HFS stack overflow check from BTPScan, which
-;									isn’t the right place for such a check. Also, this was left over
-;									debugging code which should be removed. Also, this code didn’t
+;									isn't the right place for such a check. Also, this was left over
+;									debugging code which should be removed. Also, this code didn't
 ;									really help because it checks the stack depth at the wrong time.
 ;		<11>	 2/12/91	dnf		gbm, #RemoveDebuggerStatements: Change _Debugger break on stack
 ;									overflow to a call to _SysErr with #dsFSErr.
-;		<10>	 1/17/91	dnf		(kst) Turn on the “please cache this” advisory bit when reading
+;		<10>	 1/17/91	dnf		(kst) Turn on the 'please cache this' advisory bit when reading
 ;									catalog nodes. Do a FlushVFiles before we start parsing records
 ;		 <9>	11/06/90	dnf		(with dba) Remove explicit noCache setting on _Reads.  Kenny's
 ;									spiffy new cache code makes the cache case better.

@@ -22,7 +22,7 @@
 ;
 ;	Modification history from HeapDefs.a below:
 ;
-;		 <3>	 9/30/91	JSM		Don’t use is32BitClean conditional, all future ROMs will be.
+;		 <3>	 9/30/91	JSM		Don't use is32BitClean conditional, all future ROMs will be.
 ;		 <2>	 9/16/91	JSM		Add header.
 ;	   <1.4>	 7/15/89	CSL		Added equ NRBbit.
 ;	   <1.3>	 3/22/89	CSL		moved EQUS MMPRAMloc, MMFlags, and bit settings for MMFlags to

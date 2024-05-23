@@ -8,7 +8,7 @@
 ;		 <6>	 8/15/91	MH		Add conditional assembly wrapper
 ;		 <5>	 6/14/91	JL		Checked in official MPW 3.2Ä version. Added correct spelling for
 ;									Phase II transition calls.
-;		 <4>	 1/30/91	gbm		sab, #38: Change the Ôalready including this fileÕ variable to
+;		 <4>	 1/30/91	gbm		sab, #38: Change the Ôalready including this file' variable to
 ;									all uppercase (for security reasons)
 ;		 <3>	  1/7/91	JH		(JDR) Do revision number 2
 ;		 <2>	  1/4/91	JDR		(dba) Removed the LAddAEQ and LRmvAEQ constants

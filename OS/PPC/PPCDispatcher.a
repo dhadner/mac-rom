@@ -11,7 +11,7 @@
 ;
 ;		<SM3>	 4/15/92	CSS		Integrate changes from Reality:
 ;									<16> 4/14/92 BBM <JSM>: Remove unfinished PPC code that is under the conditional
-;									“TheFuture”, and remove the conditional “CubeE” since that is
+;									'TheFuture', and remove the conditional 'CubeE' since that is
 ;									reality. Remove conditionals, since all they do is confuse.
 ;		 <2>	 2/13/92	PN		Rewrite the dispatcher to make it work for ROM.
 ;		 <1>						• Pre-SuperMario comments follow •

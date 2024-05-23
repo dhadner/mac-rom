@@ -22,9 +22,9 @@
 				INCLUDE	'ControlPriv.a'
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
-; Implement humane scrolling speeds on “wicked fast” machines.
+; Implement humane scrolling speeds on 'wicked fast' machines.
 
-	IF forROM OR TheFuture THEN					; don’t put data in code space in ROMs or in the future
+	IF forROM OR TheFuture THEN					; don't put data in code space in ROMs or in the future
 
 ;————————————————————————————————————————————————————————————————————————————————————————————————————
 ; InitScrollSpeedGlobals — allocate and initialize globals stored in emScrollSpeedGlobals

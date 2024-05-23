@@ -21,7 +21,7 @@ Created: Saturday, July 27, 1991 at 7:21 PM
 		 <8>	 2/24/93	JDR		Added kTMTaskActive according to Inside Mac VI.
 		 <7>	 2/15/93	KIP		Change #ifdef USESROUTINEDESCRIPTORS to #ifndef
 									USESROUTINEDESCRIPTORS to help Dean out.
-		 <6>	  2/9/93	DTY		If we’re using routine descriptors, typedef ’ProcPtrs to be
+		 <6>	  2/9/93	DTY		If we're using routine descriptors, typedef 'ProcPtrs to be
 									UniversalProcPtrs so that the caller can pass a real routine
 									address, or a pointer to a routine descriptor. This causes
 									parameter type checking to be lost, which is why we only do this

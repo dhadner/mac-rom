@@ -39,8 +39,8 @@
 ;		<48>	10/18/91	JH		Fixed dumb error accessing DictionaryMgr handle in
 ;									DictionaryDispatch
 ;		<47>	10/17/91	JH		Added _DictionaryDispatch for the dictionary manager.
-;		<46>	10/17/91	JSM		Don’t use hasPPC conditional.
-;		<45>	 9/19/91	JSM		Don’t use forNuFinder conditional (this was the only file that
+;		<46>	10/17/91	JSM		Don't use hasPPC conditional.
+;		<45>	 9/19/91	JSM		Don't use forNuFinder conditional (this was the only file that
 ;									used it).
 ;		<44>	 9/18/91	JSM		Cleanup header, remove references to hasSplineFonts.
 ;		<43>	 6/12/91	LN		removed #include 'HardwareEqu.a'
@@ -73,7 +73,7 @@
 ;									_ProcHelper.
 ;		<28>	  7/7/90	JSM		Split DispatchHelper and ProcHelper off to {OS}DispatchHelper.a
 ;									so SixPack can use them, general format cleanup.
-;		<27>	  7/2/90	PKE		Added code to CleanupApplication that disposes of application’s
+;		<27>	  7/2/90	PKE		Added code to CleanupApplication that disposes of application's
 ;									itl2/itl4 cache.
 ;		<26>	 6/20/90	DTY		Removed ShutdownMgr.a from MiscPatches and made it a stand-alone
 ;									'lpch'
@@ -86,7 +86,7 @@
 ;		<21>	  5/2/90	PKE		Included 'GestaltPrivateEqu.a' to fix the build. It is now
 ;									needed for ShutDownMgr.a, which is included here.
 ;		<20>	 4/24/90	S		To Include a Call to PPC at System Task Time.
-;		<19>	 4/20/90	KSM		DispatchHelper used to assume that there were no “holes” in the
+;		<19>	 4/20/90	KSM		DispatchHelper used to assume that there were no 'holes' in the
 ;									table, even if they were between the first and last selectors.
 ;									With a simple branch (I hope), we can keep this from being a
 ;									problem.
@@ -108,7 +108,7 @@
 ;		 <7>	 2/15/90	JSM		Add generic dispatcher DispatchHelper.
 ;		 <6>	  2/4/90	DNF		Add include of FileMgrPrivate.a
 ;		 <5>	 1/21/90	ngk		Changed gestaltEditionMgr to gestaltEditionMgrAttr
-;		 <4>	 1/12/90	CCH		Added include of “HardwarePrivateEqu.a”.
+;		 <4>	 1/12/90	CCH		Added include of 'HardwarePrivateEqu.a'.
 ;		 <3>	  1/6/90	ngk		Use symbolic names for Edition manager calls
 ;		 <2>	  1/4/90	JSM		Add Gestalt function for 7.0 features.
 ;	   <2.4>	12/11/89	GMR		Pulled Sony driver Format patch from this file, now in separate
@@ -307,7 +307,7 @@ InitApp			PatchProc	_InitApplication
 				; Set up application-specific Script Mgr globals				<32>
 				;
 				SUBQ	#2,SP				; space for OSErr result
-				_InitScriptApp				; go set up app’s script globals
+				_InitScriptApp				; go set up app's script globals
 				ADDQ	#2,SP				; always returns NoErr, ignore
 				
 				;
@@ -405,7 +405,7 @@ CleanupApp		PatchProc	_CleanupApplication
 				; Clean up application-specific Script Mgr globals (incl itl2/4 cache)	<27><32>
 				;
 				SUBQ	#2,SP				; space for OSErr result
-				_CleanupScriptApp			; go clean up app’s script globals
+				_CleanupScriptApp			; go clean up app's script globals
 				ADDQ	#2,SP				; always returns NoErr, ignore
 				
 				;

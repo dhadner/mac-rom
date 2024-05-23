@@ -1,7 +1,7 @@
 ;
 ;	File:		itl4Roman.a
 ;
-;	Contains:	Localizable tables and code for Script Manager’s IntlTokenize routine and formatted
+;	Contains:	Localizable tables and code for Script Manager's IntlTokenize routine and formatted
 ;				number handling routines (Str2Format, Format2Str, FormatStr2X, FormatX2Str). This is
 ;				the U.S. version.
 ;
@@ -445,10 +445,10 @@ exc			GenPString '!'		; 43 exclamation point
 til			GenPString '~'		; 44 centered tilde (as opposed to real tilde at $F7)
 com			GenPString ','		; 45 comma
 per			GenPString '.'		; 46 period
-ldq			GenPString '“'		; 47 open double quote ("left double quote")
-rdq			GenPString '”'		; 48 close double quote ("right double quote")
+ldq			GenPString '''		; 47 open double quote ("left double quote")
+rdq			GenPString '''		; 48 close double quote ("right double quote")
 lsq			GenPString '‘'		; 49 open single quote ("left single quote")
-rsq			GenPString '’'		; 50 close single quote ("right single quote")
+rsq			GenPString '''		; 50 close single quote ("right single quote")
 dqu			GenPString '"'		; 51 double quote
 squ			BytPString $27		; 52 single quote
 sco			GenPString ';'		; 53 semicolon

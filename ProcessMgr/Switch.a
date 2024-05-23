@@ -12,15 +12,15 @@
 ;		 <8>	10/28/92	DTY		It turns out that going through the trap dispatcher is really
 ;									expensive, so go back to calling the BlockMove routine directly.
 ;									However, set up D1 with the BlockMoveData trap word so that the
-;									cache doesn’t get flushed.  Add a conditional compile so that
+;									cache doesn't get flushed.  Add a conditional compile so that
 ;									_BlockMove is used when building PsychicTV, so the emulator can
 ;									still catch BlockMove.
 ;		 <7>	10/27/92	DTY		Call BlockMoveData through the dispatcher instead of calling the
 ;									BlockMove routine directly.  This gets us two wins:  1)  If we
-;									run under Gary’s emulator, BlockMove is done natively.  2)  On
-;									68K machines, the cache won’t get flushed because we call
+;									run under Gary's emulator, BlockMove is done natively.  2)  On
+;									68K machines, the cache won't get flushed because we call
 ;									BlockMoveData.
-;		 <6>	 3/22/91	DFH		csd,#85216: Don’t disable interrupts while neutralizing VBL
+;		 <6>	 3/22/91	DFH		csd,#85216: Don't disable interrupts while neutralizing VBL
 ;									tasks, because it leaves interrupts off too long. Instead, set
 ;									the inVBL bit to keep the vertical retrace code from messing
 ;									with the queue.
@@ -342,8 +342,8 @@ SaveOneLoop
 ;
 ; <8> Going through the trap dispatcher is more expensive than I thought.  Go back
 ;	to calling the BlockMove routine directly.  However, set up D1 so that the caches
-;	still don’t get flushed.  We still want to call the trap for PsychicTV however, so
-;	that the emulator can do it’s native BlockMove.
+;	still don't get flushed.  We still want to call the trap for PsychicTV however, so
+;	that the emulator can do it's native BlockMove.
 
 UseBlockMove		
 				move.l	a4,a1							; a1 = destination
@@ -422,8 +422,8 @@ RestoreOneLoop
 ;
 ; <8> Going through the trap dispatcher is more expensive than I thought.  Go back
 ;	to calling the BlockMove routine directly.  However, set up D1 so that the caches
-;	still don’t get flushed.  We still want to call the trap for PsychicTV however, so
-;	that the emulator can do it’s native BlockMove.
+;	still don't get flushed.  We still want to call the trap for PsychicTV however, so
+;	that the emulator can do it's native BlockMove.
 ;
 
 UseBlockMove		

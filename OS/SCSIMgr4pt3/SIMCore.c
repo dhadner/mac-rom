@@ -8,7 +8,7 @@
 		
 		void	InitSIM( Ptr SIMstaticPtr, long busID)
 		
-		Called by the XPT to initialize the SIMÕs state.  The SIM, in turn has the 
+		Called by the XPT to initialize the SIM's state.  The SIM, in turn has the 
 		responsibility of optionally initializing the HBA.
 		
 		void	SIMAction(SIM_IO *thePB, Ptr SIMstaticPtr)

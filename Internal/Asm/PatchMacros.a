@@ -12,7 +12,7 @@
 ;		<15>	 4/10/92	SAH		Fixed the leaFar macro for non 68000 machines by having it do
 ;									the same thing for all machines.
 ;		<14>	10/28/91	SAM/KSM	Clean up header.
-;		<12>	 1/30/91	gbm		sab, #38: Change the ‘already including this file’ variable to
+;		<12>	 1/30/91	gbm		sab, #38: Change the ‘already including this file' variable to
 ;									all uppercase (for security reasons)
 ;		<11>	 1/25/91	stb		JDR: remove betaStage and finalStage
 ;		<10>	 11/9/90	dba		<JSM> add macros for protected come-from patches
@@ -23,7 +23,7 @@
 ;		 <4>	 1/31/90	csd		Added the required $ to the hex constant. (What do you expect
 ;									for 5:11 am?)
 ;		 <3>	 1/31/90	csd		In MakeSysFree, mask off the low bit of the amount of space
-;									requested so that the MacPlus won’t address error in SetAppBase.
+;									requested so that the MacPlus won't address error in SetAppBase.
 ;		 <2>	12/20/89	dba		use betaStage and finalStage instead of Beta and Final
 ;	   <3.1>	11/27/89	dvb		Fixed DcBind, and added DcROM
 ;	   <3.0>	 8/29/89	EMT		Added ACTR in FixRomAddresses to allow for more looping. Removed
@@ -973,7 +973,7 @@ MinSysExtra	EQU			16*1024				; Add in Extra space for system			<2.3-4april89-CEL
 * traditional _SetApplBase, or whether sys and appl are coincident,
 * as is the case with II and in which case we just allocate a handle
 * and immediately release it.  In the worst case, the loop should be
-* executed twice.  At this early stage, we don’t init the appl zone,
+* executed twice.  At this early stage, we don't init the appl zone,
 * just set its base.  The initializations of InitApplZone are for later.
 * Input:
 *	d3 = requested space
@@ -986,7 +986,7 @@ MakeSysFree									; new routine
 			sub.l	d3,d0					; gotten - needed
 			bge.s	@loopEnd				; gotten ≥ needed --> done
 			
-			andi.w	#$FFFE, d0				; make sure it’s even for MacPlus	;<3><4> csd
+			andi.w	#$FFFE, d0				; make sure it's even for MacPlus	;<3><4> csd
 
 			movea.l	SysZone,a0				; start of sys zone
 			cmpa.l	ApplZone,a0				; are they coincident?
