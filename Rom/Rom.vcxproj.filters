@@ -1,0 +1,717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\OS">
+      <UniqueIdentifier>{e6506fdc-0911-4e30-8168-9b1d52cb48c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OS\ADBMgr">
+      <UniqueIdentifier>{fbc263a0-acd7-43d7-b84c-7a7935fe0b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OS\SCSIMgr">
+      <UniqueIdentifier>{fce7ac89-d679-4139-9a94-e815e51cc56e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\Internal\Asm\AMICEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\AppleDeskBusPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\AtalkPrivateEQU.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\BalloonsPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\BootEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\BTreeEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ColorEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\CommToolboxPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ComVideoEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ConnectionsExtensions.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ControlPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\CrsrDevEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DblByteCompatPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DebugMonEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\Decompression.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DeferredTaskEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DepVideoEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DialogsPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DiskCachePriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DispatchHelperPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DisplaysPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\DockingEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\EDiskEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\EditionsPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\egretequ.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\FileMgrPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\FileTransfersExtensions.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\FinderPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\fontPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\GestaltPrivateEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\GibblyMacros.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\GrandCentralPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\HardwarePrivateEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\i2cEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IconUtilsPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\InternalMacros.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\InternalOnlyEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IntlResourcesPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IntlUtilsPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IntModemMgrPrivEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IOPEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\IOPrimitiveEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\LayerEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\LinkedPatchMacros.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\MC680x0.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\MenuMgrPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\MFPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\MMUEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\PalettePriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\PatchMacros.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\PowerPrivEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\PPCPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\PSCEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ReliabilityEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ResourceMgrPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\ScriptPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\SCSIDiskModeEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\SCSIEqu96.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\SCSIPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\SlotMgrEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\StandardEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\SysPrivateEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\TerminalsExtensions.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\TextEditPriv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\TrapsPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\TSMPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\UniversalEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\VectorTableInit.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Internal\Asm\VectorTablePatch.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\adsp.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Aliases.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ApplDeskBus.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\AppleTalk.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Balloons.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\CommResources.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Components.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Connections.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ConnectionTools.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\CRMSerialDevices.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\CTBUtilities.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\DatabaseAccess.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\DBDMA.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\DDEV.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Devices.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Dictionary.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Displays.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\EDiskEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Editions.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\EndianAware.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ENetEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\FileTransfers.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\FileTransferTools.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Finder.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\FixMath.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Folders.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\FSEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\FSPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\GestaltEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Graf3D.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\HardwareEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\HyperXCmd.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Icons.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\IntEnv.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\IntModemMgrEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Language.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\LAPEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Menus.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\MIDI.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Notification.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ObjMacros.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\OSUtils.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Packages.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Palettes.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Picker.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\PictUtil.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Power.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\PowerMgrDispatchEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\PPCToolbox.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Printing.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\PrintTrapsEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Private.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Processes.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\PrPrivate.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\QDOffscreen.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Quickdraw.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ROMEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SANEMacs.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SANEMacs881.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Script.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SCSI.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SCSIStandard.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ShutDown.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Signal.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Slots.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SonyEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\StandardFile.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SysEqu.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\SysErr.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Terminals.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\TerminalTools.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\TextServices.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Timer.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\ToolUtils.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Traps.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\Interfaces\AIncludes\Video.a">
+      <Filter>Header Files</Filter>
+    </Library>
+    <Library Include="..\OS\ADBMgr\ADBMgr.a">
+      <Filter>Source Files\OS\ADBMgr</Filter>
+    </Library>
+    <Library Include="..\OS\Clock.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\CrsrDev.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\CudaMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\DeferredTaskMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\DeviceMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\DispatchHelper.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\DispTable.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\DockingMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\EgretMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\HwPriv.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\InterruptHandlers.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\IntModemMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\IOPMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\MagicData.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\Mouse.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\MPDispatchStub.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\NKEventGroupWrapper.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\OSEventMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\OverPatch.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\Queue.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\SysUtil.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\Universal.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\UniversalTables.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\VerticalRetraceMgr.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\VMPatches.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\WallyWorld.a">
+      <Filter>Source Files\OS</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIBoot.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIDiskMode.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\scsiLateLoad.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSILinkPatch.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgr96.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgr96BIOS.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrDB.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW96.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHW96BIOS.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrHWPSC.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit96.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInit96BIOS.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitDB.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitFlags.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrInitPSC.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrNew.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrOld.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+    <Library Include="..\OS\SCSIMgr\SCSIMgrPSC.a">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\MiscROMRsrcs.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\Resources.make">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\ROMApple2Fonts.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\ROMFonts.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\RomResources.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\Sys.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\SystemFonts.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\SystemSounds.r">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\ADSP.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\AppleTalk.ROM.RSRC">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\AppleTalk.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\APTK57.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\APTK58.RSRC">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\ATAMgr.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\BCScreen.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\BootBeep.Rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\DriverServices.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\EmulatorAccelerations.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\ErrorBeep.Rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\Ethernet.RSRC">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\FireWire.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\kbd.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\LANDisk.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\MediaBay.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\MultiprocessingServices.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\NativeItt.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\NativeNub.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\PCCard.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\PowerMgr.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\Responder.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\SerialDMA.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\USB.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Misc\VM.rsrc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\OS\Hardware_Information">
+      <Filter>Source Files\OS</Filter>
+    </None>
+    <None Include="..\OS\OS Release Notes">
+      <Filter>Source Files\OS</Filter>
+    </None>
+    <None Include="..\OS\OS.make">
+      <Filter>Source Files\OS</Filter>
+    </None>
+    <None Include="..\OS\SCSIMgr\SCSIMgr.make">
+      <Filter>Source Files\OS\SCSIMgr</Filter>
+    </None>
+  </ItemGroup>
+</Project>
